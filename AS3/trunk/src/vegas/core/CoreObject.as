@@ -37,13 +37,12 @@ package vegas.core
 	 * import vegas.core.CoreObject ;
 	 *  
 	 * var core:CoreObject = new CoreObject() ;
-	 * trace("> core : " + core) ;
-	 * trace("> hashcode : " + core.hashCode()) ;
-	 * trace("> toSource : " + core.toSource()) ;
+	 * trace("core     : " + core) ;
+	 * trace("hashcode : " + core.hashCode()) ;
+	 * trace("toSource : " + core.toSource()) ;
 	 * </pre>
 	 * </p>
 	 * @author eKameleon
-	 * @version 1.0.0.0
 	 */
 	public class CoreObject extends Object implements IFormattable, IHashable, ILogable, ISerializable
 	{
@@ -87,8 +86,8 @@ package vegas.core
 		}
 
 		/**
-		 * Returns a Eden representation of the object.
-		 * @return a string representation the source code of the object.
+		 * Returns the string representation the source code of the object.
+		 * @return the string representation the source code of the object.
 		 */
 		public function toSource( indent:int = 0 ):String 
 		{

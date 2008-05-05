@@ -20,13 +20,13 @@
   Contributor(s) :
   
 */
-
 package asgard.net
 {
+	import system.Reflection;
 	
-	import vegas.core.CoreObject;
+	import vegas.core.CoreObject;	
 
-    /**
+	/**
      * Defines the policy of the timeout states in the application.
      * @author eKameleon
      */
@@ -58,7 +58,7 @@ package asgard.net
     	 */		
 		public override function toSource( indent:int = 0 ):String 
 		{
-			return "new asgard.net.TimeOutPolicy( " + _value + ")" ;
+			return "new " + Reflection.getClassPath(this) + "( " + _value + ")" ;
 		}
 
     	/**
@@ -79,6 +79,9 @@ package asgard.net
 			return _value ;
 		}
 		
+		/**
+		 * @private
+		 */
 		private var _value:uint ;
 		
 	}

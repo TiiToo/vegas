@@ -39,14 +39,11 @@ package asgard.net.remoting
     	 */	
 		public function RemotingConnection( sURL:String = null )
 		{
-			
 			super() ;
-			
-			if (sURL != null)
+			if ( sURL != null )
 			{
 				this.connect( sURL );
 			} 
-			
 		}
 
 		/**
@@ -76,7 +73,7 @@ package asgard.net.remoting
 		{
 			if ( ! RemotingConnectionCollector.contains(sUrl) ) 
 			{
-				RemotingConnectionCollector.insert(sUrl, new RemotingConnection( sUrl ));
+				RemotingConnectionCollector.insert( sUrl, new RemotingConnection( sUrl ) );
 			}
 			return RemotingConnectionCollector.get(sUrl) ;
 		}

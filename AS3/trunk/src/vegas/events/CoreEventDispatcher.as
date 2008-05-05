@@ -176,10 +176,10 @@ package vegas.events
 			setEventDispatcher( _isGlobal ? EventDispatcher.getInstance( channel ) : null ) ;
 		}
 
-        /**
-         * Returns the eden String representation of this object.
-         * @return the eden String representation of this object.
-         */
+		/**
+		 * Returns the string representation the source code of the object.
+		 * @return the string representation the source code of the object.
+		 */
         public override function toSource( indent:int = 0 ):String 
         {
             return "new " + Reflection.getClassPath(this) + "()" ;

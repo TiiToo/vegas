@@ -24,8 +24,8 @@ package asgard.net.remoting
 {
 	import flash.events.TimerEvent;
 	import flash.net.ObjectEncoding;
-	import flash.net.registerClassAlias;
 	import flash.net.Responder;
+	import flash.net.registerClassAlias;
 	import flash.utils.Timer;
 	
 	import andromeda.process.Action;
@@ -107,10 +107,10 @@ package asgard.net.remoting
 	 *              service.addEventListener( ActionEvent.START    , onStart    ) ;
 	 *              service.addEventListener( ActionEvent.TIMEOUT  , onTimeOut  ) ;
 	 *              
-	 *              service.gatewayUrl = "http://localhost/work/vegas/php/gateway.php" ;
+	 *              service.gatewayUrl  = "http://localhost/work/vegas/php/gateway.php" ;
 	 *              service.serviceName = "Test" ;
-	 *              service.methodName = "getUser" ;
-	 *              service.params = ["eka", 30, "http://www.ekameleon.net"] ;
+	 *              service.methodName  = "getUser" ;
+	 *              service.params      = ["eka", 31, "http://www.ekameleon.net"] ;
 	 *              
 	 *              service.trigger() ;
 	 *         }
@@ -217,12 +217,12 @@ package asgard.net.remoting
 			
 			super( bGlobal, sChannel );
 			
-			setGatewayUrl( gatewayUrl );
-			setServiceName( serviceName ) ;
-			setResponder( responder ) ;
+			this.gatewayUrl  = gatewayUrl  ;
+			this.serviceName = serviceName ;
+			this.responder   = responder   ;
 		
-			_timer = new Timer(DEFAULT_DELAY, 1) ;
-			setTimeoutPolicy(TimeoutPolicy.LIMIT) ;
+			_timer        = new Timer( DEFAULT_DELAY, 1 ) ;
+			timeoutPolicy = TimeoutPolicy.LIMIT ;
 			
 		}
 	
@@ -237,76 +237,44 @@ package asgard.net.remoting
 		public static const LEVEL_ERROR:String = "error" ;
 
     	/**
-	     * Returns a string containing a dot delimited path from the root of the Flash Remoting Server to the service name. 
-    	 * @return a string containing a dot delimited path from the root of the Flash Remoting Server to the service name.
+    	 * Indicates the timeout interval duration (default 8000 ms).
+    	 * <p>Uses the setDelay() method to change this value.</p>
+    	 */
+		public function get delay():uint
+		{
+			return _timer.delay ;
+		}
+		
+    	/**
+	     * Indicates a string containing a dot delimited path from the root of the Flash Remoting Server to the service name. 
     	 */
 		public function get gatewayUrl():String 
 		{ 
-			return getGatewayUrl() ;
-		}
-	
-		/**
-	     * Sets a string containing a dot delimited path from the root of the Flash Remoting Server to the service name. 
-	     */
-		public function set gatewayUrl(sUrl:String):void 
-		{ 
-			setGatewayUrl(sUrl) ;
-		}
-
-	    /**
-    	 * Returns the proxy policy boolean value of this RemotingService.
-    	 * @return the proxy policy boolean value of this RemotingService.
-    	 */
-		public function get isProxy():Boolean 
-		{ 
-			return getIsProxy() ;
-		}
-
-        /**
-	     * Sets the proxy policy boolean value of this RemotingService.
-	     */
-		public function set isProxy(b:Boolean):void 
-		{ 
-			setIsProxy(b) ;
+			return _rc != null ? _rc.uri : null ;
 		}
 		
 		/**
-		 * The object encoding (AMF version) for the internal NetConnection instance.
-		 */
-		public var objectEncoding:uint = ObjectEncoding.AMF0 ;
-
-	    /**
-    	 * Returns the Array representation of all arguments to pass in the service method.
-    	 * @return the Array representation of all arguments to pass in the service method.
-    	 */
-		public function get params():Array 
+	     * @private
+	     */
+		public function set gatewayUrl( url:String ):void 
 		{ 
-			return getParams() ;
+			_gatewayUrl = url ;
 		}
-
-	    /**
-    	 * Sets the Array representation of all arguments to pass in the service method.
-    	 */
-		public function set params(ar:Array):void 
-		{ 
-			setParams(ar) ;	
-		}
-
+		
     	/**
-    	 * Returns the name of the server-side service's method.
-    	 * @return the name of the server-side service's method.
+    	 * Indicates the name of the server-side service's method.
     	 */
 		public function get methodName():String 
 		{ 
-			return getMethodName() ;	
+			return _methodName ;	
 		}
 
     	/**
-    	 * Sets the name of the server-side service's method.
+    	 * @private
     	 */
-		public function set methodName(sName:String):void 
+		public function set methodName( name:String ):void 
 		{ 
-			setMethodName(sName) ;
+			_methodName = name ;		
 		}
 
     	/**
@@ -314,13 +282,51 @@ package asgard.net.remoting
     	 */
 		public var multipleSimultaneousAllowed:Boolean = false ;
 
+		/**
+		 * The object encoding (AMF version) for the internal NetConnection instance.
+		 */
+		public var objectEncoding:uint = ObjectEncoding.AMF3 ;
+
+	    /**
+    	 * Determinates the Array representation of all arguments to pass in the service method.
+    	 */
+		public function get params():Array 
+		{ 
+			return _args ;
+		}
+
+	    /**
+    	 * @private
+    	 */
+		public function set params( args:Array ):void 
+		{ 
+			_args = args || [] ;
+		}
+		
+    	/**
+    	 * Indicates the Responder reference of the instance. 
+    	 * <p>The responder can't be null, by default the service use an internal Responder with the IAction strategy.</p>
+	     */
+	    public function get responder():Responder
+	    {
+	    	return _responder ;	
+	    }
+	    
+    	/**
+    	 * @private
+    	 */
+		public function set responder( responder:Responder ):void 
+		{
+			_responder = (responder == null) ?  _internalResponder : responder ;
+		}
+
     	/**
     	 * Returns the name of the server-side service.
     	 * @return the name of the server-side service.
     	 */
 		public function get serviceName():String 
 		{ 
-			return getServiceName() ;	
+			return _serviceName ;
 		}
 
     	/**
@@ -328,7 +334,33 @@ package asgard.net.remoting
     	 */
 		public function set serviceName(sName:String):void 
 		{ 
-			setServiceName(sName) ;
+			_serviceName = sName ;	
+		}
+
+
+	    /**
+         * Indicates the timeout policy value of this service. Use limit timeout interval.
+         * @see TimeoutPolicy
+         */
+		public function get timeoutPolicy():TimeoutPolicy 
+		{
+			return _policy ;	
+		}	
+		
+		/**
+		 * @private
+		 */
+		public function set timeoutPolicy( policy:TimeoutPolicy ):void 
+		{
+			_policy = policy ;
+			if (_policy == TimeoutPolicy.LIMIT) 
+			{
+				_timer.addEventListener(TimerEvent.TIMER_COMPLETE, _onTimeOut) ;
+			}
+			else 
+			{
+				_timer.removeEventListener(TimerEvent.TIMER_COMPLETE, _onTimeOut) ;
+			}
 		}
 
         /**
@@ -337,7 +369,7 @@ package asgard.net.remoting
          */
 		public override function clone():*
 		{
-			return new RemotingService( getGatewayUrl() , getServiceName() ) ;
+			return new RemotingService( gatewayUrl , serviceName ) ;
 		}
 		
 		/**
@@ -346,16 +378,7 @@ package asgard.net.remoting
 		 */
 		public function getConnection():RemotingConnection 
 		{
-			return _rc ;	
-		}
-
-    	/**
-    	 * Returns the timeout interval duration.
-    	 * @return the timeout interval duration.
-    	 */
-		public function getDelay():uint
-		{
-			return _timer.delay ;
+			return _rc || null ;	
 		}
 
         /**
@@ -384,52 +407,7 @@ package asgard.net.remoting
 		{
 			return _sTypeResult ;
 		}
-
-    	/**
-    	 * Returns a string containing a dot delimited path from the root of the Flash Remoting Server to the service name. 
-    	 * @return a string containing a dot delimited path from the root of the Flash Remoting Server to the service name.
-    	 */
-		public function getGatewayUrl():String 
-		{
-			return _gatewayUrl ;	
-		}
-
-    	/**
-	     * Returns the proxy policy boolean value of this RemotingService.
-    	 * @return the proxy policy boolean value of this RemotingService.
-    	 */
-		public function getIsProxy():Boolean 
-		{
-			return _isProxy ;	
-		}
-
-	    /**
-	     * Returns the name of the server-side service's method.
-	     * @return the name of the server-side service's method.
-	     */
-		public function getMethodName():String 
-		{
-			return _methodName ;
-		}
-        
-    	/**
-    	 * Returns the Array representation of all arguments to pass in the service method.
-    	 * @return the Array representation of all arguments to pass in the service method.
-    	 */
-		public function getParams():Array 
-		{
-			return _args  ;	
-		}
-        
-    	/**
-    	 * Returns the RemotingServiceResponder reference of the instance.
-    	 * @return the RemotingServiceResponder reference of the instance.
-    	 */
-		public function getResponder():Responder 
-		{
-			return _responder ;
-		}
-	
+				        
 	    /**
     	 * Returns the result value returns by the server after a trigger process.
     	 * @return the result value returns by the server.
@@ -438,26 +416,7 @@ package asgard.net.remoting
 		{
 			return _result ;	
 		}
-
-    	/**
-    	 * Returns the name of the server-side service.
-    	 * @return the name of the server-side service.
-    	 */
-		public function getServiceName():String
-		{
-			return _serviceName ;
-		}
-		
-	    /**
-         * Returns the timeout policy value of this service.
-         * @return the timeout policy value of this service.
-         * @see TimeoutPolicy
-         */
-		public function getTimeoutPolicy():TimeoutPolicy 
-		{
-			return _policy ;	
-		}
-		
+				
         /**
          * Initialize the internal events of this process.
          */
@@ -518,33 +477,46 @@ package asgard.net.remoting
     	 */
 		public override function run(...arguments:Array):void 
 		{
-			
 			_rc = RemotingConnection.getConnection( _gatewayUrl ) ;
-			
 			_rc.objectEncoding = objectEncoding ;
-			
+			if (_rc.connected == false)
+			{
+				_rc.connect(_gatewayUrl) ;	
+			}
+						
 			if ( (_rc == null) && !(_rc is RemotingConnection) ) 
 			{
-				throw new Warning(this + ", You can't run the RemotingConnection.") ;
+				throw new Warning(this + ", You can't run the service with a 'null' or 'undefined' RemotingConnection.") ;
 			}
 			
 			if (_authentification != null)
 			{
-				_rc.setCredentials(_authentification) ;
+				_rc.setCredentials( _authentification ) ;
 			}
 			
-			if (getRunning() && multipleSimultaneousAllowed == false)  
+			if ( running && multipleSimultaneousAllowed == false)  
 			{
 				notifyProgress() ;
 			}
 			else 
 			{
+				
 				notifyStarted() ;
+
 				_result = null ;
-				setRunning(true) ;	
-				var args:Array = [_serviceName + "." + _methodName , getResponder()].concat(_args) ;
-				_rc.call.apply( _rc, args );
+				
+				var args:Array = [ _serviceName + "." + _methodName , responder ].concat(_args) ;
+				
 				_timer.start() ;
+				try
+				{
+					_rc.call.apply( _rc, args );
+				}
+				catch(e:Error)
+				{
+					trace( this + " run failed : " + e) ;	
+				}
+				
 			} 
 		}
         
@@ -592,72 +564,7 @@ package asgard.net.remoting
 		{
 			_sTypeResult = type || RemotingEvent.RESULT ;
 		}
-		
-		/**
-	     * Sets a string containing a dot delimited path from the root of the Flash Remoting Server to the service name. 
-	     */
-		public function setGatewayUrl( url:String ):void 
-		{
-			_gatewayUrl = url ;
-		}
-		
-		/**
-    	 * Sets the proxy policy of this RemotingService. 
-    	 * If the passed-in argument is <code class="prettyprint">true</code> the RemotingService instances uses proxy to resolve all methods.
-	     */
-		public function setIsProxy(b:Boolean):void 
-		{
-			_isProxy = b ;
-		}
 
-	    /**
-    	 * Sets the Array representation of all arguments to pass in the service method.
-    	 */
-		public function setParams(args:Array):void 
-		{
-			_args = args ;	
-		}
-
-    	/**
-	     * Sets the name of the server-side service's method.
-    	 */
-		public function setMethodName( sName:String ):void 
-		{
-			_methodName = sName ;	
-		}
-
-    	/**
-    	 * Sets the RemotingServiceResponder reference of the instance.
-	     */
-		public function setResponder( responder:Responder=null ):void 
-		{
-			_responder = (responder == null) ?  _internalResponder : responder ;
-		}
-	    
-    	/**
-    	 * Sets the name of the server-side service.
-    	 */
-		public function setServiceName( sName:String ):void 
-		{
-			_serviceName = sName ;	
-		}
-		
-		/**
-		 * Use limit timeout interval.
-		 * @see TimeoutPolicy
-		 */
-		public function setTimeoutPolicy( policy:TimeoutPolicy ):void 
-		{
-			_policy = policy ;
-			if (_policy == TimeoutPolicy.LIMIT) 
-			{
-				_timer.addEventListener(TimerEvent.TIMER_COMPLETE, _onTimeOut) ;
-			}
-			else 
-			{
-				_timer.removeEventListener(TimerEvent.TIMER_COMPLETE, _onTimeOut) ;
-			}
-		}
 	
 	    /**
 	     * Triggers the process to launch the method of the current service server side.
@@ -695,27 +602,22 @@ package asgard.net.remoting
 		 * @private
 		 */
 		private var _internalResponder:Responder = new Responder(_onResult, _onStatus) ;
-		
-		/**
-		 * @private
-		 */
-		private var _isProxy:Boolean = false ;
-		
+				
 		/**
 		 * @private
 		 */
 		private var _methodName:String ; 
-
+		
 		/**
 		 * @private
 		 */        
 		private var _policy:TimeoutPolicy ;
-
+		
 		/**
 		 * @private
 		 */
 		private var _rc:RemotingConnection = null ;
-
+		
 		/**
 		 * @private
 		 */
@@ -780,6 +682,10 @@ package asgard.net.remoting
 		private function _onTimeOut(e:TimerEvent):void 
 		{
 			_timer.stop() ;
+			if ( getConnection() != null )
+			{
+				getConnection().close() ;
+			}
 			setRunning(false) ;
 			notifyTimeOut() ;
     		notifyFinished() ;

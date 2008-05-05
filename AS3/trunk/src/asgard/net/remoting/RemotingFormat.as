@@ -54,9 +54,18 @@ package asgard.net.remoting
 			var rs:RemotingService = RemotingService(o);
 			var r:* = rs.getResult() ;
 			var txt:String = "[" + Reflection.getClassName(rs) ;
-			if (rs.getServiceName()) txt += " serviceName:" + rs.getServiceName() ;
-			if (rs.getMethodName()) txt  += " methodName:" + rs.getMethodName() ;
-			if (rs.getServiceName()) txt += " result:" ;
+			if ( rs.serviceName )
+			{
+				txt += " serviceName:" + rs.serviceName ;
+			}
+			if ( rs.methodName )
+			{
+				txt  += " methodName:" + rs.methodName ;
+			}
+			if (rs.serviceName)
+			{
+				txt += " result:" ;
+			}
 			if (r != undefined) 
 			{
 				if (r is Iterable) 
