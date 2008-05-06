@@ -507,7 +507,7 @@ package asgard.net.remoting
             {
                 throw new Warning(this + ", You can't run the service with a 'null' or 'undefined' RemotingConnection.") ;
             }
-              
+			              
             rc.objectEncoding = objectEncoding ;
             
             if ( rc.connected == false)
@@ -531,11 +531,15 @@ package asgard.net.remoting
 
                 _result = null ;
                 
-                var args:Array = [ _serviceName + "." + _methodName , responder ].concat(_args) ;
+                var params:Array = [ _serviceName + "." + _methodName , responder ] ;
+                if (_args != null && _args.length > 0)
+                {
+                	params = params.concat( _args ) ;
+                }
                                 
                 _timer.start() ;
-                
-                rc.call.apply( rc, args ) ;
+				      
+                rc.call.apply( rc, params ) ;
                 
             } 
         }
@@ -638,12 +642,7 @@ package asgard.net.remoting
          */        
         private var _policy:TimeoutPolicy ;
         
-        /**
-         * @private
-         */
-        private var _rc:RemotingConnection = null ;
-        
-        /**
+		/**
          * @private
          */
         private var _responder:Responder = null ;

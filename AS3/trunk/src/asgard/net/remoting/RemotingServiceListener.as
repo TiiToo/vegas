@@ -24,7 +24,6 @@ package asgard.net.remoting
 {
     import andromeda.events.ActionEvent;
     
-    import asgard.config.Config;
     import asgard.events.RemotingEvent;
     import asgard.net.remoting.RemotingService;
     
@@ -66,11 +65,16 @@ package asgard.net.remoting
 		}
 		
 		/**
+		 * Indicates the verbose mode of this listener.
+		 */
+		public var verbose:Boolean = true ;
+		
+		/**
 		 * Invoked when the service notify an error.
 		 */
 		public function error( e:RemotingEvent ):void
 		{
-			if ( Config.getInstance().verbose )
+			if ( verbose )
 			{	
 				getLogger().error( this + " " + e.type ) ;
 			}
@@ -81,9 +85,9 @@ package asgard.net.remoting
 		 */
 		public function fault( e:RemotingEvent ):void
 		{
-			if ( Config.getInstance().verbose )
+			if ( verbose )
 			{	
-				getLogger().warn( this + " " + e.type ) ;
+				getLogger().warn( this + " " + e.type + " description:" + e.getDescription() + ", code:" + e.getCode() ) ;
 			}
 		}
 		
@@ -92,7 +96,7 @@ package asgard.net.remoting
 		 */
 		public function finish( e:ActionEvent ):void
 		{
-			if ( Config.getInstance().verbose )
+			if ( verbose )
 			{				
 				getLogger().info( this + " " + e.type ) ;
 			}
@@ -121,7 +125,7 @@ package asgard.net.remoting
 		 */
 		public function result( e:RemotingEvent ):void
 		{
-			if ( Config.getInstance().verbose )
+			if ( verbose )
 			{
 				getLogger().debug( this + " " + e.type + " service:" + service ) ;
 			}
@@ -132,7 +136,7 @@ package asgard.net.remoting
 		 */
 		public function start( e:ActionEvent ):void
 		{
-			if ( Config.getInstance().verbose )
+			if ( verbose )
 			{			
 				getLogger().info( this + " " + e.type + " service:" + service + " gatewayUrl:" + service.gatewayUrl ) ;
 			}
@@ -143,7 +147,7 @@ package asgard.net.remoting
 		 */
 		public function timeout( e:ActionEvent ):void
 		{
-			if ( Config.getInstance().verbose )
+			if ( verbose )
 			{	
 				getLogger().warn( this + " " + e.type ) ;
 			}
