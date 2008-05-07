@@ -39,7 +39,7 @@ package andromeda.ioc.core
 		public function ObjectFactoryMethod( factory:String , name:String , arguments:Array =null )
 		{
 			super( name , arguments );
-			this.factory   = factory ;
+			this.factory = factory ;
 		}
 		
 		/**

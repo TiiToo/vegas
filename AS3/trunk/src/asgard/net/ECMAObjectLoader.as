@@ -236,7 +236,7 @@ package asgard.net
             _sequencer.addEventListener( ActionEvent.START    , _startSequencer    , false, 0 , true ) ;
             
         }
-
+        
         /**
          * The default context file uri value.
          */

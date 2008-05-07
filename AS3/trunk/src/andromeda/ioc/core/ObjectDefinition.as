@@ -284,7 +284,7 @@ package andromeda.ioc.core
         {
             if ( scope != null && ObjectScope.validate( scope ) )
             {
-                _scope     = scope  || ObjectScope.SINGLETON ;
+                _scope     = scope  || ObjectScope.PROTOTYPE ;
                 _singleton = _scope == ObjectScope.SINGLETON ;
             }
         }

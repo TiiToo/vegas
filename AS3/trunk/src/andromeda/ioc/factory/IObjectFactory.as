@@ -34,6 +34,10 @@ package andromeda.ioc.factory
 		 * Determinates the configuration object of the object factory.
 		 */
 		function get config():ObjectConfig ;
+		
+		/**
+		 * @private
+		 */
 		function set config( o:ObjectConfig ):void ;
 		
 		/**

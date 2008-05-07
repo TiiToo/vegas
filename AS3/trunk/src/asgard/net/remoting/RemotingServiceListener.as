@@ -42,7 +42,7 @@ package asgard.net.remoting
 		 * @param bGlobal the flag to use a global event flow or a local event flow.
 		 * @param sChannel the name of the global event flow if the <code class="prettyprint">bGlobal</code> argument is <code class="prettyprint">true</code>.
 		 */
-		public function RemotingServiceListener( service:RemotingService = null , methodName:String=null , bGlobal:Boolean = false , sChannel:String = null )
+		public function RemotingServiceListener( service:RemotingService = null , bGlobal:Boolean = false , sChannel:String = null )
 		{
 			super ( bGlobal , sChannel ) ;
 			this.service = service ;
