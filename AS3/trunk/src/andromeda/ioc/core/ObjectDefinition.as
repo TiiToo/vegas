@@ -99,34 +99,37 @@ package andromeda.ioc.core
         public static function create( o:* ):ObjectDefinition
         {
 
-                var args:Array                 =  o[ ObjectAttribute.ARGUMENTS ] ;
-                var destroy:String             =  o[ ObjectAttribute.OBJECT_DESTROY_METHOD_NAME ] ;
-                var factoryMethod:Object       =  o[ ObjectAttribute.OBJECT_FACTORY_METHOD ] ;
-                var id:String                  =  o[ ObjectAttribute.OBJECT_ID ] ;
-                var identify:*                 =  o[ ObjectAttribute.IDENTIFY ] ;
-                var init:String                =  o[ ObjectAttribute.OBJECT_INIT_METHOD_NAME ] ;
-                var lazyInit:Boolean           =  o[ ObjectAttribute.LAZY_INIT ] ;
-                var methods:Array              =  o[ ObjectAttribute.OBJECT_METHODS ] ;
-                var properties:Array           =  o[ ObjectAttribute.OBJECT_PROPERTIES ] ;
-                var scope:String               =  o[ ObjectAttribute.OBJECT_SCOPE ] ;
-                var singleton:Boolean          =  o[ ObjectAttribute.OBJECT_SINGLETON ] ;
-                var staticfactoryMethod:Object =  o[ ObjectAttribute.OBJECT_STATIC_FACTORY_METHOD ] ;                
-                var type:String                =  o[ ObjectAttribute.TYPE ] ;
+            var definition:ObjectDefinition = new ObjectDefinition
+            ( 
+                o[ ObjectAttribute.OBJECT_ID ]        as String  , 
+                o[ ObjectAttribute.TYPE ]             as String  , 
+                o[ ObjectAttribute.OBJECT_SINGLETON ] as Boolean , 
+                o[ ObjectAttribute.LAZY_INIT ]        as Boolean 
+            ) ;
                 
-                var definition:ObjectDefinition = new ObjectDefinition( id, type , singleton , lazyInit ) ;
+            definition.identify = o[ ObjectAttribute.IDENTIFY ] as Boolean  ;
+            
+            definition.setConstructorArguments ( o[ ObjectAttribute.ARGUMENTS ] as Array ) ;
+            definition.setDestroyMethodName( o[ ObjectAttribute.OBJECT_DESTROY_METHOD_NAME ] as String ) ;
+            definition.setInitMethodName( o[ ObjectAttribute.OBJECT_INIT_METHOD_NAME ] as String ) ;
+            definition.setScope( o[ ObjectAttribute.OBJECT_SCOPE ] as String ) ;
+            
+            definition.setProperties( createNewProperties( o[ ObjectAttribute.OBJECT_PROPERTIES ] ) ) ;
+            definition.setMethods( o[ ObjectAttribute.OBJECT_METHODS ] as Array ) ;
+            
+            var oMethod:ObjectMethod = null ;
+            
+            if ( ObjectAttribute.OBJECT_FACTORY_METHOD in o )
+            {
+            	oMethod = ObjectFactoryMethod.create( o[ ObjectAttribute.OBJECT_FACTORY_METHOD ] ) ;
+            }
+            else if ( ObjectAttribute.OBJECT_STATIC_FACTORY_METHOD in o )
+            {
+                oMethod = ObjectStaticFactoryMethod.create( o[ ObjectAttribute.OBJECT_STATIC_FACTORY_METHOD ] ) ;	
+            }
+            definition.setFactoryMethod( oMethod ) ;
                 
-                definition.identify = identify ;
-                
-                definition.setConstructorArguments( args ) ;
-                definition.setDestroyMethodName( destroy ) ;
-                definition.setFactoryMethod( ObjectFactoryMethod.create( factoryMethod ) ) ;
-                definition.setInitMethodName( init ) ;
-                definition.setMethods( methods ) ;
-                definition.setProperties( _createNewProperties( properties ) ) ;
-                definition.setScope( scope ) ;
-                definition.setFactoryMethod( ObjectStaticFactoryMethod.create( staticfactoryMethod ) ) ;
-                
-                return definition ;            
+            return definition ;            
             
         }
         
@@ -360,9 +363,10 @@ package andromeda.ioc.core
         
         /**
          * Returns and creates the Map of all properties.
+         * @private
          * @return and creates the Map of all properties.
          */
-        private static function _createNewProperties( a:Array = null ):HashMap
+        protected static function createNewProperties( a:Array = null ):HashMap
         {
             if ( a == null )
             {
@@ -372,7 +376,6 @@ package andromeda.ioc.core
             if ( len > 0 )
             {
                 
-                var args:Array  ;
                 var prop:Object ;
                 var name:String ;
                 var properties:HashMap = new HashMap() ;
@@ -383,12 +386,18 @@ package andromeda.ioc.core
                 {
                     
                     prop  = a[i] ;
-                    args  = prop[ ObjectAttribute.ARGUMENTS ] ;
-                    ref   = prop[ ObjectAttribute.REFERENCE ]  ;
-                    name  = prop[ ObjectAttribute.NAME ] ;
+                    name  = prop[ ObjectAttribute.NAME ] as String ;
+                    
+                    if ( name == null || name.length == 0 )
+                    {
+                    	continue ;
+                    }
+                    
+                    ref   = prop[ ObjectAttribute.REFERENCE ] as String  ;
+                    
                     value = prop[ ObjectAttribute.VALUE ] ;
                     
-                    if (ref != null) 
+                    if ( ref != null ) 
                     {
                         properties.put( name , ref ) ; // ref property    
                     }
@@ -397,7 +406,9 @@ package andromeda.ioc.core
                         properties.put( name, value ) ; // property    
                     }
                 }
-                return (properties.size() > 0) ? properties : null ;
+
+                return ( properties.size() > 0 ) ? properties : null ;
+
             }
             else
             {

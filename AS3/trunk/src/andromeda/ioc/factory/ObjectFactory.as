@@ -156,7 +156,7 @@ package andromeda.ioc.factory
 		{
 			try
 			{
-				var instance:* = _findInCache( name ) ;	
+				var instance:* = singletons.get(name) || null ;	
 				if ( instance == null )
 				{
 					var definition:IObjectDefinition = getObjectDefinition( name ) ;
@@ -233,7 +233,7 @@ package andromeda.ioc.factory
 		 * @private
 		 */
 		private var _config:ObjectConfig ;
-			
+	   
 		/**
 	 	 * Creates the arguments Array representation of the specified definition.
 	 	 * @return the arguments Array representation of the specified definition.
@@ -340,20 +340,6 @@ package andromeda.ioc.factory
 		}
 		
 		/**
-		 * Populates the <code class="prettyprint">Identifiable</code> singleton object, if the 'identify' flag is true the config of this factory and if specified the <code class="prettyprint">IObjectDefinition</code> object scope is singleton.
-		 */
-		protected function populateIdentifiable( o:* , definition:IObjectDefinition ):void
-		{
-			if ( definition.isSingleton() && o is Identifiable )
-			{
-                if ( ( definition.identify == true ) || ( config.identify === true && definition.identify != false ) )
-				{
-					(o as Identifiable ).id = definition.id ;
-				}
-			}
-		}		
-
-		/**
 		 * Invokes the destroy method of the specified object, if the init method is define in the IDefinition object.
 		 */
 		protected function invokeDestroyMethod( o:* , definition:IObjectDefinition ):void
@@ -421,6 +407,21 @@ package andromeda.ioc.factory
 			}
 		}
 
+        
+        /**
+         * Populates the <code class="prettyprint">Identifiable</code> singleton object, if the 'identify' flag is true the config of this factory and if specified the <code class="prettyprint">IObjectDefinition</code> object scope is singleton.
+         */
+        protected function populateIdentifiable( o:* , definition:IObjectDefinition ):void
+        {
+            if ( definition.isSingleton() && o is Identifiable )
+            {
+                if ( ( definition.identify == true ) || ( config.identify === true && definition.identify != false ) )
+                {
+                    (o as Identifiable ).id = definition.id ;
+                }
+            }
+        }
+
 		/**
 		 * Populates all properties in the Map passed in argument.
 		 */
@@ -433,7 +434,7 @@ package andromeda.ioc.factory
 				{
 					var value:* = it.next() ;
 					var key:*   = it.key()  ;
-					if( containsObject( value ) ) 
+					if( value is String && containsObject( value as String ) ) 
 					{
 						value = getObject( value ) ;
        					properties.put( key , value ) ;
@@ -475,17 +476,7 @@ package andromeda.ioc.factory
          * @private
          */
         protected var typeEvaluator:TypeEvaluator ;        
-        
-		/**
-		 * Returns the object register in cache in this container.
-	 	 * @param the name of the object.
-	 	 * @return the object register in cache in this container.
-	 	 */
-		private function _findInCache( name:String=null ):* 
-		{
-			return singletons.get(name) || null ;
-		}
-		
+        	
 	}
 
 }

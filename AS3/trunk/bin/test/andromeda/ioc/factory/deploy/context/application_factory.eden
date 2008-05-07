@@ -5,56 +5,26 @@
 		{   
 			id          : "user_filter_factory"  ,
 			type        : "test.factory.UserFilterFactory" ,
-			arguments   : 
-			[ 
-				{ 
-					value : [ "lunas" ] 
-				} 
-			]
+			arguments   : [ { value : [ "lunas" ] }	]
 		}
 		,
 		{   
 			id                  : "user1"     , 
 			type                : "test.User" , 
-			staticFactoryMethod :
-			{ 
-				type      : "test.factory.UserFactory" , 
-				name      : "create"       , 
-				arguments : 
-				[ 
-					{ value : "ekameleon" } 
-				] 
-			}
+			staticFactoryMethod : { type:"test.factory.UserFactory" , name:"create" , arguments:[ { value : "ekameleon" } ] }
 		}
 		,
 		{   
 			id             : "user2" , 
 			type           : "test.User" , 
-			factoryMethod  : 
-			{ 
-				factory   : "user_filter_factory" , 
-				name      : "build"              , 
-				arguments : 
-				[ 
-					{ value : "pegas" } 
-				] 
-			}
+			factoryMethod  : { factory:"user_filter_factory" , name:"build" , arguments:[ { value:"pegas" } ] }
 		}
 		,
 		{   
 			id             : "user3" , 
 			type           : "test.User" , 
-			factoryMethod  : 
-			{ 
-				factory   : "user_filter_factory" , 
-				name      : "build"              , 
-				arguments : 
-				[ 
-					{ value : "lunas" } 
-				] 
-			}
+			factoryMethod  : {  factory:"user_filter_factory" , name:"build", arguments:[ { value : "lunas" } ]  }
 		}
-		
 	]
 
 }
