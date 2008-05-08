@@ -152,6 +152,57 @@ class vegas.util.MathsUtil
 		return (isNaN(nP) || !isFinite(nP)) ? null : nP ;
 	}
 	
+    /**
+     * With a number value and a range this method returns the actual value for the interpolated value in that range.
+     * <pre class="prettyprint">
+     * import vegas.util.MathsUtil ;
+     * trace( MathsUtil.interpolate( 0.5, 0 , 100 ) ) ; // 50
+     * </pre>
+     * @param value The normal number value to interpolate (value between 0 and 1).
+     * @param minimum The minimum value of the interpolation.
+     * @param maximum The maximum value of the interpolation.
+     * @return the actual value for the interpolated value in that range.
+     */
+    public static function interpolate( value:Number, minimum:Number, maximum:Number ):Number
+    {
+        return minimum + (maximum - minimum) * value ;
+    } 
+        
+    /**
+     * Takes a value in a given range (minimum1, maximum1) and finds the corresponding value in the next range(minimum2, maximum2).
+     * <pre class="prettyprint">
+     * import vegas.util.MathsUtil ;
+     * trace( MathsUtil.map( 10,  0, 100, 20, 80  ) ) ; // 26
+     * trace( MathsUtil.map( 26, 20,  80,  0, 100 ) ) ; // 10
+     * </pre>
+     * @param value The number value to map.
+     * @param minimum1 The minimum value of the first range of the value.
+     * @param maximum1 The maximum value of the first range of the value.
+     * @param minimum2 The minimum value of the second range of the value.
+     * @param maximum2 The maximum value of the second range of the value.
+     * @return value in a given range (minimum1, maximum1) and finds the corresponding value in the next range(minimum2, maximum2).
+     */
+    public static function map( value:Number, minimum1:Number, maximum1:Number, minimum2:Number, maximum2:Number):Number
+    {
+        return interpolate( normalize(value, minimum1, maximum1), minimum2, maximum2);
+    }
+                
+    /**
+     * Takes a value within a given range and converts it to a number between 0 and 1.
+     * Actually it can be outside that range if the original value is outside its range.
+     * <pre class="prettyprint">
+     * import vegas.util.MathsUtil ;
+     * trace( MathsUtil.normalize( 10, 0 , 100 ) ) ; // 0.1
+     * </pre>         
+     * @param value The number value to normalize.
+     * @param minimum The minimum value of the normalization.
+     * @param maximum The maximum value of the normalization.
+     */
+    public static function normalize(value:Number, minimum:Number, maximum:Number):Number
+    {
+        return (value - minimum) / (maximum - minimum) ;
+    }
+	
 	/**
 	 * Rounds and returns a number by a count of floating points.
 	 * <p><b>Example :</b></p>
