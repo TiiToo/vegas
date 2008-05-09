@@ -34,7 +34,7 @@ package mvc.visitors
          */
         public function visit( o:IVisitable ):void
         {
-            var picture:PictureDisplay = (o as PictureDisplay) ;
+            var picture:PictureDisplay = o as PictureDisplay ;
             if ( picture != null )
             {
                var loader:Loader = DisplayObjectCollector.get(UIList.LOADER) as Loader;

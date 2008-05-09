@@ -34,14 +34,23 @@ package mvc.visitors
             request.url = url ;
         }
         
+        /**
+         * The Loader of the application.
+         */
         public var loader:Loader ;
         
+        /**
+         * The picture of the application.
+         */
         public var picture:PictureDisplay ;
         
+        /**
+         * The URLRequest of the application.
+         */
         public var request:URLRequest ;
         
         /**
-         * Returns the url of this LoaderVisitor.
+         * Indicates the url of this LoaderVisitor.
          */  
         public function get url():String 
         {
@@ -49,7 +58,7 @@ package mvc.visitors
         }
 
         /**
-         * Sets the url of this LoaderVisitor.
+         * @private
          */  
         public function set url(sUrl:String):void
         {
@@ -69,7 +78,7 @@ package mvc.visitors
          */
         public function visit( o:IVisitable ):void
         {
-            picture = (o as PictureDisplay) ;
+            picture = o as PictureDisplay ;
 
             if ( picture != null )
             {
