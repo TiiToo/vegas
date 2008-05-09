@@ -96,13 +96,13 @@ package andromeda.ioc.core
         }
         
         /**
-         * Registers an object definition in the container.
-         * @param name the name of the object to register.
-         * @param definition the definition of the object to register.
+         * Registers an object in the container.
+         * @param id the id of the object definition.
+         * @param definition the definition of the object.
          */
-        public function addObjectDefinition( name:String, definition:IObjectDefinition ):void 
+        public function addObjectDefinition( id:String, definition:IObjectDefinition ):void 
         {
-            _map.put( name, definition ) ;
+            _map.put( id, definition ) ;
         }
         
         /**
@@ -114,9 +114,9 @@ package andromeda.ioc.core
         }        
         
         /**
-         * Returns <code class="prettyprint">true</code> if the object define with the specified name in register in the container.
-         * @param name the id name of the ObjectDefinition to search. 
-         * @return <code class="prettyprint">true</code> if the object define with the specified name in register in the container.
+         * Returns <code class="prettyprint">true</code> if the object defines with the specified id is register in the container.
+         * @param id The id of the ObjectDefinition to search. 
+         * @return <code class="prettyprint">true</code> if the object defines with the specified id is register in the container.
          */
         public function containsObjectDefinition( name:String ):Boolean 
         {
@@ -143,7 +143,7 @@ package andromeda.ioc.core
         
         /**
          * Unregisters an object definition in the container.
-         * @param name the name of the object definition.
+         * @param id The id of the object definition to remove.
          * @throws IllegalArgumentError If the specified object definition don't exist in the container.
          */
         public function removeObjectDefinition( name:String ):void 
@@ -159,8 +159,8 @@ package andromeda.ioc.core
         }        
         
         /**
-         * Returns the numbers objects registered in the container.
-         * @return the numbers objects registered in the container.
+         * Returns the numbers of object definitions registered in the container.
+         * @return the numbers of object definitions registered in the container.
          */
         public function sizeObjectDefinition():uint 
         {

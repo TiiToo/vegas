@@ -36,7 +36,7 @@ package andromeda.ioc.factory
     import vegas.util.ClassUtil;    
 
     /**
-	 * The factory of all objects who implements the IObjectDefinition interface.
+	 * The basic Inversion of Control container/factory class.
      * <p><b>Example :</b></p>
      * <pre class="prettyprint">
      * import test.User ;
@@ -128,11 +128,11 @@ package andromeda.ioc.factory
 		 */
 		public var singletons:HashMap ;
 		
-		/**
-		 * Returns <code class="prettyprint">true</code> if the container contains the specified name.
-		 * @param name the name of the object in the container.
-		 * @return <code class="prettyprint">true</code> if the container contains the specified name.
-		 */		
+        /**
+         * Returns <code class="prettyprint">true</code> if the referencial contains the specified object.
+         * @param id The 'id' of the object to search.
+         * @return <code class="prettyprint">true</code> if the referencial contains the specified object.
+         */ 	
 		public function containsObject(name:String):Boolean 
 		{
 			return containsObjectDefinition(name);
@@ -147,26 +147,26 @@ package andromeda.ioc.factory
 			getLogger().warn( o ) ; // use trace in this method if you want debug in Flash or the Flash debugger.
 		};
 		
-		/**
-		 * This method returns an object with the specified name in argument.
-		 * @param name The name of the object.
-		 * @return the instance of the object with the name passed in argument.
-		 */		
-		public function getObject( name:String ):*
+        /**
+         * This method returns an object with the specified id in argument.
+         * @param id The 'id' of the object to return.
+         * @return the instance of the object with the id passed in argument.
+         */		
+		public function getObject( id:String ):*
 		{
 			try
 			{
-				var instance:* = singletons.get(name) || null ;	
+				var instance:* = singletons.get(id) || null ;	
 				if ( instance == null )
 				{
-					var definition:IObjectDefinition = getObjectDefinition( name ) ;
+					var definition:IObjectDefinition = getObjectDefinition( id ) ;
 					if ( definition == null )
 					{
-						throw new NullPointerError( this +  " get( " + name + " ) method failed, the object isn't register in the container.") ; 
+						throw new NullPointerError( this +  " get( " + id + " ) method failed, the object isn't register in the container.") ; 
 					}
 					if ( definition.isSingleton() )
 					{
-						instance = createAndCacheSingletonInstance( name , definition ) ;
+						instance = createAndCacheSingletonInstance( id , definition ) ;
 					}
 					else
 					{
@@ -176,21 +176,21 @@ package andromeda.ioc.factory
 			}
 			catch(e:Error)
 			{
-				debug( this + " createObject failed with the name '" + name + "' : " + e.toString() ) ;
+				debug( this + " createObject failed with the id '" + id + "' : " + e.toString() ) ;
 			}
 			return instance || null ;
 		}
 
-		/**
-		 * This method defined if the object is a lazy init singleton object (must be singleton).
-		 * @param name The name of the object to find.
-		 * @return <code class="prettyprint">true</code> if the object is a lazy init singleton object (must be singleton).
-	 	 */	
-		public function isLazyInit( name:String ):Boolean 
+        /**
+         * This method indicates if the specified object definition is lazy init.
+         * @param id The 'id' of the object definition to check..
+         * @return <code class="prettyprint">true</code> if the specified object definition is lazy init.
+         */ 	
+		public function isLazyInit( id:String ):Boolean 
 		{
-			if ( containsObjectDefinition( name ) )
+			if ( containsObjectDefinition( id ) )
 			{
-				return getObjectDefinition(name).isLazyInit() ;
+				return getObjectDefinition(id).isLazyInit() ;
 			}
 			else
 			{
@@ -198,16 +198,16 @@ package andromeda.ioc.factory
 			}
 		}
 
-		/**
-		 * This method indicates if the object is a singleton.
-		 * @param name The name of the object to find.
-		 * @return <code class="prettyprint">true</code> if the object is a singleton. 
-	 	 */	
-		public function isSingleton( name:String ):Boolean 
+        /**
+         * This method defined if the scope of the specified object definition is "singleton".
+         * @param The 'id' of the object.
+         * @return <code class="prettyprint">true</code> if the object is a singleton. 
+         */     
+		public function isSingleton( id:String ):Boolean 
 		{
-			if ( containsObjectDefinition( name ) )
+			if ( containsObjectDefinition( id ) )
 			{
-				return getObjectDefinition(name).isSingleton() ;
+				return getObjectDefinition(id).isSingleton() ;
 			}
 			else
 			{
@@ -217,15 +217,15 @@ package andromeda.ioc.factory
 		
 		/**
 		 * Removes and destroy a singleton in the container. 
-		 * Invoke the 'destroy' method of this object is it's define in the IObjectDefinition of this singleton.
-		 * @param name The name of the singleton to remove.
+		 * Invoke the <b>'destroy'</b> method of this object is it's define in the <code class="prettyprint">IObjectDefinition</code> of this singleton.
+		 * @param id The id of the singleton to remove.
 	 	 */
-		public function removeSingleton( name:String ):void
+		public function removeSingleton( id:String ):void
 		{
-			if ( isSingleton(name) )
+			if ( isSingleton(id) )
 			{
-				invokeDestroyMethod( singletons.get(name), getObjectDefinition(name) ) ;
-				singletons.remove( name ) ;	
+				invokeDestroyMethod( singletons.get(id), getObjectDefinition(id) ) ;
+				singletons.remove( id ) ;	
 			}
 		}
 		
@@ -274,24 +274,24 @@ package andromeda.ioc.factory
 		} 
 		
 		/**
-	 	 * Creates and cache the singleton instance define with the specified name and IDefinition.
-	 	 * @param name the name of the class object.
+	 	 * Creates and cache the singleton instance define with the specified id and IObjectDefinition.
+	 	 * @param id the id of the class object.
 	 	 * @param definition the IDefinition to apply over the new instance.
 	 	 */
-		protected function createAndCacheSingletonInstance( name:String, definition:IObjectDefinition ):*
+		protected function createAndCacheSingletonInstance( id:String, definition:IObjectDefinition ):*
 		{
-			var instance:* = singletons.get( name ) ;
+			var instance:* = singletons.get( id ) ;
 			if( !instance ) 
 			{
 				instance = createObject( definition ) ;
-				singletons.put( name, instance ) ;
+				singletons.put( id, instance ) ;
 			}
 			return instance;
 		}
 
 		/**
-		 * Creates a new Object with the specified name and the specified IObjectDefinition in argument.
-		 * @return a new Object with the specified name and the specified IObjectDefinition in argument.
+		 * Creates a new Object with the specified id and the specified IObjectDefinition in argument.
+		 * @return a new Object with the specified id and the specified IObjectDefinition in argument.
 		 */
 		protected function createObject( definition:IObjectDefinition ):*
 		{
@@ -344,7 +344,7 @@ package andromeda.ioc.factory
 		 */
 		protected function invokeDestroyMethod( o:* , definition:IObjectDefinition ):void
 		{
-			var name:String     = definition.getDestroyMethodName();
+			var name:String = definition.getDestroyMethodName();
 			if ( name == null && config != null )
 			{
 				name = config.defaultDestroyMethod ;

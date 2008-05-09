@@ -24,7 +24,7 @@ package andromeda.ioc.factory
 {
 
 	/**
-	 * Describes a factory tool who creates prototype or singletons.
+	 * Describes all methods defines in a factory who implement the inversion of control design pattern.
 	 * @author eKameleon
 	 */
 	public interface IObjectFactory 
@@ -42,31 +42,38 @@ package andromeda.ioc.factory
 		
 		/**
 		 * Returns <code class="prettyprint">true</code> if the referencial contains the specified object.
-		 * @param The id name of the object to search.
+		 * @param id The 'id' of the object to search.
 	 	 * @return <code class="prettyprint">true</code> if the referencial contains the specified object.
 		 */		
-		function containsObject(name:String):Boolean;
+		function containsObject(id:String):Boolean;
 				
 		/**
-		 * This method returns an object with the specified name in argument.
-		 * @param The id name of the object to return.
-		 * @return the instance of the object with the name passed in argument.
+		 * This method returns an object with the specified id in argument.
+		 * @param id The 'id' of the object to return.
+		 * @return the instance of the object with the id passed in argument.
 		 */		
-		function getObject( name:String ):* ;
+		function getObject( id:String ):* ;
 	
-		/**
-		 * This method defined if the object is a lazy init singleton object (must be singleton).
-		 * @param name The name of the object to find.
-		 * @return <code class="prettyprint">true</code> if the object is a lazy init singleton object (must be singleton).
-	 	 */	
-		function isLazyInit( name:String ):Boolean ; 		
+        /**
+         * This method indicates if the specified object definition is lazy init.
+         * @param id The 'id' of the object definition to check..
+         * @return <code class="prettyprint">true</code> if the specified object definition is lazy init.
+         */
+		function isLazyInit( id:String ):Boolean ; 		
 		
 		/**
-	 	 * This method defined if the object is a singleton or a prototype.
-		 * @param The id name of the object.
-		 * @return <code class="prettyprint">true</code> if the object is a singleton or else if the object is a prototype. 
+	 	 * This method defined if the scope of the specified object definition is "singleton".
+		 * @param The 'id' of the object.
+		 * @return <code class="prettyprint">true</code> if the object is a singleton. 
 	 	 */		
-		function isSingleton(name:String):Boolean ;	
+		function isSingleton(id:String):Boolean ;	
+		
+        /**
+         * Removes and destroy a singleton in the container. 
+         * Invoke the <b>'destroy'</b> method of this object is it's define in the <code class="prettyprint">IObjectDefinition</code> of this singleton.
+         * @param id The id of the singleton to remove.
+         */		
+		function removeSingleton( id:String ):void ;
 		
 	}
 }
