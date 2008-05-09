@@ -13,6 +13,7 @@
     import mvc.display.PictureDisplay;
     import mvc.events.EventList;
     import mvc.model.GalleryModel;
+    import mvc.model.ModelList;
     import mvc.vo.PictureVO;
     
     import vegas.events.FrontController;    
@@ -37,7 +38,7 @@
             
             // model
             
-            var gallery:GalleryModel = new GalleryModel( GalleryModel.GALLERY_MODEL , true ) ;
+            var gallery:GalleryModel = new GalleryModel( ModelList.GALLERY_MODEL , true ) ;
 
             gallery.setEventTypeADD    ( EventList.ADD_PICTURE    ) ;
             gallery.setEventTypeCHANGE ( EventList.CHANGE_PICTURE ) ;
@@ -63,7 +64,7 @@
             
             var picture:PictureVO   ;
             
-            var count:Number = 6 ;
+            var count:uint = 6 ;
         
             for (var i:uint = 1 ; i<= count ; i++)
             {
@@ -83,7 +84,8 @@
         {
              
             var code:uint = e.keyCode ;
-            var gallery:GalleryModel = GalleryModel( ModelCollector.get( GalleryModel.GALLERY_MODEL ) ) ;
+            
+            var gallery:GalleryModel = ModelCollector.get( ModelList.GALLERY_MODEL ) as GalleryModel ;
             
             trace( e.type + " : " + code ) ;
             
@@ -113,7 +115,6 @@
                 trace( " keyHandler failed : " + error.toString() )  ;
             }
         }
-        
-        
     }
 }
+

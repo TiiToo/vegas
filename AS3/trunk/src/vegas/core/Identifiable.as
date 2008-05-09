@@ -32,13 +32,12 @@ package vegas.core
     {
 		
 		/**
-		 * Returns the id of this object.
-		 * @return the id of this object.
+		 * Indicates the id of this object.
 		 */
 		function get id():* ;
 	
 		/**
-	 	 * Sets the id of the object.
+	 	 * @private
 	 	 */
 		function set id( id:* ):void ;
 		 

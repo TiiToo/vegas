@@ -24,12 +24,7 @@ package mvc.model
         {
             super( id, bGlobal , sChannel ) ;
         }
-        
-        /**
-         * The id name of this gallery model.
-         */
-        public static var GALLERY_MODEL:String = "gallery_model" ;
-        
+                
         /**
          * Clear the model.
          */

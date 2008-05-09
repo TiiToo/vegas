@@ -137,7 +137,7 @@ package andromeda.vo
         }
         
         /**
-          * Toggle a filter value in this filter object.
+         * Toggle a filter value in this filter object.
          */
         public function toggleFilter( value:Number, b:Boolean ):Boolean
         {

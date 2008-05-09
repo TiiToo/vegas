@@ -1,43 +1,24 @@
 ﻿/*
 
-    Licence
-    
-        Copyright (c) 2005 JSON.org
-
-        Permission is hereby granted, free of charge, to any person obtaining a copy
-        of this software and associated documentation files (the "Software"), to deal
-        in the Software without restriction, including without limitation the rights
-        to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-        copies of the Software, and to permit persons to whom the Software is
-        furnished to do so, subject to the following conditions:
-    
-        The Software shall be used for Good, not Evil.
-
-        THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-        IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-        FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-        AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-        LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-        OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-        SOFTWARE.
-    
-    Contributor(s) :
-    
-        - Ported to Actionscript May 2005 by Trannie Carter <tranniec@designvox.com>, wwww.designvox.com
-        
-        - Alcaraz Marc (aka eKameleon) 2006-01-24 <vegas@ekameleon.net> 
-        
-            - Refactoring AS2 and MTASC Compatibilty 
-            - AS3 version
-            - SSAS version (for 'Flash Communication Server' and 'Flash Media Server')
-            - Add Hexa Digits in 'deserialize' method
-            - Supports in the objects deserialization the key property with quote, double quote or not surrounded by quotes.
-            - Supports in string simple or double quotes.    
-            
-            More informations in the VEGAS page project : http://code.google.com/p/vegas/
-            
-            NOTE : eden Hexa digits code inspiration -> http://code.google.com/p/edenrr/
-
+  The contents of this file are subject to the Mozilla Public License Version
+  1.1 (the "License"); you may not use this file except in compliance with
+  the License. You may obtain a copy of the License at 
+  
+           http://www.mozilla.org/MPL/ 
+  
+  Software distributed under the License is distributed on an "AS IS" basis,
+  WITHOUT WARRANTY OF ANY KIND, either express or implied. See the License
+  for the specific language governing rights and limitations under the License. 
+  
+  The Original Code is Vegas Framework.
+  
+  The Initial Developer of the Original Code is
+  ALCARAZ Marc (aka eKameleon)  <vegas@ekameleon.net>.
+  Portions created by the Initial Developer are Copyright (C) 2004-2008
+  the Initial Developer. All Rights Reserved.
+  
+  Contributor(s) :
+  
 */
 package vegas.string
 {

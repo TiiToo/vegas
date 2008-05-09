@@ -20,7 +20,6 @@
   Contributor(s) :
   
 */
-
 package andromeda.vo
 {
 	import system.IEquatable;
