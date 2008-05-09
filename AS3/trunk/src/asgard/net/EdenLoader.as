@@ -23,11 +23,11 @@
 
 package asgard.net
 {
-	import flash.net.URLRequest;
-	
-	import buRRRn.eden;	
+    import flash.net.URLRequest;
+    
+    import buRRRn.eden;    
 
-	/**
+    /**
 	 * This loader load an external file with eden document inside and deserialize it when the loading is complete.
      * <p><b>Example :</b></p>
      * <pre class="prettyprint">
@@ -71,17 +71,8 @@ package asgard.net
          */ 
 		public function EdenLoader( request:URLRequest=null )
 		{
+			serializer = eden ;
 			super(request);
-		}
-		
-		/**
-		 * Returns the method used to deserialize this loader.
-		 * @return the method used to deserialize this loader.
-		 * @see Eden
-		 */
-		public override function getDeserializer():Function
-		{
-			return eden.deserialize ;	
 		}
 		
 	}

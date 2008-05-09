@@ -23,13 +23,15 @@
 
 package asgard.net
 {
-	import flash.events.Event;
-	import flash.net.URLLoader;
-	import flash.net.URLLoaderDataFormat;
-	import flash.net.URLRequest;
-	import flash.net.URLVariables;	
+    import flash.events.Event;
+    import flash.net.URLLoader;
+    import flash.net.URLLoaderDataFormat;
+    import flash.net.URLRequest;
+    import flash.net.URLVariables;
+    
+    import system.ISerializer;    
 
-	/**
+    /**
 	 * This loader use a parse external data and deserialize it. 
 	 * @author eKameleon
 	 */
@@ -47,36 +49,39 @@ package asgard.net
 		}
 
 		/**
-		 * Use deserializer method if this property is 'true'.
+		 * Use deserializer method if this property is <true'.
 		 */
 		public var isDeserialize:Boolean = true ;	
 
 		/**
-		 * Returns a deserialize method to use in the ParserLoader when loading is complete.
-		 * override this method.
-		 * @return a deserialize method to use in the ParserLoader when loading is complete.
+		 * Indicates the ISerializer object use to deserialize the external datas.
 		 */
-		public function getDeserializer():Function
+		public function get serializer():ISerializer
 		{
-			return null ;	
+            return _serializer ;	
 		}
+		
+		/**
+		 * @private
+		 */
+        public function set serializer( serializer:ISerializer ):void
+        {
+            _serializer = serializer ;  
+        }		
 		
 		/**
 		 * Invoked when the loader process is complete to parse the datas.
 		 */
 		protected function complete(e:Event):void
 		{
-			
-			var deserialize:Function = getDeserializer() ;
-			
 			switch (dataFormat) 
 			{
 			
 				case URLLoaderDataFormat.TEXT :
 				{
-					if ( getDeserializer() != null && isDeserialize )
+					if ( serializer != null && isDeserialize )
 					{
-						data = deserialize(data) ;
+						data = serializer.deserialize(data) ;
 					}
 					
 					break ;
@@ -85,11 +90,11 @@ package asgard.net
 				{
 					
 					data = new URLVariables(data) ;
-					if ( getDeserializer() != null && isDeserialize )
+					if ( serializer != null && isDeserialize )
 					{
 						for (var prop:String in data)
 						{
-							data[prop] = deserialize(data[prop]) ;
+							data[prop] = serializer.deserialize( data[prop] ) ;
 						}
 					}
 					break ;
@@ -103,6 +108,11 @@ package asgard.net
 			}
 			
 		}
+		
+		/**
+		 * @private
+		 */
+		private var _serializer:ISerializer ;
 		
 	}
 }

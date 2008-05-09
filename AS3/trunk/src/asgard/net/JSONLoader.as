@@ -22,11 +22,11 @@
 */
 package asgard.net
 {
-	import flash.net.URLRequest;
-	
-	import vegas.string.JSON;		
+    import flash.net.URLRequest;
+    
+    import vegas.string.JSON;    
 
-	/**
+    /**
      * This loader load an external file with JSON dom inside and deserialize it when the loading is complete.
      * <p><b>Example :</b></p>
      * <pre class="prettyprint">
@@ -70,19 +70,9 @@ package asgard.net
 		 */
 		public function JSONLoader(request:URLRequest=null)
 		{
+			serializer = JSON ;
 			super(request);
 		}
-		
-		/**
-		 * Returns the method used to deserialize this loader.
-		 * @return the method used to deserialize this loader.
-		 * @see JSON
-		 */
-		public override function getDeserializer():Function
-		{
-			return JSON.deserialize ;	
-		}
-		
-		
+        		
 	}
 }
