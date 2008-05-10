@@ -4,15 +4,13 @@ package visitor.visitor
     import andromeda.util.visitor.IVisitable;
     import andromeda.util.visitor.IVisitor;
     
-    import vegas.core.CoreObject;
-    
     import visitor.display.PictureDisplay;    
 
     /**
      * This visitor clear the view of a PictureDisplay instance.
      * @author eKameleon
      */
-    public class ClearVisitor extends CoreObject implements IVisitor
+    public class ClearVisitor implements IVisitor
     {
 
     	/**

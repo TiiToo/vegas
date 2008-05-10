@@ -4,14 +4,12 @@ package visitor.visitor
     import andromeda.util.visitor.IVisitable;
     import andromeda.util.visitor.IVisitor;
     
-    import vegas.core.CoreObject;
-    
     import visitor.display.PictureDisplay;    
 
     /**
      * This visitor hide the PictureDisplay reference of the application.
      */
-	public class HideVisitor extends CoreObject implements IVisitor
+	public class HideVisitor implements IVisitor
     {
     	
         /**

@@ -7,11 +7,9 @@ package visitor.visitor
     import andromeda.util.visitor.IVisitable;
     import andromeda.util.visitor.IVisitor;
     
-    import vegas.core.CoreObject;
-    
     import visitor.display.PictureDisplay;    
 
-    public class LoaderVisitor extends CoreObject implements IVisitor
+    public class LoaderVisitor implements IVisitor
     {
         
         /**
