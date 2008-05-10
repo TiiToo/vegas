@@ -1,18 +1,16 @@
 ﻿
 package visitor.display
 {
-	import flash.display.*;
-	
-	import andromeda.util.visitor.IVisitable;
-	import andromeda.util.visitor.IVisitor;
-	
-	import asgard.display.CoreLoader;
-	import asgard.display.CoreSprite;	
+    import flash.display.*;
+    import flash.events.Event;
+    
+    import andromeda.util.visitor.IVisitable;
+    import andromeda.util.visitor.IVisitor;    
 
-	/**
+    /**
      * The PictureDisplay class.
      */
-    public class PictureDisplay extends CoreSprite implements IVisitable
+    public class PictureDisplay extends Sprite implements IVisitable
     {
 
 	    /**
@@ -20,8 +18,11 @@ package visitor.display
 	     */	
     	public function PictureDisplay() 
     	{
-    	    super( UIList.PICTURE ) ;
-            loader = new CoreLoader( UIList.LOADER ) ;
+    	    super() ;
+            
+            loader = new Loader() ;
+            loader.contentLoaderInfo.addEventListener( Event.COMPLETE, complete ) ;
+		    
 		    update() ;
     	}
         
@@ -33,7 +34,7 @@ package visitor.display
     	/**
     	 * The loader of the picture display.
     	 */
-    	public var loader:CoreLoader ;
+    	public var loader:Loader ;
         
         /**
          * The virtual hwidth of the picture.
@@ -49,14 +50,32 @@ package visitor.display
 		}
 
         /**
+         * Invoked when the picture loading is complete.
+         */
+        public function complete( e:Event ):void
+        {
+            trace("complete : " + e) ;
+            addChild( loader ) ; 
+            update() ;
+        }
+
+        /**
          * Update the view of the display.
          */
-        public override function update():void
+        public function update():void
         {
+            
             graphics.clear() ;
             graphics.beginFill(0xFFFFFF, 100) ;
             graphics.drawRect(0, 0, w, h) ;
             graphics.endFill() ;
+            
+            if ( contains(loader) )
+            {
+                loader.x = ( w - loader.width  ) / 2 ;
+                loader.y = ( h - loader.height ) / 2 ;
+            }
+            
         }
 
     }

@@ -1,13 +1,12 @@
 ﻿
 package visitor.visitor
 {
-	import andromeda.util.visitor.IVisitable;
-	import andromeda.util.visitor.IVisitor;
-	
-	import vegas.core.CoreObject;
-	import vegas.errors.IllegalArgumentError;
-	
-	import visitor.display.PictureDisplay;	
+    import andromeda.util.visitor.IVisitable;
+    import andromeda.util.visitor.IVisitor;
+    
+    import vegas.core.CoreObject;
+    
+    import visitor.display.PictureDisplay;	
 
     /**
      * This visitor show the PictureDisplay reference of the application.
@@ -24,7 +23,8 @@ package visitor.visitor
         }
 
     	/**
-	     * Clear a PictureDisplay object. Visit the IVisitable object. 
+	     * Clear a PictureDisplay object. 
+	     * Visit the IVisitable object. 
     	 */
         public function visit(o:IVisitable):void
         {
@@ -36,7 +36,7 @@ package visitor.visitor
             }
             else
             {
-                throw new IllegalArgumentError(this + " 'visit' method failed, the argument of this method must be a PictureDisplay instance.") ;
+                throw new Error(this + " 'visit' method failed, the argument of this method must be a PictureDisplay instance.") ;
             }
         }
 	}

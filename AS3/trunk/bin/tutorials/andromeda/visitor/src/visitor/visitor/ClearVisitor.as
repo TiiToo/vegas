@@ -1,15 +1,12 @@
 ﻿
 package visitor.visitor
 {
-    import flash.display.Loader;
-    
     import andromeda.util.visitor.IVisitable;
     import andromeda.util.visitor.IVisitor;
     
     import vegas.core.CoreObject;
-    import vegas.errors.IllegalArgumentError;
     
-    import visitor.display.PictureDisplay;	
+    import visitor.display.PictureDisplay;    
 
     /**
      * This visitor clear the view of a PictureDisplay instance.
@@ -27,7 +24,8 @@ package visitor.visitor
         }
 
     	/**
-	     * Clear a PictureDisplay object. Visit the IVisitable object. 
+	     * Clear a PictureDisplay object. 
+	     * Visit the IVisitable object. 
     	 */
         public function visit( o:IVisitable ):void
         {
@@ -35,18 +33,14 @@ package visitor.visitor
             trace( this + " visit : " + picture ) ;
             if ( picture != null )
             {
-               var loader:Loader = picture.loader ;
-               if (loader != null)
-               {
-                    if ( picture.contains(loader) )
-                    {
-                        picture.removeChild(loader) ;
-                    }
-               }
+                if ( picture.contains( picture.loader ) )
+                {
+                    picture.removeChild( picture.loader ) ;
+                }
             }
             else
             {
-                throw new IllegalArgumentError(this + " 'visit' method failed, the argument of this method must be a PictureDisplay instance.") ;
+                throw new Error(this + " 'visit' method failed, the argument of this method must be a PictureDisplay instance.") ;
             }
         }
         

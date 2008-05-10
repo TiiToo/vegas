@@ -5,9 +5,8 @@ package visitor.visitor
     import andromeda.util.visitor.IVisitor;
     
     import vegas.core.CoreObject;
-    import vegas.errors.IllegalArgumentError;
     
-    import visitor.display.PictureDisplay;	
+    import visitor.display.PictureDisplay;    
 
     /**
      * This visitor hide the PictureDisplay reference of the application.
@@ -24,7 +23,8 @@ package visitor.visitor
         }
         
     	/**
-	     * Hide a Picture object. Visit the IVisitable object. 
+	     * Hide a Picture object. 
+	     * Visit the IVisitable object. 
     	 */
         public function visit(o:IVisitable):void
         {
@@ -36,7 +36,7 @@ package visitor.visitor
             }
             else
             {
-                throw new IllegalArgumentError(this + " 'visit' method failed, the argument of this method must be a PictureDisplay instance.") ;
+                throw new Error(this + " 'visit' method failed, the argument of this method must be a PictureDisplay instance.") ;
             }
         }
         
