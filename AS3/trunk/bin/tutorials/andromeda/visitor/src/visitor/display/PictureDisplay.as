@@ -34,12 +34,7 @@ package visitor.display
     	 * The loader of the picture display.
     	 */
     	public var loader:CoreLoader ;
-    	
-	    /**
-    	 * The margin in the picture to display the container.
-    	 */
-    	public var margin:Number = 10 ;
-
+        
         /**
          * The virtual hwidth of the picture.
          */  
@@ -47,7 +42,6 @@ package visitor.display
 
 		/**
 		 * Accept a IVisitor object. 
-		 * You can overrides this method in complexe Visitor pattern implementation.
 		 */
 		public function accept( visitor:IVisitor ):void
 		{

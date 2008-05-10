@@ -1,21 +1,18 @@
 ﻿
 package visitor.visitor
 {
-	import flash.display.Loader;
-	
-	import andromeda.util.visitor.IVisitable;
-	import andromeda.util.visitor.IVisitor;
-	
-	import asgard.display.DisplayObjectCollector;
-	
-	import vegas.core.CoreObject;
-	import vegas.errors.IllegalArgumentError;
-	
-	import visitor.display.PictureDisplay;
-	import visitor.display.UIList;	
+    import flash.display.Loader;
+    
+    import andromeda.util.visitor.IVisitable;
+    import andromeda.util.visitor.IVisitor;
+    
+    import vegas.core.CoreObject;
+    import vegas.errors.IllegalArgumentError;
+    
+    import visitor.display.PictureDisplay;	
 
-	/**
-     * This class clear the view of a Picture instance.
+    /**
+     * This visitor clear the view of a PictureDisplay instance.
      * @author eKameleon
      */
     public class ClearVisitor extends CoreObject implements IVisitor
@@ -34,14 +31,11 @@ package visitor.visitor
     	 */
         public function visit( o:IVisitable ):void
         {
-            
             var picture:PictureDisplay = o as PictureDisplay ;
-            
             trace( this + " visit : " + picture ) ;
-            
             if ( picture != null )
             {
-               var loader:Loader = DisplayObjectCollector.get(UIList.LOADER) as Loader;
+               var loader:Loader = picture.loader ;
                if (loader != null)
                {
                     if ( picture.contains(loader) )

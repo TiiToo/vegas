@@ -1,40 +1,42 @@
 ﻿
 package visitor.visitor
 {
-	import flash.display.Loader;
-	import flash.events.Event;
-	import flash.net.URLRequest;
-	
-	import andromeda.util.visitor.IVisitable;
-	import andromeda.util.visitor.IVisitor;
-	
-	import asgard.display.DisplayObjectCollector;
-	
-	import vegas.core.CoreObject;
-	import vegas.errors.IllegalArgumentError;
-	
-	import visitor.display.PictureDisplay;
-	import visitor.display.UIList;	
+    import flash.display.Loader;
+    import flash.events.Event;
+    import flash.net.URLRequest;
+    
+    import andromeda.util.visitor.IVisitable;
+    import andromeda.util.visitor.IVisitor;
+    
+    import vegas.core.CoreObject;
+    import vegas.errors.IllegalArgumentError;
+    
+    import visitor.display.PictureDisplay;    
 
-	public class LoaderVisitor extends CoreObject implements IVisitor
+    public class LoaderVisitor extends CoreObject implements IVisitor
     {
         
         /**
          * Creates a new LoaderVisitor instance.
          */ 
-        public function LoaderVisitor( url:String )
+        public function LoaderVisitor( url:String=null )
         {
-            super();
-            loader = DisplayObjectCollector.get(UIList.LOADER) as Loader ;
-            loader.contentLoaderInfo.addEventListener( Event.COMPLETE, complete ) ;
-            request = new URLRequest() ;
-            request.url = url ;
+            request = new URLRequest(url) ;
         }
         
+        /**
+         * The Loader reference of this visitor.
+         */
         public var loader:Loader ;
         
+        /**
+         * The picture reference of this visitor.
+         */
         public var picture:PictureDisplay ;
         
+        /**
+         * The URLRequest of the visitor.
+         */
         public var request:URLRequest ;
         
         /**
@@ -52,13 +54,16 @@ package visitor.visitor
         {
             request.url = sUrl ;
         }
-
+        
+        /**
+         * Invoked when the picture loading is complete.
+         */
         public function complete( e:Event ):void
         {
             trace("complete : " + e) ;
-        	picture.addChild( loader ); 
-        	loader.x = (picture.width - loader.width) / 2 ;
-        	loader.y = (picture.height - loader.height) / 2 ;
+        	picture.addChild( loader ) ; 
+        	loader.x = ( picture.width  - loader.width  ) / 2 ;
+        	loader.y = ( picture.height - loader.height ) / 2 ;
         }
 
     	/**
@@ -66,14 +71,24 @@ package visitor.visitor
     	 */
         public function visit( o:IVisitable ):void
         {
-            picture = (o as PictureDisplay) ;
-			
+            picture = o as PictureDisplay ;
 			trace( this + " visit : " + picture ) ;
-			
             if ( picture != null )
             {
-               picture.accept( new ClearVisitor() ) ;
-               loader.load( request ) ;
+                picture.accept( new ClearVisitor() ) ;
+                if ( loader == null )
+                {
+                    loader = picture.loader ;
+                    loader.contentLoaderInfo.addEventListener( Event.COMPLETE, complete ) ;
+                }
+                if ( loader != null )
+                {
+                    loader.load( request ) ;
+                }
+                else
+                {
+                	throw new Error(this + " 'visit' method failed, the internal loader not must be 'null' or 'undefined'.") ;
+                }
             }
             else
             {

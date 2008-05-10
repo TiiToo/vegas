@@ -9,6 +9,9 @@ package visitor.visitor
 	
 	import visitor.display.PictureDisplay;	
 
+    /**
+     * This visitor show the PictureDisplay reference of the application.
+     */
 	public class ShowVisitor extends CoreObject implements IVisitor
     {
         
@@ -25,10 +28,8 @@ package visitor.visitor
     	 */
         public function visit(o:IVisitable):void
         {
-            var picture:PictureDisplay = (o as PictureDisplay) ;
-
+            var picture:PictureDisplay = o as PictureDisplay ;
 			trace( this + " visit : " + picture ) ;
-
             if ( picture != null )
             {
                picture.visible = true ;

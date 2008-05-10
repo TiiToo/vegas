@@ -1,14 +1,17 @@
 ﻿
 package visitor.visitor
 {
-	import andromeda.util.visitor.IVisitable;
-	import andromeda.util.visitor.IVisitor;
-	
-	import vegas.core.CoreObject;
-	import vegas.errors.IllegalArgumentError;
-	
-	import visitor.display.PictureDisplay;	
+    import andromeda.util.visitor.IVisitable;
+    import andromeda.util.visitor.IVisitor;
+    
+    import vegas.core.CoreObject;
+    import vegas.errors.IllegalArgumentError;
+    
+    import visitor.display.PictureDisplay;	
 
+    /**
+     * This visitor hide the PictureDisplay reference of the application.
+     */
 	public class HideVisitor extends CoreObject implements IVisitor
     {
     	
@@ -25,11 +28,8 @@ package visitor.visitor
     	 */
         public function visit(o:IVisitable):void
         {
-            
             var picture:PictureDisplay = o as PictureDisplay ;
-
 			trace( this + " visit : " + picture ) ;
-
             if ( picture != null )
             {
                picture.visible = false ;
