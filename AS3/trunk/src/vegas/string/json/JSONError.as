@@ -21,7 +21,7 @@
   
 */
 
-package vegas.string.errors
+package vegas.string.json
 {
 	import vegas.errors.FatalError;
 

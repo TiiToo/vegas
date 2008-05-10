@@ -1,5 +1,4 @@
 ﻿/*
-
     Licence
     
         Copyright (c) 2005 JSON.org
@@ -25,8 +24,9 @@
     
         - Ported to Actionscript May 2005 by Trannie Carter <tranniec@designvox.com>, wwww.designvox.com
         
-        - Alcaraz Marc (aka eKameleon) 2006-01-24 <vegas@ekameleon.net> 
+        - Alcaraz Marc (aka eKameleon) <ekameleon@gmail.com> 
         
+        2006-01-24 
             - Refactoring AS2 and MTASC Compatibilty 
             - AS3 version
             - SSAS version (for 'Flash Communication Server' and 'Flash Media Server')
@@ -37,13 +37,15 @@
             More informations in the VEGAS page project : http://code.google.com/p/vegas/
             
             NOTE : eden Hexa digits code inspiration -> http://code.google.com/p/edenrr/
+        
+        2006-01-24 
+            
+            - Optimisation use private namespace to implement the parsing method. The parser is fast x2.
 
 */
 package vegas.string.json 
 {
-    import system.ISerializer;
-    
-    import vegas.string.errors.JSONError;            
+    import system.ISerializer;    
 
     /**
      * This class is the concrete class of the JSON singleton.
@@ -111,7 +113,8 @@ package vegas.string.json
     public class JSONSerializer implements ISerializer 
     {
 
-
+        use namespace jsonparser;
+        
         /**
          * Creates a new JSONSerializer instance.
          */
@@ -119,6 +122,11 @@ package vegas.string.json
         {
             super() ;
         }
+                
+        /**
+         * The source to evaluate.
+         */
+        public var source:String ;
         
         /**
          * Indicates the indentor string representation.
@@ -180,459 +188,10 @@ package vegas.string.json
          */ 
         public function deserialize( source:String ):*
         {
-            var at:Number = 0 ;
-            var ch:String = ' ' ;
-        
-            var _isDigit:Function ;
-            var _isHexDigit:Function ;
-            var _white:Function ;
-            var _string:Function ;
-            var _next:Function ;
-            var _array:Function ;
-            var _key:Function ;
-            var _object:Function ;
-            var _number:Function ;
-            var _word:Function ;
-            var _value:Function ;
-            var _error:Function ;
-        
-            _isDigit = function( c:String ):* 
-            {
-                return( ("0" <= c) && (c <= "9") );
-            } ;
-            
-            _isHexDigit = function( c:String ):* 
-            {
-                return( _isDigit( c ) || (("A" <= c) && (c <= "F")) || (("a" <= c) && (c <= "f")) );
-            } ;
-                
-            _error = function(m:String):void 
-            {
-                throw new JSONError( m, at - 1 , source) ;
-            } ;
-        
-            _next = function():* 
-            {
-                ch = source.charAt(at);
-                at += 1;
-                return ch;
-            } ;
-        
-            _white = function ():void 
-            {
-               while (ch) 
-               {
-                    if (ch <= ' ') 
-                    {
-                        _next();
-                    } 
-                    else if (ch == '/') 
-                    {
-                        switch (_next()) 
-                        {
-                            case '/' :
-                            {
-                                while (_next() && ch != '\n' && ch != '\r') {}
-                                break;
-                             }
-                            case '*' :
-                            {
-                                _next();
-                                for (;;) 
-                                {
-                                    if (ch) 
-                                    {
-                                        if (ch == '*') 
-                                        {
-                                            if (_next() == '/') 
-                                            {
-                                                _next();
-                                                break;
-                                            }
-                                        } 
-                                        else 
-                                        {
-                                            _next();
-                                        }
-                                    }
-                                    else 
-                                    {
-                                        _error("Unterminated Comment");
-                                    }
-                                }
-                                break;
-                            }
-                            default :
-                            {
-                                _error("Syntax Error");
-                            }
-                        }
-                    } 
-                    else 
-                    {
-                        break ;
-                    }
-                }
-            } ;
-        
-            _string = function ():* 
-            {
-            
-                var i:* = '' ;
-                var s:* = '' ; 
-                var t:* ;
-                var u:* ;
-                
-                var outer:Boolean = false;
-            
-                if (ch == '"' || ch == "'" ) 
-                {
-                    var outerChar:String = ch ;
-                    while (_next()) 
-                    {
-                        if (ch == outerChar) 
-                        {
-                            _next() ;
-                            return s ;
-                        }
-                        else if (ch == '\\') 
-                        {
-                            switch (_next()) 
-                            {
-                                case 'b':
-                                {
-                                    s += '\b' ;
-                                    break ;
-                                }
-                                case 'f' :
-                                {
-                                    s += '\f';
-                                    break ;
-                                }
-                                case 'n':
-                                {
-                                    s += '\n';
-                                    break ;
-                                }
-                                case 'r' :
-                                {
-                                    s += '\r';
-                                    break ;
-                                }
-                                case 't' :
-                                {
-                                    s += '\t' ;
-                                    break ;
-                                }
-                                case 'u' :
-                                {
-                                    u = 0;
-                                    for (i = 0; i < 4; i += 1) 
-                                    {
-                                        t = parseInt(_next(), 16);
-                                        if (!isFinite(t)) 
-                                        {
-                                            outer = true;
-                                            break;
-                                        }
-                                        u = u * 16 + t;
-                                    }
-                                    if(outer) 
-                                    {
-                                        outer = false;
-                                        break;
-                                    }
-                                    s += String.fromCharCode(u);
-                                    break;
-                                }
-                                default :
-                                {
-                                    s += ch;
-                                }
-                            }
-                        } 
-                        else 
-                        {
-                            s += ch;
-                        }
-                    }
-                }
-            
-                _error("Bad String");
-    
-                return null ;
-    
-            } ;
-        
-            _array = function():* 
-            {
-                var a:Array = [];
-                if (ch == '[') 
-                {
-                    _next();
-                    _white();
-                    if (ch == ']') 
-                    {
-                        _next();
-                        return a;
-                    }
-                    while (ch) 
-                    {
-                        a.push(_value());
-                        _white();
-                        if (ch == ']') 
-                        {
-                            _next();
-                            return a;
-                        }
-                        else if (ch != ',') 
-                        {
-                            break;
-                        }
-                        _next();
-                        _white();
-                    }
-                }
-                _error("Bad Array");
-                return null ;
-            } ;
-        
-            _key = function():*
-            {
-            
-                var s:String = ch;
-                var outer:Boolean = false;
-        
-                var semiColon:Number   = source.indexOf(':', at);
-                var quoteIndex:Number  = source.indexOf('"', at) ;
-                var squoteIndex:Number = source.indexOf("'", at) ;
-
-                if( (quoteIndex <= semiColon && quoteIndex > -1) || (squoteIndex <= semiColon && squoteIndex > -1))
-                {
-                    s = _string() ;
-                    _white() ;
-                    if(ch == ':')
-                    {
-                        return s;
-                    }
-                    else
-                    {
-                        _error("Bad key");
-                    }
-                }
-    
-                while ( _next() ) // Use key handling 
-                   {
-                    if (ch == ':') 
-                    {
-                        return s;
-                    } 
-                    if(ch <= ' ')
-                    {
-                        //
-                    }
-                    else
-                    {
-                        s += ch;
-                    }
-                }
-                
-                _error("Bad key") ;
-            
-            } ;
-        
-            _object = function ():* 
-            {
-                var k:* = {} ;
-                var o:* = {} ;
-                if (ch == '{') 
-                {
-                
-                    _next();
-                    _white();
-                
-                    if (ch == '}') 
-                    {
-                        _next() ;
-                        return o ;
-                    }
-                
-                    while (ch) 
-                    {
-                        
-                        k = _key() ;
-                        
-                        _white();
-                        
-                        if (ch != ':') 
-                        {
-                            break;
-                        }
-                        
-                        _next();
-                        
-                        o[k] = _value() ;
-    
-                        _white();
-    
-                        if (ch == '}') 
-                        {
-                            _next();
-                            return o;
-                        } 
-                        else if (ch != ',') 
-                        {
-                            break;
-                        }
-                        _next();
-                        _white();
-                    }
-                }
-                   _error("Bad Object") ;
-            };
-        
-            _number = function ():* 
-            {
-            
-                var n:* = '' ;
-                var v:* ;
-                var hex:String = '' ;
-                var sign:String = '' ;
-            
-                if (ch == '-') 
-                {
-                    n = '-';
-                    sign = n ;
-                    _next();
-                }
-            
-                if( ch == "0" ) 
-                {
-                    _next() ;
-                    if( ( ch == "x") || ( ch == "X") ) 
-                    {
-                        _next();
-                        while( _isHexDigit( ch ) ) 
-                        {
-                            hex += ch ;
-                            _next();
-                        }
-                        if( hex == "" ) 
-                        {
-                            _error("mal formed Hexadecimal") ;
-                        }
-                        else 
-                        {
-                            return Number( sign + "0x" + hex ) ;
-                        }
-                    } 
-                    else 
-                    {
-                        n += "0" ;
-                    }
-                }
-                
-                while ( _isDigit(ch) ) 
-                {
-                    n += ch ;
-                    _next() ;
-                }
-    
-                if (ch == '.') 
-                {
-                    n += '.';
-                    while (_next() && ch >= '0' && ch <= '9') 
-                    {
-                        n += ch ;
-                    }
-                   }
-    
-                v = 1 * n ;
-        
-                if (!isFinite(v)) 
-                {
-                    _error("Bad Number");
-                }
-                else 
-                {
-                    return v ;
-                }
-            
-                return NaN ;
-            
-            } ;
-        
-            _word = function ():* 
-            {
-                
-                switch (ch) 
-                {
-                    
-                    case 't' :
-                    {
-                        if (_next() == 'r' && _next() == 'u' && _next() == 'e') 
-                        {
-                            _next() ;
-                            return true ;
-                        }
-                        break;
-                     }
-                    case 'f' :
-                    {
-                        if (_next() == 'a' && _next() == 'l' && _next() == 's' && _next() == 'e') 
-                        {
-                            _next() ;
-                            return false ;
-                        }
-                        break;
-                     }
-                    case 'n':
-                    {
-                        if (_next() == 'u' && _next() == 'l' && _next() == 'l') 
-                        {
-                            _next() ;
-                            return null ;
-                        }
-                        break;
-                    }
-                }
-            
-                _error("Syntax Error");
-                
-                return null ;
-            
-            };
-        
-            _value = function ():* 
-            {
-                _white() ;
-                switch (ch) 
-                {
-                    case '{' :
-                    {
-                        return _object();
-                    }
-                    case '[' : 
-                    {
-                        return _array();
-                    }
-                    case '"' : 
-                    case "'" :
-                    {
-                        return _string();
-                    }
-                    case '-' : 
-                    {
-                        return _number();
-                    }
-                    default  : 
-                    {
-                        return ( ch >= '0' && ch <= '9' ) ? _number() : _word() ;
-                    }
-                }
-            } ;
-        
-            return _value() ;
+        	this.source = source ;
+            at = 0 ;
+            ch = ' ' ;
+            return value() ;
         }
         
         /**
@@ -780,5 +339,492 @@ package vegas.string.json
          */
         private var _indentor:String = "    " ;
        
+        /**
+         * @private
+         */
+        private namespace jsonparser ;
+               
+        /**
+         * The current position of the iterator in the source.
+         */
+        jsonparser var at:Number = 0 ;
+
+        /**
+         * The current character of the iterator in the source.
+         */
+        jsonparser var ch:String = ' ' ;
+        
+        /**
+         * Check the Array objects in the source expression.
+         */
+        jsonparser function array():Array 
+        {
+            var a:Array = [];
+            if ( ch == '[' ) 
+            {
+                next()  ;
+                white() ;
+                if (ch == ']') 
+                {
+                    next();
+                    return a;
+                }
+                while (ch) 
+                {
+                    a.push( value() ) ;
+                    white();
+                    if (ch == ']') 
+                    {
+                        next();
+                        return a;
+                    }
+                    else if (ch != ',') 
+                    {
+                       break;
+                    }
+                    next();
+                    white();
+                }
+            }
+            error( strings.badArray );
+            return null ;
+        }        
+        
+        /**
+         * Throws a JSONError with the passed-in message.
+         */
+        jsonparser function error( m:String ):void 
+        {
+            throw new JSONError( m, at - 1 , source) ;
+        }        
+        
+        /**
+         * Indicates if the passed-in character is a digit.
+         */
+        jsonparser function isDigit( c:String ):Boolean
+        {
+            return( ("0" <= c) && (c <= "9") );
+        }
+
+        /**
+         * Indicates if the passed-in character is a hexadecimal digit.
+         */
+        jsonparser function isHexDigit( c:String ):Boolean 
+        {
+            return( isDigit( c ) || (("A" <= c) && (c <= "F")) || (("a" <= c) && (c <= "f")) );
+        }
+
+        /**
+         * Indicates if the current character is a key.
+         */
+        jsonparser function key():*
+        {
+            var s:String = ch;
+            var semiColon:Number   = source.indexOf(':', at);
+            var quoteIndex:Number  = source.indexOf('"', at) ;
+            var squoteIndex:Number = source.indexOf("'", at) ;
+            if( (quoteIndex <= semiColon && quoteIndex > -1) || (squoteIndex <= semiColon && squoteIndex > -1))
+            {
+                s = string() ;
+                white() ;
+                if(ch == ':')
+                {
+                    return s;
+                }
+                else
+                {
+                    error(strings.badKey);
+                }
+            }
+    
+                while ( next() ) // Use key handling 
+                   {
+                    if (ch == ':') 
+                    {
+                        return s;
+                    } 
+                    if(ch <= ' ')
+                    {
+                        //
+                    }
+                    else
+                    {
+                        s += ch;
+                    }
+                }
+                
+                error("Bad key") ;
+            
+        }
+        
+        /**
+         * Returns the next character in the source String representation.
+         * @return the next character in the source String representation.
+         */
+        jsonparser function next():String
+        {
+           ch = source.charAt(at);
+           at += 1;
+           return ch;
+        }
+        
+        /**
+         * Check the Number values in the source expression.
+         */    
+        jsonparser function number():* 
+        {
+            
+            var n:* = '' ;
+            var v:* ;
+            var hex:String = '' ;
+            var sign:String = '' ;
+            
+            if (ch == '-') 
+            {
+                n = '-';
+                sign = n ;
+                next();
+            }
+            
+            if( ch == "0" ) 
+            {
+                next() ;
+                if( ( ch == "x") || ( ch == "X") ) 
+                {
+                    next();
+                    while( isHexDigit( ch ) ) 
+                    {
+                        hex += ch ;
+                        next();
+                    }
+                    if( hex == "" ) 
+                    {
+                        error(strings.malFormedHexadecimal) ;
+                    }
+                    else 
+                    {
+                        return Number( sign + "0x" + hex ) ;
+                    }
+                } 
+                else 
+                {
+                    n += "0" ;
+                }
+            }
+                
+            while ( isDigit(ch) ) 
+            {
+                n += ch ;
+                next() ;
+            }
+    
+            if (ch == '.') 
+            {
+                n += '.';
+                while (next() && ch >= '0' && ch <= '9') 
+                {
+                    n += ch ;
+                }
+            }
+    
+            v = 1 * n ;
+        
+            if (!isFinite(v)) 
+            {
+                error(strings.badNumber);
+            }
+            else 
+            {
+                return v ;
+            }
+        
+            return NaN ;
+         
+        }        
+        
+        /**
+         * Check the Object values in the source expression.
+         */       
+        jsonparser function object():* 
+        {
+            var k:* = {} ;
+            var o:* = {} ;
+            if (ch == '{') 
+            {
+                
+                next();
+                white();
+                
+                if (ch == '}') 
+                {
+                    next() ;
+                    return o ;
+                }
+                
+                while (ch) 
+                {
+                       
+                    k = key() ;
+                       
+                    white();
+                        
+                    if (ch != ':') 
+                    {
+                        break;
+                    }
+                        
+                    next();
+                        
+                    o[k] = value() ;
+    
+                    white();
+    
+                    if (ch == '}') 
+                    {
+                        next();
+                        return o;
+                    } 
+                    else if (ch != ',') 
+                    {
+                        break;
+                    }
+                    next();
+                    white();
+                }
+            }
+            error( strings.badObject ) ;
+        }        
+        
+        /**
+         * Check the string objects in the source expression.
+         */
+        jsonparser function string():* 
+        {
+            
+           var i:* = '' ;
+           var s:* = '' ; 
+           var t:* ;
+           var u:* ;
+                
+           var outer:Boolean = false;
+            
+           if (ch == '"' || ch == "'" ) 
+           {
+               var outerChar:String = ch ;
+               while ( next() ) 
+               {
+                   if (ch == outerChar) 
+                   {
+                        next() ;
+                        return s ;
+                   }
+                   else if (ch == '\\') 
+                   {
+                        switch ( next() ) 
+                        {
+                            case 'b':
+                            {
+                                s += '\b' ;
+                                break ;
+                            }
+                            case 'f' :
+                            {
+                                s += '\f';
+                                break ;
+                            }
+                            case 'n':
+                            {
+                                s += '\n';
+                                    break ;
+                                }
+                                case 'r' :
+                                {
+                                    s += '\r';
+                                    break ;
+                                }
+                                case 't' :
+                                {
+                                    s += '\t' ;
+                                    break ;
+                                }
+                                case 'u' :
+                                {
+                                    u = 0;
+                                    for (i = 0; i < 4; i += 1) 
+                                    {
+                                        t = parseInt( next() , 16 ) ;
+                                        if (!isFinite(t)) 
+                                        {
+                                            outer = true;
+                                            break;
+                                        }
+                                        u = u * 16 + t;
+                                    }
+                                    if(outer) 
+                                    {
+                                        outer = false;
+                                        break;
+                                    }
+                                    s += String.fromCharCode(u);
+                                    break;
+                                }
+                                default :
+                                {
+                                    s += ch;
+                                }
+                            }
+                        } 
+                        else 
+                        {
+                            s += ch;
+                        }
+                    }
+                }
+            
+                error( strings.badString );
+    
+                return null ;
+    
+        }
+        
+        /**
+         * Evaluates the values in the source expression.
+         */
+        jsonparser function value():* 
+        {
+            white() ;
+            switch (ch) 
+            {
+                case '{' :
+                {
+                    return object();
+                }
+                case '[' : 
+                {
+                    return array();
+                }
+                case '"' : 
+                case "'" :
+                {
+                    return string();
+                }
+                case '-' : 
+                {
+                    return number();
+                }
+                default  : 
+                {
+                    return ( ch >= '0' && ch <= '9' ) ? number() : word() ;
+                }
+            }
+        }        
+        
+        /**
+         * Check all white spaces.
+         */
+        jsonparser function white():void 
+        {
+            while (ch) 
+            {
+                if (ch <= ' ') 
+                {
+                    next();
+                } 
+                else if (ch == '/') 
+                {
+                    switch ( next() ) 
+                    {
+                        case '/' :
+                        {
+                            while ( next() && ch != '\n' && ch != '\r') 
+                            {
+                            }
+                            break;
+                        }
+                        case '*' :
+                        {
+                            next();
+                            for (;;) 
+                            {
+                                if (ch) 
+                                {
+                                    if (ch == '*') 
+                                    {
+                                        if ( next() == '/' ) 
+                                        {
+                                            next();
+                                            break;
+                                        }
+                                    } 
+                                    else 
+                                    {
+                                        next();
+                                    }
+                                }
+                                else 
+                                {
+                                    error( strings.unterminatedComment );
+                                }
+                            }
+                            break ;
+                        }
+                        default :
+                        {
+                            error( strings.syntaxError );
+                        }
+                    }
+                } 
+                else 
+                {
+                    break ;
+                }
+            }
+        }
+        
+        /**
+         * Check all special words in the source to evaluate.
+         */
+        jsonparser function word():* 
+        {
+                
+            switch (ch) 
+            {
+                    
+                case 't' :
+                {
+                    if (next() == 'r' && next() == 'u' && next() == 'e') 
+                    {
+                        next() ;
+                        return true ;
+                    }
+                    break;
+                }
+                case 'f' :
+                {
+                    if (next() == 'a' && next() == 'l' && next() == 's' && next() == 'e') 
+                    {
+                        next() ;
+                        return false ;
+                    }
+                    break;
+                 }
+                 case 'n':
+                 {
+                    if (next() == 'u' && next() == 'l' && next() == 'l') 
+                    {
+                        next() ;
+                        return null ;
+                    }
+                    break;
+                }
+            }
+            
+            error( strings.syntaxError );
+              
+            return null ;
+            
+        }
+    
     }
+
 }
