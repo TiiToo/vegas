@@ -52,9 +52,9 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
   import vegas.core.CoreObject ;
    
   var core:CoreObject = new CoreObject() ;
-  trace("> core : " + core) ;
-  trace("> hashcode : " + core.hashCode()) ;
-  trace("> toSource : " + core.toSource()) ;
+  trace("core     : " + core) ;
+  trace("hashcode : " + core.hashCode()) ;
+  trace("toSource : " + core.toSource()) ;
   </pre>
   </p>
   <p></p>
@@ -106,7 +106,7 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <div class="summarySignature">
 <a class="signatureLink" href="#toSource()">toSource</a>(indent:int = 0):String</div>
 <div class="summaryTableDescription">
-   Returns a Eden representation of the object.</div>
+   Returns the string representation the source code of the object.</div>
 </td><td class="summaryTableOwnerCol">CoreObject</td>
 </tr>
 <tr class="">
@@ -201,7 +201,7 @@ showHideInherited();
 </table>
 <div class="detailBody">
 <code>public function toSource(indent:int = 0):String</code><p>
-   Returns a Eden representation of the object.
+   Returns the string representation the source code of the object.
    </p><span class="label">Parameters</span>
 <table border="0" cellspacing="0" cellpadding="0">
 <tr>
@@ -212,7 +212,7 @@ showHideInherited();
 <span class="label">Returns</span>
 <table border="0" cellspacing="0" cellpadding="0">
 <tr>
-<td width="20"></td><td><code>String</code> &mdash; a string representation the source code of the object.
+<td width="20"></td><td><code>String</code> &mdash; the string representation the source code of the object.
    </td>
 </tr>
 </table>

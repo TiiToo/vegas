@@ -168,9 +168,9 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <tr class="">
 <td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
 <div class="summarySignature">
-<a class="signatureLink" href="#addObjectDefinition()">addObjectDefinition</a>(name:String, definition:<a href="IObjectDefinition.html">IObjectDefinition</a>):void</div>
+<a class="signatureLink" href="#addObjectDefinition()">addObjectDefinition</a>(id:String, definition:<a href="IObjectDefinition.html">IObjectDefinition</a>):void</div>
 <div class="summaryTableDescription">
-         Registers an object definition in the container.</div>
+         Registers an object in the container.</div>
 </td><td class="summaryTableOwnerCol">ObjectDefinitionContainer</td>
 </tr>
 <tr class="">
@@ -194,7 +194,7 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <div class="summarySignature">
 <a class="signatureLink" href="#containsObjectDefinition()">containsObjectDefinition</a>(name:String):Boolean</div>
 <div class="summaryTableDescription">
-         Returns <code class="prettyprint">true</code> if the object define with the specified name in register in the container.</div>
+         Returns <code class="prettyprint">true</code> if the object defines with the specified id is register in the container.</div>
 </td><td class="summaryTableOwnerCol">ObjectDefinitionContainer</td>
 </tr>
 <tr class="hideInheritedMethod">
@@ -534,7 +534,7 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <div class="summarySignature">
 <a class="signatureLink" href="#sizeObjectDefinition()">sizeObjectDefinition</a>():uint</div>
 <div class="summaryTableDescription">
-         Returns the numbers objects registered in the container.</div>
+         Returns the numbers of object definitions registered in the container.</div>
 </td><td class="summaryTableOwnerCol">ObjectDefinitionContainer</td>
 </tr>
 <tr class="hideInheritedMethod">
@@ -542,7 +542,7 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <div class="summarySignature">
 <a class="signatureLink" href="../../../vegas/events/CoreEventDispatcher.html#toSource()">toSource</a>(indent:int = 0):String</div>
 <div class="summaryTableDescription">
-         Returns the eden String representation of this object.</div>
+   Returns the string representation the source code of the object.</div>
 </td><td class="summaryTableOwnerCol"><a href="../../../vegas/events/CoreEventDispatcher.html">CoreEventDispatcher</a></td>
 </tr>
 <tr class="hideInheritedMethod">
@@ -708,19 +708,19 @@ showHideInherited();
 </tr>
 </table>
 <div class="detailBody">
-<code>public function addObjectDefinition(name:String, definition:<a href="IObjectDefinition.html">IObjectDefinition</a>):void</code><p>
-         Registers an object definition in the container.
+<code>public function addObjectDefinition(id:String, definition:<a href="IObjectDefinition.html">IObjectDefinition</a>):void</code><p>
+         Registers an object in the container.
          </p><span class="label">Parameters</span>
 <table border="0" cellspacing="0" cellpadding="0">
 <tr>
-<td width="20px"></td><td><code><span class="label">name</span>:String</code> &mdash; the name of the object to register.
+<td width="20px"></td><td><code><span class="label">id</span>:String</code> &mdash; the id of the object definition.
          </td>
 </tr>
 <tr>
 <td class="paramSpacer">&nbsp;</td>
 </tr>
 <tr>
-<td width="20px"></td><td><code><span class="label">definition</span>:<a href="IObjectDefinition.html">IObjectDefinition</a></code> &mdash; the definition of the object to register.
+<td width="20px"></td><td><code><span class="label">definition</span>:<a href="IObjectDefinition.html">IObjectDefinition</a></code> &mdash; the definition of the object.
          </td>
 </tr>
 </table>
@@ -743,11 +743,11 @@ showHideInherited();
 </table>
 <div class="detailBody">
 <code>public function containsObjectDefinition(name:String):Boolean</code><p>
-         Returns <code class="prettyprint">true</code> if the object define with the specified name in register in the container.
+         Returns <code class="prettyprint">true</code> if the object defines with the specified id is register in the container.
          </p><span class="label">Parameters</span>
 <table border="0" cellspacing="0" cellpadding="0">
 <tr>
-<td width="20px"></td><td><code><span class="label">name</span>:String</code> &mdash; the id name of the ObjectDefinition to search. 
+<td width="20px"></td><td><code><span class="label">name</span>:String</code> &mdash; The id of the ObjectDefinition to search. 
          </td>
 </tr>
 </table>
@@ -755,7 +755,7 @@ showHideInherited();
 <span class="label">Returns</span>
 <table border="0" cellspacing="0" cellpadding="0">
 <tr>
-<td width="20"></td><td><code>Boolean</code> &mdash; <code class="prettyprint">true</code> if the object define with the specified name in register in the container.
+<td width="20"></td><td><code>Boolean</code> &mdash; <code class="prettyprint">true</code> if the object defines with the specified id is register in the container.
          </td>
 </tr>
 </table>
@@ -808,7 +808,7 @@ showHideInherited();
          </p><span class="label">Parameters</span>
 <table border="0" cellspacing="0" cellpadding="0">
 <tr>
-<td width="20px"></td><td><code><span class="label">name</span>:String</code> &mdash; the name of the object definition.
+<td width="20px"></td><td><code><span class="label">name</span>:String</code> &mdash; The id of the object definition to remove.
          </td>
 </tr>
 </table>
@@ -829,12 +829,12 @@ showHideInherited();
 </table>
 <div class="detailBody">
 <code>public function sizeObjectDefinition():uint</code><p>
-         Returns the numbers objects registered in the container.
+         Returns the numbers of object definitions registered in the container.
          </p><p></p>
 <span class="label">Returns</span>
 <table border="0" cellspacing="0" cellpadding="0">
 <tr>
-<td width="20"></td><td><code>uint</code> &mdash; the numbers objects registered in the container.
+<td width="20"></td><td><code>uint</code> &mdash; the numbers of object definitions registered in the container.
          </td>
 </tr>
 </table>

@@ -5,7 +5,7 @@
 <link rel="stylesheet" href="../../../style.css" type="text/css" media="screen">
 <link rel="stylesheet" href="../../../print.css" type="text/css" media="print">
 <link rel="stylesheet" href="../../../prettify.css" type="text/css">
-<meta content="RemotingConnection,asgard.net.remoting.RemotingConnection,AMF_SERVER_DEBUG,CREDENTIALS,clone,getConnection,setCredentials,startDebug,stopDebug" name="keywords">
+<meta content="RemotingConnection,asgard.net.remoting.RemotingConnection,AMF_SERVER_DEBUG,CREDENTIALS,clone,getConnection,setCredentials,startDebug,stopDebug,toString" name="keywords">
 <title>asgard.net.remoting.RemotingConnection</title>
 </head>
 <body>
@@ -43,7 +43,7 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 </tr>
 </table>
 <p></p>
-  The NetServerConnection object used in the RemotingService class to connect the client with the server.
+  The <code class="prettyprint">RemotingConnection</code> object used in the RemotingService class to connect the client with the server.
   <p></p>
 <br>
 <hr>
@@ -128,9 +128,9 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <tr class="">
 <td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
 <div class="summarySignature">
-<a class="signatureLink" href="#RemotingConnection()">RemotingConnection</a>(sURL:String = null)</div>
+<a class="signatureLink" href="#RemotingConnection()">RemotingConnection</a>(url:String = null)</div>
 <div class="summaryTableDescription">
-      Creates a new RemotingConnection instance.</div>
+      Creates a new <code class="prettyprint">RemotingConnection</code> instance.</div>
 </td><td class="summaryTableOwnerCol">RemotingConnection</td>
 </tr>
 <tr class="hideInheritedMethod">
@@ -201,10 +201,10 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <tr class="">
 <td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
 <div class="summarySignature">
-<a class="signatureLink" href="#getConnection()">getConnection</a>(sUrl:String):<a href="../remoting/RemotingConnection.html">RemotingConnection</a>
+<a class="signatureLink" href="#getConnection()">getConnection</a>(url:String):<a href="../remoting/RemotingConnection.html">RemotingConnection</a>
 </div>
 <div class="summaryTableDescription">[static]
-   Returns the RemotingConnection reference defines with the specified url representation.</div>
+   Returns the <code class="prettyprint">RemotingConnection</code> reference defines with the specified url representation.</div>
 </td><td class="summaryTableOwnerCol">RemotingConnection</td>
 </tr>
 <tr class="hideInheritedMethod">
@@ -497,16 +497,16 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <div class="summarySignature">
 <a class="signatureLink" href="../../../vegas/events/CoreEventDispatcher.html#toSource()">toSource</a>(indent:int = 0):String</div>
 <div class="summaryTableDescription">
-         Returns the eden String representation of this object.</div>
+   Returns the string representation the source code of the object.</div>
 </td><td class="summaryTableOwnerCol"><a href="../../../vegas/events/CoreEventDispatcher.html">CoreEventDispatcher</a></td>
 </tr>
-<tr class="hideInheritedMethod">
-<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol">
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
 <div class="summarySignature">
-<a class="signatureLink" href="../../../vegas/core/CoreObject.html#toString()">toString</a>():String</div>
+<a class="signatureLink" href="#toString()">toString</a>():String</div>
 <div class="summaryTableDescription">
-   Returns the string representation of this instance.</div>
-</td><td class="summaryTableOwnerCol"><a href="../../../vegas/core/CoreObject.html">CoreObject</a></td>
+         Returns the string representation of this instance.</div>
+</td><td class="summaryTableOwnerCol">RemotingConnection</td>
 </tr>
 <tr class="hideInheritedMethod">
 <td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol">
@@ -548,22 +548,6 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <table id="summaryTableProtectedMethod" class="summaryTable hideInheritedProtectedMethod" cellpadding="3" cellspacing="0">
 <tr>
 <th>&nbsp;</th><th colspan="2">Method</th><th class="summaryTableOwnerCol">Defined&nbsp;by</th>
-</tr>
-<tr class="hideInheritedProtectedMethod">
-<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol">
-<div class="summarySignature">
-<a class="signatureLink" href="../NetServerConnection.html#_onIOError()">_onIOError</a>(e:IOErrorEvent):void</div>
-<div class="summaryTableDescription">
-   Invoked when a IOErrorEvent is notified.</div>
-</td><td class="summaryTableOwnerCol"><a href="../NetServerConnection.html">NetServerConnection</a></td>
-</tr>
-<tr class="hideInheritedProtectedMethod">
-<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol">
-<div class="summarySignature">
-<a class="signatureLink" href="../NetServerConnection.html#_onSecurityError()">_onSecurityError</a>(e:SecurityErrorEvent):void</div>
-<div class="summaryTableDescription">
-   Invoked when a SecurityErrorEvent is notified.</div>
-</td><td class="summaryTableOwnerCol"><a href="../NetServerConnection.html">NetServerConnection</a></td>
 </tr>
 <tr class="hideInheritedProtectedMethod">
 <td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol">
@@ -653,12 +637,12 @@ showHideInherited();
 </tr>
 </table>
 <div class="detailBody">
-<code>public function RemotingConnection(sURL:String = null)</code><p>
-      Creates a new RemotingConnection instance.
+<code>public function RemotingConnection(url:String = null)</code><p>
+      Creates a new <code class="prettyprint">RemotingConnection</code> instance.
       </p><span class="label">Parameters</span>
 <table border="0" cellspacing="0" cellpadding="0">
 <tr>
-<td width="20px"></td><td><code><span class="label">sURL</span>:String</code> (default = <code>null</code>)<code></code> &mdash; the url of the connection.
+<td width="20px"></td><td><code><span class="label">url</span>:String</code> (default = <code>null</code>)<code></code> &mdash; the url of the connection.
       </td>
 </tr>
 </table>
@@ -690,12 +674,12 @@ showHideInherited();
 </tr>
 </table>
 <div class="detailBody">
-<code>public static function getConnection(sUrl:String):<a href="../remoting/RemotingConnection.html">RemotingConnection</a></code><p>
-   Returns the RemotingConnection reference defines with the specified url representation.
+<code>public static function getConnection(url:String):<a href="../remoting/RemotingConnection.html">RemotingConnection</a></code><p>
+   Returns the <code class="prettyprint">RemotingConnection</code> reference defines with the specified url representation.
    </p><span class="label">Parameters</span>
 <table border="0" cellspacing="0" cellpadding="0">
 <tr>
-<td width="20px"></td><td><code><span class="label">sUrl</span>:String</code></td>
+<td width="20px"></td><td><code><span class="label">url</span>:String</code></td>
 </tr>
 </table>
 <p></p>
@@ -703,7 +687,7 @@ showHideInherited();
 <table border="0" cellspacing="0" cellpadding="0">
 <tr>
 <td width="20"></td><td><code><a href="../remoting/RemotingConnection.html">RemotingConnection</a></code> &mdash; 
-                        the RemotingConnection reference defines with the specified url representation.
+                        the <code class="prettyprint">RemotingConnection</code> reference defines with the specified url representation.
    
                         
                      </td>
@@ -722,7 +706,7 @@ showHideInherited();
    </p><span class="label">Parameters</span>
 <table border="0" cellspacing="0" cellpadding="0">
 <tr>
-<td width="20px"></td><td><code><span class="label">authentification</span>:<a href="RemotingAuthentification.html">RemotingAuthentification</a></code> (default = <code>null</code>)<code></code> &mdash; The RemotingAuthentification object to defines the credentials user id and password of the service session.
+<td width="20px"></td><td><code><span class="label">authentification</span>:<a href="RemotingAuthentification.html">RemotingAuthentification</a></code> (default = <code>null</code>)<code></code> &mdash; The <code class="prettyprint">RemotingAuthentification</code> object to defines the credentials user id and password of the service session.
    </td>
 </tr>
 </table>
@@ -747,6 +731,24 @@ showHideInherited();
 <code>public function stopDebug():void</code><p>
    Stop the debug mode of this connection.
    </p></div>
+<a name="toString()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">toString</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public override function toString():String</code><p>
+         Returns the string representation of this instance.
+         </p><p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><code>String</code> &mdash; the string representation of this instance.
+         </td>
+</tr>
+</table>
+</div>
 <a name="constantDetail"></a>
 <div class="detailSectionHeader">Constant detail</div>
 <a name="AMF_SERVER_DEBUG"></a>

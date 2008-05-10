@@ -71,7 +71,7 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <tr class="">
 <td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
 <div class="summarySignature">
-<a class="signatureLink" href="#get()">get</a>(sName:String):<a href="../remoting/RemotingConnection.html">RemotingConnection</a>
+<a class="signatureLink" href="#get()">get</a>(name:String):<a href="../remoting/RemotingConnection.html">RemotingConnection</a>
 </div>
 <div class="summaryTableDescription">[static]
    Returns the RemotingConnection reference with the name passed in argument.</div>
@@ -80,7 +80,7 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <tr class="">
 <td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
 <div class="summarySignature">
-<a class="signatureLink" href="#insert()">insert</a>(sName:String, rc:<a href="RemotingConnection.html">RemotingConnection</a>):Boolean</div>
+<a class="signatureLink" href="#insert()">insert</a>(name:String, rc:<a href="RemotingConnection.html">RemotingConnection</a>):Boolean</div>
 <div class="summaryTableDescription">[static]
    Insert a RemotingConnection in the collector and indexed it with the string name in the first parameter.</div>
 </td><td class="summaryTableOwnerCol">RemotingConnectionCollector</td>
@@ -159,12 +159,12 @@ showHideInherited();
 </tr>
 </table>
 <div class="detailBody">
-<code>public static function get(sName:String):<a href="../remoting/RemotingConnection.html">RemotingConnection</a></code><p>
+<code>public static function get(name:String):<a href="../remoting/RemotingConnection.html">RemotingConnection</a></code><p>
    Returns the RemotingConnection reference with the name passed in argument.
    </p><span class="label">Parameters</span>
 <table border="0" cellspacing="0" cellpadding="0">
 <tr>
-<td width="20px"></td><td><code><span class="label">sName</span>:String</code></td>
+<td width="20px"></td><td><code><span class="label">name</span>:String</code></td>
 </tr>
 </table>
 <p></p>
@@ -186,12 +186,12 @@ showHideInherited();
 </tr>
 </table>
 <div class="detailBody">
-<code>public static function insert(sName:String, rc:<a href="RemotingConnection.html">RemotingConnection</a>):Boolean</code><p>
+<code>public static function insert(name:String, rc:<a href="RemotingConnection.html">RemotingConnection</a>):Boolean</code><p>
    Insert a RemotingConnection in the collector and indexed it with the string name in the first parameter.
    </p><span class="label">Parameters</span>
 <table border="0" cellspacing="0" cellpadding="0">
 <tr>
-<td width="20px"></td><td><code><span class="label">sName</span>:String</code> &mdash; the name of the RemotingConnection object to register it.
+<td width="20px"></td><td><code><span class="label">name</span>:String</code> &mdash; the name of the RemotingConnection object to register it.
    </td>
 </tr>
 <tr>

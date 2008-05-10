@@ -651,11 +651,18 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("SÂ
          Serialize the specified object.</td>
 </tr>
 <tr>
-<td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('vegas/string/class-list.html');" href="vegas/string/JSON.html#serialize()">serialize</a>(o) &mdash; Static method in class vegas.string.<a onclick="javascript:loadClassListFrame('vegas/string/class-list.html');" href="vegas/string/JSON.html">JSON</a></td>
+<td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('vegas/string/json/class-list.html');" href="vegas/string/json/JSONSerializer.html#serialize()">serialize</a>(value) &mdash; Method in class vegas.string.json.<a onclick="javascript:loadClassListFrame('vegas/string/json/class-list.html');" href="vegas/string/json/JSONSerializer.html">JSONSerializer</a></td>
 </tr>
 <tr>
 <td width="20"></td><td>
-         Serialize the object and return this string representation.</td>
+         Serialize the specified value object passed-in argument.</td>
+</tr>
+<tr>
+<td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('asgard/net/class-list.html');" href="asgard/net/ParserLoader.html#serializer">serializer</a> &mdash; Property in class asgard.net.<a onclick="javascript:loadClassListFrame('asgard/net/class-list.html');" href="asgard/net/ParserLoader.html">ParserLoader</a></td>
+</tr>
+<tr>
+<td width="20"></td><td>
+   Indicates the ISerializer object use to deserialize the external datas.</td>
 </tr>
 <tr>
 <td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('system/class-list.html');" href="system/SystemConfigurator.html#serializer">serializer</a> &mdash; Property in class system.<a onclick="javascript:loadClassListFrame('system/class-list.html');" href="system/SystemConfigurator.html">SystemConfigurator</a></td>
@@ -692,6 +699,20 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("SÂ
 <td width="20"></td><td></td>
 </tr>
 <tr>
+<td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('asgard/net/remoting/class-list.html');" href="asgard/net/remoting/IRemotingServiceListener.html#service">service</a> &mdash; Property in interface asgard.net.remoting.<a onclick="javascript:loadClassListFrame('asgard/net/remoting/class-list.html');" href="asgard/net/remoting/IRemotingServiceListener.html">IRemotingServiceListener</a></td>
+</tr>
+<tr>
+<td width="20"></td><td>
+   The RemotingService reference of this listener.</td>
+</tr>
+<tr>
+<td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('asgard/net/remoting/class-list.html');" href="asgard/net/remoting/RemotingServiceListener.html#service">service</a> &mdash; Property in class asgard.net.remoting.<a onclick="javascript:loadClassListFrame('asgard/net/remoting/class-list.html');" href="asgard/net/remoting/RemotingServiceListener.html">RemotingServiceListener</a></td>
+</tr>
+<tr>
+<td width="20"></td><td>
+   The RemotingService reference of this listener.</td>
+</tr>
+<tr>
 <td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('andromeda/vo/class-list.html');" href="andromeda/vo/NetServerInfoVO.html#serviceName">serviceName</a> &mdash; Property in class andromeda.vo.<a onclick="javascript:loadClassListFrame('andromeda/vo/class-list.html');" href="andromeda/vo/NetServerInfoVO.html">NetServerInfoVO</a></td>
 </tr>
 <tr>
@@ -709,7 +730,7 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("SÂ
 </tr>
 <tr>
 <td width="20"></td><td>
-      Returns the name of the server-side service.</td>
+         Indicates the name of the server-side service.</td>
 </tr>
 <tr>
 <td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('vegas/data/iterator/class-list.html');" href="vegas/data/iterator/ListIterator.html#set()">set</a>(o) &mdash; Method in interface vegas.data.iterator.<a onclick="javascript:loadClassListFrame('vegas/data/iterator/class-list.html');" href="vegas/data/iterator/ListIterator.html">ListIterator</a></td>
@@ -967,7 +988,7 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("SÂ
 </tr>
 <tr>
 <td width="20"></td><td>
-      Defines a set of credentials to be presented to the server on all subsequent requests.</td>
+         Defines a set of credentials to be presented to the server on all subsequent requests.</td>
 </tr>
 <tr>
 <td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('andromeda/model/class-list.html');" href="andromeda/model/AbstractModelObject.html#setCurrentVO()">setCurrentVO</a>(vo:<a href="andromeda/vo/IValueObject.html" onclick="javascript:loadClassListFrame('andromeda/vo./class-list.html');">andromeda.vo:IValueObject</a>) &mdash; Method in class andromeda.model.<a onclick="javascript:loadClassListFrame('andromeda/model/class-list.html');" href="andromeda/model/AbstractModelObject.html">AbstractModelObject</a></td>
@@ -995,7 +1016,7 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("SÂ
 </tr>
 <tr>
 <td width="20"></td><td>
-      Set timeout interval duration.</td>
+         Set timeout interval duration.</td>
 </tr>
 <tr>
 <td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('asgard/process/class-list.html');" href="asgard/process/AbstractActionLoader.html#setDelay()">setDelay</a>(time, useSeconds) &mdash; Method in class asgard.process.<a onclick="javascript:loadClassListFrame('asgard/process/class-list.html');" href="asgard/process/AbstractActionLoader.html">AbstractActionLoader</a></td>
@@ -1170,14 +1191,14 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("SÂ
 </tr>
 <tr>
 <td width="20"></td><td>
-   Sets the event name use in the notifyError method.</td>
+         Sets the event name use in the notifyError method.</td>
 </tr>
 <tr>
 <td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('asgard/net/remoting/class-list.html');" href="asgard/net/remoting/RemotingService.html#setEventTypeFAULT()">setEventTypeFAULT</a>(type) &mdash; Method in class asgard.net.remoting.<a onclick="javascript:loadClassListFrame('asgard/net/remoting/class-list.html');" href="asgard/net/remoting/RemotingService.html">RemotingService</a></td>
 </tr>
 <tr>
 <td width="20"></td><td>
-   Sets the event name use in the notifyFault method.</td>
+         Sets the event name use in the notifyFault method.</td>
 </tr>
 <tr>
 <td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('andromeda/process/class-list.html');" href="andromeda/process/SimpleAction.html#setEventTypeFINISH()">setEventTypeFINISH</a>(type) &mdash; Method in class andromeda.process.<a onclick="javascript:loadClassListFrame('andromeda/process/class-list.html');" href="andromeda/process/SimpleAction.html">SimpleAction</a></td>
@@ -1275,7 +1296,7 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("SÂ
 </tr>
 <tr>
 <td width="20"></td><td>
-   Sets the event name use in the notifyResult method.</td>
+         Sets the event name use in the notifyResult method.</td>
 </tr>
 <tr>
 <td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('andromeda/process/class-list.html');" href="andromeda/process/Action.html#setEventTypeRESUME()">setEventTypeRESUME</a>(type) &mdash; Method in class andromeda.process.<a onclick="javascript:loadClassListFrame('andromeda/process/class-list.html');" href="andromeda/process/Action.html">Action</a></td>
@@ -1383,13 +1404,6 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("SÂ
          Sets the current filter value of this object.</td>
 </tr>
 <tr>
-<td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('asgard/net/remoting/class-list.html');" href="asgard/net/remoting/RemotingService.html#setGatewayUrl()">setGatewayUrl</a>(url) &mdash; Method in class asgard.net.remoting.<a onclick="javascript:loadClassListFrame('asgard/net/remoting/class-list.html');" href="asgard/net/remoting/RemotingService.html">RemotingService</a></td>
-</tr>
-<tr>
-<td width="20"></td><td>
-      Sets a string containing a dot delimited path from the root of the Flash Remoting Server to the service name.</td>
-</tr>
-<tr>
 <td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('asgard/net/class-list.html');" href="asgard/net/NetServerStream.html#setGlobal()">setGlobal</a>(flag, channel) &mdash; Method in class asgard.net.<a onclick="javascript:loadClassListFrame('asgard/net/class-list.html');" href="asgard/net/NetServerStream.html">NetServerStream</a></td>
 </tr>
 <tr>
@@ -1472,13 +1486,6 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("SÂ
 <tr>
 <td width="20"></td><td>
          Init the name of the method.</td>
-</tr>
-<tr>
-<td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('asgard/net/remoting/class-list.html');" href="asgard/net/remoting/RemotingService.html#setIsProxy()">setIsProxy</a>(b) &mdash; Method in class asgard.net.remoting.<a onclick="javascript:loadClassListFrame('asgard/net/remoting/class-list.html');" href="asgard/net/remoting/RemotingService.html">RemotingService</a></td>
-</tr>
-<tr>
-<td width="20"></td><td>
-      Sets the proxy policy of this RemotingService.</td>
 </tr>
 <tr>
 <td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('asgard/data/remoting/class-list.html');" href="asgard/data/remoting/RecordSet.html#setItemIndex()">setItemIndex</a>(oItem, index) &mdash; Method in class asgard.data.remoting.<a onclick="javascript:loadClassListFrame('asgard/data/remoting/class-list.html');" href="asgard/data/remoting/RecordSet.html">RecordSet</a></td>
@@ -1613,13 +1620,6 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("SÂ
       Sets the method name of the service.</td>
 </tr>
 <tr>
-<td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('asgard/net/remoting/class-list.html');" href="asgard/net/remoting/RemotingService.html#setMethodName()">setMethodName</a>(sName) &mdash; Method in class asgard.net.remoting.<a onclick="javascript:loadClassListFrame('asgard/net/remoting/class-list.html');" href="asgard/net/remoting/RemotingService.html">RemotingService</a></td>
-</tr>
-<tr>
-<td width="20"></td><td>
-      Sets the name of the server-side service's method.</td>
-</tr>
-<tr>
 <td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('andromeda/ioc/core/class-list.html');" href="andromeda/ioc/core/IObjectDefinition.html#setMethods()">setMethods</a>(ar) &mdash; Method in interface andromeda.ioc.core.<a onclick="javascript:loadClassListFrame('andromeda/ioc/core/class-list.html');" href="andromeda/ioc/core/IObjectDefinition.html">IObjectDefinition</a></td>
 </tr>
 <tr>
@@ -1723,13 +1723,6 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("SÂ
 <tr>
 <td width="20"></td><td>
    Sets the options to sort the elements in the list.</td>
-</tr>
-<tr>
-<td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('asgard/net/remoting/class-list.html');" href="asgard/net/remoting/RemotingService.html#setParams()">setParams</a>(args) &mdash; Method in class asgard.net.remoting.<a onclick="javascript:loadClassListFrame('asgard/net/remoting/class-list.html');" href="asgard/net/remoting/RemotingService.html">RemotingService</a></td>
-</tr>
-<tr>
-<td width="20"></td><td>
-      Sets the Array representation of all arguments to pass in the service method.</td>
 </tr>
 <tr>
 <td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('asgard/data/remoting/class-list.html');" href="asgard/data/remoting/RecordSet.html#setParentService()">setParentService</a>(service:<a href="asgard/net/remoting/RemotingService.html" onclick="javascript:loadClassListFrame('asgard/net/remoting./class-list.html');">asgard.net.remoting:RemotingService</a>) &mdash; Method in class asgard.data.remoting.<a onclick="javascript:loadClassListFrame('asgard/data/remoting/class-list.html');" href="asgard/data/remoting/RecordSet.html">RecordSet</a></td>
@@ -1927,13 +1920,6 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("SÂ
    Specifies a red percentage value for a Color object.</td>
 </tr>
 <tr>
-<td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('asgard/net/remoting/class-list.html');" href="asgard/net/remoting/RemotingService.html#setResponder()">setResponder</a>(responder) &mdash; Method in class asgard.net.remoting.<a onclick="javascript:loadClassListFrame('asgard/net/remoting/class-list.html');" href="asgard/net/remoting/RemotingService.html">RemotingService</a></td>
-</tr>
-<tr>
-<td width="20"></td><td>
-      Sets the RemotingServiceResponder reference of the instance.</td>
-</tr>
-<tr>
 <td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('asgard/events/class-list.html');" href="asgard/events/RemotingEvent.html#setResult()">setResult</a>(result, methodName) &mdash; Method in class asgard.events.<a onclick="javascript:loadClassListFrame('asgard/events/class-list.html');" href="asgard/events/RemotingEvent.html">RemotingEvent</a></td>
 </tr>
 <tr>
@@ -2025,13 +2011,6 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("SÂ
    Sets a boolean value indicating whether the button is selected (true) or not (false).</td>
 </tr>
 <tr>
-<td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('asgard/net/remoting/class-list.html');" href="asgard/net/remoting/RemotingService.html#setServiceName()">setServiceName</a>(sName) &mdash; Method in class asgard.net.remoting.<a onclick="javascript:loadClassListFrame('asgard/net/remoting/class-list.html');" href="asgard/net/remoting/RemotingService.html">RemotingService</a></td>
-</tr>
-<tr>
-<td width="20"></td><td>
-      Sets the name of the server-side service.</td>
-</tr>
-<tr>
 <td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('asgard/display/class-list.html');" href="asgard/display/Background.html#setSize()">setSize</a>(w, h) &mdash; Method in class asgard.display.<a onclick="javascript:loadClassListFrame('asgard/display/class-list.html');" href="asgard/display/Background.html">Background</a></td>
 </tr>
 <tr>
@@ -2114,13 +2093,6 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("SÂ
 <tr>
 <td width="20"></td><td>
     Sets the current time within the duration of the animation.</td>
-</tr>
-<tr>
-<td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('asgard/net/remoting/class-list.html');" href="asgard/net/remoting/RemotingService.html#setTimeoutPolicy()">setTimeoutPolicy</a>(policy:<a href="asgard/net/TimeoutPolicy.html" onclick="javascript:loadClassListFrame('asgard/net./class-list.html');">asgard.net:TimeoutPolicy</a>) &mdash; Method in class asgard.net.remoting.<a onclick="javascript:loadClassListFrame('asgard/net/remoting/class-list.html');" href="asgard/net/remoting/RemotingService.html">RemotingService</a></td>
-</tr>
-<tr>
-<td width="20"></td><td>
-   Use limit timeout interval.</td>
 </tr>
 <tr>
 <td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('pegas/transitions/class-list.html');" href="pegas/transitions/Motion.html#setTimer()">setTimer</a>(timer:<a href="pegas/transitions/ITimer.html" onclick="javascript:loadClassListFrame('pegas/transitions./class-list.html');">pegas.transitions:ITimer</a>) &mdash; Method in class pegas.transitions.<a onclick="javascript:loadClassListFrame('pegas/transitions/class-list.html');" href="pegas/transitions/Motion.html">Motion</a></td>
@@ -2566,13 +2538,6 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("SÂ
                   TestCaseTest
                       {
                       13 Tests ...</td>
-</tr>
-<tr>
-<td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('asgard/net/class-list.html');" href="asgard/net/NetServerStatus.html#SHUTDOWN">SHUTDOWN</a> &mdash; Constant static property in class asgard.net.<a onclick="javascript:loadClassListFrame('asgard/net/class-list.html');" href="asgard/net/NetServerStatus.html">NetServerStatus</a></td>
-</tr>
-<tr>
-<td width="20"></td><td>
-     The specified application is shutting down.</td>
 </tr>
 <tr>
 <td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('pegas/draw/class-list.html');" href="pegas/draw/GearPen.html#sides">sides</a> &mdash; Property in class pegas.draw.<a onclick="javascript:loadClassListFrame('pegas/draw/class-list.html');" href="pegas/draw/GearPen.html">GearPen</a></td>
@@ -3130,14 +3095,14 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("SÂ
 </tr>
 <tr>
 <td width="20"></td><td>
-   Returns the numbers objects registered in the container.</td>
+   Returns the numbers of object definitions registered in the container.</td>
 </tr>
 <tr>
 <td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('andromeda/ioc/core/class-list.html');" href="andromeda/ioc/core/ObjectDefinitionContainer.html#sizeObjectDefinition()">sizeObjectDefinition</a>() &mdash; Method in class andromeda.ioc.core.<a onclick="javascript:loadClassListFrame('andromeda/ioc/core/class-list.html');" href="andromeda/ioc/core/ObjectDefinitionContainer.html">ObjectDefinitionContainer</a></td>
 </tr>
 <tr>
 <td width="20"></td><td>
-         Returns the numbers objects registered in the container.</td>
+         Returns the numbers of object definitions registered in the container.</td>
 </tr>
 <tr>
 <td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('pegas/colors/class-list.html');" href="pegas/colors/ColorSVG.html#SKY_BLUE">SKY_BLUE</a> &mdash; Constant static property in class pegas.colors.<a onclick="javascript:loadClassListFrame('pegas/colors/class-list.html');" href="pegas/colors/ColorSVG.html">ColorSVG</a></td>
@@ -3389,11 +3354,18 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("SÂ
    Indicates the String source representation of the parser (read-only).</td>
 </tr>
 <tr>
-<td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('vegas/string/errors/class-list.html');" href="vegas/string/errors/JSONError.html#source">source</a> &mdash; Property in class vegas.string.errors.<a onclick="javascript:loadClassListFrame('vegas/string/errors/class-list.html');" href="vegas/string/errors/JSONError.html">JSONError</a></td>
+<td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('vegas/string/json/class-list.html');" href="vegas/string/json/JSONError.html#source">source</a> &mdash; Property in class vegas.string.json.<a onclick="javascript:loadClassListFrame('vegas/string/json/class-list.html');" href="vegas/string/json/JSONError.html">JSONError</a></td>
 </tr>
 <tr>
 <td width="20"></td><td>
    The String source representation with a bad parsing.</td>
+</tr>
+<tr>
+<td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('vegas/string/json/class-list.html');" href="vegas/string/json/JSONSerializer.html#source">source</a> &mdash; Property in class vegas.string.json.<a onclick="javascript:loadClassListFrame('vegas/string/json/class-list.html');" href="vegas/string/json/JSONSerializer.html">JSONSerializer</a></td>
+</tr>
+<tr>
+<td width="20"></td><td>
+         The source to evaluate.</td>
 </tr>
 <tr>
 <td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('system/text/prettifier/class-list.html');" href="system/text/prettifier/PrettifyToken.html#SOURCE">SOURCE</a> &mdash; Constant static property in class system.text.prettifier.<a onclick="javascript:loadClassListFrame('system/text/prettifier/class-list.html');" href="system/text/prettifier/PrettifyToken.html">PrettifyToken</a></td>
@@ -3583,6 +3555,20 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("SÂ
 <tr>
 <td width="20"></td><td>
       Starts the Sequencer if is not in progress.</td>
+</tr>
+<tr>
+<td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('asgard/net/remoting/class-list.html');" href="asgard/net/remoting/IRemotingServiceListener.html#start()">start</a>(e:<a href="andromeda/events/ActionEvent.html" onclick="javascript:loadClassListFrame('andromeda/events./class-list.html');">andromeda.events:ActionEvent</a>) &mdash; Method in interface asgard.net.remoting.<a onclick="javascript:loadClassListFrame('asgard/net/remoting/class-list.html');" href="asgard/net/remoting/IRemotingServiceListener.html">IRemotingServiceListener</a></td>
+</tr>
+<tr>
+<td width="20"></td><td>
+   Invoked when the service process is started.</td>
+</tr>
+<tr>
+<td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('asgard/net/remoting/class-list.html');" href="asgard/net/remoting/RemotingServiceListener.html#start()">start</a>(e:<a href="andromeda/events/ActionEvent.html" onclick="javascript:loadClassListFrame('andromeda/events./class-list.html');">andromeda.events:ActionEvent</a>) &mdash; Method in class asgard.net.remoting.<a onclick="javascript:loadClassListFrame('asgard/net/remoting/class-list.html');" href="asgard/net/remoting/RemotingServiceListener.html">RemotingServiceListener</a></td>
+</tr>
+<tr>
+<td width="20"></td><td>
+   Invoked when the service process is started.</td>
 </tr>
 <tr>
 <td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('pegas/draw/class-list.html');" href="pegas/draw/LinePen.html#start">start</a> &mdash; Property in class pegas.draw.<a onclick="javascript:loadClassListFrame('pegas/draw/class-list.html');" href="pegas/draw/LinePen.html">LinePen</a></td>
@@ -3900,6 +3886,13 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("SÂ
          Use the strike method to format and display a string in a document.</td>
 </tr>
 <tr>
+<td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('vegas/string/json/class-list.html');" href="vegas/string/json/JSONSerializer.html#string()">string</a>() &mdash; Method in class vegas.string.json.<a onclick="javascript:loadClassListFrame('vegas/string/json/class-list.html');" href="vegas/string/json/JSONSerializer.html">JSONSerializer</a></td>
+</tr>
+<tr>
+<td width="20"></td><td>
+         Check the string objects in the source expression.</td>
+</tr>
+<tr>
 <td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('system/text/prettifier/class-list.html');" href="system/text/prettifier/PrettifyToken.html#STRING">STRING</a> &mdash; Constant static property in class system.text.prettifier.<a onclick="javascript:loadClassListFrame('system/text/prettifier/class-list.html');" href="system/text/prettifier/PrettifyToken.html">PrettifyToken</a></td>
 </tr>
 <tr>
@@ -3971,6 +3964,13 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("SÂ
 </tr>
 <tr>
 <td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('buRRRn/eden/class-list.html');" href="buRRRn/eden/strings.html">strings</a> &mdash; Class in package <a onclick="javascript:loadClassListFrame('buRRRn/eden/class-list.html');" href="buRRRn/eden/package-detail.html">buRRRn.eden</a></td>
+</tr>
+<tr>
+<td width="20"></td><td>
+  The string messages used in the eden class.</td>
+</tr>
+<tr>
+<td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('vegas/string/json/class-list.html');" href="vegas/string/json/strings.html">strings</a> &mdash; Class in package <a onclick="javascript:loadClassListFrame('vegas/string/json/class-list.html');" href="vegas/string/json/package-detail.html">vegas.string.json</a></td>
 </tr>
 <tr>
 <td width="20"></td><td>
@@ -4198,13 +4198,6 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("SÂ
    Subtracts the coordinates of another point from the coordinates of this point to create a new point.</td>
 </tr>
 <tr>
-<td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('asgard/net/class-list.html');" href="asgard/net/NetServerStatus.html#SUCCESS">SUCCESS</a> &mdash; Constant static property in class asgard.net.<a onclick="javascript:loadClassListFrame('asgard/net/class-list.html');" href="asgard/net/NetServerStatus.html">NetServerStatus</a></td>
-</tr>
-<tr>
-<td width="20"></td><td>
-    The connection attempt succeeded.</td>
-</tr>
-<tr>
 <td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('asgard/config/class-list.html');" href="asgard/config/AbstractConfigLoader.html#suffix">suffix</a> &mdash; Property in class asgard.config.<a onclick="javascript:loadClassListFrame('asgard/config/class-list.html');" href="asgard/config/AbstractConfigLoader.html">AbstractConfigLoader</a></td>
 </tr>
 <tr>
@@ -4353,6 +4346,13 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("SÂ
 <tr>
 <td width="20"></td><td> 
    Defined the y coordinates in the screen World.</td>
+</tr>
+<tr>
+<td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('vegas/string/json/class-list.html');" href="vegas/string/json/strings.html#syntaxError">syntaxError</a> &mdash; Static property in class vegas.string.json.<a onclick="javascript:loadClassListFrame('vegas/string/json/class-list.html');" href="vegas/string/json/strings.html">strings</a></td>
+</tr>
+<tr>
+<td width="20"></td><td>
+   The syntax error message.</td>
 </tr>
 <tr>
 <td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('system/class-list.html');" href="system/package-detail.html">system</a> &mdash; Package</td>

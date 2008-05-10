@@ -529,7 +529,7 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("RÂ
 </tr>
 <tr>
 <td width="20"></td><td>
-   Preserves the class (type) of an object when the object is encoded in Action Message Format (AMF).</td>
+         Preserves the class (type) of an object when the object is encoded in Action Message Format (AMF).</td>
 </tr>
 <tr>
 <td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('asgard/net/class-list.html');" href="asgard/net/NetServerStream.html#registerEventListener()">registerEventListener</a>(type, listener, useCapture, priority, useWeakReference) &mdash; Method in class asgard.net.<a onclick="javascript:loadClassListFrame('asgard/net/class-list.html');" href="asgard/net/NetServerStream.html">NetServerStream</a></td>
@@ -567,6 +567,20 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("RÂ
          Registers a new FontClassName in the specified FontLoader.</td>
 </tr>
 <tr>
+<td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('asgard/net/remoting/class-list.html');" href="asgard/net/remoting/IRemotingServiceListener.html#registerService()">registerService</a>(service:<a href="asgard/net/remoting/RemotingService.html" onclick="javascript:loadClassListFrame('asgard/net/remoting./class-list.html');">asgard.net.remoting:RemotingService</a>) &mdash; Method in interface asgard.net.remoting.<a onclick="javascript:loadClassListFrame('asgard/net/remoting/class-list.html');" href="asgard/net/remoting/IRemotingServiceListener.html">IRemotingServiceListener</a></td>
+</tr>
+<tr>
+<td width="20"></td><td>
+   Registers the specified service.</td>
+</tr>
+<tr>
+<td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('asgard/net/remoting/class-list.html');" href="asgard/net/remoting/RemotingServiceListener.html#registerService()">registerService</a>(service:<a href="asgard/net/remoting/RemotingService.html" onclick="javascript:loadClassListFrame('asgard/net/remoting./class-list.html');">asgard.net.remoting:RemotingService</a>) &mdash; Method in class asgard.net.remoting.<a onclick="javascript:loadClassListFrame('asgard/net/remoting/class-list.html');" href="asgard/net/remoting/RemotingServiceListener.html">RemotingServiceListener</a></td>
+</tr>
+<tr>
+<td width="20"></td><td>
+   Registers the specified service.</td>
+</tr>
+<tr>
 <td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('lunas/core/class-list.html');" href="lunas/core/AbstractButtonBuilder.html#registerType()">registerType</a>(type, callback) &mdash; Method in class lunas.core.<a onclick="javascript:loadClassListFrame('lunas/core/class-list.html');" href="lunas/core/AbstractButtonBuilder.html">AbstractButtonBuilder</a></td>
 </tr>
 <tr>
@@ -600,13 +614,6 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("RÂ
 <tr>
 <td width="20"></td><td>
   The Regular class defines three easing functions to implement motion with ActionScript animations.</td>
-</tr>
-<tr>
-<td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('asgard/net/class-list.html');" href="asgard/net/NetServerStatus.html#REJECTED">REJECTED</a> &mdash; Constant static property in class asgard.net.<a onclick="javascript:loadClassListFrame('asgard/net/class-list.html');" href="asgard/net/NetServerStatus.html">NetServerStatus</a></td>
-</tr>
-<tr>
-<td width="20"></td><td>
-    The connection attempt did not have permission to access the application.</td>
 </tr>
 <tr>
 <td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('asgard/system/class-list.html');" href="asgard/system/Localization.html#release()">release</a>(id) &mdash; Static method in class asgard.system.<a onclick="javascript:loadClassListFrame('asgard/system/class-list.html');" href="asgard/system/Localization.html">Localization</a></td>
@@ -648,14 +655,14 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("RÂ
 </tr>
 <tr>
 <td width="20"></td><td>
-  The NetServerConnection object used in the RemotingService class to connect the client with the server.</td>
+  The <code class="prettyprint">RemotingConnection</code> object used in the RemotingService class to connect the client with the server.</td>
 </tr>
 <tr>
-<td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('asgard/net/remoting/class-list.html');" href="asgard/net/remoting/RemotingConnection.html#RemotingConnection()">RemotingConnection</a>(sURL) &mdash; Constructor in class asgard.net.remoting.<a onclick="javascript:loadClassListFrame('asgard/net/remoting/class-list.html');" href="asgard/net/remoting/RemotingConnection.html">RemotingConnection</a></td>
+<td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('asgard/net/remoting/class-list.html');" href="asgard/net/remoting/RemotingConnection.html#RemotingConnection()">RemotingConnection</a>(url) &mdash; Constructor in class asgard.net.remoting.<a onclick="javascript:loadClassListFrame('asgard/net/remoting/class-list.html');" href="asgard/net/remoting/RemotingConnection.html">RemotingConnection</a></td>
 </tr>
 <tr>
 <td width="20"></td><td>
-      Creates a new RemotingConnection instance.</td>
+      Creates a new <code class="prettyprint">RemotingConnection</code> instance.</td>
 </tr>
 <tr>
 <td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('asgard/net/remoting/class-list.html');" href="asgard/net/remoting/RemotingConnectionCollector.html">RemotingConnectionCollector</a> &mdash; Class in package <a onclick="javascript:loadClassListFrame('asgard/net/remoting/class-list.html');" href="asgard/net/remoting/package-detail.html">asgard.net.remoting</a></td>
@@ -693,18 +700,46 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("RÂ
    Creates a new RemotingFormat instance.</td>
 </tr>
 <tr>
+<td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('asgard/net/remoting/class-list.html');" href="asgard/net/remoting/RemotingGatewayUrl.html">RemotingGatewayUrl</a> &mdash; Class in package <a onclick="javascript:loadClassListFrame('asgard/net/remoting/class-list.html');" href="asgard/net/remoting/package-detail.html">asgard.net.remoting</a></td>
+</tr>
+<tr>
+<td width="20"></td><td>
+     This factory build the gateway url of the services of this application.</td>
+</tr>
+<tr>
+<td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('asgard/net/remoting/class-list.html');" href="asgard/net/remoting/RemotingGatewayUrl.html#RemotingGatewayUrl()">RemotingGatewayUrl</a>(root) &mdash; Constructor in class asgard.net.remoting.<a onclick="javascript:loadClassListFrame('asgard/net/remoting/class-list.html');" href="asgard/net/remoting/RemotingGatewayUrl.html">RemotingGatewayUrl</a></td>
+</tr>
+<tr>
+<td width="20"></td><td>
+   Creates a new RemotingGatewayUrl instance.</td>
+</tr>
+<tr>
 <td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('asgard/net/remoting/class-list.html');" href="asgard/net/remoting/RemotingService.html">RemotingService</a> &mdash; Class in package <a onclick="javascript:loadClassListFrame('asgard/net/remoting/class-list.html');" href="asgard/net/remoting/package-detail.html">asgard.net.remoting</a></td>
 </tr>
 <tr>
 <td width="20"></td><td>
-  This class provides a service object to communicate with a remoting gateway server.</td>
+     This class provides a service object to communicate with a remoting gateway server.</td>
 </tr>
 <tr>
 <td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('asgard/net/remoting/class-list.html');" href="asgard/net/remoting/RemotingService.html#RemotingService()">RemotingService</a>(gatewayUrl, serviceName, responder, bGlobal, sChannel) &mdash; Constructor in class asgard.net.remoting.<a onclick="javascript:loadClassListFrame('asgard/net/remoting/class-list.html');" href="asgard/net/remoting/RemotingService.html">RemotingService</a></td>
 </tr>
 <tr>
 <td width="20"></td><td>
-   Creates a new RemotingService instance.</td>
+         Creates a new RemotingService instance.</td>
+</tr>
+<tr>
+<td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('asgard/net/remoting/class-list.html');" href="asgard/net/remoting/RemotingServiceListener.html">RemotingServiceListener</a> &mdash; Class in package <a onclick="javascript:loadClassListFrame('asgard/net/remoting/class-list.html');" href="asgard/net/remoting/package-detail.html">asgard.net.remoting</a></td>
+</tr>
+<tr>
+<td width="20"></td><td>
+  The basic implementation of the <code class="prettyprint">IRemotingEventListener</code> interface.</td>
+</tr>
+<tr>
+<td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('asgard/net/remoting/class-list.html');" href="asgard/net/remoting/RemotingServiceListener.html#RemotingServiceListener()">RemotingServiceListener</a>(service:<a href="asgard/net/remoting/RemotingService.html" onclick="javascript:loadClassListFrame('asgard/net/remoting./class-list.html');">asgard.net.remoting:RemotingService</a>, bGlobal, sChannel) &mdash; Constructor in class asgard.net.remoting.<a onclick="javascript:loadClassListFrame('asgard/net/remoting/class-list.html');" href="asgard/net/remoting/RemotingServiceListener.html">RemotingServiceListener</a></td>
+</tr>
+<tr>
+<td width="20"></td><td>
+   Creates a new RemotingServiceListener instance.</td>
 </tr>
 <tr>
 <td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('andromeda/model/class-list.html');" href="andromeda/model/ModelCollector.html#remove()">remove</a>(id) &mdash; Static method in class andromeda.model.<a onclick="javascript:loadClassListFrame('andromeda/model/class-list.html');" href="andromeda/model/ModelCollector.html">ModelCollector</a></td>
@@ -1337,7 +1372,14 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("RÂ
          Removes the specified count of elements at the specified position in this list.</td>
 </tr>
 <tr>
-<td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('andromeda/ioc/factory/class-list.html');" href="andromeda/ioc/factory/ObjectFactory.html#removeSingleton()">removeSingleton</a>(name) &mdash; Method in class andromeda.ioc.factory.<a onclick="javascript:loadClassListFrame('andromeda/ioc/factory/class-list.html');" href="andromeda/ioc/factory/ObjectFactory.html">ObjectFactory</a></td>
+<td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('andromeda/ioc/factory/class-list.html');" href="andromeda/ioc/factory/IObjectFactory.html#removeSingleton()">removeSingleton</a>(id) &mdash; Method in interface andromeda.ioc.factory.<a onclick="javascript:loadClassListFrame('andromeda/ioc/factory/class-list.html');" href="andromeda/ioc/factory/IObjectFactory.html">IObjectFactory</a></td>
+</tr>
+<tr>
+<td width="20"></td><td>
+         Removes and destroy a singleton in the container.</td>
+</tr>
+<tr>
+<td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('andromeda/ioc/factory/class-list.html');" href="andromeda/ioc/factory/ObjectFactory.html#removeSingleton()">removeSingleton</a>(id) &mdash; Method in class andromeda.ioc.factory.<a onclick="javascript:loadClassListFrame('andromeda/ioc/factory/class-list.html');" href="andromeda/ioc/factory/ObjectFactory.html">ObjectFactory</a></td>
 </tr>
 <tr>
 <td width="20"></td><td>
@@ -1657,6 +1699,13 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("RÂ
          Indicates if the specified passed-in label value is in the MovieClip target.</td>
 </tr>
 <tr>
+<td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('asgard/net/remoting/class-list.html');" href="asgard/net/remoting/RemotingService.html#responder">responder</a> &mdash; Property in class asgard.net.remoting.<a onclick="javascript:loadClassListFrame('asgard/net/remoting/class-list.html');" href="asgard/net/remoting/RemotingService.html">RemotingService</a></td>
+</tr>
+<tr>
+<td width="20"></td><td>
+         Indicates the Responder reference of the instance.</td>
+</tr>
+<tr>
 <td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('andromeda/ioc/core/class-list.html');" href="andromeda/ioc/core/ObjectAttribute.html#RESSOURCE">RESSOURCE</a> &mdash; Constant static property in class andromeda.ioc.core.<a onclick="javascript:loadClassListFrame('andromeda/ioc/core/class-list.html');" href="andromeda/ioc/core/ObjectAttribute.html">ObjectAttribute</a></td>
 </tr>
 <tr>
@@ -1683,6 +1732,20 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("RÂ
 <tr>
 <td width="20"></td><td>
          Indicates the result value of the service.</td>
+</tr>
+<tr>
+<td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('asgard/net/remoting/class-list.html');" href="asgard/net/remoting/IRemotingServiceListener.html#result()">result</a>(e:<a href="asgard/events/RemotingEvent.html" onclick="javascript:loadClassListFrame('asgard/events./class-list.html');">asgard.events:RemotingEvent</a>) &mdash; Method in interface asgard.net.remoting.<a onclick="javascript:loadClassListFrame('asgard/net/remoting/class-list.html');" href="asgard/net/remoting/IRemotingServiceListener.html">IRemotingServiceListener</a></td>
+</tr>
+<tr>
+<td width="20"></td><td>
+   Invoked when the service notify a success.</td>
+</tr>
+<tr>
+<td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('asgard/net/remoting/class-list.html');" href="asgard/net/remoting/RemotingServiceListener.html#result()">result</a>(e:<a href="asgard/events/RemotingEvent.html" onclick="javascript:loadClassListFrame('asgard/events./class-list.html');">asgard.events:RemotingEvent</a>) &mdash; Method in class asgard.net.remoting.<a onclick="javascript:loadClassListFrame('asgard/net/remoting/class-list.html');" href="asgard/net/remoting/RemotingServiceListener.html">RemotingServiceListener</a></td>
+</tr>
+<tr>
+<td width="20"></td><td>
+   Invoked when the service notify a success.</td>
 </tr>
 <tr>
 <td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('asgard/events/class-list.html');" href="asgard/events/RemotingEvent.html#RESULT">RESULT</a> &mdash; Constant static property in class asgard.events.<a onclick="javascript:loadClassListFrame('asgard/events/class-list.html');" href="asgard/events/RemotingEvent.html">RemotingEvent</a></td>
@@ -2187,7 +2250,7 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("RÂ
 </tr>
 <tr>
 <td width="20"></td><td>
-      Run the process of the remoting service.</td>
+         Run the process of the remoting service.</td>
 </tr>
 <tr>
 <td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('asgard/process/class-list.html');" href="asgard/process/AbstractActionLoader.html#_run()">_run</a>() &mdash; Method in class asgard.process.<a onclick="javascript:loadClassListFrame('asgard/process/class-list.html');" href="asgard/process/AbstractActionLoader.html">AbstractActionLoader</a></td>

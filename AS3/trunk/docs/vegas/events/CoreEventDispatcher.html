@@ -45,7 +45,7 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <td class="classHeaderTableLabel">Implements</td><td><a href="IEventDispatcher.html">IEventDispatcher</a>, <a href="../core/ILockable.html">ILockable</a></td>
 </tr>
 <tr>
-<td class="classHeaderTableLabel">Subclasses</td><td><a href="../../lunas/core/AbstractBuilder.html">AbstractBuilder</a>, <a href="../../andromeda/model/AbstractModel.html">AbstractModel</a>, <a href="../logging/AbstractTarget.html">AbstractTarget</a>, <a href="../data/array/ArrayFilter.html">ArrayFilter</a>, <a href="../../asgard/config/ConfigurableObject.html">ConfigurableObject</a>, <a href="../../asgard/system/Localization.html">Localization</a>, <a href="../../asgard/net/NetServerConnection.html">NetServerConnection</a>, <a href="../../asgard/net/NetServerStreamClient.html">NetServerStreamClient</a>, <a href="../../andromeda/process/SimpleAction.html">SimpleAction</a>, <a href="../../pegas/transitions/TransitionController.html">TransitionController</a></td>
+<td class="classHeaderTableLabel">Subclasses</td><td><a href="../../lunas/core/AbstractBuilder.html">AbstractBuilder</a>, <a href="../../andromeda/model/AbstractModel.html">AbstractModel</a>, <a href="../logging/AbstractTarget.html">AbstractTarget</a>, <a href="../data/array/ArrayFilter.html">ArrayFilter</a>, <a href="../../asgard/config/ConfigurableObject.html">ConfigurableObject</a>, <a href="../../asgard/system/Localization.html">Localization</a>, <a href="../../asgard/net/NetServerConnection.html">NetServerConnection</a>, <a href="../../asgard/net/NetServerStreamClient.html">NetServerStreamClient</a>, <a href="../../asgard/net/remoting/RemotingServiceListener.html">RemotingServiceListener</a>, <a href="../../andromeda/process/SimpleAction.html">SimpleAction</a>, <a href="../../pegas/transitions/TransitionController.html">TransitionController</a></td>
 </tr>
 </table>
 <p></p>
@@ -220,7 +220,7 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <div class="summarySignature">
 <a class="signatureLink" href="#toSource()">toSource</a>(indent:int = 0):String</div>
 <div class="summaryTableDescription">
-         Returns the eden String representation of this object.</div>
+   Returns the string representation the source code of the object.</div>
 </td><td class="summaryTableOwnerCol">CoreEventDispatcher</td>
 </tr>
 <tr class="hideInheritedMethod">
@@ -613,8 +613,8 @@ showHideInherited();
 </table>
 <div class="detailBody">
 <code>public override function toSource(indent:int = 0):String</code><p>
-         Returns the eden String representation of this object.
-         </p><span class="label">Parameters</span>
+   Returns the string representation the source code of the object.
+   </p><span class="label">Parameters</span>
 <table border="0" cellspacing="0" cellpadding="0">
 <tr>
 <td width="20px"></td><td><code><span class="label">indent</span>:int</code> (default = <code>0</code>)<code></code></td>
@@ -624,8 +624,8 @@ showHideInherited();
 <span class="label">Returns</span>
 <table border="0" cellspacing="0" cellpadding="0">
 <tr>
-<td width="20"></td><td><code>String</code> &mdash; the eden String representation of this object.
-         </td>
+<td width="20"></td><td><code>String</code> &mdash; the string representation the source code of the object.
+   </td>
 </tr>
 </table>
 </div>
