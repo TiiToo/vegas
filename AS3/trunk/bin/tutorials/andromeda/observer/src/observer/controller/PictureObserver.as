@@ -1,31 +1,26 @@
 ﻿
 package observer.controller
 {
-	import andromeda.util.observer.IObserver;
-	import andromeda.util.observer.Observable;
-	
-	import observer.display.PictureDisplay;
-	import observer.event.PictureModelEvent;
-	import observer.visitor.ClearVisitor;
-	import observer.visitor.HideVisitor;
-	import observer.visitor.LoaderVisitor;
-	import observer.visitor.ShowVisitor;
-	
-	import vegas.core.CoreObject;	
+    import andromeda.util.observer.IObserver;
+    import andromeda.util.observer.Observable;
+    
+    import observer.display.PictureDisplay;
+    import observer.event.PictureModelEvent;
+    import observer.visitor.*;    
 
-	/**
+    /**
      * This observer of the picture display.
      * @author eKameleon
      */
-    public class PictureObserver extends CoreObject implements IObserver
+    public class PictureObserver implements IObserver
     {
     
     	/**
     	 * Creates a new PictureObserver instance.
+    	 * @param picture The PictureDisplay to control.
     	 */
         public function PictureObserver(  picture:PictureDisplay  )
         {
-            super();
             _picture = picture ;
         }
        
@@ -49,19 +44,15 @@ package observer.controller
 
 	    		case PictureModelEvent.LOAD :
     			{
-    			    trace(this + ' update : ' + o + ' : ' + event.type + " " + event.getUrl()) ;
-    				_picture.accept( new LoaderVisitor(event.getUrl()) ) ;
+    			    trace(this + ' update : ' + o + ' : ' + event.type + " " + event.url ) ;
+    				_picture.accept( new LoaderVisitor( event.url ) ) ;
     				break ;
     			}
 
 	    		case PictureModelEvent.VISIBLE :
     			{
-    			    
-    				var isVisible:Boolean = event.isVisible() ;
-    				
-    				trace(this + ' update : ' + o + ' : ' + event.type + " " + isVisible) ;
-    				
-    				if (isVisible)
+    				trace(this + ' update:' + o + ' type:' + event.type + " visible:" + event.visible) ;
+    				if ( event.visible )
     				{
 	    				_picture.accept(new ShowVisitor()) ;
     				}
@@ -71,10 +62,12 @@ package observer.controller
     				}
     				break ;
     			}
-    				
             }
         }
-
+        
+        /**
+         * @private
+         */
     	private var _picture:PictureDisplay ;
 
 

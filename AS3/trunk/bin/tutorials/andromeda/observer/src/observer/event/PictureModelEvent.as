@@ -1,9 +1,9 @@
 ﻿
 package observer.event
 {
-	import flash.events.Event;	
+    import flash.events.Event;            		
 
-	/**
+    /**
      * The PictureModelEvent used in the observer pattern with the PictureModel.
      * @author eKameleon
      */
@@ -12,64 +12,51 @@ package observer.event
        
        	/**
     	 * Creates a PictureModelEvent instance.
+    	 * @param type The type of the event.
+    	 * @param url The url of the picture to load.
+    	 * @param visible The state of the visibility of the picture.
     	 */
-        public function PictureModelEvent( type:String )
+        public function PictureModelEvent( type:String , url:String=null , visible:Boolean=false )
         {
-            super(type);
+            super( type ) ;
+            this.url     = url ;
+            this.visible = visible ;
         }
 
     	/**
     	 * The name of the event type when the picture model is clear.
     	 */
-    	static public const CLEAR:String = "onClear" ;
+    	public static const CLEAR:String = "onClear" ;
     
     	/**
     	 * The name of the event type when the picture model load a new picture.
     	 */
-    	static public const LOAD:String = "onLoad" ;
+    	public static const LOAD:String = "onLoad" ;
     
     	/**
     	 * The name of the event type when the picture visibility is changed.
     	 */
-    	static public const VISIBLE:String = "onVisible" ;
+    	public static const VISIBLE:String = "onVisible" ;
     
     	/**
-    	 * Returns true if the picture is visible else false.
-    	 * @return true if the picture is visible else false.
+    	 * Indicates the url string representation of the picture.
     	 */
-    	public function isVisible():Boolean
-    	{
-    		return _isVisible ;
-    	}	
+    	public var url:String ;
     
-    	/**
-    	 * Returns the url string representation of the picture.
-    	 * @return the url string representation of the picture.
-    	 */
-    	public function getUrl():String
-    	{
-    		return _url ;
-    	}
-    
-    	/**
-    	 * Sets the url string representation of the picture.
-    	 */
-    	public function setUrl( uri:String ):void
-    	{
-    		_url = uri ;
-    	}
-    	
-    	/**
-    	 * Sets the visible property of the picture.
-    	 */
-    	public function setVisible( b:Boolean ):void
-    	{
-    		_isVisible = b ;
-    	}
-    	
-    	private var _isVisible:Boolean ;
-    	
-    	private var _url:String ;
-    
+        /**
+         * Indicates if the picture is visible.
+         */
+        public var visible:Boolean ;
+        
+        /**
+         * Returns a shallow copy of the object.
+         * @return a shallow copy of the object.
+         */
+        public override function clone():Event
+        {
+        	return new PictureModelEvent(type, url, visible) ;
+        }
+        
     }
+
 }

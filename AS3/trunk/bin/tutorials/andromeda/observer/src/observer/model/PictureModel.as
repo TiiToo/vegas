@@ -1,15 +1,15 @@
 ﻿package observer.model
 {
-	import andromeda.util.observer.Observable;
-	
-	import observer.event.PictureModelEvent;
-	
-	import vegas.core.IRunnable;
-	import vegas.data.Set;
-	import vegas.data.iterator.Iterator;
-	import vegas.data.sets.HashSet;    
+    import andromeda.util.observer.Observable;
+    
+    import observer.event.PictureModelEvent;
+    
+    import vegas.core.IRunnable;
+    import vegas.data.Set;
+    import vegas.data.iterator.Iterator;
+    import vegas.data.sets.HashSet;    
 
-	/**
+    /**
      * The model to change the Picture with differents external files.
      * @author eKameleon
      */
@@ -21,10 +21,7 @@
     	 */
         public function PictureModel()
         {
-        	_eClear = new PictureModelEvent( PictureModelEvent.CLEAR) ;
-    		_eLoad = new PictureModelEvent( PictureModelEvent.LOAD) ;
-    		_eVisible = new PictureModelEvent( PictureModelEvent.VISIBLE ) ;
-    		_set = new HashSet() ;
+            _set = new HashSet() ;
         }
 
     	/**
@@ -34,7 +31,7 @@
     	{
     		_set.clear() ;
     		_it = _set.iterator() ;
-    		notifyChanged( _eClear );	
+    		notifyChanged( new PictureModelEvent( PictureModelEvent.CLEAR ) );	
     	}
 
     	/**
@@ -43,7 +40,7 @@
     	 */
     	public function getUrl():String
     	{
-    		return _eLoad.getUrl() ;	
+    		return _url ;	
     	}
 
     	/**
@@ -51,8 +48,7 @@
     	 */
     	public function hide():void
     	{
-    		_eVisible.setVisible(false);
-    		notifyChanged(_eVisible) ;		
+    		notifyChanged(new PictureModelEvent( PictureModelEvent.VISIBLE, null, false ) ) ;		
     	}
 
     	/**
@@ -96,12 +92,12 @@
     	
     	/**
     	 * Loads the picture defined bu the url specified in argument.
-    	 * @param uri the string representation of the file to load.
+    	 * @param url the string representation of the file name to load.
     	 */
-    	public function load( uri:String ):void
+    	public function load( url:String ):void
     	{
-    		_eLoad.setUrl( uri ) ;
-    		notifyChanged( _eLoad ) ;
+    		_url = url ;
+    		notifyChanged( new PictureModelEvent( PictureModelEvent.LOAD , _url ) ) ;
     	}
     
     	/**
@@ -117,25 +113,9 @@
     	 */
     	public function show():void
     	{
-    		_eVisible.setVisible(true);
-    		notifyChanged(_eVisible) ;		
+    		notifyChanged(new PictureModelEvent( PictureModelEvent.VISIBLE, null, true ) ) ;	
     	}
-    	
-        /**
-    	 * The internal PictureModelEvent used when the model is cleared.
-    	 */
-    	private var _eClear:PictureModelEvent ;
-    	
-    	/**
-    	 * The internal PictureModelEvent used when a picture is loaded.
-    	 */
-    	private var _eLoad:PictureModelEvent ;
-    	
-    	/**
-    	 * The internal PictureModelEvent used when property visible changed.
-    	 */
-    	private var _eVisible:PictureModelEvent ;
-    	
+            	
     	/**
     	 * Defined the internal Iterator of this model.
     	 */
@@ -145,7 +125,12 @@
     	 * The internal Set of this model.
     	 */
     	private var _set:Set ;
-
         
+        /**
+         * @private
+         */
+        private var _url:String ;
+    
     }
+
 }

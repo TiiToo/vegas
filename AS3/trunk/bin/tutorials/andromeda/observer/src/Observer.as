@@ -23,44 +23,55 @@
         public function Observer()
         {
 
+            // stage
+
             stage.scaleMode = StageScaleMode.NO_SCALE ;
             stage.align = StageAlign.TOP_LEFT ;
             
             stage.addEventListener( KeyboardEvent.KEY_DOWN , next ) ;
             stage.addEventListener( MouseEvent.CLICK       , next ) ;
             
+            // model
+            
+            model = new PictureModel() ;
+            
             // view
             
-            var pic:PictureDisplay = new PictureDisplay() ;
-            pic.x = 100 ;
-            pic.y = 100 ;
-
-            addChild(pic) ;   
+            picture   = new PictureDisplay() ;
+            picture.x = 100 ;
+            picture.y = 100 ;
+            
+            addChild( picture ) ;  
             
             // controller
-            var controller:PictureObserver = new PictureObserver( pic ) ;
             
-            // model
-            model = new PictureModel() ;
+            var controller:PictureObserver = new PictureObserver( picture ) ;
+            
+            // initialize application
+            
             model.addObserver( controller ) ;
-         
+            
+
             model.insertUrl( "library/picture1.jpg" ) ;
             model.insertUrl( "library/picture2.jpg" ) ;
             model.insertUrl( "library/picture3.jpg" ) ;
             model.insertUrl( "library/picture4.jpg" ) ;
             model.insertUrl( "library/picture5.jpg" ) ;
-            model.insertUrl( "library/picture6.jpg" ) ;
-            
-            model.run() ;
-            
+            model.insertUrl( "library/picture6.jpg" ) ;   
 
-            
+            model.run() ;
+                        
         }
         
         /**
          * The PictureModel Observable object.
          */
         public var model:PictureModel ;
+        
+        /**
+         * The picture display reference.
+         */
+        public var picture:PictureDisplay ;        
         
         /**
          * Show the next picture in the model.
