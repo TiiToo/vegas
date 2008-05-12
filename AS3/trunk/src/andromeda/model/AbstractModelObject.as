@@ -72,12 +72,21 @@ package andromeda.model
         }
 
         /**
-         * Returns the current IValueObject selected in this model.
-         * @return the current IValueObject selected in this model.
+         * Returns the current <code class="prettyprint">IValueObject</code> selected in this model.
+         * @return the current <code class="prettyprint">IValueObject</code> selected in this model.
          */
         public function getCurrentVO():IValueObject
         {
             return _vo ;
+        }
+
+        /**
+         * Returns the event name use in the <code class="prettyprint">setCurrentVO</code> method before is changed.
+         * @return the event name use in the <code class="prettyprint">setCurrentVO</code> method before is changed.
+         */
+        public function getEventTypeBEFORE_CHANGE():String
+        {
+            return _sBeforeChangeType ;
         }
 
         /**
@@ -97,16 +106,7 @@ package andromeda.model
         {
             return _sClearType ;
         }
-
-        /**
-         * Returns the event name use in the <code class="prettyprint">unChange</code> method.
-         * @return the event name use in the <code class="prettyprint">unChange</code> method.
-         */
-        public function getEventTypeBEFORE_CHANGE():String
-        {
-            return _sBeforeChangeType ;
-        }
-
+        
         /**
          * This method is invoked in the constructor of the class to initialize all events.
          * Overrides this method.
@@ -143,7 +143,7 @@ package andromeda.model
         }
 
         /**
-         * Notify a <code class="prettyprint">ModelObjectEvent</code> when the current selected <code class="prettyprint">IValueObject</code> is unselected in the model.
+         * Notify a <code class="prettyprint">ModelObjectEvent</code> before the current <code class="prettyprint">IValueObject</code> selected in the model is changed.
          */ 
         public function notifyBeforeChange( vo:IValueObject ):void
         {
@@ -155,7 +155,7 @@ package andromeda.model
         }
 
         /**
-         * Sets the current IValueObject selected in this model.
+         * Sets the current <code class="prettyprint">IValueObject</code> selected in this model.
          */
         public function setCurrentVO( vo:IValueObject ):void
         {
@@ -163,13 +163,27 @@ package andromeda.model
             {
                 return ;	
             }
-            unChange() ;
+            if ( _vo != null )
+            {
+                var tmp:IValueObject = _vo ;
+                _vo = null ;
+                notifyBeforeChange( tmp ) ;
+            }
             if ( vo != null )
             {
                 validate( vo );
                  _vo = vo ;
                 notifyChange( vo );
             }
+        }
+
+        /**
+         * Returns the event name use in the <code class="prettyprint">setCurrentVO</code> method before is changed.
+         * @return the event name use in the <code class="prettyprint">unchange</code> method.
+         */
+        public function setEventTypeBEFORE_CHANGE( type:String ):void
+        {
+            _sBeforeChangeType = type;
         }
 
         /**
@@ -191,15 +205,6 @@ package andromeda.model
         }
         
         /**
-         * Returns the event name use in the <code class="prettyprint">unchange</code> method.
-         * @return the event name use in the <code class="prettyprint">unchange</code> method.
-         */
-        public function setEventTypeBEFORE_CHANGE( type:String ):void
-        {
-            _sBeforeChangeType = type;
-        }        
-
-        /**
          * Returns <code class="prettyprint">true</code> if the <code class="prettyprint">IValidator</code> object validate the value. Overrides this method in your concrete IModelObject class.
          * @param value the object to test.
          * @return <code class="prettyprint">true</code> is this specific value is valid.
@@ -208,23 +213,7 @@ package andromeda.model
         {
             return value == value ;
         }
-        
-        /**
-         * Unchange the current IValueObject in the model.
-         * @return <code class="prettyprint">true</code> if the method is success.
-         */
-        public function unChange():Boolean
-        {
-            if ( _vo != null )
-            {
-                var tmp:IValueObject = _vo ;
-                _vo = null ;
-                notifyBeforeChange( tmp ) ;
-                return true ;
-            }
-            return false ;
-         }        
-
+                
         /**
          * Evaluates the condition it checks and updates the IsValid property.
          */
@@ -237,18 +226,18 @@ package andromeda.model
         }
 
         /**
-         * The internal ModelObjectEvent type use in the unchange method.
+         * @private
          */
         private var _sBeforeChangeType:String ;
 
-		/**
-		 * The internal ModelObjectEvent type use in the clear method.
-		 */
+        /**
+         * @private
+         */
 		private var _sChangeType:String ;
 
-		/**
-		 * The internal ModelObjectEvent type use in the clear method.
-		 */
+        /**
+         * @private
+         */
 		private var _sClearType:String ;
         
         /**

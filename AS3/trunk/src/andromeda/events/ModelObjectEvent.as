@@ -56,34 +56,32 @@ package andromeda.events
         }
 
         /**
-         * Default event type when an IValueObject is inserted in a model.
+         * Default event type when an <code class="prettyprint">IValueObject</code> is inserted in a model.
          */
         public static var ADD_VO:String = "onAddVO" ;
     
         /**
-         * Default event type when all IValueObject in a model are deleted.
+         * Default event type when all <code class="prettyprint">IValueObject</code> in a model are deleted.
          */
         public static var CLEAR_VO:String = "onClearVO" ;
-           
-    
+                   
         /**
-         * Default event type before change the current IValueObject in a model.
+         * Default event type before the change event notify when the current <code class="prettyprint">IValueObject</code> in a model is changed.
          */
         public static var BEFORE_CHANGE_VO:String = "onBeforeChangeVO" ;           
         
         /**
-         * Default event type when an IValueObject is selected in the model.
+         * Default event type when the current <code class="prettyprint">IValueObject</code> is changed in the model.
          */
         public static var CHANGE_VO:String = "onChangeVO" ;
     
         /**
-         * Default event type when an IValueObject is removed in a model.
+         * Default event type when an <code class="prettyprint">IValueObject</code> is removed in a model.
          */
         public static var REMOVE_VO:String = "onRemoveVO" ;
-
-    
+            
         /**
-         * Default event type when the an IValueObject in the model is updated.
+         * Default event type when the an <code class="prettyprint">IValueObject</code> in the model is updated.
          */
         public static var UPDATE_VO:String = "onUpdateVO" ;
         
