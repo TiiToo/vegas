@@ -22,15 +22,15 @@
 */
 package andromeda.model.array 
 {
-	import andromeda.events.ModelObjectEvent;
-	import andromeda.model.AbstractModelObject;
-	import andromeda.vo.IValueObject;
-	
-	import vegas.data.iterator.Iterator;
-	import vegas.data.iterator.PageByPageIterator;
-	import vegas.events.ArrayEvent;
+    import andromeda.events.ModelObjectEvent;
+    import andromeda.model.AbstractModelObject;
+    import andromeda.vo.IValueObject;
+    
+    import vegas.data.iterator.Iterator;
+    import vegas.data.iterator.PageByPageIterator;
+    import vegas.events.ArrayEvent;	
 
-	/**
+    /**
 	 * Defines an <code class="prettyprint">Array</code> model with a 'page by page' iterator.
 	 * @author eKameleon
 	 */
@@ -235,8 +235,14 @@ package andromeda.model.array
 	 	*/
 		public override function run(...arguments:Array):void
 		{
-			if ( isLocked() ) return ;
-			next() ;
+			if ( isLocked() ) 
+			{
+				return ;
+			}
+			if ( size() > 0 )
+			{
+			    next() ;
+			}
 		}
 
 		/**

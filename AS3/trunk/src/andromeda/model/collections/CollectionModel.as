@@ -114,7 +114,7 @@ package andromeda.model.collections
                 return false ;
             }
         }        
-        
+                
         /**
          * Returns the internal Collection of this model.
          * @return the internal Collection of this model.

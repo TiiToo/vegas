@@ -22,15 +22,15 @@
 */
 
 package vegas.events 
-{	import vegas.core.CoreObject;
-	import vegas.core.IRunnable;
-	import vegas.errors.IllegalArgumentError;
-	import vegas.events.BasicEvent;
-	import vegas.events.EventDispatcher;
-	import vegas.events.FrontController;
-	import vegas.util.Serializer;	
+{    import vegas.core.CoreObject;
+    import vegas.core.IRunnable;
+    import vegas.errors.IllegalArgumentError;
+    import vegas.events.BasicEvent;
+    import vegas.events.EventDispatcher;
+    import vegas.events.FrontController;
+    import vegas.util.Serializer;	
 
-	/**
+    /**
 	 * A command is a easy entry with name and value property to launch a global command in the Commands static tool class.
 	 * @author eKameleon
 	 */

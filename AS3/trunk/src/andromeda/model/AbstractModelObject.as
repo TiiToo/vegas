@@ -23,12 +23,12 @@ Contributor(s) :
 
 package andromeda.model
 {
-	import andromeda.events.ModelObjectEvent;
-	import andromeda.vo.IValueObject;
-	
-	import vegas.errors.TypeMismatchError;	
+    import andromeda.events.ModelObjectEvent;
+    import andromeda.vo.IValueObject;
+    
+    import vegas.errors.TypeMismatchError;    
 
-	/**
+    /**
      * This class provides a skeletal implementation of the <code class="prettyprint">IModelObject</code> interface, to minimize the effort required to implement this interface.
      * @author eKameleon
      */
@@ -99,13 +99,23 @@ package andromeda.model
         }
 
         /**
+         * Returns the event name use in the <code class="prettyprint">unChange</code> method.
+         * @return the event name use in the <code class="prettyprint">unChange</code> method.
+         */
+        public function getEventTypeBEFORE_CHANGE():String
+        {
+            return _sBeforeChangeType ;
+        }
+
+        /**
          * This method is invoked in the constructor of the class to initialize all events.
          * Overrides this method.
          */
         public function initEventType():void
         {
-            _sChangeType = ModelObjectEvent.CHANGE_CURRENT_VO ;
-			_sClearType  = ModelObjectEvent.CLEAR_VO ;
+            _sChangeType       = ModelObjectEvent.CHANGE_VO ;
+			_sClearType        = ModelObjectEvent.CLEAR_VO  ;
+            _sBeforeChangeType = ModelObjectEvent.BEFORE_CHANGE_VO ;
         }
 
         /**
@@ -133,6 +143,18 @@ package andromeda.model
         }
 
         /**
+         * Notify a <code class="prettyprint">ModelObjectEvent</code> when the current selected <code class="prettyprint">IValueObject</code> is unselected in the model.
+         */ 
+        public function notifyBeforeChange( vo:IValueObject ):void
+        {
+            if ( isLocked() )
+            {
+                return ;
+            }
+            dispatchEvent( createNewModelObjectEvent( _sBeforeChangeType, vo ) );    
+        }
+
+        /**
          * Sets the current IValueObject selected in this model.
          */
         public function setCurrentVO( vo:IValueObject ):void
@@ -141,9 +163,13 @@ package andromeda.model
             {
                 return ;	
             }
-            validate( vo );
-            _vo = vo;
-            notifyChange( vo );
+            unChange() ;
+            if ( vo != null )
+            {
+                validate( vo );
+                 _vo = vo ;
+                notifyChange( vo );
+            }
         }
 
         /**
@@ -163,6 +189,15 @@ package andromeda.model
         {
 			_sClearType = type;
         }
+        
+        /**
+         * Returns the event name use in the <code class="prettyprint">unchange</code> method.
+         * @return the event name use in the <code class="prettyprint">unchange</code> method.
+         */
+        public function setEventTypeBEFORE_CHANGE( type:String ):void
+        {
+            _sBeforeChangeType = type;
+        }        
 
         /**
          * Returns <code class="prettyprint">true</code> if the <code class="prettyprint">IValidator</code> object validate the value. Overrides this method in your concrete IModelObject class.
@@ -173,6 +208,22 @@ package andromeda.model
         {
             return value == value ;
         }
+        
+        /**
+         * Unchange the current IValueObject in the model.
+         * @return <code class="prettyprint">true</code> if the method is success.
+         */
+        public function unChange():Boolean
+        {
+            if ( _vo != null )
+            {
+                var tmp:IValueObject = _vo ;
+                _vo = null ;
+                notifyBeforeChange( tmp ) ;
+                return true ;
+            }
+            return false ;
+         }        
 
         /**
          * Evaluates the condition it checks and updates the IsValid property.
@@ -185,6 +236,11 @@ package andromeda.model
             }
         }
 
+        /**
+         * The internal ModelObjectEvent type use in the unchange method.
+         */
+        private var _sBeforeChangeType:String ;
+
 		/**
 		 * The internal ModelObjectEvent type use in the clear method.
 		 */
@@ -194,7 +250,7 @@ package andromeda.model
 		 * The internal ModelObjectEvent type use in the clear method.
 		 */
 		private var _sClearType:String ;
-
+        
         /**
          * The current value object selectd in this model.
          */

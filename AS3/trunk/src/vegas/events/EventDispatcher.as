@@ -45,8 +45,8 @@ package vegas.events
             super( target );
         }
  
-         /**
-          * Determinates the default singleton name.
+        /**
+         * Determinates the default singleton name.
          */
         public static const DEFAULT_SINGLETON_NAME:String = "__default__" ;
         

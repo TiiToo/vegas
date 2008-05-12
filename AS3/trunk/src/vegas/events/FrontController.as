@@ -23,13 +23,13 @@
 
 package vegas.events
 {
-	import vegas.core.CoreObject;
-	import vegas.data.iterator.Iterator;
-	import vegas.data.map.ArrayMap;
-	import vegas.data.map.HashMap;
-	import vegas.errors.IllegalArgumentError;	
+    import vegas.core.CoreObject;
+    import vegas.data.iterator.Iterator;
+    import vegas.data.map.ArrayMap;
+    import vegas.data.map.HashMap;
+    import vegas.errors.IllegalArgumentError;	
 
-	/**
+    /**
      * The Front Controller pattern defines a single EventDispatcher that is responsible for processing application requests.
      * <p>A front controller centralizes functions such as view selection, security, and templating, and applies them consistently across all pages or views. Consequently, when the behavior of these functions need to change, only a small part of the application needs to be changed: the controller and its helper classes.</p>
      * @author eKameleon
