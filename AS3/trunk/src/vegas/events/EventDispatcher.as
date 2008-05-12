@@ -22,9 +22,9 @@
 */
 package vegas.events
 {
-	import vegas.data.map.ArrayMap;					
+    import vegas.data.map.ArrayMap;        						
 
-	/**
+    /**
     * Stores the listeners object an notifies them with the DOM Events level 2/3 of the W3C.
     * The EventDispatcher class implements the IEventDispatcher interface. 
     * This object allows any object to be an <code class="prettyprint">EventTarget</code>.
@@ -59,7 +59,16 @@ package vegas.events
         }
         
         /**
-         * Clear all globals EventBroadcaster instances.
+         * Indicates if the specified singleton reference is register.
+         * @return <code class="prettyprint">true</code> If the specified singleton reference is register.
+         */
+        public static function containsInstance( name:String ):Boolean
+        {
+        	return instances.containsKey( name ) ;
+        }
+        
+        /**
+         * Clear all globals EventDispatcher instances.
          */
         public static function flush():void 
         {
@@ -67,7 +76,9 @@ package vegas.events
         }
 
         /**
-         * Create and return a globalEventBroadcaster instance.
+         * Creates and returns a singleton EventDispatcher reference specified by the passed-in name identifier.
+         * @param name The name of the singleton reference to return or create (If this value is Null, the DEFAULT_SINGLETON_NAME static value is used).
+         * @return The singleton EventDispatcher reference specified by the passed-in name identifier.
          */
         public static function getInstance( name:String=null ):vegas.events.EventDispatcher
         {
@@ -109,12 +120,12 @@ package vegas.events
          * Removes a global EventDispatcher instance.
          */
         public static function removeInstance(name:String=null):Boolean 
-         {
-             if (name == null) name = vegas.events.EventDispatcher.DEFAULT_SINGLETON_NAME ;
-              if (!instances.containsKey(name)) 
+        {
+            if (name == null) name = vegas.events.EventDispatcher.DEFAULT_SINGLETON_NAME ;
+            if ( instances.containsKey(name) ) 
             {
                 return instances.remove(name) != null ;
-             }
+            }
             else 
             {
                 return false ;
@@ -130,13 +141,13 @@ package vegas.events
 		}
         
         /**
-         * The static internal hashmap to register all global instances in your applications.
+         * @private
          */    
         private static var instances:ArrayMap = new ArrayMap() ;
 
         /**
-         * The internal name's property of the instance.
-         */
+         * @private
+         */ 
         private var _sName:String = null ;
 
     }

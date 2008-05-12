@@ -211,26 +211,21 @@ package asgard.net
          * Creates a new ECMAObjectLoader instance.
          * @param context The uri of the context external eden file (default "application.eden").
          * @param path The optional path of the external context file (default "").
+         * @param factory The optional ECMAObjectFactory reference of this loader. By default the loader use the ECMAObjectFactory.getInstance() reference. 
          * @param internalLoader The internal parse loader class to use to load all external context files (optional EdenLoader).
          */
-        public function ECMAObjectLoader( context:String="application.eden" , path:String="" , internalLoader:Class=null )
+        public function ECMAObjectLoader( context:String="application.eden" , path:String="" , factory:ECMAObjectFactory = null, internalLoader:Class=null )
         {
             
             this.context        = context ;
-            this.path           = path    ;
+            this.factory        = factory ;
             this.internalLoader = internalLoader ;
-            
-            factory = ECMAObjectFactory.getInstance() ; 
-            
-            factory.addEventListener( IOErrorEvent.IO_ERROR   , fireEvent ) ;
-            factory.addEventListener( ProgressEvent.PROGRESS  , fireEvent ) ;
-            factory.addEventListener( Event.COMPLETE          , fireEvent ) ;
-            factory.addEventListener( ActionEvent.START       , fireEvent ) ;
-            factory.addEventListener( ActionEvent.FINISH      , main  ) ;            
-            
+            this.path           = path    ;
+
             _imports = new HashSet() ;
             
-            _sequencer = new Sequencer() ;
+            _sequencer = new Sequencer() ;            
+            
             _sequencer.addEventListener( ActionEvent.FINISH   , _finishSequencer   , false, 0 , true ) ;
             _sequencer.addEventListener( ActionEvent.PROGRESS , _progressSequencer , false, 0 , true ) ;
             _sequencer.addEventListener( ActionEvent.START    , _startSequencer    , false, 0 , true ) ;
@@ -245,8 +240,35 @@ package asgard.net
         /**
          * The ECMAScript object IOC factory reference.
          */
-        public var factory:ECMAObjectFactory ;
+        public function get factory():ECMAObjectFactory
+        {
+            return _factory ;	
+        }
+        
+        /**
+         * @private
+         */
+        public function set factory( value:ECMAObjectFactory ):void
+        {
 
+        	if ( _factory != null )
+        	{
+                _factory.removeEventListener( IOErrorEvent.IO_ERROR   , fireEvent ) ;
+                _factory.removeEventListener( ProgressEvent.PROGRESS  , fireEvent ) ;
+                _factory.removeEventListener( Event.COMPLETE          , fireEvent ) ;
+                _factory.removeEventListener( ActionEvent.START       , fireEvent ) ;
+                _factory.removeEventListener( ActionEvent.FINISH      , main      ) ;
+        	}
+        	
+        	_factory = value || ECMAObjectFactory.getInstance() ;
+        	   
+        	_factory.addEventListener( IOErrorEvent.IO_ERROR   , fireEvent ) ;
+            _factory.addEventListener( ProgressEvent.PROGRESS  , fireEvent ) ;
+            _factory.addEventListener( Event.COMPLETE          , fireEvent ) ;
+            _factory.addEventListener( ActionEvent.START       , fireEvent ) ;
+            _factory.addEventListener( ActionEvent.FINISH      , main      ) ;   
+        }
+        
         /**
          * Indicates the ParseLoader used in this loader.
          */
@@ -267,6 +289,11 @@ package asgard.net
          * The default path of the external context file.
          */
         public var path:String ;
+        
+        /**
+         * Switch the verbose mode of this loader.
+         */
+        public var verbose:Boolean = true ;
         
         /**
          * Clear the loader.
@@ -290,7 +317,10 @@ package asgard.net
             }
             else
             {
-                getLogger().warn( this + " the factory is empty." ) ;    
+            	if ( verbose )
+            	{
+                    getLogger().warn( this + " the factory is empty." ) ;
+            	}    
             }    
         }
 
@@ -309,7 +339,10 @@ package asgard.net
          */
         protected function fireEvent( e:* ):void
         {
-            getLogger().info( e ) ; // no event before the IOC factory initialization.
+            if ( verbose )
+            {        	
+                getLogger().info( e ) ; // no event before the IOC factory initialization.
+            }
             dispatchEvent( e ) ;
         }
         
@@ -318,7 +351,10 @@ package asgard.net
          */
         public function main( e:ActionEvent ):void
         {
-            getLogger().debug( e ) ;
+            if ( verbose )
+            {
+                getLogger().debug( e ) ;
+            }
             fireEvent(e) ;
         }
         
@@ -326,6 +362,11 @@ package asgard.net
          * The array representation of the object definitions to insert in the IOC factory container.
          */
         protected var objects:Array ;        
+        
+        /**
+         * @private
+         */
+        private var _factory:ECMAObjectFactory ;
         
         /**
          * @private
@@ -352,8 +393,12 @@ package asgard.net
          */
         private function _finishSequencer( e:ActionEvent ):void
         {
-            getLogger().debug(e) ;    
-    
+        	
+        	if ( verbose )
+            {
+                getLogger().debug(e) ;    
+            }
+            
             var a:Array   ;
             var size:uint = _imports.size() ;
             if ( size > 0 )
@@ -395,7 +440,10 @@ package asgard.net
         private function _progressSequencer( e:ActionEvent ):void
         {
             
-            getLogger().debug(e) ;
+            if ( verbose )
+            {
+                getLogger().debug(e) ;
+            }
             
             var loader:ActionURLLoader = _sequencer.getCurrent() as ActionURLLoader ;
             
@@ -412,7 +460,7 @@ package asgard.net
                     var config:Object = data[ ObjectAttribute.CONFIGURATION     ] ;
                     if ( config != null )
                     {
-                        factory.config = new ObjectConfig( config ) ;    
+                        factory.config.initialize( config ) ;    
                     }
                 }
                 
@@ -443,7 +491,10 @@ package asgard.net
             }
             catch( error:Error )
             {
-                // do nothing    
+                if ( verbose )
+                {
+                    getLogger().error( this + " failed : " + error ) ;
+                }
             }
         }
         
@@ -452,7 +503,10 @@ package asgard.net
          */
         private function _startSequencer( e:ActionEvent ):void
         {
-            getLogger().debug(e) ;
+            if ( verbose )
+            {
+                getLogger().debug(e) ;
+            }
             _imports.clear() ;
         }
 

@@ -97,9 +97,9 @@ package andromeda.vo
 			return str ;
 		}	
 		
-		/**
-		 * The internal id of this IValueObject
-		 */
+        /**
+         * @private
+         */
 		private var _id:* ;
 		
 	}

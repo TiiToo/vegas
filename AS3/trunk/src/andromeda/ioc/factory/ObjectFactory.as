@@ -99,11 +99,8 @@ package andromeda.ioc.factory
 		{
 			super( bGlobal, sChannel ) ;
 			typeEvaluator = new TypeEvaluator() ;
-            singletons = new HashMap() ;
-			if ( config == null )
-			{
-				config = new ObjectConfig() ; // the default empty ObjectConfig instance.
-			}
+            singletons    = new HashMap() ;
+			config        = new ObjectConfig() ; // the default empty ObjectConfig instance.
 		}
 		
 		/**
@@ -119,7 +116,7 @@ package andromeda.ioc.factory
 		 */
 		public function set config( o:ObjectConfig ):void
 		{
-			_config = o ;
+			_config = o || new ObjectConfig() ;
 			typeEvaluator.config = _config ;
         }		
 		

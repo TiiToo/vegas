@@ -36,6 +36,7 @@ package andromeda.ioc.factory
     import andromeda.ioc.factory.ObjectFactory;
     
     import vegas.core.IFactory;
+    import vegas.core.Identifiable;
     import vegas.data.map.HashMap;
     import vegas.data.queue.LinearQueue;
     import vegas.data.sets.HashSet;
@@ -44,8 +45,8 @@ package andromeda.ioc.factory
     /**
      * This factory builder use a deserialize eden object to creates all Objects with the IObjectDefinitionContainer.
      * <p><b>Example :</b></p>
-      * <p><b>1 -</b> The eden application file : <b>"application.eden"</b></p>
-      * <pre class="prettyprint">
+     * <p><b>1 -</b> The eden application file : <b>"application.eden"</b></p>
+     * <pre class="prettyprint">
      *   {
      *        objects : 
      *        [
@@ -278,7 +279,7 @@ package andromeda.ioc.factory
      * </pre>
      * @author eKameleon
      */
-    public class ECMAObjectFactory extends ObjectFactory implements IFactory 
+    public class ECMAObjectFactory extends ObjectFactory implements Identifiable, IFactory 
     {
         
         /**
@@ -286,17 +287,48 @@ package andromeda.ioc.factory
          * @param bGlobal the flag to use a global event flow or a local event flow.
          * @param sChannel the name of the global event flow if the <code class="prettyprint">bGlobal</code> argument is <code class="prettyprint">true</code>.
          */
-        public function ECMAObjectFactory( bGlobal:Boolean = false , sChannel:String = null )
+        public function ECMAObjectFactory( id:*=null , bGlobal:Boolean = false , sChannel:String = null )
         {
             super( bGlobal, sChannel ) ;
+            this.id = id ;
             _setDefinitions = new HashSet() ;
             _assemblies     = new HashMap() ;
         }
         
         /**
+         * Determinates the default singleton name.
+         */
+        public static const DEFAULT_SINGLETON_NAME:String = "__default__" ;        
+        
+        /**
+         * (read-write) Indicates the id of this IValueObject.
+         */
+        public function get id():*
+        {
+            return _id ;
+        }
+    
+        /**
+         * @private
+         */
+        public function set id( id:* ):void
+        {
+            _id = id ;
+        }        
+        
+        /**
          * This array contains objects to fill this factory with the run or create method.
          */
         public var objects:Array ;
+        
+        /**
+         * Indicates if the specified singleton reference is register.
+         * @return <code class="prettyprint">true</code> If the specified singleton reference is register.
+         */
+        public static function containsInstance( name:String ):Boolean
+        {
+            return instances.containsKey( name ) ;
+        }        
         
         /**
          * Create the objects and fill the IObjectDefinitionContainer.
@@ -309,16 +341,50 @@ package andromeda.ioc.factory
         }
         
         /**
+         * Clear all globals ECMAObjectFactory references.
+         */
+        public static function flush():void 
+        {
+            instances.clear() ;
+        }        
+        
+        /**
          * Returns the singleton reference of this class.
+         * @param id The index of the singleton reference to return or create (If this value is Null, the DEFAULT_SINGLETON_NAME static value is used).
          * @return the singleton reference of this class.
          */
-        public static function getInstance():ECMAObjectFactory
+        public static function getInstance( id:String = null ):ECMAObjectFactory
         {
-            if ( _instance == null )
+            if ( id == null || id.length == 0 ) 
             {
-                _instance = new ECMAObjectFactory() ;
+                id = DEFAULT_SINGLETON_NAME ;
             }
-            return _instance ;
+            if ( ! instances.containsKey(id) ) 
+            {
+                instances.put( id , new ECMAObjectFactory( id ) ) ;
+            }
+            return instances.get( id ) as  ECMAObjectFactory ;
+        }
+
+        /**
+         * Removes a singleton reference of this class with the specified id.
+         * @param id The index of the singleton reference to remove (If this value is Null, the DEFAULT_SINGLETON_NAME static value is used).
+         * @return <code class="prettyprint">true</code> If the specified singleton reference is removed.
+         */
+        public static function removeInstance( id:String = null ):Boolean 
+        {
+            if ( id == null || id.length == 0 ) 
+            {
+                id = DEFAULT_SINGLETON_NAME ;
+            }
+            if ( instances.containsKey(id) ) 
+            {
+                return instances.remove( id ) != null ;
+            }
+            else 
+            {
+                return false ;
+            }
         }
 
         /**
@@ -378,7 +444,12 @@ package andromeda.ioc.factory
         /**
          * @private
          */
-        private static var _instance:ECMAObjectFactory ;
+        private var _id:* ;
+
+        /**
+         * @private
+         */    
+        private static var instances:HashMap = new HashMap() ;
 
         /**
          * @private
@@ -433,8 +504,7 @@ package andromeda.ioc.factory
             }
 
         }
-
-
+        
         /**
          * @private
          */

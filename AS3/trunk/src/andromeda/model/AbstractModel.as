@@ -72,7 +72,7 @@ package andromeda.model
 		}
 
 		/**
-		 * The internal id property of this IModelObject. By default the id equals the hashCode() value.
+		 * @private
 		 */
 		private var _id:* ;
 		
