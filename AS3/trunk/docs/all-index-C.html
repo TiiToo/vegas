@@ -449,11 +449,11 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("CÂ
          Refreshs the childs position in the container.</td>
 </tr>
 <tr>
-<td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('andromeda/events/class-list.html');" href="andromeda/events/ModelObjectEvent.html#CHANGE_CURRENT_VO">CHANGE_CURRENT_VO</a> &mdash; Static property in class andromeda.events.<a onclick="javascript:loadClassListFrame('andromeda/events/class-list.html');" href="andromeda/events/ModelObjectEvent.html">ModelObjectEvent</a></td>
+<td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('andromeda/events/class-list.html');" href="andromeda/events/ModelObjectEvent.html#CHANGE_VO">CHANGE_VO</a> &mdash; Static property in class andromeda.events.<a onclick="javascript:loadClassListFrame('andromeda/events/class-list.html');" href="andromeda/events/ModelObjectEvent.html">ModelObjectEvent</a></td>
 </tr>
 <tr>
 <td width="20"></td><td>
-   Default event type when the setVO method is invoked.</td>
+         Default event type when the current <code class="prettyprint">IValueObject</code> is changed in the model.</td>
 </tr>
 <tr>
 <td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('andromeda/process/class-list.html');" href="andromeda/process/EventDispatcherProcess.html#channel">channel</a> &mdash; Property in class andromeda.process.<a onclick="javascript:loadClassListFrame('andromeda/process/class-list.html');" href="andromeda/process/EventDispatcherProcess.html">EventDispatcherProcess</a></td>
@@ -1175,7 +1175,7 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("CÂ
 </tr>
 <tr>
 <td width="20"></td><td>
-   Default event type when the clear method is invoked.</td>
+         Default event type when all <code class="prettyprint">IValueObject</code> in a model are deleted.</td>
 </tr>
 <tr>
 <td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('lunas/events/class-list.html');" href="lunas/events/ButtonEvent.html#CLICK">CLICK</a> &mdash; Static property in class lunas.events.<a onclick="javascript:loadClassListFrame('lunas/events/class-list.html');" href="lunas/events/ButtonEvent.html">ButtonEvent</a></td>
@@ -1210,7 +1210,7 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("CÂ
 </tr>
 <tr>
 <td width="20"></td><td>
-      Returns the shallow copy of this object.</td>
+         Returns the shallow copy of this object.</td>
 </tr>
 <tr>
 <td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('andromeda/process/class-list.html');" href="andromeda/process/Action.html#clone()">clone</a>() &mdash; Method in class andromeda.process.<a onclick="javascript:loadClassListFrame('andromeda/process/class-list.html');" href="andromeda/process/Action.html">Action</a></td>
@@ -3187,6 +3187,20 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("CÂ
 <tr>
 <td width="20"></td><td>
    Determines whether the specified point is contained within the rectangular region defined by this Rectangle object.</td>
+</tr>
+<tr>
+<td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('andromeda/ioc/factory/class-list.html');" href="andromeda/ioc/factory/ECMAObjectFactory.html#containsInstance()">containsInstance</a>(name) &mdash; Static method in class andromeda.ioc.factory.<a onclick="javascript:loadClassListFrame('andromeda/ioc/factory/class-list.html');" href="andromeda/ioc/factory/ECMAObjectFactory.html">ECMAObjectFactory</a></td>
+</tr>
+<tr>
+<td width="20"></td><td>
+         Indicates if the specified singleton reference is register.</td>
+</tr>
+<tr>
+<td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('vegas/events/class-list.html');" href="vegas/events/EventDispatcher.html#containsInstance()">containsInstance</a>(name) &mdash; Static method in class vegas.events.<a onclick="javascript:loadClassListFrame('vegas/events/class-list.html');" href="vegas/events/EventDispatcher.html">EventDispatcher</a></td>
+</tr>
+<tr>
+<td width="20"></td><td>
+         Indicates if the specified singleton reference is register.</td>
 </tr>
 <tr>
 <td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('vegas/data/class-list.html');" href="vegas/data/Map.html#containsKey()">containsKey</a>(key) &mdash; Method in interface vegas.data.<a onclick="javascript:loadClassListFrame('vegas/data/class-list.html');" href="vegas/data/Map.html">Map</a></td>

@@ -142,7 +142,7 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <a class="signatureLink" href="AbstractModelObject.html#getCurrentVO()">getCurrentVO</a>():<a href="../vo/IValueObject.html">IValueObject</a>
 </div>
 <div class="summaryTableDescription">
-         Returns the current IValueObject selected in this model.</div>
+         Returns the current <code class="prettyprint">IValueObject</code> selected in this model.</div>
 </td><td class="summaryTableOwnerCol"><a href="AbstractModelObject.html">AbstractModelObject</a></td>
 </tr>
 <tr class="hideInheritedMethod">
@@ -153,6 +153,14 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <div class="summaryTableDescription">
    Returns the internal <code class="prettyprint">EventDispatcher</code> reference.</div>
 </td><td class="summaryTableOwnerCol"><a href="../../vegas/events/CoreEventDispatcher.html">CoreEventDispatcher</a></td>
+</tr>
+<tr class="hideInheritedMethod">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="AbstractModelObject.html#getEventTypeBEFORE_CHANGE()">getEventTypeBEFORE_CHANGE</a>():String</div>
+<div class="summaryTableDescription">
+         Returns the event name use in the <code class="prettyprint">setCurrentVO</code> method before is changed.</div>
+</td><td class="summaryTableOwnerCol"><a href="AbstractModelObject.html">AbstractModelObject</a></td>
 </tr>
 <tr class="hideInheritedMethod">
 <td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol">
@@ -239,6 +247,14 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <tr class="hideInheritedMethod">
 <td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol">
 <div class="summarySignature">
+<a class="signatureLink" href="AbstractModelObject.html#notifyBeforeChange()">notifyBeforeChange</a>(vo:<a href="../vo/IValueObject.html">IValueObject</a>):void</div>
+<div class="summaryTableDescription">
+         Notify a <code class="prettyprint">ModelObjectEvent</code> before the current <code class="prettyprint">IValueObject</code> selected in the model is changed.</div>
+</td><td class="summaryTableOwnerCol"><a href="AbstractModelObject.html">AbstractModelObject</a></td>
+</tr>
+<tr class="hideInheritedMethod">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
 <a class="signatureLink" href="AbstractModelObject.html#notifyChange()">notifyChange</a>(vo:<a href="../vo/IValueObject.html">IValueObject</a>):void</div>
 <div class="summaryTableDescription">
          Notify a <code class="prettyprint">ModelObjectEvent</code> when a <code class="prettyprint">IValueObject</code> change in the model.</div>
@@ -281,7 +297,7 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <div class="summarySignature">
 <a class="signatureLink" href="AbstractModelObject.html#setCurrentVO()">setCurrentVO</a>(vo:<a href="../vo/IValueObject.html">IValueObject</a>):void</div>
 <div class="summaryTableDescription">
-         Sets the current IValueObject selected in this model.</div>
+         Sets the current <code class="prettyprint">IValueObject</code> selected in this model.</div>
 </td><td class="summaryTableOwnerCol"><a href="AbstractModelObject.html">AbstractModelObject</a></td>
 </tr>
 <tr class="hideInheritedMethod">
@@ -291,6 +307,14 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <div class="summaryTableDescription">
    Sets the internal <code class="prettyprint">EventDispatcher</code> reference.</div>
 </td><td class="summaryTableOwnerCol"><a href="../../vegas/events/CoreEventDispatcher.html">CoreEventDispatcher</a></td>
+</tr>
+<tr class="hideInheritedMethod">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="AbstractModelObject.html#setEventTypeBEFORE_CHANGE()">setEventTypeBEFORE_CHANGE</a>(type:String):void</div>
+<div class="summaryTableDescription">
+         Returns the event name use in the <code class="prettyprint">setCurrentVO</code> method before is changed.</div>
+</td><td class="summaryTableOwnerCol"><a href="AbstractModelObject.html">AbstractModelObject</a></td>
 </tr>
 <tr class="hideInheritedMethod">
 <td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol">
