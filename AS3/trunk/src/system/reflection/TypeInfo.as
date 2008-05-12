@@ -16,27 +16,26 @@
   the Initial Developer. All Rights Reserved.
   
   Contributor(s):
-  
-    - Marc Alcaraz <ekameleon@gmail.com>
 
 */
+
 package system.reflection
     {
     
     /**
-     * The TypeInfo interface.
+     * This interface defines all method who defines the informations about a Type object (Class).
      */
     public interface TypeInfo
         {
         
         /**
-         * Indicates of the class can be convert.
-         */
+         * Indicates if the specified Class object can be convert to an other with the "as" keyword.
+         */        
         function canConvertTo( o:Class ):Boolean;
         
         /**
-         * Indicates is the type is a sub type.
-         */
+         * Indicates if the specified Class object be used with the "is" keyword.
+         */        
         function isSubtypeOf( o:Class ):Boolean;
         
         }

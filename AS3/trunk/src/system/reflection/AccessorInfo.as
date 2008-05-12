@@ -23,34 +23,15 @@ package system.reflection
     {
     
     /**
-     * This interface defines the method information tool objects.
+     * The Accessor info class.
      */
-    public interface MethodInfo
+    public interface AccessorInfo extends MemberInfo
         {
         
         /**
-         * Indicates the Array representation of all arguments passed-in the method.
+         * Indicates the AccessorType reference of this object.
          */
-        function get arguments():Array;
-        
-        //function contruct( args... ):*;        
-        
-        /**
-         * Indicates if the method returs nothing.
-         */
-        function isVoid():Boolean;
-        
-        /**
-         * Indicates the name of the method.
-         */
-        function get name():String;
-        
-        /**
-         * Indicates the String representation of the return type of the method.
-         */
-        function get returnType():String;
-                
+        function get access():AccessorType;
         }
-
     }
 

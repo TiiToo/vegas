@@ -21,39 +21,37 @@
 */
 package system.reflection
     {
-    
-    [ExcludeClass]
+    import system.Configurator;
 
-    /**
-     * The concrete class of the TypeInfo interface.
-     */
-    public class _TypeInfo implements TypeInfo
+    public class ReflectionConfigurator extends Configurator
         {
         
-        private var _type:*;
-        
         /**
-         * Creates a new _TypeInfo instance.
+         * Creates a new ReflectionConfigurator instance.
+         * @param config The generic object who initialize the instance.
          */
-        public function _TypeInfo( o:* )
+        public function ReflectionConfigurator( config:Object )
             {
-            _type = o;
+            super( config );
             }
         
         /**
-         * Indicates if the specified Class can be convert to an other with the "as" keyword.
+         * Allow to replace "::" by "." for string class representation
+         * <p><b>example:</b></p>
+         * <p>With <code class="prettyprint">normalizePath = false</code> you obtain <code class="prettyprint">"system.reflection::ClassInfoTest"</code>
+         * and with <code class="prettyprint">normalizePath=true</code> you obtain <code class="prettyprint">"system.reflection.ClassInfoTest"</code>.</p>
          */
-        public function canConvertTo( o:Class ):Boolean
+        public function get normalizePath():Boolean
             {
-            return (_type as o) != null;
+            return _config.normalizePath;
             }
-
+        
         /**
-         * Indicates if the specified Class be used with the "is" keyword.
+         * @private
          */
-        public function isSubtypeOf( o:Class ):Boolean
+        public function set normalizePath( value:Boolean ):void
             {
-            return _type is o;
+            _config.normalizePath = value;
             }
         
         }

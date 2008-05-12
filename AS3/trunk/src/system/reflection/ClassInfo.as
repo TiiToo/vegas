@@ -16,21 +16,70 @@
   the Initial Developer. All Rights Reserved.
   
   Contributor(s):
-  
-    - Marc Alcaraz <ekameleon@gmail.com>
+  Marc Alcaraz <ekameleon@gmail.com>
 
 */
 package system.reflection
     {
     
     /**
-     * The ClassInfo interface.
+     * This interface defines the object who indicates all informations about a class in the reflection pattern of system.
      */
-    public interface ClassInfo
+    public interface ClassInfo extends TypeInfo
         {
+        	
+        /**
+         * Indicates the Array representation of all members in the class.
+         */
+        function get members():Array;
         
+        /**
+         * Indicates the Array representation of all methods in the class.
+         */
+        function get methods():Array;        
+        
+        /**
+         * Indicates the name of the class.
+         */
+        function get name():String;
+        
+        /**
+         * Indicates the Array representation of all static member informations.
+         */   
+        function get staticMembers():Array;
+
+        /**
+         * Indicates the Array representation of all static method informations.
+         */   
+        function get staticMethods():Array;
+        
+        /**
+         * Indicates the ClassInfo object of the super class.
+         */
+        function get superClass():ClassInfo;
+        
+        /**
+         * Indicates if the specified object is dynamic.
+         */
+        function isDynamic():Boolean;
+        
+        /**
+         * Indicates if the specified object is final.
+         */
+        function isFinal():Boolean;
+
+        /**
+         * Indicates if the specified object is instance.
+         */
+        function isInstance():Boolean;   
+        
+        /**
+         * Indicates if the specified object is static.
+         */
+        function isStatic():Boolean;        
         
         }
     
     
     }
+

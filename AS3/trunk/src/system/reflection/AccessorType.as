@@ -21,36 +21,39 @@
 */
 package system.reflection
     {
-    
+    import system.Enum;
+
     /**
-     * This interface defines the method information tool objects.
+     * This enumeration contains all accessor types.
      */
-    public interface MethodInfo
+    public class AccessorType extends Enum
         {
         
         /**
-         * Indicates the Array representation of all arguments passed-in the method.
+         * Creates a new AccessorType instance.
+         * @param value The value of the enumeration.
+         * @param name The name key of the enumeration.
          */
-        function get arguments():Array;
-        
-        //function contruct( args... ):*;        
-        
-        /**
-         * Indicates if the method returs nothing.
-         */
-        function isVoid():Boolean;
+        public function AccessorType( value:int, name:String )
+            {
+            super(value, name);
+            }
         
         /**
-         * Indicates the name of the method.
+         * Determinates the "readOnly" accessor type value.
          */
-        function get name():String;
-        
-        /**
-         * Indicates the String representation of the return type of the method.
-         */
-        function get returnType():String;
-                
-        }
+        public static const readOnly:AccessorType  = new AccessorType( 1, "readonly" );
 
+        /**
+         * Determinates the "writeOnly" accessor type value.
+         */
+        public static const writeOnly:AccessorType = new AccessorType( 2, "writeonly" );
+        
+        /**
+         * Determinates the "readWrite" accessor type value.
+         */
+        public static const readWrite:AccessorType = new AccessorType( 3, "readwrite" );
+        
+        }
     }
 

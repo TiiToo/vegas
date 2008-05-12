@@ -23,34 +23,21 @@ package system.reflection
     {
     
     /**
-     * This interface defines the method information tool objects.
+     * This interface is implemented in all the member information objects.
      */
-    public interface MethodInfo
+    public interface MemberInfo
         {
         
         /**
-         * Indicates the Array representation of all arguments passed-in the method.
-         */
-        function get arguments():Array;
-        
-        //function contruct( args... ):*;        
-        
-        /**
-         * Indicates if the method returs nothing.
-         */
-        function isVoid():Boolean;
-        
-        /**
-         * Indicates the name of the method.
+         * Indicates the name of the member object.
          */
         function get name():String;
-        
-        /**
-         * Indicates the String representation of the return type of the method.
-         */
-        function get returnType():String;
-                
-        }
 
+        /**
+         * Indicates the String representation of the type of the member object.
+         */
+        function get type():String;
+        
+        }
     }
 

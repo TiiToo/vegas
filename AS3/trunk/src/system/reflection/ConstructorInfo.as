@@ -23,34 +23,21 @@ package system.reflection
     {
     
     /**
-     * This interface defines the method information tool objects.
+     * This interface defines the constructor informations in a class info.
      */
-    public interface MethodInfo
+    public interface ConstructorInfo
         {
         
         /**
-         * Indicates the Array representation of all arguments passed-in the method.
+         * Indicates the Array represent of all arguments in a constructor.
          */
         function get arguments():Array;
         
-        //function contruct( args... ):*;        
-        
         /**
-         * Indicates if the method returs nothing.
+         * Creates the constructor representation.
          */
-        function isVoid():Boolean;
+        function construct( ...args:Array ):*;
         
-        /**
-         * Indicates the name of the method.
-         */
-        function get name():String;
-        
-        /**
-         * Indicates the String representation of the return type of the method.
-         */
-        function get returnType():String;
-                
         }
-
     }
 
