@@ -426,17 +426,24 @@ package andromeda.ioc.factory
 		{
 			if (properties != null && properties.size() > 0)
 			{
+				var prop:ObjectProperty ;
 				var it:Iterator = properties.iterator() ;
 				while( it.hasNext() )
 				{
-					var value:* = it.next() ;
-					var key:*   = it.key()  ;
-					if( value is String && containsObject( value as String ) ) 
+					prop = it.next() as ObjectProperty ;
+					if 
+					( 
+						prop.type == ObjectAttribute.REFERENCE 
+							&& prop.value is String 
+								&& containsObject( prop.value as String ) 
+					)
 					{
-						value = getObject( value ) ;
-       					properties.put( key , value ) ;
-   					}
-					o[key] = value ;
+						o[prop.name] = getObject( prop.value ) ;
+					}
+					else
+					{
+						o[prop.name] = prop.value ;
+					}
 				}
 			} 
 		}

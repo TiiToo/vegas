@@ -393,18 +393,21 @@ package andromeda.ioc.core
                     	continue ;
                     }
                     
+                    
+                    
                     ref   = prop[ ObjectAttribute.REFERENCE ] as String  ;
                     
                     value = prop[ ObjectAttribute.VALUE ] ;
                     
                     if ( ref != null ) 
                     {
-                        properties.put( name , ref ) ; // ref property    
+                        properties.put( name , new ObjectProperty( name , ref , ObjectAttribute.REFERENCE ) ) ; // ref property    
                     }
                     else 
                     {
-                        properties.put( name, value ) ; // property    
+                        properties.put( name , new ObjectProperty( name , value ) ) ; // value property    
                     }
+    
                 }
 
                 return ( properties.size() > 0 ) ? properties : null ;
