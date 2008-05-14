@@ -5,7 +5,7 @@
 <link rel="stylesheet" href="../../../style.css" type="text/css" media="screen">
 <link rel="stylesheet" href="../../../print.css" type="text/css" media="print">
 <link rel="stylesheet" href="../../../prettify.css" type="text/css">
-<meta content="ObjectDefinition,andromeda.ioc.core.ObjectDefinition,id,identify,create,getConstructorArguments,getDestroyMethodName,getFactoryMethod,getInitMethodName,getMethods,getProperties,getScope,getType,isLazyInit,isSingleton,setConstructorArguments,setDestroyMethodName,setFactoryMethod,setInitMethodName,setMethods,setProperties,setScope,setType" name="keywords">
+<meta content="ObjectDefinition,andromeda.ioc.core.ObjectDefinition,id,identify,create,getConstructorArguments,getDestroyMethodName,getFactoryStrategy,getInitMethodName,getMethods,getProperties,getScope,getType,isLazyInit,isSingleton,setConstructorArguments,setDestroyMethodName,setFactoryStrategy,setInitMethodName,setMethods,setProperties,setScope,setType" name="keywords">
 <title>andromeda.ioc.core.ObjectDefinition</title>
 </head>
 <body>
@@ -122,10 +122,10 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <tr class="">
 <td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
 <div class="summarySignature">
-<a class="signatureLink" href="#getFactoryMethod()">getFactoryMethod</a>():<a href="../core/ObjectMethod.html">ObjectMethod</a>
+<a class="signatureLink" href="#getFactoryStrategy()">getFactoryStrategy</a>():<a href="../factory/strategy/IObjectFactoryStrategy.html">IObjectFactoryStrategy</a>
 </div>
 <div class="summaryTableDescription">
-         Returns the factory ObjectMethod of this definition.</div>
+         Returns the factory stategy of this definition to create the object.</div>
 </td><td class="summaryTableOwnerCol">ObjectDefinition</td>
 </tr>
 <tr class="">
@@ -221,9 +221,9 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <tr class="">
 <td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
 <div class="summarySignature">
-<a class="signatureLink" href="#setFactoryMethod()">setFactoryMethod</a>(value:<a href="ObjectMethod.html">ObjectMethod</a>):void</div>
+<a class="signatureLink" href="#setFactoryStrategy()">setFactoryStrategy</a>(value:<a href="../factory/strategy/IObjectFactoryStrategy.html">IObjectFactoryStrategy</a>):void</div>
 <div class="summaryTableDescription">
-         Sets the factory ObjectMethod of this definition.</div>
+         Sets the factory stategy of this definition to create the object.</div>
 </td><td class="summaryTableOwnerCol">ObjectDefinition</td>
 </tr>
 <tr class="">
@@ -438,21 +438,21 @@ showHideInherited();
 </tr>
 </table>
 </div>
-<a name="getFactoryMethod()"></a>
+<a name="getFactoryStrategy()"></a>
 <table cellspacing="0" cellpadding="0" class="detailHeader">
 <tr>
-<td class="detailHeaderName">getFactoryMethod</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+<td class="detailHeaderName">getFactoryStrategy</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
 </tr>
 </table>
 <div class="detailBody">
-<code>public function getFactoryMethod():<a href="../core/ObjectMethod.html">ObjectMethod</a></code><p>
-         Returns the factory ObjectMethod of this definition.
+<code>public function getFactoryStrategy():<a href="../factory/strategy/IObjectFactoryStrategy.html">IObjectFactoryStrategy</a></code><p>
+         Returns the factory stategy of this definition to create the object.
          </p><p></p>
 <span class="label">Returns</span>
 <table border="0" cellspacing="0" cellpadding="0">
 <tr>
-<td width="20"></td><td><code><a href="../core/ObjectMethod.html">ObjectMethod</a></code> &mdash; 
-                        the factory ObjectMethod object of this definition.
+<td width="20"></td><td><code><a href="../factory/strategy/IObjectFactoryStrategy.html">IObjectFactoryStrategy</a></code> &mdash; 
+                        the factory stategy of this definition to create the object.
          
                         
                      </td>
@@ -623,19 +623,19 @@ showHideInherited();
 </tr>
 </table>
 </div>
-<a name="setFactoryMethod()"></a>
+<a name="setFactoryStrategy()"></a>
 <table cellspacing="0" cellpadding="0" class="detailHeader">
 <tr>
-<td class="detailHeaderName">setFactoryMethod</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+<td class="detailHeaderName">setFactoryStrategy</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
 </tr>
 </table>
 <div class="detailBody">
-<code>public function setFactoryMethod(value:<a href="ObjectMethod.html">ObjectMethod</a>):void</code><p>
-         Sets the factory ObjectMethod of this definition.
+<code>public function setFactoryStrategy(value:<a href="../factory/strategy/IObjectFactoryStrategy.html">IObjectFactoryStrategy</a>):void</code><p>
+         Sets the factory stategy of this definition to create the object.
          </p><span class="label">Parameters</span>
 <table border="0" cellspacing="0" cellpadding="0">
 <tr>
-<td width="20px"></td><td><code><span class="label">value</span>:<a href="ObjectMethod.html">ObjectMethod</a></code></td>
+<td width="20px"></td><td><code><span class="label">value</span>:<a href="../factory/strategy/IObjectFactoryStrategy.html">IObjectFactoryStrategy</a></code></td>
 </tr>
 </table>
 </div>

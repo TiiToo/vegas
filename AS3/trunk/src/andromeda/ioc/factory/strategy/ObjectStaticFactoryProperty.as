@@ -23,9 +23,7 @@
 package andromeda.ioc.factory.strategy 
 {
     import andromeda.ioc.core.ObjectAttribute;
-    import andromeda.ioc.core.ObjectProperty;
-    
-    import buRRRn.eden.Serializer;    
+    import andromeda.ioc.core.ObjectProperty;    
 
     /**
      * This object create a static proxy factory configured in the IObjectDefinition and replace the natural factory of the ObjectFactory.
@@ -55,7 +53,7 @@ package andromeda.ioc.factory.strategy
          * Returns the ObjectStaticFactoryProperty representation of the specified generic object or null.
          * @return the ObjectStaticFactoryProperty representation of the specified generic object or null.
          */
-        public static function create( factoryProperty:Object=null ):ObjectStaticFactoryProperty
+        public static function build( factoryProperty:Object=null ):ObjectStaticFactoryProperty
         {
             if ( factoryProperty == null ) 
             {

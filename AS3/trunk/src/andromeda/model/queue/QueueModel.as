@@ -73,7 +73,7 @@ package andromeda.model.queue
          */
         public function dequeue():*
         {
-        	var r:* = _queue.poll() ;
+            var r:* = _queue.poll() ;
             notifyDequeue( r ) ;
             return r ;
         }

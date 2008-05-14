@@ -43,8 +43,8 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 </tr>
 </table>
 <p></p>
-  This class represents an observable object, or "data" in the model-view paradigm. It can be subclassed to represent an object that the application wants to have observed.
-  <p></p>
+     This class represents an observable object, or "data" in the model-view paradigm. It can be subclassed to represent an object that the application wants to have observed.
+     <p></p>
 <br>
 <hr>
 </div>
@@ -68,7 +68,7 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <div class="summarySignature">
 <a class="signatureLink" href="#Observable()">Observable</a>()</div>
 <div class="summaryTableDescription">
-   Creates an Observable instance with zero Observers.</div>
+         Creates an Observable instance with zero Observers.</div>
 </td><td class="summaryTableOwnerCol">Observable</td>
 </tr>
 <tr class="">
@@ -76,7 +76,7 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <div class="summarySignature">
 <a class="signatureLink" href="#addObserver()">addObserver</a>(o:<a href="IObserver.html">IObserver</a>):Boolean</div>
 <div class="summaryTableDescription">
-    Adds an observer to the set of observers for this object, provided that it is not the same as some observer already in the set.</div>
+          Adds an observer to the set of observers for this object, provided that it is not the same as some observer already in the set.</div>
 </td><td class="summaryTableOwnerCol">Observable</td>
 </tr>
 <tr class="">
@@ -84,7 +84,7 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <div class="summarySignature">
 <a class="signatureLink" href="#clearChanged()">clearChanged</a>():void</div>
 <div class="summaryTableDescription">
-   Indicates that this object has no longer changed, or that it has already notified all of its observers of its most recent change, so that the hasChanged method will now return false.</div>
+         Indicates that this object has no longer changed, or that it has already notified all of its observers of its most recent change, so that the hasChanged method will now return false.</div>
 </td><td class="summaryTableOwnerCol">Observable</td>
 </tr>
 <tr class="hideInheritedMethod">
@@ -101,7 +101,7 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <div class="summarySignature">
 <a class="signatureLink" href="#hasChanged()">hasChanged</a>():Boolean</div>
 <div class="summaryTableDescription">
-   Tests if this object has changed.</div>
+         Tests if this object has changed.</div>
 </td><td class="summaryTableOwnerCol">Observable</td>
 </tr>
 <tr class="hideInheritedMethod">
@@ -117,7 +117,7 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <div class="summarySignature">
 <a class="signatureLink" href="#notifyObservers()">notifyObservers</a>(arg:*):void</div>
 <div class="summaryTableDescription">
-   If this object has changed, as indicated by the hasChanged method, then notify all of its observers and then call the clearChanged method to indicate that this object has no longer changed.</div>
+         If this object has changed, as indicated by the hasChanged method, then notify all of its observers and then call the clearChanged method to indicate that this object has no longer changed.</div>
 </td><td class="summaryTableOwnerCol">Observable</td>
 </tr>
 <tr class="">
@@ -125,7 +125,7 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <div class="summarySignature">
 <a class="signatureLink" href="#removeObservers()">removeObservers</a>(o:<a href="IObserver.html">IObserver</a>):void</div>
 <div class="summaryTableDescription">
-   Removes an observer from the set of observers of this object.</div>
+         Removes an observer from the set of observers of this object.</div>
 </td><td class="summaryTableOwnerCol">Observable</td>
 </tr>
 <tr class="">
@@ -133,8 +133,8 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <div class="summarySignature">
 <a class="signatureLink" href="#setChanged()">setChanged</a>():void</div>
 <div class="summaryTableDescription">
-   Marks this Observable object as having been changed; the hasChanged method will now return true
-   </div>
+         Marks this Observable object as having been changed; the hasChanged method will now return true
+         </div>
 </td><td class="summaryTableOwnerCol">Observable</td>
 </tr>
 <tr class="hideInheritedMethod">
@@ -150,7 +150,7 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <div class="summarySignature">
 <a class="signatureLink" href="#size()">size</a>():Number</div>
 <div class="summaryTableDescription">
-   Returns the number of observers of this Observable object.</div>
+         Returns the number of observers of this Observable object.</div>
 </td><td class="summaryTableOwnerCol">Observable</td>
 </tr>
 <tr class="hideInheritedMethod">
@@ -186,8 +186,8 @@ showHideInherited();
 </table>
 <div class="detailBody">
 <code>public function Observable()</code><p>
-   Creates an Observable instance with zero Observers.
-   </p></div>
+         Creates an Observable instance with zero Observers.
+         </p></div>
 <a name="methodDetail"></a>
 <div class="detailSectionHeader">Method detail</div>
 <a name="addObserver()"></a>
@@ -198,8 +198,8 @@ showHideInherited();
 </table>
 <div class="detailBody">
 <code>public function addObserver(o:<a href="IObserver.html">IObserver</a>):Boolean</code><p>
-    Adds an observer to the set of observers for this object, provided that it is not the same as some observer already in the set.
-    </p><span class="label">Parameters</span>
+          Adds an observer to the set of observers for this object, provided that it is not the same as some observer already in the set.
+          </p><span class="label">Parameters</span>
 <table border="0" cellspacing="0" cellpadding="0">
 <tr>
 <td width="20px"></td><td><code><span class="label">o</span>:<a href="IObserver.html">IObserver</a></code></td>
@@ -221,8 +221,8 @@ showHideInherited();
 </table>
 <div class="detailBody">
 <code>public function clearChanged():void</code><p>
-   Indicates that this object has no longer changed, or that it has already notified all of its observers of its most recent change, so that the hasChanged method will now return false.
-   </p></div>
+         Indicates that this object has no longer changed, or that it has already notified all of its observers of its most recent change, so that the hasChanged method will now return false.
+         </p></div>
 <a name="hasChanged()"></a>
 <table cellspacing="0" cellpadding="0" class="detailHeader">
 <tr>
@@ -231,8 +231,8 @@ showHideInherited();
 </table>
 <div class="detailBody">
 <code>public function hasChanged():Boolean</code><p>
-   Tests if this object has changed.
-   </p><p></p>
+         Tests if this object has changed.
+         </p><p></p>
 <span class="label">Returns</span>
 <table border="0" cellspacing="0" cellpadding="0">
 <tr>
@@ -248,8 +248,8 @@ showHideInherited();
 </table>
 <div class="detailBody">
 <code>public function notifyObservers(arg:*):void</code><p>
-   If this object has changed, as indicated by the hasChanged method, then notify all of its observers and then call the clearChanged method to indicate that this object has no longer changed.
-   </p><span class="label">Parameters</span>
+         If this object has changed, as indicated by the hasChanged method, then notify all of its observers and then call the clearChanged method to indicate that this object has no longer changed.
+         </p><span class="label">Parameters</span>
 <table border="0" cellspacing="0" cellpadding="0">
 <tr>
 <td width="20px"></td><td><code><span class="label">arg</span>:*</code></td>
@@ -264,8 +264,8 @@ showHideInherited();
 </table>
 <div class="detailBody">
 <code>public function removeObservers(o:<a href="IObserver.html">IObserver</a>):void</code><p>
-   Removes an observer from the set of observers of this object.
-   </p><span class="label">Parameters</span>
+         Removes an observer from the set of observers of this object.
+         </p><span class="label">Parameters</span>
 <table border="0" cellspacing="0" cellpadding="0">
 <tr>
 <td width="20px"></td><td><code><span class="label">o</span>:<a href="IObserver.html">IObserver</a></code></td>
@@ -280,8 +280,8 @@ showHideInherited();
 </table>
 <div class="detailBody">
 <code>public function setChanged():void</code><p>
-   Marks this Observable object as having been changed; the hasChanged method will now return true
-   </p></div>
+         Marks this Observable object as having been changed; the hasChanged method will now return true
+         </p></div>
 <a name="size()"></a>
 <table cellspacing="0" cellpadding="0" class="detailHeader">
 <tr>
@@ -290,13 +290,13 @@ showHideInherited();
 </table>
 <div class="detailBody">
 <code>public function size():Number</code><p>
-   Returns the number of observers of this Observable object.
-   </p><p></p>
+         Returns the number of observers of this Observable object.
+         </p><p></p>
 <span class="label">Returns</span>
 <table border="0" cellspacing="0" cellpadding="0">
 <tr>
 <td width="20"></td><td><code>Number</code> &mdash; the number of observers of this Observable object.
-   </td>
+         </td>
 </tr>
 </table>
 </div>

@@ -35,7 +35,6 @@ package andromeda.ioc.factory
     
     import vegas.core.Identifiable;
     import vegas.data.Map;
-    import vegas.data.iterator.Iterator;
     import vegas.data.map.HashMap;
     import vegas.errors.NullPointerError;
     import vegas.util.ClassUtil;    
@@ -103,7 +102,7 @@ package andromeda.ioc.factory
         public function ObjectFactory( bGlobal:Boolean = false , sChannel:String = null )
         {
             super( bGlobal, sChannel ) ;
-            typeEvaluator = new TypeEvaluator() ;
+            _typeEvaluator = new TypeEvaluator() ;
             singletons    = new HashMap() ;
             config        = new ObjectConfig() ; // the default empty ObjectConfig instance.
         }
@@ -122,13 +121,21 @@ package andromeda.ioc.factory
         public function set config( o:ObjectConfig ):void
         {
             _config = o || new ObjectConfig() ;
-            typeEvaluator.config = _config ;
+            _typeEvaluator.config = _config ;
         }        
         
         /**
          * The maps of all objects in the container.
          */
         public var singletons:HashMap ;
+        
+        /**
+         * Indicates the type evaluator reference in this factory. 
+         */
+        public function get typeEvaluator():TypeEvaluator
+        {
+            return _typeEvaluator ;
+        }          
         
         /**
          * Returns <code class="prettyprint">true</code> if the referencial contains the specified object.
@@ -156,6 +163,10 @@ package andromeda.ioc.factory
          */        
         public function getObject( id:String ):*
         {
+            if ( id == null )
+            {
+               return null ;    
+            }
             try
             {
                 var instance:* = singletons.get(id) || null ;    
@@ -237,6 +248,11 @@ package andromeda.ioc.factory
         private var _config:ObjectConfig ;
        
         /**
+         * @private
+         */
+        private var _typeEvaluator:TypeEvaluator ;          
+       
+        /**
           * Creates the arguments Array representation of the specified definition.
           * @return the arguments Array representation of the specified definition.
           */
@@ -302,7 +318,7 @@ package andromeda.ioc.factory
             var strategy:IObjectFactoryStrategy = definition.getFactoryStrategy() ;
             if ( strategy == null )
             {
-                clazz           = typeEvaluator.eval( definition.getType() ) as Class ;
+                clazz           = _typeEvaluator.eval( definition.getType() ) as Class ;
                 instance        = ClassUtil.buildNewInstance( clazz, createArguments( definition.getConstructorArguments()) ) ;
             }
             else
@@ -325,10 +341,10 @@ package andromeda.ioc.factory
          */
         protected function createObjectWithStrategy( strategy:IObjectFactoryStrategy ):*
         {
-        	if ( strategy == null )
-        	{
-        		return null ;
-        	}
+            if ( strategy == null )
+            {
+                return null ;
+            }
             var instance:* = null ;
             var clazz:Class ;
             var factory:String ;
@@ -341,7 +357,7 @@ package andromeda.ioc.factory
                 var args:Array = createArguments( factoryMethod.arguments ) ;
                 if ( factoryMethod is ObjectStaticFactoryMethod )
                 {
-                    clazz  = typeEvaluator.eval( (factoryMethod as ObjectStaticFactoryMethod).type as String ) as Class ;
+                    clazz  = _typeEvaluator.eval( (factoryMethod as ObjectStaticFactoryMethod).type as String ) as Class ;
                     if ( clazz != null && name in clazz ) 
                     {
                         instance = clazz[name].apply( null, args ) ;
@@ -363,7 +379,7 @@ package andromeda.ioc.factory
                 name = factoryProperty.name ;
                 if ( factoryProperty is ObjectStaticFactoryProperty )
                 {
-                    clazz = typeEvaluator.eval( (factoryProperty as ObjectStaticFactoryProperty).type as String ) as Class ;
+                    clazz = _typeEvaluator.eval( (factoryProperty as ObjectStaticFactoryProperty).type as String ) as Class ;
                     if ( clazz != null && name in clazz ) 
                     {
                         instance = clazz[name] ;
@@ -473,10 +489,11 @@ package andromeda.ioc.factory
             if (properties != null && properties.size() > 0)
             {
                 var prop:ObjectProperty ;
-                var it:Iterator = properties.iterator() ;
-                while( it.hasNext() )
+                var values:Array = properties.getValues() ;
+                var size:uint    = values.length ;
+                for( var i:uint = 0 ; i<size ; i++ )
                 {
-                    prop = it.next() as ObjectProperty ;
+                    prop = values[i] as ObjectProperty ;
                     if 
                     ( 
                         prop.policy == ObjectAttribute.REFERENCE 
@@ -521,11 +538,7 @@ package andromeda.ioc.factory
                 }
             } 
         }
-
-        /**
-         * @private
-         */
-        protected var typeEvaluator:TypeEvaluator ;        
+     
             
     }
 

@@ -26,53 +26,53 @@ package andromeda.ioc.factory.strategy
     import andromeda.ioc.core.ObjectMethod;    
 
     /**
-	 * This object create a delegate factory configured in the IObjectDefinition and replace the natural factory of the ObjectFactory.
-	 * @author eKameleon
-	 */
-	public class ObjectFactoryMethod extends ObjectMethod implements IObjectFactoryStrategy
-	{
-		
-		/**
-		 * Creates a new ObjectFactoryMethod instance.
-		 * @param factory The string name of the reference in the factory used to create the object.
-		 * @param name The name of the method to invoke to create the object.
-		 * @param arguments The array of the arguments to passed-in the factory method.
-		 */
-		public function ObjectFactoryMethod( factory:String , name:String , arguments:Array =null )
-		{
-			super( name , arguments );
-			this.factory = factory ;
-		}
-		
+     * This object create a delegate factory configured in the IObjectDefinition and replace the natural factory of the ObjectFactory.
+     * @author eKameleon
+     */
+    public class ObjectFactoryMethod extends ObjectMethod implements IObjectFactoryStrategy
+    {
+        
+        /**
+         * Creates a new ObjectFactoryMethod instance.
+         * @param factory The string name of the reference in the factory used to create the object.
+         * @param name The name of the method to invoke to create the object.
+         * @param arguments The array of the arguments to passed-in the factory method.
+         */
+        public function ObjectFactoryMethod( factory:String , name:String , arguments:Array =null )
+        {
+            super( name , arguments );
+            this.factory = factory ;
+        }
+        
         /**
          * The factory string representation of the reference of this factory method object.
          */
-        public var factory:String ;		
-		
-		/**
-		 * Returns the ObjectFactoryMethod representation of the specified generic object or null.
-		 * @return the ObjectFactoryMethod representation of the specified generic object or null.
-		 */
-		public static function create( factoryMethod:Object=null ):ObjectFactoryMethod
-		{
-			if ( factoryMethod == null ) 
-			{
-				return null ;
-			}
-			if ( ObjectAttribute.FACTORY in factoryMethod && ObjectAttribute.NAME in factoryMethod )
-			{
-				return new ObjectFactoryMethod
-				( 
-					factoryMethod[ ObjectAttribute.FACTORY   ] , 
-					factoryMethod[ ObjectAttribute.NAME      ] , 
-					factoryMethod[ ObjectAttribute.ARGUMENTS ]  
-				) ;
-			}
-			else
-			{
-				return null ;
-			}		
-		}
-				
-	}
+        public var factory:String ;        
+        
+        /**
+         * Returns the ObjectFactoryMethod representation of the specified generic object or null.
+         * @return the ObjectFactoryMethod representation of the specified generic object or null.
+         */
+        public static function build( factoryMethod:Object=null ):ObjectFactoryMethod
+        {
+            if ( factoryMethod == null ) 
+            {
+                return null ;
+            }
+            if ( ObjectAttribute.FACTORY in factoryMethod && ObjectAttribute.NAME in factoryMethod )
+            {
+                return new ObjectFactoryMethod
+                ( 
+                    factoryMethod[ ObjectAttribute.FACTORY   ] , 
+                    factoryMethod[ ObjectAttribute.NAME      ] , 
+                    factoryMethod[ ObjectAttribute.ARGUMENTS ]  
+                ) ;
+            }
+            else
+            {
+                return null ;
+            }        
+        }
+                
+    }
 }

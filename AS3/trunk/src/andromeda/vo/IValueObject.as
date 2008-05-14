@@ -23,15 +23,15 @@
 
 package andromeda.vo
 {
-	import vegas.core.Identifiable;
+    import vegas.core.Identifiable;
 
     /**
-	 * This interface define a value object, the value object are use for example in the models.
-	 * @author eKameleon
-	 */
-	public interface IValueObject extends Identifiable
-	{
-		//
-	}
-	
+     * This interface define a value object, the value object are use for example in the models.
+     * @author eKameleon
+     */
+    public interface IValueObject extends Identifiable
+    {
+        //
+    }
+    
 }

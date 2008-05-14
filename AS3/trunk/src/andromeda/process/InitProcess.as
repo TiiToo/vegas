@@ -23,73 +23,73 @@
 package andromeda.process 
 {
 
-	/**
-	 * This Action launch the init method of ths process but notify an event before (ActionEvent.START) and after(ActionEvent.FINISH) the process.
-	 * This class is a pseudo abstract class. Don't instanciate this class but create a custom class with it.
-	 * @example
-	 * You must use this class with a custom class who extends this class.
-	 * <pre class="prettyprint">
-	 * import andromeda.events.ActionEvent ;
-	 * import test.InitTest ; // extends InitProcess.
-	 * 
-	 * var debug:Function = function( e:ActionEvent ):void
-	 * {
-	 *     trace ( e ) ;
-	 * }
-	 * 
-	 * var p:InitTest = new InitTest() ;
-	 * p.addEventListener( ActionEvent.START  , debug ) ;
-	 * p.addEventListener( ActionEvent.FINISH , debug ) ;
-	 * 
-	 * p.run() ;
-	 * 
-	 * // [ActionEvent type="onStarted" target=[InitTest] context=null bubbles=false cancelable=false eventPhase=2]
-	 * // [InitTest] custom initialize
-	 * // [ActionEvent type="onFinished" target=[InitTest] context=null bubbles=false cancelable=false eventPhase=2]
-	 * </pre>
-	 * <code class="prettyprint">InitTest</code> is the child class of the <code class="prettyprint">InitProcess</code> pseudo abstract class :
-	 * <pre class="prettyprint">
-	 * package test
-	 * {
-	 *     import andromeda.process.InitProcess ;
-	 *     
-	 *     public class InitTest extends InitProcess
-	 *     {
-	 *     
-	 *         public function InitTest( bGlobal:Boolean = false , sChannel:String = null )
-	 *         {
-	 *             super( bGlobal, sChannel);
-	 *         }
-	 *         
-	 *         public override function init():void
-	 *         {
-	 *             trace( this + " custom initialize") ;
-	 *         }
-	 *     }
-	 * }
-	 * </pre>
-	 * @author ekameleon
-	 */
-	public class InitProcess extends ActionProxy
-	{
+    /**
+     * This Action launch the init method of ths process but notify an event before (ActionEvent.START) and after(ActionEvent.FINISH) the process.
+     * This class is a pseudo abstract class. Don't instanciate this class but create a custom class with it.
+     * @example
+     * You must use this class with a custom class who extends this class.
+     * <pre class="prettyprint">
+     * import andromeda.events.ActionEvent ;
+     * import test.InitTest ; // extends InitProcess.
+     * 
+     * var debug:Function = function( e:ActionEvent ):void
+     * {
+     *     trace ( e ) ;
+     * }
+     * 
+     * var p:InitTest = new InitTest() ;
+     * p.addEventListener( ActionEvent.START  , debug ) ;
+     * p.addEventListener( ActionEvent.FINISH , debug ) ;
+     * 
+     * p.run() ;
+     * 
+     * // [ActionEvent type="onStarted" target=[InitTest] context=null bubbles=false cancelable=false eventPhase=2]
+     * // [InitTest] custom initialize
+     * // [ActionEvent type="onFinished" target=[InitTest] context=null bubbles=false cancelable=false eventPhase=2]
+     * </pre>
+     * <code class="prettyprint">InitTest</code> is the child class of the <code class="prettyprint">InitProcess</code> pseudo abstract class :
+     * <pre class="prettyprint">
+     * package test
+     * {
+     *     import andromeda.process.InitProcess ;
+     *     
+     *     public class InitTest extends InitProcess
+     *     {
+     *     
+     *         public function InitTest( bGlobal:Boolean = false , sChannel:String = null )
+     *         {
+     *             super( bGlobal, sChannel);
+     *         }
+     *         
+     *         public override function init():void
+     *         {
+     *             trace( this + " custom initialize") ;
+     *         }
+     *     }
+     * }
+     * </pre>
+     * @author ekameleon
+     */
+    public class InitProcess extends ActionProxy
+    {
 
-	    /**
-    	 * Creates a new InitProcess instance.
-    	 * @param bGlobal the flag to use a global event flow or a local event flow.
-    	 * @param sChannel the name of the global event flow if the <code class="prettyprint">bGlobal</code> argument is <code class="prettyprint">true</code>.
-    	 */
-		public function InitProcess( bGlobal:Boolean = false , sChannel:String = null ) 
-    	{
-		    super( this, this.init, null, bGlobal, sChannel);
-		}
+        /**
+         * Creates a new InitProcess instance.
+         * @param bGlobal the flag to use a global event flow or a local event flow.
+         * @param sChannel the name of the global event flow if the <code class="prettyprint">bGlobal</code> argument is <code class="prettyprint">true</code>.
+         */
+        public function InitProcess( bGlobal:Boolean = false , sChannel:String = null ) 
+        {
+            super( this, this.init, null, bGlobal, sChannel);
+        }
 
-		/**
-		 * Invoked when the process is run. Overrides this method.
-		 */
-		public function init():void
-		{
-			// override
-		}
-		
-	}
+        /**
+         * Invoked when the process is run. Overrides this method.
+         */
+        public function init():void
+        {
+            // override
+        }
+        
+    }
 }

@@ -22,9 +22,9 @@
 */
 package andromeda.process
 {
-	import vegas.events.Delegate;    
+    import vegas.events.Delegate;    
 
-	/**
+    /**
      * This <code class="prettyprint">IAction</code> object run a proxy method.
      * @example
      * <pre class="prettyprint">
@@ -64,66 +64,66 @@ package andromeda.process
      * @author eKameleon
      * @see vegas.events.Delegate
      */
-	public class ActionProxy extends SimpleAction
-	{
-	
-	    /**
-    	 * Creates a new ActionProxy instance.
-    	 * @param scope The scope of the proxy method invoked in this process.
-    	 * @param method The method invoked in this process.
-    	 * @param args The Arguments injected in the method.
-    	 * @param bGlobal the flag to use a global event flow or a local event flow.
-    	 * @param sChannel the name of the global event flow if the <code class="prettyprint">bGlobal</code> argument is <code class="prettyprint">true</code>.
-    	 */
-    	function ActionProxy( scope:*, method:Function , args:Array=null , bGlobal:Boolean = false , sChannel:String = null )
-    	{
-		    super( bGlobal, sChannel );
-		    this.args   = args ;
-		    this.method = method ;
-		    this.scope  = scope ;
-	    }
-		
-		/**
-		 * The array representation of the proxy method invoked in this process.
-		 */
-		public var args:Array ;
-		
-		/**
-		 * The proxy method invoked in this process.
-		 */
-		public var method:Function ;
-		
-		/**
-		 * The scope reference of the proxy method of this process.
-		 */
-		public var scope:Object ;
+    public class ActionProxy extends SimpleAction
+    {
+    
+        /**
+         * Creates a new ActionProxy instance.
+         * @param scope The scope of the proxy method invoked in this process.
+         * @param method The method invoked in this process.
+         * @param args The Arguments injected in the method.
+         * @param bGlobal the flag to use a global event flow or a local event flow.
+         * @param sChannel the name of the global event flow if the <code class="prettyprint">bGlobal</code> argument is <code class="prettyprint">true</code>.
+         */
+        function ActionProxy( scope:*, method:Function , args:Array=null , bGlobal:Boolean = false , sChannel:String = null )
+        {
+            super( bGlobal, sChannel );
+            this.args   = args ;
+            this.method = method ;
+            this.scope  = scope ;
+        }
+        
+        /**
+         * The array representation of the proxy method invoked in this process.
+         */
+        public var args:Array ;
+        
+        /**
+         * The proxy method invoked in this process.
+         */
+        public var method:Function ;
+        
+        /**
+         * The scope reference of the proxy method of this process.
+         */
+        public var scope:Object ;
 
-	    /**
-	     * Returns a shallow copy of this object.
-	     * @return a shallow copy of this object.
-	     */
-		public override function clone():*
-		{
-			return new ActionProxy( scope, method, args ) ;
-		}
+        /**
+         * Returns a shallow copy of this object.
+         * @return a shallow copy of this object.
+         */
+        public override function clone():*
+        {
+            return new ActionProxy( scope, method, args ) ;
+        }
 
-    	/**
-	     * Run the process.
-	     */
-		public override function run( ...arguments:Array ):void 
-		{
-			notifyStarted() ;
-			setRunning(true) ;
-			var params:Array = [scope, method] ;
-			if ( args != null && args.length > 0 )
-			{
-				params = params.concat(args) ;
-			}
-			Delegate.create.apply(this, params)();
-			setRunning(false) ;
-			notifyFinished() ;
-		}
+        /**
+         * Run the process.
+         */
+        public override function run( ...arguments:Array ):void 
+        {
+            notifyStarted() ;
+            setRunning(true) ;
+            var params:Array = [scope, method] ;
+            if ( args != null && args.length > 0 )
+            {
+                params = params.concat(args) ;
+            }
+            Delegate.create.apply(this, params)();
+            setRunning(false) ;
+            notifyFinished() ;
+        }
 
-	}
+    }
 
 }

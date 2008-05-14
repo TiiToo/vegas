@@ -25,126 +25,126 @@ package andromeda.ioc.core
     import andromeda.ioc.factory.strategy.IObjectFactoryStrategy;
     
     import vegas.core.Identifiable;
-    import vegas.data.Map;	
+    import vegas.data.Map;
 
     /**
-	 * Describes an object instance, which has property values, constructor argument values, and further information supplied by concrete implementations.
-	 * @author eKameleon
-	 */
-	public interface IObjectDefinition extends Identifiable
-	{
+     * Describes an object instance, which has property values, constructor argument values, and further information supplied by concrete implementations.
+     * @author eKameleon
+     */
+    public interface IObjectDefinition extends Identifiable
+    {
 
-		/**
-		 * Indicates if the object definition is a singleton and the type of the object is Identifiable if the object must be
-		 * populated with the id of the definition when is instanciated.
-		 */
-		function get identify():* ;
-	
-		/**
-	 	 * @private
-	 	 */
-		function set identify( value:* ):void ;
+        /**
+         * Indicates if the object definition is a singleton and the type of the object is Identifiable if the object must be
+         * populated with the id of the definition when is instanciated.
+         */
+        function get identify():* ;
+    
+        /**
+          * @private
+          */
+        function set identify( value:* ):void ;
 
-		/**
-		 * Returns the constructor arguments values of this object in a Array list.
-		 * @return the constructor arguments values of this object in a Array list.
-		 */	
-		function getConstructorArguments():Array ;
-		
-		/**
-		 * Returns the name of the method invoked when the object is destroyed.
-		 * @return the name of the method invoked when the object is destroyed.
-		 */	
-		function getDestroyMethodName():String ; 
-		
+        /**
+         * Returns the constructor arguments values of this object in a Array list.
+         * @return the constructor arguments values of this object in a Array list.
+         */    
+        function getConstructorArguments():Array ;
+        
+        /**
+         * Returns the name of the method invoked when the object is destroyed.
+         * @return the name of the method invoked when the object is destroyed.
+         */    
+        function getDestroyMethodName():String ; 
+        
         /**
          * Returns the factory stategy of this definition to create the object.
          * @return the factory stategy of this definition to create the object.
          */
         function getFactoryStrategy():IObjectFactoryStrategy ;    
         
-		/**
-		 * Returns the name of the method call when the object is instanciate.
-		 * @return the name of the method call when the object is instanciate.
-		 */	
-		function getInitMethodName():String ; 
+        /**
+         * Returns the name of the method call when the object is instanciate.
+         * @return the name of the method call when the object is instanciate.
+         */    
+        function getInitMethodName():String ; 
 
-		/**
-		 * Returns the Array of all method definitions of this definition.
-		 * @return the Array of all method definitions of this definition.
-		 */	
-		function getMethods():Array ; 
+        /**
+         * Returns the Array of all method definitions of this definition.
+         * @return the Array of all method definitions of this definition.
+         */    
+        function getMethods():Array ; 
 
-		/**
-		 * Returns the Map of all properties of this Definition.
-		 * @return the Map of all properties of this Definition.
-	 	 */	
-		function getProperties():Map ; 
+        /**
+         * Returns the Map of all properties of this Definition.
+         * @return the Map of all properties of this Definition.
+          */    
+        function getProperties():Map ; 
 
-		/**
-		 * Determinates the scope of the object.
-		 */	
-		function getScope():String  ;
+        /**
+         * Determinates the scope of the object.
+         */    
+        function getScope():String  ;
 
-		/**
-		 * Determinates the type of the object (the class name).
-		 */	
-		function getType():String  ;
+        /**
+         * Determinates the type of the object (the class name).
+         */    
+        function getType():String  ;
 
-		/**
-		 * Indicates if the object lazily initialized. Only applicable to a singleton object. 
-		 * If false, it will get instantiated on startup by object factories that perform eager initialization of singletons.
-		 * @return A boolean who indicates if the object lazily initialized. 
-		 */	
-		function isLazyInit():Boolean ; 
+        /**
+         * Indicates if the object lazily initialized. Only applicable to a singleton object. 
+         * If false, it will get instantiated on startup by object factories that perform eager initialization of singletons.
+         * @return A boolean who indicates if the object lazily initialized. 
+         */
+        function isLazyInit():Boolean ; 
 
-		/**
-		 * Returns <code class="prettyprint">true</code> if the object in a Sigleton else the object is a prototype.
-		 * @return <code class="prettyprint">true</code> if the object in a Sigleton else the object is a prototype.
-		 */		
-		function isSingleton():Boolean ; 
-	
-		/**
-		 * Sets the constructor arguments values of this object.
-		 */	
-		function setConstructorArguments( value:Array = null ):void ;
-			
-		/**
-		 * Sets the name of the method invoked when the object is destroyed.
-		 */	
-		function setDestroyMethodName( value:String = null ):void ; 
-		
+        /**
+         * Returns <code class="prettyprint">true</code> if the object in a Sigleton else the object is a prototype.
+         * @return <code class="prettyprint">true</code> if the object in a Sigleton else the object is a prototype.
+         */
+        function isSingleton():Boolean ; 
+   
+        /**
+         * Sets the constructor arguments values of this object.
+         */
+        function setConstructorArguments( value:Array = null ):void ;
+        
+        /**
+         * Sets the name of the method invoked when the object is destroyed.
+         */
+        function setDestroyMethodName( value:String = null ):void ; 
+        
         /**
          * Sets the factory stategy of this definition to create the object.
          */
         function setFactoryStrategy( value:IObjectFactoryStrategy ):void  ;
-		
-		/**
-		 * Init the name of the method.
-	 	 */		
-		function setInitMethodName( value:String = null ):void ;
+        
+        /**
+         * Init the name of the method.
+         */
+        function setInitMethodName( value:String = null ):void ;
 
-		/**
-		 * Sets the Array of all method definition of this Definition.
-		 * @param ar the Array of all method definitions of the object.
-		 */	
-		function setMethods( ar:Array = null ):void ; 
+        /**
+         * Sets the Array of all method definition of this Definition.
+         * @param ar the Array of all method definitions of the object.
+         */
+        function setMethods( ar:Array = null ):void ; 
 
-		/**
-		 * Sets the Map of all properties of this Definition.
-		 */	
-		function setProperties( value:Map = null ):void ; 
-		
-		/**
-		 * Sets the scope of the object.
-		 */	
-		function setScope( scope:String = null ):void ;		
-		
-		/**
-	 	 * Sets the type of the object (the class name).
-	 	 */	
-		function setType( value:String = null ):void ; 
-		
-	}
+        /**
+         * Sets the Map of all properties of this Definition.
+         */
+        function setProperties( value:Map = null ):void ; 
+        
+        /**
+         * Sets the scope of the object.
+         */
+        function setScope( scope:String = null ):void ;
+        
+        /**
+         * Sets the type of the object (the class name).
+         */
+        function setType( value:String = null ):void ; 
+        
+    }
 
 }

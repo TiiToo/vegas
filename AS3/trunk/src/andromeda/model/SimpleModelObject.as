@@ -22,24 +22,24 @@
 */
 package andromeda.model 
 {
-	import andromeda.model.AbstractModelObject;
-	
-	/**
-	 * This class provides a simple representation of the IModelObject interface.
-	 * @author eKameleon
-	 */
-	public class SimpleModelObject extends AbstractModelObject 
-	{
+    import andromeda.model.AbstractModelObject;
+    
+    /**
+     * This class provides a simple representation of the IModelObject interface.
+     * @author eKameleon
+     */
+    public class SimpleModelObject extends AbstractModelObject 
+    {
 
-		/**
-		 * Creates a new SimpleModelObject instance.
-		 * @param id the id of this model.
-		 * @param bGlobal the flag to use a global event flow or a local event flow.
-		 * @param sChannel the name of the global event flow if the <code class="prettyprint">bGlobal</code> argument is <code class="prettyprint">true</code>.
-		 */
-		public function SimpleModelObject(id:* = null, bGlobal:Boolean = false, sChannel:String = null)
-		{
-			super( id, bGlobal, sChannel );
-		}
-	}
+        /**
+         * Creates a new SimpleModelObject instance.
+         * @param id the id of this model.
+         * @param bGlobal the flag to use a global event flow or a local event flow.
+         * @param sChannel the name of the global event flow if the <code class="prettyprint">bGlobal</code> argument is <code class="prettyprint">true</code>.
+         */
+        public function SimpleModelObject(id:* = null, bGlobal:Boolean = false, sChannel:String = null)
+        {
+            super( id, bGlobal, sChannel );
+        }
+    }
 }

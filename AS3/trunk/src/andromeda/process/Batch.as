@@ -22,12 +22,12 @@
 */
 package andromeda.process
 {
-	import vegas.core.IRunnable;
-	import vegas.data.collections.SimpleCollection;
-	import vegas.data.collections.TypedCollection;
-	import vegas.data.iterator.Iterator;    
+    import vegas.core.IRunnable;
+    import vegas.data.collections.SimpleCollection;
+    import vegas.data.collections.TypedCollection;
+    import vegas.data.iterator.Iterator;    
 
-	/**
+    /**
      * A batch is a collection of <code class="prettyprint">Action</code> objects. All <code class="prettyprint">Action</code> objects are processed as a single unit.
      * This class use an internal typed <code class="prettyprint">SimpleCollection</code> to register all <code class="prettyprint">Action</code> objects.  
      * @example
@@ -93,9 +93,9 @@ package andromeda.process
     public class Batch extends TypedCollection implements IRunnable
     {
         
-	    /**
-	     * Creates a new Batch instance.
-	     */
+        /**
+         * Creates a new Batch instance.
+         */
         public function Batch()
         {
             super( IRunnable, new SimpleCollection() ) ;
@@ -105,29 +105,29 @@ package andromeda.process
          * Returns a shallow copy of the object.
          * @return a shallow copy of the object.
          */
-	    public override function clone():*
-	    {
-    		var b:Batch = new Batch() ;
-		    var it:Iterator = iterator() ;
-		    while (it.hasNext()) 
-		    {
-		        b.insert(it.next()) ;
-		    }
-		    return b ;
-	    }
-	
-    	/**
-    	 * Runs the process.
-    	 */
+        public override function clone():*
+        {
+            var b:Batch = new Batch() ;
+            var it:Iterator = iterator() ;
+            while (it.hasNext()) 
+            {
+                b.insert(it.next()) ;
+            }
+            return b ;
+        }
+    
+        /**
+         * Runs the process.
+         */
         public function run( ...arguments:Array ):void
         {
-		    var ar:Array = toArray() ;
-		    var i:Number = -1 ;
-    		var l:Number = ar.length ;
-		    if (l>0) while (++i < l) 
-		    { 
-    			ar[i].run() ; 
-		    }
+            var ar:Array = toArray() ;
+            var i:Number = -1 ;
+            var l:Number = ar.length ;
+            if (l>0) while (++i < l) 
+            { 
+                ar[i].run() ; 
+            }
         }
         
     }

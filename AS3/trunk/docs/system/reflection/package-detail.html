@@ -19,7 +19,7 @@
 <td align="left" class="titleTableTitle">VEGAS AS3 Reference</td><td align="right" class="titleTableTopNav"><a onclick="loadClassListFrame('../../all-classes.html')" href="../../package-summary.html">All&nbsp;Packages</a>&nbsp;|&nbsp;<a onclick="loadClassListFrame('../../all-classes.html')" href="../../class-summary.html">All&nbsp;Classes</a>&nbsp;|&nbsp;<a onclick="loadClassListFrame('../../index-list.html')" href="../../all-index-A.html">Index</a>&nbsp;|&nbsp;<a href="../../index.html?system/reflection/package-detail.html&amp;system/reflection/class-list.html" id="framesLink1">Frames</a><a onclick="parent.location=document.location" href="" style="display:none" id="noFramesLink1">No&nbsp;Frames</a></td><td rowspan="3" align="right" class="titleTableLogo"><img alt="Adobe Logo" title="Adobe Logo" class="logoImage" src="../../images/logo.jpg"></td>
 </tr>
 <tr class="titleTableRow2">
-<td align="left" id="subTitle" class="titleTableSubTitle">Package&nbsp;system.reflection</td><td align="right" id="subNav" class="titleTableSubNav"><a href="package-detail.html#interfaceSummary">Interfaces</a></td>
+<td align="left" id="subTitle" class="titleTableSubTitle">Package&nbsp;system.reflection</td><td align="right" id="subNav" class="titleTableSubNav"><a href="package.html#propertySummary">Properties</a>&nbsp;| <a href="package-detail.html#interfaceSummary">Interfaces</a>&nbsp;| <a href="package-detail.html#classSummary">Classes</a></td>
 </tr>
 <tr class="titleTableRow3">
 <td colspan="2">&nbsp;</td>
@@ -27,12 +27,23 @@
 </table>
 <script type="text/javascript" language="javascript">
 <!--
-if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Package system.reflection"); titleBar_setSubNav(false,false,false,false,false,false,false,false,false,false,false,true,false,false);}
+if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Package system.reflection"); titleBar_setSubNav(false,false,false,false,false,false,false,false,false,true,false,true,true,false);}
 --></script>
 <div class="MainContent">
 <br>
 <br>
 <hr>
+<a name="fieldSummary"></a>
+<div class="summaryTableTitle">Properties</div>
+<table class="summaryTable" cellspacing="0" cellpadding="3">
+<tr>
+<th>&nbsp;</th><th width="30%">Property</th><th width="70%">Description</th>
+</tr>
+<tr class="prow1">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSecondCol"><a href="package.html#config">config</a></td><td class="summaryTableLastCol">
+     The Reflection configurator.</td>
+</tr>
+</table>
 <a name="interfaceSummary"></a>
 <div class="summaryTableTitle">Interfaces</div>
 <table class="summaryTable" cellspacing="0" cellpadding="3">
@@ -40,16 +51,50 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Pa
 <th>&nbsp;</th><th width="30%">Interface</th><th width="70%">Description</th>
 </tr>
 <tr class="prow1">
-<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSecondCol"><i><a href="ClassInfo.html">ClassInfo</a></i></td><td class="summaryTableLastCol">
-     The ClassInfo interface.</td>
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSecondCol"><i><a href="AccessorInfo.html">AccessorInfo</a></i></td><td class="summaryTableLastCol">
+     The Accessor info class.</td>
 </tr>
 <tr class="prow0">
-<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSecondCol"><i><a href="MethodInfo.html">MethodInfo</a></i></td><td class="summaryTableLastCol">
-     The MethodInfo interface.</td>
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSecondCol"><i><a href="ArgumentInfo.html">ArgumentInfo</a></i></td><td class="summaryTableLastCol">
+     This interface defines the argument information tool objects.</td>
 </tr>
 <tr class="prow1">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSecondCol"><i><a href="ClassInfo.html">ClassInfo</a></i></td><td class="summaryTableLastCol">
+     This interface defines the object who indicates all informations about a class in the reflection pattern of system.</td>
+</tr>
+<tr class="prow0">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSecondCol"><i><a href="ConstructorInfo.html">ConstructorInfo</a></i></td><td class="summaryTableLastCol">
+     This interface defines the constructor informations in a class info.</td>
+</tr>
+<tr class="prow1">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSecondCol"><i><a href="InterfaceInfo.html">InterfaceInfo</a></i></td><td class="summaryTableLastCol">
+     This interface defines all informations about an interface.</td>
+</tr>
+<tr class="prow0">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSecondCol"><i><a href="MemberInfo.html">MemberInfo</a></i></td><td class="summaryTableLastCol">
+     This interface is implemented in all the member information objects.</td>
+</tr>
+<tr class="prow1">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSecondCol"><i><a href="MethodInfo.html">MethodInfo</a></i></td><td class="summaryTableLastCol">
+     This interface defines the method information tool objects.</td>
+</tr>
+<tr class="prow0">
 <td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSecondCol"><i><a href="TypeInfo.html">TypeInfo</a></i></td><td class="summaryTableLastCol">
-     The TypeInfo interface.</td>
+     This interface defines all method who defines the informations about a Type object (Class).</td>
+</tr>
+</table>
+<a name="classSummary"></a>
+<div class="summaryTableTitle">Classes</div>
+<table class="summaryTable" cellspacing="0" cellpadding="3">
+<tr>
+<th>&nbsp;</th><th width="30%">Class</th><th width="70%">Description</th>
+</tr>
+<tr class="prow1">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSecondCol"><a href="AccessorType.html">AccessorType</a></td><td class="summaryTableLastCol">
+     This enumeration contains all accessor types.</td>
+</tr>
+<tr class="prow0">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSecondCol"><a href="ReflectionConfigurator.html">ReflectionConfigurator</a></td><td class="summaryTableLastCol">&nbsp;</td>
 </tr>
 </table>
 <p></p>

@@ -127,25 +127,25 @@ package andromeda.ioc.core
             
             switch( true )
             {
-            	case ObjectAttribute.OBJECT_FACTORY_METHOD in o :
-            	{
-                	oStrategy = ObjectFactoryMethod.create( o[ ObjectAttribute.OBJECT_FACTORY_METHOD ] ) ;
-                	break ;
+                case ObjectAttribute.OBJECT_FACTORY_METHOD in o :
+                {
+                    oStrategy = ObjectFactoryMethod.build( o[ ObjectAttribute.OBJECT_FACTORY_METHOD ] ) ;
+                    break ;
                 }
                 case ObjectAttribute.OBJECT_FACTORY_PROPERTY in o :
                 {
-                    oStrategy = ObjectFactoryProperty.create( o[ ObjectAttribute.OBJECT_FACTORY_PROPERTY ] ) ;
+                    oStrategy = ObjectFactoryProperty.build( o[ ObjectAttribute.OBJECT_FACTORY_PROPERTY ] ) ;
                     break ;
                 }
                 case ObjectAttribute.OBJECT_STATIC_FACTORY_METHOD in o :
                 {
-                    oStrategy = ObjectStaticFactoryMethod.create( o[ ObjectAttribute.OBJECT_STATIC_FACTORY_METHOD ] ) ;
-                    break ;	
+                    oStrategy = ObjectStaticFactoryMethod.build( o[ ObjectAttribute.OBJECT_STATIC_FACTORY_METHOD ] ) ;
+                    break ;
                 }
                 case ObjectAttribute.OBJECT_STATIC_FACTORY_PROPERTY in o :
                 {
-                    oStrategy = ObjectStaticFactoryProperty.create( o[ ObjectAttribute.OBJECT_STATIC_FACTORY_PROPERTY ] ) ;
-                    break ;	
+                    oStrategy = ObjectStaticFactoryProperty.build( o[ ObjectAttribute.OBJECT_STATIC_FACTORY_PROPERTY ] ) ;
+                    break ;
                 }
             }
                         

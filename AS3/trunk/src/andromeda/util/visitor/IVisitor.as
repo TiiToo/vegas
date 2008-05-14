@@ -22,19 +22,19 @@
 */
 package andromeda.util.visitor
 {
-	
-	/**
-	 * The basic IVisitor interface. 
-	 * To implements the Visitor pattern you can creates a concrete Visitor class who implements this interface.
-	 * @author eKameleon
-	 */
-	public interface IVisitor
-	{
+    
+    /**
+     * The basic IVisitor interface. 
+     * To implements the Visitor pattern you can creates a concrete Visitor class who implements this interface.
+     * @author eKameleon
+     */
+    public interface IVisitor
+    {
 
-		/**
-		 * Visit the IVisitable object.
-		 */
-		function visit( o:IVisitable ):void ;
+        /**
+         * Visit the IVisitable object.
+         */
+        function visit( o:IVisitable ):void ;
 
-	}
+    }
 }

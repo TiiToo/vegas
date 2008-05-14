@@ -35,13 +35,13 @@ package andromeda.ioc.core
     public class ObjectProperty extends CoreObject 
     {
 
-		/**
-		 * Creates a new ObjectProperty instance.
-		 * @param name The name of the property.
-		 * @param value The value of the property.
-		 * @param policy The policy of the property ( ObjectAttribute.REFERENCE or by default ObjectAttribute.VALUE )
-		 * @param evaluators The Array representation of all evaluators who evaluate the value of the property.
-		 */
+        /**
+         * Creates a new ObjectProperty instance.
+         * @param name The name of the property.
+         * @param value The value of the property.
+         * @param policy The policy of the property ( ObjectAttribute.REFERENCE or by default ObjectAttribute.VALUE )
+         * @param evaluators The Array representation of all evaluators who evaluate the value of the property.
+         */
         public function ObjectProperty( name:String , value:* , policy:String="value" , evaluators:Array = null )
         {
             this.name       = name ;
@@ -50,25 +50,25 @@ package andromeda.ioc.core
             this.evaluators = evaluators ;
         }
         
-		/**
-		 * The name of the property.
-		 */
-		public var name:String ;
-		
-		/**
-		 * The Array representation of all evaluators to transform the value of this object.
-		 */
-		public var evaluators:Array ;
-		
-		/**
-		 * The policy of the property
-		 */
-		public var policy:String ;
-		
-		/**
-		 * The value of the property.
-		 */
-		public var value:* ;     
+        /**
+         * The name of the property.
+         */
+        public var name:String ;
+        
+        /**
+         * The Array representation of all evaluators to transform the value of this object.
+         */
+        public var evaluators:Array ;
+        
+        /**
+         * The policy of the property
+         */
+        public var policy:String ;
+        
+        /**
+         * The value of the property.
+         */
+        public var value:* ;     
         
         /**
          * Creates the Map definition of all properties defines in the passed-in array.
@@ -123,20 +123,20 @@ package andromeda.ioc.core
 
         }        
         
-		/**
-		 * Returns the string representation of this instance.
-		 * @return the string representation of this instance.
-		 */
-		public override function toString():String 
-		{
-			var s:String = "[" + Reflection.getClassName(this) ;
-			if ( name != null )
-			{
-				s += " name:" + name ;	
-			} 
-			s += "]" ;
-			return s ;
-		}        
+        /**
+         * Returns the string representation of this instance.
+         * @return the string representation of this instance.
+         */
+        public override function toString():String 
+        {
+            var s:String = "[" + Reflection.getClassName(this) ;
+            if ( name != null )
+            {
+                s += " name:" + name ;    
+            } 
+            s += "]" ;
+            return s ;
+        }        
         
     }
 }

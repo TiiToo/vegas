@@ -41,8 +41,10 @@ package andromeda.ioc.factory.strategy
             var suite:TestSuite = new TestSuite( "andromeda.ioc.factory.strategy" );
             
             // FIXME suite.addTestSuite( ObjectFactoryMethodTest ) ;
+            // FIXME suite.addTestSuite( ObjectFactoryPropertyTest ) ;
             // FIXME suite.addTestSuite( ObjectStaticFactoryMethodTest ) ;
-                        
+            // FIXME suite.addTestSuite( ObjectStaticFactoryPropertyTest ) ;
+
             return suite;
             
         }

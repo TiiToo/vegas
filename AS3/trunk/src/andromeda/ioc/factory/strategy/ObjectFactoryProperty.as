@@ -23,9 +23,7 @@
 package andromeda.ioc.factory.strategy 
 {
     import andromeda.ioc.core.ObjectAttribute;
-    import andromeda.ioc.core.ObjectProperty;
-    
-    import buRRRn.eden.Serializer;    
+    import andromeda.ioc.core.ObjectProperty;    
 
     /**
      * This object create a proxy factory configured in the IObjectDefinition and replace the natural factory of the ObjectFactory.
@@ -55,7 +53,7 @@ package andromeda.ioc.factory.strategy
          * Returns the ObjectFactoryMethod representation of the specified generic object or null.
          * @return the ObjectFactoryMethod representation of the specified generic object or null.
          */
-        public static function create( factoryProperty:Object=null ):ObjectFactoryProperty
+        public static function build( factoryProperty:Object=null ):ObjectFactoryProperty
         {
             if ( factoryProperty == null ) 
             {
@@ -74,7 +72,7 @@ package andromeda.ioc.factory.strategy
             {
                 return null ;
             }       
-        }        
+        }     
         
     }
 }

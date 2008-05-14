@@ -22,33 +22,33 @@
 */
 package andromeda.controller
 {
-	
-	import flash.events.Event;
-	
-	import vegas.core.CoreObject;
+    
+    import flash.events.Event;
+    
+    import vegas.core.CoreObject;
 
-	/**
-	 * This class provides a skeletal implementation of the <code class="prettyprint">IController</code> interface, to minimize the effort required to implement this interface.
-	 * @author eKameleon
-	 */
-	public class AbstractController extends CoreObject implements IController
-	{
-	
-		/**
-		 * Creates a new AbstractController instance.
-		 */	
-		public function AbstractController() 
-		{
-			super();
-		}
-	
-		/**
-		 * Handles the event.
-		 */
-		public function handleEvent(e : Event):void 
-		{
-			
-		}
-		
-	}
+    /**
+     * This class provides a skeletal implementation of the <code class="prettyprint">IController</code> interface, to minimize the effort required to implement this interface.
+     * @author eKameleon
+     */
+    public class AbstractController extends CoreObject implements IController
+    {
+    
+        /**
+         * Creates a new AbstractController instance.
+         */    
+        public function AbstractController() 
+        {
+            super();
+        }
+    
+        /**
+         * Handles the event.
+         */
+        public function handleEvent(e : Event):void 
+        {
+            
+        }
+        
+    }
 }

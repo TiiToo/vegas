@@ -27,10 +27,10 @@ package andromeda.model
     import vegas.core.Identifiable;
 
     /**
-	 * The IModel interface define all models in the application.
-	 * @author eKameleon
-	 */	
-	public interface IModel extends Identifiable, IRunnable
+     * The IModel interface define all models in the application.
+     * @author eKameleon
+     */
+    public interface IModel extends Identifiable, IRunnable
     {
     
     }

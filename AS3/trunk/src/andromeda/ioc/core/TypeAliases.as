@@ -98,7 +98,7 @@ package andromeda.ioc.core
          */
         public function clear():void
         {
-            _map.clear() ;	
+            _map.clear() ;
         }
         
         /**
@@ -107,11 +107,11 @@ package andromeda.ioc.core
          */
         public function containsAlias( alias:String ):Boolean
         {
-        	if ( alias == null || alias.length == 0)
-        	{
-        		return false ;
-        	}
-            return _map.containsKey( alias ) ;	
+            if ( alias == null || alias.length == 0)
+            {
+                return false ;
+            }
+            return _map.containsKey( alias ) ;
         }
         
         /**
@@ -227,7 +227,7 @@ package andromeda.ioc.core
          */
         public function iterator():Iterator
         {
-            return 	_map.iterator() ;
+            return     _map.iterator() ;
         }
                 
         /**
@@ -249,15 +249,15 @@ package andromeda.ioc.core
          */
         public function put( alias:String, value:String ):Boolean
         {
-        	if ( alias == null || value == null || alias.length == 0  || value.length == 0 )
-        	{
-        		return false ;
-        	}
-        	else
-        	{
+            if ( alias == null || value == null || alias.length == 0  || value.length == 0 )
+            {
+                return false ;
+            }
+            else
+            {
                 _map.put( alias , value ) ;
-        	}
-            return true ;	
+            }
+            return true ;
         }
         
         /**

@@ -58,12 +58,12 @@ package andromeda.ioc.evaluators
          */
         public function eval( o:* ):*
         {
-        	if ( o is Class )
-        	{
-        		return o as Class ;
-        	}
-        	else if ( o is String )
-        	{
+            if ( o is Class )
+            {
+                return o as Class ;
+            }
+            else if ( o is String )
+            {
                 
                 var type:String = o as String ;
                 
@@ -73,7 +73,7 @@ package andromeda.ioc.evaluators
                     
                     if ( policy == TypePolicy.ALL || policy == TypePolicy.ALIAS )
                     {
-                    	var aliases:TypeAliases = (config.typeAliases as TypeAliases) ;
+                        var aliases:TypeAliases = (config.typeAliases as TypeAliases) ;
                         if ( aliases != null && aliases.containsAlias(type) )
                         {
                             type = aliases.getValue(type) ;
@@ -90,10 +90,10 @@ package andromeda.ioc.evaluators
                 {
                     return null ;
                 }
-        	
-        	}
-        	
-        	return null ;
+            
+            }
+            
+            return null ;
         }
     }
 }

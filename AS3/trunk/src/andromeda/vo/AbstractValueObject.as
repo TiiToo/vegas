@@ -25,24 +25,24 @@ package andromeda.vo
     import vegas.core.CoreObject;    
 
     /**
-	 * This class provides a skeletal implementation of the <code class="prettyprint">IValueObject</code> interface, to minimize the effort required to implement this interface.
-	 * @author eKameleon
-	 */
-	public class AbstractValueObject extends SimpleValueObject
-	{
-		
-		/**
-		 * Creates a new AbstractValueObject.
+     * This class provides a skeletal implementation of the <code class="prettyprint">IValueObject</code> interface, to minimize the effort required to implement this interface.
+     * @author eKameleon
+     */
+    public class AbstractValueObject extends SimpleValueObject
+    {
+        
+        /**
+         * Creates a new AbstractValueObject.
          * @param init A generic object containing properties with which to populate the newly instance. If this argument is null, it is ignored.
          */
-		public function AbstractValueObject( init:Object=null )
-		{
-			super(init) ;
-			if ( id == null )
-			{
-			     id = hashCode() ;
-			}
-		}
-		
-	}
+        public function AbstractValueObject( init:Object=null )
+        {
+            super(init) ;
+            if ( id == null )
+            {
+                 id = hashCode() ;
+            }
+        }
+        
+    }
 }

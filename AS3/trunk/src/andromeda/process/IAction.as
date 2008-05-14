@@ -22,28 +22,28 @@
 */
 package andromeda.process
 {
-	import flash.events.IEventDispatcher;
-	
-	import vegas.core.ICloneable;
-	import vegas.core.IRunnable;	
+    import flash.events.IEventDispatcher;
+    
+    import vegas.core.ICloneable;
+    import vegas.core.IRunnable;
 
-	/**
+    /**
      * This interface represents a process object.
      * @author eKameleon
      */
-	public interface IAction extends ICloneable, IEventDispatcher, IRunnable
-	{
+    public interface IAction extends ICloneable, IEventDispatcher, IRunnable
+    {
 
-    	/**
-    	 * Notify an ActionEvent when the process is finished.
-    	 */
-		function notifyFinished():void ;
+        /**
+         * Notify an ActionEvent when the process is finished.
+         */
+        function notifyFinished():void ;
 
-	    /**
-    	 * Notify an ActionEvent when the process is started.
-    	 */
-		function notifyStarted():void ;
-		
-	}
-	
+        /**
+         * Notify an ActionEvent when the process is started.
+         */
+        function notifyStarted():void ;
+        
+    }
+    
 }

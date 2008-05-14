@@ -22,19 +22,19 @@
 */
 package andromeda.process
 {
-	
+    
     /**
      * This interface provides a stoppable process. 
      * @author ekameleon
      */
-	public interface IStoppable
-	{
+    public interface IStoppable
+    {
 
-    	/**
-    	 * Stop the process.
-    	 */
-    	function stop():Boolean ;
-	
-	}
-	
+        /**
+         * Stop the process.
+         */
+        function stop():Boolean ;
+    
+    }
+    
 }

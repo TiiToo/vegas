@@ -40,7 +40,7 @@ package andromeda.model
          * @param id the id of this model.
          * @param bGlobal the flag to use a global event flow or a local event flow.
          * @param sChannel the name of the global event flow if the <code class="prettyprint">bGlobal</code> argument is <code class="prettyprint">true</code>.
-         */	
+         */
         public function AbstractModelObject( id:* = null , bGlobal:Boolean = false , sChannel:String = null )
         {
             super( id , bGlobal , sChannel );
@@ -54,7 +54,7 @@ package andromeda.model
 
         /**
          * Clear the model.
-         */	
+         */
         public function clear():void
         {
             _vo = null;
@@ -114,21 +114,21 @@ package andromeda.model
         public function initEventType():void
         {
             _sChangeType       = ModelObjectEvent.CHANGE_VO ;
-			_sClearType        = ModelObjectEvent.CLEAR_VO  ;
+            _sClearType        = ModelObjectEvent.CLEAR_VO  ;
             _sBeforeChangeType = ModelObjectEvent.BEFORE_CHANGE_VO ;
         }
 
         /**
          * Notify a <code class="prettyprint">ModelObjectEvent</code> when a <code class="prettyprint">IValueObject</code> change in the model.
-         */	
+         */
         public function notifyChange( vo:IValueObject ):void
         {
             if ( isLocked( ) )
             {
                 return ;
             }
-            dispatchEvent( createNewModelObjectEvent( _sChangeType , vo ) );	
-		}
+            dispatchEvent( createNewModelObjectEvent( _sChangeType , vo ) );
+        }
 
         /**
          * Notify a <code class="prettyprint">ModelObjectEvent</code> when the model is cleared.
@@ -161,7 +161,7 @@ package andromeda.model
         {
             if ( vo == _vo && security )
             {
-                return ;	
+                return ;
             }
             if ( _vo != null )
             {
@@ -201,7 +201,7 @@ package andromeda.model
          */
         public function setEventTypeCLEAR( type:String ):void
         {
-			_sClearType = type;
+            _sClearType = type;
         }
         
         /**
@@ -233,12 +233,12 @@ package andromeda.model
         /**
          * @private
          */
-		private var _sChangeType:String ;
+        private var _sChangeType:String ;
 
         /**
          * @private
          */
-		private var _sClearType:String ;
+        private var _sClearType:String ;
         
         /**
          * The current value object selectd in this model.

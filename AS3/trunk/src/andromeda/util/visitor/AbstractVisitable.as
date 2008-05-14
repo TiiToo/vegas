@@ -22,34 +22,34 @@
 */
 package andromeda.util.visitor
 {
-	
-	import vegas.core.CoreObject;		
+    
+    import vegas.core.CoreObject;
 
-	/**
-	 * The abstract representation of the IVisitable interface.
-	 * To implements a Visitor pattern you must inspired your IVisitor classes with this interface.
-	 * This Abstract class is a basical implementation of the Visitor pattern, you can inspirate your custom Visitor design pattern implementation with it easy representation.  
-	 * @author eKameleon
-	 */
-	public class AbstractVisitable extends CoreObject implements IVisitable
-	{
-		
-		/**
-		 * Abstract constructor to creates a concrete constructor when this constructor is extended.
-		 */
-		public function AbstractVisitable()
-		{
-			super();
-		}
-		
-		/**
-		 * Accept a IVisitor object. 
-		 * You can overrides this method in complexe Visitor pattern implementation.
-		 */
-		public function accept(visitor:IVisitor):void
-		{
-			visitor.visit(this) ;
-		}
-		
-	}
+    /**
+     * The abstract representation of the IVisitable interface.
+     * To implements a Visitor pattern you must inspired your IVisitor classes with this interface.
+     * This Abstract class is a basical implementation of the Visitor pattern, you can inspirate your custom Visitor design pattern implementation with it easy representation.  
+     * @author eKameleon
+     */
+    public class AbstractVisitable extends CoreObject implements IVisitable
+    {
+        
+        /**
+         * Abstract constructor to creates a concrete constructor when this constructor is extended.
+         */
+        public function AbstractVisitable()
+        {
+            super();
+        }
+        
+        /**
+         * Accept a IVisitor object. 
+         * You can overrides this method in complexe Visitor pattern implementation.
+         */
+        public function accept(visitor:IVisitor):void
+        {
+            visitor.visit(this) ;
+        }
+        
+    }
 }

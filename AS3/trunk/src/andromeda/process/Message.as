@@ -38,91 +38,91 @@ package andromeda.process
      * m.addEventListener( ActionEvent.START  , handleEvent ) ;
      * m.addEventListener( ActionEvent.FINISH , handleEvent ) ;
      * m.run() ;
-	 * </pre>
+     * </pre>
      * @author eKameleon
      */
-	public class Message extends Pause
-	{
-		
-    	/**
-    	 * Creates a new Message instance.
-    	 * @param message The message to notify when the pause if finished.
-    	 * @param face The optional face value of this message.
-    	 * @param duration the duration of the pause.
-    	 * @param seconds the flag to indicates if the duration is in second or not.
-    	 * @param bGlobal the flag to use a global event flow or a local event flow.
-    	 * @param sChannel the name of the global event flow if the <code class="prettyprint">bGlobal</code> argument is <code class="prettyprint">true</code>.
-		 */
-		public function Message( message:String , face:String = null, duration:Number = 0 , seconds:Boolean = false , to:* = null , bGlobal:Boolean = false , sChannel:String = null )
-		{
-			super(duration, seconds, bGlobal, sChannel) ;
-			this.message = message ;
-			this.face    = face    ;
-			this.to      = to      ;	
-		}
+    public class Message extends Pause
+    {
         
-    	/**
-    	 * Determinates a value to send the message in the local application.
-    	 */
-    	public static const ME:Number = 0 ;
+        /**
+         * Creates a new Message instance.
+         * @param message The message to notify when the pause if finished.
+         * @param face The optional face value of this message.
+         * @param duration the duration of the pause.
+         * @param seconds the flag to indicates if the duration is in second or not.
+         * @param bGlobal the flag to use a global event flow or a local event flow.
+         * @param sChannel the name of the global event flow if the <code class="prettyprint">bGlobal</code> argument is <code class="prettyprint">true</code>.
+         */
+        public function Message( message:String , face:String = null, duration:Number = 0 , seconds:Boolean = false , to:* = null , bGlobal:Boolean = false , sChannel:String = null )
+        {
+            super(duration, seconds, bGlobal, sChannel) ;
+            this.message = message ;
+            this.face    = face    ;
+            this.to      = to      ;
+        }
         
-    	/**
-	     * Determinates a value to send the message to all users.
-    	 */
-	    public static const ALL:Number = 1 ;
-	    
-	    /**
-	     * The message value.
-	     */
-    	public var message:String ;
+        /**
+         * Determinates a value to send the message in the local application.
+         */
+        public static const ME:Number = 0 ;
         
-	    /**
-	     * An optional face value.
-	     */
-	    public var face:String ;
+        /**
+         * Determinates a value to send the message to all users.
+         */
+        public static const ALL:Number = 1 ;
         
-	    /**
-    	 * An optional to value.
-    	 */
-	    public var to:* ;
+        /**
+         * The message value.
+         */
+        public var message:String ;
+        
+        /**
+         * An optional face value.
+         */
+        public var face:String ;
+        
+        /**
+         * An optional to value.
+         */
+        public var to:* ;
 
-    	/**
-    	 * Returns a shallow copy of this object.
-    	 * @return a shallow copy of this object.
-    	 */
-		public override function clone():*
-		{
-			return new Message(message, face, duration, useSeconds, to) ;
-		}
-		
-		/**
-    	 * Returns the string representation of this instance.
-    	 * @return the string representation of this instance.
-    	 */
-	    public override function toString():String 
-	    {
-    		var txt:String = "[Message duration:" + duration + (useSeconds ? "s" : "ms") ;
-    		
-    		if ( message != null && message.length > 0 ) 
-			{
-    		    txt += " message:" + message ;
-    		}
-    		
-    		if (face != null && face.length > 0)
-    		{
-    		    txt += " face:" + face ;
-    		}
-    		
-    		if (this.to != null)
-    		{
-    		    txt += " to:" + this.to ;
-    		} 
-    		
-    		txt += "]" ;
-    		return txt ;
-    		
-    	}	
+        /**
+         * Returns a shallow copy of this object.
+         * @return a shallow copy of this object.
+         */
+        public override function clone():*
+        {
+            return new Message(message, face, duration, useSeconds, to) ;
+        }
+        
+        /**
+         * Returns the string representation of this instance.
+         * @return the string representation of this instance.
+         */
+        public override function toString():String 
+        {
+            var txt:String = "[Message duration:" + duration + (useSeconds ? "s" : "ms") ;
+            
+            if ( message != null && message.length > 0 ) 
+            {
+                txt += " message:" + message ;
+            }
+            
+            if (face != null && face.length > 0)
+            {
+                txt += " face:" + face ;
+            }
+            
+            if (this.to != null)
+            {
+                txt += " to:" + this.to ;
+            } 
+            
+            txt += "]" ;
+            return txt ;
+            
+        }
 
-	}
+    }
 
 }

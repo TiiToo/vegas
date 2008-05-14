@@ -211,7 +211,7 @@ package andromeda.model.collections
          */
         public function removeVO( vo:IValueObject ):*
         {
-        	var r:* ;
+            var r:* ;
             if (vo == null)
             {
                 throw new IllegalArgumentError( this + " removeVO method failed, the IValueObject passed in argument not must be 'null' or 'undefined'.") ; 

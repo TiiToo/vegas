@@ -23,17 +23,17 @@
 package andromeda.util.visitor
 {
 
-	/**
-	 * The basic IVisitable interface. 
-	 * @author eKameleon
-	 */
-	public interface IVisitable
-	{
+    /**
+     * The basic IVisitable interface. 
+     * @author eKameleon
+     */
+    public interface IVisitable
+    {
 
-		/**
-		 * Accept a IVisitor object 
-		 */
-		function accept( visitor:IVisitor ):void ;
-		
-	}
+        /**
+         * Accept a IVisitor object 
+         */
+        function accept( visitor:IVisitor ):void ;
+        
+    }
 }

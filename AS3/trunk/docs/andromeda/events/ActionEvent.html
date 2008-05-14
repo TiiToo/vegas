@@ -73,7 +73,7 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 </tr>
 <tr class="">
 <td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#info">info</a> : *<div class="summaryTableDescription">[read-only]
-      (read-only) Returns the info object of this event.</div>
+         (read-only) Returns the info object of this event.</div>
 </td><td class="summaryTableOwnerCol">ActionEvent</td>
 </tr>
 <tr class="hideInheritedProperty">
@@ -113,7 +113,7 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <div class="summarySignature">
 <a class="signatureLink" href="#ActionEvent()">ActionEvent</a>(type:String, target:Object = null, info:Boolean = null, context:Boolean = null, bubbles:Number = false, cancelable:* = false, time:* = 0)</div>
 <div class="summaryTableDescription">
-   Creates a new BasicEvent instance.</div>
+         Creates a new BasicEvent instance.</div>
 </td><td class="summaryTableOwnerCol">ActionEvent</td>
 </tr>
 <tr class="">
@@ -121,7 +121,7 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <div class="summarySignature">
 <a class="signatureLink" href="#clone()">clone</a>():Event</div>
 <div class="summaryTableDescription">
-      Returns the shallow copy of this object.</div>
+         Returns the shallow copy of this object.</div>
 </td><td class="summaryTableOwnerCol">ActionEvent</td>
 </tr>
 <tr class="hideInheritedMethod">
@@ -145,7 +145,7 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <div class="summarySignature">
 <a class="signatureLink" href="#getInfo()">getInfo</a>():*</div>
 <div class="summaryTableDescription">
-      Returns the info object of this event.</div>
+         Returns the info object of this event.</div>
 </td><td class="summaryTableOwnerCol">ActionEvent</td>
 </tr>
 <tr class="hideInheritedMethod">
@@ -185,7 +185,7 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <div class="summarySignature">
 <a class="signatureLink" href="#setInfo()">setInfo</a>(oInfo:*):void</div>
 <div class="summaryTableDescription">
-      Sets the info object of this event.</div>
+         Sets the info object of this event.</div>
 </td><td class="summaryTableOwnerCol">ActionEvent</td>
 </tr>
 <tr class="hideInheritedMethod">
@@ -318,8 +318,8 @@ showHideInherited();
 </table>
 <div class="detailBody">
 <code>info:*</code>&nbsp;&nbsp;[read-only]<p>
-      (read-only) Returns the info object of this event.
-      </p><span class="label">Implementation</span>
+         (read-only) Returns the info object of this event.
+         </p><span class="label">Implementation</span>
 <br>
 <code>&nbsp;&nbsp;&nbsp;&nbsp;public function get info():*</code>
 <br>
@@ -334,54 +334,54 @@ showHideInherited();
 </table>
 <div class="detailBody">
 <code>public function ActionEvent(type:String, target:Object = null, info:Boolean = null, context:Boolean = null, bubbles:Number = false, cancelable:* = false, time:* = 0)</code><p>
-   Creates a new BasicEvent instance.
-   </p><span class="label">Parameters</span>
+         Creates a new BasicEvent instance.
+         </p><span class="label">Parameters</span>
 <table border="0" cellspacing="0" cellpadding="0">
 <tr>
 <td width="20px"></td><td><code><span class="label">type</span>:String</code> &mdash; the string type of the instance. 
-   </td>
+         </td>
 </tr>
 <tr>
 <td class="paramSpacer">&nbsp;</td>
 </tr>
 <tr>
 <td width="20px"></td><td><code><span class="label">target</span>:Object</code> (default = <code>null</code>)<code></code> &mdash; the target of the event.
-   </td>
+         </td>
 </tr>
 <tr>
 <td class="paramSpacer">&nbsp;</td>
 </tr>
 <tr>
 <td width="20px"></td><td><code><span class="label">info</span>:Boolean</code> (default = <code>null</code>)<code></code> &mdash; The information object of this event.
-   </td>
+         </td>
 </tr>
 <tr>
 <td class="paramSpacer">&nbsp;</td>
 </tr>
 <tr>
 <td width="20px"></td><td><code><span class="label">context</span>:Boolean</code> (default = <code>null</code>)<code></code> &mdash; the optional context object of the event.
-   </td>
+         </td>
 </tr>
 <tr>
 <td class="paramSpacer">&nbsp;</td>
 </tr>
 <tr>
 <td width="20px"></td><td><code><span class="label">bubbles</span>:Number</code> (default = <code>false</code>)<code></code> &mdash; indicates if the event is a bubbling event.
-   </td>
+         </td>
 </tr>
 <tr>
 <td class="paramSpacer">&nbsp;</td>
 </tr>
 <tr>
 <td width="20px"></td><td><code><span class="label">cancelable</span>:*</code> (default = <code>false</code>)<code></code> &mdash; indicates if the event is a cancelable event.
-   </td>
+         </td>
 </tr>
 <tr>
 <td class="paramSpacer">&nbsp;</td>
 </tr>
 <tr>
 <td width="20px"></td><td><code><span class="label">time</span>:*</code> (default = <code>0</code>)<code></code> &mdash; this optional parameter is used in the eden deserialization to copy the timestamp value of this event.
-    </td>
+          </td>
 </tr>
 </table>
 </div>
@@ -395,13 +395,13 @@ showHideInherited();
 </table>
 <div class="detailBody">
 <code>public override function clone():Event</code><p>
-      Returns the shallow copy of this object.
-      </p><p></p>
+         Returns the shallow copy of this object.
+         </p><p></p>
 <span class="label">Returns</span>
 <table border="0" cellspacing="0" cellpadding="0">
 <tr>
 <td width="20"></td><td><code>Event</code> &mdash; the shallow copy of this object.
-      </td>
+         </td>
 </tr>
 </table>
 </div>
@@ -413,13 +413,13 @@ showHideInherited();
 </table>
 <div class="detailBody">
 <code>public function getInfo():*</code><p>
-      Returns the info object of this event.
-      </p><p></p>
+         Returns the info object of this event.
+         </p><p></p>
 <span class="label">Returns</span>
 <table border="0" cellspacing="0" cellpadding="0">
 <tr>
 <td width="20"></td><td><code>*</code> &mdash; the info object of this event.
-      </td>
+         </td>
 </tr>
 </table>
 </div>
@@ -431,8 +431,8 @@ showHideInherited();
 </table>
 <div class="detailBody">
 <code>public function setInfo(oInfo:*):void</code><p>
-      Sets the info object of this event.
-      </p><span class="label">Parameters</span>
+         Sets the info object of this event.
+         </p><span class="label">Parameters</span>
 <table border="0" cellspacing="0" cellpadding="0">
 <tr>
 <td width="20px"></td><td><code><span class="label">oInfo</span>:*</code></td>

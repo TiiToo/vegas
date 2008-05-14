@@ -28,7 +28,7 @@ package andromeda.vo
     
     import system.Reflection;
     
-    import vegas.util.Serializer;	
+    import vegas.util.Serializer;
 
     /**
      * This class provides a binary filter value object.
@@ -120,13 +120,13 @@ package andromeda.vo
             return getFilter() == NONE ;
         }
 
-    	/**
-	     * Preserves the class (type) of an object when the object is encoded in Action Message Format (AMF). 
-	     */
-    	public static function register( aliasName:String="FilterVO" ):void
-    	{
-	        registerClassAlias( aliasName , FilterVO ) ;
-	    }
+        /**
+         * Preserves the class (type) of an object when the object is encoded in Action Message Format (AMF). 
+         */
+        public static function register( aliasName:String="FilterVO" ):void
+        {
+            registerClassAlias( aliasName , FilterVO ) ;
+        }
 
         /**
          * Sets the current filter value of this object.

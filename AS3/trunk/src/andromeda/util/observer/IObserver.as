@@ -22,20 +22,20 @@
 */
 package andromeda.util.observer
 {
-	
-	/**
-	 * A class can implement the IObserver interface when it wants to be informed of changes in observable objects.
-	 * @author eKameleon
-	 */
-	public interface IObserver
-	{
+    
+    /**
+     * A class can implement the IObserver interface when it wants to be informed of changes in observable objects.
+     * @author eKameleon
+     */
+    public interface IObserver
+    {
 
-		/**
-		 * This method is called whenever the observed object is changed.
-		 * @param o the observable object.
-		 * @param arg an argument passed to the notifyObservers method.
-		 */
-		function update(o:Observable, arg:*):void ;
+        /**
+         * This method is called whenever the observed object is changed.
+         * @param o the observable object.
+         * @param arg an argument passed to the notifyObservers method.
+         */
+        function update(o:Observable, arg:*):void ;
 
-	}
+    }
 }

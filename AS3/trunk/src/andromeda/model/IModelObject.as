@@ -23,14 +23,14 @@
 
 package andromeda.model
 {
-	import vegas.core.IValidator;
-	
-	/**
-	 * This interface define a model who register and manipulate IValueObject objects.
-	 * @author eKameleon
-	 */
-	public interface IModelObject extends IModel, IValidator
-	{
-		
-	}
+    import vegas.core.IValidator;
+    
+    /**
+     * This interface define a model who register and manipulate IValueObject objects.
+     * @author eKameleon
+     */
+    public interface IModelObject extends IModel, IValidator
+    {
+    
+    }
 }

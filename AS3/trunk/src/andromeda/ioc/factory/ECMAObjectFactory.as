@@ -500,7 +500,7 @@ package andromeda.ioc.factory
             }
             else
             {
-                debug( this + " create new object definition failed with a 'null' or 'undefined' object." ) ;	
+                debug( this + " create new object definition failed with a 'null' or 'undefined' object." ) ;
             }
 
         }
@@ -550,7 +550,11 @@ package andromeda.ioc.factory
                 
                 if ( assemblyName.length > 0 )
                 {
-                    _loader.load( new URLRequest( assemblyName ) , new LoaderContext( false , ApplicationDomain.currentDomain ) ) ;
+                    _loader.load
+                    ( 
+                        new URLRequest( assemblyName ) , 
+                        new LoaderContext( false , ApplicationDomain.currentDomain ) 
+                    ) ;
                 }
                 else
                 {

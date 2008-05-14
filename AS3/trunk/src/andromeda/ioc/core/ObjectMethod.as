@@ -22,35 +22,35 @@
 */
 package andromeda.ioc.core 
 {
-	import vegas.core.CoreObject;
-	
-	/**
-	 * This object defines a method definition and this arguments.
-	 * @author eKameleon
-	 */
-	public class ObjectMethod extends CoreObject 
-	{
-		
-		/**
-		 * Creates a new ObjectMethod instance.
-		 * @param name The name of the method to invoke.
-		 * @param arguments The array of the arguments to passed-in the method.
-		 */
-		public function ObjectMethod( name:String , arguments:Array =null )
-		{
+    import vegas.core.CoreObject;
+    
+    /**
+     * This object defines a method definition and this arguments.
+     * @author eKameleon
+     */
+    public class ObjectMethod extends CoreObject 
+    {
+        
+        /**
+         * Creates a new ObjectMethod instance.
+         * @param name The name of the method to invoke.
+         * @param arguments The array of the arguments to passed-in the method.
+         */
+        public function ObjectMethod( name:String , arguments:Array =null )
+        {
             this.name      = name    ;
-			this.arguments = arguments ;
-		}
-		
-		/**
-		 * The array of the arguments to passed-in the factory method.
-		 */
-		public var arguments:Array ;
+            this.arguments = arguments ;
+        }
+        
+        /**
+         * The array of the arguments to passed-in the factory method.
+         */
+        public var arguments:Array ;
 
-		/**
-		 * The name of the method to invoke to create the object.
-		 */
-		public var name:String ;
-		
-	}
+        /**
+         * The name of the method to invoke to create the object.
+         */
+        public var name:String ;
+        
+    }
 }

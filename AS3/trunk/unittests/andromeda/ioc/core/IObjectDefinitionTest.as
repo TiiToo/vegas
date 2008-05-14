@@ -22,9 +22,12 @@
 */
 package andromeda.ioc.core 
 {
-	import buRRRn.ASTUce.framework.TestCase;			
+    import andromeda.ioc.factory.strategy.IObjectFactoryStrategy;
+    import andromeda.ioc.factory.strategy.ObjectFactoryMethod;
+    
+    import buRRRn.ASTUce.framework.TestCase;    
 
-	/**
+    /**
 	 * @author eKameleon
 	 */
 	public class IObjectDefinitionTest extends TestCase 
@@ -57,17 +60,13 @@ package andromeda.ioc.core
 			assertEquals( instance.getDestroyMethodName() , "destroy" , "getDestroyMethodName method failed.") ;
 		}
 	
-		public function testGetFactoryMethod():void
+		public function testGetFactoryStrategy():void
 		{
 			
-			var o:ObjectMethod = instance.getFactoryMethod() ;	
+            var o:IObjectFactoryStrategy = instance.getFactoryStrategy() ;	
+			assertNotNull ( o , "getFactoryStategy 01 failed.") ;
+			assertTrue    ( o is ObjectFactoryMethod , "getFactoryStategy 02 failed.") ;
 			
-			ObjectMethod("id", [1,2,3]) ;
-			
-			assertEquals ( o.name, "id" , "getFactoryMethod 01 method failed.") ;
-			
-			assertTrue   ( o.arguments is Array     , "getFactoryMethod 02 method failed.") ;
-			assertEquals ( o.arguments.length   , 3 , "getFactoryMethod 03 method failed.") ;
 						
 		}
 		
@@ -159,6 +158,9 @@ package andromeda.ioc.core
 	}
 }
 
+import andromeda.ioc.factory.strategy.IObjectFactoryStrategy;
+import andromeda.ioc.factory.strategy.ObjectFactoryMethod;
+
 import vegas.data.Map;
 import vegas.data.map.HashMap;
 
@@ -175,10 +177,11 @@ class ConcreteObjectDefinition implements IObjectDefinition
 		return "destroy" ;
 	}
 	
-	public function getFactoryMethod():ObjectMethod
-	{
-		return new ObjectMethod("id", [1,2,3]) ;
-	}
+    
+    public function getFactoryStrategy():IObjectFactoryStrategy
+    {
+    	return new ObjectFactoryMethod("factory","name",["arg1","arg2"]) ;
+    }	
 	
 	public function getInitMethodName():String
 	{
@@ -229,6 +232,12 @@ class ConcreteObjectDefinition implements IObjectDefinition
 	{
 		throw new Error("setFactoryMethod") ;
 	}
+
+    
+    public function setFactoryStrategy(value:IObjectFactoryStrategy):void
+    {
+    	throw new Error("setFactoryStrategy") ;
+    }	
 	
 	public function setInitMethodName(value:String = null):void
 	{
@@ -278,5 +287,6 @@ class ConcreteObjectDefinition implements IObjectDefinition
 	private var _id:* ;
 
 	private var _identify:* ;
+    
 
 }

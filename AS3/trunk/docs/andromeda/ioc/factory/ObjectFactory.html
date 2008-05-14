@@ -5,7 +5,7 @@
 <link rel="stylesheet" href="../../../style.css" type="text/css" media="screen">
 <link rel="stylesheet" href="../../../print.css" type="text/css" media="print">
 <link rel="stylesheet" href="../../../prettify.css" type="text/css">
-<meta content="ObjectFactory,andromeda.ioc.factory.ObjectFactory,singletons,config,containsObject,createAndCacheSingletonInstance,createArguments,createObject,debug,getObject,invokeDestroyMethod,invokeInitMethod,invokeMethods,isLazyInit,isSingleton,populateIdentifiable,populateMethods,populateProperties,removeSingleton" name="keywords">
+<meta content="ObjectFactory,andromeda.ioc.factory.ObjectFactory,singletons,config,typeEvaluator,containsObject,createAndCacheSingletonInstance,createArguments,createObject,createObjectWithStrategy,debug,getObject,invokeDestroyMethod,invokeInitMethod,invokeMethods,isLazyInit,isSingleton,populateIdentifiable,populateMethods,populateProperties,removeSingleton" name="keywords">
 <title>andromeda.ioc.factory.ObjectFactory</title>
 </head>
 <body>
@@ -49,7 +49,7 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 </tr>
 </table>
 <p></p>
-  The basic Inversion of Control container/factory class.
+     The basic Inversion of Control container/factory class.
      <p><b>Example :</b></p>
      <pre class="prettyprint">
      import test.User ;
@@ -98,7 +98,7 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
          }
      }
      </pre>
-  <p></p>
+     <p></p>
 <br>
 <hr>
 </div>
@@ -120,7 +120,7 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <tr class="">
 <td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#config">config</a> : <a href="../factory/ObjectConfig.html">ObjectConfig</a>
 <div class="summaryTableDescription">
-   Determinates the configuration object of the object factory.</div>
+         Determinates the configuration object of the object factory.</div>
 </td><td class="summaryTableOwnerCol">ObjectFactory</td>
 </tr>
 <tr class="hideInheritedProperty">
@@ -130,7 +130,7 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 </tr>
 <tr class="hideInheritedProperty">
 <td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol"><a class="signatureLink" href="../../process/Action.html#looping">looping</a> : Boolean<div class="summaryTableDescription">
-      The flag to determinate if the Action object is looped.</div>
+         The flag to determinate if the Action object is looped.</div>
 </td><td class="summaryTableOwnerCol"><a href="../../process/Action.html">Action</a></td>
 </tr>
 <tr class="hideInheritedProperty">
@@ -141,7 +141,13 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <tr class="">
 <td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#singletons">singletons</a> : <a href="../../../vegas/data/map/HashMap.html">HashMap</a>
 <div class="summaryTableDescription">
-   The maps of all objects in the container.</div>
+         The maps of all objects in the container.</div>
+</td><td class="summaryTableOwnerCol">ObjectFactory</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#typeEvaluator">typeEvaluator</a> : <a href="../evaluators/TypeEvaluator.html">TypeEvaluator</a>
+<div class="summaryTableDescription">[read-only]
+         Indicates the type evaluator reference in this factory.</div>
 </td><td class="summaryTableOwnerCol">ObjectFactory</td>
 </tr>
 </table>
@@ -166,7 +172,7 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <div class="summarySignature">
 <a class="signatureLink" href="#ObjectFactory()">ObjectFactory</a>(bGlobal:Boolean = false, sChannel:String = null)</div>
 <div class="summaryTableDescription">
-   Creates a new ObjectFactory instance.</div>
+         Creates a new ObjectFactory instance.</div>
 </td><td class="summaryTableOwnerCol">ObjectFactory</td>
 </tr>
 <tr class="hideInheritedMethod">
@@ -198,7 +204,7 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <div class="summarySignature">
 <a class="signatureLink" href="../../process/Action.html#clone()">clone</a>():*</div>
 <div class="summaryTableDescription">
-      Returns a shallow copy of this object.</div>
+         Returns a shallow copy of this object.</div>
 </td><td class="summaryTableOwnerCol"><a href="../../process/Action.html">Action</a></td>
 </tr>
 <tr class="">
@@ -222,7 +228,7 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <div class="summarySignature">
 <a class="signatureLink" href="#debug()">debug</a>(o:*):void</div>
 <div class="summaryTableDescription">
-   The custom debug method of this factory.</div>
+         The custom debug method of this factory.</div>
 </td><td class="summaryTableOwnerCol">ObjectFactory</td>
 </tr>
 <tr class="hideInheritedMethod">
@@ -247,7 +253,7 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <div class="summarySignature">
 <a class="signatureLink" href="../../process/Action.html#getEventTypeCHANGE()">getEventTypeCHANGE</a>():String</div>
 <div class="summaryTableDescription">
-   Returns the event name use in the notifyChanged method.</div>
+         Returns the event name use in the notifyChanged method.</div>
 </td><td class="summaryTableOwnerCol"><a href="../../process/Action.html">Action</a></td>
 </tr>
 <tr class="hideInheritedMethod">
@@ -255,7 +261,7 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <div class="summarySignature">
 <a class="signatureLink" href="../../process/Action.html#getEventTypeCLEAR()">getEventTypeCLEAR</a>():String</div>
 <div class="summaryTableDescription">
-   Returns the event name use in the notifyCleared method.</div>
+         Returns the event name use in the notifyCleared method.</div>
 </td><td class="summaryTableOwnerCol"><a href="../../process/Action.html">Action</a></td>
 </tr>
 <tr class="hideInheritedMethod">
@@ -271,7 +277,7 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <div class="summarySignature">
 <a class="signatureLink" href="../../process/Action.html#getEventTypeINFO()">getEventTypeINFO</a>():String</div>
 <div class="summaryTableDescription">
-   Returns the event name use in the notifyInfo method.</div>
+         Returns the event name use in the notifyInfo method.</div>
 </td><td class="summaryTableOwnerCol"><a href="../../process/Action.html">Action</a></td>
 </tr>
 <tr class="hideInheritedMethod">
@@ -279,7 +285,7 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <div class="summarySignature">
 <a class="signatureLink" href="../../process/Action.html#getEventTypeLOOP()">getEventTypeLOOP</a>():String</div>
 <div class="summaryTableDescription">
-   Returns the event name use in the notifyLooped method.</div>
+         Returns the event name use in the notifyLooped method.</div>
 </td><td class="summaryTableOwnerCol"><a href="../../process/Action.html">Action</a></td>
 </tr>
 <tr class="hideInheritedMethod">
@@ -287,7 +293,7 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <div class="summarySignature">
 <a class="signatureLink" href="../../process/Action.html#getEventTypePROGRESS()">getEventTypePROGRESS</a>():String</div>
 <div class="summaryTableDescription">
-   Returns the event name use in the notifyProgress method.</div>
+         Returns the event name use in the notifyProgress method.</div>
 </td><td class="summaryTableOwnerCol"><a href="../../process/Action.html">Action</a></td>
 </tr>
 <tr class="hideInheritedMethod">
@@ -295,7 +301,7 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <div class="summarySignature">
 <a class="signatureLink" href="../../process/Action.html#getEventTypeRESUME()">getEventTypeRESUME</a>():String</div>
 <div class="summaryTableDescription">
-   Returns the event name use in the notifyResumed method.</div>
+         Returns the event name use in the notifyResumed method.</div>
 </td><td class="summaryTableOwnerCol"><a href="../../process/Action.html">Action</a></td>
 </tr>
 <tr class="hideInheritedMethod">
@@ -311,7 +317,7 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <div class="summarySignature">
 <a class="signatureLink" href="../../process/Action.html#getEventTypeSTOP()">getEventTypeSTOP</a>():String</div>
 <div class="summaryTableDescription">
-   Returns the event name use in the notifyStopped method.</div>
+         Returns the event name use in the notifyStopped method.</div>
 </td><td class="summaryTableOwnerCol"><a href="../../process/Action.html">Action</a></td>
 </tr>
 <tr class="hideInheritedMethod">
@@ -319,7 +325,7 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <div class="summarySignature">
 <a class="signatureLink" href="../../process/Action.html#getEventTypeTIMEOUT()">getEventTypeTIMEOUT</a>():String</div>
 <div class="summaryTableDescription">
-   Returns the event name use in the notifyTimeOut method.</div>
+         Returns the event name use in the notifyTimeOut method.</div>
 </td><td class="summaryTableOwnerCol"><a href="../../process/Action.html">Action</a></td>
 </tr>
 <tr class="hideInheritedMethod">
@@ -474,7 +480,7 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <div class="summarySignature">
 <a class="signatureLink" href="#removeSingleton()">removeSingleton</a>(id:String):void</div>
 <div class="summaryTableDescription">
-   Removes and destroy a singleton in the container.</div>
+         Removes and destroy a singleton in the container.</div>
 </td><td class="summaryTableOwnerCol">ObjectFactory</td>
 </tr>
 <tr class="hideInheritedMethod">
@@ -498,7 +504,7 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <div class="summarySignature">
 <a class="signatureLink" href="../../process/Action.html#setEventTypeCHANGE()">setEventTypeCHANGE</a>(type:String):void</div>
 <div class="summaryTableDescription">
-   Sets the event name use in the notifyChanged method.</div>
+         Sets the event name use in the notifyChanged method.</div>
 </td><td class="summaryTableOwnerCol"><a href="../../process/Action.html">Action</a></td>
 </tr>
 <tr class="hideInheritedMethod">
@@ -506,7 +512,7 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <div class="summarySignature">
 <a class="signatureLink" href="../../process/Action.html#setEventTypeCLEAR()">setEventTypeCLEAR</a>(type:String):void</div>
 <div class="summaryTableDescription">
-   Sets the event name use in the notifyCleared method.</div>
+         Sets the event name use in the notifyCleared method.</div>
 </td><td class="summaryTableOwnerCol"><a href="../../process/Action.html">Action</a></td>
 </tr>
 <tr class="hideInheritedMethod">
@@ -522,7 +528,7 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <div class="summarySignature">
 <a class="signatureLink" href="../../process/Action.html#setEventTypeINFO()">setEventTypeINFO</a>(type:String):void</div>
 <div class="summaryTableDescription">
-   Sets the event name use in the notifyInfo method.</div>
+         Sets the event name use in the notifyInfo method.</div>
 </td><td class="summaryTableOwnerCol"><a href="../../process/Action.html">Action</a></td>
 </tr>
 <tr class="hideInheritedMethod">
@@ -530,7 +536,7 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <div class="summarySignature">
 <a class="signatureLink" href="../../process/Action.html#setEventTypeLOOP()">setEventTypeLOOP</a>(type:String):void</div>
 <div class="summaryTableDescription">
-   Sets the event name use in the notifyLooped method.</div>
+         Sets the event name use in the notifyLooped method.</div>
 </td><td class="summaryTableOwnerCol"><a href="../../process/Action.html">Action</a></td>
 </tr>
 <tr class="hideInheritedMethod">
@@ -538,7 +544,7 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <div class="summarySignature">
 <a class="signatureLink" href="../../process/Action.html#setEventTypePROGRESS()">setEventTypePROGRESS</a>(type:String):void</div>
 <div class="summaryTableDescription">
-   Sets the event name use in the notifyProgress method.</div>
+         Sets the event name use in the notifyProgress method.</div>
 </td><td class="summaryTableOwnerCol"><a href="../../process/Action.html">Action</a></td>
 </tr>
 <tr class="hideInheritedMethod">
@@ -546,7 +552,7 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <div class="summarySignature">
 <a class="signatureLink" href="../../process/Action.html#setEventTypeRESUME()">setEventTypeRESUME</a>(type:String):void</div>
 <div class="summaryTableDescription">
-   Sets the event name use in the notifyResumed method.</div>
+         Sets the event name use in the notifyResumed method.</div>
 </td><td class="summaryTableOwnerCol"><a href="../../process/Action.html">Action</a></td>
 </tr>
 <tr class="hideInheritedMethod">
@@ -562,7 +568,7 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <div class="summarySignature">
 <a class="signatureLink" href="../../process/Action.html#setEventTypeSTOP()">setEventTypeSTOP</a>(type:String):void</div>
 <div class="summaryTableDescription">
-   Sets the event name use in the notifyStopped method.</div>
+         Sets the event name use in the notifyStopped method.</div>
 </td><td class="summaryTableOwnerCol"><a href="../../process/Action.html">Action</a></td>
 </tr>
 <tr class="hideInheritedMethod">
@@ -570,7 +576,7 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <div class="summarySignature">
 <a class="signatureLink" href="../../process/Action.html#setEventTypeTIMEOUT()">setEventTypeTIMEOUT</a>(type:String):void</div>
 <div class="summaryTableDescription">
-   Sets the event name use in the notifyTimeOut method.</div>
+         Sets the event name use in the notifyTimeOut method.</div>
 </td><td class="summaryTableOwnerCol"><a href="../../process/Action.html">Action</a></td>
 </tr>
 <tr class="hideInheritedMethod">
@@ -659,7 +665,7 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <div class="summarySignature">
 <a class="signatureLink" href="#createAndCacheSingletonInstance()">createAndCacheSingletonInstance</a>(id:String, definition:<a href="../core/IObjectDefinition.html">IObjectDefinition</a>):*</div>
 <div class="summaryTableDescription">
-    Creates and cache the singleton instance define with the specified id and IObjectDefinition.</div>
+          Creates and cache the singleton instance define with the specified id and IObjectDefinition.</div>
 </td><td class="summaryTableOwnerCol">ObjectFactory</td>
 </tr>
 <tr class="">
@@ -667,7 +673,7 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <div class="summarySignature">
 <a class="signatureLink" href="#createArguments()">createArguments</a>(argList:Array = null):Array</div>
 <div class="summaryTableDescription">
-    Creates the arguments Array representation of the specified definition.</div>
+          Creates the arguments Array representation of the specified definition.</div>
 </td><td class="summaryTableOwnerCol">ObjectFactory</td>
 </tr>
 <tr class="">
@@ -675,7 +681,15 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <div class="summarySignature">
 <a class="signatureLink" href="#createObject()">createObject</a>(definition:<a href="../core/IObjectDefinition.html">IObjectDefinition</a>):*</div>
 <div class="summaryTableDescription">
-   Creates a new Object with the specified id and the specified IObjectDefinition in argument.</div>
+         Creates a new Object with the specified id and the specified IObjectDefinition in argument.</div>
+</td><td class="summaryTableOwnerCol">ObjectFactory</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#createObjectWithStrategy()">createObjectWithStrategy</a>(strategy:<a href="strategy/IObjectFactoryStrategy.html">IObjectFactoryStrategy</a>):*</div>
+<div class="summaryTableDescription">
+         Creates a new Object with a specified IObjectFactoryStrategy instance.</div>
 </td><td class="summaryTableOwnerCol">ObjectFactory</td>
 </tr>
 <tr class="">
@@ -683,7 +697,7 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <div class="summarySignature">
 <a class="signatureLink" href="#invokeDestroyMethod()">invokeDestroyMethod</a>(o:*, definition:<a href="../core/IObjectDefinition.html">IObjectDefinition</a>):void</div>
 <div class="summaryTableDescription">
-   Invokes the destroy method of the specified object, if the init method is define in the IDefinition object.</div>
+         Invokes the destroy method of the specified object, if the init method is define in the IDefinition object.</div>
 </td><td class="summaryTableOwnerCol">ObjectFactory</td>
 </tr>
 <tr class="">
@@ -691,7 +705,7 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <div class="summarySignature">
 <a class="signatureLink" href="#invokeInitMethod()">invokeInitMethod</a>(o:*, definition:<a href="../core/IObjectDefinition.html">IObjectDefinition</a> = null):void</div>
 <div class="summaryTableDescription">
-   Invokes the init method of the specified object, if the init method is define in the IDefinition object.</div>
+         Invokes the init method of the specified object, if the init method is define in the IDefinition object.</div>
 </td><td class="summaryTableOwnerCol">ObjectFactory</td>
 </tr>
 <tr class="">
@@ -699,7 +713,7 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <div class="summarySignature">
 <a class="signatureLink" href="#invokeMethods()">invokeMethods</a>(o:*, methods:Array):void</div>
 <div class="summaryTableDescription">
-   Invokes the init method of the specified object, if the init method is define in the IDefinition object.</div>
+         Invokes the init method of the specified object, if the init method is define in the IDefinition object.</div>
 </td><td class="summaryTableOwnerCol">ObjectFactory</td>
 </tr>
 <tr class="hideInheritedProtectedMethod">
@@ -707,7 +721,7 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <div class="summarySignature">
 <a class="signatureLink" href="../../process/Action.html#notifyChanged()">notifyChanged</a>():void</div>
 <div class="summaryTableDescription">
-      Notify an ActionEvent when the process is changed.</div>
+         Notify an ActionEvent when the process is changed.</div>
 </td><td class="summaryTableOwnerCol"><a href="../../process/Action.html">Action</a></td>
 </tr>
 <tr class="hideInheritedProtectedMethod">
@@ -715,7 +729,7 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <div class="summarySignature">
 <a class="signatureLink" href="../../process/Action.html#notifyCleared()">notifyCleared</a>():void</div>
 <div class="summaryTableDescription">
-      Notify an ActionEvent when the process is cleared.</div>
+         Notify an ActionEvent when the process is cleared.</div>
 </td><td class="summaryTableOwnerCol"><a href="../../process/Action.html">Action</a></td>
 </tr>
 <tr class="hideInheritedProtectedMethod">
@@ -723,7 +737,7 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <div class="summarySignature">
 <a class="signatureLink" href="../../process/Action.html#notifyInfo()">notifyInfo</a>(info:*):void</div>
 <div class="summaryTableDescription">
-      Notify an ActionEvent when the process info is changed.</div>
+         Notify an ActionEvent when the process info is changed.</div>
 </td><td class="summaryTableOwnerCol"><a href="../../process/Action.html">Action</a></td>
 </tr>
 <tr class="hideInheritedProtectedMethod">
@@ -731,7 +745,7 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <div class="summarySignature">
 <a class="signatureLink" href="../../process/Action.html#notifyLooped()">notifyLooped</a>():void</div>
 <div class="summaryTableDescription">
-      Notify an ActionEvent when the process is looped.</div>
+         Notify an ActionEvent when the process is looped.</div>
 </td><td class="summaryTableOwnerCol"><a href="../../process/Action.html">Action</a></td>
 </tr>
 <tr class="hideInheritedProtectedMethod">
@@ -739,7 +753,7 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <div class="summarySignature">
 <a class="signatureLink" href="../../process/Action.html#notifyProgress()">notifyProgress</a>():void</div>
 <div class="summaryTableDescription">
-      Notify an ActionEvent when the process is in progress.</div>
+         Notify an ActionEvent when the process is in progress.</div>
 </td><td class="summaryTableOwnerCol"><a href="../../process/Action.html">Action</a></td>
 </tr>
 <tr class="hideInheritedProtectedMethod">
@@ -747,7 +761,7 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <div class="summarySignature">
 <a class="signatureLink" href="../../process/Action.html#notifyResumed()">notifyResumed</a>():void</div>
 <div class="summaryTableDescription">
-      Notify an ActionEvent when the process is resumed.</div>
+         Notify an ActionEvent when the process is resumed.</div>
 </td><td class="summaryTableOwnerCol"><a href="../../process/Action.html">Action</a></td>
 </tr>
 <tr class="hideInheritedProtectedMethod">
@@ -755,7 +769,7 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <div class="summarySignature">
 <a class="signatureLink" href="../../process/Action.html#notifyStopped()">notifyStopped</a>():void</div>
 <div class="summaryTableDescription">
-      Notify an ActionEvent when the process is stopped.</div>
+         Notify an ActionEvent when the process is stopped.</div>
 </td><td class="summaryTableOwnerCol"><a href="../../process/Action.html">Action</a></td>
 </tr>
 <tr class="hideInheritedProtectedMethod">
@@ -763,7 +777,7 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <div class="summarySignature">
 <a class="signatureLink" href="../../process/Action.html#notifyTimeOut()">notifyTimeOut</a>():void</div>
 <div class="summaryTableDescription">
-      Notify an ActionEvent when the process is out of time.</div>
+         Notify an ActionEvent when the process is out of time.</div>
 </td><td class="summaryTableOwnerCol"><a href="../../process/Action.html">Action</a></td>
 </tr>
 <tr class="">
@@ -779,7 +793,7 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <div class="summarySignature">
 <a class="signatureLink" href="#populateMethods()">populateMethods</a>(o:*, methods:Array = null):void</div>
 <div class="summaryTableDescription">
-   Populates all properties in the Map passed in argument.</div>
+         Populates all properties in the Map passed in argument.</div>
 </td><td class="summaryTableOwnerCol">ObjectFactory</td>
 </tr>
 <tr class="">
@@ -787,7 +801,7 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <div class="summarySignature">
 <a class="signatureLink" href="#populateProperties()">populateProperties</a>(o:*, properties:<a href="../../../vegas/data/Map.html">Map</a> = null):void</div>
 <div class="summaryTableDescription">
-   Populates all properties in the Map passed in argument.</div>
+         Populates all properties in the Map passed in argument.</div>
 </td><td class="summaryTableOwnerCol">ObjectFactory</td>
 </tr>
 <tr class="hideInheritedProtectedMethod">
@@ -815,8 +829,8 @@ showHideInherited();
 </table>
 <div class="detailBody">
 <code>config:<a href="../factory/ObjectConfig.html">ObjectConfig</a></code>&nbsp;&nbsp;[read-write]<p>
-   Determinates the configuration object of the object factory.
-   </p><span class="label">Implementation</span>
+         Determinates the configuration object of the object factory.
+         </p><span class="label">Implementation</span>
 <br>
 <code>&nbsp;&nbsp;&nbsp;&nbsp;public function get config():<a href="../factory/ObjectConfig.html">ObjectConfig</a></code>
 <br>
@@ -831,8 +845,22 @@ showHideInherited();
 </table>
 <div class="detailBody">
 <code>public var singletons:<a href="../../../vegas/data/map/HashMap.html">HashMap</a></code><p>
-   The maps of all objects in the container.
-   </p></div>
+         The maps of all objects in the container.
+         </p></div>
+<a name="typeEvaluator"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">typeEvaluator</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>typeEvaluator:<a href="../evaluators/TypeEvaluator.html">TypeEvaluator</a></code>&nbsp;&nbsp;[read-only]<p>
+         Indicates the type evaluator reference in this factory. 
+         </p><span class="label">Implementation</span>
+<br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function get typeEvaluator():<a href="../evaluators/TypeEvaluator.html">TypeEvaluator</a></code>
+<br>
+</div>
 <a name="constructorDetail"></a>
 <div class="detailSectionHeader">Constructor detail</div>
 <a name="ObjectFactory()"></a>
@@ -843,19 +871,19 @@ showHideInherited();
 </table>
 <div class="detailBody">
 <code>public function ObjectFactory(bGlobal:Boolean = false, sChannel:String = null)</code><p>
-   Creates a new ObjectFactory instance.
-   </p><span class="label">Parameters</span>
+         Creates a new ObjectFactory instance.
+         </p><span class="label">Parameters</span>
 <table border="0" cellspacing="0" cellpadding="0">
 <tr>
 <td width="20px"></td><td><code><span class="label">bGlobal</span>:Boolean</code> (default = <code>false</code>)<code></code> &mdash; the flag to use a global event flow or a local event flow.
-   </td>
+         </td>
 </tr>
 <tr>
 <td class="paramSpacer">&nbsp;</td>
 </tr>
 <tr>
 <td width="20px"></td><td><code><span class="label">sChannel</span>:String</code> (default = <code>null</code>)<code></code> &mdash; the name of the global event flow if the <code class="prettyprint">bGlobal</code> argument is <code class="prettyprint">true</code>.
-   </td>
+         </td>
 </tr>
 </table>
 </div>
@@ -894,19 +922,19 @@ showHideInherited();
 </table>
 <div class="detailBody">
 <code>protected function createAndCacheSingletonInstance(id:String, definition:<a href="../core/IObjectDefinition.html">IObjectDefinition</a>):*</code><p>
-    Creates and cache the singleton instance define with the specified id and IObjectDefinition.
-    </p><span class="label">Parameters</span>
+          Creates and cache the singleton instance define with the specified id and IObjectDefinition.
+          </p><span class="label">Parameters</span>
 <table border="0" cellspacing="0" cellpadding="0">
 <tr>
 <td width="20px"></td><td><code><span class="label">id</span>:String</code> &mdash; the id of the class object.
-    </td>
+          </td>
 </tr>
 <tr>
 <td class="paramSpacer">&nbsp;</td>
 </tr>
 <tr>
 <td width="20px"></td><td><code><span class="label">definition</span>:<a href="../core/IObjectDefinition.html">IObjectDefinition</a></code> &mdash; the IDefinition to apply over the new instance.
-    </td>
+          </td>
 </tr>
 </table>
 <p></p>
@@ -925,8 +953,8 @@ showHideInherited();
 </table>
 <div class="detailBody">
 <code>protected function createArguments(argList:Array = null):Array</code><p>
-    Creates the arguments Array representation of the specified definition.
-    </p><span class="label">Parameters</span>
+          Creates the arguments Array representation of the specified definition.
+          </p><span class="label">Parameters</span>
 <table border="0" cellspacing="0" cellpadding="0">
 <tr>
 <td width="20px"></td><td><code><span class="label">argList</span>:Array</code> (default = <code>null</code>)<code></code></td>
@@ -937,7 +965,7 @@ showHideInherited();
 <table border="0" cellspacing="0" cellpadding="0">
 <tr>
 <td width="20"></td><td><code>Array</code> &mdash; the arguments Array representation of the specified definition.
-    </td>
+          </td>
 </tr>
 </table>
 </div>
@@ -949,8 +977,8 @@ showHideInherited();
 </table>
 <div class="detailBody">
 <code>protected function createObject(definition:<a href="../core/IObjectDefinition.html">IObjectDefinition</a>):*</code><p>
-   Creates a new Object with the specified id and the specified IObjectDefinition in argument.
-   </p><span class="label">Parameters</span>
+         Creates a new Object with the specified id and the specified IObjectDefinition in argument.
+         </p><span class="label">Parameters</span>
 <table border="0" cellspacing="0" cellpadding="0">
 <tr>
 <td width="20px"></td><td><code><span class="label">definition</span>:<a href="../core/IObjectDefinition.html">IObjectDefinition</a></code></td>
@@ -961,7 +989,31 @@ showHideInherited();
 <table border="0" cellspacing="0" cellpadding="0">
 <tr>
 <td width="20"></td><td><code>*</code> &mdash; a new Object with the specified id and the specified IObjectDefinition in argument.
-   </td>
+         </td>
+</tr>
+</table>
+</div>
+<a name="createObjectWithStrategy()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">createObjectWithStrategy</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>protected function createObjectWithStrategy(strategy:<a href="strategy/IObjectFactoryStrategy.html">IObjectFactoryStrategy</a>):*</code><p>
+         Creates a new Object with a specified IObjectFactoryStrategy instance.
+         </p><span class="label">Parameters</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td><code><span class="label">strategy</span>:<a href="strategy/IObjectFactoryStrategy.html">IObjectFactoryStrategy</a></code></td>
+</tr>
+</table>
+<p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><code>*</code> &mdash; A new Object with a specified IObjectFactoryStrategy instance.
+         </td>
 </tr>
 </table>
 </div>
@@ -973,9 +1025,9 @@ showHideInherited();
 </table>
 <div class="detailBody">
 <code>public function debug(o:*):void</code><p>
-   The custom debug method of this factory.
-   You can overrides this method, the prototype object is dynamic.
-   </p><span class="label">Parameters</span>
+         The custom debug method of this factory.
+         You can overrides this method, the prototype object is dynamic.
+         </p><span class="label">Parameters</span>
 <table border="0" cellspacing="0" cellpadding="0">
 <tr>
 <td width="20px"></td><td><code><span class="label">o</span>:*</code></td>
@@ -1015,8 +1067,8 @@ showHideInherited();
 </table>
 <div class="detailBody">
 <code>protected function invokeDestroyMethod(o:*, definition:<a href="../core/IObjectDefinition.html">IObjectDefinition</a>):void</code><p>
-   Invokes the destroy method of the specified object, if the init method is define in the IDefinition object.
-   </p><span class="label">Parameters</span>
+         Invokes the destroy method of the specified object, if the init method is define in the IDefinition object.
+         </p><span class="label">Parameters</span>
 <table border="0" cellspacing="0" cellpadding="0">
 <tr>
 <td width="20px"></td><td><code><span class="label">o</span>:*</code></td>
@@ -1037,8 +1089,8 @@ showHideInherited();
 </table>
 <div class="detailBody">
 <code>protected function invokeInitMethod(o:*, definition:<a href="../core/IObjectDefinition.html">IObjectDefinition</a> = null):void</code><p>
-   Invokes the init method of the specified object, if the init method is define in the IDefinition object.
-   </p><span class="label">Parameters</span>
+         Invokes the init method of the specified object, if the init method is define in the IDefinition object.
+         </p><span class="label">Parameters</span>
 <table border="0" cellspacing="0" cellpadding="0">
 <tr>
 <td width="20px"></td><td><code><span class="label">o</span>:*</code></td>
@@ -1059,8 +1111,8 @@ showHideInherited();
 </table>
 <div class="detailBody">
 <code>protected function invokeMethods(o:*, methods:Array):void</code><p>
-   Invokes the init method of the specified object, if the init method is define in the IDefinition object.
-   </p><span class="label">Parameters</span>
+         Invokes the init method of the specified object, if the init method is define in the IDefinition object.
+         </p><span class="label">Parameters</span>
 <table border="0" cellspacing="0" cellpadding="0">
 <tr>
 <td width="20px"></td><td><code><span class="label">o</span>:*</code></td>
@@ -1153,8 +1205,8 @@ showHideInherited();
 </table>
 <div class="detailBody">
 <code>protected function populateMethods(o:*, methods:Array = null):void</code><p>
-   Populates all properties in the Map passed in argument.
-   </p><span class="label">Parameters</span>
+         Populates all properties in the Map passed in argument.
+         </p><span class="label">Parameters</span>
 <table border="0" cellspacing="0" cellpadding="0">
 <tr>
 <td width="20px"></td><td><code><span class="label">o</span>:*</code></td>
@@ -1175,8 +1227,8 @@ showHideInherited();
 </table>
 <div class="detailBody">
 <code>protected function populateProperties(o:*, properties:<a href="../../../vegas/data/Map.html">Map</a> = null):void</code><p>
-   Populates all properties in the Map passed in argument.
-   </p><span class="label">Parameters</span>
+         Populates all properties in the Map passed in argument.
+         </p><span class="label">Parameters</span>
 <table border="0" cellspacing="0" cellpadding="0">
 <tr>
 <td width="20px"></td><td><code><span class="label">o</span>:*</code></td>
@@ -1197,13 +1249,13 @@ showHideInherited();
 </table>
 <div class="detailBody">
 <code>public function removeSingleton(id:String):void</code><p>
-   Removes and destroy a singleton in the container. 
-   Invoke the <b>'destroy'</b> method of this object is it's define in the <code class="prettyprint">IObjectDefinition</code> of this singleton.
-   </p><span class="label">Parameters</span>
+         Removes and destroy a singleton in the container. 
+         Invoke the <b>'destroy'</b> method of this object is it's define in the <code class="prettyprint">IObjectDefinition</code> of this singleton.
+         </p><span class="label">Parameters</span>
 <table border="0" cellspacing="0" cellpadding="0">
 <tr>
 <td width="20px"></td><td><code><span class="label">id</span>:String</code> &mdash; The id of the singleton to remove.
-    </td>
+          </td>
 </tr>
 </table>
 </div>

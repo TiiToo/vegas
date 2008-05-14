@@ -23,50 +23,50 @@
 package andromeda.ioc.core 
 {
 
-	/**
-	 * This interface creates the dependencies with the definitions.
-	 * @author eKameleon
-	 */
-	public interface IObjectDefinitionContainer 
-	{
-		
-		/**
-		 * Registers an object in the container.
-		 * @param id the id of the object definition.
-		 * @param definition the definition of the object.
-		 */
-		function addObjectDefinition( id:String , definition:IObjectDefinition ):void ;
-		
-		/**
-		 * Removes all the object definitions register in the container.
-		 */
-		function clearObjectDefinition():void ;
-		
+    /**
+     * This interface creates the dependencies with the definitions.
+     * @author eKameleon
+     */
+    public interface IObjectDefinitionContainer 
+    {
+        
+        /**
+         * Registers an object in the container.
+         * @param id the id of the object definition.
+         * @param definition the definition of the object.
+         */
+        function addObjectDefinition( id:String , definition:IObjectDefinition ):void ;
+        
+        /**
+         * Removes all the object definitions register in the container.
+         */
+        function clearObjectDefinition():void ;
+        
         /**
          * Returns <code class="prettyprint">true</code> if the object defines with the specified id is register in the container.
          * @param id The id of the ObjectDefinition to search. 
          * @return <code class="prettyprint">true</code> if the object defines with the specified id is register in the container.
          */
-		function containsObjectDefinition( id:String ):Boolean ;
-		
+        function containsObjectDefinition( id:String ):Boolean ;
+        
         /**
          * Returns the IObjectDefinition object register in the container with the specified id.
          * @param id The id of the ObjectDefinition to return. 
          * @return the IObjectDefinition object register in the container with the specified id.
          */
-		function getObjectDefinition( id:String ):IObjectDefinition ;
-		
-		/**
-		 * Unregisters an object definition in the container.
-		 * @param id The id of the object definition to remove.
-		 */
-		function removeObjectDefinition( name:String ):void 
-		
-		/**
-		 * Returns the numbers of object definitions registered in the container.
-		 * @return the numbers of object definitions registered in the container.
-		 */
-		function sizeObjectDefinition():uint ;
-		
-	}
+        function getObjectDefinition( id:String ):IObjectDefinition ;
+        
+        /**
+         * Unregisters an object definition in the container.
+         * @param id The id of the object definition to remove.
+         */
+        function removeObjectDefinition( name:String ):void 
+        
+        /**
+         * Returns the numbers of object definitions registered in the container.
+         * @return the numbers of object definitions registered in the container.
+         */
+        function sizeObjectDefinition():uint ;
+        
+    }
 }

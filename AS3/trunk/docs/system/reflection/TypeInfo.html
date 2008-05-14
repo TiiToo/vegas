@@ -38,9 +38,12 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("In
 <tr>
 <td class="classHeaderTableLabel">Interface</td><td class="classSignature">public interface TypeInfo</td>
 </tr>
+<tr>
+<td class="classHeaderTableLabel">Subinterfaces</td><td><a href="../reflection/ClassInfo.html">ClassInfo</a></td>
+</tr>
 </table>
 <p></p>
-     The TypeInfo interface.
+     This interface defines all method who defines the informations about a Type object (Class).
      <p></p>
 <br>
 <hr>
@@ -57,7 +60,7 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("In
 <div class="summarySignature">
 <a class="signatureLink" href="#canConvertTo()">canConvertTo</a>(o:Class):Boolean</div>
 <div class="summaryTableDescription">
-         Indicates of the class can be convert.</div>
+         Indicates if the specified Class object can be convert to an other with the "as" keyword.</div>
 </td><td class="summaryTableOwnerCol">TypeInfo</td>
 </tr>
 <tr class="">
@@ -65,7 +68,7 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("In
 <div class="summarySignature">
 <a class="signatureLink" href="#isSubtypeOf()">isSubtypeOf</a>(o:Class):Boolean</div>
 <div class="summaryTableDescription">
-         Indicates is the type is a sub type.</div>
+         Indicates if the specified Class object be used with the "is" keyword.</div>
 </td><td class="summaryTableOwnerCol">TypeInfo</td>
 </tr>
 </table>
@@ -85,7 +88,7 @@ showHideInherited();
 </table>
 <div class="detailBody">
 <code>public function canConvertTo(o:Class):Boolean</code><p>
-         Indicates of the class can be convert.
+         Indicates if the specified Class object can be convert to an other with the "as" keyword.
          </p><span class="label">Parameters</span>
 <table border="0" cellspacing="0" cellpadding="0">
 <tr>
@@ -108,7 +111,7 @@ showHideInherited();
 </table>
 <div class="detailBody">
 <code>public function isSubtypeOf(o:Class):Boolean</code><p>
-         Indicates is the type is a sub type.
+         Indicates if the specified Class object be used with the "is" keyword.
          </p><span class="label">Parameters</span>
 <table border="0" cellspacing="0" cellpadding="0">
 <tr>

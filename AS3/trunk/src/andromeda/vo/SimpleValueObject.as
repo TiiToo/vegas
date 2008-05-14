@@ -22,85 +22,85 @@
 */
 package andromeda.vo
 {
-	import system.IEquatable;
-	import system.Reflection;
-	
-	import vegas.core.CoreObject;
-	import vegas.core.Identifiable;	
+    import system.IEquatable;
+    import system.Reflection;
+    
+    import vegas.core.CoreObject;
+    import vegas.core.Identifiable;
 
-	/**
-	 * The SimpleValueObject class provides a basic implementation of the IValueObject interface.
-	 * @param init A generic object containing properties with which to populate the newly instance. If this argument is null, it is ignored.
-	 */
-	public class SimpleValueObject extends CoreObject implements IEquatable, IValueObject
-	{
-		
-		/**
-		 * Creates a new SimpleValueObject.
-		 * @param init A generic object containing properties with which to populate the newly instance. If this argument is null, it is ignored.
-		 */
-		public function SimpleValueObject( init:Object=null )
-		{
-			if ( init != null )
-			{
-				for (var prop:String in init )
-				{
-					this[prop] = init[prop] ;	
-				} 	
-			}
-		}
-		
-		/**
-		 * (read-write) Indicates the id of this IValueObject.
-		 */
-		public function get id():*
-		{
-			return _id ;
-		}
-	
-		/**
-		 * @private
-		 */
-		public function set id( id:* ):void
-		{
-			_id = id ;
-		}
-		
-		/**
-		 * Compares the specified object with this object for equality. This method compares the ids of the objects with the <code class="prettyprint">Identifiable.getID()</code> method.
-		 * @return <code class="prettyprint">true</code> if the the specified object is equal with this object.
-		 */
-		public function equals( o:* ):Boolean
-		{
-			if (o is Identifiable)
-			{
-				return ( o as Identifiable ).id == this.id ;			
-			}
-			else
-			{
-				return false ;
-			}
-		}
-			
-		/**
-	 	 * Returns the <code class="prettyprint">String</code> representation of this object.
-	 	 * @return the <code class="prettyprint">String</code> representation of this object.
-	 	 */
-		public override function toString():String
-		{
-			var str:String = "[" + Reflection.getClassName(this) ;
-			if ( this.id != null )
-			{
-				str += " " + this.id ;	
-			} 
-			str += "]" ;
-			return str ;
-		}	
-		
+    /**
+     * The SimpleValueObject class provides a basic implementation of the IValueObject interface.
+     * @param init A generic object containing properties with which to populate the newly instance. If this argument is null, it is ignored.
+     */
+    public class SimpleValueObject extends CoreObject implements IEquatable, IValueObject
+    {
+        
+        /**
+         * Creates a new SimpleValueObject.
+         * @param init A generic object containing properties with which to populate the newly instance. If this argument is null, it is ignored.
+         */
+        public function SimpleValueObject( init:Object=null )
+        {
+            if ( init != null )
+            {
+                for (var prop:String in init )
+                {
+                    this[prop] = init[prop] ;    
+                }     
+            }
+        }
+        
+        /**
+         * (read-write) Indicates the id of this IValueObject.
+         */
+        public function get id():*
+        {
+            return _id ;
+        }
+    
         /**
          * @private
          */
-		private var _id:* ;
-		
-	}
+        public function set id( id:* ):void
+        {
+            _id = id ;
+        }
+        
+        /**
+         * Compares the specified object with this object for equality. This method compares the ids of the objects with the <code class="prettyprint">Identifiable.getID()</code> method.
+         * @return <code class="prettyprint">true</code> if the the specified object is equal with this object.
+         */
+        public function equals( o:* ):Boolean
+        {
+            if (o is Identifiable)
+            {
+                return ( o as Identifiable ).id == this.id ;            
+            }
+            else
+            {
+                return false ;
+            }
+        }
+            
+        /**
+          * Returns the <code class="prettyprint">String</code> representation of this object.
+          * @return the <code class="prettyprint">String</code> representation of this object.
+          */
+        public override function toString():String
+        {
+            var str:String = "[" + Reflection.getClassName(this) ;
+            if ( this.id != null )
+            {
+                str += " " + this.id ;
+            } 
+            str += "]" ;
+            return str ;
+        }    
+        
+        /**
+         * @private
+         */
+        private var _id:* ;
+        
+    }
 }

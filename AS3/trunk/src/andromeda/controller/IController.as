@@ -22,15 +22,15 @@
 */
 package andromeda.controller
 {
-	
-	import vegas.events.EventListener;
+    
+    import vegas.events.EventListener;
 
-	/**
-	 * Defines a IController in the application. All IController objects implements the EventListener class.
-	 * @author eKameleon
-	 */
-	public interface IController extends EventListener
-	{
-		
-	}
+    /**
+     * Defines a IController in the application. All IController objects implements the EventListener class.
+     * @author eKameleon
+     */
+    public interface IController extends EventListener
+    {
+        
+    }
 }

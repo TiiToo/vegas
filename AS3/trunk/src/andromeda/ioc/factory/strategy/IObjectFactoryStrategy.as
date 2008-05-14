@@ -27,8 +27,9 @@ package andromeda.ioc.factory.strategy
      * This interface defines factory strategies to replace the natural strategy to create an object in the factory.
      * @author eKameleon
      */
-    public interface IObjectFactoryStrategy 
+    public interface IObjectFactoryStrategy
     {
-    	
+    
     }
+    
 }

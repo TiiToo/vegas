@@ -24,56 +24,56 @@ package andromeda.ioc.factory.strategy
 {
     import andromeda.ioc.core.ObjectAttribute;
     import andromeda.ioc.core.ObjectMethod;    
-    
+
     /**
-	 * This object create a static proxy factory configured in the IObjectDefinition and replace the natural factory of the ObjectFactory.
-	 * @author eKameleon
-	 */
-	public class ObjectStaticFactoryMethod extends ObjectMethod implements IObjectFactoryStrategy 
-	{
-		
-		/**
-		 * Creates a new ObjectStaticFactoryMethod instance.
-		 * @param type The type of the static class use to create the object with a static method.
-		 * @param name The name of the static method to invoke to create the object.
-		 * @param arguments The array of the arguments to passed-in the factory method.
-		 */
-		public function ObjectStaticFactoryMethod( type:String , name:String , arguments:Array =null )
-		{
-			super( name , arguments ) ;
-			this.type = type ;
-		}
+     * This object create a static proxy factory configured in the IObjectDefinition and replace the natural factory of the ObjectFactory.
+     * @author eKameleon
+     */
+    public class ObjectStaticFactoryMethod extends ObjectMethod implements IObjectFactoryStrategy 
+    {
+        
+        /**
+         * Creates a new ObjectStaticFactoryMethod instance.
+         * @param type The type of the static class use to create the object with a static method.
+         * @param name The name of the static method to invoke to create the object.
+         * @param arguments The array of the arguments to passed-in the factory method.
+         */
+        public function ObjectStaticFactoryMethod( type:String , name:String , arguments:Array =null )
+        {
+            super( name , arguments ) ;
+            this.type = type ;
+        }
 
         /**
          * The string representation of the type name of the static factory class.
          */
         public var type:String ;
         
-		/**
-		 * Returns the ObjectStaticFactoryMethod representation of the specified generic object or null.
-		 * @return the ObjectStaticFactoryMethod representation of the specified generic object or null.
-		 */
-		public static function create( factoryMethod:Object=null ):ObjectStaticFactoryMethod
-		{
-			if ( factoryMethod == null ) 
-			{
-				return null ;
-			}
-			
-			if ( ObjectAttribute.TYPE in factoryMethod && ObjectAttribute.NAME in factoryMethod )
-			{
-				return new ObjectStaticFactoryMethod
-				( 
-					factoryMethod[ ObjectAttribute.TYPE      ] as String , 
-					factoryMethod[ ObjectAttribute.NAME      ] as String , 
-					factoryMethod[ ObjectAttribute.ARGUMENTS ] as Array
-				) ;
-			}
-			else
-			{
-				return null ;
-			}		
-		}		
+        /**
+         * Returns the ObjectStaticFactoryMethod representation of the specified generic object or null.
+         * @return the ObjectStaticFactoryMethod representation of the specified generic object or null.
+         */
+        public static function build( factoryMethod:Object=null ):ObjectStaticFactoryMethod
+        {
+            if ( factoryMethod == null ) 
+            {
+                return null ;
+            }
+            
+            if ( ObjectAttribute.TYPE in factoryMethod && ObjectAttribute.NAME in factoryMethod )
+            {
+                return new ObjectStaticFactoryMethod
+                ( 
+                    factoryMethod[ ObjectAttribute.TYPE      ] as String , 
+                    factoryMethod[ ObjectAttribute.NAME      ] as String , 
+                    factoryMethod[ ObjectAttribute.ARGUMENTS ] as Array
+                ) ;
+            }
+            else
+            {
+                return null ;
+            }        
+        }
         
-	}
+    }
 }
