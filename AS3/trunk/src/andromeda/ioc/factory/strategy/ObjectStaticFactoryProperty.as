@@ -53,19 +53,19 @@ package andromeda.ioc.factory.strategy
          * Returns the ObjectStaticFactoryProperty representation of the specified generic object or null.
          * @return the ObjectStaticFactoryProperty representation of the specified generic object or null.
          */
-        public static function build( factoryProperty:Object=null ):ObjectStaticFactoryProperty
+        public static function build( o:Object=null ):ObjectStaticFactoryProperty
         {
-            if ( factoryProperty == null ) 
+            if ( o == null ) 
             {
                 return null ;
             }
-            if ( ObjectAttribute.TYPE in factoryProperty && ObjectAttribute.NAME in factoryProperty )
+            if ( ObjectAttribute.TYPE in o && ObjectAttribute.NAME in o )
             {
                 return new ObjectStaticFactoryProperty
                 ( 
-                    factoryProperty[ ObjectAttribute.NAME       ] as String , 
-                    factoryProperty[ ObjectAttribute.TYPE       ] as String , 
-                    factoryProperty[ ObjectAttribute.EVALUATORS ] as Array 
+                    o[ ObjectAttribute.NAME       ] as String , 
+                    o[ ObjectAttribute.TYPE       ] as String , 
+                    o[ ObjectAttribute.EVALUATORS ] as Array 
                 ) ;
             }
             else

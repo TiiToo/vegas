@@ -53,20 +53,20 @@ package andromeda.ioc.factory.strategy
          * Returns the ObjectStaticFactoryMethod representation of the specified generic object or null.
          * @return the ObjectStaticFactoryMethod representation of the specified generic object or null.
          */
-        public static function build( factoryMethod:Object=null ):ObjectStaticFactoryMethod
+        public static function build( o:Object=null ):ObjectStaticFactoryMethod
         {
-            if ( factoryMethod == null ) 
+            if ( o == null ) 
             {
                 return null ;
             }
             
-            if ( ObjectAttribute.TYPE in factoryMethod && ObjectAttribute.NAME in factoryMethod )
+            if ( ObjectAttribute.TYPE in o && ObjectAttribute.NAME in o )
             {
                 return new ObjectStaticFactoryMethod
                 ( 
-                    factoryMethod[ ObjectAttribute.TYPE      ] as String , 
-                    factoryMethod[ ObjectAttribute.NAME      ] as String , 
-                    factoryMethod[ ObjectAttribute.ARGUMENTS ] as Array
+                    o[ ObjectAttribute.TYPE      ] as String , 
+                    o[ ObjectAttribute.NAME      ] as String , 
+                    o[ ObjectAttribute.ARGUMENTS ] as Array
                 ) ;
             }
             else
