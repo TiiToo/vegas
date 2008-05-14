@@ -20,10 +20,8 @@
   Contributor(s) :
   
 */
-package andromeda.ioc.factory
+package andromeda.ioc.factory.strategy
 {
-    import andromeda.ioc.factory.strategy.AllTests;
-    
     import buRRRn.ASTUce.framework.ITest;
     import buRRRn.ASTUce.framework.TestSuite;    
 
@@ -40,15 +38,11 @@ package andromeda.ioc.factory
         public static function suite():ITest
         {
             
-            var suite:TestSuite = new TestSuite( "andromeda.ioc.factory" );
-
-            suite.addTest( andromeda.ioc.factory.strategy.AllTests.suite() ) ;
-
-            // FIXME suite.addTestSuite( ECMAObjectFactoryTest ) ;
-            // FIXME suite.addTestSuite( IObjectFactoryTest ) ;
-            // FIXME suite.addTestSuite( ObjectConfigTest ) ;
-            // FIXME suite.addTestSuite( ObjectFactoryTest ) ;
-
+            var suite:TestSuite = new TestSuite( "andromeda.ioc.factory.strategy" );
+            
+            // FIXME suite.addTestSuite( ObjectFactoryMethodTest ) ;
+            // FIXME suite.addTestSuite( ObjectStaticFactoryMethodTest ) ;
+                        
             return suite;
             
         }

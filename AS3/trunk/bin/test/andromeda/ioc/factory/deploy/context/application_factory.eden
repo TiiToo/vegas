@@ -2,6 +2,9 @@
 
 	objects : 
 	[
+		
+		// test method factory
+		
 		{   
 			id          : "user_filter_factory"  ,
 			type        : "test.factory.UserFilterFactory" ,
@@ -25,6 +28,21 @@
 			type           : "test.User" , 
 			factoryMethod  : {  factory:"user_filter_factory" , name:"build", arguments:[ { value : "lunas" } ]  }
 		}
+		,
+		
+		// test property factory
+		
+		{   
+			id                    : "man"    , 
+			type                  : "String" , 
+			staticFactoryProperty : { type:"test.Civility" , name:"MAN" }
+		}		
+		,
+		{   
+			id              : "name"   , 
+			type            : "String" , 
+			factoryProperty : { factory:"user2" , name:"pseudo" }
+		}	
 	]
 
 }

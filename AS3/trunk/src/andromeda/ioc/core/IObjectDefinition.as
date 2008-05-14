@@ -22,10 +22,12 @@
 */
 package andromeda.ioc.core 
 {
-	import vegas.core.Identifiable;
-	import vegas.data.Map;	
+    import andromeda.ioc.factory.strategy.IObjectFactoryStrategy;
+    
+    import vegas.core.Identifiable;
+    import vegas.data.Map;	
 
-	/**
+    /**
 	 * Describes an object instance, which has property values, constructor argument values, and further information supplied by concrete implementations.
 	 * @author eKameleon
 	 */
@@ -55,12 +57,12 @@ package andromeda.ioc.core
 		 */	
 		function getDestroyMethodName():String ; 
 		
-		/**
-		 * Returns the factory ObjectMethod of this definition.
-		 * @return the factory ObjectMethod object of this definition.
-		 */
-		function getFactoryMethod():ObjectMethod ;		
-		
+        /**
+         * Returns the factory stategy of this definition to create the object.
+         * @return the factory stategy of this definition to create the object.
+         */
+        function getFactoryStrategy():IObjectFactoryStrategy ;    
+        
 		/**
 		 * Returns the name of the method call when the object is instanciate.
 		 * @return the name of the method call when the object is instanciate.
@@ -112,10 +114,10 @@ package andromeda.ioc.core
 		 */	
 		function setDestroyMethodName( value:String = null ):void ; 
 		
-		/**
-		 * Sets the factory ObjectMethod of this definition.
-		 */
-		function setFactoryMethod( value:ObjectMethod ):void ;	
+        /**
+         * Sets the factory stategy of this definition to create the object.
+         */
+        function setFactoryStrategy( value:IObjectFactoryStrategy ):void  ;
 		
 		/**
 		 * Init the name of the method.

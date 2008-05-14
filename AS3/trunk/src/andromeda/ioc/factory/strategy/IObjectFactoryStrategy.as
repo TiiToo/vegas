@@ -20,19 +20,15 @@
   Contributor(s) :
   
 */
-package andromeda.ioc.core 
+package andromeda.ioc.factory.strategy 
 {
-	import buRRRn.ASTUce.framework.TestCase;
-	
-	/**
-	 * @author eKameleon
-	 */
-	public class ObjectFactoryMethodTest extends TestCase 
-	{
 
-		public function ObjectFactoryMethodTest(name:String = "")
-		{
-			super(name);
-		}
-	}
+    /**
+     * This interface defines factory strategies to replace the natural strategy to create an object in the factory.
+     * @author eKameleon
+     */
+    public interface IObjectFactoryStrategy 
+    {
+    	
+    }
 }

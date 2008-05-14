@@ -45,6 +45,11 @@ package andromeda.ioc.core
 		 */
 		public static const CONFIGURATION:String = "configuration" ;  
 
+        /**
+         * Defines the label of the 'evaluators' attribure.
+         */
+        public static const EVALUATORS:String = "evaluators" ;  
+
 		/**
 		 * Defines the label of the 'factory' attribure.
 		 */
@@ -76,9 +81,14 @@ package andromeda.ioc.core
 		public static const OBJECT_DESTROY_METHOD_NAME:String = "destroy" ;  
         
         /**
-		 * The name of the external object property to register the destroy method name.
+		 * The name of the "factoryMethod" object definition attribute.
 		 */
 		public static const OBJECT_FACTORY_METHOD:String = "factoryMethod" ;  
+		
+        /**
+         * The name of the "factoryProperty" object definition attribute.
+         */
+        public static const OBJECT_FACTORY_PROPERTY:String = "factoryProperty" ;  		
 		
 		/**
 		 * The name of the external object property to define the id of the object.
@@ -114,7 +124,12 @@ package andromeda.ioc.core
 		 * The name of the external object property to define the static factory flag of the object.
 		 */
 		public static const OBJECT_STATIC_FACTORY_METHOD:String = "staticFactoryMethod" ;  
-			
+		
+        /**
+         * The name of the external object property to define the static property flag of the object.
+         */
+        public static const OBJECT_STATIC_FACTORY_PROPERTY:String = "staticFactoryProperty" ;  		
+		
 		/**
 		 * Defines the label of the 'objects' top-level attribute.
 		 */

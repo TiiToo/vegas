@@ -20,17 +20,17 @@
   Contributor(s) :
   
 */
-package andromeda.ioc.core 
+package andromeda.ioc.evaluators 
 {
-	import buRRRn.ASTUce.framework.TestCase;
+    import buRRRn.ASTUce.framework.TestCase;
 	
 	/**
 	 * @author eKameleon
 	 */
-	public class ObjectStaticFactoryMethodTest extends TestCase 
+	public class ObjectFactoryMethodTest extends TestCase 
 	{
 
-		public function ObjectStaticFactoryMethodTest(name:String = "")
+		public function ObjectFactoryMethodTest(name:String = "")
 		{
 			super(name);
 		}

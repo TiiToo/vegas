@@ -22,9 +22,14 @@
 */
 package andromeda.ioc.core 
 {
+    import andromeda.ioc.factory.strategy.IObjectFactoryStrategy;
+    import andromeda.ioc.factory.strategy.ObjectFactoryMethod;
+    import andromeda.ioc.factory.strategy.ObjectFactoryProperty;
+    import andromeda.ioc.factory.strategy.ObjectStaticFactoryMethod;
+    import andromeda.ioc.factory.strategy.ObjectStaticFactoryProperty;
+    
     import vegas.core.CoreObject;
     import vegas.data.Map;
-    import vegas.data.map.HashMap;
     import vegas.errors.IllegalArgumentError;    
 
     /**
@@ -114,20 +119,37 @@ package andromeda.ioc.core
             definition.setInitMethodName( o[ ObjectAttribute.OBJECT_INIT_METHOD_NAME ] as String ) ;
             definition.setScope( o[ ObjectAttribute.OBJECT_SCOPE ] as String ) ;
             
-            definition.setProperties( createNewProperties( o[ ObjectAttribute.OBJECT_PROPERTIES ] ) ) ;
+            definition.setProperties( ObjectProperty.create( o[ ObjectAttribute.OBJECT_PROPERTIES ] as Array ) ) ;
+            
             definition.setMethods( o[ ObjectAttribute.OBJECT_METHODS ] as Array ) ;
             
-            var oMethod:ObjectMethod = null ;
+            var oStrategy:IObjectFactoryStrategy = null ;
             
-            if ( ObjectAttribute.OBJECT_FACTORY_METHOD in o )
+            switch( true )
             {
-            	oMethod = ObjectFactoryMethod.create( o[ ObjectAttribute.OBJECT_FACTORY_METHOD ] ) ;
+            	case ObjectAttribute.OBJECT_FACTORY_METHOD in o :
+            	{
+                	oStrategy = ObjectFactoryMethod.create( o[ ObjectAttribute.OBJECT_FACTORY_METHOD ] ) ;
+                	break ;
+                }
+                case ObjectAttribute.OBJECT_FACTORY_PROPERTY in o :
+                {
+                    oStrategy = ObjectFactoryProperty.create( o[ ObjectAttribute.OBJECT_FACTORY_PROPERTY ] ) ;
+                    break ;
+                }
+                case ObjectAttribute.OBJECT_STATIC_FACTORY_METHOD in o :
+                {
+                    oStrategy = ObjectStaticFactoryMethod.create( o[ ObjectAttribute.OBJECT_STATIC_FACTORY_METHOD ] ) ;
+                    break ;	
+                }
+                case ObjectAttribute.OBJECT_STATIC_FACTORY_PROPERTY in o :
+                {
+                    oStrategy = ObjectStaticFactoryProperty.create( o[ ObjectAttribute.OBJECT_STATIC_FACTORY_PROPERTY ] ) ;
+                    break ;	
+                }
             }
-            else if ( ObjectAttribute.OBJECT_STATIC_FACTORY_METHOD in o )
-            {
-                oMethod = ObjectStaticFactoryMethod.create( o[ ObjectAttribute.OBJECT_STATIC_FACTORY_METHOD ] ) ;	
-            }
-            definition.setFactoryMethod( oMethod ) ;
+                        
+            definition.setFactoryStrategy( oStrategy ) ;
                 
             return definition ;            
             
@@ -152,12 +174,12 @@ package andromeda.ioc.core
         }
         
         /**
-         * Returns the factory ObjectMethod of this definition.
-         * @return the factory ObjectMethod object of this definition.
+         * Returns the factory stategy of this definition to create the object.
+         * @return the factory stategy of this definition to create the object.
          */
-        public function getFactoryMethod():ObjectMethod    
+        public function getFactoryStrategy():IObjectFactoryStrategy    
         {
-            return _factoryMethod ;
+            return _factoryStrategy ;
         }        
         
         /**
@@ -243,14 +265,11 @@ package andromeda.ioc.core
         }
         
         /**
-         * Sets the factory ObjectMethod of this definition.
+         * Sets the factory stategy of this definition to create the object.
          */
-        public function setFactoryMethod( value:ObjectMethod ):void    
+        public function setFactoryStrategy( value:IObjectFactoryStrategy ):void    
         {
-            if ( value != null && ( value is ObjectFactoryMethod || value is ObjectStaticFactoryMethod ) )
-            {
-                _factoryMethod = value ;
-            }
+            _factoryStrategy = value ;
         }            
         
         /**
@@ -312,9 +331,9 @@ package andromeda.ioc.core
         private var _destroyMethodName:String;
         
         /**
-         * The factory method of this definition.
+         * The IObjectFactoryStrategy of this definition.
          */
-        private var _factoryMethod:ObjectMethod ;
+        private var _factoryStrategy:IObjectFactoryStrategy ;
         
         /**
          * The internal id of this object.
@@ -360,65 +379,6 @@ package andromeda.ioc.core
          * The type of the IDefinition object.
          */
         private var _type : String;
-        
-        /**
-         * Returns and creates the Map of all properties.
-         * @private
-         * @return and creates the Map of all properties.
-         */
-        protected static function createNewProperties( a:Array = null ):HashMap
-        {
-            if ( a == null )
-            {
-                return null ;
-            }
-            var len:uint = a.length ;
-            if ( len > 0 )
-            {
-                
-                var prop:Object ;
-                var name:String ;
-                var properties:HashMap = new HashMap() ;
-                var ref:String  ;
-                var value:* ;
-                
-                for (var i:Number = 0 ; i<len ; i++)
-                {
-                    
-                    prop  = a[i] ;
-                    name  = prop[ ObjectAttribute.NAME ] as String ;
-                    
-                    if ( name == null || name.length == 0 )
-                    {
-                    	continue ;
-                    }
-                    
-                    
-                    
-                    ref   = prop[ ObjectAttribute.REFERENCE ] as String  ;
-                    
-                    value = prop[ ObjectAttribute.VALUE ] ;
-                    
-                    if ( ref != null ) 
-                    {
-                        properties.put( name , new ObjectProperty( name , ref , ObjectAttribute.REFERENCE ) ) ; // ref property    
-                    }
-                    else 
-                    {
-                        properties.put( name , new ObjectProperty( name , value ) ) ; // value property    
-                    }
-    
-                }
-
-                return ( properties.size() > 0 ) ? properties : null ;
-
-            }
-            else
-            {
-                return null ;    
-            }    
-        }
-        
         
     }
 

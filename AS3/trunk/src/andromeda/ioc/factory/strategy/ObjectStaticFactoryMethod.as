@@ -20,14 +20,16 @@
   Contributor(s) :
   
 */
-package andromeda.ioc.core 
+package andromeda.ioc.factory.strategy 
 {
-
-	/**
-	 * This object create a static delegate factory configured in the IObjectDefinition and replace the natural factory of the ObjectFactory.
+    import andromeda.ioc.core.ObjectAttribute;
+    import andromeda.ioc.core.ObjectMethod;    
+    
+    /**
+	 * This object create a static proxy factory configured in the IObjectDefinition and replace the natural factory of the ObjectFactory.
 	 * @author eKameleon
 	 */
-	public class ObjectStaticFactoryMethod extends ObjectMethod 
+	public class ObjectStaticFactoryMethod extends ObjectMethod implements IObjectFactoryStrategy 
 	{
 		
 		/**
@@ -41,7 +43,12 @@ package andromeda.ioc.core
 			super( name , arguments ) ;
 			this.type = type ;
 		}
-		
+
+        /**
+         * The string representation of the type name of the static factory class.
+         */
+        public var type:String ;
+        
 		/**
 		 * Returns the ObjectStaticFactoryMethod representation of the specified generic object or null.
 		 * @return the ObjectStaticFactoryMethod representation of the specified generic object or null.
@@ -57,9 +64,9 @@ package andromeda.ioc.core
 			{
 				return new ObjectStaticFactoryMethod
 				( 
-					factoryMethod[ ObjectAttribute.TYPE      ] , 
-					factoryMethod[ ObjectAttribute.NAME      ] , 
-					factoryMethod[ ObjectAttribute.ARGUMENTS ]  
+					factoryMethod[ ObjectAttribute.TYPE      ] as String , 
+					factoryMethod[ ObjectAttribute.NAME      ] as String , 
+					factoryMethod[ ObjectAttribute.ARGUMENTS ] as Array
 				) ;
 			}
 			else
@@ -67,11 +74,6 @@ package andromeda.ioc.core
 				return null ;
 			}		
 		}		
-		
-		/**
-		 * The string representation of the type name of the static factory class.
-		 */
-		public var type:String ;
-		
+        
 	}
 }

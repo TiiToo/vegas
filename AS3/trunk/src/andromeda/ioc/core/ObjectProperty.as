@@ -24,7 +24,9 @@ package andromeda.ioc.core
 {
     import system.Reflection;
     
-    import vegas.core.CoreObject;    
+    import vegas.core.CoreObject;
+    import vegas.data.Map;
+    import vegas.data.map.HashMap;    
 
     /**
      * This object defines a property definition and this value in an object definition.
@@ -37,12 +39,13 @@ package andromeda.ioc.core
 		 * Creates a new ObjectProperty instance.
 		 * @param name The name of the property.
 		 * @param value The value of the property.
-		 * @param type The type of the property ( ObjectAttribute.REFERENCE or by default ObjectAttribute.VALUE )
+		 * @param policy The policy of the property ( ObjectAttribute.REFERENCE or by default ObjectAttribute.VALUE )
+		 * @param evaluators The Array representation of all evaluators who evaluate the value of the property.
 		 */
-        public function ObjectProperty( name:String , value:* , type:String="value" , evaluators:Array = null )
+        public function ObjectProperty( name:String , value:* , policy:String="value" , evaluators:Array = null )
         {
             this.name       = name ;
-            this.type       = type == ObjectAttribute.REFERENCE ? ObjectAttribute.REFERENCE : ObjectAttribute.VALUE ;
+            this.policy     = policy == ObjectAttribute.REFERENCE ? ObjectAttribute.REFERENCE : ObjectAttribute.VALUE ;
             this.value      = value ;
             this.evaluators = evaluators ;
         }
@@ -58,14 +61,67 @@ package andromeda.ioc.core
 		public var evaluators:Array ;
 		
 		/**
-		 * The type of the property
+		 * The policy of the property
 		 */
-		public var type:String ;
+		public var policy:String ;
 		
 		/**
 		 * The value of the property.
 		 */
 		public var value:* ;     
+        
+        /**
+         * Creates the Map definition of all properties defines in the passed-in array.
+         * @return the Map definition of all properties defines in the passed-in array.
+         */
+        public static function create( a:Array = null ):Map
+        {
+            
+            if ( a == null || a.length == 0 )
+            {
+                return null ;
+            }
+
+            var properties:HashMap = new HashMap() ; // use HashMap or ArrayMap (sort elements)
+
+            var prop:Object ;
+            var name:String ;
+            var ref:String  ;
+            var value:* ; 
+
+            var evaluators:Array ;
+
+            var len:uint = a.length ;
+
+            for (var i:uint = 0 ; i<len ; i++)
+            {
+                    
+                prop  = a[i] ;
+                name  = prop[ ObjectAttribute.NAME ] as String ;
+                    
+                if ( name == null || name.length == 0 )
+                {
+                    continue ;
+                }
+                    
+                ref        = prop[ ObjectAttribute.REFERENCE ] as String  ;
+                value      = prop[ ObjectAttribute.VALUE ] ;
+                evaluators = prop[ObjectAttribute.EVALUATORS] as Array ;
+                
+                if ( ref != null ) 
+                {
+                    properties.put( name , new ObjectProperty( name , ref , ObjectAttribute.REFERENCE , evaluators ) ) ; // ref property    
+                }
+                else 
+                {
+                    properties.put( name , new ObjectProperty( name , value , ObjectAttribute.VALUE , evaluators ) ) ; // value property    
+                }
+    
+            }
+
+            return ( properties.size() > 0 ) ? properties : null ;
+
+        }        
         
 		/**
 		 * Returns the string representation of this instance.
