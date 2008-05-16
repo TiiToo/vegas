@@ -1,4 +1,4 @@
-// Copyright 2007. Adobe Systems Incorporated. All Rights Reserved.
+﻿// Copyright 2007. Adobe Systems Incorporated. All Rights Reserved.
 package fl.accessibility 
 {
 	import fl.controls.Button;
@@ -36,7 +36,9 @@ package fl.accessibility
      * @langversion 3.0
      * @playerversion Flash 9.0.28.0
 	 */
-	public class ButtonAccImpl extends LabelButtonAccImpl {
+	public class ButtonAccImpl extends LabelButtonAccImpl 
+	{
+	
 		/**
 		 *  @private
          *

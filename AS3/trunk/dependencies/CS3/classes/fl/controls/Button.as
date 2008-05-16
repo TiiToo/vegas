@@ -151,7 +151,7 @@ package fl.controls
 		 */
 		public function set emphasized(value:Boolean):void {
 			_emphasized = value;
-			invalidate(InvalidationType.STYLES)
+			invalidate(InvalidationType.STYLES);
 		}
 		
 		/**

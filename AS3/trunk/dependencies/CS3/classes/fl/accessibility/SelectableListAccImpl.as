@@ -1,4 +1,4 @@
-// Copyright 2007. Adobe Systems Incorporated. All Rights Reserved.
+﻿// Copyright 2007. Adobe Systems Incorporated. All Rights Reserved.
 package fl.accessibility 
 {
 	import flash.accessibility.Accessibility;
@@ -41,7 +41,7 @@ package fl.accessibility
 			SelectableList.createAccessibilityImplementation = createAccessibilityImplementation;
 			return true;
 		}
-
+		
 		//--------------------------------------------------------------------------
 		//  Class constants
 		//--------------------------------------------------------------------------

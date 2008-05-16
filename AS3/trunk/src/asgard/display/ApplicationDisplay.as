@@ -25,7 +25,9 @@ package asgard.display
 {
     import flash.display.DisplayObject;
     import flash.display.DisplayObjectContainer;
-    import flash.display.Stage;    
+    import flash.display.Stage;
+    
+    import asgard.net.FlashVars;    
 
     /**
 	 * The ApplicationDisplay class is a MovieClip class to creates the main class of your applications in AS3.
@@ -46,12 +48,18 @@ package asgard.display
 			
 			super( id , isConfigurable , name ) ;
 			
-			ApplicationDisplay.stage  = this.stage ;
-			ApplicationDisplay.root   = this       ;
-			ApplicationDisplay.global = _global ;
+			ApplicationDisplay.flashVars = new FlashVars(this) ;
+			ApplicationDisplay.stage     = this.stage ;
+			ApplicationDisplay.root      = this       ;
+			ApplicationDisplay.global    = _global ;
 			
 		}
-
+		
+		/**
+		 * The global reference of all FlashVars of this application.
+		 */
+		public static var flashVars:FlashVars ;
+		
 		/**
 		 * The global reference of the application.
 		 */
@@ -66,24 +74,6 @@ package asgard.display
 		 * The stage reference of the application.
 		 */
 		public static var stage:Stage ;
-		
-		/**
-		 * Returns the root reference of the application. 
-		 * @return the root reference of the application.
-		 */
-		public static function getRoot():DisplayObjectContainer
-		{
-			return root ;
-		}
-
-		/**
-		 * Returns the stage reference of the application.
-		 * @return the stage reference of the application.
-		 */
-		public static function getStage():Stage
-		{
-			return stage ;
-		}
 		
 	}
 	

@@ -553,21 +553,26 @@ package fl.containers
          * @langversion 3.0
          * @playerversion Flash 9.0.28.0
 		 */
-		public function load(request:URLRequest=null, context:LoaderContext = null):void {
+		public function load(request:URLRequest=null, context:LoaderContext = null):void 
+		{
+			
 			_unload();
-			if ((request == null || request.url == null) && (_source == null || _source == "")) { return; }
+			
+			if ((request == null || request.url == null) && (_source == null || _source == "")) 
+			{ 
+				return; 
+			}
 			
 			// Try and load the asset as a class/symbol/instance
 			var asset:DisplayObject = getDisplayObjectInstance(source);
-			if (asset != null) {
+			if (asset != null) 
+			{
 				contentClip.addChild(asset);
 				contentInited = true;
 				invalidate(InvalidationType.SIZE);
 				return;
 			}
 			
-			// Asset didn't load.  Try a URL Request
-			var request:URLRequest = request;
 			if (request == null) { // Request is null, so create it using the source.
 				request = new URLRequest(_source.toString());
 			}
@@ -642,7 +647,7 @@ package fl.containers
 				contentClip.removeChild(loader);
 				try {
 					loader.close();
-				} catch (e:Error) {
+				} catch (e1:Error) {
 					// Don't throw close errors.
 				}
 				
@@ -755,16 +760,24 @@ package fl.containers
          * @playerversion Flash 9.0.28.0
 		 */
 		protected function drawLayout():void {
-			if (!contentInited) { return; }
-			var resized:Boolean = false;
+			
+			if (!contentInited) 
+			{ 
+				return; 
+			}
+			
+			//var resized:Boolean = false;
 			
 			var w:Number;
 			var h:Number;			
-			if (loader) {
+			if (loader) 
+			{
 				var cl:LoaderInfo = loader.contentLoaderInfo;
 				w = cl.width;
-				h = cl.height
-			} else {
+				h = cl.height;
+			} 
+			else 
+			{
 				w = contentClip.width;	
 				h = contentClip.height;	
 			}

@@ -1,4 +1,4 @@
-// Copyright 2007. Adobe Systems Incorporated. All Rights Reserved.
+﻿// Copyright 2007. Adobe Systems Incorporated. All Rights Reserved.
 package fl.accessibility 
 {
 	import flash.accessibility.AccessibilityImplementation;
@@ -245,9 +245,11 @@ package fl.accessibility
 			var accState:uint = STATE_SYSTEM_NORMAL;
 			if (!UIComponent(master).enabled) {
 				accState |= STATE_SYSTEM_UNAVAILABLE;
-			} else {
-				accState |= STATE_SYSTEM_FOCUSABLE
-				if (UIComponent(master) == UIComponent(master).getFocus()) {
+			} else 
+			{
+				accState |= STATE_SYSTEM_FOCUSABLE ;
+				if (UIComponent(master) == UIComponent(master).getFocus()) 
+				{
 					accState |= STATE_SYSTEM_FOCUSED;
 				}
 			}
