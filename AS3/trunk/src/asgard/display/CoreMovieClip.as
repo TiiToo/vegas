@@ -23,6 +23,7 @@
 package asgard.display 
 {
     import flash.display.MovieClip;
+    import flash.events.Event;
     
     import asgard.config.Config;
     import asgard.config.ConfigCollector;
@@ -31,7 +32,7 @@ package asgard.display
     
     import vegas.core.HashCode;
     import vegas.logging.ILogger;
-    import vegas.logging.Log;	
+    import vegas.logging.Log;    
 
     /**
 	 * The CoreMovieClip class extends the flash.display.MovieClip class and implements the IDisplayObject interface.
@@ -72,6 +73,8 @@ package asgard.display
 				this.name = name ;
 			}
 			this.isConfigurable = isConfigurable ;
+            addEventListener( Event.ADDED_TO_STAGE      , addedToStage ) ;
+            addEventListener( Event.REMOVED_FROM_STAGE  , removedFromStage ) ;
 			setLogger() ;
 		}
 		
@@ -206,6 +209,22 @@ package asgard.display
 		{
 			// overrides this method.
 		}
+
+        /**
+         * Invoked when the display is added to the stage.
+         */
+        protected function addedToStage( e:Event = null ):void
+        {
+            //         
+        }        
+
+        /**
+         * Invoked when the display is removed from the stage.
+         */
+        protected function removedFromStage( e:Event = null ):void
+        {
+            //
+        }
 
 		/**
 		 * @private

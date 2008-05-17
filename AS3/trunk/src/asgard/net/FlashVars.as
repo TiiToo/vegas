@@ -69,7 +69,7 @@ package asgard.net
     	 */
     	public function FlashVars( root:DisplayObjectContainer ):void
     	{
-    		parameters = root.loaderInfo.parameters ;
+    		parameters = root.loaderInfo.parameters || null ;
     	}
     	
     	/**

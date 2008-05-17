@@ -48,7 +48,7 @@ package asgard.display
 			
 			super( id , isConfigurable , name ) ;
 			
-			ApplicationDisplay.flashVars = new FlashVars(this) ;
+			ApplicationDisplay.flashVars = new FlashVars( this ) ;
 			ApplicationDisplay.stage     = this.stage ;
 			ApplicationDisplay.root      = this       ;
 			ApplicationDisplay.global    = _global ;

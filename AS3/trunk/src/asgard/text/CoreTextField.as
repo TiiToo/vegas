@@ -22,6 +22,7 @@
 */
 package asgard.text 
 {
+    import flash.events.Event;
     import flash.text.TextField;
     
     import asgard.config.Config;
@@ -64,6 +65,8 @@ package asgard.text
             this.width  = width  ;
             this.height = height ;
             this.isConfigurable = isConfigurable ;
+            addEventListener( Event.ADDED_TO_STAGE      , addedToStage ) ;
+            addEventListener( Event.REMOVED_FROM_STAGE  , removedFromStage ) ;
             setLogger() ;
         }
         
@@ -198,7 +201,23 @@ package asgard.text
         {
             // overrides this method.
         }
-    
+
+        /**
+         * Invoked when the display is added to the stage.
+         */
+        protected function addedToStage( e:Event = null ):void
+        {
+            //         
+        }        
+
+        /**
+         * Invoked when the display is removed from the stage.
+         */
+        protected function removedFromStage( e:Event = null ):void
+        {
+            //
+        }
+
         /**
          * @private
          */

@@ -22,18 +22,19 @@
 */
 package asgard.display 
 {
-	import flash.display.Sprite;
-	
-	import asgard.config.Config;
-	import asgard.config.ConfigCollector;
-	
-	import system.Reflection;
-	
-	import vegas.core.HashCode;
-	import vegas.logging.ILogger;
-	import vegas.logging.Log;	
+    import flash.display.Sprite;
+    import flash.events.Event;
+    
+    import asgard.config.Config;
+    import asgard.config.ConfigCollector;
+    
+    import system.Reflection;
+    
+    import vegas.core.HashCode;
+    import vegas.logging.ILogger;
+    import vegas.logging.Log;	
 
-	/**
+    /**
 	 * The CoreSprite class extends the flash.display.Sprite class and implements the IDisplayObject interface.
      * @example
      * <pre class="prettyprint">
@@ -72,6 +73,8 @@ package asgard.display
 				this.name = name ;
 			}
 			this.isConfigurable = isConfigurable ;
+            addEventListener( Event.ADDED_TO_STAGE      , addedToStage ) ;
+            addEventListener( Event.REMOVED_FROM_STAGE  , removedFromStage ) ;
 			setLogger() ;
 		}
 		
@@ -116,6 +119,9 @@ package asgard.display
 			}
 		}
 
+
+
+
 		/**
 		 * Returns the internal <code class="prettyprint">ILogger</code> reference of this <code class="prettyprint">ILogable</code> object.
 		 * @return the internal <code class="prettyprint">ILogger</code> reference of this <code class="prettyprint">ILogable</code> object.
@@ -144,7 +150,7 @@ package asgard.display
 	     */
 	    public function isLocked():Boolean 
 	    {
-        	return ___isLock___ ;
+        	return ___isLock___ == true ;
     	}
 		
     	/**
@@ -205,6 +211,22 @@ package asgard.display
 		{
 			// overrides this method.
 		}
+        
+        /**
+         * Invoked when the display is added to the stage.
+         */
+        protected function addedToStage( e:Event = null ):void
+        {
+            //         
+        }        
+
+        /**
+         * Invoked when the display is removed from the stage.
+         */
+        protected function removedFromStage( e:Event = null ):void
+        {
+            //
+        }
 
 		/**
 		 * @private
@@ -226,7 +248,7 @@ package asgard.display
 	     * The internal flag to indicates if the display is locked or not.
 	     * @private
 	     */ 
-	    private var ___isLock___:Boolean = false ;
+	    private var ___isLock___:Boolean ;
 
 		/**
 		 * The internal ILogger reference of this object.
