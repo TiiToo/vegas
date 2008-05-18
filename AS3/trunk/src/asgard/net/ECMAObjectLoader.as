@@ -250,23 +250,7 @@ package asgard.net
          */
         public function set factory( value:ECMAObjectFactory ):void
         {
-
-        	if ( _factory != null )
-        	{
-                _factory.removeEventListener( IOErrorEvent.IO_ERROR   , fireEvent ) ;
-                _factory.removeEventListener( ProgressEvent.PROGRESS  , fireEvent ) ;
-                _factory.removeEventListener( Event.COMPLETE          , fireEvent ) ;
-                _factory.removeEventListener( ActionEvent.START       , fireEvent ) ;
-                _factory.removeEventListener( ActionEvent.FINISH      , main      ) ;
-        	}
-        	
         	_factory = value || ECMAObjectFactory.getInstance() ;
-        	   
-        	_factory.addEventListener( IOErrorEvent.IO_ERROR   , fireEvent ) ;
-            _factory.addEventListener( ProgressEvent.PROGRESS  , fireEvent ) ;
-            _factory.addEventListener( Event.COMPLETE          , fireEvent ) ;
-            _factory.addEventListener( ActionEvent.START       , fireEvent ) ;
-            _factory.addEventListener( ActionEvent.FINISH      , main      ) ;   
         }
         
         /**
@@ -293,7 +277,7 @@ package asgard.net
         /**
          * Switch the verbose mode of this loader.
          */
-        public var verbose:Boolean = true ;
+        public var verbose:Boolean = false ;
         
         /**
          * Clear the loader.
@@ -341,7 +325,7 @@ package asgard.net
         {
             if ( verbose )
             {        	
-                getLogger().info( e ) ; // no event before the IOC factory initialization.
+                getLogger().info( this + " fireEvent(" + e + ")" ) ; // no event before the IOC factory initialization.
             }
             dispatchEvent( e ) ;
         }
@@ -353,10 +337,42 @@ package asgard.net
         {
             if ( verbose )
             {
-                getLogger().debug( e ) ;
+                getLogger().debug( this + " main(" + e + ")" ) ;
             }
             fireEvent(e) ;
         }
+        
+        /**
+         * Register the current factory referenceof this loader. 
+         */
+        public function registerFactory():void
+        {
+        	if ( _factory != null && _isRegister == false )
+            {
+                _factory.addEventListener( IOErrorEvent.IO_ERROR   , fireEvent ) ;
+                _factory.addEventListener( ProgressEvent.PROGRESS  , fireEvent ) ;
+                _factory.addEventListener( Event.COMPLETE          , fireEvent ) ;
+                _factory.addEventListener( ActionEvent.START       , fireEvent ) ;
+                _factory.addEventListener( ActionEvent.FINISH      , main      ) ;
+                _isRegister = true ;
+            }
+        }
+
+        /**
+         * Unregister the current factory referenceof this loader. 
+         */
+        public function unregisterFactory():void
+        {
+            if ( _factory != null && _isRegister )
+            {
+                _factory.removeEventListener( IOErrorEvent.IO_ERROR   , fireEvent ) ;
+                _factory.removeEventListener( ProgressEvent.PROGRESS  , fireEvent ) ;
+                _factory.removeEventListener( Event.COMPLETE          , fireEvent ) ;
+                _factory.removeEventListener( ActionEvent.START       , fireEvent ) ;
+                _factory.removeEventListener( ActionEvent.FINISH      , main      ) ;
+                _isRegister = false  ;
+            }
+        }        
         
         /**
          * The array representation of the object definitions to insert in the IOC factory container.
@@ -382,6 +398,11 @@ package asgard.net
          * @private
          */
         private var _internalLoader:Class ;
+        
+        /**
+         * @private
+         */
+        private var _isRegister:Boolean ;
         
         /**
          * @private
@@ -419,6 +440,7 @@ package asgard.net
             }
             else
             {
+            	registerFactory() ;
                 create() ;    
             }
         }
@@ -507,6 +529,7 @@ package asgard.net
             {
                 getLogger().debug(e) ;
             }
+            registerFactory() ;
             _imports.clear() ;
         }
 

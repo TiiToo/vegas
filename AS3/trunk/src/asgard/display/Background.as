@@ -283,8 +283,8 @@ package asgard.display
         public function initBackgroundPen():IPen
         {
             var p:RoundedComplexRectanglePen = new RoundedComplexRectanglePen( this ) ;
-            p.fill       = _fillStyle ;
-            p.line       = _lineStyle ;
+            p.fill = _fillStyle ;
+            p.line = _lineStyle ;
             return p ;    
         }
 
@@ -347,13 +347,11 @@ package asgard.display
          */
         protected var _w:Number ;
         
-        
         /**
          * @private
          */
         private var _fillStyle:IFillStyle ;
-
-        
+                
         /**
          * @private
          */
