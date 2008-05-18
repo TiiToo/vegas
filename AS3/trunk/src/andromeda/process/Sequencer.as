@@ -27,7 +27,7 @@ package andromeda.process
     import vegas.data.iterator.Iterator;
     import vegas.data.queue.LinearQueue;
     import vegas.data.queue.TypedQueue;
-    import vegas.util.Serializer;
+    import vegas.util.Serializer;    
 
     /**
      * A Sequencer of IAction process.
@@ -46,7 +46,7 @@ package andromeda.process
      * </pre>
      * @author eKameleon
      */
-    public class Sequencer extends Action
+    public class Sequencer extends Action implements IStoppable
     {
         
         /**
@@ -221,8 +221,10 @@ package andromeda.process
          * @param noEvent A boolean flag to disabled the events dispatched by this method if is <code class="prettyprint">true</code>.
          * @param callback Function to map and check the current process in progress in the sequencer before reset it.
          */
-        public function stop( noEvent:Boolean = false , callback:Function = null ):void 
+        public function stop( ...args:Array ):*
         {
+        	var noEvent:Boolean   = new Boolean( args[0] as Boolean ) ;
+        	var callback:Function = args[1] as Function ;
             if ( running ) 
             {
                 _cur.addEventListener(ActionEvent.FINISH, run) ;
@@ -238,10 +240,18 @@ package andromeda.process
                 setRunning(false) ;
                 if ( noEvent == true ) 
                 {
-                    return ;
+                    //
                 }
-                notifyStopped() ;
-                notifyFinished() ;
+                else
+                {
+                    notifyStopped() ;
+                    notifyFinished() ;
+                }
+                return true ;
+            }
+            else
+            {
+            	return false ;
             }
         }
 

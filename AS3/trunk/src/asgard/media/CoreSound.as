@@ -530,7 +530,7 @@ package asgard.media
 		 * Stops the sound playing in the channel.
 		 * @return <code class="prettyprint">true</code> if the stop method can be use (the internal SoundChannel of this Sound object is not null).
 		 */	
-		public function stop():Boolean
+		public function stop( ...args:Array ):*
 		{
 			if ( channel != null )
 			{

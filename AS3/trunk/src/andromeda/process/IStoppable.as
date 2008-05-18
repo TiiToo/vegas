@@ -33,7 +33,7 @@ package andromeda.process
         /**
          * Stop the process.
          */
-        function stop():Boolean ;
+        function stop( ...args:Array ):* ;
     
     }
     
