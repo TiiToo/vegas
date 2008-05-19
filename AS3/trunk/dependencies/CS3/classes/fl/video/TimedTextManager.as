@@ -1,4 +1,4 @@
-// Copyright � 2004-2007. Adobe Systems Incorporated. All Rights Reserved.
+﻿// Copyright � 2004-2007. Adobe Systems Incorporated. All Rights Reserved.
 package fl.video 
 {
 	import flash.events.*;
@@ -111,7 +111,7 @@ package fl.video
 
 		// used to manage opening and closing tags in openFontTag() and closeFontTags()
 		flvplayback_internal var fontTagOpened:Object;
-		flvplayback_internal var italicTagOpen:Boolean
+		flvplayback_internal var italicTagOpen:Boolean;
 		flvplayback_internal var boldTagOpen:Boolean;
 
 		// used to iterate through attributes that apply to entire

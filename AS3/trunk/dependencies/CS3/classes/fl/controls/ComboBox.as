@@ -1,32 +1,32 @@
-// Copyright 2007. Adobe Systems Incorporated. All Rights Reserved.
+﻿// Copyright 2007. Adobe Systems Incorporated. All Rights Reserved.
 package fl.controls 
 {
-	import flash.display.DisplayObject;
-	import flash.events.Event;
-	import flash.events.FocusEvent;
-	import flash.events.KeyboardEvent;
-	import flash.events.MouseEvent;
-	import flash.geom.Point;
-	import flash.text.TextField;
-	import flash.text.TextFormat;
-	import flash.ui.Keyboard;
-	
-	import fl.containers.BaseScrollPane;
-	import fl.controls.BaseButton;
-	import fl.controls.List;
-	import fl.controls.SelectableList;
-	import fl.controls.TextInput;
-	import fl.controls.listClasses.ICellRenderer;
-	import fl.core.InvalidationType;
-	import fl.core.UIComponent;
-	import fl.data.DataProvider;
-	import fl.data.SimpleCollectionItem;
-	import fl.events.ComponentEvent;
-	import fl.events.DataChangeEvent;
-	import fl.events.ListEvent;
-	import fl.managers.IFocusManagerComponent;	
+    import flash.display.DisplayObject;
+    import flash.events.Event;
+    import flash.events.FocusEvent;
+    import flash.events.KeyboardEvent;
+    import flash.events.MouseEvent;
+    import flash.geom.Point;
+    import flash.text.TextField;
+    import flash.text.TextFormat;
+    import flash.ui.Keyboard;
+    
+    import fl.containers.BaseScrollPane;
+    import fl.controls.BaseButton;
+    import fl.controls.List;
+    import fl.controls.SelectableList;
+    import fl.controls.TextInput;
+    import fl.controls.listClasses.ICellRenderer;
+    import fl.core.InvalidationType;
+    import fl.core.UIComponent;
+    import fl.data.DataProvider;
+    import fl.data.SimpleCollectionItem;
+    import fl.events.ComponentEvent;
+    import fl.events.DataChangeEvent;
+    import fl.events.ListEvent;
+    import fl.managers.IFocusManagerComponent;    
 
-	//--------------------------------------
+    //--------------------------------------
     //  Events
     //--------------------------------------
     /**
@@ -489,7 +489,7 @@ package fl.controls
          * @langversion 3.0
          * @playerversion Flash 9.0.28.0
 		 */
-		protected var highlightedCell:int = -1
+		protected var highlightedCell:int = -1 ;
 		/**
          * @private (protected)
          *
@@ -1392,7 +1392,7 @@ package fl.controls
 		 */
 		override protected function draw():void {
 			// Fix the selectedIndex before redraw.
-			var _selectedIndex = selectedIndex;
+			var _selectedIndex:int = selectedIndex;
 			
 			// Check if index is -1, and it is allowed.
 			if (_selectedIndex == -1 && (prompt != null || editable || length == 0)) {
@@ -1453,7 +1453,7 @@ package fl.controls
 		protected function setEmbedFonts():void {
 			var embed:Object = getStyleValue("embedFonts");
 			if (embed != null) {
-				inputField.textField.embedFonts = embed;
+				inputField.textField.embedFonts = embed as Boolean ;
 			}	
 		}
 		
@@ -1598,7 +1598,7 @@ package fl.controls
 			event.stopPropagation();
 			dispatchEvent(event);
 			if (isOpen) {
-				close()
+				close();
 			} else {
 				open();
 				// Add a listener to listen for press/drag/release behavior.
@@ -1621,7 +1621,7 @@ package fl.controls
 			}
 			
 			editableValue = null;
-			var startIndex = selectedIndex;
+			var startIndex:int = selectedIndex;
 			selectedIndex = event.target.listData.index;
 			
 			if (startIndex != selectedIndex) {
@@ -1674,7 +1674,7 @@ package fl.controls
          * @langversion 3.0
          * @playerversion Flash 9.0.28.0
 		 */
-		private function addCloseListener(event:Event) {
+		private function addCloseListener(event:Event):void {
 			removeEventListener(Event.ENTER_FRAME, addCloseListener);
 			if (!isOpen) { return; }
 			stage.addEventListener(MouseEvent.MOUSE_DOWN, onStageClick, false, 0, true);
@@ -1734,7 +1734,7 @@ package fl.controls
 			event.stopPropagation();
 			
 			var pageSize:int = Math.max((calculateAvailableHeight() / list.rowHeight)<<0, 1);
-			var sel:uint = selectedIndex;
+			//var sel:uint = selectedIndex;
 			var lastSel:Number = (highlightedCell == -1) ? selectedIndex : highlightedCell;
 			var newSel:int = -1;
 			switch (event.keyCode) {

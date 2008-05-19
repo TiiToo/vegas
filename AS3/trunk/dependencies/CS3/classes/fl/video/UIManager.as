@@ -1,4 +1,4 @@
-// Copyright © 2004-2007. Adobe Systems Incorporated. All Rights Reserved.
+﻿// Copyright © 2004-2007. Adobe Systems Incorporated. All Rights Reserved.
 package fl.video 
 {
 	import flash.display.*;
@@ -658,18 +658,22 @@ package fl.video
 		public function get skin():String {
 			return _skin;
 		}
-		public function set skin(s:String):void {
-			if (s == null) {
+		public function set skin(s:String):void 
+		{
+			if (s == null) 
+			{
 				removeSkin();
 				_skin = null;
 				_skinReady = true;
-			} else {
-				var paramStr:String = String(s);
+			} 
+			else 
+			{
 				if (s == _skin) return;
 				removeSkin();
 				_skin = String(s);
 				_skinReady = (_skin == "");
-				if (!_skinReady) {
+				if (!_skinReady) 
+				{
 					downloadSkin();
 				}
 			}
@@ -1246,7 +1250,7 @@ package fl.video
 				var forceSkinAutoHide:Boolean = false;
 				if (borderRect.width > 0 && borderRect.height > 0) {
 					if (borderRect.x < 0) {
-						placeholderLeft += (videoLeft - borderRect.x)
+						placeholderLeft += (videoLeft - borderRect.x);
 						forceSkinAutoHide = true;
 					}
 					if (borderRect.x + borderRect.width >  _vc.registrationWidth) {
@@ -1254,7 +1258,7 @@ package fl.video
 						forceSkinAutoHide = true;
 					}
 					if (borderRect.y < 0) {
-						placeholderTop += (videoTop - borderRect.y)
+						placeholderTop += (videoTop - borderRect.y);
 						forceSkinAutoHide = true;
 					}
 					if (borderRect.y + borderRect.height >  _vc.registrationHeight) {
@@ -1459,17 +1463,17 @@ package fl.video
 			}
 			try {
 				anchorLeft = ctrlData.avatar["anchorLeft"];
-			} catch (re1:ReferenceError) {
+			} catch (re2:ReferenceError) {
 				anchorLeft = true;
 			}
 			try {
 				anchorTop = ctrlData.avatar["anchorTop"];
-			} catch (re1:ReferenceError) {
+			} catch (re3:ReferenceError) {
 				anchorTop = false;
 			}
 			try {
 				anchorBottom = ctrlData.avatar["anchorBottom"];
-			} catch (re1:ReferenceError) {
+			} catch (re4:ReferenceError) {
 				anchorBottom = true;
 			}
 
@@ -1729,7 +1733,7 @@ package fl.video
 			skin_mc.addChild(ctrl);
 
 			// add the two children controls
-			subBtn = setupButtonSkin(firstIndex)
+			subBtn = setupButtonSkin(firstIndex);
 			subBtn.name = firstName;
 			subBtn.visible = true;
 			ctrl.addChild(subBtn);

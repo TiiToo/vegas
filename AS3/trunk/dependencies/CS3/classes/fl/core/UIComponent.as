@@ -256,7 +256,7 @@ package fl.core
          * @langversion 3.0
          * @playerversion Flash 9.0.28.0
          */
-		protected var isFocused:Boolean =  false
+		protected var isFocused:Boolean =  false;
 
         /**
          * @private
@@ -478,7 +478,7 @@ package fl.core
 				addEventListener(KeyboardEvent.KEY_UP, keyUpHandler);
 			}
 
-			initializeFocusManager()
+			initializeFocusManager();
 			addEventListener(Event.ENTER_FRAME, hookAccessibility, false, 0, true);
 		}
 
@@ -489,9 +489,11 @@ package fl.core
          * @langversion 3.0
          * @playerversion Flash 9.0.28.0
          */
-		public function get componentInspectorSetting():Boolean {
+		public function get componentInspectorSetting():Boolean 
+		{
 			return _inspector;
 		}
+		
         /**
          * @private (setter)
          *
