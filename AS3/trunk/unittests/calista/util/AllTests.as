@@ -22,10 +22,10 @@
 */
 package calista.util  
 {
-	import buRRRn.ASTUce.framework.ITest;
-	import buRRRn.ASTUce.framework.TestSuite;	
+    import buRRRn.ASTUce.framework.ITest;
+    import buRRRn.ASTUce.framework.TestSuite;	
 
-	/**
+    /**
 	 * This class launch all tests.
 	 * @author eKameleon
 	 */
@@ -38,7 +38,11 @@ package calista.util
         public static function suite():ITest
         {
             
-            var suite:TestSuite = new TestSuite( "calista.util" );
+            var suite:TestSuite = new TestSuite( "Test CAListAS util package" );
+
+            suite.addTestSuite( TestBase64 ) ;
+            suite.addTestSuite( TestBase8 ) ;
+            suite.addTestSuite( TestLZW ) ;   
 
             return suite;
             

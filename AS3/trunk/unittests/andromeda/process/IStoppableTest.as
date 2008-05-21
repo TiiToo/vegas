@@ -22,9 +22,9 @@
 */
 package andromeda.process 
 {
-	import buRRRn.ASTUce.framework.TestCase;				
+    import buRRRn.ASTUce.framework.TestCase;    					
 
-	/**
+    /**
 	 * @author eKameleon
 	 */
 	public class IStoppableTest extends TestCase 
@@ -38,7 +38,7 @@ package andromeda.process
 		public function testStop():void
 		{
 			var o:ConcreteStop = new ConcreteStop() ;
-			var result:* =  o.stop() ;
+			var result:* =  o.stop( true ) ;
 			assertTrue( result is Boolean , "stop() method must return a boolean.") ;
 			assertTrue( true , "stop() method must return a true value.") ;				
 		}
@@ -53,9 +53,9 @@ class ConcreteStop implements IStoppable
     /**
      * Stop the process.
      */
-    public function stop():Boolean 
+    public function stop( ...args:Array ):*
     {
-    	return true ;	
+    	return args[0] ;	
     }
 	
 }

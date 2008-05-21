@@ -27,6 +27,8 @@ package
     import buRRRn.ASTUce.framework.ITest;
     import buRRRn.ASTUce.framework.TestSuite;
     
+    import calista.AllTests;
+    
     import pegas.AllTests;
     
     import system.AllTests;
@@ -47,10 +49,11 @@ package
         {
             var suite:TestSuite = new TestSuite( "VEGAS v1RC4 unit tests" );
             
-            suite.addTest( andromeda.AllTests.suite() );
-            suite.addTest( pegas.AllTests.suite() );
-            suite.addTest( system.AllTests.suite() );
-            suite.addTest( vegas.AllTests.suite() );
+            suite.addTest( andromeda.AllTests.suite() ) ;
+            suite.addTest( calista.AllTests.suite()   ) ;
+            suite.addTest( pegas.AllTests.suite()     ) ;
+            suite.addTest( system.AllTests.suite()    ) ;
+            suite.addTest( vegas.AllTests.suite()     ) ;
             
             return suite;
         }
