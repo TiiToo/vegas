@@ -1,4 +1,4 @@
-// Copyright � 2007. Adobe Systems Incorporated. All Rights Reserved.
+﻿// Copyright � 2007. Adobe Systems Incorporated. All Rights Reserved.
 package fl.transitions
 {
 	import flash.display.*;
@@ -127,7 +127,7 @@ public class Tween extends EventDispatcher
      * @playerversion Flash 9
      * @langversion 3.0
      */
-	public var func:Function = function (t:Number, b:Number, c:Number, d:Number):Number { return c*t/d + b; }
+	public var func:Function = function (t:Number, b:Number, c:Number, d:Number):Number { return c*t/d + b; };
 
     /**
      * The initial value of the target object's designated property before the tween starts.
@@ -206,12 +206,12 @@ public class Tween extends EventDispatcher
     /**
      * @private
      */
-	private var _intervalID:uint = 0;
+	//private var _intervalID:uint = 0;
 
     /**
      * @private
      */
-	private var _finish:Number = NaN;
+	//private var _finish:Number = NaN;
 
     /**
      * @private

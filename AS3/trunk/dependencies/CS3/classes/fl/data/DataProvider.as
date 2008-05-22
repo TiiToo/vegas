@@ -114,7 +114,7 @@ package fl.data
          * @playerversion Flash 9.0.28.0
 		 */
 		public function invalidateItemAt(index:int):void {
-			checkIndex(index,data.length-1)
+			checkIndex(index,data.length-1);
 			dispatchChangeEvent(DataChangeType.INVALIDATE,[data[index]],index,index);
 		}
 

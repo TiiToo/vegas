@@ -1,4 +1,4 @@
-// Copyright � 2007. Adobe Systems Incorporated. All Rights Reserved.
+﻿// Copyright � 2007. Adobe Systems Incorporated. All Rights Reserved.
 package fl.motion
 {
 	import flash.geom.ColorTransform;
@@ -139,15 +139,15 @@ public class Color extends ColorTransform
     /**
      * @private 
      */
-	private function deriveTintColor():uint
-	{
-		var ratio:Number = 1 / (this.tintMultiplier); 
-		var r:uint = Math.round(this.redOffset * ratio);
-		var g:uint = Math.round(this.greenOffset * ratio);
-		var b:uint = Math.round(this.blueOffset * ratio);
-		var colorNum:uint = r<<16 | g<<8 | b;
-		return colorNum; 
-	}
+	//private function deriveTintColor():uint
+	//{
+	//	var ratio:Number = 1 / (this.tintMultiplier); 
+	//	var r:uint = Math.round(this.redOffset * ratio);
+	//	var g:uint = Math.round(this.greenOffset * ratio);
+	//	var b:uint = Math.round(this.blueOffset * ratio);
+	//	var colorNum:uint = r<<16 | g<<8 | b;
+	//	return colorNum; 
+	//}
 
 
     /**

@@ -1,12 +1,12 @@
-// Copyright � 2007. Adobe Systems Incorporated. All Rights Reserved.
+﻿// Copyright � 2007. Adobe Systems Incorporated. All Rights Reserved.
 package fl.transitions
 {
-	import flash.display.*;
-	import flash.events.Event;
-	import flash.events.EventDispatcher;
-	import flash.geom.Rectangle;
+    import flash.display.*;
+    import flash.events.Event;
+    import flash.events.EventDispatcher;
+    import flash.geom.Rectangle;	
 
-	/**
+    /**
  * The TransitionManager class defines animation effects. It allows you to apply one of ten 
  * animation effects to movie clips. When creating custom components, you can use the 
  * TransitionManager class to apply animation effects to movie clips in your component's 
@@ -92,7 +92,7 @@ public class TransitionManager extends EventDispatcher
 		scaleY:null,
 		alpha:null,
 		rotation:null	
-	}
+	};
     
     /**
      * @private
@@ -132,8 +132,11 @@ public class TransitionManager extends EventDispatcher
      */
 	public function get numTransitions():Number 
 	{
-		var n:Number = 0;
-		for each (var t:Transition in this._transitions) n++;
+		var n:Number = 0 ;
+		for each ( var t:Transition in _transitions )
+		{
+			n++;t ;
+		}
 		return n;
 	}
 

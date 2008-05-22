@@ -1,31 +1,30 @@
 ﻿// Copyright 2007. Adobe Systems Incorporated. All Rights Reserved.
 package fl.core 
 {
-	import flash.display.DisplayObject;
-	import flash.display.DisplayObjectContainer;
-	import flash.display.InteractiveObject;
-	import flash.display.Sprite;
-	import flash.display.Stage;
-	import flash.events.Event;
-	import flash.events.FocusEvent;
-	import flash.events.KeyboardEvent;
-	import flash.system.IME;
-	import flash.system.IMEConversionMode;
-	import flash.text.TextField;
-	import flash.text.TextFormat;
-	import flash.text.TextFormatAlign;
-	import flash.utils.Dictionary;
-	import flash.utils.getDefinitionByName;
-	import flash.utils.getQualifiedClassName;
-	
-	import fl.core.InvalidationType;
-	import fl.events.ComponentEvent;
-	import fl.managers.FocusManager;
-	import fl.managers.IFocusManager;
-	import fl.managers.IFocusManagerComponent;
-	import fl.managers.StyleManager;	
+    import flash.display.DisplayObject;
+    import flash.display.DisplayObjectContainer;
+    import flash.display.InteractiveObject;
+    import flash.display.Sprite;
+    import flash.display.Stage;
+    import flash.events.Event;
+    import flash.events.FocusEvent;
+    import flash.events.KeyboardEvent;
+    import flash.system.IME;
+    import flash.system.IMEConversionMode;
+    import flash.text.TextFormat;
+    import flash.text.TextFormatAlign;
+    import flash.utils.Dictionary;
+    import flash.utils.getDefinitionByName;
+    import flash.utils.getQualifiedClassName;
+    
+    import fl.core.InvalidationType;
+    import fl.events.ComponentEvent;
+    import fl.managers.FocusManager;
+    import fl.managers.IFocusManager;
+    import fl.managers.IFocusManagerComponent;
+    import fl.managers.StyleManager;	
 
-	//--------------------------------------
+    //--------------------------------------
     //  Events
     //--------------------------------------
     /**
@@ -199,7 +198,7 @@ package fl.core
          * @langversion 3.0
          * @playerversion Flash 9.0.28.0
          */
-		private var tempText:TextField;
+		//private var tempText:TextField;
 
         /**
          * @private (protected)
@@ -369,7 +368,7 @@ package fl.core
 											disabledTextFormat: new TextFormat("_sans", 11, 0x999999, false, false, false, "", "", TextFormatAlign.LEFT, 0, 0, 0, 0),
 											defaultTextFormat: new TextFormat("_sans", 11, 0x000000, false, false, false, "", "", TextFormatAlign.LEFT, 0, 0, 0, 0),
 											defaultDisabledTextFormat: new TextFormat("_sans", 11, 0x999999, false, false, false, "", "", TextFormatAlign.LEFT, 0, 0, 0, 0)
-											}
+											};
 
 
         /**
@@ -716,8 +715,9 @@ package fl.core
          * @langversion 3.0
          * @playerversion Flash 9.0.28.0
          */
-		public function getStyle(style:String):Object {
-			return instanceStyles[style]
+		public function getStyle(style:String):Object 
+		{
+			return instanceStyles[style];
 		}
 
         /**
@@ -1159,7 +1159,8 @@ package fl.core
          * @langversion 3.0
          * @playerversion Flash 9.0.28.0
          */
-		protected function setIMEMode(enabled:Boolean) {
+		protected function setIMEMode(enabled:Boolean):void 
+		{
 			if(_imeMode != null) {
 				if(enabled) {
 					IME.enabled = true;
@@ -1243,12 +1244,14 @@ package fl.core
          * @langversion 3.0
          * @playerversion Flash 9.0.28.0
          */
-		protected function isInvalid(property:String,...properties:Array):Boolean {
+		protected function isInvalid(property:String,...properties:Array):Boolean 
+		{
 			if (invalidHash[property] || invalidHash[InvalidationType.ALL]) { return true; }
-			while (properties.length > 0) {
+			while (properties.length > 0) 
+			{
 				if (invalidHash[properties.pop()]) { return true; }
 			}
-			return false
+			return false;
 		}
 		/**
          * @private (protected)
@@ -1293,10 +1296,14 @@ package fl.core
 			
 			try {
 				classDef = getDefinitionByName(skin.toString());
-			} catch(e:Error) {
-				try {
+			} catch(e1:Error) 
+			{
+				try 
+				{
 					classDef = loaderInfo.applicationDomain.getDefinition(skin.toString()) as Object;
-				} catch (e:Error) {
+				}
+				catch (e2:Error) 
+				{
 					// Nothing
 				}
 			}

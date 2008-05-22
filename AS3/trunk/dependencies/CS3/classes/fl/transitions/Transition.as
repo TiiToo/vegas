@@ -1,4 +1,4 @@
-// Copyright � 2007. Adobe Systems Incorporated. All Rights Reserved.
+﻿// Copyright � 2007. Adobe Systems Incorporated. All Rights Reserved.
 /*
 example of transition code:
 
@@ -370,9 +370,9 @@ public class Transition extends EventDispatcher
     /**
      * @private
      */ 
-	private function _noEase (t:Number, b:Number, c:Number, d:Number):Number {
-		return c*t/d + b; 
-	}
+	//private function _noEase (t:Number, b:Number, c:Number, d:Number):Number {
+	//	return c*t/d + b; 
+	//}
 	
 	
 	/////////// EVENT HANDLERS

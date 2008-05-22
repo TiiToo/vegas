@@ -1,4 +1,4 @@
-// Copyright © 2007. Adobe Systems Incorporated. All Rights Reserved.
+﻿// Copyright © 2007. Adobe Systems Incorporated. All Rights Reserved.
 package fl.motion
 {
 	import flash.display.DisplayObject;
@@ -312,7 +312,7 @@ public class Animator extends EventDispatcher
 			
 			var scaleX:Number = thisMotion.getValue(newTime, Tweenables.SCALE_X) * this.targetState.scaleX; 
 			var scaleY:Number = thisMotion.getValue(newTime, Tweenables.SCALE_Y) * this.targetState.scaleY; 	
-			var skewX:Number = 0
+			var skewX:Number = 0;
 			var skewY:Number = 0; 
 		
 			// override the rotation and skew in the XML if orienting to path

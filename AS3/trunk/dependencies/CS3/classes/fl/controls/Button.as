@@ -213,7 +213,7 @@ package fl.controls
 				var emphasizedPadding:Number = Number(getStyleValue("emphasizedPadding"));
 				if (emphasizedPadding < 0 || !_emphasized) { emphasizedPadding = 0; }
 				
-				var focusPadding = getStyleValue("focusRectPadding");
+				var focusPadding:* = getStyleValue("focusRectPadding");
 				focusPadding = (focusPadding == null) ? 2 : focusPadding;
 				focusPadding += emphasizedPadding;
 				

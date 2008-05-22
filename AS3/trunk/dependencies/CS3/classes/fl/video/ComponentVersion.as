@@ -1,4 +1,4 @@
-// Copyright � 2004-2007. Adobe Systems Incorporated. All Rights Reserved.
+﻿// Copyright � 2004-2007. Adobe Systems Incorporated. All Rights Reserved.
 
 	// version info for mx.video classes
 	// this file is included by several classes in that package so that
@@ -39,4 +39,4 @@
     * @langversion 3.0
     * @playerversion Flash 9.0.28.0
 	*/
-	public static const SHORT_VERSION:String = "2.0";
+	public static const SHORT_VERSION:String = "2.0" ;

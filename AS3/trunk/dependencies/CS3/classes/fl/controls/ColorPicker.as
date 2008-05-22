@@ -1,4 +1,4 @@
-// Copyright 2007. Adobe Systems Incorporated. All Rights Reserved.
+﻿// Copyright 2007. Adobe Systems Incorporated. All Rights Reserved.
 package fl.controls 
 {
 	import flash.display.DisplayObject;
@@ -791,7 +791,7 @@ package fl.controls
          * @langversion 3.0
          * @playerversion Flash 9.0.28.0
          */
-		private function addCloseListener(event:Event) {
+		private function addCloseListener(event:Event):void {
 			removeEventListener(Event.ENTER_FRAME, addCloseListener);
 			if (!isOpen) {
 				return;
@@ -934,7 +934,7 @@ package fl.controls
 		protected function setEmbedFonts():void {
 			var embed:Object = getStyleValue('embedFonts');
 			if (embed != null) {
-				textField.embedFonts = embed;
+				textField.embedFonts = embed as Boolean ;
 			}
 		}
 
@@ -947,7 +947,7 @@ package fl.controls
 		protected function drawSwatchHighlight():void {
 			cleanUpSelected();
 			var skin:Object = getStyleValue("swatchSelectedSkin");
-			var swatchPadding:Number = getStyleValue("swatchPadding") as Number;
+			//var swatchPadding:Number = getStyleValue("swatchPadding") as Number;
 			if (skin != null) {
 				swatchSelectedSkin = getDisplayObjectInstance(skin);
 				swatchSelectedSkin.x = 0;
@@ -1227,12 +1227,12 @@ package fl.controls
 				return;
 			}
 
-			var swatchPadding:Number = getStyleValue("swatchPadding") as Number;
+			//var swatchPadding:Number = getStyleValue("swatchPadding") as Number;
 			palette.setChildIndex(swatchSelectedSkin, palette.numChildren-1);
 			swatchSelectedSkin.x = swatches.x + swatch.x - 1;
 			swatchSelectedSkin.y = swatches.y + swatch.y - 1;
 
-			var color = swatch.getChildByName('color').transform.colorTransform.color;
+			var color:* = swatch.getChildByName('color').transform.colorTransform.color;
 			currColIndex = colorHash[color].col;
 			currRowIndex = colorHash[color].row;
 		}

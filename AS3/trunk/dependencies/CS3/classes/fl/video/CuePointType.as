@@ -85,6 +85,6 @@ package fl.video {
 		 */
 		public static const ACTIONSCRIPT:String = "actionscript";
 
-	}; // class CuePointType
+	} // class CuePointType
 
-}; // package fl.video
+} // package fl.video
