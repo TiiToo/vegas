@@ -34,17 +34,12 @@ package pegas.maths
 		
 		/**
 		 * Returns the factorial of a positive integer.
-		 * @param n The value to use to calculate the factorial.
-		 * @throws IllegalArgumentError if the passed-in value is NaN.
+		 * @param n The value to use to calculate the factorial product.
 		 * @return the factorial of a positive integer.
 		 */
 		public static function factorial( n:uint ):uint 
 		{
-			if ( isNaN( n ) )
-			{
-				throw new IllegalArgumentError( "Factor.factorial method failed with a NaN passed-in value.") ;	
-			}
-			else if ( n == 0 ) 
+			if ( n == 0 ) 
 			{
 				return 1 ;
 			}

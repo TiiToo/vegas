@@ -59,7 +59,7 @@ package system
                indexes : []
             };
             
-            var defaultEvaluator:IEvaluator = new EdenEvaluator(); // TODO set this property with a static property ? [EKA]
+            var defaultEvaluator:IEvaluator = new EdenEvaluator();
             
             var evaluators:Array = [];
 
