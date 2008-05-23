@@ -16,21 +16,22 @@
   the Initial Developer. All Rights Reserved.
   
   Contributor(s):
-  
-  	- Alcaraz Marc (aka eKameleon) <ekameleon@gmail.com> (2007-2008)
+
+    - Marc ALCARAZ <ekameleon@gmail.com>
 
 */
 package system
-{
-	import system.Version;	
-
+    {
+    import system.Version;
+    import system.config;
+    
     /**
 	 * The basic system info.
 	 * @param verbose The flag to indicates if the log information use verbose mode or not.
 	 * @param showConfig Indicates if the log information show config values.
      */
-    public function info( verbose:Boolean = false, showConfig:Boolean = false ):void
-    {
+    public function info( verbose:Boolean = false, showConfig:Boolean = false ):String
+        {
         
         var separator:String = "----------------------------------------------------------------";
         
@@ -39,48 +40,47 @@ package system
         var fullname:String  = "ECMAScript 4 MaasHaack framework";
         var version:Version  = new Version( 0, 1 );
             
-        version.revision = parseInt( "$Rev: 94 $".split( " " )[1] );
+            version.revision = parseInt( "$Rev: 154 $".split( " " )[1] );
         
         var str:String = "";
-        
-        if( !verbose && config.verbose )
-        {
-            verbose = true;
-        }
+            if( !verbose && config.verbose )
+                {
+                verbose = true;
+                }
             
             if( verbose ) 
-            {
+            	{
             	str += "{sep}{crlf}";
             	str += "{name}: {fullname} v{version}{crlf}";
             	str += "Host: {host}{isdebug}{crlf}";
             	str += "Operating System: {os}{crlf}";
             	str += "{sep}";
-            } 
+            	} 
             else 
-            {
+            	{
             	str += "{name} v{version}"; 
-            }
+            	}
             
-            if( showConfig == true ) 
-           	{
+            if( showConfig ) 
+            	{
             	str += "{crlf}config:";
             	str += "{config}{crlf}";
             	str += "{sep}";
-           	}
+            	}
             
-        Console.writeLine( str,
-                           {
-                           sep:separator,
-                           crlf:CRLF,
-                           name:name,
-                           fullname:fullname,
-                           version:version,
-                           host: Environment.host,
-                           isdebug: Environment.host.isDebug() ? " (debug)": "",
-                           os: Environment.os ,
-                           config: config.toSource()
-                           }
-                         );
+        return Strings.format( str,
+                               {
+                               sep:separator,
+                               crlf:CRLF,
+                               name:name,
+                               fullname:fullname,
+                               version:version,
+                               host: Environment.host,
+                               isdebug: Environment.host.isDebug() ? " (debug)": "",
+                               os: Environment.os,
+                               config: config.toSource()
+                               }
+                             );
         }
     
     }
