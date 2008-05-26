@@ -23,9 +23,8 @@
 
 package pegas.maths 
 {
-	import vegas.errors.IllegalArgumentError;		
 
-	/**
+    /**
 	 * Implements the static behaviours of the Factor Class.
 	 * @author eKameleon
  	 */

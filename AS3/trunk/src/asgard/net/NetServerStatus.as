@@ -51,9 +51,9 @@ package asgard.net
         public var level:String ;
 
         /**
-          * Compares the specified object with this object for equality.
-          * @return <code class="prettyprint">true</code> if the the specified object is equal with this object.
-          */
+         * Compares the specified object with this object for equality.
+         * @return <code class="prettyprint">true</code> if the the specified object is equal with this object.
+         */
         public function equals( o:* ):Boolean
         {
             if ( o is NetServerStatus )
