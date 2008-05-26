@@ -37,7 +37,28 @@ package asgard.text
     import vegas.logging.Log;    
 
     /**
-     * The CoreTextField class extends the flash.display.TextField class and implements the IDisplayObject interface.
+     * The CoreTextField class extends the flash.text.TextField class and implements the IDisplayObject interface.
+     * <p><b>Example :</b></p>
+     * <pre class="prettyprint">
+     * import asgard.display.DisplayObjectCollector ;
+     * import asgard.text.CoreTextField ;
+     * 
+     * var field:CoreTextField = new CoreTextField( "my_field" , 150 , 22 ) ;
+     * 
+     * field.x                 = 25 ;
+     * field.y                 = 25 ;
+     * field.background        = true ;
+     * field.backgroundColor   = 0x000000 ;
+     * field.border            = true ;
+     * field.borderColor       = 0xFFFFFF ;
+     * field.defaultTextFormat = new TextFormat("arial", 11, 0xFFFFFF, true, null, null, null, null, "center") ;
+     * field.text              = "hello world" ;
+     * 
+     * trace( "DisplayObject contains 'my_field' : " + DisplayObjectCollector.contains( "my_field" ) ) ;
+     * trace( DisplayObjectCollector.get( "my_field" ) ) ;
+     * 
+     * addChild(field) ;
+     * </pre>
      * @author eKameleon
      */
     public class CoreTextField extends TextField implements IDisplayObject
@@ -171,9 +192,9 @@ package asgard.text
         }
         
         /**
-          * Returns the <code class="prettyprint">String</code> representation of this object.
-          * @return the <code class="prettyprint">String</code> representation of this object.
-          */
+         * Returns the <code class="prettyprint">String</code> representation of this object.
+         * @return the <code class="prettyprint">String</code> representation of this object.
+         */
         public override function toString():String
         {
             var str:String = "[" + Reflection.getClassName(this) ;
