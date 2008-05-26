@@ -1,4 +1,4 @@
-// Copyright � 2004-2007. Adobe Systems Incorporated. All Rights Reserved.
+﻿// Copyright � 2004-2007. Adobe Systems Incorporated. All Rights Reserved.
 package fl.video 
 {
 	import flash.events.*;
