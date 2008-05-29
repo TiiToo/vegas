@@ -55,7 +55,7 @@ package lunas.display.button
 		/**
 		 * Invoked when the button is down.
 		 */
-		public function disabled( e:ButtonEvent ):void
+		public function disabled( e:ButtonEvent = null ):void
 		{
 			if (_tw != null &&  _tw.running )
 			{
@@ -67,7 +67,7 @@ package lunas.display.button
 		/**
 		 * Invoked when the button is down.
 		 */
-		public function down( e:ButtonEvent ):void
+		public function down( e:ButtonEvent = null ):void
 		{
 			if ( _tw != null && _tw.running )
 			{
@@ -103,7 +103,7 @@ package lunas.display.button
 		/**
 		 * Invoked when the button is over.
 		 */
-		public function over( e:ButtonEvent ):void
+		public function over( e:ButtonEvent = null ):void
 		{
 			if ( _tw != null && _tw.running )
 			{
@@ -128,7 +128,7 @@ package lunas.display.button
 		/**
 		 * Invoked when the button is over.
 		 */
-		public function up( e:ButtonEvent ):void
+		public function up( e:ButtonEvent = null ):void
 		{
 			
 		}		

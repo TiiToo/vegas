@@ -23,12 +23,12 @@
 package lunas.display.button 
 {
     import lunas.core.AbstractStyle;
-	
-	import pegas.transitions.TweenLite;
-	import pegas.transitions.easing.Bounce;
-	import pegas.transitions.easing.Elastic;	
+    
+    import pegas.transitions.TweenLite;
+    import pegas.transitions.easing.Bounce;
+    import pegas.transitions.easing.Elastic;    
 
-	/**
+    /**
 	 * The IStyle class of the LightButton component.
 	 * @author eKameleon
 	 */
@@ -39,10 +39,12 @@ package lunas.display.button
 		 * Creates a new LightButtonStyle.
 		 * @param id The id of the object.
 		 * @param init An object that contains properties with which to populate the newly IStyle object. If initObject is not an object, it is ignored. 
+    	 * @param bGlobal the flag to use a global event flow or a local event flow.
+    	 * @param sChannel the name of the global event flow if the <code class="prettyprint">bGlobal</code> argument is <code class="prettyprint">true</code>.
 		 */
-		public function LightButtonStyle(id:* = null, init:* = null)
+		public function LightButtonStyle(id:* = null, init:* = null , bGlobal:Boolean = false , sChannel:String = null )
 		{
-			super( id, init );
+			super( id , id != null , bGlobal , sChannel ) ;
 		}
 		
 		/**
