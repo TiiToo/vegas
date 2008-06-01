@@ -63,7 +63,7 @@ package asgard.net.remoting
          * trace(url) ; // http://localhost/php/gateway.php
          * </pre>
          */
-        public function create( gatewayUrl:String , httpHost:String=null ):String
+        public function create( gatewayUrl:String=null , httpHost:String=null ):String
         {
        		if ( contains( gatewayUrlName ) )
         	{
