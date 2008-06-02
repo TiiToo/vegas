@@ -24,7 +24,7 @@ package asgard.net
 {
     import flash.display.DisplayObjectContainer;
     
-    import system.evaluators.IEvaluator;                                                
+    import system.evaluators.IEvaluator;    
 
     /**
      * This manager register the reference of the <code class="prettyprint">parameters</code> object of the root of your application.
@@ -32,6 +32,8 @@ package asgard.net
      * <pre class="prettyprint">
      * package
      * { 
+     *      
+     *      import asgard.net.FlashVars ;
      *      
      *      import flash.display.Sprite ;
      * 
@@ -99,14 +101,34 @@ package asgard.net
     	/**
     	 * Returns the value of the specified variable in the FlashVars of the application.
     	 * @param name The name of the variable to resolve in the parameters object of the application.
-    	 * @param evaluator The optional <code class="prettyprint">IEvaluator</code> object to evaluate the value before return it.
+    	 * @param ...rest (optional) All <code class="prettyprint">IEvaluator</code> objects used to evaluate and initialize the value of the specified FlashVars.
+    	 * <p><b>Example :</b></p>
+    	 * <pre class="prettyprint">
+    	 * import asgard.net.FlashVars ;
+    	 * import system.evaluators.* ;
+    	 *  
+    	 * var value:String = flashVars.getValue("date", new EdenEvaluator(false), new DateEvaluator()) ;
+    	 * trace( "result : " + value ) ; // result : "12.06.2006 16:12:24" with the original "date" flashvars value : "new Date(2006,5,12,16,12,24)"
+    	 * </pre>
     	 * @return the value of the specified variable in the FlashVars of the application.
     	 */
-    	public function getValue( name:String , evaluator:IEvaluator=null ):*
+    	public function getValue( name:String , ...rest:Array ):*
     	{
     		if ( contains(name) )
     		{
-    			return evaluator != null ? evaluator.eval( _parameters[name] ) : _parameters[name] ;
+    			var value:* = _parameters[name] ;
+    			if ( rest != null && rest.length > 0 )
+    			{
+    				var len:uint = rest.length ;
+    				for (var i:uint = 0 ; i<len ; i++)
+    				{
+    					if ( rest[i] is IEvaluator ) 
+    					{
+    						value = (rest[i] as IEvaluator).eval( value ) ;
+    					}
+    				}
+    			}
+    			return value ;
     		}
     		else
     		{

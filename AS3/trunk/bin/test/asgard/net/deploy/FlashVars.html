@@ -1,0 +1,57 @@
+
+<html>
+
+<head>
+
+    <title></title>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <script type="text/javascript" src="js/swfobject.js"></script>
+    
+    <style>
+        body 
+        { 
+            background: #000000;
+            margin: 0px; 
+            overflow: hidden; 
+        }
+    </style>
+
+    <script language="JavaScript" type="text/javascript">
+    
+    var flashvars  = 
+	{
+		test : "hello world" ,
+		date : "new Date(2006,5,12,16,12,24)"
+	};
+    
+    var params = 
+    {
+        allowScriptAccess : "sameDomain"  ,
+        bgcolor           : "#000000"  ,
+        quality           : "high"
+    } ;
+    
+    var attributes = 
+    {
+        
+    } ;
+    
+    swfobject.embedSWF("FlashVars.swf", "application", "100%", "100%", "9.0.115", false, flashvars, params, attributes );
+        
+    </script>
+
+</head>
+
+<body scroll="no">
+
+        <div id="application">
+            <a href="http://www.adobe.com/go/getflashplayer">
+                <img src="http://www.adobe.com/images/shared/download_buttons/get_flash_player.gif" alt="Get Adobe Flash player" />
+            </a>
+        </div>
+
+</body>
+
+</html>
