@@ -1,11 +1,11 @@
-// Copyright 2007. Adobe Systems Incorporated. All Rights Reserved.
+﻿// Copyright 2007. Adobe Systems Incorporated. All Rights Reserved.
 package fl.accessibility 
 {
-	import fl.controls.CheckBox;
-	import fl.controls.LabelButton;
-	import fl.core.UIComponent;	
+    import fl.controls.CheckBox;
+    import fl.controls.LabelButton;
+    import fl.core.UIComponent;	
 
-	/**
+    /**
      *  The CheckBoxAccImpl class, also called the CheckBox Accessibility Implementation class,
      *  is used to make a CheckBox component accessible. This class enables communication 
      *  between a CheckBox component and a screen reader. Screen readers are used to translate
@@ -50,7 +50,7 @@ package fl.accessibility
          * @langversion 3.0
          * @playerversion Flash 9.0.28.0
          */
-		private static var accessibilityHooked:Boolean = hookAccessibility();
+		//private static var accessibilityHooked:Boolean = 
 
         /**
          *  @private
@@ -64,7 +64,7 @@ package fl.accessibility
 			CheckBox.createAccessibilityImplementation = createAccessibilityImplementation;
 			return true;
 		}
-
+		hookAccessibility();
 		//--------------------------------------------------------------------------
 		//  Class constants
 		//--------------------------------------------------------------------------

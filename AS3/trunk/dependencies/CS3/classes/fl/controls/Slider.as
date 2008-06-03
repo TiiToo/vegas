@@ -252,7 +252,8 @@ package fl.controls
          * @langversion 3.0
          * @playerversion Flash 9.0.28.0
 		 */
-		protected static var defaultStyles:Object = {
+		protected static var defaultStyles:Object = 
+		{
 			thumbUpSkin: "SliderThumb_upSkin",
 			thumbOverSkin : "SliderThumb_overSkin", 
 			thumbDownSkin: "SliderThumb_downSkin",
@@ -262,7 +263,7 @@ package fl.controls
 			tickSkin: "SliderTick_skin",
 			focusRectSkin:null,
 			focusRectPadding:null
-		}
+		};
 		
         /**
          * @copy fl.core.UIComponent#getStyleDefinition()
@@ -288,7 +289,7 @@ package fl.controls
 			overSkin: "sliderTrackSkin",
 			downSkin: "sliderTrackSkin",
 			disabledSkin: "sliderTrackDisabledSkin"
-		}
+		};
 		
 		/**
          * @private (protected)
@@ -721,8 +722,9 @@ package fl.controls
          * @langversion 3.0
          * @playerversion Flash 9.0.28.0
 		 */
-		protected function doDrag(event:MouseEvent):void {
-			var dist:Number = _width/snapInterval;
+		protected function doDrag(event:MouseEvent):void 
+		{
+			//var dist:Number = _width/snapInterval;
 			var thumbPos:Number = track.mouseX;
 			calculateValue(thumbPos, InteractionInputType.MOUSE, SliderEventClickTarget.THUMB);
 			dispatchEvent(new SliderEvent(SliderEvent.THUMB_DRAG, value, SliderEventClickTarget.THUMB, InteractionInputType.MOUSE));

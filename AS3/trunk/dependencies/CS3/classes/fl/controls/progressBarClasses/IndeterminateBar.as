@@ -1,4 +1,4 @@
-// Copyright 2007. Adobe Systems Incorporated. All Rights Reserved.
+﻿// Copyright 2007. Adobe Systems Incorporated. All Rights Reserved.
 package fl.controls.progressBarClasses 
 {
 	import flash.display.BitmapData;
@@ -69,7 +69,7 @@ package fl.controls.progressBarClasses
          * @langversion 3.0
          * @playerversion Flash 9.0.28.0
 		 */
-		protected var patternBmp:BitmapData
+		protected var patternBmp:BitmapData;
 		
         /**
          * @private

@@ -1,16 +1,16 @@
-// Copyright 2007. Adobe Systems Incorporated. All Rights Reserved.
+﻿// Copyright 2007. Adobe Systems Incorporated. All Rights Reserved.
 package fl.controls 
 {
-	import flash.text.TextField;
-	import flash.text.TextFieldAutoSize;
-	import flash.text.TextFieldType;
-	import flash.text.TextFormat;
-	
-	import fl.core.InvalidationType;
-	import fl.core.UIComponent;
-	import fl.events.ComponentEvent;	
+    import flash.text.TextField;
+    import flash.text.TextFieldAutoSize;
+    import flash.text.TextFieldType;
+    import flash.text.TextFormat;
+    
+    import fl.core.InvalidationType;
+    import fl.core.UIComponent;
+    import fl.events.ComponentEvent;	
 
-	//Only for ASDocs
+    //Only for ASDocs
 	
 	
 	
@@ -466,8 +466,9 @@ package fl.controls
 				drawTextFormat();
 				
 				var embed:Object = getStyleValue('embedFonts');
-				if (embed != null) {
-					textField.embedFonts = embed;
+				if (embed != null) 
+				{
+					textField.embedFonts = embed as Boolean ;
 				}
 				
 				if (textField.autoSize != TextFieldAutoSize.NONE) { 

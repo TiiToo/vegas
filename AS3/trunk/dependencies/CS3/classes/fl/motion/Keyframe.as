@@ -1,11 +1,11 @@
 ﻿// Copyright � 2007. Adobe Systems Incorporated. All Rights Reserved.
 package fl.motion
 {
-	import flash.display.BlendMode;
-	import flash.filters.BitmapFilter;
-	import flash.utils.*;
+    import flash.display.BlendMode;
+    import flash.filters.BitmapFilter;
+    import flash.utils.*;	
 
-	/**
+    /**
  * The Keyframe class defines the visual state at a specific time in a motion tween.
  * The primary animation properties are <code>position</code>, <code>scale</code>, <code>rotation</code>, <code>skew</code>, and <code>color</code>.
  * A keyframe can, optionally, define one or more of these properties.
@@ -459,13 +459,13 @@ public class Keyframe
 
 		for each (var child:XML in elements)
 		{
-			var name:String = child.localName();
+			var name:* = child.localName();
 			if (name == 'tweens')
 			{
 				var tweenChildren:XMLList = child.elements();
 				for each (var tweenChild:XML in tweenChildren)
 				{
-					var tweenName:String = tweenChild.localName();
+					var tweenName:* = tweenChild.localName();
 					if (tweenName == 'SimpleEase')
 						this.tweens.push(new SimpleEase(tweenChild));
 					else if (tweenName == 'CustomEase')
@@ -481,14 +481,14 @@ public class Keyframe
 				var filtersChildren:XMLList = child.elements();
 				for each (var filterXML:XML in filtersChildren)
 				{
-					var filterName:String = filterXML.localName();
+					var filterName:* = filterXML.localName();
 					var filterClassName:String = 'flash.filters.' + filterName;
 					if (filterName == 'AdjustColorFilter')
 					{
 						continue;
 					}
 					
-					var filterClass:Object = flash.utils.getDefinitionByName(filterClassName);
+					var filterClass:Class = flash.utils.getDefinitionByName(filterClassName) as Class ;
 					var filterInstance:BitmapFilter = new filterClass();
 					var filterTypeInfo:XML = describeType(filterInstance);			
 					var accessorList:XMLList = filterTypeInfo.accessor; 
@@ -497,7 +497,7 @@ public class Keyframe
 					// loop through filter properties
 					for each (var attrib:XML in filterXML.attributes())
 					{
-						var attribName:String = attrib.localName();
+						var attribName:String = attrib.localName() as String ;
 						var accessor:XML = accessorList.(@name==attribName)[0];
 						var attribType:String = accessor.@type;
 						var attribValue:String = attrib.toString();
@@ -507,7 +507,7 @@ public class Keyframe
 						else if (attribType == 'uint') 
 						{
 							filterInstance[attribName] = parseInt(attribValue) as uint; 
-							var uintValue:uint = parseInt(attribValue) as uint;
+							//var uintValue:uint = parseInt(attribValue) as uint;
 						}
 						else if (attribType == 'Number') 
 							filterInstance[attribName] = Number(attribValue);
@@ -590,7 +590,7 @@ public class Keyframe
 	/**
 	 * @private
 	 */
-	private static function splitInt(valuesString:String):Array
+	/*private static function splitInt(valuesString:String):Array
 	{
 		var valuesArray:Array = valuesString.split(','); 
 		for (var vi:int=0; vi<valuesArray.length; vi++)
@@ -599,7 +599,7 @@ public class Keyframe
 		}		
 		return valuesArray;		
 	}
-	
+	*/
 	
     /**
      * Retrieves an ITween object for a specific animation property.

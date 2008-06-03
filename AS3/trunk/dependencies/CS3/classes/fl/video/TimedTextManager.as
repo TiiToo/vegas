@@ -157,9 +157,9 @@ package fl.video
 				xmlLoader.addEventListener(Event.COMPLETE, xmlLoadEventHandler);
 				xmlLoader.addEventListener(IOErrorEvent.IO_ERROR, xmlLoadEventHandler);
 				xmlLoader.addEventListener(SecurityErrorEvent.SECURITY_ERROR, xmlLoadEventHandler);
-				xmlLoader.addEventListener(HTTPStatusEvent.HTTP_STATUS, owner.forwardEvent);
-				xmlLoader.addEventListener(Event.OPEN, owner.forwardEvent);
-				xmlLoader.addEventListener(ProgressEvent.PROGRESS, owner.forwardEvent);
+				xmlLoader.addEventListener(HTTPStatusEvent.HTTP_STATUS, owner["forwardEvent"]);
+				xmlLoader.addEventListener(Event.OPEN, owner["forwardEvent"]);
+				xmlLoader.addEventListener(ProgressEvent.PROGRESS, owner["forwardEvent"]);
 			}
 
 			xmlLoader.load(new URLRequest(_url));
@@ -751,7 +751,7 @@ package fl.video
 			var attrsLen:int = attrs.length();
 			for (var i:int = 0; i < attrsLen; i++) {
 				var attr:XML = attrs[i];
-				var localName:String = attr.localName();
+				var localName:String = attr.localName() as String;
 				if (attr.toString() == "inherit") continue;
 				switch (localName) {
 				case "backgroundColor":
@@ -766,7 +766,7 @@ package fl.video
 						//endif
 						styleObject[localName] = colorObj.colorInt;
 						styleObject[localName + "Alpha"] = colorObj.alphaZero;
-					} catch (e:Error) {
+					} catch (er:Error) {
 						//ifdef DEBUG
 						//debugTrace("Error in parseColor: " + e);
 						//debugTrace(e.getStackTrace());
@@ -786,7 +786,7 @@ package fl.video
 						//debugTrace("Got fontSize " + fontSize);
 						//endif
 						styleObject[localName] = fontSize;
-					} catch (e:Error) {
+					} catch (er2:Error) {
 						//ifdef DEBUG
 						//debugTrace("Error in parseFontSize: " + e);
 						//debugTrace(e.getStackTrace());
@@ -1038,7 +1038,8 @@ package fl.video
 			var timeStr:String = parentNode["@" + attr].toString();
 
 			// first check for clock format or partial clock format
-			var theTime:Number, multiplier:Number;
+			var theTime:Number ;
+			var multiplier:Number;
 			var results:Object = /^((\d+):)?(\d+):((\d+)(.\d+)?)$/.exec(timeStr);
 			if (results != null) {
 				theTime = 0;

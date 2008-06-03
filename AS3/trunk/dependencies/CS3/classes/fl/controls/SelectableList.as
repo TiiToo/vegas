@@ -1,30 +1,29 @@
 ﻿// Copyright 2007. Adobe Systems Incorporated. All Rights Reserved.
 package fl.controls 
 {
-	import flash.display.DisplayObject;
-	import flash.display.Sprite;
-	import flash.events.Event;
-	import flash.events.KeyboardEvent;
-	import flash.events.MouseEvent;
-	import flash.ui.Keyboard;
-	import flash.utils.Dictionary;
-	
-	import fl.containers.BaseScrollPane;
-	import fl.controls.ScrollPolicy;
-	import fl.controls.listClasses.CellRenderer;
-	import fl.controls.listClasses.ICellRenderer;
-	import fl.controls.listClasses.ListData;
-	import fl.core.InvalidationType;
-	import fl.core.UIComponent;
-	import fl.data.DataProvider;
-	import fl.data.SimpleCollectionItem;
-	import fl.events.DataChangeEvent;
-	import fl.events.DataChangeType;
-	import fl.events.ListEvent;
-	import fl.events.ScrollEvent;
-	import fl.managers.IFocusManagerComponent;	
+    import flash.display.DisplayObject;
+    import flash.display.Sprite;
+    import flash.events.Event;
+    import flash.events.KeyboardEvent;
+    import flash.events.MouseEvent;
+    import flash.ui.Keyboard;
+    import flash.utils.Dictionary;
+    
+    import fl.containers.BaseScrollPane;
+    import fl.controls.ScrollPolicy;
+    import fl.controls.listClasses.CellRenderer;
+    import fl.controls.listClasses.ICellRenderer;
+    import fl.controls.listClasses.ListData;
+    import fl.core.InvalidationType;
+    import fl.core.UIComponent;
+    import fl.data.DataProvider;
+    import fl.events.DataChangeEvent;
+    import fl.events.DataChangeType;
+    import fl.events.ListEvent;
+    import fl.events.ScrollEvent;
+    import fl.managers.IFocusManagerComponent;	
 
-	//--------------------------------------
+    //--------------------------------------
     //  Events
     //--------------------------------------
 	/**
@@ -301,7 +300,7 @@ package fl.controls
 		/**
 		 * @private
 		 */
-		private var collectionItemImport:SimpleCollectionItem;
+		//private var collectionItemImport:SimpleCollectionItem;
 		
         /**
          * @private (protected)
@@ -367,7 +366,7 @@ package fl.controls
 		 */
 		public function SelectableList() {
 			super();
-			activeCellRenderers = []
+			activeCellRenderers = [];
 			availableCellRenderers = [];
 			invalidItems = new Dictionary(true);
 			renderedItems = new Dictionary(true);

@@ -1,17 +1,17 @@
-// Copyright � 2004-2007. Adobe Systems Incorporated. All Rights Reserved.
+﻿// Copyright � 2004-2007. Adobe Systems Incorporated. All Rights Reserved.
 
 //Examples for this package are untested for Blaze as of 10/02/2006. 
 //They can be found here: main\player\FlashPlayer\avmglue\ASDocs\AS3\Process\fl\video\
 
 package fl.video 
 {
-	import flash.display.*;
-	import flash.events.*;
-	import flash.geom.Rectangle;
-	import flash.media.*;
-	import flash.net.*;
-	import flash.utils.*;	
-	use namespace flvplayback_internal;
+    import flash.display.*;
+    import flash.events.*;
+    import flash.geom.Rectangle;
+    import flash.media.*;
+    import flash.net.*;
+    import flash.utils.*;	
+    use namespace flvplayback_internal;
 
 	/**
 	 * Dispatched when the video player is resized or laid out automatically. A video player is 
@@ -760,7 +760,7 @@ package fl.video
 		private var _autoRewind:Boolean;
 		private var _bufferTime:Number;
 		private var _idleTimeout:Number;
-		private var _aspectRatio:Boolean;
+		//private var _aspectRatio:Boolean;
 		private var _playheadUpdateInterval:Number;
 		private var _progressInterval:Number;
 		private var _origWidth:Number;
@@ -771,7 +771,7 @@ package fl.video
 		private var _volume:Number;
 
 		// this line forces compilation of the NCManager
-		private var __forceNCMgr:NCManager;
+		//private var __forceNCMgr:NCManager;
 
 		//ifdef DEBUG
 		//private var _debuggingOn:Boolean = false;
@@ -1470,7 +1470,7 @@ package fl.video
 		public function get playheadPercentage():Number
 		{
 			var vp:VideoPlayer = videoPlayers[_activeVP];
-			if (isNaN(vp.totalTime)) return NaN
+			if (isNaN(vp.totalTime)) return NaN;
 			return (vp.playheadTime / vp.totalTime * 100);
 		}
 
@@ -3588,7 +3588,7 @@ package fl.video
          * @playerversion Flash 9.0.28.0
 		 */
 		public function get seekBarInterval():Number {
-			return uiMgr.seekBarInterval
+			return uiMgr.seekBarInterval;
         }
         /**
          * @private (setter)
@@ -4149,7 +4149,7 @@ package fl.video
          * @playerversion Flash 9.0.28.0
 		 */
 		public function get volumeBarInterval():Number {
-			return uiMgr.volumeBarInterval
+			return uiMgr.volumeBarInterval;
         }
 
         /**
@@ -4370,7 +4370,7 @@ package fl.video
 			preview_mc.box_mc.graphics.endFill();
 			preview_mc.addChild(preview_mc.box_mc);
 
-			preview_mc.icon_mc = new Icon();
+			preview_mc.icon_mc = new ( getDefinitionByName("Icon") as Class )();
 			preview_mc.icon_mc.name = "icon_mc";
 			preview_mc.addChild(preview_mc.icon_mc);
 
@@ -4389,7 +4389,8 @@ package fl.video
 			try {
 				previewImage_mc.width = livePreviewWidth;
 				previewImage_mc.height = livePreviewHeight;
-			} catch (e:Error) {
+			} catch (er:Error) {
+				er.toString() ;
 			}
 		}
 
@@ -4499,7 +4500,7 @@ package fl.video
 			_volume = vp.volume;
 			vp.volume = 0;
 			dispatchEvent(new VideoEvent(VideoEvent.STATE_CHANGE, false, false, VideoState.SEEKING, nowTime, _visibleVP));
-			dispatchEvent(new VideoEvent(VideoEvent.SCRUB_START, false, false, VideoState.SEEKING, nowTime, _visibleVP))
+			dispatchEvent(new VideoEvent(VideoEvent.SCRUB_START, false, false, VideoState.SEEKING, nowTime, _visibleVP)) ;
 		}
 
 		/**
@@ -4519,7 +4520,7 @@ package fl.video
 			if (nowState != VideoState.SEEKING) {
 				dispatchEvent(new VideoEvent(VideoEvent.STATE_CHANGE, false, false, nowState, nowTime, _visibleVP));
 			}
-			dispatchEvent(new VideoEvent(VideoEvent.SCRUB_FINISH, false, false, nowState, nowTime, _visibleVP))
+			dispatchEvent(new VideoEvent(VideoEvent.SCRUB_FINISH, false, false, nowState, nowTime, _visibleVP));
 		}
 
 		/**

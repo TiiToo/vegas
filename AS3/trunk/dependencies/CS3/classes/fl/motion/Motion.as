@@ -155,11 +155,11 @@ public class Motion
     /**
      * @private
      */
-	private function indexOutOfRange(index:int):Boolean
+	/*private function indexOutOfRange(index:int):Boolean
 	{
 		return (isNaN(index) || index < 0 || index > this.duration-1);
 	}
-
+	*/
 
 	
 	/**

@@ -335,7 +335,7 @@ package fl.controls
 			g.beginFill(0,0);
 			g.drawRect(0,0,100,100);
 			g.endFill();
-			background = bg as DisplayObject
+			background = bg as DisplayObject;
 			addChildAt(background,0);
 			
 			addEventListener(MouseEvent.CLICK, handleClick, false, 0, true);
@@ -623,7 +623,7 @@ package fl.controls
 			var fm:IFocusManager = focusManager;
 			if (fm) { fm.showFocusIndicator = true; }
 			var indexNumber:int = g.getRadioButtonIndex(this);
-			var radioButtonCount:Number = g.numRadioButtons;
+			//var radioButtonCount:Number = g.numRadioButtons;
 			var counter:int = indexNumber;
 			if(indexNumber != -1) {
 				do {

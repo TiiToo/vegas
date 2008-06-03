@@ -50,7 +50,7 @@ package fl.accessibility
          * @langversion 3.0
          * @playerversion Flash 9.0.28.0
 		 */
-		private static var accessibilityHooked:Boolean = hookAccessibility();
+		//private static var accessibilityHooked:Boolean = 
 	
 		/**
 		 *  @private
@@ -65,7 +65,7 @@ package fl.accessibility
 			Button.createAccessibilityImplementation = createAccessibilityImplementation;
 			return true;
 		}
-	
+		hookAccessibility();
 		//--------------------------------------------------------------------------
 		//  Class methods
 		//--------------------------------------------------------------------------

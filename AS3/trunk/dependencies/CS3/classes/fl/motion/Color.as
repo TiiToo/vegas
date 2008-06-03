@@ -208,7 +208,7 @@ public class Color extends ColorTransform
 		//// ATTRIBUTES
 		for each (var att:XML in firstChild.attributes())
 		{
-			var name:String = att.localName();
+			var name:String = att.localName() as String;
 			if (name == 'tintColor')
 			{
 				var tintColorNumber:uint = Number(att.toString()) as uint;
@@ -252,7 +252,7 @@ public class Color extends ColorTransform
 			, fromColor.greenOffset*q     + toColor.greenOffset*progress
 			, fromColor.blueOffset*q      + toColor.blueOffset*progress
 			, fromColor.alphaOffset*q     + toColor.alphaOffset*progress
-		)
+		);
 		return resultColor;		
 	}
 	

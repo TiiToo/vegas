@@ -1,4 +1,4 @@
-// Copyright 2007. Adobe Systems Incorporated. All Rights Reserved.
+﻿// Copyright 2007. Adobe Systems Incorporated. All Rights Reserved.
 package fl.controls 
 {
 	import flash.display.DisplayObject;
@@ -568,7 +568,7 @@ package fl.controls
 			if (value == _value) {
 				return;
 			}
-			var oldVal:Number = _value;
+			//var oldVal:Number = _value;
 			_value = getValidValue(value);
 			inputField.text = _value.toString();
 			
@@ -779,7 +779,7 @@ package fl.controls
 			} else if (closest < minimum) { 
 				return minimum;
 			} else { 
-				return closest
+				return closest;
 			}
 		}
 

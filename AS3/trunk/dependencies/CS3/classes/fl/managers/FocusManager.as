@@ -1,24 +1,24 @@
 ﻿// Copyright 2007. Adobe Systems Incorporated. All Rights Reserved.
 package fl.managers 
 {
-	import flash.display.DisplayObject;
-	import flash.display.DisplayObjectContainer;
-	import flash.display.InteractiveObject;
-	import flash.display.SimpleButton;
-	import flash.display.Stage;
-	import flash.events.Event;
-	import flash.events.FocusEvent;
-	import flash.events.KeyboardEvent;
-	import flash.events.MouseEvent;
-	import flash.text.TextField;
-	import flash.text.TextFieldType;
-	import flash.ui.Keyboard;
-	import flash.utils.*;
-	
-	import fl.controls.Button;
-	import fl.core.UIComponent;	
+    import flash.display.DisplayObject;
+    import flash.display.DisplayObjectContainer;
+    import flash.display.InteractiveObject;
+    import flash.display.SimpleButton;
+    import flash.display.Stage;
+    import flash.events.Event;
+    import flash.events.FocusEvent;
+    import flash.events.KeyboardEvent;
+    import flash.events.MouseEvent;
+    import flash.text.TextField;
+    import flash.text.TextFieldType;
+    import flash.ui.Keyboard;
+    import flash.utils.*;
+    
+    import fl.controls.Button;
+    import fl.core.UIComponent;	
 
-	/**
+    /**
 	 *  The FocusManager class manages focus for a set of components that are navigated by mouse 
 	 *  or keyboard as a <em>tab loop</em>. 
 	 *
@@ -198,7 +198,7 @@ package fl.managers
          * @playerversion Flash 9.0.28.0
 		 */
 		private function removedHandler(event:Event):void {
-			var i:int;
+			//var i:int;
 			var o:DisplayObject = DisplayObject(event.target);
 			if (o is IFocusManagerComponent && focusableObjects[o] == true) {
 				if (o == lastFocus) {
@@ -519,7 +519,7 @@ package fl.managers
          * @playerversion Flash 9.0.28.0
 		 */
 		private function focusOutHandler(event:FocusEvent):void {
-			var target:InteractiveObject = event.target as InteractiveObject;
+			//var target:InteractiveObject = event.target as InteractiveObject;
 		}
 
 
@@ -531,7 +531,7 @@ package fl.managers
          * @playerversion Flash 9.0.28.0
 		 */
 		private function activateHandler(event:Event):void {
-			var target:InteractiveObject = InteractiveObject(event.target);
+			//var target:InteractiveObject = InteractiveObject(event.target);
 			if (lastFocus) {
 				if(lastFocus is IFocusManagerComponent) {
 					IFocusManagerComponent(lastFocus).setFocus();
@@ -549,8 +549,9 @@ package fl.managers
          * @langversion 3.0
          * @playerversion Flash 9.0.28.0
 		 */
-		private function deactivateHandler(event:Event):void {
-			var target:InteractiveObject = InteractiveObject(event.target);
+		private function deactivateHandler(event:Event):void 
+		{
+			//var target:InteractiveObject = InteractiveObject(event.target);
 		}
 
 		/**
@@ -709,8 +710,11 @@ package fl.managers
          * @langversion 3.0
          * @playerversion Flash 9.0.28.0
 		 */
-		private function hasFocusableObjects():Boolean {
-			for(var o:Object in focusableObjects) {
+		private function hasFocusableObjects():Boolean 
+		{
+			for( var prop:String in focusableObjects) 
+			{
+				prop ;
 				return true;
 			}
 			return false;
@@ -748,7 +752,7 @@ package fl.managers
 			}
 			var i:int = getIndexOfFocusedObject(o);
 			var bSearchAll:Boolean = false;
-			var start:int = i;
+			//var start:int = i;
 			if (i == -1) {
 				// we didn't find it
 				if (backward) {

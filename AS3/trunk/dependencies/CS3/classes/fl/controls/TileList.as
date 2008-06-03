@@ -1,29 +1,28 @@
 ﻿// Copyright 2007. Adobe Systems Incorporated. All Rights Reserved.
 package fl.controls 
 {
-	import flash.display.DisplayObject;
-	import flash.display.Sprite;
-	import flash.events.Event;
-	import flash.events.KeyboardEvent;
-	import flash.events.MouseEvent;
-	import flash.ui.Keyboard;
-	import flash.utils.Dictionary;
-	
-	import fl.controls.ScrollBar;
-	import fl.controls.ScrollBarDirection;
-	import fl.controls.ScrollPolicy;
-	import fl.controls.SelectableList;
-	import fl.controls.listClasses.ICellRenderer;
-	import fl.controls.listClasses.ImageCell;
-	import fl.controls.listClasses.ListData;
-	import fl.controls.listClasses.TileListData;
-	import fl.core.InvalidationType;
-	import fl.core.UIComponent;
-	import fl.data.DataProvider;
-	import fl.data.TileListCollectionItem;
-	import fl.managers.IFocusManagerComponent;	
+    import flash.display.DisplayObject;
+    import flash.display.Sprite;
+    import flash.events.Event;
+    import flash.events.KeyboardEvent;
+    import flash.events.MouseEvent;
+    import flash.ui.Keyboard;
+    import flash.utils.Dictionary;
+    
+    import fl.controls.ScrollBar;
+    import fl.controls.ScrollBarDirection;
+    import fl.controls.ScrollPolicy;
+    import fl.controls.SelectableList;
+    import fl.controls.listClasses.ICellRenderer;
+    import fl.controls.listClasses.ImageCell;
+    import fl.controls.listClasses.ListData;
+    import fl.controls.listClasses.TileListData;
+    import fl.core.InvalidationType;
+    import fl.core.UIComponent;
+    import fl.data.DataProvider;
+    import fl.managers.IFocusManagerComponent;	
 
-	//--------------------------------------
+    //--------------------------------------
     //  Events
     //--------------------------------------
 	
@@ -167,7 +166,7 @@ package fl.controls
 		/**
 		 * @private
 		 */
-		private var collectionItemImport:TileListCollectionItem;
+		//private var collectionItemImport:TileListCollectionItem;
 
         /**
          * @private
@@ -480,7 +479,7 @@ package fl.controls
 			__rowCount = 0;
 			
 			var pad:Number = Number(getStyleValue("contentPadding"));
-			var showScroll = (Math.ceil(length/value) > (width/columnWidth)>>0 && _scrollPolicy == ScrollPolicy.AUTO) || _scrollPolicy == ScrollPolicy.ON;
+			var showScroll:Boolean = (Math.ceil(length/value) > (width/columnWidth)>>0 && _scrollPolicy == ScrollPolicy.AUTO) || _scrollPolicy == ScrollPolicy.ON;
 			height = rowHeight * value + 2*pad + ((_scrollDirection == ScrollBarDirection.HORIZONTAL && showScroll) ? ScrollBar.WIDTH : 0);
 		}
 		
@@ -1053,7 +1052,7 @@ package fl.controls
 						
 						if (rendererSprite["setStyle"] != null) {
 							for (var n:String in rendererStyles) {
-								rendererSprite["setStyle"](n, rendererStyles[n])
+								rendererSprite["setStyle"](n, rendererStyles[n]);
 							}
 						}
 					}
@@ -1236,7 +1235,7 @@ package fl.controls
 					index = Math.max(0, Math.max(firstIndex, selectedIndex - columnCount));
 					break;
 				case Keyboard.PAGE_DOWN:
-					var lastIndex = selectedIndex - selectedIndex%totalCols + totalCols-1;
+					var lastIndex:* = selectedIndex - selectedIndex%totalCols + totalCols-1;
 					index = Math.min(length-1, Math.min(lastIndex, selectedIndex + totalCols)); break;
 			}
 	

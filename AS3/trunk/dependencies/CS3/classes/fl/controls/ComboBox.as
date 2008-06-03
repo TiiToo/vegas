@@ -20,7 +20,6 @@ package fl.controls
     import fl.core.InvalidationType;
     import fl.core.UIComponent;
     import fl.data.DataProvider;
-    import fl.data.SimpleCollectionItem;
     import fl.events.ComponentEvent;
     import fl.events.DataChangeEvent;
     import fl.events.ListEvent;
@@ -550,7 +549,7 @@ package fl.controls
          * @langversion 3.0
          * @playerversion Flash 9.0.28.0
 		 */
-		private var collectionItemImport:SimpleCollectionItem;		
+		//private var collectionItemImport:SimpleCollectionItem;		
 		
 		/**
          * @private

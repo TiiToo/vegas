@@ -558,7 +558,7 @@ package fl.video
 		/**
 		 * @private
 		 */
-		flvplayback_internal var _httpDoSeekCount:Number
+		flvplayback_internal var _httpDoSeekCount:Number;
 		/**
 		 * @private
 		 */
@@ -587,12 +587,12 @@ package fl.video
 		 * for progressive download auto start bandwidth detection
 		 * @private
 		 */
-		flvplayback_internal var totalDownloadTime:Number
+		flvplayback_internal var totalDownloadTime:Number;
 		/**
 		 * for progressive download auto start bandwidth detection
 		 * @private
 		 */
-		flvplayback_internal var totalProgressTime:Number
+		flvplayback_internal var totalProgressTime:Number;
 
 		// default times for intervals
         /**
@@ -2626,7 +2626,7 @@ package fl.video
 			var curBytesTotal:uint = _ns.bytesTotal;
 
 			if (curBytesTotal < uint.MAX_VALUE) {
-				dispatchEvent(new VideoProgressEvent(VideoProgressEvent.PROGRESS, false, false, curBytesLoaded, curBytesTotal))
+				dispatchEvent(new VideoProgressEvent(VideoProgressEvent.PROGRESS, false, false, curBytesLoaded, curBytesTotal));
 			}
 			if ( _state == VideoState.DISCONNECTED || _state == VideoState.CONNECTION_ERROR ||
 				 curBytesLoaded >= curBytesTotal ) {
@@ -3722,7 +3722,7 @@ package fl.video
 				} else if (!_isLive) {
 					_currentPos = 0;
 					_play(0, 0);
-					setState(VideoState.RESIZING)
+					setState(VideoState.RESIZING);
 				} else if (_autoPlay) {
 					_finishAutoResizeTimer.reset();
 					_finishAutoResizeTimer.start();
@@ -3798,7 +3798,7 @@ package fl.video
 			}
 			theNS.client = new VideoPlayerClient(this);
 			theNS.bufferTime = _bufferTime;
-			theNS.soundTransform = soundTransform
+			theNS.soundTransform = soundTransform;
 			_ns = theNS;
 			attachNetStream(_ns);
 		}

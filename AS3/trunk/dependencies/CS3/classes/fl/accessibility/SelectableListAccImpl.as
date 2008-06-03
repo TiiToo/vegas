@@ -1,13 +1,13 @@
 ﻿// Copyright 2007. Adobe Systems Incorporated. All Rights Reserved.
 package fl.accessibility 
 {
-	import flash.accessibility.Accessibility;
-	import flash.events.Event;
-	
-	import fl.controls.SelectableList;
-	import fl.core.UIComponent;	
+    import flash.accessibility.Accessibility;
+    import flash.events.Event;
+    
+    import fl.controls.SelectableList;
+    import fl.core.UIComponent;	
 
-	/**
+    /**
 	 *  The SelectableListAccImpl class, also called the SelectableList Accessibility Implementation class,
      *  is used to make a SelectableList component accessible.
      *
@@ -27,7 +27,7 @@ package fl.accessibility
          * @langversion 3.0
          * @playerversion Flash 9.0.28.0
 		 */
-		private static var accessibilityHooked:Boolean = hookAccessibility();
+		// private static var accessibilityHooked:Boolean =
 
 		/**
 		 *  @private
@@ -41,7 +41,7 @@ package fl.accessibility
 			SelectableList.createAccessibilityImplementation = createAccessibilityImplementation;
 			return true;
 		}
-		
+		 hookAccessibility();
 		//--------------------------------------------------------------------------
 		//  Class constants
 		//--------------------------------------------------------------------------
@@ -244,7 +244,7 @@ package fl.accessibility
 					accState |= (STATE_SYSTEM_OFFSCREEN | STATE_SYSTEM_INVISIBLE);
 				} else {
 					accState |= STATE_SYSTEM_SELECTABLE;
-					var item:Object = list.getItemAt(index);
+					//var item:Object = list.getItemAt(index);
 					var selItems:Array = list.selectedIndices;
 					for(var i:int = 0; i < selItems.length; i++) {
 						if(selItems[i] == index) {

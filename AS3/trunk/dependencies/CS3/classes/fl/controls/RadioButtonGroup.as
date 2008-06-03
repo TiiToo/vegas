@@ -1,4 +1,4 @@
-// Copyright 2007. Adobe Systems Incorporated. All Rights Reserved.
+﻿// Copyright 2007. Adobe Systems Incorporated. All Rights Reserved.
 package fl.controls 
 {
 	import flash.events.Event;
@@ -98,7 +98,10 @@ package fl.controls
          * @playerversion Flash 9.0.28.0
          */
 		private static function registerGroup(group:RadioButtonGroup):void {
-			if(groups == null){groups = {}}
+			if(groups == null)
+			{
+				groups = {} ;
+			}
 			groups[group.name] = group;
 		}
 

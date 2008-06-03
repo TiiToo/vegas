@@ -1,4 +1,4 @@
-// Copyright 2007. Adobe Systems Incorporated. All Rights Reserved.
+﻿// Copyright 2007. Adobe Systems Incorporated. All Rights Reserved.
 package fl.controls.listClasses 
 {
 	import flash.events.MouseEvent;
@@ -314,7 +314,7 @@ package fl.controls.listClasses
 				var textWidth:Number =  Math.max(0, width - textFieldX - textPadding*2);
 				textField.width = textWidth;
 				textField.height = textField.textHeight + 4;
-				textField.x = textFieldX + textPadding
+				textField.x = textFieldX + textPadding;
 				textField.y = Math.round((height-textField.height)>>1);
 			} else {
 				textField.visible = false;

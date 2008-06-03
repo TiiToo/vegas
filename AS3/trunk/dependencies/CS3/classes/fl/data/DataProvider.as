@@ -554,39 +554,47 @@ package fl.data
 		 */
 		protected function getDataFromObject(obj:Object):Array {
 			var retArr:Array;
-			if (obj is Array) {
+			if (obj is Array) 
+			{
 				var arr:Array = obj as Array;
 				if (arr.length > 0) {
 					if (arr[0] is String || arr[0] is Number) {
 						retArr = [];
 						// convert to object array.
-						for (var i:uint = 0; i < arr.length; i++) {
-							var o:Object = {label:String(arr[i]),data:arr[i]}
-							retArr.push(o);
+						for (var i:uint = 0; i < arr.length; i++) 
+						{
+							retArr.push({label:String(arr[i]),data:arr[i]});
 						}
 						return retArr;
 					}
 				}
 				return obj.concat();
-			} else if (obj is DataProvider) {
+			} 
+			else if (obj is DataProvider) 
+			{
 				return obj.toArray();
-			} else if (obj is XML) {
+			} 
+			else if (obj is XML) 
+			{
 				var xml:XML = obj as XML;
 				retArr = [];
 				var nodes:XMLList = xml.*;
-				for each (var node:XML in nodes) {
-					var obj:Object = {};
+				for each (var node:XML in nodes) 
+				{
+					var item:Object = {};
 					var attrs:XMLList = node.attributes();
-					for each (var attr:XML in attrs) {
-						obj[attr.localName()] = attr.toString();
+					for each (var attr:XML in attrs) 
+					{
+						item[attr.localName()] = attr.toString();
 					}
 					var propNodes:XMLList = node.*;
 					for each (var propNode:XML in propNodes) {
-						if (propNode.hasSimpleContent()) {
-							obj[propNode.localName()] = propNode.toString();
+						if (propNode.hasSimpleContent()) 
+						{
+							item[propNode.localName()] = propNode.toString();
 						}
 					}
-					retArr.push(obj);
+					retArr.push(item);
 				}
 				return retArr;
 			} else {

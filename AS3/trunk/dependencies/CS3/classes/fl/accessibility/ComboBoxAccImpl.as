@@ -1,4 +1,4 @@
-// Copyright 2007. Adobe Systems Incorporated. All Rights Reserved.
+﻿// Copyright 2007. Adobe Systems Incorporated. All Rights Reserved.
 package fl.accessibility 
 {
 	import flash.accessibility.Accessibility;
@@ -60,7 +60,7 @@ package fl.accessibility
          * @langversion 3.0
          * @playerversion Flash 9.0.28.0
          */
-		private static var accessibilityHooked:Boolean = hookAccessibility();
+		//private static var accessibilityHooked:Boolean = 
 
         /**
          * @private
@@ -74,7 +74,8 @@ package fl.accessibility
 			ComboBox.createAccessibilityImplementation = createAccessibilityImplementation;
 			return true;
 		}
-	
+		hookAccessibility();
+		
 		//--------------------------------------------------------------------------
 		//  Class constants
 		//--------------------------------------------------------------------------

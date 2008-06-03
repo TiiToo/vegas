@@ -159,7 +159,7 @@ package fl.controls.dataGridClasses
 			textField.height =  textField.textHeight + 4;
 			textField.visible = (label.length > 0);
 			var txtW:Number = textField.textWidth + 4;
-			var txtH:Number = textField.textHeight + 4;
+			//var txtH:Number = textField.textHeight + 4;
 			var paddedIconW:Number = (icon == null) ? 0 : icon.width + 4;
 			var tmpWidth:Number = Math.max(0, Math.min(txtW, width - 2 * txtPad - paddedIconW));
 			if (icon != null) {

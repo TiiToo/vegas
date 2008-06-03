@@ -1,13 +1,13 @@
 ﻿// Copyright 2007. Adobe Systems Incorporated. All Rights Reserved.
-package fl.accessibility 
+package fl.containers 
 {
-	import flash.accessibility.AccessibilityProperties;
-	import flash.events.Event;
-	
-	import fl.controls.ScrollBar;
-	import fl.core.UIComponent;	
+    import flash.accessibility.AccessibilityProperties;
+    import flash.events.Event;
+    
+    import fl.controls.ScrollBar;
+    import fl.core.UIComponent;	
 
-	/**
+    /**
 	 * The UIComponentAccImpl class, also called the UIComponent Accessibility Implementation class,
 	 * is used to make a UIComponent accessible. This class enables communication
 	 * between a List-based component and a screen reader. Screen readers are used to translate
@@ -29,17 +29,7 @@ package fl.accessibility
      * @playerversion Flash 9.0.28.0
 	 */
 	public class UIComponentAccImpl extends AccessibilityProperties {
-		/**
-		 *  @private
-         *  Static variable triggering the <code>hookAccessibility()</code> method.
-		 *  This is used for initializing UIComponentAccImpl class to hook its
-         *  <code>createAccessibilityImplementation()</code> method to UIComponent class 
-         *  before it gets called from <code>UIComponent.initialize()</code>.
-         *
-         * @langversion 3.0
-         * @playerversion Flash 9.0.28.0
-		 */
-		private static var accessibilityHooked:Boolean = hookAccessibility();
+
 	
 		/**
 		 * @private
@@ -54,6 +44,18 @@ package fl.accessibility
 			UIComponent.createAccessibilityImplementation = createAccessibilityImplementation;
 			return true;
 		}
+		
+		/**
+		 *  @private
+         *  Static variable triggering the <code>hookAccessibility()</code> method.
+		 *  This is used for initializing UIComponentAccImpl class to hook its
+         *  <code>createAccessibilityImplementation()</code> method to UIComponent class 
+         *  before it gets called from <code>UIComponent.initialize()</code>.
+         *
+         * @langversion 3.0
+         * @playerversion Flash 9.0.28.0
+		 */
+		hookAccessibility();
 	
 		/**
          *  @private (protected)

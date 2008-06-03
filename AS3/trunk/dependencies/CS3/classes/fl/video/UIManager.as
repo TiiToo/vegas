@@ -1468,7 +1468,8 @@ package fl.video
 			}
 			try {
 				anchorTop = ctrlData.avatar["anchorTop"];
-			} catch (re3:ReferenceError) {
+			} catch (re3:ReferenceError) 
+			{
 				anchorTop = false;
 			}
 			try {
@@ -1510,7 +1511,7 @@ package fl.video
 				if (ctrl["layoutSelf"] is Function) {
 					rect = ctrl["layoutSelf"](rect);
 				}
-			} catch (re3:ReferenceError) {
+			} catch (re50:ReferenceError) {
 			}
 
 			return rect;
@@ -1833,7 +1834,7 @@ package fl.video
 					part.y = ctrl.y;
 
 					// place part relative to the ctrl same as its avatar is placed relative to ctrl's avatar
-					var partAvatar:DisplayObject = layout_mc.getChildByName(skinName + "_mc")
+					var partAvatar:DisplayObject = layout_mc.getChildByName(skinName + "_mc");
 					//ifdef DEBUG
 					//debugTrace("partAvatar for " + skinName + "_mc = " + partAvatar);
 					//endif
@@ -2370,7 +2371,7 @@ package fl.video
 			var slideReveal:Boolean;
 			try {
 				slideReveal = fill["slideReveal"];
-			} catch (re:ReferenceError) {
+			} catch (re100:ReferenceError) {
 				slideReveal = false;
 			}
 
@@ -2391,7 +2392,7 @@ package fl.video
 				// make a very long fill_mc that will always be long enough
 				if (slideReveal) {
 					// place and size mask
-					mask.x = ctrl.x + maskData.leftMargin
+					mask.x = ctrl.x + maskData.leftMargin;
 					mask.y = ctrl.y + maskData.topMargin;
 					mask.width = ctrl.width - maskData.rightMargin - maskData.leftMargin;
 					mask.height = ctrl.height - maskData.topMargin - maskData.bottomMargin;
@@ -2607,7 +2608,7 @@ package fl.video
 
 			var theWidth:Number = (isNaN(ctrlData.origWidth)) ? ctrl.width : ctrlData.origWidth;
 			var handleSpanLength:Number = theWidth - handleData.rightMargin - handleData.leftMargin;
-			var handleLoc:Number = (handle.x - (ctrl.x + handleData.leftMargin))
+			var handleLoc:Number = (handle.x - (ctrl.x + handleData.leftMargin));
 			ctrlData.percentage = handleLoc / handleSpanLength * 100;
 
 			// sanity
@@ -2775,7 +2776,7 @@ package fl.video
 			_vc.activeVideoPlayerIndex = _vc.visibleVideoPlayerIndex;
 
 			var ctrl:Sprite;
-			var ctrlData:ControlData
+			var ctrlData:ControlData;
 			var handle:Sprite;
 
 			switch (index) {

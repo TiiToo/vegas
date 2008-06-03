@@ -1,4 +1,4 @@
-// Copyright 2007. Adobe Systems Incorporated. All Rights Reserved.
+﻿// Copyright 2007. Adobe Systems Incorporated. All Rights Reserved.
 package fl.accessibility 
 {
 	import flash.accessibility.Accessibility;
@@ -59,7 +59,7 @@ package fl.accessibility
          * @langversion 3.0
          * @playerversion Flash 9.0.28.0
 		 */
-		private static var accessibilityHooked:Boolean = hookAccessibility();
+		//private static var accessibilityHooked:Boolean = 
 		
 		/**
 		 *  @private
@@ -73,7 +73,7 @@ package fl.accessibility
 			DataGrid.createAccessibilityImplementation = createAccessibilityImplementation;
 			return true;
 		}
-
+		hookAccessibility();
 		//--------------------------------------------------------------------------
 		//  Class constants
 		//--------------------------------------------------------------------------
@@ -324,7 +324,7 @@ package fl.accessibility
 						accState |= (STATE_SYSTEM_OFFSCREEN | STATE_SYSTEM_INVISIBLE);
 					} else {
 						accState |= STATE_SYSTEM_SELECTABLE;
-						var item:Object = dataGrid.getItemAt(row);
+						//var item:Object = dataGrid.getItemAt(row);
 						var selItems:Array = dataGrid.selectedIndices;
 						for(var i:int = 0; i < selItems.length; i++) {
 							if(selItems[i] == row) {
@@ -425,7 +425,7 @@ package fl.accessibility
 				var col:int;
 				var item:Object;
 				if (!dataGrid.editable) {
-					row = index
+					row = index;
 					if (row < dataGrid.verticalScrollPosition || row >= dataGrid.verticalScrollPosition + dataGrid.rowCount) {
 						return null;
 					}
@@ -502,7 +502,7 @@ package fl.accessibility
 				// because getChildIDArray may not always be invoked.
 				var index:int = childID - 1;
 				// index is the (0 based) index of the elements after the headers
-				var row:int
+				var row:int;
 				var item:Object;
 				var columns:Array;
 				var n:int;

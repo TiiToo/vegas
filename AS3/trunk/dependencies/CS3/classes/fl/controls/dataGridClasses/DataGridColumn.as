@@ -1,11 +1,10 @@
 ﻿// Copyright 2007. Adobe Systems Incorporated. All Rights Reserved.
 package fl.controls.dataGridClasses 
 {
-	import fl.controls.DataGrid;
-	import fl.controls.dataGridClasses.DataGridCellEditor;
-	import fl.core.InvalidationType;	
+    import fl.controls.DataGrid;
+    import fl.core.InvalidationType;	
 
-	/**
+    /**
      * The DataGridColumn class describes a column in a DataGrid component. There 
      * is one DataGridColumn object for every column that could be displayed on
 	 * the screen, even for columns that are currently hidden or off-screen. The 
@@ -30,7 +29,7 @@ package fl.controls.dataGridClasses
          * @langversion 3.0
          * @playerversion Flash 9.0.28.0
 		 */
-		private var _columnName:String;
+		//private var _columnName:String;
 
 		/**
          * @private
@@ -259,7 +258,7 @@ package fl.controls.dataGridClasses
          * @langversion 3.0
          * @playerversion Flash 9.0.28.0
          */
-		private var forceImport:DataGridCellEditor;
+		//private var forceImport:DataGridCellEditor;
 
 
 		/**
@@ -622,11 +621,11 @@ package fl.controls.dataGridClasses
 			}
 			if (labelFunction != null) 
 			{
-				return labelFunction(data);
+				return ""; //labelFunction(data); // FIXME 
 			}
 			if (owner.labelFunction != null) 
 			{
-				return owner.labelFunction(data, this);
+				return ""; //owner.labelFunction(data, this);// FIXME 
 			}
 			if (typeof(data) == "object" || typeof(data) == "xml") {
 				try {

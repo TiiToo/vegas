@@ -1,4 +1,4 @@
-// Copyright 2007. Adobe Systems Incorporated. All Rights Reserved.
+﻿// Copyright 2007. Adobe Systems Incorporated. All Rights Reserved.
 package fl.managers 
 {
 	import flash.text.TextFormat;
@@ -84,7 +84,7 @@ package fl.managers
 			styleToClassesHash = {};
 			classToInstancesDict = new Dictionary(true);
 			classToStylesDict = new Dictionary(true);
-			classToDefaultStylesDict = new Dictionary(true)
+			classToDefaultStylesDict = new Dictionary(true);
 			globalStyles = UIComponent.getStyleDefinition();
 		}
 		
@@ -94,7 +94,7 @@ package fl.managers
          * @langversion 3.0
          * @playerversion Flash 9.0.28.0
 		 */
-		private static function getInstance() {
+		private static function getInstance():StyleManager {
 			if (_instance == null) { _instance = new StyleManager(); }
 			return _instance;
 		}
@@ -290,13 +290,22 @@ package fl.managers
 			if (component is Class) { 
 				return (component as Class);
 			}
-			try {
+			try 
+			{
 				return getDefinitionByName(getQualifiedClassName(component)) as Class;
-			} catch (e:Error) {
-				if (component is UIComponent) {
-					try {
+			} 
+			catch (er1:Error) 
+			{
+				if (component is UIComponent) 
+				{
+					try 
+					{
 						return component.loaderInfo.applicationDomain.getDefinition(getQualifiedClassName(component)) as Class;
-					} catch (e:Error) {}
+					} 
+					catch (er2:Error) 
+					{
+					
+					}
 				}
 			}
 			return null;

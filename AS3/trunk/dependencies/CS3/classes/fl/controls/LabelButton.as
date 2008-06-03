@@ -1,23 +1,23 @@
-// Copyright 2007. Adobe Systems Incorporated. All Rights Reserved.
+﻿// Copyright 2007. Adobe Systems Incorporated. All Rights Reserved.
 package fl.controls 
 {
-	import flash.display.DisplayObject;
-	import flash.events.Event;
-	import flash.events.KeyboardEvent;
-	import flash.events.MouseEvent;
-	import flash.text.TextField;
-	import flash.text.TextFieldType;
-	import flash.text.TextFormat;
-	import flash.ui.Keyboard;
-	
-	import fl.controls.BaseButton;
-	import fl.controls.ButtonLabelPlacement;
-	import fl.core.InvalidationType;
-	import fl.core.UIComponent;
-	import fl.events.ComponentEvent;
-	import fl.managers.IFocusManagerComponent; 
+    import flash.display.DisplayObject;
+    import flash.events.Event;
+    import flash.events.KeyboardEvent;
+    import flash.events.MouseEvent;
+    import flash.text.TextField;
+    import flash.text.TextFieldType;
+    import flash.text.TextFormat;
+    import flash.ui.Keyboard;
+    
+    import fl.controls.BaseButton;
+    import fl.controls.ButtonLabelPlacement;
+    import fl.core.InvalidationType;
+    import fl.core.UIComponent;
+    import fl.events.ComponentEvent;
+    import fl.managers.IFocusManagerComponent;	
 
-	//Only for ASDocs
+    //Only for ASDocs
 	
 	
 	
@@ -687,10 +687,12 @@ package fl.controls
          * @langversion 3.0
          * @playerversion Flash 9.0.28.0
 		 */
-		protected function setEmbedFont() {
+		protected function setEmbedFont():void 
+		{
 			var embed:Object = getStyleValue("embedFonts");
-			if (embed != null) {
-				textField.embedFonts = embed;
+			if (embed != null) 
+			{
+				textField.embedFonts = embed as Boolean ;
 			}	
 		}
 		

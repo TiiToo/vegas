@@ -1577,7 +1577,7 @@ package fl.controls
 				contentScrollRect.y = contentPadding;
 				listHolder.y = 0;
 			}
-			listHolder.scrollRect = contentScrollRect
+			listHolder.scrollRect = contentScrollRect;
 		}
 
 		/**
@@ -1966,7 +1966,7 @@ package fl.controls
          * @playerversion Flash 9.0.28.0
 		 */
 		protected function calculateColumnSizes():void {
-			var delta:Number;
+			//var delta:Number;
 			var n:int;
 			var i:int;
 			var totalWidth:Number = 0;
@@ -2261,7 +2261,7 @@ package fl.controls
 		 */
 		protected function sortByColumn(index:int):void {
 			var col:DataGridColumn = columns[index] as DataGridColumn;
-			if (!enabled || !col || !col.sortable) { return };
+			if (!enabled || !col || !col.sortable) { return ;};
 			var desc:Boolean = col.sortDescending;
 			// prepare sort options
 			var sortOptions:uint = col.sortOptions;
@@ -2378,7 +2378,7 @@ package fl.controls
          * @playerversion Flash 9.0.28.0
 		 */
 		protected function handleHeaderResizeUp(event:MouseEvent):void {
-			var dragHandle:Sprite = event.currentTarget as Sprite;
+			//var dragHandle:Sprite = event.currentTarget as Sprite;
 			var column:DataGridColumn = _columns[columnStretchIndex] as DataGridColumn;
 			var headerRenderer:HeaderRenderer;
 			for(var i:uint = 0; i < header.numChildren; i++) {
@@ -2570,14 +2570,15 @@ package fl.controls
 					fm.setFocus(InteractiveObject(itemEditorInstance));
 				}
 				fm.defaultButtonEnabled = false;
-				var event:DataGridEvent = new DataGridEvent(
+				var e:DataGridEvent = new DataGridEvent
+				(
 					DataGridEvent.ITEM_FOCUS_IN,
 					false,
 					false,
 					_editedItemPosition.columnIndex,
 					_editedItemPosition.rowIndex,
 					itemEditorInstance);
-				dispatchEvent(event);
+				dispatchEvent(e);
 			}
 		}
 
@@ -2812,9 +2813,9 @@ package fl.controls
 					// kill the old edit session
 					var reason:String;
 					if(rowIndex == _editedItemPosition.rowIndex) {
-						reason = DataGridEventReason.NEW_COLUMN
+						reason = DataGridEventReason.NEW_COLUMN ;
 					} else {
-						reason = DataGridEventReason.NEW_ROW
+						reason = DataGridEventReason.NEW_ROW ;
 					}
 					if (!itemEditorInstance || endEdit(reason)) {
 						// send event to create the new one
@@ -3223,7 +3224,7 @@ package fl.controls
 		override protected function moveSelectionVertically(code:uint, shiftKey:Boolean, ctrlKey:Boolean):void {
 			var pageSize:int = Math.max(Math.floor(calculateAvailableHeight() / rowHeight), 1);
 			var newCaretIndex:int = -1;
-			var dir:int = 0;
+			//var dir:int = 0;
 			switch(code) {
 				case Keyboard.UP:
 					if (caretIndex > 0) {

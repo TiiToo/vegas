@@ -1,13 +1,14 @@
 ﻿// Copyright 2007. Adobe Systems Incorporated. All Rights Reserved.
 package fl.accessibility 
 {
-	import flash.accessibility.AccessibilityImplementation;
-	import flash.accessibility.AccessibilityProperties;
-	import flash.events.Event;
-	
-	import fl.core.UIComponent;	
+    import flash.accessibility.AccessibilityImplementation;
+    import flash.accessibility.AccessibilityProperties;
+    import flash.events.Event;
+    
+    import fl.containers.UIComponentAccImpl;
+    import fl.core.UIComponent;	
 
-	/**
+    /**
 	 *  The AccImpl class, also called the Accessibility Implementation class, is the base class 
 	 *  for the implementation of accessibility in components. This class enables communication between
 	 *  a component and a screen reader. Screen readers are used to translate
@@ -60,7 +61,7 @@ package fl.accessibility
          * @langversion 3.0
          * @playerversion Flash 9.0.28.0
 		 */
-		private static const EVENT_OBJECT_NAMECHANGE:uint = 0x800C;
+		//private static const EVENT_OBJECT_NAMECHANGE:uint = 0x800C;
 
 
 		//--------------------------------------------------------------------------

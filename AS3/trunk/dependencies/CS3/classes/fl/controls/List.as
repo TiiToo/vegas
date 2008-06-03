@@ -1,4 +1,4 @@
-// Copyright 2007. Adobe Systems Incorporated. All Rights Reserved.
+﻿// Copyright 2007. Adobe Systems Incorporated. All Rights Reserved.
 package fl.controls 
 {
 	import flash.display.DisplayObject;
@@ -519,7 +519,7 @@ package fl.controls
 						
 						if (rendererSprite["setStyle"] != null) {
 							for (var n:String in rendererStyles) {
-								rendererSprite["setStyle"](n, rendererStyles[n])
+								rendererSprite["setStyle"](n, rendererStyles[n]);
 							}
 						}
 					}
@@ -633,11 +633,13 @@ package fl.controls
          * @langversion 3.0
          * @playerversion Flash 9.0.28.0
 		 */
-		override protected function moveSelectionVertically(code:uint, shiftKey:Boolean, ctrlKey:Boolean):void {
+		override protected function moveSelectionVertically(code:uint, shiftKey:Boolean, ctrlKey:Boolean):void 
+		{
 			var pageSize:int = Math.max(Math.floor(calculateAvailableHeight() / rowHeight), 1);
 			var newCaretIndex:int = -1;
-			var dir:int = 0;
-			switch(code) {
+			//var dir:int = 0;
+			switch(code) 
+			{
 				case Keyboard.UP:
 					if (caretIndex > 0) {
 						newCaretIndex = caretIndex - 1;
