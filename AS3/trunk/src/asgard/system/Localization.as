@@ -29,7 +29,7 @@ package asgard.system
     
     import vegas.core.Identifiable;
     import vegas.data.map.HashMap;
-    import vegas.events.CoreEventDispatcher;	
+    import vegas.events.CoreEventDispatcher;    
 
     /**
      * The Localization class allows to manage via textual files with 'JSON' or 'eden' format to charge the textual contents 
@@ -262,9 +262,10 @@ package asgard.system
           */
         public function getLocale( id:String=null ):* 
         {
-            if ( id != null ) 
+            if ( id != null && _current != null ) 
             {
-                return this.get( _current )[ id ] || null ;
+            	var item:Object = this.get( _current ) ;
+           		return ( item != null && id in item ) ? item[id] : null ;
             }
             else 
             {
@@ -281,10 +282,13 @@ package asgard.system
         public function init( o:Object , sID:String=null , callback:Function=null ):void
         {
             var init:* = getLocale( sID ) ;
-            for (var prop:String in init)
-            {
-                o[prop] = init[prop] ;    
-            }
+			if ( init != null )
+			{
+            	for (var prop:String in init)
+            	{
+	                o[prop] = init[prop] ;    
+            	}
+			}
             if ( callback != null )
             {
                 callback.call(o) ;    

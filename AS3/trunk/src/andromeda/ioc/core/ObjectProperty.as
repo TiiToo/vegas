@@ -22,6 +22,8 @@
 */
 package andromeda.ioc.core 
 {
+    import buRRRn.eden;
+    
     import system.Reflection;
     
     import vegas.core.CoreObject;
@@ -96,27 +98,35 @@ package andromeda.ioc.core
             for (var i:uint = 0 ; i<len ; i++)
             {
                     
-                prop  = a[i] ;
-                name  = prop[ ObjectAttribute.NAME ] as String ;
-                    
-                if ( name == null || name.length == 0 )
-                {
-                    continue ;
-                }
-                    
-                ref        = prop[ ObjectAttribute.REFERENCE ] as String  ;
-                value      = prop[ ObjectAttribute.VALUE ] ;
-                evaluators = prop[ObjectAttribute.EVALUATORS] as Array ;
+                prop  = a[i] as Object ;
                 
-                if ( ref != null ) 
-                {
-                    properties.put( name , new ObjectProperty( name , ref , ObjectAttribute.REFERENCE , evaluators ) ) ; // ref property    
+                if ( prop != null && ( ObjectAttribute.NAME in prop ) )
+                { 
+                
+                	name  = prop[ ObjectAttribute.NAME ] as String ;
+                
+	                if ( name == null || name.length == 0 )
+    	            {
+                    	continue ;
+                	}
+                    
+               		ref        = prop[ ObjectAttribute.REFERENCE ] as String  ;
+                	value      = prop[ ObjectAttribute.VALUE ] ;
+                	evaluators = prop[ObjectAttribute.EVALUATORS] as Array ;
+                
+                	if ( ref != null ) 
+                	{
+	                    properties.put( name , new ObjectProperty( name , ref , ObjectAttribute.REFERENCE , evaluators ) ) ; // ref property    
+                	}
+                	else 
+                	{
+	                    properties.put( name , new ObjectProperty( name , value , ObjectAttribute.VALUE , evaluators ) ) ; // value property    
+                	}
                 }
-                else 
+                else
                 {
-                    properties.put( name , new ObjectProperty( name , value , ObjectAttribute.VALUE , evaluators ) ) ; // value property    
-                }
-    
+                	trace( "ObjectProperty.create failed, a property definition is invalid : " + eden.serialize(prop) ) ; // FIXME logs ?	
+                }			    
             }
 
             return ( properties.size() > 0 ) ? properties : null ;

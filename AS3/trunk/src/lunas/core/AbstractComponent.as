@@ -40,7 +40,7 @@ package lunas.core
     import system.Reflection;
     import system.numeric.Mathematics;
     
-    import vegas.util.ClassUtil;	
+    import vegas.util.ClassUtil;    
 
     /**
 	 * This class provides a skeletal implementation of all the components in Lunas, to minimize the effort required to implement this interface.
