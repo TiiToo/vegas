@@ -25,9 +25,7 @@ package lunas.core
     import flash.text.TextField;
     import flash.text.TextFieldType;
     
-    import asgard.text.CoreTextField;
-    
-    import lunas.core.AbstractComponent;        
+    import lunas.core.AbstractComponent;    
 
     /**
      * This class provides a skeletal implementation of the <code class="prettyprint">ITextInput</code> interface, to minimize the effort required to implement this interface.
@@ -242,9 +240,12 @@ package lunas.core
         	{
         	   removeChild( _textField ) ;	
         	}
-        	_textField = field || new CoreTextField() ;
-        	addChild(_textField) ;
-        	viewEditableChanged() ;
+        	_textField = field ;
+        	if ( _textField != null )
+        	{
+        	   addChild(_textField) ;
+        	   viewEditableChanged() ;
+        	}
         	update() ;
         }
         
@@ -253,8 +254,11 @@ package lunas.core
          */
         protected function viewEditableChanged():void
         {
-            _textField.selectable = enabled && editable ;
-            _textField.type       = (enabled && editable) ? TextFieldType.INPUT : TextFieldType.DYNAMIC ;
+            if ( _textField != null )
+            {        	
+                _textField.selectable = enabled && editable ;
+                _textField.type       = (enabled && editable) ? TextFieldType.INPUT : TextFieldType.DYNAMIC ;
+            }
         }         
         
         /**

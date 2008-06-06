@@ -89,8 +89,7 @@ package lunas.display.text
         }
         
         /**
-         * The internal TextField that renders the text of this TextInput.
-         * Warning, if you use the setter of this virtual attribute the component is cleaned.
+         * The internal background of this TextInput.
          */        
         public function get background():Sprite
         {
