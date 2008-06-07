@@ -28,6 +28,7 @@ package andromeda.ioc.factory
     import andromeda.ioc.factory.strategy.IObjectFactoryStrategy;
     import andromeda.ioc.factory.strategy.ObjectFactoryMethod;
     import andromeda.ioc.factory.strategy.ObjectFactoryProperty;
+    import andromeda.ioc.factory.strategy.ObjectFactoryReference;
     import andromeda.ioc.factory.strategy.ObjectFactoryValue;
     import andromeda.ioc.factory.strategy.ObjectStaticFactoryMethod;
     import andromeda.ioc.factory.strategy.ObjectStaticFactoryProperty;
@@ -314,18 +315,22 @@ package andromeda.ioc.factory
          */
         protected function createObject( definition:IObjectDefinition ):*
         {
-            var instance:* = null ;
-            var clazz:Class ;
+            
+            var instance:*                      = null ;
+            
+            var clazz:Class                     = _typeEvaluator.eval( definition.getType() ) as Class ;
+            
             var strategy:IObjectFactoryStrategy = definition.getFactoryStrategy() ;
+
             if ( strategy == null )
             {
-                clazz           = _typeEvaluator.eval( definition.getType() ) as Class ;
-                instance        = ClassUtil.buildNewInstance( clazz, createArguments( definition.getConstructorArguments()) ) ;
+                instance = ClassUtil.buildNewInstance( clazz, createArguments( definition.getConstructorArguments()) ) as clazz ;
             }
             else
             {   
-                instance = createObjectWithStrategy( strategy ) ;
+                instance = createObjectWithStrategy( strategy ) as clazz ;
             }
+            
             if ( instance != null )
             {
                 populateIdentifiable ( instance , definition ) ;
@@ -389,10 +394,13 @@ package andromeda.ioc.factory
                 else if ( factoryProperty is ObjectFactoryProperty )
                 {
                     factory = (factoryProperty as ObjectFactoryProperty).factory ;
-                    ref     = getObject( factory ) ;
-                    if ( ( ref != null ) && ( name != null ) && ( name in ref ) ) 
+                    if ( factory != null && containsObjectDefinition(factory) )
                     {
-                        instance = ref[name] ;
+                        ref = getObject(factory) ;
+                        if ( ( ref != null ) && ( name != null ) && ( name in ref ) ) 
+                        {
+                            instance = ref[name] ;
+                        }
                     }
                 }
             }
@@ -400,6 +408,14 @@ package andromeda.ioc.factory
             {
             	instance = (strategy as ObjectFactoryValue).value ;
             }
+            else if ( strategy is ObjectFactoryReference )
+            {
+            	factory = (strategy as ObjectFactoryReference).ref ;
+            	if ( factory != null && containsObjectDefinition(factory) )
+            	{
+                    instance = getObject( factory ) ;
+            	}
+            }            
             return instance ;
         }
         

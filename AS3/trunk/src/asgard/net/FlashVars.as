@@ -24,7 +24,7 @@ package asgard.net
 {
     import flash.display.DisplayObjectContainer;
     
-    import system.evaluators.MultiEvaluator;        
+    import system.evaluators.MultiEvaluator;    
 
     /**
      * This manager register the reference of the <code class="prettyprint">parameters</code> object of the root of your application.
@@ -118,7 +118,7 @@ package asgard.net
     	{
     		if ( contains(name) )
     		{
-    			_evaluators.insert( rest ) ;
+    			_evaluators.add( rest ) ;
     			return _evaluators.eval(_parameters[name]) ;
     		}
     		else

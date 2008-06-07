@@ -24,9 +24,6 @@ package andromeda.ioc.core
 {
     import buRRRn.eden;
     
-    import system.Reflection;
-    
-    import vegas.core.CoreObject;
     import vegas.data.Map;
     import vegas.data.map.HashMap;    
 
@@ -34,7 +31,7 @@ package andromeda.ioc.core
      * This object defines a property definition and this value in an object definition.
      * @author eKameleon
      */
-    public class ObjectProperty extends CoreObject 
+    public class ObjectProperty
     {
 
         /**
@@ -131,21 +128,6 @@ package andromeda.ioc.core
 
             return ( properties.size() > 0 ) ? properties : null ;
 
-        }        
-        
-        /**
-         * Returns the string representation of this instance.
-         * @return the string representation of this instance.
-         */
-        public override function toString():String 
-        {
-            var s:String = "[" + Reflection.getClassName(this) ;
-            if ( name != null )
-            {
-                s += " name:" + name ;    
-            } 
-            s += "]" ;
-            return s ;
         }        
         
     }

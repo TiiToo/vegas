@@ -54,6 +54,22 @@
 			factoryValue : new String("hello world")
 		}
 		
+		,
+		
+		// test reference factory
+		
+		{   
+			id               : "my_user"   , 
+			type             : "test.User" , 
+			factoryReference : "user1"     ,
+			singleton        : true        ,
+			lazyInit         : true        ,
+			properties       : 
+			[ 
+				{ name:"url" , value : "http://www.ekameleon.net/blog" }	
+			]
+		}		
+		
 	]
 
 }

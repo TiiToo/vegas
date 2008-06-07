@@ -24,33 +24,33 @@ package andromeda.ioc.factory.strategy
 {
 
     /**
-     * This stategy create an object in the IoC factory with an easy value if the attribute "factoryValue" is used in the object definition.
+     * This stategy get a reference in the IoC factory if the "factoryReference" attribute is used in the object definition.
      * @author eKameleon
      */
-    public class ObjectFactoryValue implements IObjectFactoryStrategy
+    public class ObjectFactoryReference implements IObjectFactoryStrategy
     {
         
         /**
-         * Creates a new ObjectFactoryValue instance.
-         * @param value The value used in the factory strategy. 
+         * Creates a new ObjectFactoryReference instance.
+         * @param ref The reference id String representation of an objet definition in the factory. 
          */
-        public function ObjectFactoryValue( value:* )
+        public function ObjectFactoryReference( ref:String )
         {
-            this.value = value ;
+            this.ref = ref ;
         }
         
         /**
-         * The value of this strategy factory.
+         * The reference id of this strategy factory.
          */
-        public var value:* ;        
+        public var ref:String ;        
         
         /**
-         * Returns the ObjectFactoryValue representation of the specified value or null.
+         * Returns the ObjectFactoryReference representation of the specified value or null.
          * @return the ObjectFactoryValue representation of the specified value or null.
          */
-        public static function build( value:*=null ):ObjectFactoryValue
+        public static function build( ref:String ):ObjectFactoryReference
         {
-            return new ObjectFactoryValue( value ) ;
+            return new ObjectFactoryReference( ref ) ;
         }
                 
     }

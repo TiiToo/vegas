@@ -89,6 +89,11 @@ package andromeda.ioc.core
          * The name of the "factoryProperty" object definition attribute.
          */
         public static const OBJECT_FACTORY_PROPERTY:String = "factoryProperty" ;          
+
+        /**
+         * The name of the "factoryReference" object definition attribute.
+         */
+        public static const OBJECT_FACTORY_REFERENCE:String = "factoryReference" ;   
         
         /**
          * The name of the "factoryValue" object definition attribute.

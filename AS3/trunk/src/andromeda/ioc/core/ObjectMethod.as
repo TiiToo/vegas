@@ -22,13 +22,12 @@
 */
 package andromeda.ioc.core 
 {
-    import vegas.core.CoreObject;
-    
+
     /**
      * This object defines a method definition and this arguments.
      * @author eKameleon
      */
-    public class ObjectMethod extends CoreObject 
+    public class ObjectMethod
     {
         
         /**
