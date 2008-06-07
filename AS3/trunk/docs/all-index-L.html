@@ -565,7 +565,7 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("LÂ
   The IStyle class of the LightButton component.</td>
 </tr>
 <tr>
-<td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('lunas/display/button/class-list.html');" href="lunas/display/button/LightButtonStyle.html#LightButtonStyle()">LightButtonStyle</a>(id, init) &mdash; Constructor in class lunas.display.button.<a onclick="javascript:loadClassListFrame('lunas/display/button/class-list.html');" href="lunas/display/button/LightButtonStyle.html">LightButtonStyle</a></td>
+<td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('lunas/display/button/class-list.html');" href="lunas/display/button/LightButtonStyle.html#LightButtonStyle()">LightButtonStyle</a>(id, init, bGlobal, sChannel) &mdash; Constructor in class lunas.display.button.<a onclick="javascript:loadClassListFrame('lunas/display/button/class-list.html');" href="lunas/display/button/LightButtonStyle.html">LightButtonStyle</a></td>
 </tr>
 <tr>
 <td width="20"></td><td>
@@ -1062,6 +1062,13 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("LÂ
    Defines the logarithm with base 'a' of 'n'.</td>
 </tr>
 <tr>
+<td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('asgard/config/class-list.html');" href="asgard/config/Config.html#load()">load</a>(config) &mdash; Method in class asgard.config.<a onclick="javascript:loadClassListFrame('asgard/config/class-list.html');" href="asgard/config/Config.html">Config</a></td>
+</tr>
+<tr>
+<td width="20"></td><td>
+         Copy all enumerable properties in the specified passed-in object in the Config object.</td>
+</tr>
+<tr>
 <td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('asgard/display/class-list.html');" href="asgard/display/AVM2Loader.html#load()">load</a>(request, context) &mdash; Method in class asgard.display.<a onclick="javascript:loadClassListFrame('asgard/display/class-list.html');" href="asgard/display/AVM2Loader.html">AVM2Loader</a></td>
 </tr>
 <tr>
@@ -1215,7 +1222,30 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("LÂ
 </tr>
 <tr>
 <td width="20"></td><td>
-   The local scope reference.</td>
+         The local scope reference.</td>
+</tr>
+<tr>
+<td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('andromeda/ioc/core/class-list.html');" href="andromeda/ioc/core/IObjectDefinition.html#lock">lock</a> &mdash; Property in interface andromeda.ioc.core.<a onclick="javascript:loadClassListFrame('andromeda/ioc/core/class-list.html');" href="andromeda/ioc/core/IObjectDefinition.html">IObjectDefinition</a></td>
+</tr>
+<tr>
+<td width="20"></td><td>
+         Indicates if the object definition lock this ILockable object during the population 
+         of the properties and the initialization of the methods defines in the object definition.</td>
+</tr>
+<tr>
+<td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('andromeda/ioc/core/class-list.html');" href="andromeda/ioc/core/ObjectDefinition.html#lock">lock</a> &mdash; Property in class andromeda.ioc.core.<a onclick="javascript:loadClassListFrame('andromeda/ioc/core/class-list.html');" href="andromeda/ioc/core/ObjectDefinition.html">ObjectDefinition</a></td>
+</tr>
+<tr>
+<td width="20"></td><td>
+         Indicates if the object definition lock this ILockable object during the population 
+         of the properties and the initialization of the methods defines in the object definition.</td>
+</tr>
+<tr>
+<td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('andromeda/ioc/factory/class-list.html');" href="andromeda/ioc/factory/ObjectConfig.html#lock">lock</a> &mdash; Property in class andromeda.ioc.factory.<a onclick="javascript:loadClassListFrame('andromeda/ioc/factory/class-list.html');" href="andromeda/ioc/factory/ObjectConfig.html">ObjectConfig</a></td>
+</tr>
+<tr>
+<td width="20"></td><td>
+         Indicates if all the ILockable objects initialized in the object definitions in the factory must be locked during the invokation of this methods and the initialization of this properties.</td>
 </tr>
 <tr>
 <td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('asgard/display/class-list.html');" href="asgard/display/CoreBitmap.html#lock()">lock</a>() &mdash; Method in class asgard.display.<a onclick="javascript:loadClassListFrame('asgard/display/class-list.html');" href="asgard/display/CoreBitmap.html">CoreBitmap</a></td>
@@ -1302,6 +1332,13 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("LÂ
       Locks the object.</td>
 </tr>
 <tr>
+<td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('andromeda/ioc/core/class-list.html');" href="andromeda/ioc/core/ObjectAttribute.html#LOCK">LOCK</a> &mdash; Constant static property in class andromeda.ioc.core.<a onclick="javascript:loadClassListFrame('andromeda/ioc/core/class-list.html');" href="andromeda/ioc/core/ObjectAttribute.html">ObjectAttribute</a></td>
+</tr>
+<tr>
+<td width="20"></td><td>
+         Defines the label of the 'lock' property of the object.</td>
+</tr>
+<tr>
 <td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('lunas/display/container/class-list.html');" href="lunas/display/container/ListContainer.html#lockMask()">lockMask</a>() &mdash; Method in class lunas.display.container.<a onclick="javascript:loadClassListFrame('lunas/display/container/class-list.html');" href="lunas/display/container/ListContainer.html">ListContainer</a></td>
 </tr>
 <tr>
@@ -1313,7 +1350,7 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("LÂ
 </tr>
 <tr>
 <td width="20"></td><td>
-   Dispatch a log message.</td>
+         Dispatch a log message.</td>
 </tr>
 <tr>
 <td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('vegas/logging/class-list.html');" href="vegas/logging/ILogger.html#log()">log</a>(level:<a href="vegas/logging/LogEventLevel.html" onclick="javascript:loadClassListFrame('vegas/logging./class-list.html');">vegas.logging:LogEventLevel</a>, ... rest, rest) &mdash; Method in interface vegas.logging.<a onclick="javascript:loadClassListFrame('vegas/logging/class-list.html');" href="vegas/logging/ILogger.html">ILogger</a></td>

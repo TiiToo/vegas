@@ -114,7 +114,7 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <tr class="">
 <td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
 <div class="summarySignature">
-<a class="signatureLink" href="#create()">create</a>(gatewayUrl:String, httpHost:String = null):String</div>
+<a class="signatureLink" href="#create()">create</a>(gatewayUrl:String = null, httpHost:String = null):String</div>
 <div class="summaryTableDescription">
          Creates the url with the specified parameters.</div>
 </td><td class="summaryTableOwnerCol">RemotingGatewayUrl</td>
@@ -122,7 +122,7 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <tr class="hideInheritedMethod">
 <td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol">
 <div class="summarySignature">
-<a class="signatureLink" href="../FlashVars.html#getValue()">getValue</a>(name:String, evaluator:<a href="../../../system/evaluators/IEvaluator.html">IEvaluator</a> = null):*</div>
+<a class="signatureLink" href="../FlashVars.html#getValue()">getValue</a>(name:String, ... rest):*</div>
 <div class="summaryTableDescription">
       Returns the value of the specified variable in the FlashVars of the application.</div>
 </td><td class="summaryTableOwnerCol"><a href="../FlashVars.html">FlashVars</a></td>
@@ -184,7 +184,7 @@ showHideInherited();
 </tr>
 </table>
 <div class="detailBody">
-<code>public function create(gatewayUrl:String, httpHost:String = null):String</code><p>
+<code>public function create(gatewayUrl:String = null, httpHost:String = null):String</code><p>
          Creates the url with the specified parameters.
          </p><p><b>Example :</b></p>
          <pre class="prettyprint">
@@ -195,7 +195,7 @@ showHideInherited();
          <span class="label">Parameters</span>
 <table border="0" cellspacing="0" cellpadding="0">
 <tr>
-<td width="20px"></td><td><code><span class="label">gatewayUrl</span>:String</code></td>
+<td width="20px"></td><td><code><span class="label">gatewayUrl</span>:String</code> (default = <code>null</code>)<code></code></td>
 </tr>
 <tr>
 <td class="paramSpacer">&nbsp;</td>

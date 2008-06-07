@@ -300,7 +300,7 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <tr class="">
 <td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
 <div class="summarySignature">
-<a class="signatureLink" href="#stop()">stop</a>():Boolean</div>
+<a class="signatureLink" href="#stop()">stop</a>(... args):*</div>
 <div class="summaryTableDescription">
    Stops the sound playing in the channel.</div>
 </td><td class="summaryTableOwnerCol">CoreSound</td>
@@ -939,13 +939,19 @@ showHideInherited();
 </tr>
 </table>
 <div class="detailBody">
-<code>public function stop():Boolean</code><p>
+<code>public function stop(... args):*</code><p>
    Stops the sound playing in the channel.
-   </p><p></p>
+   </p><span class="label">Parameters</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td><code>... <span class="label">args</span></code></td>
+</tr>
+</table>
+<p></p>
 <span class="label">Returns</span>
 <table border="0" cellspacing="0" cellpadding="0">
 <tr>
-<td width="20"></td><td><code>Boolean</code> &mdash; <code class="prettyprint">true</code> if the stop method can be use (the internal SoundChannel of this Sound object is not null).
+<td width="20"></td><td><code>*</code> &mdash; <code class="prettyprint">true</code> if the stop method can be use (the internal SoundChannel of this Sound object is not null).
    </td>
 </tr>
 </table>

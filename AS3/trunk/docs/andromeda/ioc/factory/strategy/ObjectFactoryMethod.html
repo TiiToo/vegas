@@ -39,7 +39,7 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <td class="classHeaderTableLabel">Class</td><td class="classSignature">public class ObjectFactoryMethod</td>
 </tr>
 <tr>
-<td class="classHeaderTableLabel">Inheritance</td><td class="inheritanceList">ObjectFactoryMethod <img class="inheritArrow" alt="Inheritance" title="Inheritance" src="../../../../images/inherit-arrow.gif"> <a href="../../core/ObjectMethod.html">ObjectMethod</a> <img class="inheritArrow" alt="Inheritance" title="Inheritance" src="../../../../images/inherit-arrow.gif"> <a href="../../../../vegas/core/CoreObject.html">CoreObject</a></td>
+<td class="classHeaderTableLabel">Inheritance</td><td class="inheritanceList">ObjectFactoryMethod <img class="inheritArrow" alt="Inheritance" title="Inheritance" src="../../../../images/inherit-arrow.gif"> <a href="../../core/ObjectMethod.html">ObjectMethod</a></td>
 </tr>
 <tr>
 <td class="classHeaderTableLabel">Implements</td><td><a href="IObjectFactoryStrategy.html">IObjectFactoryStrategy</a></td>
@@ -86,14 +86,6 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <a name="methodSummary"></a>
 <div class="summarySection">
 <div class="summaryTableTitle">Public Methods</div>
-<div class="showHideLinks">
-<div class="hideInheritedMethod" id="hideInheritedMethod">
-<a onclick="javascript:setInheritedVisible(false,'Method');" href="#methodSummary" class="showHideLink"><img src="../../../../images/expanded.gif" class="showHideLinkImage"> Hide Inherited Public Methods</a>
-</div>
-<div class="showInheritedMethod" id="showInheritedMethod">
-<a onclick="javascript:setInheritedVisible(true,'Method');" href="#methodSummary" class="showHideLink"><img src="../../../../images/collapsed.gif" class="showHideLinkImage"> Show Inherited Public Methods</a>
-</div>
-</div>
 <table id="summaryTableMethod" class="summaryTable " cellpadding="3" cellspacing="0">
 <tr>
 <th>&nbsp;</th><th colspan="2">Method</th><th class="summaryTableOwnerCol">Defined&nbsp;by</th>
@@ -109,52 +101,11 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <tr class="">
 <td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
 <div class="summarySignature">
-<a class="signatureLink" href="#build()">build</a>(factoryMethod:Object = null):<a href="../strategy/ObjectFactoryMethod.html">ObjectFactoryMethod</a>
+<a class="signatureLink" href="#build()">build</a>(o:Object = null):<a href="../strategy/ObjectFactoryMethod.html">ObjectFactoryMethod</a>
 </div>
 <div class="summaryTableDescription">[static]
          Returns the ObjectFactoryMethod representation of the specified generic object or null.</div>
 </td><td class="summaryTableOwnerCol">ObjectFactoryMethod</td>
-</tr>
-<tr class="hideInheritedMethod">
-<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol">
-<div class="summarySignature">
-<a class="signatureLink" href="../../../../vegas/core/CoreObject.html#getLogger()">getLogger</a>():<a href="../../../../vegas/logging/ILogger.html">ILogger</a>
-</div>
-<div class="summaryTableDescription">
-   Returns the internal <code class="prettyprint">ILogger</code> reference of this <code class="prettyprint">ILogable</code> object.</div>
-</td><td class="summaryTableOwnerCol"><a href="../../../../vegas/core/CoreObject.html">CoreObject</a></td>
-</tr>
-<tr class="hideInheritedMethod">
-<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol">
-<div class="summarySignature">
-<a class="signatureLink" href="../../../../vegas/core/CoreObject.html#hashCode()">hashCode</a>():uint</div>
-<div class="summaryTableDescription">
-   Returns a hashcode value for the object.</div>
-</td><td class="summaryTableOwnerCol"><a href="../../../../vegas/core/CoreObject.html">CoreObject</a></td>
-</tr>
-<tr class="hideInheritedMethod">
-<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol">
-<div class="summarySignature">
-<a class="signatureLink" href="../../../../vegas/core/CoreObject.html#setLogger()">setLogger</a>(log:<a href="../../../../vegas/logging/ILogger.html">ILogger</a> = null):void</div>
-<div class="summaryTableDescription">
-   Sets the internal <code class="prettyprint">ILogger</code> reference of this <code class="prettyprint">ILogable</code> object.</div>
-</td><td class="summaryTableOwnerCol"><a href="../../../../vegas/core/CoreObject.html">CoreObject</a></td>
-</tr>
-<tr class="hideInheritedMethod">
-<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol">
-<div class="summarySignature">
-<a class="signatureLink" href="../../../../vegas/core/CoreObject.html#toSource()">toSource</a>(indent:int = 0):String</div>
-<div class="summaryTableDescription">
-   Returns the string representation the source code of the object.</div>
-</td><td class="summaryTableOwnerCol"><a href="../../../../vegas/core/CoreObject.html">CoreObject</a></td>
-</tr>
-<tr class="hideInheritedMethod">
-<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol">
-<div class="summarySignature">
-<a class="signatureLink" href="../../../../vegas/core/CoreObject.html#toString()">toString</a>():String</div>
-<div class="summaryTableDescription">
-   Returns the string representation of this instance.</div>
-</td><td class="summaryTableOwnerCol"><a href="../../../../vegas/core/CoreObject.html">CoreObject</a></td>
 </tr>
 </table>
 </div>
@@ -217,12 +168,12 @@ showHideInherited();
 </tr>
 </table>
 <div class="detailBody">
-<code>public static function build(factoryMethod:Object = null):<a href="../strategy/ObjectFactoryMethod.html">ObjectFactoryMethod</a></code><p>
+<code>public static function build(o:Object = null):<a href="../strategy/ObjectFactoryMethod.html">ObjectFactoryMethod</a></code><p>
          Returns the ObjectFactoryMethod representation of the specified generic object or null.
          </p><span class="label">Parameters</span>
 <table border="0" cellspacing="0" cellpadding="0">
 <tr>
-<td width="20px"></td><td><code><span class="label">factoryMethod</span>:Object</code> (default = <code>null</code>)<code></code></td>
+<td width="20px"></td><td><code><span class="label">o</span>:Object</code> (default = <code>null</code>)<code></code></td>
 </tr>
 </table>
 <p></p>

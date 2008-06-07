@@ -40,7 +40,7 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Pa
 <tr class="">
 <td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
 <div class="summarySignature">
-<a class="signatureLink" href="#info()">info</a>(verbose:Boolean = false, showConfig:Boolean = false):void</div>
+<a class="signatureLink" href="#info()">info</a>(verbose:Boolean = false, showConfig:Boolean = false):String</div>
 <div class="summaryTableDescription">
   The basic system info.</div>
 </td><td class="summaryTableOwnerCol">system</td>
@@ -56,7 +56,7 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Pa
 </tr>
 </table>
 <div class="detailBody">
-<code>public function info(verbose:Boolean = false, showConfig:Boolean = false):void</code><p>
+<code>public function info(verbose:Boolean = false, showConfig:Boolean = false):String</code><p>
   The basic system info.
   </p><span class="label">Parameters</span>
 <table border="0" cellspacing="0" cellpadding="0">
@@ -70,6 +70,13 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Pa
 <tr>
 <td width="20px"></td><td><code><span class="label">showConfig</span>:Boolean</code> (default = <code>false</code>)<code></code> &mdash; Indicates if the log information show config values.
      </td>
+</tr>
+</table>
+<p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><code>String</code></td>
 </tr>
 </table>
 </div>
