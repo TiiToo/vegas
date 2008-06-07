@@ -99,6 +99,11 @@ package andromeda.ioc.factory
         public var identify:Boolean ;
         
         /**
+         * Indicates if all the ILockable objects initialized in the object definitions in the factory must be locked during the invokation of this methods and the initialization of this properties.
+         */
+        public var lock:Boolean ;
+                
+        /**
          * Determinates the typeAliases reference of this config object.
          * <p>The setter of this virtual property can be populated with a TypeAliases instance or an Array of typeAliases items.</p>
          * <p>This setter attribute don't remove the old TypeAliases instance but fill it with new aliases. 
@@ -126,23 +131,26 @@ package andromeda.ioc.factory
         {
             if ( aliases is TypeAliases )
             {
+            	var next:String ;
+            	var key:String ;
                 var it:Iterator = (aliases as TypeAliases).iterator() ;
                 while( it.hasNext() )
                 {
-                    var next:String = it.next() as String ;
-                    var key:String  = it.key() as String ;
-                       _typeAliases.put(key, next) ;
+                    next = it.next() as String ;
+                    key  = it.key()  as String ;
+                    _typeAliases.put(key, next) ;
                 }
             }
             else if ( aliases is Array )
             {
+            	var item:Object ;
                 var arr:Array = aliases as Array ;
                 var len:uint  = arr.length ;
                 if ( len > 0 )
                 {
-                      while ( --len > -1 )
+                   while ( --len > -1 )
                    {
-                        var item:Object = arr[len] as Object ;
+                        item = arr[len] as Object ;
                         if ( item != null && ( ObjectAttribute.TYPE_ALIAS in item ) && ( ObjectAttribute.TYPE in item ) )
                         {
                             _typeAliases.put( item[ObjectAttribute.TYPE_ALIAS] as String , item[ObjectAttribute.TYPE] as String ) ;

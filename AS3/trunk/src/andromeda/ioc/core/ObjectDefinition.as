@@ -99,6 +99,23 @@ package andromeda.ioc.core
         }
         
         /**
+         * Indicates if the object definition lock this ILockable object during the population 
+         * of the properties and the initialization of the methods defines in the object definition.
+         */
+        public function get lock():* 
+        {
+            return _lock ;    
+        }
+    
+        /**
+         * @private
+         */
+        public function set lock( value:* ):void
+        {
+            _lock = ( value is Boolean ) ? value : null ;
+        }        
+        
+        /**
          * Creates a new ObjectDefinition instance and populated it with the specified init object in argument.
          * @param o A generic object to populate the new ObjectDefinition instance.
          * @return A ObjectDefinition instance.
@@ -115,12 +132,16 @@ package andromeda.ioc.core
             ) ;
                 
             definition.identify = o[ ObjectAttribute.IDENTIFY ] as Boolean  ;
-     
+            definition.lock     = o[ ObjectAttribute.LOCK ]     as Boolean  ;
+                 
             definition.setFactoryStrategy( _buildFactoryStrategy(o) ) ;
             
             definition.setConstructorArguments ( o[ ObjectAttribute.ARGUMENTS ] as Array ) ;
+            
             definition.setDestroyMethodName( o[ ObjectAttribute.OBJECT_DESTROY_METHOD_NAME ] as String ) ;
+            
             definition.setInitMethodName( o[ ObjectAttribute.OBJECT_INIT_METHOD_NAME ] as String ) ;
+            
             definition.setScope( o[ ObjectAttribute.OBJECT_SCOPE ] as String ) ;
             
             definition.setProperties( ObjectProperty.create( o[ ObjectAttribute.OBJECT_PROPERTIES ] as Array ) ) ;
@@ -332,6 +353,11 @@ package andromeda.ioc.core
         private var _lazyInit:Boolean ;
         
         /**
+         * @private
+         */
+        private var _lock:* = null ;        
+        
+        /**
          * The internal Array of all method definitions of the object.
          */
         private var _methods:Array ;
@@ -392,7 +418,6 @@ package andromeda.ioc.core
                     return null ;	
                 }
             }
-            return null ;
         }           
         
     }

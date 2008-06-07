@@ -1,0 +1,23 @@
+{
+    
+    objects : 
+    [
+        
+        {   
+            id          : "my_rectangle"  ,
+            type        : "test.display.RectangleSprite" ,
+            lock        : true     , // can be 'true', 'false' or 'null'
+            init        : "update" , 
+            properties  : 
+            [ 
+                { name : "color" , value : 0xFF00FF } , // launch the update method
+                { name : "w"     , value : 200      } , // launch the update method
+                { name : "h"     , value : 180      } , // launch the update method
+                { name : "x"     , value : 20       } ,
+                { name : "y"     , value : 20       }                                 
+            ]
+        }
+        
+    ]
+
+}

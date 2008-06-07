@@ -35,6 +35,7 @@ package andromeda.ioc.factory
     
     import system.Reflection;
     
+    import vegas.core.ILockable;
     import vegas.core.Identifiable;
     import vegas.data.Map;
     import vegas.data.map.HashMap;
@@ -258,20 +259,21 @@ package andromeda.ioc.factory
           * Creates the arguments Array representation of the specified definition.
           * @return the arguments Array representation of the specified definition.
           */
-        protected function createArguments( argList:Array=null ):Array
+        protected function createArguments( args:Array=null ):Array
         {
-            if ( argList == null )
+            if ( args == null )
             {
                 return null ;    
             }
-            var len:Number = argList.length ;
+            var len:uint = args.length ;
             if ( len > 0 )
             {
+            	var i:uint ;
                 var stack:Array = [] ;
                 var item:Object ;
-                for (var i:Number = 0 ; i<len ; i++)
+                for ( i = 0 ; i<len ; i++)
                 {
-                    item = argList[i] ;
+                    item = args[i] ;
                     if ( item.ref != null )
                     {
                         stack.push( getObject( item.ref ) ) ;    
@@ -316,9 +318,8 @@ package andromeda.ioc.factory
         protected function createObject( definition:IObjectDefinition ):*
         {
             
-            var instance:*                      = null ;
-            
-            var clazz:Class                     = _typeEvaluator.eval( definition.getType() ) as Class ;
+            var instance:*   = null ;
+            var clazz:Class  = _typeEvaluator.eval( definition.getType() ) as Class ;
             
             var strategy:IObjectFactoryStrategy = definition.getFactoryStrategy() ;
 
@@ -333,12 +334,29 @@ package andromeda.ioc.factory
             
             if ( instance != null )
             {
+
                 populateIdentifiable ( instance , definition ) ;
+            	
+            	var flag:Boolean = isLockable( instance, definition ) ;
+            	
+            	if ( flag )
+            	{
+            		(instance as ILockable).lock() ;
+            	}
+            	           
                 populateProperties   ( instance , definition.getProperties() );
                 invokeMethods        ( instance , definition.getMethods() ) ;
+                
+                if ( flag )
+                {
+                    (instance as ILockable).unlock() ;
+                }                
+                
                 invokeInitMethod     ( instance , definition ) ;
             }
+            
             return instance ;
+        
         }
         
         /**
@@ -487,6 +505,13 @@ package andromeda.ioc.factory
             }
         }
 
+        /**
+         * Indicates if the specified object is ILockable and must be locked during the initialization of the properties and methods when is created.
+         */
+        protected function isLockable( o:* , definition:IObjectDefinition ):Boolean
+        {
+            return ( o is ILockable ) && ( ( definition.lock == true ) || ( config.lock === true && definition.lock != false ) ) ;
+        }
         
         /**
          * Populates the <code class="prettyprint">Identifiable</code> singleton object, if the 'identify' flag is true the config of this factory and if specified the <code class="prettyprint">IObjectDefinition</code> object scope is singleton.

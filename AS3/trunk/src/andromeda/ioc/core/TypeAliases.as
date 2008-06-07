@@ -227,7 +227,7 @@ package andromeda.ioc.core
          */
         public function iterator():Iterator
         {
-            return     _map.iterator() ;
+            return _map.iterator() ;
         }
                 
         /**

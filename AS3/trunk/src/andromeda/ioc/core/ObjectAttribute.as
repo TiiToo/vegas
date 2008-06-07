@@ -71,6 +71,11 @@ package andromeda.ioc.core
         public static const LAZY_INIT:String = "lazyInit" ;
         
         /**
+         * Defines the label of the 'lock' property of the object.
+         */
+        public static const LOCK:String = "lock" ;        
+        
+        /**
          * Defines the label of the name in a property object.
           */
         public static const NAME:String = "name" ;  

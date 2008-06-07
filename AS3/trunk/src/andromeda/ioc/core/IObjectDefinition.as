@@ -46,6 +46,17 @@ package andromeda.ioc.core
         function set identify( value:* ):void ;
 
         /**
+         * Indicates if the object definition lock this ILockable object during the population 
+         * of the properties and the initialization of the methods defines in the object definition.
+         */
+        function get lock():* ; 
+            
+        /**
+         * @private
+         */
+        function set lock( value:* ):void ;
+        
+        /**
          * Returns the constructor arguments values of this object in a Array list.
          * @return the constructor arguments values of this object in a Array list.
          */    
