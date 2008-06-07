@@ -11,38 +11,35 @@
   The Original Code is [ES4a: ECMAScript 4 MaasHaack framework].
   
   The Initial Developer of the Original Code is
-  Marc Alcaraz <ekameleon@gmail.com>.
+  Zwetan Kjukov <zwetan@gmail.com>.
   Portions created by the Initial Developer are Copyright (C) 2006-2008
   the Initial Developer. All Rights Reserved.
   
   Contributor(s):
   
 */
-package system  
-{
-    import buRRRn.ASTUce.framework.ITest;
-    import buRRRn.ASTUce.framework.TestSuite;
-    
-    import system.evaluators.*;    
 
-    /**
-	 * This class launch all tests.
-	 * @author eKameleon
-	 */
-	public class AllTests
-	{
-		
-        /**
-         * Creates the Test list.
-         */		
-        public static function suite():ITest
+package system.evaluators
+{
+    import buRRRn.ASTUce.framework.*;        
+
+    public class AllTests
         {
-            var suite:TestSuite = new TestSuite( "system" );
+        
+        public function AllTests()
+            {
             
-            suite.addTest( system.evaluators.AllTests.suite()  ) ;
+            }
+        
+        public static function suite():ITest
+            {
+            var suite:TestSuite = new TestSuite( "Evaluators tests" );
+
+            suite.addTestSuite( MultiEvaluatorTest );            
             
             return suite;
+            }
+        
         }
-	}
-}
-
+    
+    }

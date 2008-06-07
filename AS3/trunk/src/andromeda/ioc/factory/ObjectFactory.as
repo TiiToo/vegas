@@ -28,6 +28,7 @@ package andromeda.ioc.factory
     import andromeda.ioc.factory.strategy.IObjectFactoryStrategy;
     import andromeda.ioc.factory.strategy.ObjectFactoryMethod;
     import andromeda.ioc.factory.strategy.ObjectFactoryProperty;
+    import andromeda.ioc.factory.strategy.ObjectFactoryValue;
     import andromeda.ioc.factory.strategy.ObjectStaticFactoryMethod;
     import andromeda.ioc.factory.strategy.ObjectStaticFactoryProperty;
     
@@ -103,8 +104,8 @@ package andromeda.ioc.factory
         {
             super( bGlobal, sChannel ) ;
             _typeEvaluator = new TypeEvaluator() ;
-            singletons    = new HashMap() ;
-            config        = new ObjectConfig() ; // the default empty ObjectConfig instance.
+            singletons     = new HashMap() ;
+            config         = new ObjectConfig() ; // the default empty ObjectConfig instance.
         }
         
         /**
@@ -394,6 +395,10 @@ package andromeda.ioc.factory
                         instance = ref[name] ;
                     }
                 }
+            }
+            else if ( strategy is ObjectFactoryValue )
+            {
+            	instance = (strategy as ObjectFactoryValue).value ;
             }
             return instance ;
         }

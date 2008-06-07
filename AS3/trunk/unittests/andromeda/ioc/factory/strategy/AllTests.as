@@ -42,6 +42,7 @@ package andromeda.ioc.factory.strategy
             
             // FIXME suite.addTestSuite( ObjectFactoryMethodTest ) ;
             // FIXME suite.addTestSuite( ObjectFactoryPropertyTest ) ;
+            // FIXME suite.addTestSuite( ObjectFactoryValuePropertyTest ) ;         
             // FIXME suite.addTestSuite( ObjectStaticFactoryMethodTest ) ;
             // FIXME suite.addTestSuite( ObjectStaticFactoryPropertyTest ) ;
 

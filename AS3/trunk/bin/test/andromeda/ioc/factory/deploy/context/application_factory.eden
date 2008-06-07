@@ -42,7 +42,18 @@
 			id              : "name"   , 
 			type            : "String" , 
 			factoryProperty : { factory:"user2" , name:"pseudo" }
-		}	
+		}
+		
+		,
+		
+		// test value factory
+		
+		{   
+			id           : "my_value" , 
+			type         : "String"   , 
+			factoryValue : new String("hello world")
+		}
+		
 	]
 
 }

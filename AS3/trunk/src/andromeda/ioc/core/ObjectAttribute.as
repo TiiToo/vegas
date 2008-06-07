@@ -91,6 +91,11 @@ package andromeda.ioc.core
         public static const OBJECT_FACTORY_PROPERTY:String = "factoryProperty" ;          
         
         /**
+         * The name of the "factoryValue" object definition attribute.
+         */
+        public static const OBJECT_FACTORY_VALUE:String = "factoryValue" ;          
+        
+        /**
          * The name of the external object property to define the id of the object.
          */
         public static const OBJECT_ID:String = "id" ;  

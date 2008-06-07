@@ -24,7 +24,7 @@ package asgard.net
 {
     import flash.display.DisplayObjectContainer;
     
-    import system.evaluators.IEvaluator;    
+    import system.evaluators.MultiEvaluator;        
 
     /**
      * This manager register the reference of the <code class="prettyprint">parameters</code> object of the root of your application.
@@ -71,8 +71,10 @@ package asgard.net
     	 */
     	public function FlashVars( root:DisplayObjectContainer ):void
     	{
-    		parameters = root.loaderInfo.parameters || null ;
-    	}
+    		parameters            = root.loaderInfo.parameters || null ;
+    		_evaluators           = new MultiEvaluator() ;
+    		_evaluators.autoClear = true ;
+        }
     	
     	/**
     	 * Defines the flashvars parameters object of the application. 
@@ -116,25 +118,19 @@ package asgard.net
     	{
     		if ( contains(name) )
     		{
-    			var value:* = _parameters[name] ;
-    			if ( rest != null && rest.length > 0 )
-    			{
-    				var len:uint = rest.length ;
-    				for (var i:uint = 0 ; i<len ; i++)
-    				{
-    					if ( rest[i] is IEvaluator ) 
-    					{
-    						value = (rest[i] as IEvaluator).eval( value ) ;
-    					}
-    				}
-    			}
-    			return value ;
+    			_evaluators.insert( rest ) ;
+    			return _evaluators.eval(_parameters[name]) ;
     		}
     		else
     		{
     			return null ;	
     		}
     	}
+    	
+        /**
+         * @private
+         */
+        private var _evaluators:MultiEvaluator ;    	
     	
     	/**
     	 * @private

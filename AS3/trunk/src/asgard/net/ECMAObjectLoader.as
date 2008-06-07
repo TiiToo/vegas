@@ -222,9 +222,8 @@ package asgard.net
             this.internalLoader = internalLoader ;
             this.path           = path    ;
 
-            _imports = new HashSet() ;
-            
-            _sequencer = new Sequencer() ;            
+            _imports            = new HashSet() ;
+            _sequencer          = new Sequencer() ;            
             
             _sequencer.addEventListener( ActionEvent.FINISH   , _finishSequencer   , false, 0 , true ) ;
             _sequencer.addEventListener( ActionEvent.PROGRESS , _progressSequencer , false, 0 , true ) ;
@@ -291,7 +290,7 @@ package asgard.net
         }
         
         /**
-         * Create the objects.
+         * Creates the objects.
          */
         public function create( ...arguments:Array ):void         
         {
@@ -479,7 +478,7 @@ package asgard.net
                 if ( _first )
                 {
                     _first = false ;    
-                    var config:Object = data[ ObjectAttribute.CONFIGURATION     ] ;
+                    var config:Object = data[ ObjectAttribute.CONFIGURATION  ] ;
                     if ( config != null )
                     {
                         factory.config.initialize( config ) ;    

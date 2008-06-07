@@ -25,6 +25,7 @@ package andromeda.ioc.core
     import andromeda.ioc.factory.strategy.IObjectFactoryStrategy;
     import andromeda.ioc.factory.strategy.ObjectFactoryMethod;
     import andromeda.ioc.factory.strategy.ObjectFactoryProperty;
+    import andromeda.ioc.factory.strategy.ObjectFactoryValue;
     import andromeda.ioc.factory.strategy.ObjectStaticFactoryMethod;
     import andromeda.ioc.factory.strategy.ObjectStaticFactoryProperty;
     
@@ -146,6 +147,11 @@ package andromeda.ioc.core
                 {
                     oStrategy = ObjectStaticFactoryProperty.build( o[ ObjectAttribute.OBJECT_STATIC_FACTORY_PROPERTY ] ) ;
                     break ;
+                }
+                case ObjectAttribute.OBJECT_FACTORY_VALUE in o :
+                {
+                    oStrategy = ObjectFactoryValue.build( o[ ObjectAttribute.OBJECT_FACTORY_VALUE ] ) ;
+                    break ;	
                 }
             }
                         

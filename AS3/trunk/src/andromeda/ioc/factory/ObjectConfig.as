@@ -63,8 +63,25 @@ package andromeda.ioc.factory
         public function ObjectConfig( init:Object=null )
         {
             _typeAliases = new TypeAliases() ;
+            _config      = {} ;       
             initialize( init ) ;
         }
+        
+        /**
+         * The config object reference used in the factory to register values and expressions.
+         */
+        public function get config():Object
+        {
+        	return _config ;
+        }
+        
+        /**
+         * @private
+         */
+        public function set config( o:Object ):void
+        {
+            _config = Reflection.getClassInfo(o).isDynamic() ? o : {} ;
+        }        
         
         /**
          * The default name of destroy callback method to invoke with object definition in the ObjectFactory. 
@@ -125,11 +142,11 @@ package andromeda.ioc.factory
                 {
                       while ( --len > -1 )
                    {
-                       var item:Object = arr[len] as Object ;
-                       if ( item != null && ( ObjectAttribute.TYPE_ALIAS in item ) && ( ObjectAttribute.TYPE in item ) )
-                       {
-                              _typeAliases.put( item[ObjectAttribute.TYPE_ALIAS] as String , item[ObjectAttribute.TYPE] as String ) ;
-                       }    
+                        var item:Object = arr[len] as Object ;
+                        if ( item != null && ( ObjectAttribute.TYPE_ALIAS in item ) && ( ObjectAttribute.TYPE in item ) )
+                        {
+                            _typeAliases.put( item[ObjectAttribute.TYPE_ALIAS] as String , item[ObjectAttribute.TYPE] as String ) ;
+                        }    
                    }
                 }
             }
@@ -208,6 +225,11 @@ package andromeda.ioc.factory
             s += "]" ;
             return s ;
         }
+        
+        /**
+         * @private
+         */
+        private var _config:Object ;        
         
         /**
          * @private

@@ -28,7 +28,7 @@ package asgard.config
 	 * The dynamic Config singleton. This object is a global reference to register all external config properties.
      * @author eKameleon
      */
-    dynamic public class Config extends CoreObject
+    public dynamic class Config extends CoreObject
     {
         
         /**
@@ -47,7 +47,7 @@ package asgard.config
 		{
 			if ( _instance == null )
 			{
-				_instance = new Config ;
+				_instance = new Config() ;
 			}
 			return _instance ;	
 		}
@@ -69,7 +69,18 @@ package asgard.config
 			{
 				callback.call(o) ;	
 			}
-		} 
+		}
+		
+        /**
+         * Copy all enumerable properties in the specified passed-in object in the Config object.
+         */
+        public function load( config:Object ):void
+        {
+            for( var prop:String in config )
+            {
+                this[prop] = config[prop] ;
+            }
+        }		
 		
 		/**
 		 * @private
