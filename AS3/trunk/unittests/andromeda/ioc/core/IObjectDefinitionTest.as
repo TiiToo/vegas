@@ -284,9 +284,36 @@ class ConcreteObjectDefinition implements IObjectDefinition
 		_id = id ;
 	}
 	
+    /**
+     * Indicates if the object definition lock this ILockable object during the population 
+     * of the properties and the initialization of the methods defines in the object definition.
+     */
+    public function get lock():*
+    {
+        return _lock ;
+    } 
+            
+    /**
+     * @private
+     */
+    public function set lock( value:* ):void 
+    {
+        _lock = value ;	
+    }	
+
+    /**
+     * @private
+     */
 	private var _id:* ;
 
+    /**
+     * @private
+     */
 	private var _identify:* ;
-    
+
+    /**
+     * @private
+     */
+    private var _lock:* ;    
 
 }

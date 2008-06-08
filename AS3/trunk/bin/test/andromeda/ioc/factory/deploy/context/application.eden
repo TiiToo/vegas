@@ -41,7 +41,7 @@
 			init          : "initialize" , // see the global 'defaultInitMethod' attribute in the 'configuration' attribute.
 			properties    : 
 			[
-				{ name:"age"       , value : 30        } ,
+				{ name:"age"       , value : 31        } ,
 				{ name:"firstName" , value : "Marc"    } , 
 				{ name:"job"       , ref   : "job_dev" } , 
 				{ name:"url"       , value : "http://www.ekameleon.net/blog" }

@@ -22,6 +22,7 @@
 */
 package andromeda.ioc.factory.strategy 
 {
+    import andromeda.ioc.core.ObjectArgument;
     import andromeda.ioc.core.ObjectAttribute;
     import andromeda.ioc.core.ObjectMethod;    
 
@@ -63,9 +64,9 @@ package andromeda.ioc.factory.strategy
             {
                 return new ObjectFactoryMethod
                 ( 
-                    o[ ObjectAttribute.FACTORY   ] , 
-                    o[ ObjectAttribute.NAME      ] , 
-                    o[ ObjectAttribute.ARGUMENTS ]  
+                    o[ ObjectAttribute.FACTORY   ] as String , 
+                    o[ ObjectAttribute.NAME      ] as String , 
+                    ObjectArgument.create( o[ ObjectAttribute.ARGUMENTS ] as Array )  
                 ) ;
             }
             else

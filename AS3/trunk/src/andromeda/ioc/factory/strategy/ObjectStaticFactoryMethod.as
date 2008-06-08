@@ -22,6 +22,7 @@
 */
 package andromeda.ioc.factory.strategy 
 {
+    import andromeda.ioc.core.ObjectArgument;
     import andromeda.ioc.core.ObjectAttribute;
     import andromeda.ioc.core.ObjectMethod;    
 
@@ -53,20 +54,19 @@ package andromeda.ioc.factory.strategy
          * Returns the ObjectStaticFactoryMethod representation of the specified generic object or null.
          * @return the ObjectStaticFactoryMethod representation of the specified generic object or null.
          */
-        public static function build( o:Object=null ):ObjectStaticFactoryMethod
+        public static function build( o:Object = null ):ObjectStaticFactoryMethod
         {
             if ( o == null ) 
             {
                 return null ;
             }
-            
             if ( ObjectAttribute.TYPE in o && ObjectAttribute.NAME in o )
             {
                 return new ObjectStaticFactoryMethod
                 ( 
-                    o[ ObjectAttribute.TYPE      ] as String , 
-                    o[ ObjectAttribute.NAME      ] as String , 
-                    o[ ObjectAttribute.ARGUMENTS ] as Array
+                    o[ ObjectAttribute.TYPE ] as String , 
+                    o[ ObjectAttribute.NAME ] as String , 
+                    ObjectArgument.create( o[ ObjectAttribute.ARGUMENTS ] as Array )
                 ) ;
             }
             else

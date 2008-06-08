@@ -51,5 +51,39 @@ package andromeda.ioc.core
          */
         public var name:String ;
         
+        /**
+         * Creates the Array definition of all arguments defines in the passed-in array.
+         * @return the Array definition of all arguments defines in the passed-in array.
+         */
+        public static function create( a:Array = null ):Array
+        {
+            if ( a == null || a.length == 0 )
+            {
+                return null ;
+            }
+            else
+            {
+                var methods:Array  = [] ;
+                var o:Object ;
+                var i:uint ;
+                var name:String  ;                
+                var l:uint = a.length ;
+                for ( i=0 ; i<l ; i++ )
+                {
+                    o = a[i] ;
+                    if ( o != null && ( ObjectAttribute.NAME in o ) )
+                    {
+                        name = o[ ObjectAttribute.NAME ] as String ;                    	
+                        if ( name == null || name.length == 0 )
+                        {
+                            continue ;
+                        }
+                        methods.push( new ObjectMethod( name, ObjectArgument.create( o[ ObjectAttribute.ARGUMENTS ] as Array ) ) ) ;
+                    }
+                }
+                return methods.length > 0 ? methods : null ;
+            }
+        }          
+        
     }
 }

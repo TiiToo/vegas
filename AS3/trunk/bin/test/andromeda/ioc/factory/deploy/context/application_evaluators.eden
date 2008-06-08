@@ -1,0 +1,24 @@
+{
+    
+    objects : 
+    [
+        
+        {   
+            id         : "my_date"  ,
+            type       : "String" ,
+            arguments  : 
+            [ 
+                { 
+					value      : "new Date(2007,11,5,10,22,33" , 
+					evaluators : 
+					[ 
+						new system.evaluators.EdenEvaluator(false) , 
+						new system.evaluators.DateEvaluator()
+					]
+				}
+            ]
+        }
+        
+    ]
+
+}

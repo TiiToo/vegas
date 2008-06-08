@@ -34,6 +34,7 @@ package andromeda.ioc.factory
     import andromeda.ioc.factory.strategy.ObjectStaticFactoryProperty;
     
     import system.Reflection;
+    import system.evaluators.MultiEvaluator;
     
     import vegas.core.ILockable;
     import vegas.core.Identifiable;
@@ -192,7 +193,7 @@ package andromeda.ioc.factory
             }
             catch(e:Error)
             {
-                debug( this + " createObject failed with the id '" + id + "' : " + e.toString() ) ;
+                debug( this + " getObject failed with the id '" + id + "' : " + e.toString() ) ;
             }
             return instance || null ;
         }
@@ -268,23 +269,32 @@ package andromeda.ioc.factory
             var len:uint = args.length ;
             if ( len > 0 )
             {
+            	
             	var i:uint ;
                 var stack:Array = [] ;
-                var item:Object ;
+                var item:ObjectArgument ;
+                
+                var e:MultiEvaluator = new MultiEvaluator() ;
+                
                 for ( i = 0 ; i<len ; i++)
                 {
-                    item = args[i] ;
-                    if ( item.ref != null )
+
+                    item = args[i] as ObjectArgument ;
+
+                    if ( item.evaluators != null )
                     {
-                        stack.push( getObject( item.ref ) ) ;    
+                    	e.add( item.evaluators ) ; // TODO add String reference in this array of evaluators to defines evaluator reference in the IoC container.
+                        item.value = e.eval( item.value ) ;
+                        e.clear() ;
                     }
-                    else if ( item.value != null )
+                    
+                    if ( item.policy == ObjectAttribute.REFERENCE )
                     {
-                        stack.push( item.value ) ;    
+                        stack.push( getObject( item.value ) ) ;    
                     }
                     else
                     {
-                        stack.push(null) ;
+                        stack.push( item.value ) ;    
                     }
                 }
                 return stack ;        
@@ -317,24 +327,32 @@ package andromeda.ioc.factory
          */
         protected function createObject( definition:IObjectDefinition ):*
         {
-            
+                  
             var instance:*   = null ;
+            
             var clazz:Class  = _typeEvaluator.eval( definition.getType() ) as Class ;
             
             var strategy:IObjectFactoryStrategy = definition.getFactoryStrategy() ;
-
-            if ( strategy == null )
-            {
-                instance = ClassUtil.buildNewInstance( clazz, createArguments( definition.getConstructorArguments()) ) as clazz ;
-            }
-            else
-            {   
-                instance = createObjectWithStrategy( strategy ) as clazz ;
-            }
             
+            try
+            {
+                if ( strategy == null )
+                {
+                    instance = ClassUtil.buildNewInstance( clazz, createArguments( definition.getConstructorArguments()) ) as clazz ;
+                }
+                else
+                {   
+                    instance = createObjectWithStrategy( strategy ) as clazz ;
+                }
+            }
+            catch( e:TypeError )
+            {
+                getLogger().fatal(this + " createObject failed, cant convert the instance with the specified type \"" + definition.getType() + "\" in the object definition \"" + definition.id + "\", this type don't exist in the application.") ;	
+            }
+                        
             if ( instance != null )
             {
-
+                
                 populateIdentifiable ( instance , definition ) ;
             	
             	var flag:Boolean = isLockable( instance, definition ) ;
@@ -365,20 +383,29 @@ package andromeda.ioc.factory
          */
         protected function createObjectWithStrategy( strategy:IObjectFactoryStrategy ):*
         {
+
             if ( strategy == null )
             {
                 return null ;
             }
+            
+            var args:Array ;
             var instance:* = null ;
             var clazz:Class ;
             var factory:String ;
             var ref:* ;
             var name:String ;
+            
+            var factoryMethod:ObjectMethod ;
+            
             if ( strategy is ObjectMethod )
             {
-                var factoryMethod:ObjectMethod = strategy as ObjectMethod ;
-                name = factoryMethod.name ;
-                var args:Array = createArguments( factoryMethod.arguments ) ;
+                
+                factoryMethod = strategy as ObjectMethod ;
+                
+                name          = factoryMethod.name ;
+                args          = createArguments( factoryMethod.arguments ) ;
+                                
                 if ( factoryMethod is ObjectStaticFactoryMethod )
                 {
                     clazz  = _typeEvaluator.eval( (factoryMethod as ObjectStaticFactoryMethod).type as String ) as Class ;
@@ -400,7 +427,9 @@ package andromeda.ioc.factory
             else if ( strategy is ObjectProperty )
             {
                 var factoryProperty:ObjectProperty = strategy as ObjectProperty ;
+
                 name = factoryProperty.name ;
+
                 if ( factoryProperty is ObjectStaticFactoryProperty )
                 {
                     clazz = _typeEvaluator.eval( (factoryProperty as ObjectStaticFactoryProperty).type as String ) as Class ;
@@ -411,6 +440,7 @@ package andromeda.ioc.factory
                 }
                 else if ( factoryProperty is ObjectFactoryProperty )
                 {
+
                     factory = (factoryProperty as ObjectFactoryProperty).factory ;
                     if ( factory != null && containsObjectDefinition(factory) )
                     {
@@ -480,19 +510,20 @@ package andromeda.ioc.factory
             {
                 return ;
             }
+            var name:String ;
             var size:uint = methods.length ;
             if ( size > 0 )
             {
+                var m:ObjectMethod ;       	
                 for (var i:uint = 0 ; i<size ; i++) 
                 {
                     try
                     {
-                        var item:Object = methods[i] ;
-                        var name:String = item[ ObjectAttribute.NAME ] ;
-                        var args:Array  = createArguments( item[ ObjectAttribute.ARGUMENTS ] ) ;
+                        m = methods[i] as ObjectMethod ;     
+                        name = m.name ;
                         if ( name in o )
                         {
-                            o[ name ].apply( o , args ) ;    
+                            o[ name ].apply( o , createArguments( m.arguments ) ) ;    
                         }
                     }
                     catch( e:Error ) 
@@ -556,35 +587,6 @@ package andromeda.ioc.factory
                 }
             } 
         }
-
-        /**
-         * Populates all properties in the Map passed in argument.
-         */
-        protected function populateMethods( o:* , methods:Array=null ):void 
-        {
-            if ( o == null || methods == null )
-            {
-                return ;
-            }
-            var size:uint = methods.length ;
-            if ( size > 0 )
-            {
-                for( var i:uint = 0 ; i<size ; i++ )
-                {
-                    var item:Object = methods[i] ;
-                    if ( item != null )
-                    {
-                        var name:String = item[ ObjectAttribute.NAME ] ;
-                        var args:Array = createArguments(item[ ObjectAttribute.ARGUMENTS ]) ;
-                        if ( name != null && name in o )
-                        {
-                            o[name].apply(o, args) ;
-                        }
-                    }
-                }
-            } 
-        }
-     
             
     }
 

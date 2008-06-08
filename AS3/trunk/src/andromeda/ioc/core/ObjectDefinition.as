@@ -23,12 +23,7 @@
 package andromeda.ioc.core 
 {
     import andromeda.ioc.factory.strategy.IObjectFactoryStrategy;
-    import andromeda.ioc.factory.strategy.ObjectFactoryMethod;
-    import andromeda.ioc.factory.strategy.ObjectFactoryProperty;
-    import andromeda.ioc.factory.strategy.ObjectFactoryReference;
-    import andromeda.ioc.factory.strategy.ObjectFactoryValue;
-    import andromeda.ioc.factory.strategy.ObjectStaticFactoryMethod;
-    import andromeda.ioc.factory.strategy.ObjectStaticFactoryProperty;
+    import andromeda.ioc.factory.strategy.ObjectFactoryBuilder;
     
     import vegas.core.CoreObject;
     import vegas.data.Map;
@@ -134,20 +129,16 @@ package andromeda.ioc.core
             definition.identify = o[ ObjectAttribute.IDENTIFY ] as Boolean  ;
             definition.lock     = o[ ObjectAttribute.LOCK ]     as Boolean  ;
                  
-            definition.setFactoryStrategy( _buildFactoryStrategy(o) ) ;
+            definition.setFactoryStrategy      ( ObjectFactoryBuilder.buildStrategy( o ) ) ;
             
-            definition.setConstructorArguments ( o[ ObjectAttribute.ARGUMENTS ] as Array ) ;
+            definition.setConstructorArguments ( ObjectArgument.create ( o[ ObjectAttribute.ARGUMENTS         ] as Array ) ) ;
+            definition.setProperties           ( ObjectProperty.create ( o[ ObjectAttribute.OBJECT_PROPERTIES ] as Array ) ) ;
+            definition.setMethods              ( ObjectMethod.create   ( o[ ObjectAttribute.OBJECT_METHODS    ] as Array ) ) ;
             
-            definition.setDestroyMethodName( o[ ObjectAttribute.OBJECT_DESTROY_METHOD_NAME ] as String ) ;
-            
-            definition.setInitMethodName( o[ ObjectAttribute.OBJECT_INIT_METHOD_NAME ] as String ) ;
-            
-            definition.setScope( o[ ObjectAttribute.OBJECT_SCOPE ] as String ) ;
-            
-            definition.setProperties( ObjectProperty.create( o[ ObjectAttribute.OBJECT_PROPERTIES ] as Array ) ) ;
-            
-            definition.setMethods( o[ ObjectAttribute.OBJECT_METHODS ] as Array ) ;
-                            
+            definition.setDestroyMethodName    ( o[ ObjectAttribute.OBJECT_DESTROY_METHOD_NAME ] as String ) ;
+            definition.setInitMethodName       ( o[ ObjectAttribute.OBJECT_INIT_METHOD_NAME    ] as String ) ;
+            definition.setScope                ( o[ ObjectAttribute.OBJECT_SCOPE               ] as String ) ;
+                                        
             return definition ;            
             
         }
@@ -382,43 +373,7 @@ package andromeda.ioc.core
          */
         private var _type : String;
         
-        /**
-         * @private
-         */
-        public static function _buildFactoryStrategy( o:* ):IObjectFactoryStrategy    
-        {
-            switch( true )
-            {
-                case ObjectAttribute.OBJECT_FACTORY_METHOD in o :
-                {
-                    return ObjectFactoryMethod.build( o[ ObjectAttribute.OBJECT_FACTORY_METHOD ] ) ;
-                }
-                case ObjectAttribute.OBJECT_FACTORY_PROPERTY in o :
-                {
-                    return ObjectFactoryProperty.build( o[ ObjectAttribute.OBJECT_FACTORY_PROPERTY ] ) ;
-                }
-                case ObjectAttribute.OBJECT_STATIC_FACTORY_METHOD in o :
-                {
-                    return ObjectStaticFactoryMethod.build( o[ ObjectAttribute.OBJECT_STATIC_FACTORY_METHOD ] ) ;
-                }
-                case ObjectAttribute.OBJECT_STATIC_FACTORY_PROPERTY in o :
-                {
-                    return ObjectStaticFactoryProperty.build( o[ ObjectAttribute.OBJECT_STATIC_FACTORY_PROPERTY ] ) ;
-                }
-                case ObjectAttribute.OBJECT_FACTORY_VALUE in o :
-                {
-                    return ObjectFactoryValue.build( o[ ObjectAttribute.OBJECT_FACTORY_VALUE ] ) ;
-                }
-                case ObjectAttribute.OBJECT_FACTORY_REFERENCE in o :
-                {
-                    return ObjectFactoryReference.build( o[ ObjectAttribute.OBJECT_FACTORY_REFERENCE ] ) ;
-                }
-                default :
-                {
-                    return null ;	
-                }
-            }
-        }           
+               
         
     }
 
