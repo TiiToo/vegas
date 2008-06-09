@@ -306,10 +306,10 @@ package andromeda.ioc.factory
         } 
         
         /**
-          * Creates and cache the singleton instance define with the specified id and IObjectDefinition.
-          * @param id the id of the class object.
-          * @param definition the IDefinition to apply over the new instance.
-          */
+         * Creates and cache the singleton instance define with the specified id and IObjectDefinition.
+         * @param id the id of the class object.
+         * @param definition the IDefinition to apply over the new instance.
+         */
         protected function createAndCacheSingletonInstance( id:String, definition:IObjectDefinition ):*
         {
             var instance:* = singletons.get( id ) ;
@@ -347,7 +347,7 @@ package andromeda.ioc.factory
             }
             catch( e:TypeError )
             {
-                getLogger().fatal(this + " createObject failed, cant convert the instance with the specified type \"" + definition.getType() + "\" in the object definition \"" + definition.id + "\", this type don't exist in the application.") ;	
+                getLogger().fatal(this + " createObject failed, can't convert the instance with the specified type \"" + definition.getType() + "\" in the object definition \"" + definition.id + "\", this type don't exist in the application.") ;	
             }
                         
             if ( instance != null )
