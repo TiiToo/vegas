@@ -19,8 +19,7 @@
   
   Contributor(s) :
   
-*/
-
+ */
 import andromeda.events.ModelObjectEvent;
 import andromeda.model.AbstractModel;
 import andromeda.model.IModelObject;
@@ -81,6 +80,15 @@ class andromeda.model.AbstractModelObject extends AbstractModel implements IMode
 		return _vo ;
 	}
 
+    /**
+     * Returns the event use in the <code class="prettyprint">setCurrentVO</code> method before is changed.
+     * @return the event use in the <code class="prettyprint">setCurrentVO</code> method before is changed.
+     */
+    public function getEventTypeBEFORE_CHANGE():String
+    {
+        return _eBeforeChange.getType() ;
+    }
+
 	/**
 	 * Returns the event name use in the {@code setVO} method.
 	 * @return the event name use in the {@code setVO} method.
@@ -104,10 +112,24 @@ class andromeda.model.AbstractModelObject extends AbstractModel implements IMode
 	 * Overrides this method.
 	 */
 	public function initEvent():Void
-	{
-		_eChange = createNewModelObjectEvent( ModelObjectEvent.CHANGE_CURRENT_VO ) ;
-		_eClear  = createNewModelObjectEvent( ModelObjectEvent.CLEAR_VO ) ;
+    {
+        _eBeforeChange = createNewModelObjectEvent( ModelObjectEvent.BEFORE_CHANGE_VO  ) ;
+        _eChange       = createNewModelObjectEvent( ModelObjectEvent.CHANGE_CURRENT_VO ) ;
+		_eClear        = createNewModelObjectEvent( ModelObjectEvent.CLEAR_VO ) ;
 	}
+
+    /**
+     * Notify a <code class="prettyprint">ModelObjectEvent</code> before the current <code class="prettyprint">IValueObject</code> selected in the model is changed.
+     */ 
+    public function notifyBeforeChange( vo:IValueObject ):Void
+    {
+        if ( isLocked() )
+        {
+            return ;
+        }
+        _eBeforeChange.setVO(vo) ;
+        dispatchEvent( _eBeforeChange ) ;    
+    }
 
 	/**
 	 * Notify a {@code ModelObjectEvent} when a {@code IValueObject} change in the model.
@@ -135,7 +157,7 @@ class andromeda.model.AbstractModelObject extends AbstractModel implements IMode
     }
 
 	/**
-	 * Sets the current IValueObject selected in this model.
+	 * Sets the current {@code IValueObject} selected in this model.
 	 */
 	public function setCurrentVO( vo:IValueObject ):Void
 	{
@@ -143,10 +165,24 @@ class andromeda.model.AbstractModelObject extends AbstractModel implements IMode
 		{
 			return ;	
 		}
+        if ( _vo != null )
+        {
+            notifyBeforeChange( _vo ) ;
+            _vo = null ;            
+        }	
 		validate(vo) ;
 		_vo = vo ;
 		notifyChange(vo) ;
 	}
+	
+    /**
+     * Returns the event name use in the <code class="prettyprint">setCurrentVO</code> method before is changed.
+     * @return the event name use in the <code class="prettyprint">unchange</code> method.
+     */
+    public function setEventTypeBEFORE_CHANGE( type:String ):Void
+    {
+        _eBeforeChange.setType( type );
+    }	
 	
 	/**
 	 * Returns the event name use in the {@code setVO} method.
@@ -187,6 +223,11 @@ class andromeda.model.AbstractModelObject extends AbstractModel implements IMode
 			throw new TypeMismatchError( this + " validate(" + value + ") is mismatch.") ;
 		}
 	}
+
+	/**
+     * @private
+     */
+    private var _eBeforeChange:ModelObjectEvent ;
 
 	/**
 	 * The internal ModelObjectEvent use in the clearVO method.

@@ -88,7 +88,7 @@ package andromeda.model
         {
             return _sBeforeChangeType ;
         }
-
+		
         /**
          * Returns the event name use in the <code class="prettyprint">setVO</code> method.
          * @return the event name use in the <code class="prettyprint">setVO</code> method.
@@ -117,7 +117,19 @@ package andromeda.model
             _sClearType        = ModelObjectEvent.CLEAR_VO  ;
             _sBeforeChangeType = ModelObjectEvent.BEFORE_CHANGE_VO ;
         }
-
+		
+        /**
+         * Notify a <code class="prettyprint">ModelObjectEvent</code> before the current <code class="prettyprint">IValueObject</code> selected in the model is changed.
+         */ 
+        public function notifyBeforeChange( vo:IValueObject ):void
+        {
+            if ( isLocked() )
+            {
+                return ;
+            }
+            dispatchEvent( createNewModelObjectEvent( _sBeforeChangeType, vo ) );    
+        }		
+		
         /**
          * Notify a <code class="prettyprint">ModelObjectEvent</code> when a <code class="prettyprint">IValueObject</code> change in the model.
          */
@@ -129,7 +141,7 @@ package andromeda.model
             }
             dispatchEvent( createNewModelObjectEvent( _sChangeType , vo ) );
         }
-
+		
         /**
          * Notify a <code class="prettyprint">ModelObjectEvent</code> when the model is cleared.
          */ 
@@ -141,19 +153,7 @@ package andromeda.model
             }
             dispatchEvent( createNewModelObjectEvent( _sClearType ) ) ; 
         }
-
-        /**
-         * Notify a <code class="prettyprint">ModelObjectEvent</code> before the current <code class="prettyprint">IValueObject</code> selected in the model is changed.
-         */ 
-        public function notifyBeforeChange( vo:IValueObject ):void
-        {
-            if ( isLocked() )
-            {
-                return ;
-            }
-            dispatchEvent( createNewModelObjectEvent( _sBeforeChangeType, vo ) );    
-        }
-
+		
         /**
          * Sets the current <code class="prettyprint">IValueObject</code> selected in this model.
          */
@@ -165,9 +165,8 @@ package andromeda.model
             }
             if ( _vo != null )
             {
-                var tmp:IValueObject = _vo ;
+                notifyBeforeChange( _vo ) ;
                 _vo = null ;
-                notifyBeforeChange( tmp ) ;
             }
             if ( vo != null )
             {
@@ -241,7 +240,7 @@ package andromeda.model
         private var _sClearType:String ;
         
         /**
-         * The current value object selectd in this model.
+         * @private
          */
         private var _vo:IValueObject ;
     }

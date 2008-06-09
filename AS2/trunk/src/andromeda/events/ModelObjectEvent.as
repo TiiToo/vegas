@@ -50,6 +50,11 @@ class andromeda.events.ModelObjectEvent extends BasicEvent
 	 */
 	public static var ADD_VO:String = "onAddVO" ;
 
+    /**
+     * Default event type before the change event notify when the current {@code IValueObject} in a model is changed.
+     */
+    public static var BEFORE_CHANGE_VO:String = "onBeforeChangeVO" ; 
+
 	/**
 	 * Default event type when the clear method is invoked.
 	 */
@@ -95,7 +100,10 @@ class andromeda.events.ModelObjectEvent extends BasicEvent
 	{
 		_vo = vo || null ;	
 	}
-
+	
+	/**
+	 * @private
+	 */
 	private var _vo:IValueObject ;
 
 }
