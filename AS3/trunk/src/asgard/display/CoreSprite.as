@@ -159,7 +159,7 @@ package asgard.display
     	}
 		
 	    /**
-	     * Reset the lock sercurity of the display.
+	     * Reset the lock security of the display.
 	     */
     	public function resetLock():void 
     	{
