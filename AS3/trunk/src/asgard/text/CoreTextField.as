@@ -155,22 +155,30 @@ package asgard.text
             return __hashcode__ ;
         }
 
-        /**
-         * Returns <code class="prettyprint">true</code> if the object is locked.
-         * @return <code class="prettyprint">true</code> if the object is locked.
-         */
-        public function isLocked():Boolean 
-        {
-            return ___isLock___ ;
-        }
-        
-        /**
-         * Locks the object.
-         */
-        public function lock():void 
-        {
-            ___isLock___ = true ;
-        }
+    	/**
+	     * Returns <code class="prettyprint">true</code> if the object is locked.
+	     * @return <code class="prettyprint">true</code> if the object is locked.
+	     */
+	    public function isLocked():Boolean 
+	    {
+        	return ___isLock___ > 0 ;
+    	}
+		
+    	/**
+	     * Locks the object.
+	     */
+	    public function lock():void 
+	    {
+        	___isLock___ ++ ;
+    	}
+		
+	    /**
+	     * Reset the lock security of the display.
+	     */
+    	public function resetLock():void 
+    	{
+	        ___isLock___ = 0 ;
+	    }
         
         /**
          * Sets the internal <code class="prettyprint">ILogger</code> reference of this <code class="prettyprint">ILogable</code> object.
@@ -206,13 +214,13 @@ package asgard.text
             return str ;
         }
         
-        /**
-         * Unlocks the display.
-         */
-        public function unlock():void 
-        {
-            ___isLock___ = false ;
-        }
+	    /**
+	     * Unlocks the display.
+	     */
+    	public function unlock():void 
+    	{
+	        ___isLock___ = Math.max( ___isLock___ - 1  , 0 ) ;
+	    }
 
         /**
          * Update the display.
@@ -239,37 +247,36 @@ package asgard.text
             //
         }
 
-        /**
-         * @private
-         */
-        private var __hashcode__:Number = NaN ;
-    
-        /**
-         * The internal id of this object.
-         * @private
-         */
-        private var _id:* = null ;
+		/**
+		 * @private
+		 */
+		private var __hashcode__:Number ;
 
-        /**
-         * @private
-         */
-        private var _isConfigurable:Boolean ;
+		/**
+		 * @private
+		 */
+		private var _id:* = null ;
 
-        /**
-         * The internal flag to indicates if the display is locked or not.
-         * @private
-         */ 
-        private var ___isLock___:Boolean = false ;
-        
-        /**
-         * The internal ILogger reference of this object.
-         */
-        private var _logger:ILogger ;
-        
-        /**
-         * Sets the id of the object and register it in the DisplayObjectCollector if it's possible.
-         * @see DisplayObjectCollector.
-         */
+		/**
+		 * @private
+		 */
+		private var _isConfigurable:Boolean ;
+
+	    /**
+	     * @private
+	     */ 
+	    private var ___isLock___:uint ;
+		
+	    /**
+	     * @private
+	     */ 
+		private var _logger:ILogger ;
+		
+		/**
+		 * Sets the id of the object and register it in the DisplayObjectCollector if it's possible.
+		 * @see DisplayObjectCollector
+		 * @private
+		 */
         private function _setID( id:* ):void 
         {
             if ( DisplayObjectCollector.contains( this._id ) )

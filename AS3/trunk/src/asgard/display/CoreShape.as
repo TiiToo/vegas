@@ -150,7 +150,7 @@ package asgard.display
 	     */
 	    public function isLocked():Boolean 
 	    {
-        	return ___isLock___ ;
+        	return ___isLock___ > 0 ;
     	}
 		
     	/**
@@ -158,8 +158,16 @@ package asgard.display
 	     */
 	    public function lock():void 
 	    {
-        	___isLock___ = true ;
+        	___isLock___ ++ ;
     	}
+		
+	    /**
+	     * Reset the lock security of the display.
+	     */
+    	public function resetLock():void 
+    	{
+	        ___isLock___ = 0 ;
+	    }
 		
 		/**
 		 * Sets the internal <code class="prettyprint">ILogger</code> reference of this <code class="prettyprint">ILogable</code> object.
@@ -200,7 +208,7 @@ package asgard.display
 	     */
     	public function unlock():void 
     	{
-	        ___isLock___ = false ;
+	        ___isLock___ = Math.max( ___isLock___ - 1  , 0 ) ;
 	    }
 
 		/**
@@ -231,10 +239,9 @@ package asgard.display
 		/**
 		 * @private
 		 */
-		private var __hashcode__:Number = NaN ;
+		private var __hashcode__:Number ;
 
 		/**
-		 * The internal id of this object.
 		 * @private
 		 */
 		private var _id:* = null ;
@@ -245,14 +252,13 @@ package asgard.display
 		private var _isConfigurable:Boolean ;
 
 	    /**
-	     * The internal flag to indicates if the display is locked or not.
 	     * @private
 	     */ 
-	    private var ___isLock___:Boolean = false ;
-
-		/**
-		 * The internal ILogger reference of this object.
-		 */
+	    private var ___isLock___:uint ;
+		
+	    /**
+	     * @private
+	     */ 
 		private var _logger:ILogger ;
 
 		/**
