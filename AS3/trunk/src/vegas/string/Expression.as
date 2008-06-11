@@ -22,7 +22,7 @@
 */
 package vegas.string 
 {
-    import flash.utils.Dictionary;        
+    import flash.utils.Dictionary;                
 
     /**
      * This dictionary register formattable expression and format a String with all expression in the dictionnary. 
@@ -33,11 +33,17 @@ package vegas.string
         
         /**
          * Creates a new Expression instance.
+         * @param weakKeys Instructs the Dictionary object to use "weak" references on object keys. If the only reference to an object is in the specified Dictionary object, the key is eligible for garbage collection and is removed from the table when the object is collected. 
          */
         public function Expression( weakKeys:Boolean = false )
         {
             super( weakKeys );
         }
+        
+        /**
+         * The max recursion value.
+         */
+        public static var MAX_RECURSION:uint = 200 ;
         
         /**
          * Formats the specified value.
@@ -56,8 +62,12 @@ package vegas.string
         /**
          * @private
          */        
-        private function _format( str:String ):String
+        private function _format( str:String , depth:uint=0 ):String
         {
+        	if ( depth >= MAX_RECURSION )
+        	{
+        		return str ;
+        	} 
             var m:Array  = str.match( _r ) ;
             var l:uint   = m.length ;
             if ( l > 0 )
@@ -70,7 +80,7 @@ package vegas.string
                     key   = ( key.substr(1) ).substr( 0 , key.length-2 ) ;
                     if ( this[key] != null )
                     {
-                        value     = format( this[key] ) ;
+                        value     = _format( this[key] , depth + 1 ) ;
                         this[key] = value ;
                     }
                     else
