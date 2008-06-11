@@ -200,7 +200,7 @@ package vegas.data.map
          */
         flash_proxy override function getProperty( name:* ):* 
         {
-            return get(name) ;
+            return _keys[name] ;
         }
 
         /**

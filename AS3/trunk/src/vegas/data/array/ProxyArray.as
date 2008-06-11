@@ -23,23 +23,25 @@
 
 package vegas.data.array
 {
-	import flash.utils.Proxy;
-	import flash.utils.flash_proxy;
-	
-	import system.ISerializable;
-	import system.Reflection;
-	
-	import vegas.core.HashCode;
-	import vegas.core.ICloneable;
-	import vegas.core.ICopyable;
-	import vegas.core.IFormattable;
-	import vegas.core.IHashable;
-	import vegas.data.iterator.ArrayIterator;
-	import vegas.data.iterator.Iterable;
-	import vegas.data.iterator.Iterator;
-	import vegas.util.Copier;	
+    import flash.utils.Proxy;
+    import flash.utils.flash_proxy;
+    
+    import buRRRn.eden.Serializer;
+    
+    import system.ISerializable;
+    import system.Reflection;
+    
+    import vegas.core.HashCode;
+    import vegas.core.ICloneable;
+    import vegas.core.ICopyable;
+    import vegas.core.IFormattable;
+    import vegas.core.IHashable;
+    import vegas.data.iterator.ArrayIterator;
+    import vegas.data.iterator.Iterable;
+    import vegas.data.iterator.Iterator;
+    import vegas.util.Copier;    
 
-	/**
+    /**
      * The ProxyArray class.
      * <p><b>Example :</b></p>
      * <pre class="prettyprint">
@@ -179,9 +181,7 @@ package vegas.data.array
 	        _index = index ;
             return (index < _ar.length) ? index + 1 : 0 ;
         }
-        
-        private var _index:int ;
-        
+                
         /**
          * Allows enumeration of the proxied object's properties by index number to retrieve property values. 
          * However, you cannot enumerate the properties of the Proxy class themselves. 
@@ -209,7 +209,7 @@ package vegas.data.array
 		 */
         public function toSource( indent:int = 0 ):String 
         {
-            return "new " + Reflection.getClassPath(this) + "(" + getSourceParams() + ")" ;
+            return "new " + Reflection.getClassPath(this) + "(" + Serializer.emitArray(_ar) + ")" ;
         }
 
 		/**
@@ -220,15 +220,7 @@ package vegas.data.array
         {
             return _ar.toString() ;
         }
-		
-        /**
-         * This method is used in toSource method.
-         */  
-        protected function getSourceParams():Array
-        {
-            return [ _ar ] ;
-        }
-		
+        		
 		/**
 		 * Internal array used in the proxy pattern.
 		 */        
@@ -237,7 +229,13 @@ package vegas.data.array
 		/**
 		 * @private
 		 */
-		private var __hashcode__:Number = NaN ;
-
+		private var __hashcode__:Number ;
+		
+        /**
+         * @private
+         */
+        private var _index:int ;		
+		
     }
 }
+
