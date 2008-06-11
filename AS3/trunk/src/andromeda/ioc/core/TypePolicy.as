@@ -32,15 +32,21 @@ package andromeda.ioc.core
 
         /**
          * Defines the 'alias' TypePolicy value. 
-         * Use it if you want use only type alias evaluation when a new object is created in the factory. 
+         * Use it if you want use only type "alias" evaluation when a new object is created in the factory. 
          */
         public static const ALIAS:String = "alias" ;
-                
+         
         /**
          * Defines the 'all' TypePolicy value. 
          * Use it if you want use only all evaluation filters when a new object is created in the factory. 
          */
         public static const ALL:String = "all" ;     
+        
+        /**
+         * Defines the 'expression' TypePolicy value. 
+         * Use it if you want use only type "expression" evaluation when a new object is created in the factory. 
+         */
+        public static const EXPRESSION:String = "expression" ;        
         
         /**
          * Defines the 'none' TypePolicy value.

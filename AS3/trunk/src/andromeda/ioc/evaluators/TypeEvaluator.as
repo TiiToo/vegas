@@ -25,6 +25,7 @@ package andromeda.ioc.evaluators
     import flash.utils.getDefinitionByName;
     
     import andromeda.ioc.core.TypeAliases;
+    import andromeda.ioc.core.TypeExpression;
     import andromeda.ioc.core.TypePolicy;
     import andromeda.ioc.factory.ObjectConfig;
     
@@ -71,13 +72,26 @@ package andromeda.ioc.evaluators
                 {
                     var policy:String = config.typePolicy ;
                     
-                    if ( policy == TypePolicy.ALL || policy == TypePolicy.ALIAS )
+                    if ( policy != TypePolicy.NONE )
                     {
-                        var aliases:TypeAliases = (config.typeAliases as TypeAliases) ;
-                        if ( aliases != null && aliases.containsAlias(type) )
+                        if ( policy == TypePolicy.ALL || policy == TypePolicy.EXPRESSION )
                         {
-                            type = aliases.getValue(type) ;
+                    	   var exp:TypeExpression = (config.typeExpression as TypeExpression) ;
+                    	   if ( exp != null )
+                    	   {
+                        	   type = exp.format(type) ;
+                       	   }
                         }
+                    
+                        if ( policy == TypePolicy.ALL || policy == TypePolicy.ALIAS )
+                        {
+                            var aliases:TypeAliases = (config.typeAliases as TypeAliases) ;
+                            if ( aliases != null && aliases.containsAlias(type) )
+                            {
+                                type = aliases.getValue(type) ;
+                            }
+                        }
+                        
                     }
                                         
                 }
@@ -86,8 +100,9 @@ package andromeda.ioc.evaluators
                 {
                     return getDefinitionByName( type ) as Class ;
                 }
-                catch( e:ReferenceError )
+                catch( e:Error )
                 {
+                	getLogger().warn(this + " eval failed : " + e.toString() ) ;
                     return null ;
                 }
             

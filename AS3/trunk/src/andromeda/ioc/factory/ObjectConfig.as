@@ -24,6 +24,7 @@ package andromeda.ioc.factory
 {
     import andromeda.ioc.core.ObjectAttribute;
     import andromeda.ioc.core.TypeAliases;
+    import andromeda.ioc.core.TypeExpression;
     import andromeda.ioc.core.TypePolicy;
     
     import system.Reflection;
@@ -62,8 +63,9 @@ package andromeda.ioc.factory
          */
         public function ObjectConfig( init:Object=null )
         {
-            _typeAliases = new TypeAliases() ;
-            _config      = {} ;       
+            _typeAliases    = new TypeAliases() ;
+            _typeExpression = new TypeExpression() ;
+            _config         = {} ;       
             initialize( init ) ;
         }
         
@@ -161,9 +163,59 @@ package andromeda.ioc.factory
         }
         
         /**
+         * Determinates the content of the typeExpression reference in this config object.
+         * <p>The setter of this virtual property can be populated with a TypeAliases instance or an Array of typeAliases items.</p>
+         * <p>This setter attribute don't remove the old TypeAliases instance but fill it with new aliases. 
+         * If you want cleanup the aliases of this configuration object you must use the <code class="prettyprint">typeAliases.clear()</code> method.</p>
+         * <p>The typeAliases items are generic objects with 2 attributes <b>alias</b> (the alias String expression) and <b>type</b> (the type String expression).</p>
+         * <p><b>Example :</b></p>
+         * <pre class="prettyprint">
+         * import andromeda.ioc.factory.ObjectConfig ;
+         * var config:ObjectConfig  = new ObjectConfig() ;
+         * config.typeAliases       = 
+         * [ 
+         *     { alias:"CoreObject" , type:"vegas.core.CoreObject" } 
+         * ] ;
+         * </pre> 
+         */
+        public function get typeExpression():*
+        {
+            return _typeExpression ;
+        }
+        
+        /**
+         * @private
+         */
+        public function set typeExpression( expressions:* ):void
+        {
+            if ( expressions is TypeExpression )
+            {
+                _typeExpression = expressions || new TypeExpression() ;
+            }
+            else if ( expressions is Array )
+            {
+                var item:Object ;
+                var arr:Array = expressions as Array ;
+                var len:uint  = arr.length ;
+                if ( len > 0 )
+                {
+                   while ( --len > -1 )
+                   {
+                        item = arr[len] as Object ;
+                        if ( item != null && ( ObjectAttribute.NAME in item ) && ( ObjectAttribute.VALUE in item ) )
+                        {
+                            _typeExpression.put( item[ObjectAttribute.NAME] as String , item[ObjectAttribute.VALUE] as String ) ;
+                        }    
+                   }
+                }
+            }
+        }
+                
+        
+        /**
          * Indicates the type policy of the object factory who use this configuration object. 
          * The default value of this attribute is <code class="prettyprint">TypePolicy.NONE</code>.
-         * <p>You can use the TypePolicy.NONE, TypePolicy.ALL, TypePolicy.ALIAS values./p>
+         * <p>You can use the TypePolicy.NONE, TypePolicy.ALL, TypePolicy.ALIAS, TypePolicy.EXPRESSION values./p>
          * @see andromeda.ioc.core.TypePolicy
          */
         public function get typePolicy():String
@@ -178,9 +230,9 @@ package andromeda.ioc.factory
         {
             switch( policy )
             {
-                case TypePolicy.ALIAS :
-                case TypePolicy.ALL   :
-                case TypePolicy.NONE  :
+                case TypePolicy.ALIAS      :
+                case TypePolicy.EXPRESSION :
+                case TypePolicy.ALL        :
                 {
                     _typePolicy = policy ;
                     break ;
@@ -230,6 +282,10 @@ package andromeda.ioc.factory
             {
                 s += " identify:" + identify ;
             }
+            if ( lock )
+            {
+                s += " lock:" + lock ;
+            }            
             s += "]" ;
             return s ;
         }
@@ -243,7 +299,12 @@ package andromeda.ioc.factory
          * @private
          */
         private var _typeAliases:TypeAliases ;
-               
+        
+        /**
+         * @private
+         */
+        private var _typeExpression:TypeExpression ;
+
         /**
          * @private
          */

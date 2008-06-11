@@ -9,15 +9,15 @@
                 { name : "autoSize"          , value : "left" } ,
                 { name : "defaultTextFormat" , value : new flash.text.TextFormat('arial', 12, 0xFFFFFF) } ,
                 { name : "filters"           , value : [ new flash.filters.DropShadowFilter(2,90,0x000000,0.6,8,8,1,3) ] } ,
-                { name : "text"              , value : "hello world" } ,
                 { name : "x"                 , value : 10 } ,
-                { name : "y"                 , value : 10 } 
+                { name : "y"                 , value : 10 } ,
+                { name : "text"              , value : "hello world" } 
             ]
         }
         ,
         {
             id         : "my_sprite" ,
-            type       : "asgard.display.CoreSprite" ,
+            type       : "{display}.CoreSprite" ,
             singleton  : true  ,  // must be a singleton to test the ObjectConfig.identify flag. 
 			identify   : true
         }
@@ -28,8 +28,8 @@
             singleton  : true     ,
             properties : 
             [
-                { name:"x" , value : 50  } ,
-                { name:"y" , value : 50  }
+                { name : "filters" , value : [ new flash.filters.DropShadowFilter(2,90,0x000000,0.6,8,8,1,3) ] } ,                { name : "x"       , value : 50  } ,
+                { name : "y"       , value : 50  }
             ]
             ,
             methods :

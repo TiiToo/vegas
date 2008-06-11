@@ -23,20 +23,20 @@
 
 package vegas.data.map
 {
-	import flash.utils.Dictionary;
-	import flash.utils.Proxy;
-	import flash.utils.flash_proxy;
-	
-	import vegas.core.HashCode;
-	import vegas.data.Map;
-	import vegas.data.iterator.ArrayIterator;
-	import vegas.data.iterator.Iterator;
-	import vegas.data.iterator.MapIterator;
-	import vegas.data.map.MapFormat;
-	import vegas.util.Copier;
-	import vegas.util.Serializer;	
+    import flash.utils.Dictionary;
+    import flash.utils.Proxy;
+    import flash.utils.flash_proxy;
+    
+    import vegas.core.HashCode;
+    import vegas.data.Map;
+    import vegas.data.iterator.ArrayIterator;
+    import vegas.data.iterator.Iterator;
+    import vegas.data.iterator.MapIterator;
+    import vegas.data.map.MapFormat;
+    import vegas.util.Copier;
+    import vegas.util.Serializer;    
 
-	/**
+    /**
      * This class is not the same AS2 vegas.data.map.HashMap, see ArrayMap to compare AS2 and AS3 class.
      * <p><b>Example :</b></p>
      * <pre class="prettyprint">
@@ -85,7 +85,7 @@ package vegas.data.map
      * </pre>
      * @author eKameleon
      */
-    public class HashMap extends Proxy implements Map
+    public dynamic class HashMap extends Proxy implements Map
     {
         
         /**
@@ -169,6 +169,31 @@ package vegas.data.map
         public function containsValue(value:*):Boolean
         {
             return _values[ value ] != null ;
+        }
+        
+        /**
+         * Invoked when a property is deleted in the hashmap.
+         * <pre class="prettyprint">
+         * import vegas.data.map.HashMap;
+         * 
+         * var map:HashMap = new HashMap() ;
+         * 
+         * trace("> put key1 -> value1 : " + map.put("key1", "value1") ) ;
+         * trace("> put key2 -> value2 : " + map.put("key2", "value2") ) ;
+         * 
+         * trace("> map : " + map) ;
+         * 
+         * var isDeleted:Boolean = delete map["key1"] ;
+         * 
+         * trace("> remove key1 : " + isDeleted ) ;
+         * 
+         * trace("> map : " + map) ;
+         * </pre>
+         * @return <code class="prettyprint">true</code> if the key is removed.
+         */
+        flash_proxy override function deleteProperty(name:*):Boolean 
+        {
+            return remove(name) != null ;
         }
 
         /**

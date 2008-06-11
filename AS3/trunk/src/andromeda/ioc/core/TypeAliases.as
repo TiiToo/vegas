@@ -253,10 +253,7 @@ package andromeda.ioc.core
             {
                 return false ;
             }
-            else
-            {
-                _map.put( alias , value ) ;
-            }
+            _map.put( alias , value ) ;
             return true ;
         }
         

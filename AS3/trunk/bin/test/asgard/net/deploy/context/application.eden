@@ -5,12 +5,17 @@
         defaultInitMethod    : "initialize" ,
         defaultDestroyMethod : "destroy"    ,
         identify             : true         ,
-        typePolicy           : "alias"      , // "none", "all", "alias"
+        typePolicy           : "all"        , // "none", "all", "alias", "expression"
         typeAliases          : 
         [
 			{ alias:"TextField" , type:"flash.text.TextField" } ,
 			{ alias:"User"      , type:"test.User"            } 
         ]
+        ,
+        typeExpression       :
+        [
+			{ name : "display" , value : "asgard.display" }
+        ]        
     }
     ,
     imports :

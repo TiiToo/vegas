@@ -138,7 +138,7 @@ package vegas.string
         /**
          * @private
          */
-        private var _reg:RegExp = new RegExp( beginSeparator + "\\w+((.\\w)+|(.\\w+))" + endSeparator, "g" ) ;
+        private var _reg:RegExp ;
         
         /**
          * @private
