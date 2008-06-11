@@ -23,12 +23,15 @@
 
 package vegas.data.array
 {
-	import vegas.core.ITypeable;
-	import vegas.core.IValidator;
-	import vegas.errors.IllegalArgumentError;
-	import vegas.errors.TypeMismatchError;    
+    import buRRRn.eden.Serializer;
+    
+    import system.Reflection;
+    
+    import vegas.core.ITypeable;
+    import vegas.core.IValidator;
+    import vegas.errors.TypeMismatchError;    
 
-	/**
+    /**
      * <code class="prettyprint">TypedArray</code> acts like a normal array but assures that only objects of a specific type are added to the array.
      * <p>Example :
      * <pre class="prettyprint">
@@ -45,39 +48,25 @@ package vegas.data.array
         
         /**
          * Creates a new TypedArray instance.
-         * @throw IllegalArgumentError if the argument 'type' is 'null' nor 'undefined'.
+         * @throw TypeError if the 'type' argument is not a valid Class object (not must be 'null' or 'undefined').
          */
         public function TypedArray( ...arguments:Array )
         {
-            
-            super() ;
-            
-            var type:* = arguments[0] ;
-            var ar:Array = arguments[1] || null ;
-            
-            try {
-                
-                if (type == null) 
-                {
-                    throw new IllegalArgumentError("TypedArray constructor, argument 'type' must not be 'null' nor 'undefined'.") ;
-                }
-                
-            }
-            catch(e:IllegalArgumentError)
+            _type = arguments[0] as Class ;
+            var ar:Array = arguments[1] as Array ;
+            if (ar != null)
             {
-                trace(e.toString()) ;
-            }
-
-            _type = type ;
-            
-            if (ar == null) return ;
-            var l:uint = ar.length ;
-            if (l > 0) 
-            {
-                for (var i:Number = 0 ; i<l ; i++) 
+                var l:uint = ar.length ;
+                if (l > 0) 
                 {
-                    var value:* = ar[i] ;
-                    if (supports(value)) _ar[i] = value ;
+                    for (var i:Number = 0 ; i<l ; i++) 
+                    {
+                        var value:* = ar[i] ;
+                        if (supports(value)) 
+                        {
+                        	_ar[i] = value ;
+                        }
+                    }
                 }
             }
         }
@@ -138,6 +127,7 @@ package vegas.data.array
         
         /**
          * Returns the type of the ITypeable object.
+         * @return the type of the ITypeable object.
          */
         public function getType():*
         {
@@ -183,7 +173,20 @@ package vegas.data.array
         {
             return value is _type ;
         }
-
+        
+        /**
+         * Returns a eden String representation of the object.
+         * @return a string representation the source code of the object.
+         */
+        public override function toSource( indent:int = 0 ):String 
+        {
+            return "new " + Reflection.getClassPath(this) + "(" + Reflection.getClassPath(_type) + "," + Serializer.emitArray( _ar ) + ")" ;
+        }        
+        
+        /**
+         * Adds one or more elements to the beginning of an array and returns the new length of the array. 
+         * The other elements in the array are moved from their original position, i, to i+1. 
+         */
         public function unshift( ...arguments:Array ):uint
         {
             if (arguments.length > 1) {
@@ -194,17 +197,12 @@ package vegas.data.array
                 {
                     validate(arguments[i]);
                 }
-                
             }
             else 
             {
-             
                 validate(arguments[0]) ;
-                
             }
-            
-            return Number(_ar.unshift.apply(_ar, arguments)) ;
-            
+            return _ar.unshift.apply(_ar, arguments) as uint ;
         }
   
         /**
@@ -213,26 +211,16 @@ package vegas.data.array
          */
         public function validate(value:*):void
         {
-              if (!supports(value)) 
-               {
-                   throw new TypeMismatchError("TypedArray.validate('value':" + value + ") is mismatch") ;
-               }
+            if (!supports(value)) 
+            {
+                throw new TypeMismatchError("TypedArray.validate('value':" + value + ") is mismatch") ;
+            }
         }
-        
-        /**
-         * This method is used in toSource method.
-         */  
-        protected override function getSourceParams():Array
-        {
-            var args:Array = super.getSourceParams() ;
-            args.unshift(_type) ;
-            return args ;
-        }
-        
+                
         /**
          * @private
          */
-        private var _type:* ;
-        
+        private var _type:Class ;
     }
 }
+

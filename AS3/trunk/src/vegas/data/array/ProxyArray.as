@@ -209,7 +209,7 @@ package vegas.data.array
 		 */
         public function toSource( indent:int = 0 ):String 
         {
-            return "new " + Reflection.getClassPath(this) + "(" + Serializer.emitArray(_ar) + ")" ;
+            return "new " + Reflection.getClassPath(this) + "(" + Serializer.emitArray( _ar ) + ")" ;
         }
 
 		/**
@@ -235,7 +235,7 @@ package vegas.data.array
          * @private
          */
         private var _index:int ;		
-		
+        		
     }
 }
 
