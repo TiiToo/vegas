@@ -36,7 +36,7 @@ package pegas.draw
      * The Pen class use composition to control a Graphics reference and draw custom vector graphic shapes.
      * @author eKameleon
      */
-    dynamic public class Pen extends Proxy implements IPen 
+    public dynamic class Pen extends Proxy implements IPen 
     {
         
         /**
@@ -84,6 +84,18 @@ package pegas.draw
         }
         
         /**
+         * @private
+         */
+        public function set graphics(graphic:Graphics):void
+        {
+            if ( _graphics != null )
+            {
+                _graphics.clear() ;    
+            }
+            _graphics = graphic ;
+        }
+        
+        /**
          * Determinates the fill style object of the pen.
          */
         public function get fill():IFillStyle
@@ -102,19 +114,7 @@ package pegas.draw
                 _fillStyle.init( _graphics ) ;
             }
         }
-        
-        /**
-         * @private
-         */
-        public function set graphics(graphic:Graphics):void
-        {
-            if ( _graphics != null )
-            {
-                _graphics.clear() ;    
-            }
-            _graphics = graphic ;
-        }
-        
+                
         /**
          * Determinates the line style object of the pen.
          */

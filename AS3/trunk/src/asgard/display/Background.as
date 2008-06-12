@@ -135,7 +135,7 @@ package asgard.display
          */
         public function get h():Number 
         {
-            return isFull ? stage.stageHeight : _h ;    
+            return ( isFull && (stage != null) ) ? stage.stageHeight : _h ;    
         }
         
         /**
@@ -216,7 +216,7 @@ package asgard.display
          */
         public function get w():Number 
         {
-            return isFull ? stage.stageWidth : _w ;    
+            return ( isFull && (stage != null) ) ? stage.stageWidth : _w ;    
         }
         
         /**

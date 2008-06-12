@@ -133,7 +133,7 @@ package vegas.string
         /**
          * @private
          */
-        private var _pattern:String = "{0}\\w+((.\\w)+|(.\\w+)){1}" ;        
+        private var _pattern:String = "{0}((\\w+\)|(\\w+)((.\\w)+|(.\\w+))){1}" ;        
         
         /**
          * @private
