@@ -107,8 +107,11 @@ package buRRRn.eden
         public override function eval():*
         {
             debug( "eval()" );
-            comments = ""; 
+            
+            comments = "" ; 
+            
             //clean comments before starting a new eval
+            
             var value:* = _ORC;
             var tmp:*;
             
@@ -1250,7 +1253,7 @@ package buRRRn.eden
                     var localRef:Boolean = false;
                     var globalRef:Boolean = false;
                     var result:*;
-                
+                    
                     if( doesExistInGlobalScope( baseword ) )
                     {
                         globalRef = true;
@@ -1406,7 +1409,7 @@ package buRRRn.eden
                 _singleValue = false;
                 _inAssignement = true;
                 next( );
-                scanWhiteSpace( );
+                scanSeparators( );
                 
                 if( isLineTerminator( ch ) )
                 {

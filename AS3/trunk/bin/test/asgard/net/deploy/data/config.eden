@@ -1,8 +1,12 @@
-{
-	project : "EdenLoader" ,
-	author  : "ekameleon"  ,
-	version : "1.0.0.0"    ,
-	mail    : "vegas@ekameleon.net" , 
-	error   : new Error("file_error") ,
-	test    : vegas.logging.LogEventLevel.ALL
-}
+
+project = "EdenLoader" ;
+
+author  = "ekameleon"  ;
+
+version = "1.0.0.0"    ;
+
+mail    = "vegas@ekameleon.net" ;
+
+error   = new Error("file_error") ;
+
+test    = vegas.logging.LogEventLevel.ALL ;
