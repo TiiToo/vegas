@@ -18,7 +18,6 @@
   Contributor(s):
 
 */
-
 package system.reflection
     {
     
@@ -26,7 +25,9 @@ package system.reflection
      * The Reflection configurator.
      */
     public var config:ReflectionConfigurator = new ReflectionConfigurator( {
-                                                                            normalizePath: true
+                                                                            normalizePath: true,
+                                                                            useTraitInfo: true,
+                                                                            usePrototypeInfo: false
                                                                            } );
     
     }

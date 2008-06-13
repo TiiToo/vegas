@@ -20,42 +20,45 @@
 
 */
 package system.reflection
-    {
-    
-    [ExcludeClass]
+{
+    import system.Enum;    
 
     /**
-     * The concrete class of the TypeInfo interface.
+     * The member type enumeration class.
      */
-    public class _TypeInfo implements TypeInfo
+    public class MemberType extends Enum
         {
         
-        protected var type:*;
-        
         /**
-         * Creates a new _TypeInfo instance.
+         * Creates a new MemberType instance.
+         * @param value The value of the enumeration.
+         * @param name The name key of the enumeration.
          */
-        public function _TypeInfo( o:* )
+        public function MemberType( value:int=0, name:String="" )
             {
-            type = o;
+            super( value, name );
             }
         
         /**
-         * Indicates if the specified Class can be convert to an other with the "as" keyword.
+         * The "variable" member type value.
          */
-        public function canConvertTo( o:Class ):Boolean
-            {
-            return (type as o) != null;
-            }
+        public static const variable:MemberType = new MemberType( 1, "variable" );
 
         /**
-         * Indicates if the specified Class be used with the "is" keyword.
+         * The "constant" member type value.
          */
-        public function isSubtypeOf( o:Class ):Boolean
-            {
-            return type is o;
-            }
-        
+        public static const constant:MemberType = new MemberType( 2, "constant" );
+
+        /**
+         * The "accessor" member type value.
+         */
+        public static const accessor:MemberType = new MemberType( 3, "accessor" );
+
+        /**
+         * The "method" member type value.
+         */
+        public static const method:MemberType   = new MemberType( 4, "method" );
+
         }
     }
 

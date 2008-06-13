@@ -27,14 +27,46 @@ package system.reflection
      */
     public interface ClassInfo extends TypeInfo
         {
-        	
+        
         /**
-         * Indicates the Array representation of all members in the class.
+         * The filter type reference of this class info.
+         */
+        function get filter():FilterType;
+        
+        /**
+         * @private
+         */
+        function set filter( value:FilterType ):void;
+        
+        /**
+         * List all members in the class.
+         * Members are the combination of properties and methods.
          */
         function get members():Array;
         
         /**
-         * Indicates the Array representation of all methods in the class.
+         * List all properties in the class.
+         * Properties are the combination of variables, constants and accessors.
+         */
+        function get properties():Array;
+        
+        /**
+        * List all variables in the class.
+        */
+        function get variables():Array;
+        
+        /**
+        * List all constants in the class.
+        */
+        function get constants():Array;
+        
+        /**
+        * List all accessors in the class.
+        */
+        function get accessors():Array;
+        
+        /**
+         * List all methods in the class.
          */
         function get methods():Array;        
         
@@ -42,16 +74,6 @@ package system.reflection
          * Indicates the name of the class.
          */
         function get name():String;
-        
-        /**
-         * Indicates the Array representation of all static member informations.
-         */   
-        function get staticMembers():Array;
-
-        /**
-         * Indicates the Array representation of all static method informations.
-         */   
-        function get staticMethods():Array;
         
         /**
          * Indicates the ClassInfo object of the super class.
@@ -77,6 +99,12 @@ package system.reflection
          * Indicates if the specified object is static.
          */
         function isStatic():Boolean;        
+        
+        /**
+         * Returns the XML representation of the class.
+         * @return the XML representation of the class.
+         */
+        function toXML():XML;
         
         }
     
