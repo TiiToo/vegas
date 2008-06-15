@@ -41,6 +41,11 @@ package andromeda.ioc.core
         public static const ASSEMBLY_NAME:String = "assemblyName" ;
 
         /**
+         * Defines the attribute name of the "config" object in the configuration of the ioc factory.
+         */
+        public static const CONFIG:String = "config" ;  
+
+        /**
          * Defines the label of the 'configuration' top-level attribute.
          */
         public static const CONFIGURATION:String = "configuration" ;  
@@ -171,6 +176,11 @@ package andromeda.ioc.core
         public static const TYPE_ALIASES:String = "typeAliases" ;           
         
         /**
+         * Defines the attribute name of the 'typeExpression' Array in the configuration of the ioc factory.
+         */
+        public static const TYPE_EXPRESSION:String = "typeExpression" ;           
+        
+        /**
          * Defines the label of the reference in a property object.
          */
         public static const REFERENCE:String = "ref" ;  
@@ -181,4 +191,5 @@ package andromeda.ioc.core
         public static const VALUE:String = "value" ;  
         
     }
+    
 }
