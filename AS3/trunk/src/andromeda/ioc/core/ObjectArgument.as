@@ -38,7 +38,7 @@ package andromeda.ioc.core
          */
         public function ObjectArgument( value:* , policy:String="value" , evaluators:Array = null )
         {
-            this.policy     = ( policy == ObjectAttribute.REFERENCE ) ? ObjectAttribute.REFERENCE : ObjectAttribute.VALUE ;
+            this.policy     = policy ;
             this.value      = value ;
             this.evaluators = evaluators ;
         }
@@ -51,7 +51,30 @@ package andromeda.ioc.core
         /**
          * The policy of the property
          */
-        public var policy:String ;
+        public function get policy():String
+        {
+            return _policy ;
+        }
+        
+        /**
+         * @private
+         */
+        public function set policy( str:String ):void
+        {
+            switch (str)
+            {
+                case ObjectAttribute.REFERENCE :
+                case ObjectAttribute.CONFIG    :
+                {
+                    _policy = str ;
+                    break ;
+                }
+                default :
+                {
+                  _policy = ObjectAttribute.VALUE ;
+                }
+            }
+        } 
         
         /**
          * The value of the property.
@@ -75,6 +98,7 @@ package andromeda.ioc.core
             	var i:uint ;
                 
                 var evaluators:Array ;
+                var conf:String ;
                 var ref:String  ;
                 var value:* ;
                                 
@@ -85,13 +109,18 @@ package andromeda.ioc.core
                 	o = a[i] ;
                 	if ( o != null )
                 	{
+                		conf       = ( ObjectAttribute.CONFIG in o )    ? o[ ObjectAttribute.CONFIG ] as String    : null ;
                         ref        = ( ObjectAttribute.REFERENCE in o ) ? o[ ObjectAttribute.REFERENCE ] as String : null ;
                         value      = ( ObjectAttribute.VALUE in o )     ? o[ ObjectAttribute.VALUE ]               : null ;
                         evaluators = ( ObjectAttribute.EVALUATORS in o ) ? o[ObjectAttribute.EVALUATORS] as Array  : null ;
                         
-                        if ( ref != null ) 
+                        if ( ref != null && ref.length > 0 ) 
                         {
                             args.push( new ObjectArgument( ref , ObjectAttribute.REFERENCE , evaluators ) ) ; // ref argument    
+                        }
+                        else if ( conf != null && conf.length > 0 )
+                        {
+                            args.push( new ObjectArgument( conf , ObjectAttribute.CONFIG , evaluators ) ) ; // config argument  	
                         }
                         else
                         {
@@ -102,6 +131,11 @@ package andromeda.ioc.core
                 return args.length > 0 ? args : null ;
             }
         }        
+        
+        /**
+         * @private
+         */
+        private var _policy:String ;        
         
     }
 }

@@ -25,7 +25,7 @@ package andromeda.ioc.core
     import buRRRn.eden;
     
     import vegas.data.Map;
-    import vegas.data.map.HashMap;    
+    import vegas.data.map.ArrayMap;    
 
     /**
      * This object defines a property definition and this value in an object definition.
@@ -44,7 +44,7 @@ package andromeda.ioc.core
         public function ObjectProperty( name:String , value:* , policy:String="value" , evaluators:Array = null )
         {
             this.name       = name ;
-            this.policy     = policy == ObjectAttribute.REFERENCE ? ObjectAttribute.REFERENCE : ObjectAttribute.VALUE ;
+            this.policy     = policy ;
             this.value      = value ;
             this.evaluators = evaluators ;
         }
@@ -62,7 +62,30 @@ package andromeda.ioc.core
         /**
          * The policy of the property
          */
-        public var policy:String ;
+        public function get policy():String
+        {
+        	return _policy ;
+        }
+        
+        /**
+         * @private
+         */
+        public function set policy( str:String ):void
+        {
+        	switch (str)
+        	{
+        		case ObjectAttribute.REFERENCE :
+        		case ObjectAttribute.CONFIG    :
+        		{
+                    _policy = str ;
+                    break ;
+        		}
+        		default :
+        		{
+        		  _policy = ObjectAttribute.VALUE ;
+        		}
+        	}
+        }        
         
         /**
          * The value of the property.
@@ -81,8 +104,9 @@ package andromeda.ioc.core
                 return null ;
             }
 
-            var properties:HashMap = new HashMap() ; // use HashMap or ArrayMap (sort elements)
+            var properties:ArrayMap = new ArrayMap() ; // use HashMap or ArrayMap (sort elements)
 
+            var conf:String ;
             var prop:Object ;
             var name:String ;
             var ref:String  ;
@@ -91,7 +115,7 @@ package andromeda.ioc.core
             var evaluators:Array ;
 
             var len:uint = a.length ;
-
+            
             for (var i:uint = 0 ; i<len ; i++)
             {
                     
@@ -106,15 +130,20 @@ package andromeda.ioc.core
     	            {
                     	continue ;
                 	}
-                    
+                                        
+                    conf       = prop[ ObjectAttribute.CONFIG ] as String ;                    
                		ref        = prop[ ObjectAttribute.REFERENCE ] as String  ;
                 	value      = prop[ ObjectAttribute.VALUE ] ;
                 	evaluators = prop[ObjectAttribute.EVALUATORS] as Array ;
-                
+                                        
                 	if ( ref != null ) 
                 	{
 	                    properties.put( name , new ObjectProperty( name , ref , ObjectAttribute.REFERENCE , evaluators ) ) ; // ref property    
                 	}
+                    else if ( conf != null && conf.length > 0 )
+                    {
+                        properties.put( name, new ObjectProperty( name, conf , ObjectAttribute.CONFIG , evaluators ) ) ; // config property      
+                    }                	
                 	else 
                 	{
 	                    properties.put( name , new ObjectProperty( name , value , ObjectAttribute.VALUE , evaluators ) ) ; // value property    
@@ -129,6 +158,11 @@ package andromeda.ioc.core
             return ( properties.size() > 0 ) ? properties : null ;
 
         }        
+        
+        /**
+         * @private
+         */
+        private var _policy:String ;
         
     }
 }

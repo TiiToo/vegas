@@ -82,7 +82,10 @@ package andromeda.ioc.factory
          */
         public function set config( o:Object ):void
         {
-            _config = Reflection.getClassInfo(o).isDynamic() ? o : {} ;
+        	for( var prop:String in o )
+        	{
+                _config[prop] = o[prop] ;
+        	}
         }        
         
         /**
@@ -262,6 +265,22 @@ package andromeda.ioc.factory
                 }    
             }
         }
+           
+        /**
+         * Resets the target of the internal config dynamic object in this instance with a basic generic Object reference.
+         */
+        public function resetConfigTarget():void
+        {
+            _config = {} ;
+        }             
+           
+        /**
+         * This method is used to change the target of the internal config dynamic object in this instance.
+         */
+        public function setConfigTarget( o:Object ):void
+        {
+            _config = Reflection.getClassInfo(o).isDynamic() ? o : {} ;
+        }               
                 
         /**
          * Returns the string representation of this instance.

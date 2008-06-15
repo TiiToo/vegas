@@ -292,6 +292,10 @@ package andromeda.ioc.factory
                     {
                         stack.push( getObject( item.value ) ) ;    
                     }
+                    else if ( item.policy == ObjectAttribute.CONFIG )
+                    {
+                    	stack.push( ( item.value in _config.config  ) ? _config.config[item.value] : null ) ;
+                    }                    
                     else
                     {
                         stack.push( item.value ) ;    
@@ -529,7 +533,7 @@ package andromeda.ioc.factory
                     catch( e:Error ) 
                     {
                         // do nothing
-                        debug( this + " invokeMethods failed with the scope '" + o + "' , in the collection of this methods with the position {" + i + "} : " + e.toString() ) ;
+                        debug( this + " invokeMethods failed with the scope '" + o + "' , in the collection of this methods at {" + i + "} : " + e.toString() ) ;
                         //
                     }    
                 }
@@ -571,14 +575,13 @@ package andromeda.ioc.factory
                 for( var i:uint = 0 ; i<size ; i++ )
                 {
                     prop = values[i] as ObjectProperty ;
-                    if 
-                    ( 
-                        prop.policy == ObjectAttribute.REFERENCE 
-                            && prop.value is String 
-                                && containsObject( prop.value as String ) 
-                    )
+                    if ( prop.policy == ObjectAttribute.REFERENCE && containsObject( prop.value as String ) )
                     {
                         o[prop.name] = getObject( prop.value ) ;
+                    }
+                    else if ( prop.policy == ObjectAttribute.CONFIG )
+                    {
+                    	o[ prop.name ] = ( prop.value in _config.config  ) ? _config.config[prop.value] : null ;
                     }
                     else
                     {

@@ -6,12 +6,12 @@
             type       : "TextField"  , // this class is created and embed in the library of the swf.
             properties : 
             [
-                { name : "autoSize"          , value : "left" } ,
-                { name : "defaultTextFormat" , value : new flash.text.TextFormat('arial', 12, 0xFFFFFF) } ,
-                { name : "filters"           , value : [ new flash.filters.DropShadowFilter(2,90,0x000000,0.6,8,8,1,3) ] } ,
-                { name : "x"                 , value : 10 } ,
-                { name : "y"                 , value : 10 } ,
-                { name : "text"              , value : "hello world" } 
+                { name : "autoSize"          , value  : "left" } ,
+                { name : "defaultTextFormat" , value  : new flash.text.TextFormat('arial', 12, 0xFFFFFF) } ,
+                { name : "filters"           , config : "filters" } ,
+                { name : "x"                 , value  : 10 } ,
+                { name : "y"                 , value  : 10 } ,
+                { name : "text"              , value  : "hello world" } 
             ]
         }
         ,
@@ -28,8 +28,9 @@
             singleton  : true     ,
             properties : 
             [
-                { name : "filters" , value : [ new flash.filters.DropShadowFilter(2,90,0x000000,0.6,8,8,1,3) ] } ,                { name : "x"       , value : 50  } ,
-                { name : "y"       , value : 50  }
+                { name : "filters" , config : "filters" } ,  
+                { name : "x"       , value  : 50        } ,
+                { name : "y"       , value  : 50        }
             ]
             ,
             methods :
