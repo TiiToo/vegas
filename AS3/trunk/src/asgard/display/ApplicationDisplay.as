@@ -20,7 +20,6 @@
   Contributor(s) :
   
 */
-
 package asgard.display
 {
     import flash.display.DisplayObject;
@@ -51,7 +50,7 @@ package asgard.display
 			ApplicationDisplay.flashVars = new FlashVars( this ) ;
 			ApplicationDisplay.stage     = this.stage ;
 			ApplicationDisplay.root      = this       ;
-			ApplicationDisplay.global    = _global ;
+			ApplicationDisplay.global    = _global    ;
 			
 		}
 		

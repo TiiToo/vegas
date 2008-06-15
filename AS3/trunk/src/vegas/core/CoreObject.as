@@ -20,17 +20,16 @@
   Contributor(s) :
   
 */
-
 package vegas.core
 {
-	import system.ISerializable;
-	import system.Reflection;
-	
-	import vegas.logging.ILogable;
-	import vegas.logging.ILogger;
-	import vegas.logging.Log;	
+    import system.ISerializable;
+    import system.Reflection;
+    
+    import vegas.logging.ILogable;
+    import vegas.logging.ILogger;
+    import vegas.logging.Log;	
 
-	/**
+    /**
 	 * CoreObject offers a default implementation of the IFormattable, IHashable and ISerializable interfaces.
 	 * <p>
 	 * <pre class="prettyprint">
