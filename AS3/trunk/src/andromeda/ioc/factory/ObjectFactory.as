@@ -529,7 +529,7 @@ package andromeda.ioc.factory
                     catch( e:Error ) 
                     {
                         // do nothing
-                        debug( this + " invokeMethods failed with the scope '" + o + "' : " + e.toString() ) ;
+                        debug( this + " invokeMethods failed with the scope '" + o + "' , in the collection of this methods with the position {" + i + "} : " + e.toString() ) ;
                         //
                     }    
                 }
