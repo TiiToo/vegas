@@ -1,4 +1,4 @@
-﻿/*
+/*
   The contents of this file are subject to the Mozilla Public License Version
   1.1 (the "License"); you may not use this file except in compliance with
   the License. You may obtain a copy of the License at 
@@ -16,34 +16,23 @@
   the Initial Developer. All Rights Reserved.
   
   Contributor(s):
-  Marc Alcaraz <ekameleon@gmail.com>.
-
 */
 
-package system.text.prettifier
+package system.IO
     {
     
-    /**
-	 * The code prettify AS3 tool. 
-	 * @author eKameleon
-	 */    
-    public class Prettify
+    public interface Writeable
         {
         
         /**
-         * Creates a new Prettify instance.
-         */
-        public function Prettify()
-            {
-            
-            }
-        
-        /* TODO:
-           define a clean and simple API, cf Prettify.prettyIndent, Prettify.prettyPrinting etc.
-           ex:
-           var something:Prettify = new Prettify( "{a:1, b:2}" );
-           TextField.htmlText = something.toHTML( myCSS );
+        * Appends the message format.
         */
+        function write( ...messages ):void;
+        
+        /**
+        * Appends the message format and add newline character.
+        */
+        function writeLine( ...messages ):void;
         
         }
     }

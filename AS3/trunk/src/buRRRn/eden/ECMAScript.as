@@ -17,11 +17,10 @@
   the Initial Developer. All Rights Reserved.
   
   Contributor(s):
-  
-  	- Alcaraz Marc (aka eKameleon) <vegas@ekameleon.net> (2007-2008)
-	  Use this version only with Vegas AS3 Framework Please.
+  Marc Alcaraz <ekameleon@gmail.com>.
 
 */
+
 package buRRRn.eden
 {
     import system.Reflection;
@@ -1117,22 +1116,29 @@ package buRRRn.eden
             scanSeparators( );
             
             while( ch != "" )
-            {
-                if( ch == ")" )
                 {
+                if( ch == ")" )
+                    {
                     next( );
                     break;
-                }
+                    }
                 
                 args.push( scanValue( ) );
                 scanSeparators( );
                 
                 if( ch == "," )
-                {
+                    {
                     next( );
                     scanSeparators( );
+                    }
+                    
+                if ( pos == source.length )
+                    {
+                    log("unterminated parenthesis, check your function/constructor \"" + fcnPath + "\"" ) ;
+                    return config.undefineable ;
+                    }
+                    
                 }
-            }
             
             if( isClass || (fcnPath == fcnName) )
             {
@@ -1397,7 +1403,7 @@ package buRRRn.eden
         }
         
         /**
-         * Scans the root local assignement of the specified name value..
+         * Scans the root local assignement of the specified name value.
          */
         public function scanRootLocalAssignement( name:String ):void
         {
@@ -1485,7 +1491,7 @@ package buRRRn.eden
                 _singleValue = false;
                 _inAssignement = true;
                 next( );
-                scanWhiteSpace( );
+                scanSeparators( );
                 
                 if( isLineTerminator( ch ) )
                 {

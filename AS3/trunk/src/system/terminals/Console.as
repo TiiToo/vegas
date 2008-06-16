@@ -16,35 +16,20 @@
   the Initial Developer. All Rights Reserved.
   
   Contributor(s):
-  Marc Alcaraz <ekameleon@gmail.com>.
-
 */
 
-package system.text.prettifier
+package system.terminals
     {
+    import system.IO.Readable;
+    import system.IO.Writeable;
     
     /**
-	 * The code prettify AS3 tool. 
-	 * @author eKameleon
-	 */    
-    public class Prettify
+    * A Comsole can read and write.
+    */
+    public interface Console extends Readable, Writeable
         {
         
-        /**
-         * Creates a new Prettify instance.
-         */
-        public function Prettify()
-            {
-            
-            }
-        
-        /* TODO:
-           define a clean and simple API, cf Prettify.prettyIndent, Prettify.prettyPrinting etc.
-           ex:
-           var something:Prettify = new Prettify( "{a:1, b:2}" );
-           TextField.htmlText = something.toHTML( myCSS );
-        */
-        
         }
+    
     }
 

@@ -16,7 +16,8 @@
   the Initial Developer. All Rights Reserved.
   
   Contributor(s):
-  - Marc Alcaraz <ekameleon@gmail.com>.
+  Marc Alcaraz <ekameleon@gmail.com>.
+
 */
 
 package system

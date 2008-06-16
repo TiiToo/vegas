@@ -16,10 +16,10 @@
   the Initial Developer. All Rights Reserved.
   
   Contributor(s):
-  
-  	- Alcaraz Marc (aka eKameleon) <ekameleon@gmail.com> (2007-2008)
+  Marc Alcaraz <ekameleon@gmail.com>.
 
 */
+
 package system.text.html
     {
     import system.text.html.Entities;

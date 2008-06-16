@@ -16,18 +16,18 @@
   the Initial Developer. All Rights Reserved.
   
   Contributor(s):
-  
-  	- Alcaraz Marc (aka eKameleon) <vegas@ekameleon.net> (2007-2008)
+  Marc Alcaraz <ekameleon@gmail.com>.
 
 */
+
 package buRRRn.ASTUce
 {
+    import buRRRn.ASTUce.UI.ResultPrinter;
     import buRRRn.ASTUce.config;
     import buRRRn.ASTUce.errors.NullSuiteError;
     import buRRRn.ASTUce.framework.*;
     import buRRRn.ASTUce.runner.BaseTestRunner;
     import buRRRn.ASTUce.strings;
-    import buRRRn.ASTUce.ui.ResultPrinter;
     
     import system.IO.Writeable;
     import system.Reflection;

@@ -11,7 +11,7 @@ configuration =
     defaultInitMethod    : "initialize" ,
     defaultDestroyMethod : "destroy"    ,
     identify             : true         ,
-    typePolicy           : "all"        , // "none", "all", "alias", "expression"
+    typePolicy           : "all"        ,
     typeAliases          : 
     [
         { alias:"TextField" , type:"flash.text.TextField" } ,

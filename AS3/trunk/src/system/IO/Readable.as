@@ -16,34 +16,23 @@
   the Initial Developer. All Rights Reserved.
   
   Contributor(s):
-  Marc Alcaraz <ekameleon@gmail.com>.
-
 */
 
-package system.text.prettifier
+package system.IO
     {
     
-    /**
-	 * The code prettify AS3 tool. 
-	 * @author eKameleon
-	 */    
-    public class Prettify
+    public interface Readable
         {
         
         /**
-         * Creates a new Prettify instance.
-         */
-        public function Prettify()
-            {
-            
-            }
-        
-        /* TODO:
-           define a clean and simple API, cf Prettify.prettyIndent, Prettify.prettyPrinting etc.
-           ex:
-           var something:Prettify = new Prettify( "{a:1, b:2}" );
-           TextField.htmlText = something.toHTML( myCSS );
+        * Returns the last char.
         */
+        function read():String;
+        
+        /**
+        * Returns the last line.
+        */
+        function readLine():String;
         
         }
     }

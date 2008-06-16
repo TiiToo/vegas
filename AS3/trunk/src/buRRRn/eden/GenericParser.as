@@ -17,11 +17,10 @@
   the Initial Developer. All Rights Reserved.
   
   Contributor(s):
-  
-  	- Alcaraz Marc (aka eKameleon) <vegas@ekameleon.net> (2007-2008)
-	  Use this version only with Vegas AS3 Framework Please.
+  Marc Alcaraz <ekameleon@gmail.com>.
 
 */
+
 package buRRRn.eden
 {
 
