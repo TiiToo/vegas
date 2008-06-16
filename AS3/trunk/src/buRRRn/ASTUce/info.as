@@ -42,7 +42,7 @@ package buRRRn.ASTUce
         
         var version:Version  = new Version( 0, 8 );
         
-        version.revision = parseInt( "$Rev: 60 $".split( " " )[1] );
+        version.revision = parseInt( "$Rev: 81 $".split( " " )[1] );
          
         var copyright:String = "Copyright © 2006-2008 Zwetan Kjukov, All right reserved.";
         var origin:String    = "Made in the EU.";

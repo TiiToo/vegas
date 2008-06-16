@@ -22,18 +22,19 @@
 */
 package buRRRn.ASTUce
 {
-	import buRRRn.ASTUce.config;
-	import buRRRn.ASTUce.errors.NullSuiteError;
-	import buRRRn.ASTUce.framework.*;
-	import buRRRn.ASTUce.runner.BaseTestRunner;
-	import buRRRn.ASTUce.strings;
-	import buRRRn.ASTUce.ui.ResultPrinter;
-	
-	import system.Console;
-	import system.Reflection;
-	import system.Strings;	
+    import buRRRn.ASTUce.config;
+    import buRRRn.ASTUce.errors.NullSuiteError;
+    import buRRRn.ASTUce.framework.*;
+    import buRRRn.ASTUce.runner.BaseTestRunner;
+    import buRRRn.ASTUce.strings;
+    import buRRRn.ASTUce.ui.ResultPrinter;
+    
+    import system.IO.Writeable;
+    import system.Reflection;
+    import system.Strings;
+    import system.console;    
 
-	/**
+    /**
      * This is the default TestRunner for ASTUce
      */
     public class Runner extends BaseTestRunner
@@ -49,7 +50,7 @@ package buRRRn.ASTUce
          */
         protected static function displayHeader():void
         {
-            Console.writeLine( buRRRn.ASTUce.info() ) ;
+            buRRRn.ASTUce.info();
         }
         
         /**
@@ -59,7 +60,7 @@ package buRRRn.ASTUce
             {
             if( config.showConstructorList )
                 {
-                Console.writeLine( suite );
+                console.writeLine( suite );
                 }
             }
         
@@ -68,7 +69,7 @@ package buRRRn.ASTUce
          */
         protected override function runFailed( message:String ):void
             {
-            Console.writeLine( message );
+            console.writeLine( message );
             }
         
         /**
@@ -81,7 +82,7 @@ package buRRRn.ASTUce
          *  public static function writeLine( ...messages ):void
          * </pre>
          */
-        public function Runner( writer:Class = null )
+        public function Runner( writer:Writeable = null )
             {
             _printer = new ResultPrinter( writer );
             }
@@ -147,7 +148,7 @@ package buRRRn.ASTUce
                 
                 suiteName = runner.getTestName( args[i] );
                 
-                Console.writeLine( Strings.format( _strings.runTitle, suiteName, i ) );
+                console.writeLine( Strings.format( _strings.runTitle, suiteName, i ) );
                 
                 try
                 {
@@ -163,7 +164,7 @@ package buRRRn.ASTUce
                     runner.runFailed( Strings.format( _strings.tab, er2.toString() ) );
                 }
                 
-                Console.writeLine( strings.separator );
+                console.writeLine( strings.separator );
             }
         }
         

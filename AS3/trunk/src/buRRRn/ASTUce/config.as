@@ -54,7 +54,7 @@ package buRRRn.ASTUce
                                                                        "buRRRn.ASTUce.framework::TestResult",
                                                                        "buRRRn.ASTUce.framework::TestCase",
                                                                        "buRRRn.ASTUce.framework::TestSuite",
-                                                                       "buRRRn.ASTUce.ui",
+                                                                       "buRRRn.ASTUce.UI",
                                                                        "at MethodInfo",
                                                                        "at ()",
                                                                        "at Function/http://adobe.com/AS3/2006/builtin::call()",

@@ -21,15 +21,15 @@
 
 */
 package buRRRn.ASTUce
-    {
-    import system.Console;
+{
+    import system.console;        
      
     /**
      * Display ASTUce about.
      */
     public function about( verbose:Boolean = false, showConfig:Boolean = false ):void
         {
-        Console.writeLine( info( verbose, showConfig ) );
+        console.writeLine( info( verbose, showConfig ) );
         }
     
     }
