@@ -34,6 +34,7 @@ package asgard.net
     import andromeda.process.Sequencer;
     import andromeda.process.SimpleAction;
     
+    import asgard.config.Config;
     import asgard.process.ActionURLLoader;
     
     import vegas.core.IFactory;
@@ -249,6 +250,7 @@ package asgard.net
         public function set factory( value:ECMAObjectFactory ):void
         {
         	_factory = value || ECMAObjectFactory.getInstance() ;
+        	_factory.config.setConfigTarget( Config.getInstance() ) ;
         }
         
         /**

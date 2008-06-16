@@ -151,7 +151,7 @@ package andromeda.ioc.core
                 }
                 else
                 {
-                	trace( "ObjectProperty.create failed, a property definition is invalid : " + eden.serialize(prop) ) ; // FIXME logs ?	
+                	trace( "ObjectProperty.create failed, a property definition is invalid at {" + i + "} with the value : " + eden.serialize(prop) ) ; // FIXME logs ?	
                 }			    
             }
 
