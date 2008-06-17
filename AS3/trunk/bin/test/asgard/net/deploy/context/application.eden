@@ -9,7 +9,7 @@ configuration =
         }
         ,
         pattern : "Hello {0}" ,
-        pseudo  : "JonhDoe" 
+        pseudo  : "JohnDoe" 
     }
     ,
     defaultInitMethod    : "initialize" ,
