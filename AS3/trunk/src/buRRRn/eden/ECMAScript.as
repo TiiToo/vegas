@@ -104,7 +104,7 @@ package buRRRn.eden
          * Eval the source and returns the serialize object.
          */
         public override function eval():*
-        {
+            {
             debug( "eval()" );
             
             comments = "" ; 
@@ -115,39 +115,43 @@ package buRRRn.eden
             var tmp:*;
             
             while( hasMoreChar( ) )
-            {
-                next( );
-                
+                {
+                               
                 scanSeparators( );
+                
+                if ( !isAlpha( ch ) )
+                    {
+                    next() ;
+                    }
                 
                 tmp = scanValue( );
                 
                 scanSeparators( );
                 
                 if( tmp != _ORC )
-                {
+                    {
                     value = tmp;
-                }
+                    }
                 
                 /* note: poor man semicolon auto-insertion */
                 if( ch == " ")
-                {
+                    {
                     ch = ";";
+                    }
                 }
-            }
             
             if( value == _ORC )
-            {
+                {
                 value = undefined;
-            }
+                }
             
             if( !_singleValue )
-            {
+                {
                 value = localscope;
-            }
+                }
             
             return value;
-        }
+            }
 
         /**
          * Dispatch a log message.
@@ -187,7 +191,7 @@ package buRRRn.eden
          */
         public function isIdentifierStart( c:String ):Boolean
         {
-            debug( "isIdentifierStart()" );
+            debug( "isIdentifierStart(" + c + ")" );
             if( isAlpha( c ) || (c == "_") || (c == "$" ) )
             {
                 return true;
@@ -206,7 +210,7 @@ package buRRRn.eden
          */
         public function isIdentifierPart( c:String ):Boolean
         {
-            debug( "isIdentifierPart()" );
+            debug( "isIdentifierPart(" + c + ")" );
             if( isIdentifierStart( c ) )
             {
                 return true;
@@ -238,7 +242,7 @@ package buRRRn.eden
          */
         public function isLineTerminator( c:String ):Boolean
         {
-            debug( "isLineTerminator()" );
+            debug( "isLineTerminator(" + c + ")" );
             switch( c )
             {
                 case "\u000A": 
@@ -258,7 +262,8 @@ package buRRRn.eden
          */
         public function isReservedKeyword( identifier:String ):Boolean
         {
-            debug( "isReservedKeyword()" );
+            debug( "isReservedKeyword(" + identifier + ")" );
+            
             if( !config.strictMode )
             {
                 identifier = identifier.toLowerCase( );
@@ -308,7 +313,7 @@ package buRRRn.eden
          */
         public function isFutureReservedKeyword( identifier:String ):Boolean
         {
-            debug( "isFutureReservedKeyword()" );
+            debug( "isFutureReservedKeyword(" + identifier + ")" );
             if( !config.strictMode )
             {
                 identifier = identifier.toLowerCase( );
@@ -361,7 +366,7 @@ package buRRRn.eden
          */
         public function isValidPath( path:String ):Boolean
         {
-            debug( "isValidPath()" );
+            debug( "isValidPath(" + path + ")" );
             var paths:Array = _pathAsArray( path );
             var subpath:String;
             
@@ -1425,6 +1430,12 @@ package buRRRn.eden
                 }
                 
                 var value:* = scanValue( );
+                
+                if ( value == _ORC )
+                {
+                    value = config.undefineable ;	
+                }
+                
                 localscope[ name ] = value;
                 _localPool[ name ] = localscope[ name ];
                 //tracePool();
@@ -1514,8 +1525,11 @@ package buRRRn.eden
          */
         public function scanValue():*
         {
-            debug( "scanValue()" );
+            debug( "scanValue() ch:" + ch );
+            
             scanSeparators( );
+            
+            debug( "after scan ch:" + ch );            
             
             if( pos == source.length )
             {

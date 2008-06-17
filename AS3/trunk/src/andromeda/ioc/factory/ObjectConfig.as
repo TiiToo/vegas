@@ -80,11 +80,11 @@ package andromeda.ioc.factory
         /**
          * @private
          */
-        public function set config( o:Object ):void
+        public function set config( init:* ):void
         {
-        	for( var prop:String in o )
+        	for( var prop:String in init )
         	{
-                _config[prop] = o[prop] ;
+                _config[prop] = init[prop] ;
         	}
         }        
         

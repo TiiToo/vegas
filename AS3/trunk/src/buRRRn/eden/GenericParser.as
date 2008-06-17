@@ -101,7 +101,7 @@ package buRRRn.eden
 		{
 			ch = getChar( );
 			pos++;
-			debug( ch );
+			debug( "[" + ch + "]" );
 			return ch;
 		}
 

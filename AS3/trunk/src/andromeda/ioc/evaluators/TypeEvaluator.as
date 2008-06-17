@@ -35,6 +35,33 @@ package andromeda.ioc.evaluators
 
     /**
      * Evaluates a type string expression and return the type Class who corresponding in the application.
+     * <p><b>Example :</b></p>
+     * <pre class="prettyprint">
+     * import andromeda.ioc.core.TypePolicy ;
+     * import andromeda.ioc.evaluators.TypeEvaluator ;
+     * import andromeda.ioc.factory.ObjectConfig ;
+     * 
+     * var conf:ObjectConfig = new ObjectConfig() ;
+     * 
+     * conf.typePolicy       = TypePolicy.ALL ; // TypePolicy.NONE, TypePolicy.ALIAS, TypePolicy.EXPRESSION
+     * conf.typeAliases      =
+     * [
+     *     { alias:"CoreObject" , type:"vegas.core.CoreObject" }
+     * ] ;
+     * 
+     * conf.typeExpression   =
+     * [
+     *     { name:"map"     , value:"vegas.data.map" } ,
+     *     { name:"HashMap" , value:"{map}.HashMap"  }
+     * ] ;
+     * 
+     * var evaluator:TypeEvaluator = new TypeEvaluator( conf ) ;
+     * 
+     * trace( evaluator.eval( "CoreObject"  ) ) ; // [class CoreObject]
+     * trace( evaluator.eval( "{HashMap}"   ) ) ; // [class HashMap]
+     * trace( evaluator.eval( "test"        ) ) ; // null
+     * trace( evaluator.eval( "{map}.Test"  ) ) ; // null
+     * </pre>
      * @author eKameleon
      */
     public class TypeEvaluator extends CoreObject implements IEvaluator 

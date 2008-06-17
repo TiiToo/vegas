@@ -17,8 +17,8 @@ objects =
         properties : 
         [
             { name : "autoSize"          , value  : "left" } ,
-            { name : "defaultTextFormat" , value  : new flash.text.TextFormat('arial', 12, 0xFFFFFF) } ,
-            { name : "filters"           , config : "filters" } ,
+            { name : "defaultTextFormat" , config : "display.format"  } ,
+            { name : "filters"           , config : "display.filters" } ,
             { name : "x"                 , value  : 10 } ,
             { name : "y"                 , value  : 10 } ,
             { name : "text"              , ref    : "formatter" } 
@@ -30,7 +30,7 @@ objects =
         type       : "Square" ,
         properties : 
         [
-            { name : "filters" , config : "filters" } 
+            { name : "filters" , config : "display.filters" } 
         ]
     } 
     ,

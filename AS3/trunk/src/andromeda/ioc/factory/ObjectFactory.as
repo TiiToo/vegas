@@ -23,6 +23,7 @@
 package andromeda.ioc.factory 
 {
     import andromeda.ioc.core.*;
+    import andromeda.ioc.evaluators.ConfigEvaluator;
     import andromeda.ioc.evaluators.TypeEvaluator;
     import andromeda.ioc.factory.IObjectFactory;
     import andromeda.ioc.factory.strategy.IObjectFactoryStrategy;
@@ -106,9 +107,10 @@ package andromeda.ioc.factory
         public function ObjectFactory( bGlobal:Boolean = false , sChannel:String = null )
         {
             super( bGlobal, sChannel ) ;
-            _typeEvaluator = new TypeEvaluator() ;
-            singletons     = new HashMap() ;
-            config         = new ObjectConfig() ; // the default empty ObjectConfig instance.
+            _configEvaluator = new ConfigEvaluator() ;
+            _typeEvaluator   = new TypeEvaluator() ;
+            singletons       = new HashMap() ;
+            config           = new ObjectConfig() ; // the default empty ObjectConfig instance.
         }
         
         /**
@@ -125,13 +127,22 @@ package andromeda.ioc.factory
         public function set config( o:ObjectConfig ):void
         {
             _config = o || new ObjectConfig() ;
-            _typeEvaluator.config = _config ;
+            _configEvaluator.config = _config ;
+            _typeEvaluator.config   = _config ;
         }        
         
         /**
          * The maps of all objects in the container.
          */
         public var singletons:HashMap ;
+        
+        /**
+         * Indicates the config evaluator reference in this factory. 
+         */
+        public function get configEvaluator():ConfigEvaluator
+        {
+            return _configEvaluator ;
+        }          
         
         /**
          * Indicates the type evaluator reference in this factory. 
@@ -254,6 +265,11 @@ package andromeda.ioc.factory
         /**
          * @private
          */
+        private var _configEvaluator:ConfigEvaluator ;             
+       
+        /**
+         * @private
+         */
         private var _typeEvaluator:TypeEvaluator ;          
        
         /**
@@ -294,7 +310,7 @@ package andromeda.ioc.factory
                     }
                     else if ( item.policy == ObjectAttribute.CONFIG )
                     {
-                    	stack.push( ( item.value in _config.config  ) ? _config.config[item.value] : null ) ;
+                    	stack.push( _configEvaluator.eval( item.value) ) ;
                     }                    
                     else
                     {
@@ -581,7 +597,7 @@ package andromeda.ioc.factory
                     }
                     else if ( prop.policy == ObjectAttribute.CONFIG )
                     {
-                    	o[ prop.name ] = ( prop.value in _config.config  ) ? _config.config[prop.value] : null ;
+                    	o[ prop.name ] = _configEvaluator.eval( prop.value) ;
                     }
                     else
                     {

@@ -16,18 +16,17 @@
   the Initial Developer. All Rights Reserved.
   
   Contributor(s):
-  
 */
 
 package system
-{
+    {
+    import system.terminals.Console;
+    import system.diagnostics.TraceConsole;
     
-    /**
-     * Display ES4a about.
+	/**
+	 * The system default console implementation.
      */
-    public function about( verbose:Boolean = false, showConfig:Boolean = false ):void
-        {
-        console.writeLine( info( verbose, showConfig ) );
-        }
+    public var console:system.terminals.Console = new TraceConsole();
+    
     }
 
