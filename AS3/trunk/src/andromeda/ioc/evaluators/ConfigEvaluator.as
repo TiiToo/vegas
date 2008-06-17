@@ -77,12 +77,7 @@ package andromeda.ioc.evaluators
          * The ObjectConfig reference of this evaluator.
          */
         public var config:ObjectConfig ;
-        
-        /**
-         * The regexp to search all members in the expression to evaluate.
-         */
-        public var reg:RegExp = /\./g ;
-        
+                
         /**
          * Evaluates the specified object.
          */
@@ -95,7 +90,7 @@ package andromeda.ioc.evaluators
             	{
             		
             		var value:*       = config.config ;
-            		var members:Array = exp.split(reg) ;
+            		var members:Array = exp.split(".") ;
             		var len:uint      = members.length ;
             		
             		for ( var i:uint = 0 ; i<len ; i++ )

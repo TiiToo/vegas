@@ -2,15 +2,15 @@ objects =
 [
     {
         id                  : "formatter" ,
-		type                : "String"    ,
-		staticFactoryMethod :
-		{
-			type      : "system.Strings" , 
-			name      : "format" ,
-			arguments : [ { config:"pattern" } , { config:"pseudo" } ]
-		}
-	}
-	,
+        type                : "String"    ,
+        staticFactoryMethod :
+        {
+            type      : "system.Strings" , 
+            name      : "format" ,
+            arguments : [ { config:"pattern" } , { config:"pseudo" } ]
+        }
+    }
+    ,
     {
         id         : "my_field" ,
         type       : "TextField"  ,
@@ -38,19 +38,19 @@ objects =
         id         : "my_container" ,
         type       : "{display}.CoreSprite" ,
         singleton  : true  , 
-		lazyInit   : true  ,
+        lazyInit   : true  ,
         identify   : true  ,
         properties : 
         [
             { name : "x" , value  : 50 } ,
             { name : "y" , value  : 50 }
         ]
-		,
+        ,
         methods :
         [
-			{ name:"addChild" , arguments:[ { ref:"my_square" } ] } ,
+            { name:"addChild" , arguments:[ { ref:"my_square" } ] } ,
             { name:"addChild" , arguments:[ { ref:"my_field"  } ] }
-        ]		
-    }	
-		
+        ]        
+    }    
+        
 ] ;
