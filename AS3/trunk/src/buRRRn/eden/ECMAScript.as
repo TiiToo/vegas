@@ -1094,7 +1094,9 @@ package buRRRn.eden
          */
         public function scanFunction( fcnPath:String, pool:*, ref:* = null ):*
         {
+            
             debug( "scanFunction( " + fcnPath + " )" );
+            
             var args:Array = [];
             var fcnName:String;
             var fcnObj:*;
@@ -1167,30 +1169,58 @@ package buRRRn.eden
             //             trace( fcnPath + " is authorized (scanFunction)" );
             //             }
              */
+            
             if( !isClass && (ref == null) && (fcnObj == undefined) )
-            {
+                {
                 log( Strings.format( strings.doesNotExist, fcnPath ) );
                 return config.undefineable;
-            }
+                }
             else
-            {
-                if( _inConstructor )
                 {
+                
+                if( _inConstructor )
+                    {
                     _inConstructor = false;
                     
                     try
-                    {
+                        {
                         return ClassUtil.buildNewInstance(fcnObj, args) ; // VEGAS hack for the moment (35 arguments in this static build method)
-                    }
+                        }
                     catch( e:Error )
-                    {
+                        {
+                    	log( "malformed ctor - " + e.toString() );
                         return config.undefineable ;
-                    }
+                        }
                     
+                    } ;
+                
+                var result:*;
+                
+                if( ref != null )
+                    {
+                    result = ref[ fcnName ].apply( ref, args );
+                    }
+                else
+                    {
+                    result = fcnObj.apply( fcnObjScope, args );
+                    }
+                
+                if( ch == "." )
+                    {
+                    next();
+                    return scanFunction( scanPath(), pool, result );
+                    }
+                else
+                    {
+                    if( !config.allowFunctionCall )
+                        {
+                        log( Strings.format( strings.notFunctionCallAllowed, fcnPath, args ) );
+                        return config.undefineable;
+                        }
+                    return result;
+                    }
+                
                 }
-                
-                
-            }
             
             log( strings.errorFunction );
         }
