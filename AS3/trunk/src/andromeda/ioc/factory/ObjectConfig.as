@@ -26,6 +26,9 @@ package andromeda.ioc.factory
     import andromeda.ioc.core.TypeAliases;
     import andromeda.ioc.core.TypeExpression;
     import andromeda.ioc.core.TypePolicy;
+    import andromeda.ioc.evaluators.ConfigEvaluator;
+    import andromeda.ioc.evaluators.LocaleEvaluator;
+    import andromeda.ioc.evaluators.TypeEvaluator;
     
     import system.Reflection;
     
@@ -63,10 +66,17 @@ package andromeda.ioc.factory
          */
         public function ObjectConfig( init:Object=null )
         {
-            _typeAliases    = new TypeAliases() ;
-            _typeExpression = new TypeExpression() ;
-            _config         = {} ;       
+
+            _config          = new Object() ;
+            _configEvaluator = new ConfigEvaluator(this) ;
+            _locale          = new Object() ;
+            _typeExpression  = new TypeExpression() ;
+            _typeAliases     = new TypeAliases() ;
+            _localeEvaluator = new LocaleEvaluator(this) ;
+            _typeEvaluator   = new TypeEvaluator(this) ;
+
             initialize( init ) ;
+
         }
         
         /**
@@ -89,6 +99,14 @@ package andromeda.ioc.factory
         }        
         
         /**
+         * Indicates the config evaluator reference. 
+         */
+        public function get configEvaluator():ConfigEvaluator
+        {
+            return _configEvaluator ;
+        }          
+    	    
+        /**
          * The default name of destroy callback method to invoke with object definition in the ObjectFactory. 
          */
         public var defaultDestroyMethod:String ;
@@ -106,7 +124,29 @@ package andromeda.ioc.factory
         /**
          * The locale object of the factory. To evaluate locale expression in the object definitions.
          */
-        public var locale:Object ;
+        public function get locale():Object
+        {
+        	return _locale ;
+        }
+        
+        /**
+         * @private
+         */
+        public function set locale( init:* ):void
+        {
+        	for( var prop:String in init )
+        	{
+                _locale[prop] = init[prop] ;
+        	}
+        }   
+        
+        /**
+         * Indicates the locale evaluator reference. 
+         */
+        public function get localeEvaluator():LocaleEvaluator
+        {
+            return _localeEvaluator ;
+        }        
         
         /**
          * Indicates if all the ILockable objects initialized in the object definitions in the factory must be locked during the invokation of this methods and the initialization of this properties.
@@ -169,6 +209,15 @@ package andromeda.ioc.factory
                 }
             }
         }
+        
+        
+        /**
+         * Indicates the type evaluator reference. 
+         */
+        public function get typeEvaluator():TypeEvaluator
+        {
+            return _typeEvaluator ;
+        }        
         
         /**
          * Determinates the content of the typeExpression reference in this config object.
@@ -280,13 +329,21 @@ package andromeda.ioc.factory
         }             
            
         /**
-         * This method is used to change the target of the internal config dynamic object in this instance.
+         * This method is used to change the target of the internal config dynamic object.
          */
         public function setConfigTarget( o:Object ):void
         {
             _config = Reflection.getClassInfo(o).isDynamic() ? o : {} ;
         }               
-                
+        
+        /**
+         * This method is used to change the target of the internal local dynamic object.
+         */
+        public function setLocaleTarget( o:Object ):void
+        {
+            _locale = Reflection.getClassInfo(o).isDynamic() ? o : {} ;
+        }         
+        
         /**
          * Returns the string representation of this instance.
          * @return the string representation of this instance.
@@ -322,7 +379,27 @@ package andromeda.ioc.factory
         /**
          * @private
          */
+        private var _configEvaluator:ConfigEvaluator ;             
+
+        /**
+         * @private
+         */
+        private var _locale:Object ;        
+        
+        /**
+         * @private
+         */
+        private var _localeEvaluator:LocaleEvaluator ; 
+		        
+        /**
+         * @private
+         */
         private var _typeAliases:TypeAliases ;
+        
+        /**
+         * @private
+         */
+        private var _typeEvaluator:TypeEvaluator ;         
         
         /**
          * @private

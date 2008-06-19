@@ -8,13 +8,17 @@ configuration =
             format  : new flash.text.TextFormat('arial', 12, 0xFFFFFF) 
         }
         ,
-        pattern : "Hello {0}" ,
         pseudo  : "JohnDoe" 
     }
     ,
     defaultInitMethod    : "initialize" ,
     defaultDestroyMethod : "destroy"    ,
     identify             : true         ,
+	locale               :
+	{
+        pattern : "Hello {0}"
+	}
+	,
     typePolicy           : "all"        ,
     typeAliases          : 
     [

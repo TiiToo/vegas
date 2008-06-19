@@ -76,6 +76,7 @@ package andromeda.ioc.core
         	{
         		case ObjectAttribute.REFERENCE :
         		case ObjectAttribute.CONFIG    :
+        		case ObjectAttribute.LOCALE    :        		
         		{
                     _policy = str ;
                     break ;
@@ -107,6 +108,7 @@ package andromeda.ioc.core
             var properties:ArrayMap = new ArrayMap() ; // use HashMap or ArrayMap (sort elements)
 
             var conf:String ;
+            var i18n:String ;
             var prop:Object ;
             var name:String ;
             var ref:String  ;
@@ -131,7 +133,8 @@ package andromeda.ioc.core
                     	continue ;
                 	}
                                         
-                    conf       = prop[ ObjectAttribute.CONFIG ] as String ;                    
+                    conf       = prop[ ObjectAttribute.CONFIG ] as String ;
+                    i18n       = prop[ ObjectAttribute.LOCALE ] as String ;               
                		ref        = prop[ ObjectAttribute.REFERENCE ] as String  ;
                 	value      = prop[ ObjectAttribute.VALUE ] ;
                 	evaluators = prop[ObjectAttribute.EVALUATORS] as Array ;
@@ -143,7 +146,11 @@ package andromeda.ioc.core
                     else if ( conf != null && conf.length > 0 )
                     {
                         properties.put( name, new ObjectProperty( name, conf , ObjectAttribute.CONFIG , evaluators ) ) ; // config property      
-                    }                	
+                    }
+                    else if ( i18n != null && i18n.length > 0 )
+                    {
+   						properties.put( name, new ObjectProperty( name, i18n , ObjectAttribute.LOCALE , evaluators ) ) ; // locale property                        		
+                    }             	
                 	else 
                 	{
 	                    properties.put( name , new ObjectProperty( name , value , ObjectAttribute.VALUE , evaluators ) ) ; // value property    

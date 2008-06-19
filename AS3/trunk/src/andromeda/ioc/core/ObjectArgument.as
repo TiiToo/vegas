@@ -65,6 +65,7 @@ package andromeda.ioc.core
             {
                 case ObjectAttribute.REFERENCE :
                 case ObjectAttribute.CONFIG    :
+        		case ObjectAttribute.LOCALE    :                
                 {
                     _policy = str ;
                     break ;
@@ -99,6 +100,7 @@ package andromeda.ioc.core
                 
                 var evaluators:Array ;
                 var conf:String ;
+                var i18n:String ;
                 var ref:String  ;
                 var value:* ;
                                 
@@ -110,6 +112,7 @@ package andromeda.ioc.core
                 	if ( o != null )
                 	{
                 		conf       = ( ObjectAttribute.CONFIG in o )    ? o[ ObjectAttribute.CONFIG ] as String    : null ;
+                		i18n       = ( ObjectAttribute.LOCALE in o )    ? o[ ObjectAttribute.LOCALE ] as String    : null ;
                         ref        = ( ObjectAttribute.REFERENCE in o ) ? o[ ObjectAttribute.REFERENCE ] as String : null ;
                         value      = ( ObjectAttribute.VALUE in o )     ? o[ ObjectAttribute.VALUE ]               : null ;
                         evaluators = ( ObjectAttribute.EVALUATORS in o ) ? o[ObjectAttribute.EVALUATORS] as Array  : null ;
@@ -121,6 +124,10 @@ package andromeda.ioc.core
                         else if ( conf != null && conf.length > 0 )
                         {
                             args.push( new ObjectArgument( conf , ObjectAttribute.CONFIG , evaluators ) ) ; // config argument  	
+                        }
+                        else if ( i18n != null && i18n.length > 0 )
+                        {
+   							args.push( new ObjectArgument( i18n , ObjectAttribute.LOCALE , evaluators ) ) ; // locale argument                        		
                         }
                         else
                         {

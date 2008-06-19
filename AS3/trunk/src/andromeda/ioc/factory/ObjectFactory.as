@@ -23,8 +23,6 @@
 package andromeda.ioc.factory 
 {
     import andromeda.ioc.core.*;
-    import andromeda.ioc.evaluators.ConfigEvaluator;
-    import andromeda.ioc.evaluators.TypeEvaluator;
     import andromeda.ioc.factory.IObjectFactory;
     import andromeda.ioc.factory.strategy.IObjectFactoryStrategy;
     import andromeda.ioc.factory.strategy.ObjectFactoryMethod;
@@ -107,8 +105,6 @@ package andromeda.ioc.factory
         public function ObjectFactory( bGlobal:Boolean = false , sChannel:String = null )
         {
             super( bGlobal, sChannel ) ;
-            _configEvaluator = new ConfigEvaluator() ;
-            _typeEvaluator   = new TypeEvaluator() ;
             singletons       = new HashMap() ;
             config           = new ObjectConfig() ; // the default empty ObjectConfig instance.
         }
@@ -127,31 +123,13 @@ package andromeda.ioc.factory
         public function set config( o:ObjectConfig ):void
         {
             _config = o || new ObjectConfig() ;
-            _configEvaluator.config = _config ;
-            _typeEvaluator.config   = _config ;
         }        
         
         /**
          * The maps of all objects in the container.
          */
         public var singletons:HashMap ;
-        
-        /**
-         * Indicates the config evaluator reference in this factory. 
-         */
-        public function get configEvaluator():ConfigEvaluator
-        {
-            return _configEvaluator ;
-        }          
-        
-        /**
-         * Indicates the type evaluator reference in this factory. 
-         */
-        public function get typeEvaluator():TypeEvaluator
-        {
-            return _typeEvaluator ;
-        }          
-        
+		        
         /**
          * Returns <code class="prettyprint">true</code> if the referencial contains the specified object.
          * @param id The 'id' of the object to search.
@@ -262,20 +240,10 @@ package andromeda.ioc.factory
          */
         private var _config:ObjectConfig ;
        
-        /**
-         * @private
+	    /**
+         * Creates the arguments Array representation of the specified definition.
+         * @return the arguments Array representation of the specified definition.
          */
-        private var _configEvaluator:ConfigEvaluator ;             
-       
-        /**
-         * @private
-         */
-        private var _typeEvaluator:TypeEvaluator ;          
-       
-        /**
-          * Creates the arguments Array representation of the specified definition.
-          * @return the arguments Array representation of the specified definition.
-          */
         protected function createArguments( args:Array=null ):Array
         {
             if ( args == null )
@@ -310,8 +278,12 @@ package andromeda.ioc.factory
                     }
                     else if ( item.policy == ObjectAttribute.CONFIG )
                     {
-                    	stack.push( _configEvaluator.eval( item.value) ) ;
-                    }                    
+                    	stack.push( config.configEvaluator.eval( item.value) ) ;
+                    }
+                    else if ( item.policy == ObjectAttribute.LOCALE )
+                    {
+                    	stack.push( config.localeEvaluator.eval( item.value ) ) ;
+                    }                                  
                     else
                     {
                         stack.push( item.value ) ;    
@@ -350,7 +322,7 @@ package andromeda.ioc.factory
                   
             var instance:*   = null ;
             
-            var clazz:Class  = _typeEvaluator.eval( definition.getType() ) as Class ;
+            var clazz:Class  = config.typeEvaluator.eval( definition.getType() ) as Class ;
             
             var strategy:IObjectFactoryStrategy = definition.getFactoryStrategy() ;
             
@@ -369,7 +341,7 @@ package andromeda.ioc.factory
             {
                 getLogger().fatal(this + " createObject failed, can't convert the instance with the specified type \"" + definition.getType() + "\" in the object definition \"" + definition.id + "\", this type don't exist in the application.") ;	
             }
-                        
+            
             if ( instance != null )
             {
                 
@@ -428,7 +400,7 @@ package andromeda.ioc.factory
                                 
                 if ( factoryMethod is ObjectStaticFactoryMethod )
                 {
-                    clazz  = _typeEvaluator.eval( (factoryMethod as ObjectStaticFactoryMethod).type as String ) as Class ;
+                    clazz  = config.typeEvaluator.eval( (factoryMethod as ObjectStaticFactoryMethod).type as String ) as Class ;
                     if ( clazz != null && name in clazz ) 
                     {
                         instance = clazz[name].apply( null, args ) ;
@@ -452,7 +424,7 @@ package andromeda.ioc.factory
 
                 if ( factoryProperty is ObjectStaticFactoryProperty )
                 {
-                    clazz = _typeEvaluator.eval( (factoryProperty as ObjectStaticFactoryProperty).type as String ) as Class ;
+                    clazz = config.typeEvaluator.eval( (factoryProperty as ObjectStaticFactoryProperty).type as String ) as Class ;
                     if ( clazz != null && name in clazz ) 
                     {
                         instance = clazz[name] ;
@@ -597,7 +569,11 @@ package andromeda.ioc.factory
                     }
                     else if ( prop.policy == ObjectAttribute.CONFIG )
                     {
-                    	o[ prop.name ] = _configEvaluator.eval( prop.value) ;
+                    	o[ prop.name ] = config.configEvaluator.eval( prop.value) ;
+                    }
+                    else if ( prop.policy == ObjectAttribute.LOCALE )
+                    {
+                    	o[ prop.name ] = config.localeEvaluator.eval( prop.value ) ;
                     }
                     else
                     {

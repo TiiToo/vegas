@@ -7,7 +7,7 @@ objects =
         {
             type      : "system.Strings" , 
             name      : "format" ,
-            arguments : [ { config:"pattern" } , { config:"pseudo" } ]
+            arguments : [ { locale:"pattern" } , { config:"pseudo" } ]
         }
     }
     ,
