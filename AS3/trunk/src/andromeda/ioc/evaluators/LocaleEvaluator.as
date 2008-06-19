@@ -22,49 +22,47 @@
 */
 package andromeda.ioc.evaluators 
 {
-    import andromeda.ioc.factory.ObjectConfig;                    
+    import andromeda.ioc.factory.ObjectConfig;                            
 
     /**
      * Evaluates a type string expression and return the value who corresponding in the config of the factory.
      * <p><b>Example :</b></p>
      * <pre class="prettyprint">
-     * import andromeda.ioc.evaluators.ConfigEvaluator ;
+     * import andromeda.ioc.evaluators.LocaleEvaluator ;
      * import andromeda.ioc.factory.ObjectConfig ;
      * 
-     * var init:Object =
+     * var locale:Object =
      * {
      *     message : "hello world" ,
+     *     title   : "my title"    ,
      *     menu    :
      *     {
-     *         title : "my title" ,
-     *         count : 10 ,
-     *         data  : [ "item1" , "item2", "item3" ]
+     *         title : "my menu title" ,
+     *         label : "my label"
      *     }
      * }
      * 
      * var configurator:ObjectConfig = new ObjectConfig() ;
-     * configurator.config           = init ;
+     * configurator.locale           = locale ;
      * 
-     * var evaluator:ConfigEvaluator = new ConfigEvaluator( configurator ) ;
+     * var evaluator:LocaleEvaluator = new LocaleEvaluator( configurator ) ;
      * 
      * trace( evaluator.eval( "test"       ) ) ; // null
      * trace( evaluator.eval( "message"    ) ) ; // hello world
-     * trace( evaluator.eval( "menu"       ) ) ; // [object Object]
-     * trace( evaluator.eval( "menu.title" ) ) ; // my title
-     * trace( evaluator.eval( "menu.count" ) ) ; // 10
-     * trace( evaluator.eval( "menu.data"  ) ) ; // item1,item2,item3
-     * trace( evaluator.eval( "menu.test"  ) ) ; // null
+     * trace( evaluator.eval( "title"      ) ) ; // my title
+     * trace( evaluator.eval( "menu.title" ) ) ; // my menu title
+     * trace( evaluator.eval( "menu.label" ) ) ; // my label
      * </pre>
      * @author eKameleon
      */
-    public class ConfigEvaluator extends PropertyEvaluator
+    public class LocaleEvaluator extends PropertyEvaluator
     {
         
         /**
-         * Creates a new ConfigEvaluator instance.
+         * Creates a new LocaleEvaluator instance.
          * @param config The optional ObjectConfig object to filter the type expression to evaluate.
          */
-        public function ConfigEvaluator( config:ObjectConfig=null )
+        public function LocaleEvaluator( config:ObjectConfig=null )
         {
             this.config = config ;
         }
@@ -79,7 +77,7 @@ package andromeda.ioc.evaluators
          */
         public override function get target():*
         {
-        	return config != null ? config.config : null ;
+        	return config != null ? config.locale : null ;
         }                
                 
         

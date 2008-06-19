@@ -104,10 +104,15 @@ package andromeda.ioc.factory
         public var identify:Boolean ;
         
         /**
+         * The locale object of the factory. To evaluate locale expression in the object definitions.
+         */
+        public var locale:Object ;
+        
+        /**
          * Indicates if all the ILockable objects initialized in the object definitions in the factory must be locked during the invokation of this methods and the initialization of this properties.
          */
         public var lock:Boolean ;
-                
+           
         /**
          * Determinates the typeAliases reference of this config object.
          * <p>The setter of this virtual property can be populated with a TypeAliases instance or an Array of typeAliases items.</p>

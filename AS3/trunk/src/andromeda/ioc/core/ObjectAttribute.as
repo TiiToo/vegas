@@ -76,6 +76,11 @@ package andromeda.ioc.core
         public static const LAZY_INIT:String = "lazyInit" ;
         
         /**
+         * Defines the attribute name of the "locale" object in the configuration of the ioc factory and the object definition "arguments" and "properties".
+         */
+        public static const LOCALE:String = "locale" ;         
+        
+        /**
          * Defines the label of the 'lock' property of the object.
          */
         public static const LOCK:String = "lock" ;        

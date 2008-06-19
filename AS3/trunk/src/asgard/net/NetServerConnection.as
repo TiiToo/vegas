@@ -32,6 +32,8 @@ package asgard.net
     import flash.net.Responder;
     import flash.utils.Timer;
     
+    import andromeda.process.TimeoutPolicy;
+    
     import asgard.events.NetServerEvent;
     
     import vegas.core.ICloneable;

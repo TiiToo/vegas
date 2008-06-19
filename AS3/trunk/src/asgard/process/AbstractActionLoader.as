@@ -22,23 +22,22 @@
 */
 package asgard.process 
 {
-	import flash.events.Event;
-	import flash.events.HTTPStatusEvent;
-	import flash.events.IEventDispatcher;
-	import flash.events.IOErrorEvent;
-	import flash.events.ProgressEvent;
-	import flash.events.SecurityErrorEvent;
-	import flash.events.TimerEvent;
-	import flash.net.URLRequest;
-	import flash.utils.Timer;
-	
-	import andromeda.process.Action;
-	
-	import asgard.net.TimeoutPolicy;
-	
-	import vegas.errors.RuntimeError;	
+    import flash.events.Event;
+    import flash.events.HTTPStatusEvent;
+    import flash.events.IEventDispatcher;
+    import flash.events.IOErrorEvent;
+    import flash.events.ProgressEvent;
+    import flash.events.SecurityErrorEvent;
+    import flash.events.TimerEvent;
+    import flash.net.URLRequest;
+    import flash.utils.Timer;
+    
+    import andromeda.process.Action;
+    import andromeda.process.TimeoutPolicy;
+    
+    import vegas.errors.RuntimeError;	
 
-	/**
+    /**
 	 * This IAction abstract command object run a Loader object and notify ActionEvent during a load process.
 	 * @author eKameleon
 	 */
