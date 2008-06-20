@@ -27,7 +27,6 @@ package asgard
 	import buRRRn.ASTUce.framework.TestSuite;	
 
     import asgard.config.AllTests;
-    import asgard.date.AllTests;
     import asgard.display.AllTests;
     import asgard.events.AllTests;
     import asgard.managers.AllTests;
@@ -50,9 +49,7 @@ package asgard
         public static function suite():ITest
         {
             var suite:TestSuite = new TestSuite( "asgard" );
-
             suite.addTest( asgard.config.AllTests.suite() ) ;
-            suite.addTest( asgard.date.AllTests.suite() ) ;
             suite.addTest( asgard.display.AllTests.suite() ) ;
             suite.addTest( asgard.events.AllTests.suite() ) ;
             suite.addTest( asgard.managers.AllTests.suite() ) ;
@@ -61,7 +58,6 @@ package asgard
             suite.addTest( asgard.process.AllTests.suite() ) ;
             suite.addTest( asgard.system.AllTests.suite() ) ;
             suite.addTest( asgard.text.AllTests.suite() ) ;
-
             return suite;
         }
 	}

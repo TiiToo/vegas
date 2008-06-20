@@ -66,6 +66,11 @@ package andromeda.ioc.core
         public static const IDENTIFY:String = "identify" ;
         
         /**
+         * Defines the label of the 'i18n' top-level attribute.
+         */
+        public static const I18N:String = "i18n" ;           
+        
+        /**
          * Defines the label of the 'imports' top-level attribute.
          */
         public static const IMPORTS:String = "imports" ;        

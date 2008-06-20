@@ -25,7 +25,7 @@ package andromeda.ioc.evaluators
     import andromeda.ioc.factory.ObjectConfig;                            
 
     /**
-     * Evaluates a type string expression and return the value who corresponding in the config of the factory.
+     * Evaluates a type string expression and return the value who corresponding in the locale reference in the configuration of the factory.
      * <p><b>Example :</b></p>
      * <pre class="prettyprint">
      * import andromeda.ioc.evaluators.LocaleEvaluator ;

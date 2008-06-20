@@ -20,16 +20,15 @@
   Contributor(s) :
   
 */
-
 package asgard.system 
 {
-    import vegas.core.CoreObject;    
+    import vegas.core.CoreObject;        
 
     /**
      * The dynamic Locale reference to register all external locale properties.
      * @author eKameleon
      */
-    dynamic public class Locale extends CoreObject 
+    public dynamic class Locale extends CoreObject 
     {
 
         /**

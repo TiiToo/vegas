@@ -35,7 +35,9 @@ package asgard.net
     import andromeda.process.SimpleAction;
     
     import asgard.config.Config;
+    import asgard.events.LocalizationEvent;
     import asgard.process.ActionURLLoader;
+    import asgard.system.Localization;
     
     import vegas.core.IFactory;
     import vegas.data.sets.HashSet;
@@ -221,7 +223,9 @@ package asgard.net
             this.factory        = factory ;
             this.internalLoader = internalLoader ;
             this.path           = path    ;
-
+            
+            localization = Localization.getInstance() ;
+            
             _imports            = new HashSet() ;
             _sequencer          = new Sequencer() ;            
             
@@ -268,6 +272,31 @@ package asgard.net
         {
             _internalLoader = ClassUtil.extendsClass( loader, ParserLoader ) ? loader : EdenLoader ;
         }    
+
+        /**
+         * Indicates the Localization reference of this loader.
+         */
+        public function get localization():Localization
+        {
+            return _localization ;
+        }    
+
+        /**
+         * @private
+         */
+        public function set localization( localization:Localization ):void
+        {
+        	if ( _localization != null )
+        	{
+        		_localization.removeEventListener( LocalizationEvent.CHANGE , updateLocalization , false ) ;
+        	}
+            _localization = localization ;
+            if ( _localization != null )
+            {
+                _localization.addEventListener( LocalizationEvent.CHANGE , updateLocalization , false, 0, true ) ;	
+            }
+            updateLocalization() ;
+        }  
 
         /**
          * The default path of the external context file.
@@ -380,6 +409,15 @@ package asgard.net
         protected var objects:Array ;        
         
         /**
+         * Invoked when the localization of the application is changed or to update the locale object of 
+         * the IoC factory configuration with the current locale object of the application.
+         */
+        protected function updateLocalization( e:LocalizationEvent = null ):void
+        {
+            _factory.config.setLocaleTarget( _localization != null ? _localization.getLocale() : null ) ;
+        }
+        
+        /**
          * @private
          */
         private var _factory:ECMAObjectFactory ;
@@ -403,6 +441,11 @@ package asgard.net
          * @private
          */
         private var _isRegister:Boolean ;
+        
+        /**
+         * @private
+         */
+        private var _localization:Localization ;
         
         /**
          * @private
@@ -478,12 +521,16 @@ package asgard.net
                 
                 if ( _first )
                 {
+                    
                     _first = false ;    
+                    
                     var config:Object = data[ ObjectAttribute.CONFIGURATION  ] ;
+                    
                     if ( config != null )
                     {
                         factory.config.initialize( config ) ;    
                     }
+                    
                 }
                 
                 // objects : the current object definitions
