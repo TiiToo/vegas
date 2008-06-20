@@ -10,7 +10,7 @@
   WITHOUT WARRANTY OF ANY KIND, either express or implied. See the License
   for the specific language governing rights and limitations under the License. 
   
-  The Original Code is ASGard Framework.
+  The Original Code is Andromeda Framework based on VEGAS.
   
   The Initial Developer of the Original Code is
   ALCARAZ Marc (aka eKameleon)  <vegas@ekameleon.net>.
@@ -20,7 +20,7 @@
   Contributor(s) :
   
 */
-package asgard.process 
+package andromeda.process 
 {
     import flash.events.Event;
     import flash.events.HTTPStatusEvent;
@@ -35,21 +35,21 @@ package asgard.process
     import andromeda.process.Action;
     import andromeda.process.TimeoutPolicy;
     
-    import vegas.errors.RuntimeError;	
+    import vegas.errors.RuntimeError;    
 
     /**
-	 * This IAction abstract command object run a Loader object and notify ActionEvent during a load process.
+	 * This core command object run a "loader" object and notify ActionEvent during a load process.
 	 * @author eKameleon
 	 */
-	public class AbstractActionLoader extends Action 
+	public class CoreActionLoader extends Action 
 	{
 		
 		/**
-		 * Creates a new LoaderProcess instance.
+		 * Creates a new CoreActionLoader instance.
     	 * @param bGlobal the flag to use a global event flow or a local event flow.
     	 * @param sChannel the name of the global event flow if the <code class="prettyprint">bGlobal</code> argument is <code class="prettyprint">true</code>.
 		 */
-		public function AbstractActionLoader( bGlobal:Boolean = false, sChannel:String = null)
+		public function CoreActionLoader( bGlobal:Boolean = false, sChannel:String = null)
 		{
 			super( bGlobal, sChannel );
             _timer        = new Timer(DEFAULT_DELAY, 1) ;

@@ -1,5 +1,13 @@
 objects =
 [
+
+    {
+        id        : "user" ,
+        type      : "User" ,            
+        singleton : true   ,
+        arguments : [ { config : "pseudo" } ]
+    }
+    ,
     {
         id                  : "formatter" ,
         type                : "String"    ,

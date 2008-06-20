@@ -1,3 +1,13 @@
+imports =
+[
+
+    { ressource : "view.eden" , type:"context"  }
+
+    // TODO { ressource : "fr"        , type:"i18n"    , prefix   : "localize_" , path:"locale/" , suffix:".eden" } ,
+    // TODO { ressource : "config"    , type:"config"  , fileName : "config"    , path:"config/" , suffix:".eden"  } ,  
+    
+] ;
+
 configuration =
 {
     config :
@@ -15,7 +25,6 @@ configuration =
     defaultInitMethod    : "initialize" ,
     defaultDestroyMethod : "destroy"    ,
     identify             : true         ,
-    ,
 	locale               :
 	{
         pattern : "Hello {0}"
@@ -34,23 +43,3 @@ configuration =
     ]        
 } ;
 
-imports =
-[
-	
-	{ ressource : "fr"        , type:"i18n"    , prefix   : "localize_" , path:"locale/" , suffix:".eden" } ,
-	{ ressource : "en"        , type:"i18n"    , prefix   : "localize_" , path:"locale/" , suffix:".eden"  } , 
-	{ ressource : "config"    , type:"config"  , fileName : "config"    , path:"config/" , suffix:".eden"  } , 	
-    
-    { ressource : "view.eden" , type:"context"  }
-    
-] ;
-
-objects =
-[
-    {
-        id        : "user" ,
-        type      : "User" ,            
-        singleton : true   ,
-        arguments : [ { config : "pseudo" } ]
-    }
-] ;

@@ -1,7 +1,7 @@
 {
-	project : "EdenLoader" ,
+	project : "andromeda" ,
 	author  : "ekameleon"  ,
 	version : "1.0.0.0"    ,
-	mail    : "vegas@ekameleon.net" , 
+	mail    : "ekameleon@gmail.com" , 
 	error   : new Error("file_error")
 }

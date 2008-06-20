@@ -22,16 +22,17 @@
 */
 package asgard.config
 {
-	import flash.net.URLLoader;
-	import flash.net.URLRequest;
-	import flash.utils.getDefinitionByName;
-	
-	import asgard.config.IConfigLoader;
-	import asgard.process.ActionURLLoader;
-	
-	import system.Reflection;	
+    import flash.net.URLLoader;
+    import flash.net.URLRequest;
+    import flash.utils.getDefinitionByName;
+    
+    import andromeda.process.ActionURLLoader;
+    
+    import asgard.config.IConfigLoader;
+    
+    import system.Reflection;	
 
-	/**
+    /**
      * This skeletal class provides an easy implementation of the IConfigLoader interface. 
      * @author eKameleon
      */

@@ -31,12 +31,12 @@ package asgard.net
     import andromeda.ioc.core.ObjectAttribute;
     import andromeda.ioc.factory.ECMAObjectFactory;
     import andromeda.ioc.factory.ObjectConfig;
+    import andromeda.process.ActionURLLoader;
     import andromeda.process.Sequencer;
     import andromeda.process.SimpleAction;
     
     import asgard.config.Config;
     import asgard.events.LocalizationEvent;
-    import asgard.process.ActionURLLoader;
     import asgard.system.Localization;
     
     import vegas.core.IFactory;

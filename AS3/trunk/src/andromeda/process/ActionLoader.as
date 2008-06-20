@@ -10,7 +10,7 @@
   WITHOUT WARRANTY OF ANY KIND, either express or implied. See the License
   for the specific language governing rights and limitations under the License. 
   
-  The Original Code is ASGard Framework.
+  The Original Code is Andromeda Framework based on VEGAS.
   
   The Initial Developer of the Original Code is
   ALCARAZ Marc (aka eKameleon)  <vegas@ekameleon.net>.
@@ -20,22 +20,20 @@
   Contributor(s) :
   
 */
-package asgard.process 
+package andromeda.process 
 {
-	import flash.display.DisplayObject;
-	import flash.display.Loader;
-	import flash.display.LoaderInfo;
-	import flash.events.Event;
-	import flash.events.IEventDispatcher;
-	import flash.system.LoaderContext;
-	
-	import asgard.process.AbstractActionLoader;	
+    import flash.display.DisplayObject;
+    import flash.display.Loader;
+    import flash.display.LoaderInfo;
+    import flash.events.Event;
+    import flash.events.IEventDispatcher;
+    import flash.system.LoaderContext;	
 
-	/**
+    /**
 	 * This action process launch the load of a Loader object.
 	 * @author eKameleon
 	 */
-	public class ActionLoader extends AbstractActionLoader 
+	public class ActionLoader extends CoreActionLoader 
 	{
 
 		/**

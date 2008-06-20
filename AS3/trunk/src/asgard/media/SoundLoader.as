@@ -20,25 +20,26 @@
   Contributor(s) :
   
 */
-package asgard.process 
+package asgard.media 
 {
-	import flash.events.Event;
-	import flash.events.IEventDispatcher;
-	import flash.media.ID3Info;
-	import flash.media.Sound;
-	import flash.media.SoundLoaderContext;
-	
-	import asgard.media.CoreSound;
-	import asgard.process.AbstractActionLoader;	
+    import flash.events.Event;
+    import flash.events.IEventDispatcher;
+    import flash.media.ID3Info;
+    import flash.media.Sound;
+    import flash.media.SoundLoaderContext;
+    
+    import andromeda.process.CoreActionLoader;
+    
+    import asgard.media.CoreSound;    
 
-	/**
+    /**
 	 * This action process is an helper who launch the load of a CoreSound object.
 	 * @example
 	 * <pre class="prettyprint">
 	 * import andromeda.events.ActionEvent ;
 	 * 
 	 * import asgard.media.CoreSound ;
-	 * import asgard.process.ActionSoundLoader ;
+	 * import asgard.media.SoundLoader ;
 	 * 
 	 * import flash.net.URLRequest ;
 	 * 
@@ -49,7 +50,7 @@ package asgard.process
 	 * 
 	 * var progress:Function = function( e:Event ):void
 	 * {
-	 *     var target:ActionSoundLoader = e.target as ActionSoundLoader ;
+	 *     var target:SoundLoader = e.target as SoundLoader ;
 	 *     trace( target.bytesLoaded + " : " + target.bytesTotal) ;
 	 * }
 	 * 
@@ -62,17 +63,19 @@ package asgard.process
 	 * var url:String = "mp3/test.mp3" ;
 	 * var sound:CoreSound = new CoreSound() ;
 	 * 
-	 * var process:ActionSoundLoader = new ActionSoundLoader( sound ) ;
+	 * var process:SoundLoader = new SoundLoader( sound ) ;
+	 * 
 	 * process.addEventListener(ActionEvent.START     , start ) ;
 	 * process.addEventListener(ActionEvent.PROGRESS  , progress ) ;
 	 * process.addEventListener(ActionEvent.FINISH    , finish ) ;
+	 * 
 	 * process.request = new URLRequest( url ) ;
 	 * 
 	 * process.run() ;
 	 * </pre>
 	 * @author eKameleon
 	 */
-	public class ActionSoundLoader extends AbstractActionLoader 
+	public class SoundLoader extends CoreActionLoader 
 	{
 
 		/**
@@ -81,7 +84,7 @@ package asgard.process
     	 * @param bGlobal the flag to use a global event flow or a local event flow.
     	 * @param sChannel the name of the global event flow if the <code class="prettyprint">bGlobal</code> argument is <code class="prettyprint">true</code>.
 		 */
-		public function ActionSoundLoader( sound:CoreSound, bGlobal:Boolean = false, sChannel:String = null )
+		public function SoundLoader( sound:CoreSound, bGlobal:Boolean = false, sChannel:String = null )
 		{
 			super( bGlobal, sChannel );
 			if ( sound != null )

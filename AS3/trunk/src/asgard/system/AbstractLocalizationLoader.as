@@ -22,15 +22,15 @@
 */
 package asgard.system
 {
-	import flash.net.URLLoader;
-	import flash.net.URLRequest;
-	import flash.utils.getDefinitionByName;
-	
-	import asgard.process.ActionURLLoader;
-	
-	import system.Reflection;	
+    import flash.net.URLLoader;
+    import flash.net.URLRequest;
+    import flash.utils.getDefinitionByName;
+    
+    import andromeda.process.ActionURLLoader;
+    
+    import system.Reflection;	
 
-	/**
+    /**
      * This skeletal class provides an easy implementation of the ILocalizationLoader interface. 
      * @author eKameleon
      */
