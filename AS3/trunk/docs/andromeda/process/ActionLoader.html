@@ -44,6 +44,44 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 </table>
 <p></p>
   This action process launch the load of a Loader object.
+  <p><b>Example :</b></p>
+  <pre class="prettyprint">
+  import andromeda.events.ActionEvent ;
+  import andromeda.process.ActionLoader ;
+  
+  import flash.display.Loader ;
+  import flash.net.URLRequest ;
+  
+  var url:String = "library/picture.jpg" ;
+  
+  var loader:Loader = new Loader() ;
+  
+  loader.x = 50 ;
+  loader.y = 50 ;
+  
+  addChild( loader ) ;
+  
+  var debug:Function = function( e:Event ):void
+  {
+      trace(e) ;
+  }
+  
+  function initHandler(event:Event):void
+  {
+      trace("init currentTarget:" + event.currentTarget + " target:" + event.target ) ;
+  }
+  
+  var process:ActionLoader = new ActionLoader( loader ) ;
+  
+  process.addEventListener( ActionEvent.START  , debug ) ;
+  process.addEventListener( ActionEvent.FINISH , debug ) ;
+  
+  process.addEventListener(Event.INIT, initHandler);
+  
+  process.request = new URLRequest( url ) ;
+  
+  process.run() ;
+  </pre>
   <p></p>
 <br>
 <hr>

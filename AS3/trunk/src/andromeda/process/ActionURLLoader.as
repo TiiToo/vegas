@@ -33,26 +33,30 @@ package andromeda.process
 	 * <p><b>Example :</b></p>
 	 * <pre class="prettyprint">
 	 * import andromeda.events.ActionEvent ;
+	 * import andromeda.process.ActionURLLoader ;
 	 * 
-	 * import asgard.net.EdenLoader ;
-	 * import asgard.process.ActionURLLoader ;
+	 * import buRRRn.eden ;
 	 * 
+	 * import flash.net.URLLoader ;
 	 * import flash.net.URLRequest ;
 	 * 
 	 * var url:String = "data/config.eden" ;
 	 * 
-	 * var loader:EdenLoader = new EdenLoader() ;
+	 * var loader:URLLoader = new URLLoader() ;
 	 * 
 	 * var start:Function = function( e:Event ):void
 	 * {
-	 *     trace(e) ;
+	 *    trace(e) ;
 	 * }
 	 * 
 	 * var finish:Function = function( e:Event ):void
 	 * {
+	 *     
 	 *     trace(e) ;
+	 *     
 	 *     var target:ActionURLLoader = e.target as ActionURLLoader ;
-	 *     var data:*                 = target.data ;
+	 *     var data:*                 = eden.deserialize( target.data ) ;
+	 *     
 	 *     for (var prop:String in data)
 	 *     {
 	 *         trace("  > " + prop + " : " + data[prop]) ;
@@ -60,9 +64,12 @@ package andromeda.process
 	 * }
 	 * 
 	 * var process:ActionURLLoader = new ActionURLLoader( loader ) ;
-	 * process.addEventListener(ActionEvent.START  , start ) ;
-	 * process.addEventListener(ActionEvent.FINISH , finish ) ;
+	 * 
+	 * process.addEventListener( ActionEvent.START  , start ) ;
+	 * process.addEventListener( ActionEvent.FINISH , finish ) ;
+	 * 
 	 * process.request = new URLRequest( url ) ;
+	 * 
 	 * process.run() ;
  	 * </pre>
 	 * @author eKameleon
@@ -247,8 +254,7 @@ package andromeda.process
 		 * @private
 		 */
   		private var _isParsing:Boolean ;
-
-
+        
 		/**
 		 * @private
 		 */
