@@ -13,7 +13,7 @@
   The Original Code is Andromeda Framework based on VEGAS.
   
   The Initial Developer of the Original Code is
-  ALCARAZ Marc (aka eKameleon)  <vegas@ekameleon.net>.
+  ALCARAZ Marc (aka eKameleon)  <ekameleon@gmail.com>.
   Portions created by the Initial Developer are Copyright (C) 2004-2008
   the Initial Developer. All Rights Reserved.
   
@@ -36,7 +36,7 @@ package andromeda.vo
     {
         
         /**
-         * Creates a new SimpleValueObject.
+         * Creates a new SimpleValueObject instance.
          * @param init A generic object containing properties with which to populate the newly instance. If this argument is null, it is ignored.
          */
         public function SimpleValueObject( init:Object=null )
@@ -83,9 +83,9 @@ package andromeda.vo
         }
             
         /**
-          * Returns the <code class="prettyprint">String</code> representation of this object.
-          * @return the <code class="prettyprint">String</code> representation of this object.
-          */
+         * Returns the <code class="prettyprint">String</code> representation of this object.
+         * @return the <code class="prettyprint">String</code> representation of this object.
+         */
         public override function toString():String
         {
             var str:String = "[" + Reflection.getClassName(this) ;

@@ -1,13 +1,5 @@
 objects =
 [
-
-    {
-        id        : "user" ,
-        type      : "User" ,            
-        singleton : true   ,
-        arguments : [ { config : "pseudo" } ]
-    }
-    ,
     {
         id                  : "formatter" ,
         type                : "String"    ,
@@ -24,22 +16,19 @@ objects =
         type       : "TextField"  ,
         properties : 
         [
-            { name : "autoSize"          , value  : "left" } ,
+            { name : "autoSize"          , value  : "left"            } ,
             { name : "defaultTextFormat" , config : "display.format"  } ,
             { name : "filters"           , config : "display.filters" } ,
-            { name : "x"                 , value  : 10 } ,
-            { name : "y"                 , value  : 10 } ,
-            { name : "text"              , ref    : "formatter" } 
+            { name : "x"                 , value  : 10                } ,
+            { name : "y"                 , value  : 10                } ,
+            { name : "text"              , ref    : "formatter"       } 
         ]
     }
     ,
     {
         id         : "my_square" ,
         type       : "Square" ,
-        properties : 
-        [
-            { name : "filters" , config : "display.filters" } 
-        ]
+        properties : [ { name : "filters" , config : "display.filters" } ]
     } 
     ,
     {
@@ -60,5 +49,4 @@ objects =
             { name:"addChild" , arguments:[ { ref:"my_field"  } ] }
         ]        
     }    
-        
 ] ;

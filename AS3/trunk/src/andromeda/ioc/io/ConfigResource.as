@@ -20,37 +20,44 @@
   Contributor(s) :
   
 */
-package andromeda.ioc.core 
+package andromeda.ioc.io 
 {
-    import vegas.core.CoreObject;
-    
-    /**
-     * This entry contains an ObjectDefinition and this assemblyName value. 
-     * @author eKameleon
-     */
-    public class AssemblyEntry extends CoreObject 
-    {
 
+    /**
+     * This resource object contains all information about a config file to load in the application.
+     */
+    public class ConfigResource extends ObjectResource 
+    {
+    	
         /**
-         * Creates a new AssemblyEntry instance.
-         * @param name The name of the assembly file to load.
-         * @param definition The object definition attached with the assembly file.
+         * Creates a new ConfigResource instance.
+         * @param init A generic object containing properties with which to populate the newly instance. If this argument is null, it is ignored.
          */
-        public function AssemblyEntry( name:String , definition:ObjectDefinition )
+        public function ConfigResource( init:Object=null )
         {
-            this.name       = name ;
-            this.definition = definition ;
+            super(init) ;
+            type = ObjectResourceType.CONFIG ;
         }
+    	
+    	/**
+    	 * The name of the full config file name.
+    	 */
+    	public var name:String ;
+    	
+        /**
+         * The path of the full config file name.
+         */
+    	public var path:String ;
+    	
+        /**
+         * The prefix of the full config file name.
+         */
+        public var prefix:String ;
         
         /**
-         * The ObjectDefinition of this entry.
+         * The suffix of the full config file name.
          */
-        public var definition:ObjectDefinition ;
-            
-        /**
-         * The name of this entry.
-         */
-        public var name:String ;
-        
+        public var suffix:String ;           
+    	
     }
 }

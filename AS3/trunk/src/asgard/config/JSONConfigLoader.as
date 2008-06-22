@@ -27,7 +27,7 @@ package asgard.config
 
 	/**
 	 * The JSONConfigLoader class based on the JSON notation.
-     * @example
+     * <p><b>Example :</b></p>
      * <pre class="prettyprint">
      * import asgard.config.Config ;
      * import asgard.config.JSONConfigLoader;

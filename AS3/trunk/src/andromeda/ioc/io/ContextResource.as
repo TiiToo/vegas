@@ -20,21 +20,31 @@
   Contributor(s) :
   
 */
-package andromeda.util.visitor
+package andromeda.ioc.io 
 {
-    
-    /**
-     * The basic IVisitor interface. 
-     * To implements the Visitor pattern you can creates a concrete Visitor class who implements this interface.
-     * @author eKameleon
-     */
-    public interface IVisitor
-    {
+    import asgard.net.ParserLoader;            
 
+    /**
+     * This resource object contains all information about a context file to load in the application.
+     */
+    public class ContextResource extends ObjectResource 
+    {
+    	
         /**
-         * Visit the IVisitable object.
+         * Creates a new ContextResource instance.
+         * @param init A generic object containing properties with which to populate the newly instance. If this argument is null, it is ignored.
          */
-        function visit( o:IVisitable ):void ;
+        public function ContextResource( init:Object=null )
+        {
+            super(init) ;
+            type = ObjectResourceType.CONTEXT ;
+        }
+    	
+    	/**
+    	 * The loader to use to parse this object context.
+    	 */
+    	public var loader:ParserLoader ;
 
     }
+
 }

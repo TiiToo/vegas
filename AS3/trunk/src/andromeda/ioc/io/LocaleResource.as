@@ -20,35 +20,39 @@
   Contributor(s) :
   
 */
-package andromeda.controller
+package andromeda.ioc.io 
 {
-    
-    import flash.events.Event;
-    
-    import vegas.core.CoreObject;
 
     /**
-     * This class provides a skeletal implementation of the <code class="prettyprint">IController</code> interface, to minimize the effort required to implement this interface.
-     * @author eKameleon
+     * This resource object contains all information about a localization file to load in the application.
      */
-    public class AbstractController extends CoreObject implements IController
+    public class LocaleResource extends ObjectResource 
     {
-    
+    	
         /**
-         * Creates a new AbstractController instance.
-         */    
-        public function AbstractController() 
-        {
-            super();
-        }
-    
-        /**
-         * Handles the event.
+         * Creates a new LocaleResource instance.
+         * @param init A generic object containing properties with which to populate the newly instance. If this argument is null, it is ignored.
          */
-        public function handleEvent(e : Event):void 
+        public function LocaleResource( init:Object=null )
         {
-            
+            super(init) ;
+            type = ObjectResourceType.I18N ;
         }
+    	
+        /**
+         * The path of the full localization file name.
+         */
+    	public var path:String ;
+    	
+        /**
+         * The prefix of the full localization file name.
+         */
+        public var prefix:String ;
         
+        /**
+         * The suffix of the full localization file name.
+         */
+        public var suffix:String ;           
+    	
     }
 }

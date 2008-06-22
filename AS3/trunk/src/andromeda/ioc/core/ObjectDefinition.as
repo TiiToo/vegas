@@ -13,7 +13,7 @@
   The Original Code is Andromeda Framework based on VEGAS.
   
   The Initial Developer of the Original Code is
-  ALCARAZ Marc (aka eKameleon)  <vegas@ekameleon.net>.
+  ALCARAZ Marc (aka eKameleon)  <ekameleon@gmail.com>.
   Portions created by the Initial Developer are Copyright (C) 2004-2008
   the Initial Developer. All Rights Reserved.
   
@@ -129,7 +129,7 @@ package andromeda.ioc.core
             definition.identify = o[ ObjectAttribute.IDENTIFY ] as Boolean  ;
             definition.lock     = o[ ObjectAttribute.LOCK ]     as Boolean  ;
                  
-            definition.setFactoryStrategy      ( ObjectFactoryBuilder.buildStrategy( o ) ) ;
+            definition.setFactoryStrategy      ( ObjectFactoryBuilder.create( o ) ) ;
             
             definition.setConstructorArguments ( ObjectArgument.create ( o[ ObjectAttribute.ARGUMENTS         ] as Array ) ) ;
             definition.setProperties           ( ObjectProperty.create ( o[ ObjectAttribute.OBJECT_PROPERTIES ] as Array ) ) ;

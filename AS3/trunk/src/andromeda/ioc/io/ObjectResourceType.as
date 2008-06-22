@@ -20,21 +20,34 @@
   Contributor(s) :
   
 */
-package andromeda.util.visitor
+package andromeda.ioc.io 
 {
-    
+
     /**
-     * The basic IVisitor interface. 
-     * To implements the Visitor pattern you can creates a concrete Visitor class who implements this interface.
-     * @author eKameleon
+     * Convenience base class for resource implementations.
      */
-    public interface IVisitor
+    public class ObjectResourceType 
     {
 
         /**
-         * Visit the IVisitable object.
+         * The "assembly" resource type.
          */
-        function visit( o:IVisitable ):void ;
-
+        public static const ASSEMBLY:String = "assembly" ;
+    	
+    	/**
+    	 * The "config" resource type.
+    	 */
+        public static const	CONFIG:String = "config" ;
+    	
+        /**
+         * The "context" resource type.
+         */
+        public static const CONTEXT:String = "context" ;
+        
+        /**
+         * The "i18n" resource type.
+         */
+        public static const I18N:String = "i18n" ;        
+    	
     }
 }

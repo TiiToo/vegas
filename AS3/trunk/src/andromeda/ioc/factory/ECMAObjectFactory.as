@@ -13,7 +13,7 @@
   The Original Code is Andromeda Framework based on VEGAS.
   
   The Initial Developer of the Original Code is
-  ALCARAZ Marc (aka eKameleon)  <vegas@ekameleon.net>.
+  ALCARAZ Marc (aka eKameleon)  <ekameleon@gmail.com>.
   Portions created by the Initial Developer are Copyright (C) 2004-2008
   the Initial Developer. All Rights Reserved.
   
@@ -35,8 +35,6 @@ package andromeda.ioc.factory
     import andromeda.ioc.core.ObjectDefinition;
     import andromeda.ioc.factory.ObjectFactory;
     
-    import vegas.core.IFactory;
-    import vegas.core.Identifiable;
     import vegas.data.map.HashMap;
     import vegas.data.queue.LinearQueue;
     import vegas.data.sets.HashSet;
@@ -279,7 +277,7 @@ package andromeda.ioc.factory
      * </pre>
      * @author eKameleon
      */
-    public class ECMAObjectFactory extends ObjectFactory implements Identifiable, IFactory 
+    public class ECMAObjectFactory extends ObjectFactory
     {
         
         /**
@@ -289,8 +287,7 @@ package andromeda.ioc.factory
          */
         public function ECMAObjectFactory( id:*=null , bGlobal:Boolean = false , sChannel:String = null )
         {
-            super( bGlobal, sChannel ) ;
-            this.id = id ;
+            super( id , bGlobal, sChannel ) ;
             _setDefinitions = new HashSet() ;
             _assemblies     = new HashMap() ;
         }
@@ -299,23 +296,7 @@ package andromeda.ioc.factory
          * Determinates the default singleton name.
          */
         public static const DEFAULT_SINGLETON_NAME:String = "__default__" ;        
-        
-        /**
-         * (read-write) Indicates the id of this IValueObject.
-         */
-        public function get id():*
-        {
-            return _id ;
-        }
-    
-        /**
-         * @private
-         */
-        public function set id( id:* ):void
-        {
-            _id = id ;
-        }        
-        
+                
         /**
          * This array contains objects to fill this factory with the run or create method.
          */
@@ -329,21 +310,11 @@ package andromeda.ioc.factory
         {
             return instances.containsKey( name ) ;
         }        
-        
+                
         /**
-         * Create the objects and fill the IObjectDefinitionContainer.
-         * <p><b>Parameters</b></p>
-         * <code class="prettyprint">edenObject</code> An object who contains all the "objects" settings.
+         * Clear all globals ECMAObjectFactory singleton references.
          */
-        public function create( ...arguments:Array ):void
-        {
-            run.apply( this, arguments ) ;
-        }
-        
-        /**
-         * Clear all globals ECMAObjectFactory references.
-         */
-        public static function flush():void 
+        public static function flushInstance():void 
         {
             instances.clear() ;
         }        
@@ -440,11 +411,6 @@ package andromeda.ioc.factory
          * @private
          */
         private var _current:AssemblyEntry ;
-
-        /**
-         * @private
-         */
-        private var _id:* ;
 
         /**
          * @private

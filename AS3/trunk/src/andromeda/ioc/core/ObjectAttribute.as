@@ -13,7 +13,7 @@
   The Original Code is Andromeda Framework based on VEGAS.
   
   The Initial Developer of the Original Code is
-  ALCARAZ Marc (aka eKameleon)  <vegas@ekameleon.net>.
+  ALCARAZ Marc (aka eKameleon)  <ekameleon@gmail.com>.
   Portions created by the Initial Developer are Copyright (C) 2004-2008
   the Initial Developer. All Rights Reserved.
   
@@ -166,9 +166,9 @@ package andromeda.ioc.core
         public static const OBJECTS:String = "objects" ;  
                 
         /**
-         * Defines the label of the ressource attribute in the imports objects.
+         * Defines the label of the 'resource' attribute in the imports objects.
          */
-        public static const RESSOURCE:String = "ressource" ;
+        public static const RESOURCE:String = "resource" ;
 
         /**
          * Defines the label of the type of the object.

@@ -13,7 +13,7 @@
   The Original Code is Andromeda Framework based on VEGAS.
   
   The Initial Developer of the Original Code is
-  ALCARAZ Marc (aka eKameleon)  <vegas@ekameleon.net>.
+  ALCARAZ Marc (aka eKameleon)  <ekameleon@gmail.com>.
   Portions created by the Initial Developer are Copyright (C) 2004-2008
   the Initial Developer. All Rights Reserved.
   
@@ -24,6 +24,7 @@ package andromeda.process
 {
     import andromeda.events.ActionEvent;
     
+    import vegas.data.Queue;
     import vegas.data.iterator.Iterator;
     import vegas.data.queue.LinearQueue;
     import vegas.data.queue.TypedQueue;
@@ -54,13 +55,14 @@ package andromeda.process
          * @param ar An Array of <code class="prettyprint">Action</code> objects.
          * @param bGlobal the flag to use a global event flow or a local event flow.
          * @param sChannel the name of the global event flow if the <code class="prettyprint">bGlobal</code> argument is <code class="prettyprint">true</code>.
+         * @param queue This optional parameter defines the Queue reference use inside the sequencer, by default the sequencer use a LinearQueue reference.
          */
-        public function Sequencer( ar:Array = null , bGlobal:Boolean = false , sChannel:String = null )
+        public function Sequencer( ar:Array = null , bGlobal:Boolean = false , sChannel:String = null , queue:Queue=null )
         {
             
             super(bGlobal, sChannel);
             
-            _queue = new TypedQueue( IAction, new LinearQueue() ) ; 
+            setQueue( queue ) ; 
             
             if (ar != null)
             {
@@ -147,6 +149,15 @@ package andromeda.process
         }
         
         /**
+         * Returns the internal Queue reference used in the sequencer. 
+         * @return the internal Queue reference used in the sequencer.
+         */
+        public function getQueue():Queue
+        {
+            return _internalQueue ;
+        } 
+                
+        /**
          * Launchs the Sequencer with the first element in the internal Queue of this Sequencer.
          */
         public override function run(...arguments:Array):void 
@@ -164,7 +175,7 @@ package andromeda.process
                 }
                 
                 _cur = _queue.poll() ;
-                
+    
                 try
                 {
                     _cur.run() ;
@@ -194,7 +205,23 @@ package andromeda.process
                     notifyFinished() ;
                 }
             }
-        }    
+        }
+        
+        /**
+         * Sets the internal Queue reference used in the sequencer.
+         * This queue is protected with a TypedQueue object but you can't use this protector.
+         * By default if the queue isn't defines, a LinearQueue is used in the sequencer. 
+         * @param q The Queue reference to use in this sequencer.
+         */
+        public function setQueue( q:Queue ):void
+        {
+        	if ( running )
+        	{
+        		stop() ;
+        	}
+        	_internalQueue = q || new LinearQueue() ;
+            _queue         = new TypedQueue( IAction, _internalQueue ) ;
+        } 
 
         /**
          * Returns the numbers of process in this Sequencer.
@@ -277,7 +304,12 @@ package andromeda.process
          * @private
          */
         private var _cur:IAction ;
-
+        
+        /**
+         * @private
+         */
+        private var _internalQueue:Queue ;
+        
         /**
          * @private
          */

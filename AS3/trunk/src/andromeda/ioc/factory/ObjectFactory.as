@@ -13,7 +13,7 @@
   The Original Code is Andromeda Framework based on VEGAS.
   
   The Initial Developer of the Original Code is
-  ALCARAZ Marc (aka eKameleon)  <vegas@ekameleon.net>.
+  ALCARAZ Marc (aka eKameleon)  <ekameleon@gmail.com>.
   Portions created by the Initial Developer are Copyright (C) 2004-2008
   the Initial Developer. All Rights Reserved.
   
@@ -35,6 +35,7 @@ package andromeda.ioc.factory
     import system.Reflection;
     import system.evaluators.MultiEvaluator;
     
+    import vegas.core.IFactory;
     import vegas.core.ILockable;
     import vegas.core.Identifiable;
     import vegas.data.Map;
@@ -94,17 +95,19 @@ package andromeda.ioc.factory
      * </pre>
      * @author eKameleon
      */
-    public class ObjectFactory extends ObjectDefinitionContainer implements IObjectFactory 
+    public class ObjectFactory extends ObjectDefinitionContainer implements Identifiable, IObjectFactory, IFactory
     {
 
         /**
          * Creates a new ObjectFactory instance.
-         * @param bGlobal the flag to use a global event flow or a local event flow.
-         * @param sChannel the name of the global event flow if the <code class="prettyprint">bGlobal</code> argument is <code class="prettyprint">true</code>.
+         * @param id The id of this factory.
+         * @param bGlobal The flag to use a global event flow or a local event flow.
+         * @param sChannel The name of the global event flow if the <code class="prettyprint">bGlobal</code> argument is <code class="prettyprint">true</code>.
          */
-        public function ObjectFactory( bGlobal:Boolean = false , sChannel:String = null )
+        public function ObjectFactory( id:*=null , bGlobal:Boolean = false , sChannel:String = null )
         {
             super( bGlobal, sChannel ) ;
+            this.id          = id ;            
             singletons       = new HashMap() ;
             config           = new ObjectConfig() ; // the default empty ObjectConfig instance.
         }
@@ -126,6 +129,22 @@ package andromeda.ioc.factory
         }        
         
         /**
+         * Indicates the id of this object.
+         */
+        public function get id():*
+        {
+            return _id ;
+        }
+    
+        /**
+         * @private
+         */
+        public function set id( id:* ):void
+        {
+            _id = id ;
+        }          
+        
+        /**
          * The maps of all objects in the container.
          */
         public var singletons:HashMap ;
@@ -139,6 +158,15 @@ package andromeda.ioc.factory
         {
             return containsObjectDefinition(name);
         }
+        
+        /**
+         * Create the objects and fill the IObjectDefinitionContainer.
+         * @param ...arguments An object who contains all the "objects" settings.
+         */
+        public function create( ...arguments:Array ):void
+        {
+            run.apply( this, arguments ) ;
+        }        
         
         /**
          * The custom debug method of this factory.
@@ -582,6 +610,12 @@ package andromeda.ioc.factory
                 }
             } 
         }
+            
+        /**
+         * @private
+         */
+        private var _id:* ;
+                    
             
     }
 

@@ -13,7 +13,7 @@
   The Original Code is Andromeda Framework based on VEGAS.
   
   The Initial Developer of the Original Code is
-  ALCARAZ Marc (aka eKameleon)  <vegas@ekameleon.net>.
+  ALCARAZ Marc (aka eKameleon)  <ekameleon@gmail.com>.
   Portions created by the Initial Developer are Copyright (C) 2004-2008
   the Initial Developer. All Rights Reserved.
   
@@ -35,7 +35,7 @@ package andromeda.ioc.factory.strategy
          * Creates the IObjectFactoryStrategy object with the specified generic object.
          * @param o The object definition to create an IObjectFactoryStrategy instance.
          */
-        public static function buildStrategy( o:* ):IObjectFactoryStrategy    
+        public static function create( o:* ):IObjectFactoryStrategy    
         {
             switch( true )
             {

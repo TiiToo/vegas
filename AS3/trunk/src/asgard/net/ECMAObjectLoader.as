@@ -22,25 +22,21 @@
 */
 package asgard.net 
 {
-    import flash.events.Event;
-    import flash.events.IOErrorEvent;
-    import flash.events.ProgressEvent;
+    import flash.net.URLLoader;
     import flash.net.URLRequest;
     
-    import andromeda.events.ActionEvent;
-    import andromeda.ioc.core.ObjectAttribute;
     import andromeda.ioc.factory.ECMAObjectFactory;
-    import andromeda.ioc.factory.ObjectConfig;
+    import andromeda.ioc.factory.ObjectFactory;
+    import andromeda.ioc.io.ContextResource;
+    import andromeda.ioc.io.ObjectResource;
+    import andromeda.ioc.io.ObjectResourceType;
+    import andromeda.ioc.net.ObjectFactoryLoader;
     import andromeda.process.ActionURLLoader;
-    import andromeda.process.Sequencer;
-    import andromeda.process.SimpleAction;
     
     import asgard.config.Config;
     import asgard.events.LocalizationEvent;
     import asgard.system.Localization;
     
-    import vegas.core.IFactory;
-    import vegas.data.sets.HashSet;
     import vegas.util.ClassUtil;    
 
     // TODO add events and progress UI to notify the IOC external process in progress.
@@ -91,7 +87,7 @@ package asgard.net
      *     ,
      *     imports :
      *     [
-     *         { ressource : "view.eden" }
+     *         { resource : "view.eden" }
      *     ]
      *     ,
      *     objects :
@@ -206,7 +202,7 @@ package asgard.net
      * @author eKameleon
      * @see andromeda.ioc.factory.ECMAObjectFactory
      */
-    public class ECMAObjectLoader extends SimpleAction implements IFactory
+    public class ECMAObjectLoader extends ObjectFactoryLoader
     {
         
         /**
@@ -218,61 +214,27 @@ package asgard.net
          */
         public function ECMAObjectLoader( context:String="application.eden" , path:String="" , factory:ECMAObjectFactory = null, internalLoader:Class=null )
         {
-            
-            this.context        = context ;
-            this.factory        = factory ;
-            this.internalLoader = internalLoader ;
-            this.path           = path    ;
-            
+            super( context , path , factory , internalLoader ) ;
             localization = Localization.getInstance() ;
-            
-            _imports            = new HashSet() ;
-            _sequencer          = new Sequencer() ;            
-            
-            _sequencer.addEventListener( ActionEvent.FINISH   , _finishSequencer   , false, 0 , true ) ;
-            _sequencer.addEventListener( ActionEvent.PROGRESS , _progressSequencer , false, 0 , true ) ;
-            _sequencer.addEventListener( ActionEvent.START    , _startSequencer    , false, 0 , true ) ;
-            
-        }
-        
-        /**
-         * The default context file uri value.
-         */
-        public var context:String ;
-        
-        /**
-         * The ECMAScript object IOC factory reference.
-         */
-        public function get factory():ECMAObjectFactory
-        {
-            return _factory ;	
         }
         
         /**
          * @private
          */
-        public function set factory( value:ECMAObjectFactory ):void
+        public override function set factory( value:ObjectFactory ):void
         {
-        	_factory = value || ECMAObjectFactory.getInstance() ;
-        	_factory.config.setConfigTarget( Config.getInstance() ) ;
-        }
+            super.factory = value || ECMAObjectFactory.getInstance() ;
+            factory.config.setConfigTarget( Config.getInstance() ) ;
+        }        
         
-        /**
-         * Indicates the ParseLoader used in this loader.
-         */
-        public function get internalLoader():Class
-        {
-            return _internalLoader ;
-        }    
-
         /**
          * @private
          */
-        public function set internalLoader( loader:Class ):void
+        public override function set internalLoader( clazz:Class ):void
         {
-            _internalLoader = ClassUtil.extendsClass( loader, ParserLoader ) ? loader : EdenLoader ;
-        }    
-
+            _internalLoader = ClassUtil.extendsClass( clazz, ParserLoader ) ? clazz : EdenLoader ;
+        }        
+        
         /**
          * Indicates the Localization reference of this loader.
          */
@@ -297,116 +259,62 @@ package asgard.net
             }
             updateLocalization() ;
         }  
+        
+        /**
+         * This method is the strategy to insert a new ObjectResource in the sequencer. 
+         */
+        protected override function addResource( resource:ObjectResource ):Boolean
+        {
+            
+            if ( resource != null && resource.type != null )
+            {
+                
+                var action:ActionURLLoader;
+                
+                switch( resource.type )
+                {
+                    
+                    case ObjectResourceType.ASSEMBLY :
+                    {
+                        break ;
+                    }
+                    case ObjectResourceType.CONFIG :
+                    {
 
-        /**
-         * The default path of the external context file.
-         */
-        public var path:String ;
-        
-        /**
-         * Switch the verbose mode of this loader.
-         */
-        public var verbose:Boolean = false ;
-        
-        /**
-         * Clear the loader.
-         */
-        public function clear():void
-        {
-            _first  = true ;
-            objects = [] ;
-            _imports.clear() ;
-            _sequencer.clear() ;
-        }
-        
-        /**
-         * Creates the objects.
-         */
-        public function create( ...arguments:Array ):void         
-        {
-            if ( objects.length > 0 )
-            {    
-                factory.create( objects ) ;
+                        break ;
+                    }
+                    case ObjectResourceType.CONTEXT :
+                    {
+                        
+                        var context:ContextResource = resource as ContextResource ;
+                        
+                        var clazz:Class             = ClassUtil.extendsClass( context.loader as Class , ParserLoader ) ? context.loader as Class : internalLoader ;
+                        
+                        var loader:URLLoader     = new clazz() ;
+                        
+                        var url:String              = ( path || "" ) + context.resource ;
+
+                        action                      = new ActionURLLoader( loader ) ;
+                        action.request              = new URLRequest( url ) ;
+                                                
+                        break ;
+                        
+                    }
+                    case ObjectResourceType.I18N :
+                    {
+                        break ;
+                    }
+                
+                }
+                
+                return sequencer.addAction( action ) ;
+                
             }
             else
             {
-            	if ( verbose )
-            	{
-                    getLogger().warn( this + " the factory is empty." ) ;
-            	}    
-            }    
-        }
-
-        /**
-         * Run the process.
-         */
-        public override function run( ...arguments:Array ):void 
-        {
-            clear() ;
-            _importContext( context ) ;
-            _sequencer.run() ;
-        }        
-        
-        /**
-         * Invoked to debug the errors or warning during the factory process.
-         */
-        protected function fireEvent( e:* ):void
-        {
-            if ( verbose )
-            {        	
-                getLogger().info( this + " fireEvent(" + e + ")" ) ; // no event before the IOC factory initialization.
-            }
-            dispatchEvent( e ) ;
-        }
-        
-        /**
-         * Invoked when the factory is complete.
-         */
-        public function main( e:ActionEvent ):void
-        {
-            if ( verbose )
-            {
-                getLogger().debug( this + " main(" + e + ")" ) ;
-            }
-            fireEvent(e) ;
-        }
-        
-        /**
-         * Register the current factory referenceof this loader. 
-         */
-        public function registerFactory():void
-        {
-        	if ( _factory != null && _isRegister == false )
-            {
-                _factory.addEventListener( IOErrorEvent.IO_ERROR   , fireEvent ) ;
-                _factory.addEventListener( ProgressEvent.PROGRESS  , fireEvent ) ;
-                _factory.addEventListener( Event.COMPLETE          , fireEvent ) ;
-                _factory.addEventListener( ActionEvent.START       , fireEvent ) ;
-                _factory.addEventListener( ActionEvent.FINISH      , main      ) ;
-                _isRegister = true ;
-            }
-        }
-
-        /**
-         * Unregister the current factory referenceof this loader. 
-         */
-        public function unregisterFactory():void
-        {
-            if ( _factory != null && _isRegister )
-            {
-                _factory.removeEventListener( IOErrorEvent.IO_ERROR   , fireEvent ) ;
-                _factory.removeEventListener( ProgressEvent.PROGRESS  , fireEvent ) ;
-                _factory.removeEventListener( Event.COMPLETE          , fireEvent ) ;
-                _factory.removeEventListener( ActionEvent.START       , fireEvent ) ;
-                _factory.removeEventListener( ActionEvent.FINISH      , main      ) ;
-                _isRegister = false  ;
+                return false ;
             }
         }        
-        
-        /**
-         * The array representation of the object definitions to insert in the IOC factory container.
-         */
-        protected var objects:Array ;        
         
         /**
          * Invoked when the localization of the application is changed or to update the locale object of 
@@ -414,172 +322,14 @@ package asgard.net
          */
         protected function updateLocalization( e:LocalizationEvent = null ):void
         {
-            _factory.config.setLocaleTarget( _localization != null ? _localization.getLocale() : null ) ;
+            factory.config.setLocaleTarget( _localization != null ? _localization.getLocale() : null ) ;
         }
-        
-        /**
-         * @private
-         */
-        private var _factory:ECMAObjectFactory ;
-        
-        /**
-         * @private
-         */
-        private var _first:Boolean = true ;
-        
-        /**
-         * @private
-         */
-        private var _imports:HashSet ;        
-        
-        /**
-         * @private
-         */
-        private var _internalLoader:Class ;
-        
-        /**
-         * @private
-         */
-        private var _isRegister:Boolean ;
         
         /**
          * @private
          */
         private var _localization:Localization ;
-        
-        /**
-         * @private
-         */
-        private var _sequencer:Sequencer ;
-
-        /**
-         * @private
-         */
-        private function _finishSequencer( e:ActionEvent ):void
-        {
-        	
-        	if ( verbose )
-            {
-                getLogger().debug(e) ;    
-            }
-            
-            var a:Array   ;
-            var size:uint = _imports.size() ;
-            if ( size > 0 )
-            {
-                a = _imports.toArray() ;
-                a.reverse() ;
-                while( --size > -1 )
-                {
-                    _importContext( a[size] ) ;
-                }
-            } 
-            
-            // next
-            
-            if ( _sequencer.size() > 0 )
-            {
-                _sequencer.run() ;            
-            }
-            else
-            {
-            	registerFactory() ;
-                create() ;    
-            }
-        }
-
-        /**
-         * @private
-         */
-        private function _importContext( uri:String ):Boolean
-        {
-            var url:String = ( path || "" ) + uri ;
-            var loader:ActionURLLoader = new ActionURLLoader( new internalLoader() as ParserLoader ) ;
-            loader.request = new URLRequest( url ) ;
-            return _sequencer.addAction( loader ) ;
-        }
-        
-        /**
-         * @private
-         */
-        private function _progressSequencer( e:ActionEvent ):void
-        {
-            
-            if ( verbose )
-            {
-                getLogger().debug(e) ;
-            }
-            
-            var loader:ActionURLLoader = _sequencer.getCurrent() as ActionURLLoader ;
-            
-            try
-            {
-            
-                var data:Object = loader.data  ;
-                
-                // configuration 
-                
-                if ( _first )
-                {
-                    
-                    _first = false ;    
-                    
-                    var config:Object = data[ ObjectAttribute.CONFIGURATION  ] ;
-                    
-                    if ( config != null )
-                    {
-                        factory.config.initialize( config ) ;    
-                    }
-                    
-                }
-                
-                // objects : the current object definitions
-            
-                var o:Array = data[ ObjectAttribute.OBJECTS ] as Array ;
-                if ( o != null && o.length > 0 )
-                {
-                    objects.unshift.apply(objects, o ) ;
-                }
-                            
-                // imports
-                
-                var size:uint ;
-                var i:Array = data[ ObjectAttribute.IMPORTS ] as Array ;
-                if ( i != null && i.length > 0 )
-                {
-                    size = i.length ;
-                    while ( --size > -1 )
-                    {
-                        var ressource:String = i[size][ ObjectAttribute.RESSOURCE ] as String ;
-                        if ( ressource != null && ressource.length > 0 )
-                        {
-                            _imports.insert( ressource ) ;
-                        }
-                    }
-                }
-            }
-            catch( error:Error )
-            {
-                if ( verbose )
-                {
-                    getLogger().error( this + " failed : " + error ) ;
-                }
-            }
-        }
-        
-        /**
-         * @private
-         */
-        private function _startSequencer( e:ActionEvent ):void
-        {
-            if ( verbose )
-            {
-                getLogger().debug(e) ;
-            }
-            registerFactory() ;
-            _imports.clear() ;
-        }
 
     }
-    
 }
+
