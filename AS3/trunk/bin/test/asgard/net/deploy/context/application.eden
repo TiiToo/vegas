@@ -1,19 +1,25 @@
 imports =
 [
+	
+	// config
+	
+	{ resource : "config" , type:"config"  , path:"config/" , suffix:".eden"  , verbose:true } ,
+	
+	// i18n
+	
+	{ resource : "fr" , type:"i18n" , prefix   : "localize_" , path:"locale/" , suffix:".eden" , verbose:true } ,
+
+	// context
 
 	{ resource : "user.eden" } ,
     { resource : "view.eden" } 
-
-    // TODO { resource : "fr"        , type:"i18n"    , prefix   : "localize_" , path:"locale/" , suffix:".eden" } ,
-    // TODO { resource : "config"    , type:"config"  , fileName : "config"    , path:"config/" , suffix:".eden"  } ,  
-    
+	
 ] ;
 
 configuration =
 {
     config :
     {
-		lang    : "fr" ,
         display :
         {
             filters : 

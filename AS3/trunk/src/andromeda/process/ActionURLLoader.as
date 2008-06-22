@@ -193,7 +193,7 @@ package andromeda.process
 		/**
 		 * Indicates the flag of the verbose mode.
 		 */
-		public var verbose:Boolean = false ;
+		public var verbose:Boolean ;
 
 		/**
 		 * Cancels a load() method operation that is currently in progress for the Loader instance.

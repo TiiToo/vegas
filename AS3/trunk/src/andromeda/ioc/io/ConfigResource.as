@@ -22,6 +22,7 @@
 */
 package andromeda.ioc.io 
 {
+    import andromeda.process.ActionURLLoader;        
 
     /**
      * This resource object contains all information about a config file to load in the application.
@@ -39,6 +40,11 @@ package andromeda.ioc.io
             type = ObjectResourceType.CONFIG ;
         }
     	
+        /**
+         * The loader reference use to load the config resource.
+         */
+        public var loader:ActionURLLoader ;    	
+    	
     	/**
     	 * The name of the full config file name.
     	 */
@@ -48,16 +54,17 @@ package andromeda.ioc.io
          * The path of the full config file name.
          */
     	public var path:String ;
-    	
-        /**
-         * The prefix of the full config file name.
-         */
-        public var prefix:String ;
         
         /**
          * The suffix of the full config file name.
          */
         public var suffix:String ;           
     	
+        /**
+         * Indicates the flag of the verbose mode.
+         */
+        public var verbose:* ;    	
+
     }
+
 }

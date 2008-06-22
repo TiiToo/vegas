@@ -274,9 +274,7 @@ package andromeda.ioc.net
          * @private
          */
         private var _isRegister:Boolean ;
-                
-
-                
+                        
         /**
          * @private
          */
@@ -290,10 +288,10 @@ package andromeda.ioc.net
             
             // imports
             
-            if ( _imports.length > 0 )
+            if ( _imports != null && _imports.length > 0 )
             {
             	var size:int = _imports.length ;
-                for ( var i:int = 0 ; i<size ; i++ )
+                for (var i:int = 0 ; i<size ; i++ )
                 {
                 	addResource( _imports[i] as ObjectResource ) ;
                 }

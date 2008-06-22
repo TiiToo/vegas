@@ -27,14 +27,19 @@ package asgard.net
     
     import andromeda.ioc.factory.ECMAObjectFactory;
     import andromeda.ioc.factory.ObjectFactory;
+    import andromeda.ioc.io.ConfigResource;
     import andromeda.ioc.io.ContextResource;
+    import andromeda.ioc.io.LocaleResource;
     import andromeda.ioc.io.ObjectResource;
-    import andromeda.ioc.io.ObjectResourceType;
     import andromeda.ioc.net.ObjectFactoryLoader;
     import andromeda.process.ActionURLLoader;
     
+    import asgard.config.AbstractConfigLoader;
     import asgard.config.Config;
+    import asgard.config.EdenConfigLoader;
     import asgard.events.LocalizationEvent;
+    import asgard.system.AbstractLocalizationLoader;
+    import asgard.system.EdenLocalizationLoader;
     import asgard.system.Localization;
     
     import vegas.util.ClassUtil;    
@@ -271,37 +276,75 @@ package asgard.net
                 
                 var action:ActionURLLoader;
                 
-                switch( resource.type )
+                switch( true )
                 {
                     
-                    case ObjectResourceType.ASSEMBLY :
+                    case ( resource is ConfigResource ) :
                     {
+                        var conf:ConfigResource = resource as ConfigResource ;
+                        action = ( conf.loader || new EdenConfigLoader() ) as ActionURLLoader ;
+                        if ( action != null )
+                        {
+                            if ( conf.path != null )
+                            {
+                                (action as AbstractConfigLoader).path   = conf.path   ;
+                            }
+                            if ( conf.suffix != null )
+                            {                            
+                                (action as AbstractConfigLoader).suffix = conf.suffix ;
+                            }
+                            if ( conf.resource != null )
+                            {
+                                (action as AbstractConfigLoader).fileName = conf.resource ;
+                            }
+                            if ( conf.verbose != null )
+                            {
+                                (action as AbstractConfigLoader).verbose = (conf.verbose is Boolean) ? (conf.verbose as Boolean) : false;
+                            }                            
+                        }
                         break ;
                     }
-                    case ObjectResourceType.CONFIG :
-                    {
-
-                        break ;
-                    }
-                    case ObjectResourceType.CONTEXT :
+                    
+                    case ( resource is ContextResource ) :
                     {
                         
                         var context:ContextResource = resource as ContextResource ;
-                        
                         var clazz:Class             = ClassUtil.extendsClass( context.loader as Class , ParserLoader ) ? context.loader as Class : internalLoader ;
-                        
-                        var loader:URLLoader     = new clazz() ;
-                        
+                        var loader:URLLoader        = new clazz() ;
                         var url:String              = ( path || "" ) + context.resource ;
-
                         action                      = new ActionURLLoader( loader ) ;
                         action.request              = new URLRequest( url ) ;
-                                                
                         break ;
                         
                     }
-                    case ObjectResourceType.I18N :
+                    
+                    case ( resource is LocaleResource ) :
                     {
+                        var locale:LocaleResource = resource as LocaleResource ;
+                        action = ( locale.loader || new EdenLocalizationLoader() ) as ActionURLLoader ;
+                        if ( action != null )
+                        {
+                            if ( locale.path != null )
+                            {
+                                (action as AbstractLocalizationLoader).path   = locale.path   ;
+                            }
+                            if ( locale.prefix != null )
+                            {                            
+                                (action as AbstractLocalizationLoader).prefix = locale.prefix ;
+                            }
+                            if ( locale.suffix != null )
+                            {                            
+                                (action as AbstractLocalizationLoader).suffix = locale.suffix ;
+                            }
+                            if ( locale.verbose != null )
+                            {
+                                (action as AbstractLocalizationLoader).verbose = ( locale.verbose is Boolean ) ? ( locale.verbose as Boolean) : false;
+                            }
+                            if ( locale.resource != null )
+                            {
+                                (action as AbstractLocalizationLoader).lang = locale.resource ;
+                            }
+                        }
                         break ;
                     }
                 

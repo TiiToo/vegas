@@ -22,6 +22,7 @@
 */
 package andromeda.ioc.io 
 {
+    import andromeda.process.ActionURLLoader;        
 
     /**
      * This resource object contains all information about a localization file to load in the application.
@@ -39,6 +40,11 @@ package andromeda.ioc.io
             type = ObjectResourceType.I18N ;
         }
     	
+    	/**
+    	 * The loader reference use to load the locale resource.
+    	 */
+    	public var loader:ActionURLLoader ;
+    	
         /**
          * The path of the full localization file name.
          */
@@ -53,6 +59,11 @@ package andromeda.ioc.io
          * The suffix of the full localization file name.
          */
         public var suffix:String ;           
+
+        /**
+         * Indicates the flag of the verbose mode.
+         */
+        public var verbose:* ;    	
     	
     }
 }
