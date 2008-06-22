@@ -148,7 +148,7 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("OÂ
      The basic Inversion of Control container/factory class.</td>
 </tr>
 <tr>
-<td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('andromeda/ioc/factory/class-list.html');" href="andromeda/ioc/factory/ObjectFactory.html#ObjectFactory()">ObjectFactory</a>(bGlobal, sChannel) &mdash; Constructor in class andromeda.ioc.factory.<a onclick="javascript:loadClassListFrame('andromeda/ioc/factory/class-list.html');" href="andromeda/ioc/factory/ObjectFactory.html">ObjectFactory</a></td>
+<td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('andromeda/ioc/factory/class-list.html');" href="andromeda/ioc/factory/ObjectFactory.html#ObjectFactory()">ObjectFactory</a>(id, bGlobal, sChannel) &mdash; Constructor in class andromeda.ioc.factory.<a onclick="javascript:loadClassListFrame('andromeda/ioc/factory/class-list.html');" href="andromeda/ioc/factory/ObjectFactory.html">ObjectFactory</a></td>
 </tr>
 <tr>
 <td width="20"></td><td>
@@ -160,6 +160,20 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("OÂ
 <tr>
 <td width="20"></td><td>
      This tool class is a helper to create an IObjectFactoryStrategy object with a generic object in the IoC context.</td>
+</tr>
+<tr>
+<td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('andromeda/ioc/net/class-list.html');" href="andromeda/ioc/net/ObjectFactoryLoader.html">ObjectFactoryLoader</a> &mdash; Class in package <a onclick="javascript:loadClassListFrame('andromeda/ioc/net/class-list.html');" href="andromeda/ioc/net/package-detail.html">andromeda.ioc.net</a></td>
+</tr>
+<tr>
+<td width="20"></td><td>
+     This loader object load an external IoC context and this dependencies and fill the IoC container.</td>
+</tr>
+<tr>
+<td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('andromeda/ioc/net/class-list.html');" href="andromeda/ioc/net/ObjectFactoryLoader.html#ObjectFactoryLoader()">ObjectFactoryLoader</a>(context, path, factory:<a href="andromeda/ioc/factory/ObjectFactory.html" onclick="javascript:loadClassListFrame('andromeda/ioc/factory./class-list.html');">andromeda.ioc.factory:ObjectFactory</a>, internalLoader) &mdash; Constructor in class andromeda.ioc.net.<a onclick="javascript:loadClassListFrame('andromeda/ioc/net/class-list.html');" href="andromeda/ioc/net/ObjectFactoryLoader.html">ObjectFactoryLoader</a></td>
+</tr>
+<tr>
+<td width="20"></td><td>
+         Creates a new ObjectFactoryLoader instance.</td>
 </tr>
 <tr>
 <td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('andromeda/ioc/factory/strategy/class-list.html');" href="andromeda/ioc/factory/strategy/ObjectFactoryMethod.html">ObjectFactoryMethod</a> &mdash; Class in package <a onclick="javascript:loadClassListFrame('andromeda/ioc/factory/strategy/class-list.html');" href="andromeda/ioc/factory/strategy/package-detail.html">andromeda.ioc.factory.strategy</a></td>
@@ -324,6 +338,34 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("OÂ
          Creates a new ObjectProperty instance.</td>
 </tr>
 <tr>
+<td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('andromeda/ioc/io/class-list.html');" href="andromeda/ioc/io/ObjectResource.html">ObjectResource</a> &mdash; Class in package <a onclick="javascript:loadClassListFrame('andromeda/ioc/io/class-list.html');" href="andromeda/ioc/io/package-detail.html">andromeda.ioc.io</a></td>
+</tr>
+<tr>
+<td width="20"></td><td>
+     Convenience base class for resource implementations in the IoC factory loader.</td>
+</tr>
+<tr>
+<td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('andromeda/ioc/io/class-list.html');" href="andromeda/ioc/io/ObjectResource.html#ObjectResource()">ObjectResource</a>(init) &mdash; Constructor in class andromeda.ioc.io.<a onclick="javascript:loadClassListFrame('andromeda/ioc/io/class-list.html');" href="andromeda/ioc/io/ObjectResource.html">ObjectResource</a></td>
+</tr>
+<tr>
+<td width="20"></td><td>
+         Creates a new ObjectResource instance.</td>
+</tr>
+<tr>
+<td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('andromeda/ioc/io/class-list.html');" href="andromeda/ioc/io/ObjectResourceBuilder.html">ObjectResourceBuilder</a> &mdash; Class in package <a onclick="javascript:loadClassListFrame('andromeda/ioc/io/class-list.html');" href="andromeda/ioc/io/package-detail.html">andromeda.ioc.io</a></td>
+</tr>
+<tr>
+<td width="20"></td><td>
+     This tool class is a helper to create an ObjectAttribute object with a generic object in the IoC context.</td>
+</tr>
+<tr>
+<td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('andromeda/ioc/io/class-list.html');" href="andromeda/ioc/io/ObjectResourceType.html">ObjectResourceType</a> &mdash; Class in package <a onclick="javascript:loadClassListFrame('andromeda/ioc/io/class-list.html');" href="andromeda/ioc/io/package-detail.html">andromeda.ioc.io</a></td>
+</tr>
+<tr>
+<td width="20"></td><td>
+     Convenience base class for resource implementations.</td>
+</tr>
+<tr>
 <td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('andromeda/ioc/factory/class-list.html');" href="andromeda/ioc/factory/ECMAObjectFactory.html#objects">objects</a> &mdash; Property in class andromeda.ioc.factory.<a onclick="javascript:loadClassListFrame('andromeda/ioc/factory/class-list.html');" href="andromeda/ioc/factory/ECMAObjectFactory.html">ECMAObjectFactory</a></td>
 </tr>
 <tr>
@@ -331,7 +373,7 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("OÂ
          This array contains objects to fill this factory with the run or create method.</td>
 </tr>
 <tr>
-<td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('asgard/net/class-list.html');" href="asgard/net/ECMAObjectLoader.html#objects">objects</a> &mdash; Property in class asgard.net.<a onclick="javascript:loadClassListFrame('asgard/net/class-list.html');" href="asgard/net/ECMAObjectLoader.html">ECMAObjectLoader</a></td>
+<td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('andromeda/ioc/net/class-list.html');" href="andromeda/ioc/net/ObjectFactoryLoader.html#objects">objects</a> &mdash; Property in class andromeda.ioc.net.<a onclick="javascript:loadClassListFrame('andromeda/ioc/net/class-list.html');" href="andromeda/ioc/net/ObjectFactoryLoader.html">ObjectFactoryLoader</a></td>
 </tr>
 <tr>
 <td width="20"></td><td>

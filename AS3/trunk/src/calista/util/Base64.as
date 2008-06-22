@@ -13,7 +13,7 @@
   The Original Code is CalistA Framework.
   
   The Initial Developer of the Original Code is
-  ALCARAZ Marc (aka eKameleon)  <vegas@ekameleon.net>.
+  ALCARAZ Marc (aka eKameleon)  <ekameleon@gmail.com>.
   Portions created by the Initial Developer are Copyright (C) 2004-2008
   the Initial Developer. All Rights Reserved.
   
