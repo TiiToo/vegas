@@ -7,7 +7,7 @@ imports =
 	
 	// i18n
 	
-	{ resource : "fr" , type:"i18n" , prefix   : "localize_" , path:"locale/" , suffix:".eden" , verbose:true } ,
+	{ resource : "fr" , type:"i18n" , prefix : "localize_" , path:"locale/" , suffix:".eden" , verbose:true } ,
 
 	// context
 
@@ -30,7 +30,7 @@ configuration =
             format : new flash.text.TextFormat('arial', 12, 0xFFFFFF) 
         }
         ,
-        pseudo  : "JohnDoe" 
+        pseudo : "JohnDoe" 
     }
     ,
     defaultInitMethod    : "initialize" ,
