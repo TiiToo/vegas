@@ -109,7 +109,6 @@ package test.display
         
         /**
          * Update the display.
-         * You must override this method. This method is launch by the setup() method when the Config is checked.
          */ 
         public function update():void
         {
