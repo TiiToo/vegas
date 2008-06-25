@@ -1,24 +1,141 @@
-{
+objects =
+[
+	
+	// evaluators
+	
+	{
+		id        : "eden" ,
+		type      : "system.evaluators.EdenEvaluator" ,
+		singleton : true ,
+		arguments : [ { value:false } ]
+	}
+	,
+	{
+		id        : "date" ,
+		type      : "system.evaluators.DateEvaluator" ,
+		singleton : true 
+	}
+
+	,	
+	
+	// test constructor
+    {   
+        id         : "my_date"  ,
+        type       : "String" ,
+        arguments  : 
+        [ 
+            { 
+                value      : "new Date(2007,11,5,10,22,33);" , 
+                evaluators : 
+                [ 
+                    new system.evaluators.EdenEvaluator(false) , 
+                    new system.evaluators.DateEvaluator()
+                ]
+            }
+        ]
+    }
+    , // test properties
+    {   
+        id         : "appointment_01"   ,
+        type       : "test.Appointment" ,
+        properties : 
+        [ 
+            { 
+				name       : "scheduledStart" ,
+                value      : "new Date(2008,5,30,10,30,00);" , 
+                evaluators : [ "eden" , "date" ] 
+            }
+            ,
+            { 
+				name       : "scheduledEnd" ,
+                value      : "new Date(2008,5,30,12,40,00);" , 
+                evaluators : 
+                [ 
+                    "eden" , 
+                    new system.evaluators.DateEvaluator()
+                ]
+            }
+        ] 
+    }
+    , // test methods
+    {   
+        id         : "appointment_02"   ,
+        type       : "test.Appointment" ,
+        methods    : 
+        [ 
+            { 
+				name       : "setShedule" ,
+				arguments  :
+				[
+					{
+						value      : "new Date(2008,5,30,14,00,00);" , 
+						evaluators : 
+						[ 
+							new system.evaluators.EdenEvaluator(false) , 
+							"date"
+						]
+					}
+					,
+					{ 
+						value      : "new Date(2008,5,30,16,30,00);" , 
+						evaluators : [ "eden" , "date" ] 
+					}
+				]
+            }
+        ] 
+    }
     
-    objects : 
-    [
-        
-        {   
-            id         : "my_date"  ,
-            type       : "String" ,
-            arguments  : 
-            [ 
-                { 
-					value      : "new Date(2007,11,5,10,22,33) " , 
-					evaluators : 
-					[ 
-						new system.evaluators.EdenEvaluator(false) , 
-						new system.evaluators.DateEvaluator()
-					]
+    , // factory method
+    
+    {
+        id   : "appointment_factory"   ,
+        type : "test.factory.AppointmentFactory"
+    }
+    ,
+    {   
+        id            : "appointment_03"   ,
+        type          : "test.Appointment" ,
+        factoryMethod : 
+        { 
+			factory    : "appointment_factory" ,
+			name       : "build" ,
+			arguments  :
+			[
+				{
+					value      : "new Date(2008,6,30,14,00,00);" , 
+					evaluators : [ "eden" , "date" ] 
+				}
+				,
+				{ 
+					value      : "new Date(2008,6,30,16,30,00);" , 
+					evaluators : [ "eden" , "date" ] 
 				}
             ]
-        }
-        
-    ]
-
-}
+        } 
+    }
+    
+    , // static factory method
+    
+    {   
+        id                  : "appointment_04"   ,
+        type                : "test.Appointment" ,
+        staticFactoryMethod : 
+        { 
+			type       : "test.factory.AppointmentFactory" ,
+			name       : "create" ,
+			arguments  :
+			[
+				{
+					value      : "new Date(2008,7,30,16,00,00);" , 
+					evaluators : [ "eden" , "date" ] 
+				}
+				,
+				{ 
+					value      : "new Date(2008,7,30,17,00,00);" , 
+					evaluators : [ "eden" , "date" ] 
+				}
+			]
+        } 
+    }    
+    
+] ;

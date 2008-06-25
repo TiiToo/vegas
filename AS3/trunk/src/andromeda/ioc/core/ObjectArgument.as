@@ -111,11 +111,11 @@ package andromeda.ioc.core
                 	o = a[i] ;
                 	if ( o != null )
                 	{
-                		conf       = ( ObjectAttribute.CONFIG in o )    ? o[ ObjectAttribute.CONFIG ] as String    : null ;
-                		i18n       = ( ObjectAttribute.LOCALE in o )    ? o[ ObjectAttribute.LOCALE ] as String    : null ;
-                        ref        = ( ObjectAttribute.REFERENCE in o ) ? o[ ObjectAttribute.REFERENCE ] as String : null ;
-                        value      = ( ObjectAttribute.VALUE in o )     ? o[ ObjectAttribute.VALUE ]               : null ;
-                        evaluators = ( ObjectAttribute.EVALUATORS in o ) ? o[ObjectAttribute.EVALUATORS] as Array  : null ;
+                		conf       = ( ObjectAttribute.CONFIG in o )     ? o[ ObjectAttribute.CONFIG ] as String    : null ;
+                		i18n       = ( ObjectAttribute.LOCALE in o )     ? o[ ObjectAttribute.LOCALE ] as String    : null ;
+                        ref        = ( ObjectAttribute.REFERENCE in o )  ? o[ ObjectAttribute.REFERENCE ] as String : null ;
+                        value      = ( ObjectAttribute.VALUE in o )      ? o[ ObjectAttribute.VALUE ]               : null ;
+                        evaluators = ( ObjectAttribute.EVALUATORS in o ) ? o[ObjectAttribute.EVALUATORS] as Array   : null ;
                         
                         if ( ref != null && ref.length > 0 ) 
                         {

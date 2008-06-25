@@ -125,7 +125,7 @@ package andromeda.ioc.core
                 o[ ObjectAttribute.OBJECT_SINGLETON ] as Boolean , 
                 o[ ObjectAttribute.LAZY_INIT ]        as Boolean 
             ) ;
-                
+                            
             definition.identify = o[ ObjectAttribute.IDENTIFY ] as Boolean  ;
             definition.lock     = o[ ObjectAttribute.LOCK ]     as Boolean  ;
                  
@@ -372,8 +372,6 @@ package andromeda.ioc.core
          * The type of the IDefinition object.
          */
         private var _type : String;
-        
-               
         
     }
 

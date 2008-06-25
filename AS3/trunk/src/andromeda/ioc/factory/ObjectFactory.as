@@ -33,6 +33,7 @@ package andromeda.ioc.factory
     import andromeda.ioc.factory.strategy.ObjectStaticFactoryProperty;
     
     import system.Reflection;
+    import system.evaluators.IEvaluator;
     import system.evaluators.MultiEvaluator;
     
     import vegas.core.IFactory;
@@ -285,37 +286,37 @@ package andromeda.ioc.factory
             	var i:uint ;
                 var stack:Array = [] ;
                 var item:ObjectArgument ;
-                
-                var e:MultiEvaluator = new MultiEvaluator() ;
+                var value:* ;
                 
                 for ( i = 0 ; i<len ; i++)
                 {
 
-                    item = args[i] as ObjectArgument ;
-
-                    if ( item.evaluators != null )
+                    item  = args[i] as ObjectArgument ;
+                    
+                    value = item.value ;
+                    
+                    if ( item.evaluators != null && item.evaluators.length > 0 )
                     {
-                    	e.add( item.evaluators ) ; // TODO add String reference in this array of evaluators to defines evaluator reference in the IoC container.
-                        item.value = e.eval( item.value ) ;
-                        e.clear() ;
+                        value = eval( value , item.evaluators  ) ;
                     }
                     
                     if ( item.policy == ObjectAttribute.REFERENCE )
                     {
-                        stack.push( getObject( item.value ) ) ;    
+                        stack.push( getObject( value as String ) ) ;    
                     }
                     else if ( item.policy == ObjectAttribute.CONFIG )
                     {
-                    	stack.push( config.configEvaluator.eval( item.value) ) ;
+                    	stack.push( config.configEvaluator.eval( value as String ) ) ;
                     }
                     else if ( item.policy == ObjectAttribute.LOCALE )
                     {
-                    	stack.push( config.localeEvaluator.eval( item.value ) ) ;
+                    	stack.push( config.localeEvaluator.eval( value as String ) ) ;
                     }                                  
                     else
                     {
-                        stack.push( item.value ) ;    
+                        stack.push( value ) ;    
                     }
+                    
                 }
                 return stack ;        
             }
@@ -488,6 +489,49 @@ package andromeda.ioc.factory
         }
         
         /**
+         * Evaluates a value with an Array of evaluators or IEvaluator reference in the factory.
+         * @param value The value to evaluate.
+         * @param evaluators The Array who contains IEvaluator objects or String ids who representing a IEvaluator in the factory.
+         * @return The new value after evaluation.
+         */
+        protected function eval( value:* , evaluators:Array ):*
+        {
+            if ( evaluators == null || evaluators.length == 0 )
+            {
+                return value ;
+            }
+            _e.clear() ;
+            var o:* ;
+            var a:Array = [] ;
+            var s:int   = evaluators.length ;
+            for ( var i:int = 0 ; i < s ; i++ )
+            {
+                o = evaluators[i] ;
+                if ( o == null )
+                {
+                	continue ;
+                }
+                
+                if ( o is String )
+                {
+                	o = getObject( o as String ) ;
+                }
+                
+                if ( o is IEvaluator )
+                {
+                    a.push( o ) ;                   
+                }  
+            }
+            if ( a.length > 0 )
+            {
+            	_e.add( a ) ;
+                value = _e.eval( value ) ;
+                _e.clear() ;    
+            }
+            return value ;
+        }
+        
+        /**
          * Invokes the destroy method of the specified object, if the init method is define in the IDefinition object.
          */
         protected function invokeDestroyMethod( o:* , definition:IObjectDefinition ):void
@@ -573,7 +617,7 @@ package andromeda.ioc.factory
             {
                 if ( ( definition.identify == true ) || ( config.identify === true && definition.identify != false ) )
                 {
-                    (o as Identifiable ).id = definition.id ;
+                    ( o as Identifiable ).id = definition.id ;
                 }
             }
         }
@@ -586,26 +630,37 @@ package andromeda.ioc.factory
             if (properties != null && properties.size() > 0)
             {
                 var prop:ObjectProperty ;
+                var value:* ;
+                var name:String ;
                 var values:Array = properties.getValues() ;
                 var size:uint    = values.length ;
                 for( var i:uint = 0 ; i<size ; i++ )
                 {
                     prop = values[i] as ObjectProperty ;
-                    if ( prop.policy == ObjectAttribute.REFERENCE && containsObject( prop.value as String ) )
+                    
+                    name  = prop.name ;
+                    value = prop.value ;
+                    
+                    if ( prop.evaluators != null && prop.evaluators.length > 0 )
                     {
-                        o[prop.name] = getObject( prop.value ) ;
+                        value = eval( value , prop.evaluators  ) ;
+                    }                    
+                    
+                    if ( prop.policy == ObjectAttribute.REFERENCE && containsObject( value as String ) )
+                    {
+                        o[ name ] = getObject( value ) ;
                     }
                     else if ( prop.policy == ObjectAttribute.CONFIG )
                     {
-                    	o[ prop.name ] = config.configEvaluator.eval( prop.value) ;
+                    	o[ name ] = config.configEvaluator.eval( value ) ;
                     }
                     else if ( prop.policy == ObjectAttribute.LOCALE )
                     {
-                    	o[ prop.name ] = config.localeEvaluator.eval( prop.value ) ;
+                    	o[ name ] = config.localeEvaluator.eval( value ) ;
                     }
                     else
                     {
-                        o[prop.name] = prop.value ;
+                        o[ name ] = value ;
                     }
                 }
             } 
@@ -616,7 +671,11 @@ package andromeda.ioc.factory
          */
         private var _id:* ;
                     
-            
+        /**
+         * @private
+         */
+        private var _e:MultiEvaluator = new MultiEvaluator() ;
+        
     }
 
 }

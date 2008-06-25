@@ -32,6 +32,15 @@ package test
          */
         public var subject:String ;
         
+        /**
+         * Defines the start and the end of the appointment.
+         */
+        public function setShedule( start:String , end:String ):void
+        {
+        	scheduledStart = start ;
+        	scheduledEnd   = end ;
+        }
+        
     }
 
 }
