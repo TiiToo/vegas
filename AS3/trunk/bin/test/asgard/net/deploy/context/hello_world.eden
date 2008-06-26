@@ -1,12 +1,12 @@
 objects =
 [
-	
-	{
-		id        : "my_format" ,
-		type      : "flash.text.TextFormat" ,
-		arguments : [ { value:"arial" } , { value:24 } , { value:0xFEF292 } , { value:true } ]
-	}
-	,
+    
+    {
+        id        : "my_format" ,
+        type      : "flash.text.TextFormat" ,
+        arguments : [ { value:"arial" } , { value:24 } , { value:0xFEF292 } , { value:true } ]
+    }
+    ,
     {
         id         : "my_field" ,
         type       : "flash.text.TextField"  ,
@@ -15,7 +15,7 @@ objects =
             { name : "autoSize"          , value  : "left"            } ,
             { name : "defaultTextFormat" , ref    : "my_format"       } ,
             { name : "text"              , value  : "HELLO WORLD"     } ,
-			{ name : "x"                 , value  : 10                } ,
+            { name : "x"                 , value  : 10                } ,
             { name : "y"                 , value  : 10                } 
         ]
     }
