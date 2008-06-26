@@ -94,6 +94,7 @@ package andromeda.ioc.evaluators
             			{
             				_propEvaluator.target = value ;
             				value = _propEvaluator.eval( members.join(".") ) ;
+            				_propEvaluator.target = null ;
             			}
             			return value ;
             		}
