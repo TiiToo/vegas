@@ -20,9 +20,11 @@
   Contributor(s) :
   
 */
-package andromeda.ioc.io 
+package asgard.system 
 {
-    import andromeda.process.ActionURLLoader;        
+    import andromeda.ioc.io.ObjectResource;
+    import andromeda.ioc.io.ObjectResourceType;
+    import andromeda.process.ActionURLLoader;    
 
     /**
      * This resource object contains all information about a localization file to load in the application.
@@ -39,6 +41,11 @@ package andromeda.ioc.io
             super(init) ;
             type = ObjectResourceType.I18N ;
         }
+    	
+    	/**
+    	 * The default ILocalizationLoader use in all LocaleResource to create a new resource process.
+    	 */
+    	public static var DEFAULT_LOADER:ILocalizationLoader = new EdenLocalizationLoader() ;
     	
     	/**
     	 * The loader reference use to load the locale resource.
@@ -63,7 +70,39 @@ package andromeda.ioc.io
         /**
          * Indicates the flag of the verbose mode.
          */
-        public var verbose:* ;    	
+        public var verbose:* ;  	
+    	
+        /**
+         * Creates a new ActionURLLoader object with the resource.
+         */
+        public override function create():ActionURLLoader
+        {
+        	var action:AbstractLocalizationLoader = ( loader || DEFAULT_LOADER ) as AbstractLocalizationLoader ;
+            if ( action != null )
+			{
+                if ( path != null )
+                {
+                    action.path = path   ;
+                }
+                if ( prefix != null )
+                {                            
+                    action.prefix = prefix ;
+                }
+                if ( suffix != null )
+                {                            
+                    action.suffix = suffix ;
+                }
+                if ( verbose != null )
+                {
+                    action.verbose = ( verbose is Boolean ) ? ( verbose as Boolean) : false;
+                }
+                if ( resource != null )
+                {
+                    action.lang = resource ;
+                }                           
+            }
+			return action ;
+        }    	
     	
     }
 }

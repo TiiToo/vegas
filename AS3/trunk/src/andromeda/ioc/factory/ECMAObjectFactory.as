@@ -454,6 +454,7 @@ package andromeda.ioc.factory
                 addObjectDefinition( definition.id , definition ) ;
                 
                 var assemblyName:String =  o[ ObjectAttribute.ASSEMBLY_NAME ] ;
+                
                 if ( assemblyName != null && !_assemblies.containsKey( assemblyName ) )
                 {
                     _assemblies.put( assemblyName , new AssemblyEntry( assemblyName , definition ) ) ;    
@@ -505,12 +506,12 @@ package andromeda.ioc.factory
                 if ( _loader == null )
                 {
                     _loader = new Loader() ;
-                    _loader.contentLoaderInfo.addEventListener( IOErrorEvent.IO_ERROR  , ioErrorHandler ) ;
-                    _loader.contentLoaderInfo.addEventListener( ProgressEvent.PROGRESS , progress ) ;
+                    _loader.contentLoaderInfo.addEventListener( IOErrorEvent.IO_ERROR  , ioErrorHandler  ) ;
+                    _loader.contentLoaderInfo.addEventListener( ProgressEvent.PROGRESS , progress        ) ;
                     _loader.contentLoaderInfo.addEventListener( Event.COMPLETE         , completeHandler ) ;
                 }
                 
-                _current = _buffer.poll( ) as AssemblyEntry ;
+                _current = _buffer.poll() as AssemblyEntry ;
                 
                 var assemblyName:String = _current.name ;
                 

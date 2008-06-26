@@ -22,6 +22,7 @@
 */
 package andromeda.ioc.io 
 {
+    import andromeda.process.ActionURLLoader;
     import andromeda.vo.SimpleValueObject;
     
     import system.Reflection;    
@@ -59,8 +60,28 @@ package andromeda.ioc.io
         /**
          * The type of this resource.
          */
-        public var type:String ;    	
-    	
+        public function get type():String
+        {
+            return id as String ;
+        }
+    
+        /**
+         * @private
+         */
+        public function set type( value:String ):void
+        {
+            id = value ;
+        }
+        
+        /**
+         * Creates a new ActionURLLoader object with the resource.
+         * Overrides this method.
+         */
+        public function create():ActionURLLoader
+        {
+        	return null ;
+        }
+                
         /**
          * Returns the <code class="prettyprint">String</code> representation of this object.
          * @return the <code class="prettyprint">String</code> representation of this object.
@@ -71,10 +92,6 @@ package andromeda.ioc.io
             if ( this.id != null )
             {
                 str += " id:" + this.id ;
-            }
-            if ( this.type != null )
-            {
-                str += " type:" + this.type ;
             }
             if ( this.resource != null )
             {

@@ -10,7 +10,7 @@
   WITHOUT WARRANTY OF ANY KIND, either express or implied. See the License
   for the specific language governing rights and limitations under the License. 
   
-  The Original Code is Andromeda Framework based on VEGAS.
+  The Original Code is ASGard Framework.
   
   The Initial Developer of the Original Code is
   ALCARAZ Marc (aka eKameleon)  <ekameleon@gmail.com>.
@@ -20,14 +20,16 @@
   Contributor(s) :
   
 */
-package andromeda.ioc.io 
+package asgard.config 
 {
-    import andromeda.process.ActionURLLoader;        
+    import andromeda.ioc.io.ObjectResource;
+    import andromeda.ioc.io.ObjectResourceType;
+    import andromeda.process.ActionURLLoader;    
 
     /**
      * This resource object contains all information about a config file to load in the application.
      */
-    public class ConfigResource extends ObjectResource 
+    public class ConfigResource extends ObjectResource
     {
     	
         /**
@@ -39,6 +41,11 @@ package andromeda.ioc.io
             super(init) ;
             type = ObjectResourceType.CONFIG ;
         }
+    	
+    	/**
+    	 * The default IConfigLoader use in all ConfigResource to create a new resource process.
+    	 */
+    	public static var DEFAULT_LOADER:IConfigLoader = new EdenConfigLoader() ;    	
     	
         /**
          * The loader reference use to load the config resource.
@@ -63,7 +70,35 @@ package andromeda.ioc.io
         /**
          * Indicates the flag of the verbose mode.
          */
-        public var verbose:* ;    	
+        public var verbose:* ; 
+        
+        /**
+         * Creates a new ActionURLLoader object with the resource.
+         */
+        public override function create():ActionURLLoader
+        {
+        	var action:AbstractConfigLoader = ( loader || DEFAULT_LOADER ) as AbstractConfigLoader ;
+            if ( action != null )
+			{
+				if ( path != null )
+                {
+                    action.path   = path   ;
+                }
+                if ( suffix != null )
+                {                            
+                    action.suffix = suffix ;
+                }
+                if ( resource != null )
+                {
+                    action.fileName = resource ;
+                }
+                if ( verbose != null )
+                {
+                    action.verbose = (verbose is Boolean) ? (verbose as Boolean) : false;
+                }                            
+            }
+			return action ;
+        }
 
     }
 

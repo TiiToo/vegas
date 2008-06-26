@@ -25,7 +25,6 @@ package andromeda.ioc.net
     import flash.events.Event;
     import flash.events.IOErrorEvent;
     import flash.events.ProgressEvent;
-    import flash.net.URLLoader;
     
     import andromeda.events.ActionEvent;
     import andromeda.ioc.core.ObjectAttribute;
@@ -37,8 +36,7 @@ package andromeda.ioc.net
     import andromeda.process.Sequencer;
     import andromeda.process.SimpleAction;
     
-    import vegas.core.IFactory;
-    import vegas.util.ClassUtil;    
+    import vegas.core.IFactory;    
 
     /**
      * This loader object load an external IoC context and this dependencies and fill the IoC container.
@@ -51,14 +49,12 @@ package andromeda.ioc.net
          * @param context The uri of the context external eden file (default "application.eden").
          * @param path The optional path of the external context file (default "").
          * @param factory The optional ECMAObjectFactory reference of this loader. By default the loader use the ECMAObjectFactory.getInstance() reference. 
-         * @param internalLoader The internal parse loader class to use to load all external context files (optional EdenLoader).
          */
-        public function ObjectFactoryLoader( context:String=null , path:String="" , factory:ObjectFactory = null, internalLoader:Class=null )
+        public function ObjectFactoryLoader( context:String=null , path:String="" , factory:ObjectFactory = null )
         {
             
             this.context        = context ;
             this.factory        = factory ;
-            this.internalLoader = internalLoader  ;
             this.path           = path    ;
             
             sequencer          = new Sequencer() ;            
@@ -88,28 +84,23 @@ package andromeda.ioc.net
         public function set factory( value:ObjectFactory ):void
         {
         	_factory = value ;
-         }
-        
-        /**
-         * Indicates the internal parser loader class.
-         */
-        public function get internalLoader():Class
-        {
-            return _internalLoader ;
-        }    
-
-        /**
-         * @private
-         */
-        public function set internalLoader( clazz:Class ):void
-        {
-            _internalLoader = ClassUtil.extendsClass( clazz, URLLoader ) ? clazz : URLLoader ;
-        }    
-        
+		}
+  		      
         /**
          * The default path of the external context file.
          */
-        public var path:String ;
+        public function get path():String
+        {
+        	return ContextResource.PATH ;	
+        }
+        
+        /**
+         * @private
+         */
+        public function set path( value:String ):void
+        {
+        	ContextResource.PATH = value || "" ;	
+        }        
         
         /**
          * Switch the verbose mode of this loader.
@@ -249,8 +240,14 @@ package andromeda.ioc.net
          */
         protected function addResource( resource:ObjectResource ):Boolean
         {
-            // overrides this method
-            return false ;
+            if ( resource != null && resource.type != null )
+            {
+                return sequencer.addAction( resource.create() as ActionURLLoader ) ;
+            }
+            else
+            {
+                return false ;
+            }
         }
         
         ///////// private        
@@ -370,7 +367,7 @@ package andromeda.ioc.net
                     size = a.length ;
                     while ( --size > -1 )
                     {
-                        resource = ObjectResourceBuilder.create( a[size] ) ;
+                        resource = ObjectResourceBuilder.get( a[size] ) ;
                         if ( resource != null )
                         {
                             _imports.push( resource ) ;

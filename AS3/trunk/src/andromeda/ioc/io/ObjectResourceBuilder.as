@@ -22,53 +22,17 @@
 */
 package andromeda.ioc.io 
 {
-    import andromeda.ioc.core.ObjectAttribute;                    
-
+    
     /**
-     * This tool class is a helper to create an ObjectAttribute object with a generic object in the IoC context.
+     * This tool class is a helper to create an ObjectResource object with a generic object in the IoC context.
      */
-    public class ObjectResourceBuilder 
-    {
-    	
-        /**
-         * Creates the ObjectAttribute object with the specified generic object.
-         * @param o The object definition to create an ObjectAttribute instance.
-         */
-        public static function create( o:Object ):ObjectResource
-        {
-            if ( ObjectAttribute.RESOURCE in o )
-            {
-                var type:String = o[ ObjectAttribute.TYPE ] as String ;
-                switch( type )
-                {
-                    case ObjectResourceType.ASSEMBLY :
-                    {
-                        break ;
-                    }
-                    case ObjectResourceType.CONFIG :
-                    {
-                        return new ConfigResource( o ) ;
-                        break ;
-                    }
-                    case ObjectResourceType.I18N :
-                    {
-                        return new LocaleResource( o ) ;                         
-                        break ;
-                    }
-                    case null :
-                    {
-                        return new ContextResource( o ) ;
-                        break ;
-                    }
-                    default :
-                    {
-                        return null ;
-                        break ;
-                    }                        
-                }   
-            }
-            return null ;	
-        }    	
-    	
-    }
+    public const ObjectResourceBuilder:ObjectResourceModel = new ObjectResourceModel() ; 
+    
+    // default ObjectResource class in the factory.
+    
+    ObjectResourceBuilder.addObjectResource( null , ContextResource ) ;
+    // ObjectResourceBuilder.addObjectResource( ObjectResourceType.ASSEMBLY , AssemblyResource ) ;
+    ObjectResourceBuilder.addObjectResource( ObjectResourceType.CONTEXT  , ContextResource ) ;    
+	    
+
 }

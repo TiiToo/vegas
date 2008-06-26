@@ -22,7 +22,12 @@
 */
 package andromeda.ioc.io 
 {
-    import asgard.net.ParserLoader;            
+    import flash.net.URLRequest;
+    
+    import andromeda.process.ActionURLLoader;
+    
+    import asgard.net.EdenLoader;
+    import asgard.net.ParserLoader;    
 
     /**
      * This resource object contains all information about a context file to load in the application.
@@ -39,11 +44,31 @@ package andromeda.ioc.io
             super(init) ;
             type = ObjectResourceType.CONTEXT ;
         }
+        
+        /**
+         * The root path of all context resources.
+         */
+        public static var PATH:String = "" ;
     	
     	/**
     	 * The loader to use to parse this object context.
     	 */
     	public var loader:ParserLoader ;
+		
+		/**
+		 * The root path of the context.
+		 */
+		public var path:String ;
+		
+        /**
+         * Creates a new ActionURLLoader object with the resource.
+         */
+        public override function create():ActionURLLoader
+        {
+            var action:ActionURLLoader = new ActionURLLoader( ( loader != null ) ? new (loader as Class)() : new EdenLoader() ) ;
+			action.request             = new URLRequest( ( PATH || "" ) + resource ) ;
+            return action ;
+        }
 
     }
 
