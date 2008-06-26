@@ -81,6 +81,11 @@ package andromeda.ioc.evaluators
         {
         	_target = o ;
         }        
+		
+        /**
+         * The separator of the expression evaluator.
+         */
+        public var separator:String = "." ;
         
         /**
          * The undefineable value returns in the eval method if the expression can't be evaluate.
@@ -99,7 +104,7 @@ package andromeda.ioc.evaluators
             	{
             		
             		var value:*       = target ;
-            		var members:Array = exp.split(".") ;
+            		var members:Array = exp.split( separator ) ;
             		var len:uint      = members.length ;
             		
             		for ( var i:uint = 0 ; i<len ; i++ )

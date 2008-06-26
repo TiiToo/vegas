@@ -23,6 +23,7 @@
 package andromeda.ioc.factory 
 {
     import andromeda.ioc.core.*;
+    import andromeda.ioc.evaluators.ReferenceEvaluator;
     import andromeda.ioc.factory.IObjectFactory;
     import andromeda.ioc.factory.strategy.IObjectFactoryStrategy;
     import andromeda.ioc.factory.strategy.ObjectFactoryMethod;
@@ -108,6 +109,7 @@ package andromeda.ioc.factory
         public function ObjectFactory( id:*=null , bGlobal:Boolean = false , sChannel:String = null )
         {
             super( bGlobal, sChannel ) ;
+            _re.factory      = this ;
             this.id          = id ;            
             singletons       = new HashMap() ;
             config           = new ObjectConfig() ; // the default empty ObjectConfig instance.
@@ -302,7 +304,7 @@ package andromeda.ioc.factory
                     
                     if ( item.policy == ObjectAttribute.REFERENCE )
                     {
-                        stack.push( getObject( value as String ) ) ;    
+                        stack.push( _re.eval( value as String ) ) ;    
                     }
                     else if ( item.policy == ObjectAttribute.CONFIG )
                     {
@@ -648,15 +650,15 @@ package andromeda.ioc.factory
                     
                     if ( prop.policy == ObjectAttribute.REFERENCE && containsObject( value as String ) )
                     {
-                        o[ name ] = getObject( value ) ;
+                        o[ name ] = _re.eval( value as String ) ;
                     }
                     else if ( prop.policy == ObjectAttribute.CONFIG )
                     {
-                    	o[ name ] = config.configEvaluator.eval( value ) ;
+                    	o[ name ] = config.configEvaluator.eval( value as String ) ;
                     }
                     else if ( prop.policy == ObjectAttribute.LOCALE )
                     {
-                    	o[ name ] = config.localeEvaluator.eval( value ) ;
+                    	o[ name ] = config.localeEvaluator.eval( value as String ) ;
                     }
                     else
                     {
@@ -675,6 +677,11 @@ package andromeda.ioc.factory
          * @private
          */
         private var _e:MultiEvaluator = new MultiEvaluator() ;
+        
+        /**
+         * @private
+         */
+        private var _re:ReferenceEvaluator = new ReferenceEvaluator() ;
         
     }
 

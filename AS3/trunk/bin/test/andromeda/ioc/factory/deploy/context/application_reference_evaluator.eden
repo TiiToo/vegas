@@ -1,0 +1,24 @@
+objects =
+[
+ 	{ 
+		id         : "VIDEO" ,
+		type       : "andromeda.vo.FilterVO" ,
+		properties : [ { name:"filter" , value:1 } ]
+	}
+	,
+ 	{ 
+		id         : "MP3" ,
+		type       : "andromeda.vo.FilterVO" ,
+		properties : [ { name:"filter" , value:2 } ]
+	}
+	,
+ 	{ 
+		id         : "my_filter" ,
+		type       : "andromeda.vo.FilterVO" ,
+		methods    : 
+		[ 
+		 	{ name:"toggleFilter" , arguments:[ { ref : "VIDEO.filter" } , { value : true } ] } ,
+			{ name:"toggleFilter" , arguments:[ { ref : "MP3.filter"   } , { value : true } ] } 
+		]
+	}
+] ;
