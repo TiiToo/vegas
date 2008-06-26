@@ -57,21 +57,10 @@ package andromeda.ioc.io
          */
         public var title:String ;         	
     	
-        /**
-         * The type of this resource.
-         */
-        public function get type():String
-        {
-            return id as String ;
-        }
-    
-        /**
-         * @private
-         */
-        public function set type( value:String ):void
-        {
-            id = value ;
-        }
+    	/**
+    	 * The type of the resource.
+    	 */
+        public var type:String ;
         
         /**
          * Creates a new ActionURLLoader object with the resource.
