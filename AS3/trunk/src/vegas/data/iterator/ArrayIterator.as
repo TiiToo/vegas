@@ -20,13 +20,14 @@
   Contributor(s) :
   
 */
+    
 package vegas.data.iterator
 {
     import system.numeric.Mathematics;    
     import system.Reflection;
     
     import vegas.core.CoreObject;
-    import vegas.util.Serializer;	
+    import vegas.util.Serializer;    
 
     /**
      * Converts an <code class="prettyprint">Array</code> to an iterator.
@@ -66,62 +67,62 @@ package vegas.data.iterator
     public class ArrayIterator extends CoreObject implements Iterator
     {
         
-    	/**
-	     * Creates a new ArrayIterator instance.
-    	 * @param a the array to enumerate with the iterator.
-	     */
+        /**
+         * Creates a new ArrayIterator instance.
+         * @param a the array to enumerate with the iterator.
+         */
         public function ArrayIterator( a:Array )
         {
- 		   _a = a ;
-    	   _k = -1 ;
+            _a = a ;
+           _k = -1 ;
         }
         
-    	/**
-    	 * Returns <code class="prettyprint">true</code> if the iteration has more elements.
-    	 * @return <code class="prettyprint">true</code> if the iteration has more elements.
-    	 */	
+        /**
+         * Returns <code class="prettyprint">true</code> if the iteration has more elements.
+         * @return <code class="prettyprint">true</code> if the iteration has more elements.
+         */    
         public function hasNext():Boolean
         {
             return (_k < _a.length - 1);
         }
         
-    	/**
-    	 * Returns the current key of the internal pointer of the iterator (optional operation).
-    	 * @return the current key of the internal pointer of the iterator (optional operation).
-    	 */
+        /**
+         * Returns the current key of the internal pointer of the iterator (optional operation).
+         * @return the current key of the internal pointer of the iterator (optional operation).
+         */
         public function key():*
         {
             return _k ;
         }
         
-    	/**
-    	 * Returns the next element in the iteration.
-    	 * @return the next element in the iteration.
-    	 */
+        /**
+         * Returns the next element in the iteration.
+         * @return the next element in the iteration.
+         */
         public function next():*
         {
            return _a[++_k] ;
         }
         
-    	/**
-    	 * Removes from the underlying collection the last element returned by the iterator (optional operation).
-    	 */
+        /**
+         * Removes from the underlying collection the last element returned by the iterator (optional operation).
+         */
         public function remove():*
         {
             return _a.splice( _k-- , 1 );
         }
         
         /**
-    	 * Reset the internal pointer of the iterator (optional operation).
-    	 */
+         * Reset the internal pointer of the iterator (optional operation).
+         */
         public function reset():void
         {
             _k = -1 ;
         }        
 
-	    /**
-    	 * Change the position of the internal pointer of the iterator (optional operation).
-    	 */		
+        /**
+         * Change the position of the internal pointer of the iterator (optional operation).
+         */        
         public function seek(position:*):void
         {
             _k = Mathematics.clamp((position-1), -1, _a.length) ;
@@ -136,15 +137,15 @@ package vegas.data.iterator
             return "new " + Reflection.getClassPath(this) + "(" + Serializer.toSource(_a) + ")" ;
         }
 
-		/**
-		 * current array
-		 */
-	    protected var _a:Array ; 
+        /**
+         * current array
+         */
+        protected var _a:Array ; 
 
-		/**
-		 *  current key
-		 */
-    	protected var _k:Number ;
+        /**
+         *  current key
+         */
+        protected var _k:Number ;
 
     }
 }

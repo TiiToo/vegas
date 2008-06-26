@@ -26,7 +26,7 @@ package vegas.data.iterator
     import system.numeric.Mathematics;
     
     import vegas.core.CoreObject;
-    import vegas.util.Serializer;	
+    import vegas.util.Serializer;    
 
     /**
      * Converts an object to an iterator of all enumerable properties of the Object.
@@ -76,93 +76,93 @@ package vegas.data.iterator
      * </pre>
      * @author eKameleon
      */
-	public class ObjectIterator extends CoreObject implements Iterator
-	{
-		
-		/**
-	     * Creates a new ObjectIterator instance.
-	     * @param o The object to iterate.
-	     */
-		public function ObjectIterator(o:Object)
-		{
-			_o = o ;
-			_a = new Array() ;
-			_k = -1 ;
-			var value:* ;
-			for (var each:String in o)
-			{
-				value = o[each] ;
-				if ( ! (value is Function) ) 
-				{	
-					_a.push(each) ;
-				}
-			} 
-			_len = _a.length ;
-		}
-		
-		/**
-	     * Returns <code class="prettyprint">true</code> if the iteration has more elements.
-	     * @return <code class="prettyprint">true</code> if the iteration has more elements.
-	     */	
-		public function hasNext():Boolean
-		{
-			return _k <  (_len - 1) ;
-		}
+    public class ObjectIterator extends CoreObject implements Iterator
+    {
+        
+        /**
+         * Creates a new ObjectIterator instance.
+         * @param o The object to iterate.
+         */
+        public function ObjectIterator(o:Object)
+        {
+            _o = o ;
+            _a = new Array() ;
+            _k = -1 ;
+            var value:* ;
+            for (var each:String in o)
+            {
+                value = o[each] ;
+                if ( ! (value is Function) ) 
+                {    
+                    _a.push(each) ;
+                }
+            } 
+            _len = _a.length ;
+        }
+        
+        /**
+         * Returns <code class="prettyprint">true</code> if the iteration has more elements.
+         * @return <code class="prettyprint">true</code> if the iteration has more elements.
+         */    
+        public function hasNext():Boolean
+        {
+            return _k <  (_len - 1) ;
+        }
 
-    	/**
-    	 * Returns the current index of the internal pointer of the iterator (optional operation).
-    	 * @return the current index of the internal pointer of the iterator (optional operation).
-    	 */
-		public function index():int
-		{
-			return _k ;
-		}
+        /**
+         * Returns the current index of the internal pointer of the iterator (optional operation).
+         * @return the current index of the internal pointer of the iterator (optional operation).
+         */
+        public function index():int
+        {
+            return _k ;
+        }
 
-    	/**
-    	 * Returns the current key value of the internal pointer of the iterator (optional operation).
-    	 * @return the current key value of the internal pointer of the iterator (optional operation).
-    	 */
-		public function key():*
-		{
-			return _a[_k] ;
-		}
+        /**
+         * Returns the current key value of the internal pointer of the iterator (optional operation).
+         * @return the current key value of the internal pointer of the iterator (optional operation).
+         */
+        public function key():*
+        {
+            return _a[_k] ;
+        }
 
-    	/**
-    	 * Returns the next element in the iteration.
-    	 * @return the next element in the iteration.
-    	 */
-		public function next():*
-		{
-			return _o[ _a[++_k] ] ;
-		}
+        /**
+         * Returns the next element in the iteration.
+         * @return the next element in the iteration.
+         */
+        public function next():*
+        {
+            return _o[ _a[++_k] ] ;
+        }
 
-    	/**
-    	 * Removes from the object the last element returned by the iterator (optional operation).
-    	 */
-		public function remove():*
-		{
-			var p:String = _a[_k] ;
-			_a.splice(_k--, 1) ;
-			delete _o[p] ;
-			_len -- ;
-			return p ;
-		}
+        /**
+         * Removes from the object the last element returned by the iterator (optional operation).
+         */
+        public function remove():*
+        {
+            var p:String = _a[_k] ;
+            _a.splice(_k--, 1) ;
+            delete _o[p] ;
+            _len -- ;
+            return p ;
+        }
 
-    	/**
-    	 * Reset the internal pointer of the iterator (optional operation).
-    	 */
-		public function reset():void
-		{
-			_k = -1 ;
-		}
+        /**
+         * Reset the internal pointer of the iterator (optional operation).
+         */
+        public function reset():void
+        {
+            _k = -1 ;
+        }
 
-    	/**
-    	 * Change the position of the internal pointer of the iterator (optional operation).
-    	 */
-		public function seek(position:*):void
-		{
-			_k = Mathematics.clamp ((position-1), -1, _len) ;
-		}
+        /**
+         * Change the position of the internal pointer of the iterator (optional operation).
+         */
+        public function seek(position:*):void
+        {
+            _k = Mathematics.clamp ((position-1), -1, _len) ;
+        }
         
         /**
          * Returns the eden String representation of this object.
@@ -173,10 +173,10 @@ package vegas.data.iterator
             return Serializer.getSourceOf(this, [_o] ) ;
         }
 
-		private var _a:Array ;
-		private var _k:int ;
-		private var _o:Object ;
-		private var _len:uint ;
+        private var _a:Array ;
+        private var _k:int ;
+        private var _o:Object ;
+        private var _len:uint ;
 
-	}
+    }
 }

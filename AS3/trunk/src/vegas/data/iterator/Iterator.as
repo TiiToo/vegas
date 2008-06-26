@@ -31,37 +31,37 @@ package vegas.data.iterator
     public interface Iterator
     {
 
-	    /**
-    	 * Returns <code class="prettyprint">true</code> if the iteration has more elements.
-    	 * @return <code class="prettyprint">true</code> if the iteration has more elements.
-    	 */	
+        /**
+         * Returns <code class="prettyprint">true</code> if the iteration has more elements.
+         * @return <code class="prettyprint">true</code> if the iteration has more elements.
+         */    
         function hasNext():Boolean ;
 
-    	/**
-	     * Returns the current key of the internal pointer of the iterator (optional operation).
-    	 * @return the current key of the internal pointer of the iterator (optional operation).
-    	 */
+        /**
+         * Returns the current key of the internal pointer of the iterator (optional operation).
+         * @return the current key of the internal pointer of the iterator (optional operation).
+         */
         function key():* ;
 
-    	/**
-    	 * Returns the next element in the iteration.
-    	 * @return the next element in the iteration.
-    	 */
+        /**
+         * Returns the next element in the iteration.
+         * @return the next element in the iteration.
+         */
         function next():* ;
 
-    	/**
-    	 * Removes from the underlying collection the last element returned by the iterator (optional operation).
-    	 */
+        /**
+         * Removes from the underlying collection the last element returned by the iterator (optional operation).
+         */
         function remove():* ;
 
-    	/**
-    	 * Reset the internal pointer of the iterator (optional operation).
-    	 */
+        /**
+         * Reset the internal pointer of the iterator (optional operation).
+         */
         function reset():void ;
 
-    	/**
-	     * Change the position of the internal pointer of the iterator (optional operation).
-    	 */
+        /**
+         * Change the position of the internal pointer of the iterator (optional operation).
+         */
         function seek( position:* ):void ;
         
     }

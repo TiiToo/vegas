@@ -31,11 +31,11 @@ package vegas.data.iterator
     public interface Iterable
     {
 
-    	/**
-    	 * Returns the iterator reference of the object.
-	     * @return the iterator reference of the object.
-    	 */
+        /**
+         * Returns the iterator reference of the object.
+         * @return the iterator reference of the object.
+         */
         function iterator():Iterator ;
-	
+    
     }
 }

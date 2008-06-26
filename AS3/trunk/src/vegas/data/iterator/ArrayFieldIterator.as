@@ -23,9 +23,9 @@
 
 package vegas.data.iterator
 {
-	import vegas.util.Serializer;   
+    import vegas.util.Serializer;   
 
-	/**
+    /**
      * Converts an array to an iterator but this iterator return the value of a specific field if the array is an array of objects.
      * <p><b>Example :</b></p>
      * <pre class="prettyprint">
@@ -59,30 +59,30 @@ package vegas.data.iterator
     public class ArrayFieldIterator extends ArrayIterator
     {
     
-    	/**
-    	 * Creates a new ArrayFieldIterator instance.
-    	 */
+        /**
+         * Creates a new ArrayFieldIterator instance.
+         */
         public function ArrayFieldIterator(a:Array, fieldName:String=null)
         {
-		    super(a) ;
-    		this.fieldName = fieldName ;
+            super(a) ;
+            this.fieldName = fieldName ;
         }
 
-    	/**
-    	 * The field used in the next method to return the next value in the array.
-    	 */	
-    	public var fieldName:String ;
+        /**
+         * The field used in the next method to return the next value in the array.
+         */    
+        public var fieldName:String ;
         
-	    /**
-	     * Returns the next field element in the iteration.
-	     * @return the next field element in the iteration.
-	     */
-    	public override function next():* 
-    	{
-	    	var o:* = _a[++_k] ;
-    		return (fieldName != null) ? o[fieldName] : o ;
-    	}
-    	
+        /**
+         * Returns the next field element in the iteration.
+         * @return the next field element in the iteration.
+         */
+        public override function next():* 
+        {
+            var o:* = _a[++_k] ;
+            return (fieldName != null) ? o[fieldName] : o ;
+        }
+        
         /**
          * Returns the eden String representation of this object.
          * @return the eden String representation of this object.

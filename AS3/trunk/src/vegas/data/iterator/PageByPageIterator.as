@@ -71,188 +71,188 @@ package vegas.data.iterator
     public class PageByPageIterator extends CoreObject implements OrderedIterator
     {
         
-    	/**
-    	 * Creates a new PageByPageIterator.
-    	 * @param stepSize the step size value.
-    	 * @param data the array to enumerate.
-    	 * @throws UnsupportedOperation if the data array is empty.
-    	 */
+        /**
+         * Creates a new PageByPageIterator.
+         * @param stepSize the step size value.
+         * @param data the array to enumerate.
+         * @throws UnsupportedOperation if the data array is empty.
+         */
         public function PageByPageIterator( stepSize:uint = 1 , data:Array = null )
         {
-		    super();
-		    if (data == null)
-		    {
-		        throw new UnsupportedOperation(this + " constructor failed, the array passed-in argument not must be empty or 'null'.") ;
-		    }
-		    var len:Number = data.length ;
-		    if (len > 0)
-		    {
-			    _data = data ;
-			    _key = 0 ;
-			    _currentPage = 0 ;
-			    _step = (stepSize > 1) ? stepSize : PageByPageIterator.DEFAULT_STEP ; 
-			    _pageCount =  Math.ceil(len / _step) ;
-		    }
-		    else
-		    {
-    			throw new UnsupportedOperation(this + " constructor failed, data length not must be empty") ;
-	    	}
+            super();
+            if (data == null)
+            {
+                throw new UnsupportedOperation(this + " constructor failed, the array passed-in argument not must be empty or 'null'.") ;
+            }
+            var len:Number = data.length ;
+            if (len > 0)
+            {
+                _data = data ;
+                _key = 0 ;
+                _currentPage = 0 ;
+                _step = (stepSize > 1) ? stepSize : PageByPageIterator.DEFAULT_STEP ; 
+                _pageCount =  Math.ceil(len / _step) ;
+            }
+            else
+            {
+                throw new UnsupportedOperation(this + " constructor failed, data length not must be empty") ;
+            }
         }
         
-	    /**
-	     * The default step value in all the PageByPageIterators.
-	     */
-	    public static var DEFAULT_STEP:Number = 1 ;
+        /**
+         * The default step value in all the PageByPageIterators.
+         */
+        public static var DEFAULT_STEP:Number = 1 ;
  
-    	/**
-    	 * Returns the current page value.
-    	 * @return the number of the current page.
-    	 */
-	    public function currentPage():Number
-	    {
-    		return _currentPage ;
-    	}
+        /**
+         * Returns the current page value.
+         * @return the number of the current page.
+         */
+        public function currentPage():Number
+        {
+            return _currentPage ;
+        }
 
-    	/**
-    	 * Returns the step size of this PageByPageIterator.
-    	 * @return the step size of this PageByPageIterator.
-	     */
-	    public function getStepSize():Number
-	    {
-    		return _step ;	
-	    }    
+        /**
+         * Returns the step size of this PageByPageIterator.
+         * @return the step size of this PageByPageIterator.
+         */
+        public function getStepSize():Number
+        {
+            return _step ;    
+        }    
 
-    	/**
-    	 * Returns <code class="prettyprint">true</code> if the iteration has more elements.
-	     * @return <code class="prettyprint">true</code> if the iterator has more elements.
-	     */
+        /**
+         * Returns <code class="prettyprint">true</code> if the iteration has more elements.
+         * @return <code class="prettyprint">true</code> if the iterator has more elements.
+         */
         public function hasNext():Boolean
         {
             return _key < _pageCount ;
         }
 
-    	/**
-    	 * Checks to see if there is a previous element that can be iterated to.
-    	 * @return <code class="prettyprint">true</code> if the iterator has more elements.
-    	 */
+        /**
+         * Checks to see if there is a previous element that can be iterated to.
+         * @return <code class="prettyprint">true</code> if the iterator has more elements.
+         */
         public function hasPrevious():Boolean
         {
             return _key > 1 ;
         }
         
-    	/**
-	     * Returns the current page number.
-	     * @return the current page number.
-	     */
+        /**
+         * Returns the current page number.
+         * @return the current page number.
+         */
         public function key():*
         {
             return _currentPage ;
         }
-	
-    	/**
-    	 * Seek the iterator in the last page of this object.
-    	 */
-	    public function lastPage():void
-	    {
-    		seek( _pageCount + 1 ) ;
-    	}
-    	/**
-    	 * Returns the next Array page of elements or the next element in the Array if the getStepSize() value is 1.
-    	 * @return the next Array page of elements or the next element in the Array if the getStepSize() value is 1.
-    	 */
+    
+        /**
+         * Seek the iterator in the last page of this object.
+         */
+        public function lastPage():void
+        {
+            seek( _pageCount + 1 ) ;
+        }
+        /**
+         * Returns the next Array page of elements or the next element in the Array if the getStepSize() value is 1.
+         * @return the next Array page of elements or the next element in the Array if the getStepSize() value is 1.
+         */
         public function next():*
         {
-		    var index:Number = _step * _key++ ;
-		    _currentPage = _key ;
-		    if (_step > 1)
-		    {
-    			return _data.slice(index, index + _step) ;
-		    }
-		    else
-		    {
-    			return _data[index] ;
-		    }
+            var index:Number = _step * _key++ ;
+            _currentPage = _key ;
+            if (_step > 1)
+            {
+                return _data.slice(index, index + _step) ;
+            }
+            else
+            {
+                return _data[index] ;
+            }
         }
 
-    	/**
-    	 * Returns the numbers of page of this iterator.
-    	 * @return the numbers of page of this iterator.
-    	 */
-	    public function pageCount():Number
-	    {
-    		return _pageCount ;	
-    	}
+        /**
+         * Returns the numbers of page of this iterator.
+         * @return the numbers of page of this iterator.
+         */
+        public function pageCount():Number
+        {
+            return _pageCount ;    
+        }
 
-    	/**
-	     * Returns the previous Array page of elements or the previous element in the Array if the getStepSize() value is 1.
-    	 * @return the previous element from the collection.
-    	 */
+        /**
+         * Returns the previous Array page of elements or the previous element in the Array if the getStepSize() value is 1.
+         * @return the previous element from the collection.
+         */
         public function previous():*
         {
-	    	_currentPage -- ;
-    		_key -- ;
-		    var index:Number = _step * (_key-1) ;
-		    if (_step > 1)
-		    {
-    			return _data.slice(index, index + _step) ;
-		    }
-		    else
-		    {
-    			return _data[index] ;	
-		    }
+            _currentPage -- ;
+            _key -- ;
+            var index:Number = _step * (_key-1) ;
+            if (_step > 1)
+            {
+                return _data.slice(index, index + _step) ;
+            }
+            else
+            {
+                return _data[index] ;    
+            }
         }
 
-    	/**
-	     * Unsupported operation in a PageByPageIterator.
-    	 * @throws UnsupportedOperation the method remove() in this iterator is unsupported. 
-	     */
+        /**
+         * Unsupported operation in a PageByPageIterator.
+         * @throws UnsupportedOperation the method remove() in this iterator is unsupported. 
+         */
         public function remove():*
         {
             throw new UnsupportedOperation(this + " remove method is unsupported by this instance.") ;
         }
         
-    	/**
-    	 * Resets the key pointer of the iterator.
-    	 */
+        /**
+         * Resets the key pointer of the iterator.
+         */
         public function reset():void
         {
-		    _key = 0 ;
-		    _currentPage = 0 ;
+            _key = 0 ;
+            _currentPage = 0 ;
         }
 
-    	/**
-    	 * Seek the key pointer of the iterator.
-    	 */
+        /**
+         * Seek the key pointer of the iterator.
+         */
         public function seek(position:*):void
         {
-		    _key = Mathematics.clamp( position++, 0, _pageCount+1 ) ;
-		    _currentPage = _key ;
+            _key = Mathematics.clamp( position++, 0, _pageCount+1 ) ;
+            _currentPage = _key ;
         }
         
-    	/**
-    	 * The currentPage value.
-    	 */
-	    private var _currentPage:Number ;
+        /**
+         * The currentPage value.
+         */
+        private var _currentPage:Number ;
 
-    	/**
-    	 * The data to iterate.
-    	 */
-	    private var _data:Array ;
+        /**
+         * The data to iterate.
+         */
+        private var _data:Array ;
 
-	    /**
-    	 * The current key of the iterator. 
-	     */
-	    private var _key:int ;
-	
-	    /**
-    	 * Count of pages.
-	     */
-	    private var _pageCount:Number ;
-		
-	    /**
-	     * The numbers of lines in a page.
-	     */
-	    private var _step:Number ;
+        /**
+         * The current key of the iterator. 
+         */
+        private var _key:int ;
+    
+        /**
+         * Count of pages.
+         */
+        private var _pageCount:Number ;
+        
+        /**
+         * The numbers of lines in a page.
+         */
+        private var _step:Number ;
         
     }
 }

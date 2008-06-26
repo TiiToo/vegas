@@ -31,16 +31,16 @@ package vegas.data.iterator
     public interface OrderedIterator extends Iterator
     {
 
-    	/**
-    	 * Checks to see if there is a previous element that can be iterated to.
-    	 */
+        /**
+         * Checks to see if there is a previous element that can be iterated to.
+         */
         function hasPrevious():Boolean ;
 
-    	/**
-    	 * Returns the previous element in the collection.
-    	 * @return the previous element in the collection.
-	     */
-    	function previous():* ;
+        /**
+         * Returns the previous element in the collection.
+         * @return the previous element in the collection.
+         */
+        function previous():* ;
         
     }
 }

@@ -27,7 +27,7 @@ package vegas.data.iterator
     
     import vegas.core.CoreObject;
     import vegas.errors.UnsupportedOperation;
-    import vegas.util.Serializer;	
+    import vegas.util.Serializer;    
 
     /**
      * Converts a string to an iterator.
@@ -49,71 +49,71 @@ package vegas.data.iterator
      * </pre>
      * @author eKameleon
      */
-	public class StringIterator extends CoreObject implements Iterator
-	{
-		
-		/**
-	     * Creates a new StringIterator instance.
-	     * @param s the String object to enumerate.
-	     */
-		public function StringIterator(s:String)
-		{
-			_s = s ;
-			_k = -1 ;
-			_size = s.length ;
-		}
+    public class StringIterator extends CoreObject implements Iterator
+    {
+        
+        /**
+         * Creates a new StringIterator instance.
+         * @param s the String object to enumerate.
+         */
+        public function StringIterator(s:String)
+        {
+            _s = s ;
+            _k = -1 ;
+            _size = s.length ;
+        }
 
-    	/**
-	     * Returns <code class="prettyprint">true</code> if the iteration has more elements.
-    	 * @return <code class="prettyprint">true</code> if the iteration has more elements.
-	     */	
-		public function hasNext():Boolean
-		{
-			return _k < _size-1  ;
-		}
+        /**
+         * Returns <code class="prettyprint">true</code> if the iteration has more elements.
+         * @return <code class="prettyprint">true</code> if the iteration has more elements.
+         */    
+        public function hasNext():Boolean
+        {
+            return _k < _size-1  ;
+        }
 
-    	/**
-    	 * Returns the current key of the internal pointer of the iterator (optional operation).
-    	 * @return the current key of the internal pointer of the iterator (optional operation).
-	     */
-		public function key():*
-		{
-			return _k ;
-		}
+        /**
+         * Returns the current key of the internal pointer of the iterator (optional operation).
+         * @return the current key of the internal pointer of the iterator (optional operation).
+         */
+        public function key():*
+        {
+            return _k ;
+        }
 
-    	/**
-	     * Returns the next element in the iteration.
-    	 * @return the next element in the iteration.
-	     */
-		public function next():*
-		{
-			return _s.charAt( ++_k );
-		}
+        /**
+         * Returns the next element in the iteration.
+         * @return the next element in the iteration.
+         */
+        public function next():*
+        {
+            return _s.charAt( ++_k );
+        }
 
-    	/**
-    	 * Removes from the underlying collection the last element returned by the iterator (optional operation).
-    	 */
-		public function remove():*
-		{
-			throw new UnsupportedOperation("This " + this + " does not support the reset() method.") ;
-			return null ;
-		}
+        /**
+         * Removes from the underlying collection the last element returned by the iterator (optional operation).
+         */
+        public function remove():*
+        {
+            throw new UnsupportedOperation("This " + this + " does not support the reset() method.") ;
+            return null ;
+        }
 
-    	/**
-    	 * Reset the internal pointer of the iterator (optional operation).
-	     */
-		public function reset():void
-		{
-			_k = -1 ;
-		}
+        /**
+         * Reset the internal pointer of the iterator (optional operation).
+         */
+        public function reset():void
+        {
+            _k = -1 ;
+        }
 
-    	/**
-    	 * Change the position of the internal pointer of the iterator (optional operation).
-	     */
-		public function seek(position:*):void
-		{
-			_k = Mathematics.clamp ((position-1), -1, _size-1) ;
-		}
+        /**
+         * Change the position of the internal pointer of the iterator (optional operation).
+         */
+        public function seek(position:*):void
+        {
+            _k = Mathematics.clamp ((position-1), -1, _size-1) ;
+        }
 
         /**
          * Returns the eden String representation of this object.
@@ -123,10 +123,21 @@ package vegas.data.iterator
         {
             return Serializer.getSourceOf(this, [_s] ) ;
         }
+        
+        /**
+         * @private
+         */
+        private var _k:Number ;
 
-		private var _k:Number ;
-		private var _s:String ;
-		private var _size:Number ;
-	
-	}
+        /**
+         * @private
+         */
+        private var _s:String ;
+
+        /**
+         * @private
+         */
+        private var _size:Number ;
+    
+    }
 }

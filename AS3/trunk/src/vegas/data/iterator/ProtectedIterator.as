@@ -23,11 +23,11 @@
 
 package vegas.data.iterator
 {
-	import vegas.core.CoreObject;
-	import vegas.errors.UnsupportedOperation;
-	import vegas.util.Serializer;    
+    import vegas.core.CoreObject;
+    import vegas.errors.UnsupportedOperation;
+    import vegas.util.Serializer;    
 
-	/**
+    /**
      * Protect an iterator. This class protect the remove, reset and seek method.
      * <p><b>Example :</b></p>
      * <pre class="prettyprint">
@@ -45,64 +45,64 @@ package vegas.data.iterator
     public class ProtectedIterator extends CoreObject implements Iterator
     {
         
-	    /**
-	     * Creates a new ProtectedIterator instance.
-	     * @param iterator the iterator to protected.
-	     */
+        /**
+         * Creates a new ProtectedIterator instance.
+         * @param iterator the iterator to protected.
+         */
         public function ProtectedIterator(i:Iterator)
         {
-		    _i = i ;
+            _i = i ;
         }
         
-	    /**
-    	 * Returns <code class="prettyprint">true</code> if the iteration has more elements.
-    	 * @return <code class="prettyprint">true</code> if the iteration has more elements.
-    	 */	
+        /**
+         * Returns <code class="prettyprint">true</code> if the iteration has more elements.
+         * @return <code class="prettyprint">true</code> if the iteration has more elements.
+         */    
         public function hasNext():Boolean
         {
             return _i.hasNext() ;
         }
 
-	    /**
-    	 * Returns the current key of the internal pointer of the iterator (optional operation).
-    	 * @return the current key of the internal pointer of the iterator (optional operation).
-    	 */
+        /**
+         * Returns the current key of the internal pointer of the iterator (optional operation).
+         * @return the current key of the internal pointer of the iterator (optional operation).
+         */
         public function key():*
         {
             return _i.key() ;
         }
 
-    	/**
-	     * Returns the next element in the iteration.
-	     * @return the next element in the iteration.
-	     */
+        /**
+         * Returns the next element in the iteration.
+         * @return the next element in the iteration.
+         */
         public function next():*
         {
             return _i.next() ;
         }
 
-    	/**
-    	 * Unsupported method in all ProtectedIterator.
-	     * @throws UnsupportedOperation the remove method is unsupported in a ProtectedIterator instance.
-    	 */
+        /**
+         * Unsupported method in all ProtectedIterator.
+         * @throws UnsupportedOperation the remove method is unsupported in a ProtectedIterator instance.
+         */
         public function remove():*
         {
             throw new UnsupportedOperation("This Iterator does not support the remove() method.") ;
         }
  
-    	/**
-    	 * Unsupported method in all ProtectedIterator.
-    	 * @throws UnsupportedOperation the reset method is unsupported in a ProtectedIterator instance.
-    	 */
+        /**
+         * Unsupported method in all ProtectedIterator.
+         * @throws UnsupportedOperation the reset method is unsupported in a ProtectedIterator instance.
+         */
         public function reset():void
         {
             throw new UnsupportedOperation("This Iterator does not support the reset() method.") ;
         }
 
-    	/**
-    	 * Unsupported method in all ProtectedIterator.
-    	 * @throws UnsupportedOperation the seek method is unsupported in a ProtectedIterator instance.
-    	 */
+        /**
+         * Unsupported method in all ProtectedIterator.
+         * @throws UnsupportedOperation the seek method is unsupported in a ProtectedIterator instance.
+         */
         public function seek(position:*):void
         {
             throw new UnsupportedOperation("This Iterator does not support the seek() method.") ;
@@ -117,11 +117,11 @@ package vegas.data.iterator
             return Serializer.getSourceOf(this, [_i]) ;
         }
 
-    	/**
-    	 * Internal iterator.
-    	 */
-	    private var _i:Iterator ;
-	    
+        /**
+         * Internal iterator.
+         */
+        private var _i:Iterator ;
+        
     }
 
 }
