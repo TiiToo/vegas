@@ -27,7 +27,6 @@ package andromeda.ioc.io
     import flash.system.ApplicationDomain;
     import flash.system.LoaderContext;
     
-    import andromeda.ioc.core.ObjectDefinition;
     import andromeda.ioc.io.ObjectResource;
     import andromeda.process.ActionLoader;
     import andromeda.process.CoreActionLoader;    
@@ -46,12 +45,7 @@ package andromeda.ioc.io
         {
             super(init);
         }
-        
-        /**
-         * The ObjectDefinition of this entry.
-         */
-        public var definition:ObjectDefinition ;        
-        
+             
         /**
          * Creates a new ActionURLLoader object with the resource.
          */

@@ -3,7 +3,7 @@ imports =
 
 	// assembly
 	
-	// { resource : "library/dll.swf" , type:"assembly" } ,
+	{ resource : "library/dll.swf" , type:"assembly" } ,
 	
 	// config
 	

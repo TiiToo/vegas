@@ -48,5 +48,19 @@ objects =
             { name:"addChild" , arguments:[ { ref:"my_square" } ] } ,
             { name:"addChild" , arguments:[ { ref:"my_field"  } ] }
         ]        
-    }    
+    }  
+    ,
+    {
+        id         : "my_logo" ,
+        type       : "Logo"    ,
+        singleton  : true      , 
+        lazyInit   : true      ,
+        properties : 
+        [
+            { name : "filters" , config : "display.filters" } ,        
+            { name : "x"       , value  : 260               } ,
+            { name : "y"       , value  : 50                }
+        ]
+    }  
+   
 ] ;
