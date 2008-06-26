@@ -22,7 +22,7 @@
 */
 package andromeda.ioc.io 
 {
-    import andromeda.process.ActionURLLoader;
+    import andromeda.process.CoreActionLoader;
     import andromeda.vo.SimpleValueObject;
     
     import system.Reflection;    
@@ -77,7 +77,7 @@ package andromeda.ioc.io
          * Creates a new ActionURLLoader object with the resource.
          * Overrides this method.
          */
-        public function create():ActionURLLoader
+        public function create():CoreActionLoader
         {
         	return null ;
         }

@@ -33,6 +33,7 @@ package andromeda.ioc.net
     import andromeda.ioc.io.ObjectResource;
     import andromeda.ioc.io.ObjectResourceBuilder;
     import andromeda.process.ActionURLLoader;
+    import andromeda.process.CoreActionLoader;
     import andromeda.process.Sequencer;
     import andromeda.process.SimpleAction;
     
@@ -242,7 +243,7 @@ package andromeda.ioc.net
         {
             if ( resource != null && resource.type != null )
             {
-                return sequencer.addAction( resource.create() as ActionURLLoader ) ;
+                return sequencer.addAction( resource.create() as CoreActionLoader ) ;
             }
             else
             {

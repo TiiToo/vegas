@@ -24,7 +24,8 @@ package asgard.config
 {
     import andromeda.ioc.io.ObjectResource;
     import andromeda.ioc.io.ObjectResourceType;
-    import andromeda.process.ActionURLLoader;    
+    import andromeda.process.ActionURLLoader;
+    import andromeda.process.CoreActionLoader;    
 
     /**
      * This resource object contains all information about a config file to load in the application.
@@ -75,7 +76,7 @@ package asgard.config
         /**
          * Creates a new ActionURLLoader object with the resource.
          */
-        public override function create():ActionURLLoader
+        public override function create():CoreActionLoader
         {
         	var action:AbstractConfigLoader = ( loader || DEFAULT_LOADER ) as AbstractConfigLoader ;
             if ( action != null )

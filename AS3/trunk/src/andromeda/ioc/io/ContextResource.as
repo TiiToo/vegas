@@ -25,6 +25,7 @@ package andromeda.ioc.io
     import flash.net.URLRequest;
     
     import andromeda.process.ActionURLLoader;
+    import andromeda.process.CoreActionLoader;
     
     import asgard.net.EdenLoader;
     import asgard.net.ParserLoader;    
@@ -63,7 +64,7 @@ package andromeda.ioc.io
         /**
          * Creates a new ActionURLLoader object with the resource.
          */
-        public override function create():ActionURLLoader
+        public override function create():CoreActionLoader
         {
             var action:ActionURLLoader = new ActionURLLoader( ( loader != null ) ? new (loader as Class)() : new EdenLoader() ) ;
 			action.request             = new URLRequest( ( PATH || "" ) + resource ) ;
