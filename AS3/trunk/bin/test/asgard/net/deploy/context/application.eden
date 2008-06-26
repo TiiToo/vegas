@@ -1,5 +1,9 @@
 imports =
 [
+
+	// assembly
+	
+	// { resource : "library/dll.swf" , type:"assembly" } ,
 	
 	// config
 	
@@ -11,7 +15,7 @@ imports =
 
 	// context
 
-	{ resource : "user.eden" } ,
+	{ resource : "user.eden" , type:"context" } ,
     { resource : "view.eden" } 
 	
 ] ;

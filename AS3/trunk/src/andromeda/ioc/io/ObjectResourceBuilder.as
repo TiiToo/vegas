@@ -31,7 +31,7 @@ package andromeda.ioc.io
     // default ObjectResource class in the factory.
     
     ObjectResourceBuilder.addObjectResource( null , ContextResource ) ;
-    // ObjectResourceBuilder.addObjectResource( ObjectResourceType.ASSEMBLY , AssemblyResource ) ;
+    ObjectResourceBuilder.addObjectResource( ObjectResourceType.ASSEMBLY , AssemblyResource ) ;
     ObjectResourceBuilder.addObjectResource( ObjectResourceType.CONTEXT  , ContextResource ) ;    
 	    
 
