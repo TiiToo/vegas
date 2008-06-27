@@ -13,6 +13,10 @@ imports =
     
     { resource : "fr" , type:"i18n" , prefix : "localize_" , path:"locale/" , suffix:".eden" , verbose:true } ,
 
+    // style
+    
+    { resource : "style/style.css" , type:"style" , id:"style_sheet" } ,
+
     // context
 
     { resource : "user.eden" , type:"context" } ,

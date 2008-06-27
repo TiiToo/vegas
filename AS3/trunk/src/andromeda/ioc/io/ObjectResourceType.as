@@ -48,6 +48,11 @@ package andromeda.ioc.io
          * The "i18n" resource type.
          */
         public static const I18N:String = "i18n" ;        
+
+        /**
+         * The "style" resource type.
+         */
+        public static const STYLE:String = "style" ;   
     	
     }
 }

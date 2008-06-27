@@ -23,12 +23,15 @@
 package andromeda.ioc.io 
 {
     import flash.net.URLRequest;
+    import flash.utils.getDefinitionByName;
     
     import andromeda.process.ActionURLLoader;
     import andromeda.process.CoreActionLoader;
     
     import asgard.net.EdenLoader;
-    import asgard.net.ParserLoader;    
+    import asgard.net.ParserLoader;
+    
+    import vegas.util.ClassUtil;    
 
     /**
      * This resource object contains all information about a context file to load in the application.
@@ -47,14 +50,19 @@ package andromeda.ioc.io
         }
         
         /**
+         * The default ParserLoader class use in all ContextResource to create a new resource process.
+         */
+        public static var DEFAULT_LOADER:Class = EdenLoader ;        
+        
+        /**
          * The root path of all context resources.
          */
-        public static var PATH:String = "" ;
+        public static var DEFAULT_PATH:String = "" ;
     	
     	/**
     	 * The loader to use to parse this object context.
     	 */
-    	public var loader:ParserLoader ;
+    	public var loader:* ;
 		
 		/**
 		 * The root path of the context.
@@ -66,9 +74,45 @@ package andromeda.ioc.io
          */
         public override function create():CoreActionLoader
         {
-            var action:ActionURLLoader = new ActionURLLoader( ( loader != null ) ? new (loader as Class)() : new EdenLoader() ) ;
-			action.request             = new URLRequest( ( PATH || "" ) + resource ) ;
+                        
+            var path:String  = path || DEFAULT_PATH || "" ;
+            	
+        	var currentLoader:ParserLoader ;
+        	
+        	if ( loader != null )
+        	{
+        		
+        		var clazz:Class ;
+        		
+        		if (loader is String)
+        		{
+        			clazz = getDefinitionByName( loader as String )  as Class ;
+        		}
+        		else if ( loader is Class )
+        		{
+                    clazz = loader as Class ;	
+        		}
+        		
+        		if ( clazz != null  )
+        		{
+                    if ( ClassUtil.extendsClass(clazz, ParserLoader))
+                    {
+                        currentLoader = new clazz() as ParserLoader ;
+                    }
+        		} 
+        		else if ( loader is ParserLoader )
+        		{
+        			currentLoader = loader as ParserLoader ;
+        		}
+        		
+        	}
+        	
+            var action:ActionURLLoader = new ActionURLLoader( currentLoader || new DEFAULT_LOADER() ) ;
+			
+			action.request             = new URLRequest( path + resource ) ;
+            
             return action ;
+            
         }
 
     }

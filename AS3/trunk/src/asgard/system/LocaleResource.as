@@ -22,10 +22,14 @@
 */
 package asgard.system 
 {
+    import flash.utils.getDefinitionByName;
+    
     import andromeda.ioc.io.ObjectResource;
     import andromeda.ioc.io.ObjectResourceType;
     import andromeda.process.ActionURLLoader;
-    import andromeda.process.CoreActionLoader;    
+    import andromeda.process.CoreActionLoader;
+    
+    import vegas.util.ClassUtil;    
 
     /**
      * This resource object contains all information about a localization file to load in the application.
@@ -44,17 +48,17 @@ package asgard.system
         }
     	
     	/**
-    	 * The default ILocalizationLoader use in all LocaleResource to create a new resource process.
+    	 * The default ILocalizationLoader class use in all LocaleResource to create a new resource process.
     	 */
-    	public static var DEFAULT_LOADER:ILocalizationLoader = new EdenLocalizationLoader() ;
+    	public static var DEFAULT_LOADER:Class = EdenLocalizationLoader ;
     	
     	/**
     	 * The loader reference use to load the locale resource.
     	 */
-    	public var loader:ActionURLLoader ;
+    	public var loader:* ;
     	
         /**
-         * The path of the full localization file name.
+         * The custom loader reference use to load the locale resource (The class must inherit from the AbstractLocalizationLoader class).
          */
     	public var path:String ;
     	
@@ -74,11 +78,43 @@ package asgard.system
         public var verbose:* ;  	
     	
         /**
-         * Creates a new ActionURLLoader object with the resource.
+         * Creates a new CoreActionLoader object with the resource.
          */
         public override function create():CoreActionLoader
         {
-        	var action:AbstractLocalizationLoader = ( loader || DEFAULT_LOADER ) as AbstractLocalizationLoader ;
+       	
+            var action:AbstractLocalizationLoader ;
+            
+            if ( loader != null )
+            {
+                var clazz:Class ;
+                
+                if (loader is String)
+                {
+                    clazz = getDefinitionByName( loader as String )  as Class ;
+                }
+                else if ( loader is Class )
+                {
+                    clazz = loader as Class ;   
+                }
+                if ( clazz != null  )
+                {
+                    if ( ClassUtil.extendsClass(clazz, AbstractLocalizationLoader))
+                    {
+                        action = new clazz() as AbstractLocalizationLoader ;
+                    }
+                } 
+                else if ( loader is AbstractLocalizationLoader )
+                {
+                    action = loader as AbstractLocalizationLoader ;
+                }
+            }
+            
+            if ( action == null )
+            {
+                action = new DEFAULT_LOADER() ; 
+            }        	
+        	
             if ( action != null )
 			{
                 if ( path != null )

@@ -17,11 +17,11 @@ objects =
         properties : 
         [
             { name : "autoSize"          , value  : "left"            } ,
-            { name : "defaultTextFormat" , config : "display.format"  } ,
             { name : "filters"           , config : "display.filters" } ,
             { name : "x"                 , value  : 10                } ,
             { name : "y"                 , value  : 10                } ,
-            { name : "text"              , ref    : "formatter"       } 
+            { name : "styleSheet"        , ref    : "style_sheet"     } ,
+            { name : "htmlText"          , ref    : "formatter"       } 
         ]
     }
     ,
@@ -58,7 +58,7 @@ objects =
         properties : 
         [
             { name : "filters" , config : "display.filters" } ,        
-            { name : "x"       , value  : 260               } ,
+            { name : "x"       , value  : 280               } ,
             { name : "y"       , value  : 50                }
         ]
     }  

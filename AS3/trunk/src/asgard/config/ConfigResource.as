@@ -22,10 +22,14 @@
 */
 package asgard.config 
 {
+    import flash.utils.getDefinitionByName;
+    
     import andromeda.ioc.io.ObjectResource;
     import andromeda.ioc.io.ObjectResourceType;
     import andromeda.process.ActionURLLoader;
-    import andromeda.process.CoreActionLoader;    
+    import andromeda.process.CoreActionLoader;
+    
+    import vegas.util.ClassUtil;    
 
     /**
      * This resource object contains all information about a config file to load in the application.
@@ -44,14 +48,14 @@ package asgard.config
         }
     	
     	/**
-    	 * The default IConfigLoader use in all ConfigResource to create a new resource process.
+    	 * The default IConfigLoader class use in all ConfigResource to create a new resource process.
     	 */
-    	public static var DEFAULT_LOADER:IConfigLoader = new EdenConfigLoader() ;    	
+    	public static var DEFAULT_LOADER:Class = EdenConfigLoader ;    	
     	
         /**
-         * The loader reference use to load the config resource.
+         * The custom loader reference use to load the config resource (The class must inherit from the AbstractConfigLoader class).
          */
-        public var loader:ActionURLLoader ;    	
+        public var loader:* ;    	
     	
     	/**
     	 * The name of the full config file name.
@@ -74,11 +78,47 @@ package asgard.config
         public var verbose:* ; 
         
         /**
-         * Creates a new ActionURLLoader object with the resource.
+         * Creates a new CoreActionLoader object with the resource.
          */
         public override function create():CoreActionLoader
         {
-        	var action:AbstractConfigLoader = ( loader || DEFAULT_LOADER ) as AbstractConfigLoader ;
+
+            var action:AbstractConfigLoader ;
+            
+            if ( loader != null )
+            {
+                
+                var clazz:Class ;
+                
+                if (loader is String)
+                {
+                    clazz = getDefinitionByName( loader as String )  as Class ;
+                }
+                else if ( loader is Class )
+                {
+                    clazz = loader as Class ;   
+                }
+                
+                if ( clazz != null  )
+                {
+                    if ( ClassUtil.extendsClass(clazz, AbstractConfigLoader))
+                    {
+                        action = new clazz() as AbstractConfigLoader ;
+                    }
+                } 
+                else if ( loader is AbstractConfigLoader )
+                {
+                    action = loader as AbstractConfigLoader ;
+                }
+                
+                
+            }
+            
+            if ( action == null )
+            {
+                action = new DEFAULT_LOADER() ;	
+            }
+        	
             if ( action != null )
 			{
 				if ( path != null )
@@ -98,7 +138,9 @@ package asgard.config
                     action.verbose = (verbose is Boolean) ? (verbose as Boolean) : false;
                 }                            
             }
+			
 			return action ;
+			
         }
 
     }

@@ -32,7 +32,8 @@ package asgard.net
     import asgard.config.ConfigResource;
     import asgard.events.LocalizationEvent;
     import asgard.system.LocaleResource;
-    import asgard.system.Localization;    
+    import asgard.system.Localization;
+    import asgard.text.StyleSheetResource;    
 
     // TODO add events and progress UI to notify the IOC external process in progress.
     
@@ -265,7 +266,8 @@ package asgard.net
 		
     	ObjectResourceBuilder.addObjectResource(  ObjectResourceType.CONFIG , ConfigResource ) ;
     	ObjectResourceBuilder.addObjectResource(  ObjectResourceType.I18N   , LocaleResource ) ;
-		
+        ObjectResourceBuilder.addObjectResource(  ObjectResourceType.STYLE  , StyleSheetResource ) ;
+        		
     }
 }
 

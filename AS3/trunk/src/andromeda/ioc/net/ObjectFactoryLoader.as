@@ -92,7 +92,7 @@ package andromeda.ioc.net
          */
         public function get path():String
         {
-        	return ContextResource.PATH ;	
+        	return ContextResource.DEFAULT_PATH ;	
         }
         
         /**
@@ -100,7 +100,7 @@ package andromeda.ioc.net
          */
         public function set path( value:String ):void
         {
-        	ContextResource.PATH = value || "" ;	
+        	ContextResource.DEFAULT_PATH = value || "" ;	
         }        
         
         /**
@@ -371,6 +371,7 @@ package andromeda.ioc.net
                         resource = ObjectResourceBuilder.get( a[size] ) ;
                         if ( resource != null )
                         {
+                        	resource.owner = factory ;
                             _imports.push( resource ) ;
                         }
                     }

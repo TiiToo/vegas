@@ -26,14 +26,18 @@ package andromeda.ioc.io
     import flash.net.URLRequest;
     import flash.system.ApplicationDomain;
     import flash.system.LoaderContext;
+    import flash.utils.getDefinitionByName;
     
     import andromeda.ioc.io.ObjectResource;
     import andromeda.process.ActionLoader;
-    import andromeda.process.CoreActionLoader;    
+    import andromeda.process.CoreActionLoader;
+    
+    import asgard.net.ParserLoader;
+    
+    import vegas.util.ClassUtil;    
 
     /**
      * This value object contains all information about a dll to load in the application. 
-     * @author eKameleon
      */
     public class AssemblyResource extends ObjectResource 
     {
@@ -45,16 +49,77 @@ package andromeda.ioc.io
         {
             super(init);
         }
-             
+        
+        /**
+         * The default Loader class use in all AssemblyResource to create a new resource process.
+         */
+        public static var DEFAULT_LOADER:Class = Loader ;        
+        
+        /**
+         * The root path of all assembly resources.
+         */
+        public static var DEFAULT_PATH:String = "" ;        
+        
+        /**
+         * Indicates if the assembly must check a policy file in the server of the external library to load.
+         */
+        public var checkPolicyFile:Boolean ;
+        
+        /**
+         * The loader to use to load the assembly.
+         */
+        public var loader:* ;        
+        
+        /**
+         * The optional root path of the assembly.
+         */
+        public var path:String ;        
+        
         /**
          * Creates a new ActionURLLoader object with the resource.
          */
         public override function create():CoreActionLoader
         {
-            var action:ActionLoader = new ActionLoader( new Loader() ) ;
-			action.request          = new URLRequest( resource ) ;
-			action.context          = new LoaderContext( false , ApplicationDomain.currentDomain ) ;
+        	
+            var path:String  = path || DEFAULT_PATH ;        	
+        	
+            var currentLoader:Loader ;
+            
+            if ( loader != null )
+            {
+                
+                var clazz:Class ;
+                
+                if (loader is String)
+                {
+                    clazz = getDefinitionByName( loader as String )  as Class ;
+                }
+                else if ( loader is Class )
+                {
+                    clazz = loader as Class ;   
+                }
+                
+                if ( clazz != null  )
+                {
+                    if ( ClassUtil.extendsClass(clazz, Loader))
+                    {
+                        currentLoader = new clazz() as Loader ;
+                    }
+                } 
+                else if ( loader is ParserLoader )
+                {
+                    currentLoader = loader as Loader ;
+                }
+                
+            }        	
+        	
+            var action:ActionLoader = new ActionLoader( currentLoader || new DEFAULT_LOADER() ) ;
+			
+			action.request          = new URLRequest( path + resource ) ;
+			action.context          = new LoaderContext( checkPolicyFile , ApplicationDomain.currentDomain ) ;
+            
             return action ;
+            
         }        
         
     }

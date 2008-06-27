@@ -52,6 +52,11 @@ package andromeda.ioc.io
     	 */
     	public var resource:String ;
     	
+    	/**
+    	 * The owner reference of this resource.
+    	 */
+    	public var owner:* ;
+    	
         /**
          * The title of this resource.
          */
