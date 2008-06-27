@@ -100,7 +100,7 @@ package asgard.text
                         {
                             if ( ClassUtil.extendsClass(clazz, StyleSheet))
                             {
-                                ss = new clazz() as styleSheet ;
+                                ss = new clazz() as StyleSheet ;
                             }
                         } 
                         else if ( styleSheet is StyleSheet )
