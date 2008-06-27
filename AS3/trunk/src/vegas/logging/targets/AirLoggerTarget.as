@@ -22,18 +22,18 @@
 */
 package vegas.logging.targets 
 {
-	import flash.events.SecurityErrorEvent;
-	import flash.events.StatusEvent;
-	import flash.net.LocalConnection;
-	import flash.utils.clearInterval;
-	import flash.utils.setInterval;
-	
-	import system.Reflection;
-	
-	import vegas.logging.LogEventLevel;
-	import vegas.logging.targets.LineFormattedTarget;	
+    import flash.events.SecurityErrorEvent;
+    import flash.events.StatusEvent;
+    import flash.net.LocalConnection;
+    import flash.utils.clearInterval;
+    import flash.utils.setInterval;
+    
+    import system.Reflection;
+    
+    import vegas.logging.LogEventLevel;
+    import vegas.logging.targets.LineFormattedTarget;    
 
-	/**
+    /**
 	 * Provides a logger target that uses the AirLogger console to output log messages. 
 	 * See the AirLogger page project : <a href="http://code.google.com/p/airlogger/">http://code.google.com/p/airlogger/</a>
 	 * @author eKameleon
@@ -356,7 +356,8 @@ package vegas.logging.targets
 		/**
 		 * Returns the name of the in local connection.
 		 * @return the name of the in local connection.
-		 */
+         * @private
+         */
 		private function _getInConnectionName( id:String="" ):String
 		{	
 			return LOCAL_CONNECTION_ID + id + IN_SUFFIX ;
@@ -365,7 +366,8 @@ package vegas.logging.targets
 		/**
 		 * Returns the name of the out local connection.
 		 * @return the name of the out local connection.
-		 */
+         * @private
+         */
 		private function _getOutConnectionName ( id:String="" ) : String
 		{
 			return LOCAL_CONNECTION_ID + id + OUT_SUFFIX ;
@@ -373,7 +375,8 @@ package vegas.logging.targets
 		
 		/**
 		 * Invoked when the security of the LocalConnection is changed.
-		 */
+         * @private
+         */
 		private function _securityError( event:SecurityErrorEvent ):void
 		{
 			trace( this + " security error : " + event ) ;
@@ -382,7 +385,8 @@ package vegas.logging.targets
 		
 		/**
 		 * Send the message to the console or bufferize the message if the console isn't connected.
-		 */
+         * @private
+         */
 		private function _send ( oMessage:* ):void
 		{
 			if( _bIdentified )
@@ -403,11 +407,18 @@ package vegas.logging.targets
 		}		
 		
 		/**
-		 * Invoked when the status of the LocalConnection is changed.
+		 * @private
 		 */
 		private function _status( event:StatusEvent ):void 
 		{
-			dispatchEvent( event ) ;
+			if ( event.level == "error" )
+			{
+				// hack with FP < 9.0.124
+			}
+			else
+			{
+                dispatchEvent( event ) ;
+			}
 		}
 
 	}
