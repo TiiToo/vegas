@@ -37,7 +37,8 @@ package andromeda.ioc.net
     import andromeda.process.Sequencer;
     import andromeda.process.SimpleAction;
     
-    import vegas.core.IFactory;    
+    import vegas.core.IFactory;
+    import vegas.data.map.HashMap;    
 
     /**
      * This loader object load an external IoC context and this dependencies and fill the IoC container.
@@ -54,11 +55,13 @@ package andromeda.ioc.net
         public function ObjectFactoryLoader( context:String=null , path:String="" , factory:ObjectFactory = null )
         {
             
-            this.context        = context ;
-            this.factory        = factory ;
-            this.path           = path    ;
+            this.context  = context ;
+            this.factory  = factory ;
+            this.path     = path    ;
             
-            sequencer          = new Sequencer() ;            
+            _resources    = new HashMap() ; 
+            
+            sequencer     = new Sequencer() ;            
             
             sequencer.addEventListener( ActionEvent.FINISH   , _finishSequencer   , false, 0 , true ) ;
             sequencer.addEventListener( ActionEvent.PROGRESS , _progressSequencer , false, 0 , true ) ;
@@ -115,6 +118,7 @@ package andromeda.ioc.net
         {
         	objects  = [] ;
             _first   = true ;
+            _resources.clear() ;
             sequencer.clear() ;
         }
         
@@ -243,7 +247,11 @@ package andromeda.ioc.net
         {
             if ( resource != null && resource.type != null )
             {
-                return sequencer.addAction( resource.create() as CoreActionLoader ) ;
+            	var loader:CoreActionLoader = resource.create() as CoreActionLoader ;
+            	
+            	_resources.put( loader , resource ) ;
+            	
+                return sequencer.addAction( loader ) ;
             }
             else
             {
@@ -272,7 +280,64 @@ package andromeda.ioc.net
          * @private
          */
         private var _isRegister:Boolean ;
-                        
+            
+        /**
+         * @private
+         */
+        private var _resources:HashMap ;
+        
+        /**
+         * @private
+         */
+        private function _checkContext( o:* ):void
+        {
+
+            // trace( this + " progress data : " + eden.serialize( data )) ;
+                
+            // configuration 
+                
+            if ( _first )
+            {
+                _first = false ;    
+                var config:Object = o[ ObjectAttribute.CONFIGURATION  ] ;
+                if ( config != null )
+                {
+                    factory.config.initialize( config ) ;    
+                }
+            }
+            
+            var a:Array ;
+                
+            // objects : the current object definitions
+                
+            a = o[ ObjectAttribute.OBJECTS ] as Array ;
+            if ( a != null && a.length > 0 )
+            {
+                objects.unshift.apply( objects , a ) ;
+            }                     
+                          
+            // imports
+                
+            var size:int ;
+            var resource:ObjectResource ;
+                    
+            a = o[ ObjectAttribute.IMPORTS ] as Array ;
+                                
+            if ( a != null && a.length > 0 )
+            {
+                size = a.length ;
+                while ( --size > -1 )
+                {
+                    resource = ObjectResourceBuilder.get( a[size] ) ;
+                    if ( resource != null )
+                    {
+                        resource.owner = factory ;
+                        _imports.push( resource ) ;
+                    }
+                }
+            }
+        }
+                    
         /**
          * @private
          */
@@ -320,71 +385,32 @@ package andromeda.ioc.net
                 getLogger().debug(this + " progress sequencer : " + e) ;
             }
             
-            var action:ActionURLLoader = sequencer.getCurrent() as ActionURLLoader ;
+            var current:* = sequencer.getCurrent() ;
             
-            // trace(this + " progress :: + " + action.request.url ) ;
+            var resource:ObjectResource = _resources.remove(current) as ObjectResource ;
             
-            try
+            // trace(this + " progress :: + " + resource + " :: " + _resources.size() ) ;
+            
+            if ( resource != null && resource is ContextResource )
             {
             
-                var data:Object = action.data  ;
-                
-                // trace( this + " progress data : " + eden.serialize( data )) ;
-                
-                // configuration 
-                
-                if ( _first )
+                var action:ActionURLLoader = current as ActionURLLoader ;
+            
+                // trace(this + " progress :: + " + action.request.url ) ;
+            
+                try
                 {
-                    
-                    _first = false ;    
-                    
-                    var config:Object = data[ ObjectAttribute.CONFIGURATION  ] ;
-                    
-                    if ( config != null )
-                    {
-                        factory.config.initialize( config ) ;    
-                    }
-                    
+                    _checkContext( action.data ) ;
                 }
-                
-                // objects : the current object definitions
-                
-                var o:Array = data[ ObjectAttribute.OBJECTS ] as Array ;
-                if ( o != null && o.length > 0 )
+                catch( error:Error )
                 {
-                    objects.unshift.apply( objects , o ) ;
-                }                     
-                          
-                // imports
-                
-                var resource:ObjectResource ;
-                
-                var size:int ;
-                
-                var a:Array = data[ ObjectAttribute.IMPORTS ] as Array ;
-                                
-                if ( a != null && a.length > 0 )
-                {
-                    size = a.length ;
-                    while ( --size > -1 )
+                    if ( verbose )
                     {
-                        resource = ObjectResourceBuilder.get( a[size] ) ;
-                        if ( resource != null )
-                        {
-                        	resource.owner = factory ;
-                            _imports.push( resource ) ;
-                        }
+                        getLogger().error( this + " failed : " + error ) ;
                     }
                 }
-                
             }
-            catch( error:Error )
-            {
-                if ( verbose )
-                {
-                    getLogger().error( this + " failed : " + error ) ;
-                }
-            }
+            
         }
         
         /**
