@@ -30,10 +30,10 @@ package andromeda.ioc.factory
     import flash.system.ApplicationDomain;
     import flash.system.LoaderContext;
     
-    import andromeda.ioc.core.AssemblyEntry;
     import andromeda.ioc.core.ObjectAttribute;
     import andromeda.ioc.core.ObjectDefinition;
     import andromeda.ioc.factory.ObjectFactory;
+    import andromeda.ioc.io.AssemblyEntry;
     
     import vegas.data.map.HashMap;
     import vegas.data.queue.LinearQueue;

@@ -20,10 +20,12 @@
   Contributor(s) :
   
 */
-package andromeda.ioc.core 
+package andromeda.ioc.io 
 {
-    import vegas.core.CoreObject;
+    import andromeda.ioc.core.ObjectDefinition;
     
+    import vegas.core.CoreObject;    
+
     /**
      * This entry contains an ObjectDefinition and this assemblyName value. 
      * @author eKameleon
