@@ -305,9 +305,9 @@ package fl.video
 
 			// intervals
 			_timeoutTimer = new Timer(DEFAULT_TIMEOUT);
-			_timeoutTimer.addEventListener(TimerEvent.TIMER, this._onFMSConnectTimeOut);
+			_timeoutTimer.addEventListener(TimerEvent.TIMER, this["_onFMSConnectTimeOut"]);
 			_tryNCTimer = new Timer(1500);
-			_tryNCTimer.addEventListener(TimerEvent.TIMER, this.nextConnect);
+			_tryNCTimer.addEventListener(TimerEvent.TIMER, this["nextConnect"]);
 
 			initNCInfo();
 			initOtherInfo();
@@ -1484,7 +1484,7 @@ package fl.video
 		{
 			var i:uint;
 			var l:uint = p_str.length;
-			var startIndex:int = 0
+			var startIndex:int = 0;
 			var endIndex:int = l;
 			for (i = 0; i < l; i++) {
 				switch (p_str.charCodeAt(i)) {

@@ -1084,7 +1084,7 @@ package fl.video
 				onButton = setupButton(null, "captionButtonOn", _captionsOn);
 				offButton = setupButton(null, "captionButtonOff", !_captionsOn);
 
-			} catch (e:Error) {
+			} catch (er:Error) {
 			}
 		}
 
@@ -1258,7 +1258,7 @@ package fl.video
 				ctrlData.enabled = true;
 			}
 			uiMgr.addButtonControl(ctrl);
-			ctrl.removeEventListener(MouseEvent.CLICK, uiMgr.handleButtonEvent);
+			ctrl.removeEventListener(MouseEvent.CLICK, uiMgr["handleButtonEvent"]);
 			ctrl.addEventListener(MouseEvent.CLICK, handleButtonClick);
 			ctrl.visible = vis;
 			if (ctrl.parent != captionToggleButton) {
@@ -1444,7 +1444,7 @@ package fl.video
 			}
 			var vp:VideoPlayer = _flvPlayback.getVideoPlayer(_videoPlayerIndex);
 			var newPoint:Point = _flvPlayback.localToGlobal(new Point(vp.x, vp.y));
-			var newRect:Rectangle = new Rectangle(newPoint.x, newPoint.y, vp.width, vp.height)
+			var newRect:Rectangle = new Rectangle(newPoint.x, newPoint.y, vp.width, vp.height);
 			if ( !isNaN(prevCaptionTargetHeight) &&
 			     prevCaptionTargetHeight == _captionTarget.height &&
 			     flvPos != null && flvPos.equals(newRect) ) {

@@ -1,4 +1,4 @@
-// Copyright � 2004-2007. Adobe Systems Incorporated. All Rights Reserved.
+﻿// Copyright � 2004-2007. Adobe Systems Incorporated. All Rights Reserved.
 
 //Examples for this package are untested for Blaze as of 10/02/2006. 
 //They can be found here: main\player\FlashPlayer\avmglue\ASDocs\AS3\Process\fl\video\
@@ -232,6 +232,6 @@ package fl.video {
 		 */
 		flvplayback_internal static var EXEC_QUEUED_CMD:String = "execQueuedCmd";
 
-	}; // class VideoState
+	}
 
-}; // package fl.video
+}

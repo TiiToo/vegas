@@ -1104,7 +1104,7 @@ package fl.video
 				for (var j:int = 0; j < childrenLen; j++) {
 					var child:XML = children[j];
 					if (child.nodeKind() != "element") continue;
-					var childName:String = child.localName();
+					var childName:String = child.localName() as String ;
 					if (!legalNodes[childName]) {
 						throw new VideoError(VideoError.INVALID_XML, "URL: \"" + _url + "\" element " + childName + " not supported in " + parentNode.localName() + " tag.");
 					}

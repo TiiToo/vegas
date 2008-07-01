@@ -167,8 +167,10 @@ package fl.video
 		flvplayback_internal var width:int;
 		flvplayback_internal var height:int;
 		flvplayback_internal var videoTags:Array;
+        
+        private static const SHORT_VERSION:String;
 
-		private var _url:String;
+        private var _url:String;
 
 		/**
          * constructor
@@ -356,7 +358,7 @@ package fl.video
 				throw new VideoError(VideoError.INVALID_XML, "URL: \"" + _url + "\" Tag " + parentNode.localName() + " is required to contain exactly one tag.");
 			}
 			var child:XML = parentNode.*[0];
-			var childName:String = child.localName();
+			var childName:String = child.localName() as String ;
 			switch (childName) {
 			case "switch":
 				parseSwitch(child);
@@ -476,7 +478,7 @@ package fl.video
 				//debugTrace("Found node of type " + child.nodeKind());
 				//endif
 				if (child.nodeKind() != kind) continue;
-				var childName:String = child.localName();
+				var childName:String = child.localName() as String ;
 				//ifdef DEBUG
 				//debugTrace("Child element name " + childName);
 				//endif
