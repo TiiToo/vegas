@@ -384,8 +384,9 @@ package andromeda.ioc.factory
             	{
             		(instance as ILockable).lock() ;
             	}
-            	           
+            	
                 populateProperties   ( instance , definition.getProperties() );
+                
                 invokeMethods        ( instance , definition.getMethods() ) ;
                 
                 if ( flag )
@@ -647,8 +648,8 @@ package andromeda.ioc.factory
                     {
                         value = eval( value , prop.evaluators  ) ;
                     }                    
-                    
-                    if ( prop.policy == ObjectAttribute.REFERENCE && containsObject( value as String ) )
+                                        
+                    if ( prop.policy == ObjectAttribute.REFERENCE && value is String )
                     {
                         o[ name ] = _re.eval( value as String ) ;
                     }
