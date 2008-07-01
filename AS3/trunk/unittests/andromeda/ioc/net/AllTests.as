@@ -20,16 +20,10 @@
   Contributor(s) :
   
 */
-package andromeda.ioc  
+package andromeda.ioc.net
 {
-    import andromeda.ioc.core.AllTests;
-    import andromeda.ioc.evaluators.AllTests;    
-    import andromeda.ioc.factory.AllTests;
-    import andromeda.ioc.io.AllTests;
-    import andromeda.ioc.net.AllTests;
-    
     import buRRRn.ASTUce.framework.ITest;
-    import buRRRn.ASTUce.framework.TestSuite;	
+    import buRRRn.ASTUce.framework.TestSuite;    
 
     /**
 	 * This class launch all tests.
@@ -44,14 +38,7 @@ package andromeda.ioc
         public static function suite():ITest
         {
             
-            var suite:TestSuite = new TestSuite( "andromeda.ioc" );
-
-            suite.addTest( andromeda.ioc.core.AllTests.suite() ) ;
-            suite.addTest( andromeda.ioc.evaluators.AllTests.suite() ) ;
-            suite.addTest( andromeda.ioc.factory.AllTests.suite() ) ;
-            suite.addTest( andromeda.ioc.io.AllTests.suite() ) ;
-            suite.addTest( andromeda.ioc.net.AllTests.suite() ) ;
-
+            var suite:TestSuite = new TestSuite( "andromeda.ioc.net" );
             return suite;
             
         }

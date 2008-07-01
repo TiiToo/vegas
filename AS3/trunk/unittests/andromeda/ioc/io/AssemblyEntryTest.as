@@ -20,9 +20,11 @@
   Contributor(s) :
   
 */
-package andromeda.ioc.core 
+package andromeda.ioc.io 
 {
-    import buRRRn.ASTUce.framework.TestCase;                    				
+    import andromeda.ioc.core.ObjectDefinition;
+    
+    import buRRRn.ASTUce.framework.TestCase;                        				
 
     /**
      * Test the AssemblyTest instance.

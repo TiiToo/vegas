@@ -40,7 +40,6 @@ package andromeda.ioc.core
             
             var suite:TestSuite = new TestSuite( "andromeda.ioc.core" );
             
-            suite.addTestSuite( AssemblyEntryTest ) ;
             // FIXME suite.addTestSuite( IObjectDefinitionTest ) ;
             // FIXME suite.addTestSuite( IObjectDefinitionContainerTest ) ;
             // FIXME suite.addTestSuite( ObjectAttributeTest ) ;
