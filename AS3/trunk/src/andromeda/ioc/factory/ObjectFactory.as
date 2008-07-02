@@ -482,11 +482,7 @@ package andromeda.ioc.factory
             }
             else if ( strategy is ObjectFactoryReference )
             {
-            	factory = (strategy as ObjectFactoryReference).ref ;
-            	if ( factory != null && containsObjectDefinition(factory) )
-            	{
-                    instance = getObject( factory ) ;
-            	}
+            	instance = _re.eval((strategy as ObjectFactoryReference).ref ) ;
             }            
             return instance ;
         }
