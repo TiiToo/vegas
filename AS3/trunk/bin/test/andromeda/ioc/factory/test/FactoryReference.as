@@ -20,7 +20,12 @@
          * The factory reference of this object.
          */
         public var factory:ObjectFactory ;
-                
+        
+        /**
+         * The root reference of the application.
+         */
+        public var root:* ;
+        
     }
 
 }

@@ -51,7 +51,7 @@ package andromeda.ioc.evaluators
         /**
          * The IObjectFactory use in the evaluator.
          */
-        public function get factory():*
+        public function get factory():IObjectFactory
         {
         	return _factory ;
         }
@@ -59,10 +59,15 @@ package andromeda.ioc.evaluators
         /**
          * @private
          */
-        public function set factory( factory:* ):void
+        public function set factory( factory:IObjectFactory ):void
         {
         	_factory = factory ;
         }        
+        
+        /**
+         * The reference pattern who represents the current root reference of the application defines in the config object in the factory.
+         */
+        public var rootPattern:String = "#root" ;
         
         /**
          * The separator of the expression evaluator.
@@ -93,6 +98,10 @@ package andromeda.ioc.evaluators
             		if ( exp == thisPattern )
             		{
             			return factory ;
+            		}
+            		else if ( exp == rootPattern )
+            		{
+                        return factory.config.root ;
             		}
             		else
             		{
@@ -125,6 +134,5 @@ package andromeda.ioc.evaluators
          * @private
          */
         private var _propEvaluator:PropertyEvaluator = new PropertyEvaluator() ;
-        
     }
 }

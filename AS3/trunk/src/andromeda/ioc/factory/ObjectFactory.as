@@ -151,7 +151,7 @@ package andromeda.ioc.factory
          * The maps of all objects in the container.
          */
         public var singletons:HashMap ;
-		        
+		
         /**
          * Returns <code class="prettyprint">true</code> if the referencial contains the specified object.
          * @param id The 'id' of the object to search.

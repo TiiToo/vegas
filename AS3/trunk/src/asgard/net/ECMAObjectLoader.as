@@ -22,6 +22,8 @@
 */
 package asgard.net 
 {
+    import flash.display.DisplayObjectContainer;
+    
     import andromeda.ioc.factory.ECMAObjectFactory;
     import andromeda.ioc.factory.ObjectFactory;
     import andromeda.ioc.io.ObjectResourceBuilder;
@@ -246,7 +248,24 @@ package asgard.net
                 _localization.addEventListener( LocalizationEvent.CHANGE , updateLocalization , false, 0, true ) ;	
             }
             updateLocalization() ;
-        }  
+        }
+        
+        /**
+         * The root reference of the application. 
+         * This property is optional and can be target in the IoC factory with the "ref" attribute with the value "#root".
+         */
+        public function get root():DisplayObjectContainer
+        {
+        	return factory.config.root as DisplayObjectContainer ;
+        }
+		
+        /**
+         * @private
+         */
+        public function set root( target:DisplayObjectContainer ):void
+        {
+           factory.config.root = target ;
+        }		
 		
         /**
          * Invoked when the localization of the application is changed or to update the locale object of 

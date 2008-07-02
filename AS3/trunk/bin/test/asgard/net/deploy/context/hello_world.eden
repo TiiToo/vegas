@@ -1,6 +1,5 @@
 objects =
 [
-    
     {
         id        : "my_format" ,
         type      : "flash.text.TextFormat" ,
@@ -19,4 +18,15 @@ objects =
             { name : "y"                 , value  : 10                } 
         ]
     }
+    ,
+    {
+        id               : "root" ,
+        type             : "flash.display.MovieClip"  ,
+        factoryReference : "#root" ,
+        singleton        : true ,
+        methods          : 
+        [
+            { name : "addChild" , arguments  : [ { ref:"my_field" } ]} 
+        ]
+    }    
 ] ;

@@ -152,7 +152,13 @@ package andromeda.ioc.factory
          * Indicates if all the ILockable objects initialized in the object definitions in the factory must be locked during the invokation of this methods and the initialization of this properties.
          */
         public var lock:Boolean ;
-           
+        
+        /**
+         * The root reference of the application. 
+         * This property is optional and can be target in the IoC factory with the "ref" attribute with the value "#root".
+         */
+        public var root:* ;
+        
         /**
          * Determinates the typeAliases reference of this config object.
          * <p>The setter of this virtual property can be populated with a TypeAliases instance or an Array of typeAliases items.</p>
