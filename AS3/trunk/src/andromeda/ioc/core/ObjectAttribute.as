@@ -81,6 +81,11 @@ package andromeda.ioc.core
         public static const LAZY_INIT:String = "lazyInit" ;
         
         /**
+         * Defines the label of the "listeners" name property of the object.
+         */        
+        public static const LISTENERS:String = "listeners" ;        
+        
+        /**
          * Defines the attribute name of the "locale" object in the configuration of the ioc factory and the object definition "arguments" and "properties".
          */
         public static const LOCALE:String = "locale" ;         
