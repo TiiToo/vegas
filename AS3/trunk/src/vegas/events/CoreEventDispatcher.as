@@ -22,14 +22,14 @@
 */
 package vegas.events
 {
-	import flash.events.Event;
-	
-	import system.Reflection;
-	
-	import vegas.core.CoreObject;
-	import vegas.core.ILockable;	
+    import flash.events.Event;
+    
+    import system.Reflection;
+    
+    import vegas.core.CoreObject;
+    import vegas.core.ILockable;	
 
-	/**
+    /**
  	 * This abstract class is used to create concrete <code class="prettyprint">IEventDispatcher</code> implementations. This class used an internal <code class="prettyprint">EventDispatcher</code> object by composition.
  	 * <p>You can overrides the internal <code class="prettyprint">EventDispatcher</code> instance with the <code class="prettyprint">initEventDispatcher</code> or the <code class="prettyprint">setEventDispatcher</code> methods. Used a global singleton reference in this method to register all events in a <code class="prettyprint">FrontController</code> for example.</p>
 	 * @author eKameleon
@@ -45,6 +45,16 @@ package vegas.events
         public function CoreEventDispatcher( bGlobal:Boolean = false , sChannel:String = null ) 
         {
     		setGlobal( bGlobal , sChannel ) ;	
+        }
+        
+        /**
+         * Indicates the channel of this dispatcher if this instance is global.
+         * #see isGlobal
+         * #see setGlobal
+         */
+        public function get channel():String
+        {
+            return 	getIsGlobal() ? _dispatcher.getName() : null ;
         }
        
 		/**

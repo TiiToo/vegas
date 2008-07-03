@@ -34,7 +34,7 @@ package andromeda.ioc.io
     
     import asgard.net.ParserLoader;
     
-    import vegas.util.ClassUtil;    
+    import system.Reflection;    
 
     /**
      * This value object contains all information about a dll to load in the application. 
@@ -101,7 +101,7 @@ package andromeda.ioc.io
                 
                 if ( clazz != null  )
                 {
-                    if ( ClassUtil.extendsClass(clazz, Loader))
+                    if ( Reflection.getClassInfo(clazz).inheritFrom(Loader) ) 
                     {
                         currentLoader = new clazz() as Loader ;
                     }

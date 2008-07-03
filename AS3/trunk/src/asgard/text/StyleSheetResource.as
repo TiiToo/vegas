@@ -33,7 +33,7 @@ package asgard.text
     import andromeda.process.ActionURLLoader;
     import andromeda.process.CoreActionLoader;
     
-    import vegas.util.ClassUtil;    
+    import system.Reflection;    
 
     /**
      * This resource object contains all information about a stylesheet file to load in the application.
@@ -98,7 +98,7 @@ package asgard.text
                         
                         if ( clazz != null  )
                         {
-                            if ( ClassUtil.extendsClass(clazz, StyleSheet))
+                            if ( Reflection.getClassInfo(clazz).inheritFrom(StyleSheet) )  
                             {
                                 ss = new clazz() as StyleSheet ;
                             }

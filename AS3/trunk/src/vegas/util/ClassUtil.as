@@ -23,9 +23,6 @@ Contributor(s) :
 
 package vegas.util
 {
-    import flash.utils.describeType;
-    import flash.utils.getQualifiedClassName;
-    
     import system.Reflection;
     
     import vegas.core.HashCode;
@@ -79,34 +76,8 @@ package vegas.util
 			}
 			return instance ;
 		}
-		
-		/**
-		 * Returns <code class="prettyprint">true</code> if the first specified object extends the second specified parent Class.
-		 * @return <code class="prettyprint">true</code> if the first specified object extends the second specified parent Class.
-		 */
-		public static function extendsClass( clazz:Class , parent:Class ):Boolean
-		{
-			if ( clazz == null || parent == null )
-			{
-				return false ;
-			}
-			return describeType(clazz).factory.extendsClass.( @type == getQualifiedClassName( parent ) ).length() > 0  ;
-		}		
-		
-		/**
-		 * Returns <code class="prettyprint">true</code> if the specified first Class in argument implements the specified interface.
-		 * @return <code class="prettyprint">true</code> if the specified first Class in argument implements the specified interface.
-		 */
-		public static function implementsInterface( clazz:Class , interf:Class ):Boolean
-		{
-			if ( clazz == null || interf == null )
-			{
-				return false ;
-			}
-			return describeType(clazz).factory.implementsInterface.( @type == getQualifiedClassName( interf ) ).length() > 0  ;
-		}
-
-		/**
+        
+        /**
 		 * Returns the unique name of the specified instance in argument.
 		 * @return the unique name of the specified instance in argument.
 		 */

@@ -29,9 +29,10 @@ package asgard.text
     import asgard.display.CoreLoader;
     import asgard.events.FontEvent;
     
+    import system.Reflection;
+    
     import vegas.data.iterator.Iterator;
-    import vegas.data.sets.HashSet;
-    import vegas.util.ClassUtil;    
+    import vegas.data.sets.HashSet;    
 
     /**
      * This loader load an external swf who contains embed fonts.
@@ -165,7 +166,7 @@ package asgard.text
                     clazz = contentLoaderInfo.applicationDomain.getDefinition( name ) as Class ;
                     if ( clazz != null )
                     {
-                        if ( ClassUtil.extendsClass( clazz, Font ) )
+                        if ( Reflection.getClassInfo(clazz).inheritFrom(Font) )  
                         {
                             Font.registerFont( clazz ) ;
                             font = new clazz() as Font ;

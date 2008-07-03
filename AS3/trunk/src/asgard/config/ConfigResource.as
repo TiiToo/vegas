@@ -29,7 +29,7 @@ package asgard.config
     import andromeda.process.ActionURLLoader;
     import andromeda.process.CoreActionLoader;
     
-    import vegas.util.ClassUtil;    
+    import system.Reflection;    
 
     /**
      * This resource object contains all information about a config file to load in the application.
@@ -101,7 +101,7 @@ package asgard.config
                 
                 if ( clazz != null  )
                 {
-                    if ( ClassUtil.extendsClass(clazz, AbstractConfigLoader))
+                    if ( Reflection.getClassInfo(clazz).inheritFrom(AbstractConfigLoader) )                	
                     {
                         action = new clazz() as AbstractConfigLoader ;
                     }

@@ -31,7 +31,7 @@ package andromeda.ioc.io
     import asgard.net.EdenLoader;
     import asgard.net.ParserLoader;
     
-    import vegas.util.ClassUtil;    
+    import system.Reflection;    
 
     /**
      * This resource object contains all information about a context file to load in the application.
@@ -95,7 +95,7 @@ package andromeda.ioc.io
         		
         		if ( clazz != null  )
         		{
-                    if ( ClassUtil.extendsClass(clazz, ParserLoader))
+                    if ( Reflection.getClassInfo(clazz).inheritFrom(ParserLoader) )  
                     {
                         currentLoader = new clazz() as ParserLoader ;
                     }

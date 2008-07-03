@@ -38,9 +38,7 @@ package lunas.core
     import pegas.transitions.FrameTimer;
     
     import system.Reflection;
-    import system.numeric.Mathematics;
-    
-    import vegas.util.ClassUtil;    
+    import system.numeric.Mathematics;    
 
     /**
 	 * This class provides a skeletal implementation of all the components in Lunas, to minimize the effort required to implement this interface.
@@ -71,13 +69,13 @@ package lunas.core
 			initialize() ;
 			
 			var cb:Class = getBuilderRenderer() ; 
-			if ( ClassUtil.implementsInterface( cb , IBuilder ) )  
+            if ( cb != null && Reflection.getClassInfo(cb).hasInterface(IBuilder) )  			
 			{
 				builder = ( new cb(this) as IBuilder ) ;
 			}
 					
 			var cs:Class = getStyleRenderer() ;
-			if ( ClassUtil.implementsInterface( cs , IStyle ) ) 
+            if ( cs != null && Reflection.getClassInfo(cs).hasInterface(IStyle) ) 
 			{
 				var path:String = Reflection.getClassPath(this) ;
 				if ( StyleCollector.contains( path ) )

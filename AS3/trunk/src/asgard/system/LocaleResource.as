@@ -26,10 +26,9 @@ package asgard.system
     
     import andromeda.ioc.io.ObjectResource;
     import andromeda.ioc.io.ObjectResourceType;
-    import andromeda.process.ActionURLLoader;
     import andromeda.process.CoreActionLoader;
     
-    import vegas.util.ClassUtil;    
+    import system.Reflection;    
 
     /**
      * This resource object contains all information about a localization file to load in the application.
@@ -99,7 +98,7 @@ package asgard.system
                 }
                 if ( clazz != null  )
                 {
-                    if ( ClassUtil.extendsClass(clazz, AbstractLocalizationLoader))
+                    if ( Reflection.getClassInfo(clazz).inheritFrom(AbstractLocalizationLoader) )
                     {
                         action = new clazz() as AbstractLocalizationLoader ;
                     }

@@ -25,8 +25,9 @@ package andromeda.ioc.io
     import andromeda.ioc.core.ObjectAttribute;
     import andromeda.model.AbstractModel;
     
-    import vegas.data.map.HashMap;
-    import vegas.util.ClassUtil;    
+    import system.Reflection;
+    
+    import vegas.data.map.HashMap;    
 
     /**
      * This tool class is a helper to create an ObjectResource object with a generic object in the IoC context.
@@ -48,7 +49,7 @@ package andromeda.ioc.io
     	 */
     	public function addObjectResource( type:String , clazz:Class ):Boolean
     	{
-    		if ( ClassUtil.extendsClass(clazz, ObjectResource) )
+            if ( Reflection.getClassInfo(clazz).inheritFrom(ObjectResource) )  
     		{
     			_map.put( type, clazz ) ;
     			return true ;
