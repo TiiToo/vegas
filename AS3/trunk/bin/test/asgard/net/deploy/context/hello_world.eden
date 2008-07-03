@@ -20,6 +20,18 @@ objects =
     }
     ,
     {
+        id               : "stage" ,
+        type             : "flash.display.Stage"  ,
+        factoryReference : "#stage" ,
+        singleton        : true ,
+        properties       : 
+        [
+			{ name : "align"     , value:"tl"      } 
+            { name : "scaleMode" , value:"noScale" }  
+        ]
+    }  
+    ,
+    {
         id               : "root" ,
         type             : "flash.display.MovieClip"  ,
         factoryReference : "#root" ,

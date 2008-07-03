@@ -22,6 +22,8 @@
 */
 package andromeda.ioc.evaluators 
 {
+    import flash.display.DisplayObjectContainer;
+    
     import andromeda.ioc.factory.IObjectFactory;
     
     import system.evaluators.IEvaluator;
@@ -75,6 +77,11 @@ package andromeda.ioc.evaluators
         public var separator:String = "." ;
         
         /**
+         * The reference pattern who represents the current stage reference of the application defines in the config object in the factory.
+         */
+        public var stagePattern:String = "#stage" ;        
+        
+        /**
          * The reference pattern who represents the current factory.
          */
         public var thisPattern:String = "#this" ;
@@ -95,32 +102,47 @@ package andromeda.ioc.evaluators
             	
             	if ( exp.length > 0 )
             	{
-            		if ( exp == thisPattern )
+            		switch( exp )
             		{
-            			return factory ;
-            		}
-            		else if ( exp == rootPattern )
-            		{
-                        return factory.config.root ;
-            		}
-            		else
-            		{
-                        var members:Array = exp.split( separator ) ;
-                        if ( members.length > 0 )
+            			case thisPattern :
                         {
-                            var ref:String = members.shift() ;
-            			    var value:*    = factory.getObject( ref ) ;
-                            if ( value != null && members.length > 0 )
-                            {
-            				    _propEvaluator.target = value ;
-            				    value = _propEvaluator.eval( members.join(".") ) ;
-            				    _propEvaluator.target = null ;
-                            }
-            			    return value ;
+                            return factory ;
                         }
-            		}
-                }
-                
+                        case rootPattern  :
+                        case stagePattern :
+            		    {
+                            var root:DisplayObjectContainer = factory.config.root as DisplayObjectContainer ;
+                            if ( root == null )
+                            {
+                            	return null ;
+                            }
+            			    if ( exp == rootPattern )
+            			    {
+                			     return root ;
+                            }
+            			    else
+            			    { 
+                                return root.stage ;
+            			    }
+            		    }
+                        default :
+                        {
+                            var members:Array = exp.split( separator ) ;
+                            if ( members.length > 0 )
+                            {
+                                var ref:String = members.shift() ;
+                                var value:*    = factory.getObject( ref ) ;
+                                if ( value != null && members.length > 0 )
+                                {
+                				    _propEvaluator.target = value ;
+                                    value = _propEvaluator.eval( members.join(".") ) ;
+                                    _propEvaluator.target = null ;
+                                }
+                                return value ;
+                            }
+                        }
+                    }
+            	}
             }        	
             return undefineable ;
         }
