@@ -78,7 +78,7 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
              singleton : true ,
              listeners :
              [
-                 { dispatcher:"dispatcher1" , type:"change" , method:"handleEvent" } , 
+                 { dispatcher:"dispatcher1" , type:"change" , method:"handleEvent" , useCapture:false, priority:0 , useWeakReference:true } ,  
                  { dispatcher:"dispatcher2" , type:"change" } 
              ]
          }    

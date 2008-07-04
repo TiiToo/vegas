@@ -1093,7 +1093,7 @@ package buRRRn.eden
          * Scans the Functions.
          */
         public function scanFunction( fcnPath:String, pool:*, ref:* = null ):*
-        {
+            {
             
             debug( "scanFunction( " + fcnPath + " )" );
             
@@ -1105,18 +1105,20 @@ package buRRRn.eden
             var isClass:Boolean = pool[ fcnPath ] is Class;
             
             if( fcnPath.indexOf( "." ) > -1 )
-            {
+                {
                 fcnName = fcnPath.split( "." ).pop( );
-            }
+                }
             else
-            {
+                {
                 fcnName = fcnPath;
-            }
+                }
             
             if( !isClass )
-            {
+                {
                 fcnPath = fcnPath.split( "." + fcnName ).join( "" );
-            }
+                }
+            
+            var foundEndParenthesis:Boolean ;
             
             scanWhiteSpace( );
             next( );
@@ -1126,6 +1128,7 @@ package buRRRn.eden
                 {
                 if( ch == ")" )
                     {
+                    foundEndParenthesis = true ;
                     next( );
                     break;
                     }
@@ -1139,7 +1142,7 @@ package buRRRn.eden
                     scanSeparators( );
                     }
                     
-                if ( pos == source.length )
+                if ( pos == source.length && ( ch != ")" ) )
                     {
                     log("unterminated parenthesis, check your function/constructor \"" + fcnPath + "\"" ) ;
                     return config.undefineable ;
@@ -1147,16 +1150,22 @@ package buRRRn.eden
                     
                 }
             
+            if ( ! foundEndParenthesis )
+                {
+                log( "unterminated parenthesis, check your function/constructor \"" + fcnPath + "\"" ) ;
+                    return config.undefineable ;
+                }
+                
             if( isClass || (fcnPath == fcnName) )
-            {
+                {
                 fcnObj = pool[ fcnPath ];
                 fcnObjScope = null;
-            }
+                }
             else
-            {
+                {
                 fcnObj = pool[ fcnPath ][ fcnName ];
                 fcnObjScope = pool[ fcnPath ];
-            }
+                }
             
             /*
             if( config.security && !isAuthorized( fcnPath ) )
@@ -1622,6 +1631,17 @@ package buRRRn.eden
         private var _ORC:String = "\uFFFC";
         
         /**
+         * A pool contains string indexes to object references (yeah this could be surely optimized with a Dictionnary)
+         * <p><b>Example :</b></p>
+         * <pre class="prettyprint">
+         * _globalPool[ "buRRRn.eden.config" ] = buRRRn.eden.config;
+         * _localPool[ "x.y.z" ] = localScope.x.y.z;
+         * </pre>
+         * @private
+         */
+        private static var _globalPool:Array = [];        
+        
+        /**
          * @private
          */
         private var _singleValue:Boolean = true;
@@ -1635,19 +1655,10 @@ package buRRRn.eden
          * @private
          */
         private var _inConstructor:Boolean = false;
-
-        /* note:
-        a pool contains string indexes to object references
-        (yeah this could be surely optimized with a Dictionnary)
-        ex:
-        (code)
-        _globalPool[ "buRRRn.eden.config" ] = buRRRn.eden.config;
-        _localPool[ "x.y.z" ] = localScope.x.y.z;
-        (end)
-           
+        
+        /**
+         * @private
          */
-        private static var _globalPool:Array = [];
-
         private var _localPool:Array = [];
         
         /**

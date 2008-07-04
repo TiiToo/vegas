@@ -25,7 +25,7 @@ objects =
         arguments  : 
         [ 
             { 
-                value      : "new Date(2007,11,5,10,22,33);" , 
+                value      : "new Date(2007,11,5,10,22,33)" , 
                 evaluators : 
                 [ 
                     new system.evaluators.EdenEvaluator(false) , 
@@ -42,13 +42,13 @@ objects =
         [ 
             { 
 				name       : "scheduledStart" ,
-                value      : "new Date(2008,5,30,10,30,00);" , 
+                value      : "new Date(2008,5,30,10,30,00)" , 
                 evaluators : [ "eden" , "date" ] 
             }
             ,
             { 
 				name       : "scheduledEnd" ,
-                value      : "new Date(2008,5,30,12,40,00);" , 
+                value      : "new Date(2008,5,30,12,40,00)" , 
                 evaluators : 
                 [ 
                     "eden" , 
@@ -68,7 +68,7 @@ objects =
 				arguments  :
 				[
 					{
-						value      : "new Date(2008,5,30,14,00,00);" , 
+						value      : "new Date(2008,5,30,14,00,00)" , 
 						evaluators : 
 						[ 
 							new system.evaluators.EdenEvaluator(false) , 
@@ -77,7 +77,7 @@ objects =
 					}
 					,
 					{ 
-						value      : "new Date(2008,5,30,16,30,00);" , 
+						value      : "new Date(2008,5,30,16,30,00)" , 
 						evaluators : [ "eden" , "date" ] 
 					}
 				]
@@ -102,12 +102,12 @@ objects =
 			arguments  :
 			[
 				{
-					value      : "new Date(2008,6,30,14,00,00);" , 
+					value      : "new Date(2008,6,30,14,00,00)" , 
 					evaluators : [ "eden" , "date" ] 
 				}
 				,
 				{ 
-					value      : "new Date(2008,6,30,16,30,00);" , 
+					value      : "new Date(2008,6,30,16,30,00)" , 
 					evaluators : [ "eden" , "date" ] 
 				}
             ]

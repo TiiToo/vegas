@@ -63,7 +63,7 @@ package andromeda.ioc.core
      *         singleton : true ,
      *         listeners :
      *         [
-     *             { dispatcher:"dispatcher1" , type:"change" , method:"handleEvent" } , 
+     *             { dispatcher:"dispatcher1" , type:"change" , method:"handleEvent" , useCapture:false, priority:0 , useWeakReference:true } ,  
      *             { dispatcher:"dispatcher2" , type:"change" } 
      *         ]
      *     }    
@@ -277,8 +277,6 @@ package andromeda.ioc.core
             }
         	s += "]" ;
         	return s ;
-        	 
-        }  
-                
+        } 
     }
 }
