@@ -38,9 +38,7 @@ package andromeda.ioc.factory
     import vegas.core.Identifiable;
     import vegas.data.Map;
     import vegas.data.map.HashMap;
-    import vegas.errors.NullPointerError;
     import vegas.events.EventListener;
-    import vegas.events.IEventDispatcher;
     import vegas.util.ClassUtil;    
 
     /**
@@ -197,7 +195,7 @@ package andromeda.ioc.factory
                     var definition:IObjectDefinition = getObjectDefinition( id ) ;
                     if ( definition == null )
                     {
-                        throw new NullPointerError( this +  " get( " + id + " ) method failed, the object isn't register in the container.") ; 
+                        throw new Error( this +  " get( " + id + " ) method failed, the object isn't register in the container.") ; 
                     }
                     if ( definition.isSingleton() )
                     {
@@ -540,34 +538,33 @@ package andromeda.ioc.factory
             {
                 return ;
             }
-            var dispatcher:* ;
-            var type:String ;
-            var method:String ;
             var size:uint = listeners.length ;
             if ( size > 0 )
             {
+            	var dispatcher:IEventDispatcher ;
+            	var type:String ;
+            	var method:Function ;
                 var listener:ObjectListener ;        
                 for (var i:uint = 0 ; i<size ; i++) 
                 {
                     try
                     {
                         listener   = listeners[i] as ObjectListener ;     
-                        dispatcher = _re.eval( listener.dispatcher ) as flash.events.IEventDispatcher ;
+                        dispatcher = _re.eval( listener.dispatcher ) as IEventDispatcher ;
                         if ( dispatcher != null && listener.type != null )
                         {
                             type = listener.type ;
-                            if ( o is EventListener && dispatcher is vegas.events.IEventDispatcher )
+                            if ( o is EventListener  )
                             {
-                                (dispatcher as vegas.events.IEventDispatcher).registerEventListener( type , o as EventListener ) ; 
+                                method = ( o as EventListener).handleEvent ; 
                             }                             
-                            else 
+                            else if ( listener.method != null && listener.method in o ) 
                             {
-                                method = listener.method ;
-                                if ( method in o )
-                                {
-                                    dispatcher.addEventListener( type , o[method] ) ;	
-                                }
-                            
+                                method =  o[listener.method] as Function  ;
+                            }
+                            if ( method != null)
+                            {
+                                dispatcher.addEventListener( type , method ) ;	
                             }
                         }
                     }

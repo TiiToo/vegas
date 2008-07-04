@@ -22,10 +22,11 @@
 */
 package andromeda.ioc.core 
 {
-    import buRRRn.eden;                    
+    import buRRRn.eden;                                    
 
     /**
      * This object defines a listener definition in an object definition.
+     * <p><b>Example :</b></p>
      * <pre class="prettyprint">
      * import andromeda.ioc.core.ObjectListener ;
      * 
@@ -39,7 +40,75 @@ package andromeda.ioc.core
      * 
      * trace( listeners ) ; 
      * </pre>
-     * @author eKameleon
+     * Usage, in the IoC factory we can use the "listeners" attribute in the object definition to defines the object like a listener.
+     * <p><b>Example :</b></p>
+     * <pre class="prettyprint">
+     * var context:Object =
+     * [
+     *     { 
+     *         id        : "dispatcher1" ,
+     *         type      : "flash.events.EventDispatcher" ,
+     *         singleton : true
+     *     }
+     *     ,
+     *     { 
+     *         id        : "dispatcher2" ,
+     *         type      : "flash.events.EventDispatcher" ,
+     *         singleton : true
+     *     }
+     *     ,    
+     *     { 
+     *         id        : "listener"   ,
+     *         type      : "test.Listener" ,
+     *         singleton : true ,
+     *         listeners :
+     *         [
+     *             { dispatcher:"dispatcher1" , type:"change" , method:"handleEvent" } , 
+     *             { dispatcher:"dispatcher2" , type:"change" } 
+     *         ]
+     *     }    
+     * ] ;
+     * 
+     * var factory:ECMAObjectFactory = ECMAObjectFactory.getInstance() ;
+     * 
+     * factory.create( context ) ; 
+     * 
+     * // 1 - target the callback "handleEvent" method in the listener object (all objects with methods can be a listener)
+     * 
+     * var dispatcher1:EventDispatcher = factory.getObject("dispatcher1") ;
+     * 
+     * dispatcher1.dispatchEvent( new Event( "change" ) ) ; // [object Listener] handleEvent [Event type="change" bubbles=false cancelable=false eventPhase=2]
+     * 
+     * // 2 - target the listener object if implements the vegas.events.EventListener interface.
+     * 
+     * var dispatcher2:EventDispatcher = factory.getObject("dispatcher2") ;
+     * 
+     * dispatcher2.dispatchEvent( new Event( "change" ) ) ; // [object Listener] handleEvent [Event type="change" bubbles=false cancelable=false eventPhase=2]
+     * </pre>
+     * In the previous example we implement the test.Listener class :* 
+     * <pre class="prettyprint">
+     * package test
+     * {
+     *     import flash.events.Event;
+     *     
+     *     import vegas.events.EventListener;    
+     * 
+     *     public class Listener implements EventListener
+     *     {
+     *         
+     *         public function Listener()
+     *         {
+     *              // constructor
+     *         }
+     *         
+     *         public function handleEvent( e:Event ):void
+     *         {
+     *             trace( this + " handleEvent " + e ) ;
+     *         }
+     *         
+     *     }
+     * }
+     * </pre>
      */
     public class ObjectListener
     {
@@ -49,13 +118,49 @@ package andromeda.ioc.core
          * @param dispatcher The dispatcher expression reference of the listener.
          * @param type type name of the event dispatched by the dispatcher of this listener.
          * @param method The name of the method to invoke when the event is handle.
+         * @param useCapture Determinates if the event flow use capture or not.
+         * @param priority Determines the priority level of the event listener.
+         * @param useWeakReference Indicates if the listener is a weak reference.
          */
-        public function ObjectListener( dispatcher:String , type:String , method:String=null )
+        public function ObjectListener( dispatcher:String , type:String , method:String=null , useCapture:Boolean = false, priority:int = 0, useWeakReference:Boolean = false )
         {
-            this.dispatcher = dispatcher ;
-            this.method     = method ;
-            this.type       = type ;            
+            this.dispatcher       = dispatcher ;
+            this.method           = method ;
+            this.type             = type ;
+            this.priority         = priority ;
+            this.useCapture       = useCapture ;
+            this.useWeakReference = useWeakReference ;
         }
+        
+        /**
+         * Defines the "dispatcher" attribute in a listener object definition.
+         */      
+        public static const DISPATCHER:String = "dispatcher" ;         
+
+        /**
+         * Defines the "method" attribute in a listener object definition.
+         */
+        public static const METHOD:String = "method" ;          
+        
+        /**
+         * Defines the "priority" attribute in a listener object definition.
+         */
+        public static const PRIORITY:String = "priority" ;     
+        
+        /**
+         * Defines the "useCapture" attribute in a listener object definition.
+         */
+        public static const USE_CAPTURE:String = "useCapture" ;           
+        
+        /**
+         * Defines the "useWeakReference" attribute in a listener object definition.
+         */
+        public static const USE_WEAK_REFERENCE:String = "useWeakReference" ;   
+        
+        /**
+         * Defines the "type" attribute in a listener object definition.
+         */
+        public static const TYPE:String = "type" ;          
         
         /**
          * The dispatcher expression reference of the listener.
@@ -68,9 +173,24 @@ package andromeda.ioc.core
         public var method:String ;
         
         /**
-         * The type name of the event dispatched by the dispatcher of this listener.
+         * Determines the priority level of the event listener.
+         */
+        public var priority:int ;
+        
+        /**
+         * The type name of the event dispatched by the dispatcher.
          */
         public var type:String ;     
+        
+        /**
+         * Determinates if the event flow use capture or not.
+         */
+        public var useCapture:Boolean ;
+        
+        /**
+         * Indicates if the listener is a weak reference.
+         */
+        public var useWeakReference:Boolean ;
         
         /**
          * Creates the Map definition of all properties defines in the passed-in array.
@@ -91,33 +211,42 @@ package andromeda.ioc.core
             
             var dispatcher:String ;
             var type:String ;
-            var method:String ;
             
             for (var i:uint = 0 ; i<len ; i++)
             {
                     
                 def  = a[i] as Object ;
                 
-                if ( def != null && ( ObjectAttribute.DISPATCHER in def ) && ( ObjectAttribute.TYPE in def ) )
+                if ( def != null && ( DISPATCHER in def ) && ( TYPE in def ) )
                 { 
                 
-                	dispatcher  = def[ ObjectAttribute.DISPATCHER ] as String ;
+                	dispatcher  = def[ DISPATCHER ] as String ;
                                     
 	                if ( dispatcher == null || dispatcher.length == 0 )
     	            {
                     	continue ;
                 	}
                 	
-                    type  = def[ ObjectAttribute.TYPE ] as String ;          	
-                    
+                    type  = def[ TYPE ] as String ;          	
+
                     if ( type == null || type.length == 0 )
                     {
                         continue ;
                     }                	
                     
-                    method = def[ ObjectAttribute.METHOD ] as String ;
-                                        
-                	listeners.push( new ObjectListener( dispatcher, type , method ) ) ;
+                	listeners.push
+                	( 
+                        new ObjectListener
+                        ( 
+                            dispatcher                                          , 
+                            type                                                , 
+                            def[ METHOD ] as String                             , 
+                            def[ USE_CAPTURE ] == true                          , 
+                            def[ PRIORITY ] is int ? def[ PRIORITY ] as int : 0 , 
+                            def[ USE_WEAK_REFERENCE ] == true 
+                        ) 
+                    ) ;
+                
                 }
                 else
                 {

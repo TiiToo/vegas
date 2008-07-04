@@ -49,12 +49,7 @@ package andromeda.ioc.core
          * Defines the label of the 'configuration' top-level attribute.
          */
         public static const CONFIGURATION:String = "configuration" ;  
-
-        /**
-         * Defines the label of the "listeners" name property of the object.
-         */        
-        public static const DISPATCHER:String = "dispatcher" ; 
-
+        
         /**
          * Defines the label of the 'evaluators' attribure.
          */
@@ -94,11 +89,6 @@ package andromeda.ioc.core
          * Defines the label of the 'lock' property of the object.
          */
         public static const LOCK:String = "lock" ;        
-
-        /**
-         * Defines the attribute name of the method name in a listener object definition.
-         */
-        public static const METHOD:String = "method" ;          
         
         /**
          * Defines the label of the name in a property object.
