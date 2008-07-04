@@ -1,5 +1,5 @@
  
-   PEGAS AS3 version 1 Release Candidate 4 - VEGAS EXTENSION
+   PEGAS AS3 version 1.0.0.1047 Release Candidate 4 - VEGAS EXTENSION
  
    LICENCE 
 

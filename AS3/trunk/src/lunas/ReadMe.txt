@@ -1,5 +1,5 @@
  
-   LUNAS AS3 version 1 alpha - VEGAS EXTENSION
+   LUNAS AS3 version 1.0.0.1047 RC4 - VEGAS EXTENSION
  
    LICENCE 
 
@@ -21,7 +21,7 @@
    ABOUT
 
     * Author : ALCARAZ Marc (aka eKameleon)
-    * Version : 1 alpha (AS3)
+    * Version : 1.0.0.1047 (AS3)
     * Link : http://www.ekameleon.net/blog
     * Mail : vegas@ekameleon.net 
 
