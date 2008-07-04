@@ -188,6 +188,11 @@ class ConcreteObjectDefinition implements IObjectDefinition
 		return "init" ;
 	}
 	
+    public function getListeners():Array
+    {
+        return new Array() ;
+    }
+    	
 	public function getMethods():Array
 	{
 		return [] ;
@@ -232,7 +237,6 @@ class ConcreteObjectDefinition implements IObjectDefinition
 	{
 		throw new Error("setFactoryMethod") ;
 	}
-
     
     public function setFactoryStrategy(value:IObjectFactoryStrategy):void
     {
@@ -243,6 +247,11 @@ class ConcreteObjectDefinition implements IObjectDefinition
 	{
 		throw new Error("setInitMethodName") ;
 	}
+	
+    public function setListeners(ar:Array = null):void
+    {
+        throw new Error("setListeners") ;       
+    }   	
 	
 	public function setMethods(ar:Array = null):void
 	{
@@ -314,6 +323,7 @@ class ConcreteObjectDefinition implements IObjectDefinition
     /**
      * @private
      */
-    private var _lock:* ;    
-
+    private var _lock:* ;
+    
+  
 }

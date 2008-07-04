@@ -51,6 +51,11 @@ package andromeda.ioc.core
         public static const CONFIGURATION:String = "configuration" ;  
 
         /**
+         * Defines the label of the "listeners" name property of the object.
+         */        
+        public static const DISPATCHER:String = "dispatcher" ; 
+
+        /**
          * Defines the label of the 'evaluators' attribure.
          */
         public static const EVALUATORS:String = "evaluators" ;  
@@ -79,12 +84,7 @@ package andromeda.ioc.core
          * Defines the label of the lazyInit name property of the object.
          */        
         public static const LAZY_INIT:String = "lazyInit" ;
-        
-        /**
-         * Defines the label of the "listeners" name property of the object.
-         */        
-        public static const LISTENERS:String = "listeners" ;        
-        
+              
         /**
          * Defines the attribute name of the "locale" object in the configuration of the ioc factory and the object definition "arguments" and "properties".
          */
@@ -94,10 +94,15 @@ package andromeda.ioc.core
          * Defines the label of the 'lock' property of the object.
          */
         public static const LOCK:String = "lock" ;        
+
+        /**
+         * Defines the attribute name of the method name in a listener object definition.
+         */
+        public static const METHOD:String = "method" ;          
         
         /**
          * Defines the label of the name in a property object.
-          */
+         */
         public static const NAME:String = "name" ;  
         
         /**
@@ -134,6 +139,11 @@ package andromeda.ioc.core
          * The name of the external object property to register the init method name.
          */
         public static const OBJECT_INIT_METHOD_NAME:String = "init" ;  
+
+        /**
+         * Defines the label of the "listeners" name property of the object.
+         */        
+        public static const OBJECT_LISTENERS:String = "listeners" ;
 
         /**
          * The name of the external object property to register the methods.

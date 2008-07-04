@@ -26,7 +26,7 @@ objects =
         singleton        : true ,
         properties       : 
         [
-			{ name : "align"     , value:"tl"      } 
+			{ name : "align"     , value:""        } ,
             { name : "scaleMode" , value:"noScale" }  
         ]
     }  

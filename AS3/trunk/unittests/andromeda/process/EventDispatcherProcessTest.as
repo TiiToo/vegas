@@ -46,15 +46,15 @@ package andromeda.process
 		
         public var action:EventDispatcherProcess ;		
 		
-		public var channel:String ;
+		public var id:String ;
 		
 		public var mockListener:MockSimpleActionListener ;			
 		
         public function setUp():void
         {
-        	channel = "myChannel" ;
-        	FrontController.getInstance(channel).insert("test" , _testHandleEvent ) ;
-            action       = new EventDispatcherProcess("test", channel ) ;
+        	id = "myChannel" ;
+        	FrontController.getInstance(id).insert("test" , _testHandleEvent ) ;
+            action       = new EventDispatcherProcess("test", id ) ;
             mockListener = new MockSimpleActionListener( action ) ;
         }
         
@@ -64,7 +64,7 @@ package andromeda.process
             mockListener.unregister() ;
             mockListener = undefined  ;
             action       = undefined  ;
-            channel      = null       ;      
+            id           = null       ;      
         }		
 		
 		public function testConstructor():void
@@ -92,13 +92,13 @@ package andromeda.process
 			assertNotNull ( p , "constructor failed, The instance not must be null") ;
 			assertTrue    ( p is SimpleAction , "constructor failed, the EventDispatcherProcess class must inherit SimpleAction.") ;
 			assertNotNull ( p.event   , "constructor failed, the EventDispatcherProcess event property not must be null.") ;
-			assertNull    ( p.channel , "constructor failed, the EventDispatcherProcess channel property must be null.") ;
+			assertNull    ( p.id      , "constructor failed, the EventDispatcherProcess id channel property must be null.") ;
 			
 		}
 		
-		public function testChannel():void
+		public function testId():void
 		{
-			assertEquals( action.channel , channel , "The channel property failed.") ;
+			assertEquals( action.id , id , "The id channel property failed.") ;
 		}		
 		
 		public function testEvent():void
@@ -112,7 +112,7 @@ package andromeda.process
         	var clone:EventDispatcherProcess = action.clone() ;
         	assertNotNull ( clone  , "clone method failed, with a null shallow copy object." ) ;
         	assertNotSame ( clone  , EventDispatcherProcess  , "clone method failed, the shallow copy isn't the same with the BatchProcess object." ) ;
-        	assertSame    ( clone.channel , action.channel , "The channel of the clone must be the same in the EventDispatcherProcess object") ;
+        	assertSame    ( clone.id   , action.id    , "The id channel of the clone must be the same in the EventDispatcherProcess object") ;
         	assertSame    ( clone.event, action.event , "The event of the clone must be the same in the EventDispatcherProcess object") ;
 		}
         

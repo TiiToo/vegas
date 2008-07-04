@@ -132,6 +132,9 @@ package andromeda.ioc.core
             definition.setFactoryStrategy      ( ObjectFactoryBuilder.create( o ) ) ;
             
             definition.setConstructorArguments ( ObjectArgument.create ( o[ ObjectAttribute.ARGUMENTS         ] as Array ) ) ;
+            
+            definition.setListeners            ( ObjectListener.create ( o[ ObjectAttribute.OBJECT_LISTENERS  ] ) ) ;
+                        
             definition.setProperties           ( ObjectProperty.create ( o[ ObjectAttribute.OBJECT_PROPERTIES ] as Array ) ) ;
             definition.setMethods              ( ObjectMethod.create   ( o[ ObjectAttribute.OBJECT_METHODS    ] as Array ) ) ;
             
@@ -179,6 +182,15 @@ package andromeda.ioc.core
             return _initMethodName;
         }
 
+        /**
+         * Returns the Array of all listener definitions of this definition.
+         * @return the Array of all listener definitions of this definition.
+         */    
+        public function getListeners():Array
+        {
+        	return _listeners ;
+        } 
+        
         /**
          * Returns the Array of all method definitions of this Definition.
          * @return the Array of all method definitions of this Definition.
@@ -270,6 +282,15 @@ package andromeda.ioc.core
         }
 
         /**
+         * Sets the Array of all listener definition of this Definition.
+         * @param ar the Array of all listener definitions of the object.
+         */
+        public function setListeners( ar:Array = null ):void
+        {
+        	_listeners = ar ;
+        }
+
+        /**
          * Sets the Array of all method definition of this Definition.
          * @param ar the Array of all method definitions of the object.
          */    
@@ -309,22 +330,22 @@ package andromeda.ioc.core
         }
             
         /**
-          * The internal Map of all arguments use in the constructor of the object.
-          */
+         * @private
+         */
         private var _constructorArguments:Array ;
         
         /**
-         * The name of the destroy method of the object.
+         * @private
          */
         private var _destroyMethodName:String;
         
         /**
-         * The IObjectFactoryStrategy of this definition.
+         * @private
          */
         private var _factoryStrategy:IObjectFactoryStrategy ;
         
         /**
-         * The internal id of this object.
+         * @private
          */
         private var _id:* ;        
         
@@ -334,14 +355,19 @@ package andromeda.ioc.core
         private var _identify:* = null ;
         
         /**
-         * The name of the init method of the object.
+         * @private
          */
         private var _initMethodName:String;
 
         /**
-         * The lazy init flag of the object.
+         * @private
          */
         private var _lazyInit:Boolean ;
+        
+        /**
+         * @private
+         */
+        private var _listeners:Array ;
         
         /**
          * @private

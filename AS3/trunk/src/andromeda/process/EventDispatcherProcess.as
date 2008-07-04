@@ -39,12 +39,12 @@ package andromeda.process
         /**
          * Creates a new EventDispatcherProcess instance.
          * @param event The event to dispatch.
-         * @param channel The event channel flow to dispatch the event.
+         * @param id The event id channel flow to dispatch the event.
          * @param bGlobal the flag to use a global event flow or a local event flow.
          * @param sChannel the name of the global event flow if the <code class="prettyprint">bGlobal</code> argument is <code class="prettyprint">true</code>.
          * @throws IllegalArgumentError If the 'event' argument is null.
          */
-        public function EventDispatcherProcess( event:*, channel:String=null , bGlobal:Boolean = false, sChannel:String = null)
+        public function EventDispatcherProcess( event:*, id:String=null , bGlobal:Boolean = false, sChannel:String = null)
         {
             super( bGlobal, sChannel ) ;
             if ( event == null )
@@ -59,16 +59,11 @@ package andromeda.process
             {
                 this.event = event as Event ;
             }
-            if ( channel != null )
+            if ( id != null )
             {
-                this.channel = channel ;
+                this.id = id ;
             }
         }
-
-        /**
-         * The channel of the global event dispatcher used in this process.
-         */
-        public var channel:String = null ;
         
         /**
          * The event to dispatch in this process.
@@ -76,12 +71,17 @@ package andromeda.process
         public var event:Event ;
         
         /**
+         * The id channel of the global event dispatcher used in this process.
+         */
+        public var id:String = null ;        
+        
+        /**
          * Returns a shallow copy of this object.
          * @return a shallow copy of this object.
          */
         public override function clone():*
         {
-            return new EventDispatcherProcess( event , channel ) ;
+            return new EventDispatcherProcess( event , id ) ;
         }
 
         /**
@@ -91,7 +91,7 @@ package andromeda.process
         {
             setRunning(true) ;
             notifyStarted() ;
-            EventDispatcher.getInstance( channel ).dispatchEvent( event ) ;
+            EventDispatcher.getInstance( id ).dispatchEvent( event ) ;
             setRunning(false) ;
             notifyFinished() ;
         }

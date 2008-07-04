@@ -22,16 +22,12 @@
 */
 package andromeda.ioc.factory 
 {
+    import flash.events.IEventDispatcher;
+    
     import andromeda.ioc.core.*;
     import andromeda.ioc.evaluators.ReferenceEvaluator;
     import andromeda.ioc.factory.IObjectFactory;
-    import andromeda.ioc.factory.strategy.IObjectFactoryStrategy;
-    import andromeda.ioc.factory.strategy.ObjectFactoryMethod;
-    import andromeda.ioc.factory.strategy.ObjectFactoryProperty;
-    import andromeda.ioc.factory.strategy.ObjectFactoryReference;
-    import andromeda.ioc.factory.strategy.ObjectFactoryValue;
-    import andromeda.ioc.factory.strategy.ObjectStaticFactoryMethod;
-    import andromeda.ioc.factory.strategy.ObjectStaticFactoryProperty;
+    import andromeda.ioc.factory.strategy.*;
     
     import system.Reflection;
     import system.evaluators.IEvaluator;
@@ -43,6 +39,8 @@ package andromeda.ioc.factory
     import vegas.data.Map;
     import vegas.data.map.HashMap;
     import vegas.errors.NullPointerError;
+    import vegas.events.EventListener;
+    import vegas.events.IEventDispatcher;
     import vegas.util.ClassUtil;    
 
     /**
@@ -384,17 +382,19 @@ package andromeda.ioc.factory
             	{
             		(instance as ILockable).lock() ;
             	}
+                            	
+            	initListeners( instance , definition.getListeners() ) ;
             	
-                populateProperties   ( instance , definition.getProperties() );
+                populateProperties( instance , definition.getProperties() );
                 
-                invokeMethods        ( instance , definition.getMethods() ) ;
+                invokeMethods( instance , definition.getMethods() ) ;
                 
                 if ( flag )
                 {
                     (instance as ILockable).unlock() ;
                 }                
                 
-                invokeInitMethod     ( instance , definition ) ;
+                invokeInitMethod( instance , definition ) ;
             }
             
             return instance ;
@@ -530,6 +530,57 @@ package andromeda.ioc.factory
             return value ;
         }
         
+    
+        /**
+         * Initialize the listener callback of the specified object.
+         */
+        protected function initListeners( o:* , listeners:Array ):void
+        {
+            if ( o == null || listeners == null )
+            {
+                return ;
+            }
+            var dispatcher:* ;
+            var type:String ;
+            var method:String ;
+            var size:uint = listeners.length ;
+            if ( size > 0 )
+            {
+                var listener:ObjectListener ;        
+                for (var i:uint = 0 ; i<size ; i++) 
+                {
+                    try
+                    {
+                        listener   = listeners[i] as ObjectListener ;     
+                        dispatcher = _re.eval( listener.dispatcher ) as flash.events.IEventDispatcher ;
+                        if ( dispatcher != null && listener.type != null )
+                        {
+                            type = listener.type ;
+                            if ( o is EventListener && dispatcher is vegas.events.IEventDispatcher )
+                            {
+                                (dispatcher as vegas.events.IEventDispatcher).registerEventListener( type , o as EventListener ) ; 
+                            }                             
+                            else 
+                            {
+                                method = listener.method ;
+                                if ( method in o )
+                                {
+                                    dispatcher.addEventListener( type , o[method] ) ;	
+                                }
+                            
+                            }
+                        }
+                    }
+                    catch( e:Error ) 
+                    {
+                        // do nothing
+                        debug( this + " initListeners failed with the scope '" + o + "' , in the collection of this methods at {" + i + "} : " + e.toString() ) ;
+                        //
+                    }    
+                }
+            }
+        }        
+        
         /**
          * Invokes the destroy method of the specified object, if the init method is define in the IDefinition object.
          */
@@ -546,7 +597,7 @@ package andromeda.ioc.factory
                 method.call(o) ;
             }
         }
-    
+         
         /**
          * Invokes the init method of the specified object, if the init method is define in the IDefinition object.
          */
@@ -681,5 +732,5 @@ package andromeda.ioc.factory
         private var _re:ReferenceEvaluator = new ReferenceEvaluator() ;
         
     }
-
 }
+

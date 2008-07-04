@@ -54,7 +54,7 @@ package vegas.events
          */
         public function get channel():String
         {
-            return 	getIsGlobal() ? _dispatcher.getName() : null ;
+            return 	_isGlobal ? _dispatcher.getName() : null ;
         }
        
 		/**

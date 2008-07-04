@@ -81,6 +81,12 @@ package andromeda.ioc.core
         function getInitMethodName():String ; 
 
         /**
+         * Returns the Array of all listener definitions of this definition.
+         * @return the Array of all listener definitions of this definition.
+         */    
+        function getListeners():Array ; 
+
+        /**
          * Returns the Array of all method definitions of this definition.
          * @return the Array of all method definitions of this definition.
          */    
@@ -134,6 +140,12 @@ package andromeda.ioc.core
          * Init the name of the method.
          */
         function setInitMethodName( value:String = null ):void ;
+
+        /**
+         * Sets the Array of all listener definition of this Definition.
+         * @param ar the Array of all listener definitions of the object.
+         */
+        function setListeners( ar:Array = null ):void ;  
 
         /**
          * Sets the Array of all method definition of this Definition.
