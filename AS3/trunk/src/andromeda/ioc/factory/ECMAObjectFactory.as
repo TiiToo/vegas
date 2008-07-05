@@ -306,9 +306,9 @@ package andromeda.ioc.factory
          * Indicates if the specified singleton reference is register.
          * @return <code class="prettyprint">true</code> If the specified singleton reference is register.
          */
-        public static function containsInstance( name:String ):Boolean
+        public static function containsInstance( id:String ):Boolean
         {
-            return instances.containsKey( name ) ;
+            return instances.containsKey( id ) ;
         }        
                 
         /**
@@ -382,7 +382,7 @@ package andromeda.ioc.factory
             
             if ( objects == null )
             {
-                throw new NullPointerError(this + " run failed if the 'objects' Array property is null or undefined.") ;
+                throw new NullPointerError(this + " run failed if the 'objects' Array property not must be 'null' or 'undefined'.") ;
             }    
             
             if ( objects.length > 0)

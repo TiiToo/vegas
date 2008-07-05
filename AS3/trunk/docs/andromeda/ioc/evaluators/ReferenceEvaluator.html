@@ -49,7 +49,53 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
      Evaluates a reference string expression and return the property value who corresponding in the target object specified in this evaluator.
      <p><b>Example :</b></p>
      <pre class="prettyprint">
+  import andromeda.ioc.evaluators.ReferenceEvaluator ;
+  import andromeda.ioc.factory.ECMAObjectFactory ;
   
+  import andromeda.vo.FilterVO ;
+  
+  var linkages:Array = [ FilterVO ] ;
+  
+  var objects:Array =
+  [
+      {
+          id         : "VIDEO" ,
+          type       : "andromeda.vo.FilterVO" ,
+          properties : [ { name:"filter" , value:1 } ]
+      }
+      ,
+      {
+           id         : "MP3" ,
+           type       : "andromeda.vo.FilterVO" ,
+           properties : [ { name:"filter" , value:2 } ]
+      }
+      ,
+      {
+           id         : "my_filter" ,
+           type       : "andromeda.vo.FilterVO" ,
+           methods    :
+           [
+                { name:"toggleFilter" , arguments:[ { ref : "VIDEO.filter" } , { value : true } ] } ,
+                { name:"toggleFilter" , arguments:[ { ref : "MP3.filter"   } , { value : true } ] }
+           ]
+      }
+  ];
+  
+  var factory:ECMAObjectFactory = ECMAObjectFactory.getInstance() ;
+  
+  factory.create( objects ) ;
+  
+  var evaluator:ReferenceEvaluator = new ReferenceEvaluator( factory ) ;
+  
+  // test evaluator
+  
+  trace( evaluator.eval( "DISK" ) ) ; // null
+  trace( evaluator.eval( "VIDEO" ) ) ; // [FilterVO:1]
+  trace( evaluator.eval( "VIDEO.filter" ) ) ; // 1
+  
+  // test in the factory
+  
+  trace( factory.getObject( "my_filter" ) ) ; // [FilterVO:3]
      </pre>
      <p></p>
 <br>

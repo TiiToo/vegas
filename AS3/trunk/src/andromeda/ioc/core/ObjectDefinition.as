@@ -35,7 +35,7 @@ package andromeda.ioc.core
      */
     public class ObjectDefinition extends CoreObject implements IObjectDefinition
     {
-
+        
         /**
          * Creates a new ObjectDefinition instance.
          * @param id the id of the <code class="prettyprint">ObjectDefinition</code> object.
@@ -59,7 +59,7 @@ package andromeda.ioc.core
             _scope     = singleton ? ObjectScope.SINGLETON : ObjectScope.PROTOTYPE ;
             _lazyInit  = lazyInit && _singleton ;
         }
-
+        
         /**
          * (read-write) Indicates the id of this object.
          */
@@ -67,7 +67,7 @@ package andromeda.ioc.core
         {
             return _id ;
         }
-    
+        
         /**
          * @private
          */
@@ -75,7 +75,7 @@ package andromeda.ioc.core
         {
             _id = id ;
         }
-
+        
         /**
          * Indicates if the object definition is a singleton and the type of the object is Identifiable if the object must be
          * populated with the id of the definition when is instanciated.
@@ -84,7 +84,7 @@ package andromeda.ioc.core
         {
             return _identify ;    
         }
-    
+        
         /**
          * @private
          */
@@ -101,7 +101,7 @@ package andromeda.ioc.core
         {
             return _lock ;    
         }
-    
+        
         /**
          * @private
          */
@@ -199,7 +199,7 @@ package andromeda.ioc.core
         {
             return _methods ;
         }
-
+        
         /**
          * Returns the Map of all properties of this Definition.
          * @return the Map of all properties of this Definition.
@@ -208,7 +208,7 @@ package andromeda.ioc.core
         {
             return _properties ;
         }
-
+        
         /**
          * Returns the scope of the object.
          * @return the scope of the object.
@@ -274,13 +274,13 @@ package andromeda.ioc.core
         
         /**
          * Init the name of the method.
-          * @param value the string 'init method' name.
+         * @param value the string 'init method' name.
          */        
         public function setInitMethodName( value:String = null ):void 
         {
             _initMethodName = value;
         }
-
+        
         /**
          * Sets the Array of all listener definition of this Definition.
          * @param ar the Array of all listener definitions of the object.
@@ -289,7 +289,7 @@ package andromeda.ioc.core
         {
         	_listeners = ar ;
         }
-
+        
         /**
          * Sets the Array of all method definition of this Definition.
          * @param ar the Array of all method definitions of the object.
@@ -298,7 +298,7 @@ package andromeda.ioc.core
         {
             _methods = ar ;
         }
-
+        
         /**
          * Sets the map of all properties of this Definition.
          * @param value the Map of all properties of the object.
@@ -319,7 +319,7 @@ package andromeda.ioc.core
                 _singleton = _scope == ObjectScope.SINGLETON ;
             }
         }
-
+        
         /**
          * Sets the type of the object (the class name).
          * @param value the string representation of the type object.
@@ -328,7 +328,7 @@ package andromeda.ioc.core
         {
             _type = value ;
         }
-            
+        
         /**
          * @private
          */
@@ -358,7 +358,7 @@ package andromeda.ioc.core
          * @private
          */
         private var _initMethodName:String;
-
+        
         /**
          * @private
          */
@@ -376,26 +376,31 @@ package andromeda.ioc.core
         
         /**
          * The internal Array of all method definitions of the object.
+         * @private
          */
         private var _methods:Array ;
         
         /**
          * The internal Map of all properties of the object.
+         * @private
          */
         private var _properties:Map ;
         
         /**
          * The scope of the object.
+         * @private
          */
         private var _scope:String ;
         
         /**
          * The internal Map of all singletons.
+         * @private
          */
         private var _singleton:Boolean ;
         
         /**
          * The type of the IDefinition object.
+         * @private
          */
         private var _type : String;
         
