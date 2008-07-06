@@ -31,7 +31,30 @@ package andromeda.ioc.core
 
     /**
      * The concrete implementation of the IObjectDefinition interface.
-     * @author eKameleon
+     * <p><b>Example :</b></p>
+     * <pre class="prettyprint">
+     * import flash.text.TextField ;
+     * import flash.text.TextFormat ;
+     * 
+     * import andromeda.ioc.core.ObjectDefinition ;
+     * var context:Object =
+     * {
+     *     id         : "my_field" ,
+     *     type       : "flash.text.TextField" ,
+     *     properties :
+     *     [
+     *         { name:"defaultTextFormat" , value:new TextFormat("verdana", 11) } ,
+     *         { name:"selectable"        , value:false                         } ,
+     *         { name:"text"              , value:"hello world"                 } ,
+     *         { name:"textColor"         , value:0xF7F744                      } ,
+     *         { name:"x"                 , value:100                           } ,
+     *         { name:"y"                 , value:100                           }
+     *     ]
+     * }
+     * 
+     * var definition:ObjectDefinition = ObjectDefinition.create( context ) ;
+     * trace(definition.id + " : " + definition.getType()) ; // my_field : flash.text.TextField
+     * </pre>
      */
     public class ObjectDefinition extends CoreObject implements IObjectDefinition
     {

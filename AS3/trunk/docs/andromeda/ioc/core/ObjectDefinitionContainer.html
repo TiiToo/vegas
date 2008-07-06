@@ -52,51 +52,37 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
      Creates a container to register all the Object define by the corresponding IObjectDefinition objects.
      <p><b>Example :</b></p>
      <pre class="prettyprint">
-     import test.User ;
+     import flash.text.TextField ;
+     import flash.text.TextFormat ;
      
      import andromeda.ioc.core.ObjectDefinition ;
+     import andromeda.ioc.core.ObjectDefinitionContainer ;
      import andromeda.ioc.factory.ObjectFactory ;
      
-     import vegas.data.map.HashMap ;
+     var factory:ObjectDefinitionContainer = new ObjectFactory();
      
-     var factory:ObjectFactory = new ObjectFactory();
-     
-     var properties:HashMap = new HashMap() ;
-     properties.put("pseudo" , "ekameleon" ) ;
-     properties.put("url"  , "http://www.ekameleon.net/blog" );
-     
-     var definition:ObjectDefinition = new ObjectDefinition( "test.User" ) ;
-     definition.setProperties( properties ) ;
-     definition.setInitMethodName( "initialize" ) ;
-     
-     factory.addObjectDefinition("user", definition );
-     
-     var user:User = factory.getObject("user") ;
-     
-     trace( "# User pseudo : " + user.pseudo ) ; // ekameleon
-     trace( "# User url    : " + user.url    ) ; // http://www.ekameleon.net/blog
-     </pre>
-     With the <b>test.User</b> class :
-     <pre class="prettyprint">
-     package test
+     var context:Object =
      {
-         import vegas.core.CoreObject ;
-     
-         public class User extends CoreObject
-         {
-             
-             public function User() {}
-             
-             public var pseudo:String ;
-             public var url:String ;
-             
-             public function initialize():void
-             {
-                 trace( "# " + this + " initialize.") ;
-             }
-             
-         }
+         id         : "my_field" ,
+         type       : "flash.text.TextField" ,
+         properties :
+         [
+             { name:"defaultTextFormat" , value:new TextFormat("verdana", 11) } ,
+             { name:"selectable"        , value:false                         } ,
+             { name:"text"              , value:"hello world"                 } ,
+             { name:"textColor"         , value:0xF7F744                      } ,
+             { name:"x"                 , value:100                           } ,
+             { name:"y"                 , value:100                           }
+         ]
      }
+     
+     var definition:ObjectDefinition = ObjectDefinition.create( context ) ;
+     
+     container.addObjectDefinition( definition );
+     
+     var field:TextField = (factory as ObjectFactory).getObject("my_field") as TextField ;
+     
+     addChild(field) ;
      </pre>
      <p></p>
 <br>
@@ -173,9 +159,9 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <tr class="">
 <td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
 <div class="summarySignature">
-<a class="signatureLink" href="#addObjectDefinition()">addObjectDefinition</a>(id:String, definition:<a href="IObjectDefinition.html">IObjectDefinition</a>):void</div>
+<a class="signatureLink" href="#addObjectDefinition()">addObjectDefinition</a>(definition:<a href="IObjectDefinition.html">IObjectDefinition</a>):void</div>
 <div class="summaryTableDescription">
-         Registers an object in the container.</div>
+         Registers a new object definition in the container.</div>
 </td><td class="summaryTableOwnerCol">ObjectDefinitionContainer</td>
 </tr>
 <tr class="">
@@ -197,7 +183,7 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <tr class="">
 <td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
 <div class="summarySignature">
-<a class="signatureLink" href="#containsObjectDefinition()">containsObjectDefinition</a>(name:String):Boolean</div>
+<a class="signatureLink" href="#containsObjectDefinition()">containsObjectDefinition</a>(id:String):Boolean</div>
 <div class="summaryTableDescription">
          Returns <code class="prettyprint">true</code> if the object defines with the specified id is register in the container.</div>
 </td><td class="summaryTableOwnerCol">ObjectDefinitionContainer</td>
@@ -319,7 +305,7 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <tr class="">
 <td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
 <div class="summarySignature">
-<a class="signatureLink" href="#getObjectDefinition()">getObjectDefinition</a>(name:String):<a href="../core/IObjectDefinition.html">IObjectDefinition</a>
+<a class="signatureLink" href="#getObjectDefinition()">getObjectDefinition</a>(id:String):<a href="../core/IObjectDefinition.html">IObjectDefinition</a>
 </div>
 <div class="summaryTableDescription">
          Returns the IObjectDefinition object register in the container with the specified id.</div>
@@ -417,7 +403,7 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <tr class="">
 <td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
 <div class="summarySignature">
-<a class="signatureLink" href="#removeObjectDefinition()">removeObjectDefinition</a>(name:String):void</div>
+<a class="signatureLink" href="#removeObjectDefinition()">removeObjectDefinition</a>(id:String):void</div>
 <div class="summaryTableDescription">
          Unregisters an object definition in the container.</div>
 </td><td class="summaryTableOwnerCol">ObjectDefinitionContainer</td>
@@ -713,19 +699,12 @@ showHideInherited();
 </tr>
 </table>
 <div class="detailBody">
-<code>public function addObjectDefinition(id:String, definition:<a href="IObjectDefinition.html">IObjectDefinition</a>):void</code><p>
-         Registers an object in the container.
+<code>public function addObjectDefinition(definition:<a href="IObjectDefinition.html">IObjectDefinition</a>):void</code><p>
+         Registers a new object definition in the container.
          </p><span class="label">Parameters</span>
 <table border="0" cellspacing="0" cellpadding="0">
 <tr>
-<td width="20px"></td><td><code><span class="label">id</span>:String</code> &mdash; the id of the object definition.
-         </td>
-</tr>
-<tr>
-<td class="paramSpacer">&nbsp;</td>
-</tr>
-<tr>
-<td width="20px"></td><td><code><span class="label">definition</span>:<a href="IObjectDefinition.html">IObjectDefinition</a></code> &mdash; the definition of the object.
+<td width="20px"></td><td><code><span class="label">definition</span>:<a href="IObjectDefinition.html">IObjectDefinition</a></code> &mdash; The Identifiable ObjectDefinition reference to register in the container.
          </td>
 </tr>
 </table>
@@ -747,12 +726,12 @@ showHideInherited();
 </tr>
 </table>
 <div class="detailBody">
-<code>public function containsObjectDefinition(name:String):Boolean</code><p>
+<code>public function containsObjectDefinition(id:String):Boolean</code><p>
          Returns <code class="prettyprint">true</code> if the object defines with the specified id is register in the container.
          </p><span class="label">Parameters</span>
 <table border="0" cellspacing="0" cellpadding="0">
 <tr>
-<td width="20px"></td><td><code><span class="label">name</span>:String</code> &mdash; The id of the ObjectDefinition to search. 
+<td width="20px"></td><td><code><span class="label">id</span>:String</code> &mdash; The id of the ObjectDefinition to search. 
          </td>
 </tr>
 </table>
@@ -772,12 +751,12 @@ showHideInherited();
 </tr>
 </table>
 <div class="detailBody">
-<code>public function getObjectDefinition(name:String):<a href="../core/IObjectDefinition.html">IObjectDefinition</a></code><p>
+<code>public function getObjectDefinition(id:String):<a href="../core/IObjectDefinition.html">IObjectDefinition</a></code><p>
          Returns the IObjectDefinition object register in the container with the specified id.
          </p><span class="label">Parameters</span>
 <table border="0" cellspacing="0" cellpadding="0">
 <tr>
-<td width="20px"></td><td><code><span class="label">name</span>:String</code> &mdash; the id name of the ObjectDefinition to return. 
+<td width="20px"></td><td><code><span class="label">id</span>:String</code> &mdash; the id name of the ObjectDefinition to return. 
          </td>
 </tr>
 </table>
@@ -808,12 +787,12 @@ showHideInherited();
 </tr>
 </table>
 <div class="detailBody">
-<code>public function removeObjectDefinition(name:String):void</code><p>
+<code>public function removeObjectDefinition(id:String):void</code><p>
          Unregisters an object definition in the container.
          </p><span class="label">Parameters</span>
 <table border="0" cellspacing="0" cellpadding="0">
 <tr>
-<td width="20px"></td><td><code><span class="label">name</span>:String</code> &mdash; The id of the object definition to remove.
+<td width="20px"></td><td><code><span class="label">id</span>:String</code> &mdash; The id of the object definition to remove.
          </td>
 </tr>
 </table>

@@ -33,51 +33,37 @@ package andromeda.ioc.core
      * Creates a container to register all the Object define by the corresponding IObjectDefinition objects.
      * <p><b>Example :</b></p>
      * <pre class="prettyprint">
-     * import test.User ;
+     * import flash.text.TextField ;
+     * import flash.text.TextFormat ;
      * 
      * import andromeda.ioc.core.ObjectDefinition ;
+     * import andromeda.ioc.core.ObjectDefinitionContainer ;
      * import andromeda.ioc.factory.ObjectFactory ;
      * 
-     * import vegas.data.map.HashMap ;
+     * var factory:ObjectDefinitionContainer = new ObjectFactory();
      * 
-     * var factory:ObjectFactory = new ObjectFactory();
-     * 
-     * var properties:HashMap = new HashMap() ;
-     * properties.put("pseudo" , "ekameleon" ) ;
-     * properties.put("url"  , "http://www.ekameleon.net/blog" );
-     * 
-     * var definition:ObjectDefinition = new ObjectDefinition( "test.User" ) ;
-     * definition.setProperties( properties ) ;
-     * definition.setInitMethodName( "initialize" ) ;
-     * 
-     * factory.addObjectDefinition("user", definition );
-     * 
-     * var user:User = factory.getObject("user") ;
-     * 
-     * trace( "# User pseudo : " + user.pseudo ) ; // ekameleon
-     * trace( "# User url    : " + user.url    ) ; // http://www.ekameleon.net/blog
-     * </pre>
-     * With the <b>test.User</b> class :
-     * <pre class="prettyprint">
-     * package test
+     * var context:Object =
      * {
-     *     import vegas.core.CoreObject ;
-     * 
-     *     public class User extends CoreObject
-     *     {
-     *         
-     *         public function User() {}
-     *         
-     *         public var pseudo:String ;
-     *         public var url:String ;
-     *         
-     *         public function initialize():void
-     *         {
-     *             trace( "# " + this + " initialize.") ;
-     *         }
-     *         
-     *     }
+     *     id         : "my_field" ,
+     *     type       : "flash.text.TextField" ,
+     *     properties :
+     *     [
+     *         { name:"defaultTextFormat" , value:new TextFormat("verdana", 11) } ,
+     *         { name:"selectable"        , value:false                         } ,
+     *         { name:"text"              , value:"hello world"                 } ,
+     *         { name:"textColor"         , value:0xF7F744                      } ,
+     *         { name:"x"                 , value:100                           } ,
+     *         { name:"y"                 , value:100                           }
+     *     ]
      * }
+     * 
+     * var definition:ObjectDefinition = ObjectDefinition.create( context ) ;
+     * 
+     * container.addObjectDefinition( definition );
+     * 
+     * var field:TextField = (factory as ObjectFactory).getObject("my_field") as TextField ;
+     * 
+     * addChild(field) ;
      * </pre>
      * @author eKameleon
      */
@@ -96,13 +82,19 @@ package andromeda.ioc.core
         }
         
         /**
-         * Registers an object in the container.
-         * @param id the id of the object definition.
-         * @param definition the definition of the object.
+         * Registers a new object definition in the container.
+         * @param definition The Identifiable ObjectDefinition reference to register in the container.
          */
-        public function addObjectDefinition( id:String, definition:IObjectDefinition ):void 
+        public function addObjectDefinition( definition:IObjectDefinition ):void 
         {
-            _map.put( id, definition ) ;
+        	if ( definition == null || definition.id == null )
+        	{
+        		throw new IllegalArgumentError( this + " addObjectDefinition failed, the specified object definition not must be 'null' or 'undefined' or not identifiable." ) ;
+        	}
+        	else
+        	{
+                _map.put( definition.id , definition ) ;
+        	}
         }
         
         /**
@@ -118,26 +110,26 @@ package andromeda.ioc.core
          * @param id The id of the ObjectDefinition to search. 
          * @return <code class="prettyprint">true</code> if the object defines with the specified id is register in the container.
          */
-        public function containsObjectDefinition( name:String ):Boolean 
+        public function containsObjectDefinition( id:String ):Boolean 
         {
-            return _map.containsKey( name ) ;
+            return _map.containsKey( id ) ;
         }
         
         /**
          * Returns the IObjectDefinition object register in the container with the specified id.
-         * @param name the id name of the ObjectDefinition to return. 
+         * @param id the id name of the ObjectDefinition to return. 
          * @return the IObjectDefinition object register in the container with the specified id.
          * @throws IllegalArgumentError If the specified object definition don't exist in the container.
          */
-        public function getObjectDefinition( name:String ):IObjectDefinition 
+        public function getObjectDefinition( id:String ):IObjectDefinition 
         {
-            if ( containsObjectDefinition( name ) )
+            if ( containsObjectDefinition( id ) )
             {
-                return _map.get( name ) ;
+                return _map.get( id ) ;
             }
             else
             {
-                throw new IllegalArgumentError( this + " getObjectDefinition failed, the specified object definition don't exist : " + name ) ;
+                throw new IllegalArgumentError( this + " getObjectDefinition failed, the specified object definition don't exist : " + id ) ;
             }
         }
         
@@ -146,15 +138,15 @@ package andromeda.ioc.core
          * @param id The id of the object definition to remove.
          * @throws IllegalArgumentError If the specified object definition don't exist in the container.
          */
-        public function removeObjectDefinition( name:String ):void 
+        public function removeObjectDefinition( id:String ):void 
         {
-            if ( containsObjectDefinition( name ) )
+            if ( containsObjectDefinition( id ) )
             {
-                _map.remove( name ) ;
+                _map.remove( id ) ;
             }
             else
             {
-                throw new IllegalArgumentError( this + " removeObjectDefinition failed, the specified object definition don't exist : " + name ) ;    
+                throw new IllegalArgumentError( this + " removeObjectDefinition failed, the specified object definition don't exist : " + id ) ;    
             }
         }        
         

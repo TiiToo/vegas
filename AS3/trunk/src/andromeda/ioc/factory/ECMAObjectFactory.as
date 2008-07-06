@@ -448,22 +448,9 @@ package andromeda.ioc.factory
         {
             if ( o != null )
             {
-                
                 var definition:ObjectDefinition = ObjectDefinition.create(o) ;
-                
-                addObjectDefinition( definition.id , definition ) ;
-                
-                var assemblyName:String =  o[ ObjectAttribute.ASSEMBLY_NAME ] ;
-                
-                if ( assemblyName != null && !_assemblies.containsKey( assemblyName ) )
-                {
-                    _assemblies.put( assemblyName , new AssemblyEntry( assemblyName , definition ) ) ;    
-                }
-                else
-                {
-                    _initDefinition( definition ) ;
-                }
-                            
+                addObjectDefinition( definition ) ;
+                _initAssemblyName( o , definition ) ;        
             }
             else
             {
@@ -534,6 +521,22 @@ package andromeda.ioc.factory
                 _flushInitSingletonDefinitions() ;
                 setRunning( false ) ;
                 notifyFinished() ;    
+            }
+        }
+
+        /**
+         * @private
+         */
+        private function _initAssemblyName( o:* , definition:ObjectDefinition ):void
+        {
+            var assemblyName:String =  o[ ObjectAttribute.ASSEMBLY_NAME ] ;
+            if ( assemblyName != null && !_assemblies.containsKey( assemblyName ) )
+            {
+                _assemblies.put( assemblyName , new AssemblyEntry( assemblyName , definition ) ) ;    
+            }
+            else
+            {
+                _initDefinition( definition ) ;
             }
         }
 

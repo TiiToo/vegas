@@ -73,14 +73,13 @@ package asgard.text
         {
        	    
        	    var action:ActionURLLoader ;
-
        	    
        	    if ( owner != null && owner is ObjectFactory && id != null )
        	    {
-       	        
+                
                 var ss:StyleSheet ;       	        
        	        var factory:ObjectFactory = owner as ObjectFactory ;
- 
+       	        
        	        if ( factory.containsObjectDefinition( id ) == false )
        	        {
  
@@ -123,7 +122,7 @@ package asgard.text
    	                    factoryValue : ss	
    	                };
        	            
-   	                factory.addObjectDefinition( id , ObjectDefinition.create( init ) ) ;
+   	                factory.addObjectDefinition( ObjectDefinition.create( init ) ) ;
        	            	
        	        }
 

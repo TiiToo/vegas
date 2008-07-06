@@ -45,51 +45,36 @@ package andromeda.ioc.factory
      * The basic Inversion of Control container/factory class.
      * <p><b>Example :</b></p>
      * <pre class="prettyprint">
-     * import test.User ;
+     * import flash.text.TextField ;
+     * import flash.text.TextFormat ;
      * 
      * import andromeda.ioc.core.ObjectDefinition ;
      * import andromeda.ioc.factory.ObjectFactory ;
      * 
-     * import vegas.data.map.HashMap ;
-     * 
      * var factory:ObjectFactory = new ObjectFactory();
      * 
-     * var properties:HashMap = new HashMap() ;
-     * properties.put("pseudo" , "ekameleon" ) ;
-     * properties.put("url"  , "http://www.ekameleon.net/blog" );
-     * 
-     * var definition:ObjectDefinition = new ObjectDefinition( "test.User" ) ;
-     * definition.setProperties( properties ) ;
-     * definition.setInitMethodName( "initialize" ) ;
-     * 
-     * factory.addObjectDefinition("user", definition );
-     * 
-     * var user:User = factory.getObject("user") ;
-     * 
-     * trace( "# User pseudo : " + user.pseudo ) ; // ekameleon
-     * trace( "# User url    : " + user.url    ) ; // http://www.ekameleon.net/blog
-     * </pre>
-     * With the <b>test.User</b> class :
-     * <pre class="prettyprint">
-     * package test
+     * var context:Object =
      * {
-     *     import vegas.core.CoreObject ;
-     * 
-     *     public class User extends CoreObject
-     *     {
-     *         
-     *         public function User() {}
-     *         
-     *         public var pseudo:String ;
-     *         public var url:String ;
-     *         
-     *         public function initialize():void
-     *         {
-     *             trace( "# " + this + " initialize.") ;
-     *         }
-     *         
-     *     }
+     *     id         : "my_field" ,
+     *     type       : "flash.text.TextField" ,
+     *     properties :
+     *     [
+     *         { name:"defaultTextFormat" , value:new TextFormat("verdana", 11) } ,
+     *         { name:"selectable"        , value:false                         } ,
+     *         { name:"text"              , value:"hello world"                 } ,
+     *         { name:"textColor"         , value:0xF7F744                      } ,
+     *         { name:"x"                 , value:100                           } ,
+     *         { name:"y"                 , value:100                           }
+     *     ]
      * }
+     * 
+     * var definition:ObjectDefinition = ObjectDefinition.create( context ) ;
+     * 
+     * container.addObjectDefinition( definition );
+     * 
+     * var field:TextField = factory.getObject("my_field") as TextField ;
+     * 
+     * addChild(field) ;
      * </pre>
      * @author eKameleon
      */
@@ -261,12 +246,7 @@ package andromeda.ioc.factory
                 singletons.remove( id ) ;    
             }
         }
-        
-        /**
-         * @private
-         */
-        private var _config:ObjectConfig ;
-       
+
 	    /**
          * Creates the arguments Array representation of the specified definition.
          * @return the arguments Array representation of the specified definition.
@@ -381,7 +361,7 @@ package andromeda.ioc.factory
             		(instance as ILockable).lock() ;
             	}
                             	
-            	initListeners( instance , definition.getListeners() ) ;
+            	registerListeners( instance , definition.getListeners() ) ;
             	
                 populateProperties( instance , definition.getProperties() );
                 
@@ -529,54 +509,7 @@ package andromeda.ioc.factory
         }
         
     
-        /**
-         * Initialize the listener callback of the specified object.
-         */
-        protected function initListeners( o:* , listeners:Array ):void
-        {
-            if ( o == null || listeners == null )
-            {
-                return ;
-            }
-            var size:uint = listeners.length ;
-            if ( size > 0 )
-            {
-            	var dispatcher:IEventDispatcher ;
-            	var type:String ;
-            	var method:Function ;
-                var listener:ObjectListener ;        
-                for (var i:uint = 0 ; i<size ; i++) 
-                {
-                    try
-                    {
-                        listener   = listeners[i] as ObjectListener ;     
-                        dispatcher = _re.eval( listener.dispatcher ) as IEventDispatcher ;
-                        if ( dispatcher != null && listener.type != null )
-                        {
-                            type = listener.type ;
-                            if ( o is EventListener  )
-                            {
-                                method = ( o as EventListener).handleEvent ; 
-                            }                             
-                            else if ( listener.method != null && listener.method in o ) 
-                            {
-                                method =  o[listener.method] as Function  ;
-                            }
-                            if ( method != null)
-                            {
-                                dispatcher.addEventListener( type , method ) ;	
-                            }
-                        }
-                    }
-                    catch( e:Error ) 
-                    {
-                        // do nothing
-                        debug( this + " initListeners failed with the scope '" + o + "' , in the collection of this methods at {" + i + "} : " + e.toString() ) ;
-                        //
-                    }    
-                }
-            }
-        }        
+              
         
         /**
          * Invokes the destroy method of the specified object, if the init method is define in the IDefinition object.
@@ -712,7 +645,59 @@ package andromeda.ioc.factory
                 }
             } 
         }
-            
+        
+        /**
+         * Initialize the listener callback of the specified object.
+         */
+        protected function registerListeners( o:* , listeners:Array ):void
+        {
+            if ( o == null || listeners == null )
+            {
+                return ;
+            }
+            var size:uint = listeners.length ;
+            if ( size > 0 )
+            {
+                var dispatcher:IEventDispatcher ;
+                var method:Function ;
+                var listener:ObjectListener ;        
+                for (var i:uint = 0 ; i<size ; i++) 
+                {
+                    try
+                    {
+                        listener   = listeners[i] as ObjectListener ;     
+                        dispatcher = _re.eval( listener.dispatcher ) as IEventDispatcher ;
+                        if ( dispatcher != null && listener.type != null )
+                        {
+                            if ( listener.method != null && listener.method in o ) 
+                            {
+                                method =  o[listener.method] as Function  ;
+                            }
+                            else if ( o is EventListener  )
+                            {
+                                method = ( o as EventListener).handleEvent ; 
+                            }                             
+                            if ( method != null)
+                            {
+                                dispatcher.addEventListener( listener.type , method , listener.useCapture, listener.priority, listener.useWeakReference ) ;  
+                            }
+                        }
+                    }
+                    catch( e:Error ) 
+                    {
+                        // do nothing
+                        debug( this + " registerListeners failed with the target '" + o + "' , in the collection of this listeners at {" + i + "} : " + e.toString() ) ;
+                        //
+                    }    
+                }
+            }
+        }        
+        
+        /**
+         * @private
+         */
+        private var _config:ObjectConfig ;
+        
         /**
          * @private
          */

@@ -374,9 +374,9 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <tr class="hideInheritedMethod">
 <td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol">
 <div class="summarySignature">
-<a class="signatureLink" href="../core/ObjectDefinitionContainer.html#addObjectDefinition()">addObjectDefinition</a>(id:String, definition:<a href="../core/IObjectDefinition.html">IObjectDefinition</a>):void</div>
+<a class="signatureLink" href="../core/ObjectDefinitionContainer.html#addObjectDefinition()">addObjectDefinition</a>(definition:<a href="../core/IObjectDefinition.html">IObjectDefinition</a>):void</div>
 <div class="summaryTableDescription">
-         Registers an object in the container.</div>
+         Registers a new object definition in the container.</div>
 </td><td class="summaryTableOwnerCol"><a href="../core/ObjectDefinitionContainer.html">ObjectDefinitionContainer</a></td>
 </tr>
 <tr class="hideInheritedMethod">
@@ -414,7 +414,7 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <tr class="hideInheritedMethod">
 <td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol">
 <div class="summarySignature">
-<a class="signatureLink" href="../core/ObjectDefinitionContainer.html#containsObjectDefinition()">containsObjectDefinition</a>(name:String):Boolean</div>
+<a class="signatureLink" href="../core/ObjectDefinitionContainer.html#containsObjectDefinition()">containsObjectDefinition</a>(id:String):Boolean</div>
 <div class="summaryTableDescription">
          Returns <code class="prettyprint">true</code> if the object defines with the specified id is register in the container.</div>
 </td><td class="summaryTableOwnerCol"><a href="../core/ObjectDefinitionContainer.html">ObjectDefinitionContainer</a></td>
@@ -577,7 +577,7 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <tr class="hideInheritedMethod">
 <td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol">
 <div class="summarySignature">
-<a class="signatureLink" href="../core/ObjectDefinitionContainer.html#getObjectDefinition()">getObjectDefinition</a>(name:String):<a href="../core/IObjectDefinition.html">IObjectDefinition</a>
+<a class="signatureLink" href="../core/ObjectDefinitionContainer.html#getObjectDefinition()">getObjectDefinition</a>(id:String):<a href="../core/IObjectDefinition.html">IObjectDefinition</a>
 </div>
 <div class="summaryTableDescription">
          Returns the IObjectDefinition object register in the container with the specified id.</div>
@@ -699,7 +699,7 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <tr class="hideInheritedMethod">
 <td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol">
 <div class="summarySignature">
-<a class="signatureLink" href="../core/ObjectDefinitionContainer.html#removeObjectDefinition()">removeObjectDefinition</a>(name:String):void</div>
+<a class="signatureLink" href="../core/ObjectDefinitionContainer.html#removeObjectDefinition()">removeObjectDefinition</a>(id:String):void</div>
 <div class="summaryTableDescription">
          Unregisters an object definition in the container.</div>
 </td><td class="summaryTableOwnerCol"><a href="../core/ObjectDefinitionContainer.html">ObjectDefinitionContainer</a></td>
@@ -932,14 +932,6 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <tr class="hideInheritedProtectedMethod">
 <td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol">
 <div class="summarySignature">
-<a class="signatureLink" href="ObjectFactory.html#initListeners()">initListeners</a>(o:*, listeners:Array):void</div>
-<div class="summaryTableDescription">
-         Initialize the listener callback of the specified object.</div>
-</td><td class="summaryTableOwnerCol"><a href="ObjectFactory.html">ObjectFactory</a></td>
-</tr>
-<tr class="hideInheritedProtectedMethod">
-<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol">
-<div class="summarySignature">
 <a class="signatureLink" href="ObjectFactory.html#invokeDestroyMethod()">invokeDestroyMethod</a>(o:*, definition:<a href="../core/IObjectDefinition.html">IObjectDefinition</a>):void</div>
 <div class="summaryTableDescription">
          Invokes the destroy method of the specified object, if the init method is define in the IDefinition object.</div>
@@ -1047,6 +1039,14 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <a class="signatureLink" href="ObjectFactory.html#populateProperties()">populateProperties</a>(o:*, properties:<a href="../../../vegas/data/Map.html">Map</a> = null):void</div>
 <div class="summaryTableDescription">
          Populates all properties in the Map passed in argument.</div>
+</td><td class="summaryTableOwnerCol"><a href="ObjectFactory.html">ObjectFactory</a></td>
+</tr>
+<tr class="hideInheritedProtectedMethod">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="ObjectFactory.html#registerListeners()">registerListeners</a>(o:*, listeners:Array):void</div>
+<div class="summaryTableDescription">
+         Initialize the listener callback of the specified object.</div>
 </td><td class="summaryTableOwnerCol"><a href="ObjectFactory.html">ObjectFactory</a></td>
 </tr>
 <tr class="hideInheritedProtectedMethod">

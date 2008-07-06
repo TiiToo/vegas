@@ -31,11 +31,10 @@ package andromeda.ioc.core
     {
         
         /**
-         * Registers an object in the container.
-         * @param id the id of the object definition.
-         * @param definition the definition of the object.
+         * Registers a new object definition in the container.
+         * @param definition The Identifiable ObjectDefinition reference to register in the container.
          */
-        function addObjectDefinition( id:String , definition:IObjectDefinition ):void ;
+        function addObjectDefinition( definition:IObjectDefinition ):void ;
         
         /**
          * Removes all the object definitions register in the container.

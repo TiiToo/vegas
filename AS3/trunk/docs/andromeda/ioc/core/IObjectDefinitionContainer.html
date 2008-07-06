@@ -58,9 +58,9 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("In
 <tr class="">
 <td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
 <div class="summarySignature">
-<a class="signatureLink" href="#addObjectDefinition()">addObjectDefinition</a>(id:String, definition:<a href="IObjectDefinition.html">IObjectDefinition</a>):void</div>
+<a class="signatureLink" href="#addObjectDefinition()">addObjectDefinition</a>(definition:<a href="IObjectDefinition.html">IObjectDefinition</a>):void</div>
 <div class="summaryTableDescription">
-         Registers an object in the container.</div>
+         Registers a new object definition in the container.</div>
 </td><td class="summaryTableOwnerCol">IObjectDefinitionContainer</td>
 </tr>
 <tr class="">
@@ -120,19 +120,12 @@ showHideInherited();
 </tr>
 </table>
 <div class="detailBody">
-<code>public function addObjectDefinition(id:String, definition:<a href="IObjectDefinition.html">IObjectDefinition</a>):void</code><p>
-         Registers an object in the container.
+<code>public function addObjectDefinition(definition:<a href="IObjectDefinition.html">IObjectDefinition</a>):void</code><p>
+         Registers a new object definition in the container.
          </p><span class="label">Parameters</span>
 <table border="0" cellspacing="0" cellpadding="0">
 <tr>
-<td width="20px"></td><td><code><span class="label">id</span>:String</code> &mdash; the id of the object definition.
-         </td>
-</tr>
-<tr>
-<td class="paramSpacer">&nbsp;</td>
-</tr>
-<tr>
-<td width="20px"></td><td><code><span class="label">definition</span>:<a href="IObjectDefinition.html">IObjectDefinition</a></code> &mdash; the definition of the object.
+<td width="20px"></td><td><code><span class="label">definition</span>:<a href="IObjectDefinition.html">IObjectDefinition</a></code> &mdash; The Identifiable ObjectDefinition reference to register in the container.
          </td>
 </tr>
 </table>
