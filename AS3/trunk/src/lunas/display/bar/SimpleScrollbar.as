@@ -305,37 +305,7 @@ package lunas.display.bar
 			}	
 			update() ;
 		}
-
-		/**
-		 * (read-write) Indicates the top button used when the bar direction is Direction.VERTICAL.
-		 */
-		public function get topButton():FrameLabelButton
-		{
-			return _topButton ;	
-		}
 		
-		/**
-		 * @private
-		 */
-		public function set topButton( button:FrameLabelButton ):void
-		{
-			if ( _topButton != null )
-			{
-				if ( contains( _topButton ) )
-				{
-					removeChild( _topButton ) ;
-				}
-				_topButton.removeEventListener(MouseEvent.CLICK, _topClick) ;
-				_topButton = null ;
-			}			
-			if ( button != null )
-			{
-				_topButton = button ;
-				_topButton.addEventListener(MouseEvent.CLICK, _topClick) ;
-			}	
-			update() ;
-		}	
-
         /**
          * Determinates the fill style object of the thumb.
          */
@@ -369,6 +339,37 @@ package lunas.display.bar
             _thumbPen.line = style ;
             update() ;
         }
+        
+
+        /**
+         * (read-write) Indicates the top button used when the bar direction is Direction.VERTICAL.
+         */
+        public function get topButton():FrameLabelButton
+        {
+            return _topButton ; 
+        }
+        
+        /**
+         * @private
+         */
+        public function set topButton( button:FrameLabelButton ):void
+        {
+            if ( _topButton != null )
+            {
+                if ( contains( _topButton ) )
+                {
+                    removeChild( _topButton ) ;
+                }
+                _topButton.removeEventListener(MouseEvent.CLICK, _topClick) ;
+                _topButton = null ;
+            }           
+            if ( button != null )
+            {
+                _topButton = button ;
+                _topButton.addEventListener(MouseEvent.CLICK, _topClick) ;
+            }   
+            update() ;
+        }           
         
 		/**
 		 * Draw the view of the component.
