@@ -26,10 +26,12 @@ package asgard.net
     
     import asgard.events.SoundEvent;
     
+    import system.ISerializable;
     import system.Reflection;
-    import system.numeric.Range;
+    import system.numeric.Mathematics;
     
     import vegas.core.HashCode;
+    import vegas.core.IHashable;
     import vegas.core.ILockable;    
 
     /**
@@ -40,7 +42,7 @@ package asgard.net
 	 * You can publish or play live (real-time) data and previously recorded data.
      * @author eKameleon
      */
-    public class NetServerStream extends NetStream implements ILockable
+    public class NetServerStream extends NetStream implements IHashable, ILockable, ISerializable
     {
 
 		/**
@@ -59,7 +61,8 @@ package asgard.net
 		 */
 		public function get bufferPercent():Number
 		{
-			return Math.min( Math.round( bufferLength / bufferTime * 100 ), 100 ) ;
+			var p:Number = Mathematics.percentage( bufferLength , bufferTime ) ;
+			return isNaN(p) ? 0 : p ;
 		}
 		
 		/**
@@ -85,7 +88,7 @@ package asgard.net
 		 */
 		public function set pan( value:Number ):void
 		{
-			soundTransform.pan = Range.UNITY_RANGE.clamp( isNaN(value) ? 0 : value ) ; 
+			soundTransform.pan = Mathematics.clamp( isNaN(value) ? 0 : value , 0, 1) ; 
 			_fireSoundEvent( SoundEvent.SOUND_UPDATE ) ;
 		}		
 		
@@ -95,8 +98,8 @@ package asgard.net
 		 */
 		public function get progress():Number
 		{
-			var percent:Number = Math.round( this.time * 100 / duration ) ;
-			return Range.PERCENT_RANGE.clamp( ( isNaN(percent) || !isFinite(percent) ) ? 0 : percent ) ;
+			var p:Number = Mathematics.percentage( this.time , duration ) ;
+            return isNaN(p) ? 0 : p ;
 		}
 		
 		/**
@@ -112,7 +115,7 @@ package asgard.net
 		 */
 		public function set volume( value:Number ):void
 		{
-			soundTransform.volume = Range.UNITY_RANGE.clamp( isNaN(value) ? 0 : value ) ; 
+			soundTransform.volume = Mathematics.clamp( isNaN(value) ? 0 : value , 0, 1) ; 
 			_fireSoundEvent( SoundEvent.SOUND_UPDATE ) ;
 		}		
         
