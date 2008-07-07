@@ -30,6 +30,19 @@ package lunas.core
 	public interface IProgress
 	{
 		
+
+        /**
+         * (Read-write) The maximum value of the progress.
+         */
+        function get maximum():Number ;
+        function set maximum( value:Number ):void ;
+
+        /**
+         * (Read-write) The minimum value of the progress.
+         */
+        function get minimum():Number ;
+        function set minimum( value:Number ):void ;		
+		
 		/**
 	 	 * Indicates the position of the progress component.
 	 	 */

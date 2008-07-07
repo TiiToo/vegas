@@ -123,39 +123,6 @@ package lunas.core
 			_pageSize = value > 0 ? value : 0 ;	
 		}		
 
-		/**
-		 * (Read-write) The maximum value of this scrollbar.
-		 */
-		public function get maximum():Number
-		{
-			return _max;
-		}
-
-		/**
-		 * @private
-		 */
-		public function set maximum(m:Number):void
-		{
-			_max = m;
-			viewPositionChanged() ;
-		}
-
-		/**
-		 * (Read-write) The minimum value of this scrollbar.
-		 */
-		public function get minimum():Number
-		{
-			return _min;
-		}
-		
-		/**
-		 * @private
-		 */
-		public function set minimum(m:Number):void
-		{
-			_min = m;
-			viewPositionChanged() ;
-		}
 
 		/**
 		 * The thumb display of the scrollbar.
@@ -325,17 +292,7 @@ package lunas.core
 				
 			}
 		}
-		
-		/**
-		 * The max value of the scrollbar.
-		 */
-		protected var _max:Number = 100 ;
-
-		/**
-		 * The min value of the scrollbar.
-		 */
-		protected var _min:Number = 0 ;		
-		
+        
 		/**
 		 * Dispatchs a ButtonEvent with the specified type.
 		 */

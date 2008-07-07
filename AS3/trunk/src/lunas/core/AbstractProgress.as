@@ -24,7 +24,7 @@ package lunas.core
 {
     import lunas.core.AbstractComponent;
     
-    import system.numeric.Range;    
+    import system.numeric.Mathematics;    
 
     /**
      * This class provides a skeletal implementation of all the <code class="prettyprint">IProgress</code> display components, to minimize the effort required to implement this interface.
@@ -48,6 +48,43 @@ package lunas.core
          * This flag indicates of the position is auto reset. 
          */
         public var autoResetPosition:Boolean = false ;
+        
+
+        /**
+         * (Read-write) The maximum value of this scrollbar.
+         */
+        public function get maximum():Number
+        {
+            return _max;
+        }
+
+        /**
+         * @private
+         */
+        public function set maximum( value:Number ):void
+        {
+            var tmp:Number = _max ;
+            _max = value ;
+            setPosition( Mathematics.map(position, _min, tmp, _min, _max ) ) ;
+        }
+
+        /**
+         * (Read-write) The minimum value of this scrollbar.
+         */
+        public function get minimum():Number
+        {
+            return _min;
+        }
+        
+        /**
+         * @private
+         */
+        public function set minimum( value:Number ):void
+        {
+            var tmp:Number = _min ;        	
+            _min = value ;
+            setPosition( Mathematics.map(position, tmp, _max, _min, _max ) ) ;
+        }        
         
         /**
          * Indicates the position of the progress bar.
@@ -74,7 +111,11 @@ package lunas.core
         public function setPosition(value:Number, noEvent:Boolean=false, flag:Boolean=false ):void
         {
             var old:Number = _position ;
-            _position      = _rPercent.clamp( Range.filterNaNValue(value) ) ;
+            _position      = Mathematics.clamp( isNaN(value) ? 0 : value, _min , _max ) ;
+            if ( isLocked() )
+            {
+                return ;	
+            }
             viewPositionChanged( flag ) ;
             if (old != _position && noEvent != true ) 
             {
@@ -100,14 +141,19 @@ package lunas.core
         }
 
         /**
+         * The max value of the progress.
+         */
+        protected var _max:Number = 100 ;
+
+        /**
+         * The min value of the progress.
+         */
+        protected var _min:Number = 0 ;
+
+        /**
          * The position value of the bar.
          */
         protected var _position:Number = 0 ;
-        
-        /**
-         * @private
-         */
-        private var _rPercent:Range = Range.PERCENT_RANGE ;
         
     }
 }

@@ -22,12 +22,12 @@
 */
 package lunas.core 
 {
-	import flash.display.Sprite;
-	import flash.events.Event;
-	
-	import lunas.core.IProgressbar;	
+    import flash.display.Sprite;
+    import flash.events.Event;
+    
+    import lunas.core.IProgressbar;	
 
-	/**
+    /**
 	 * This interface defines all methods to create scrollbar components.
 	 * @author eKameleon
 	 */
@@ -50,19 +50,7 @@ package lunas.core
 		 * (read-only) Indicates if the bar is dragging.
 		 */
 		function get isDragging():Boolean ; 
-
-		/**
-		 * (Read-write) The maximum value of this scrollbar.
-		 */
-		function get maximum():Number ;
-		function set maximum(m:Number):void ;
-
-		/**
-		 * (Read-write) The minimum value of this scrollbar.
-		 */
-		function get minimum():Number ;
-		function set minimum(m:Number):void ;
-
+        
 		/**
 		 * (Read-write) The thumb display of the scrollbar.
 		 */

@@ -103,7 +103,23 @@ package asgard.display
             _pen = initBackgroundPen() ;
             this.isFull = isFull ;
         }
-
+        
+        /**
+         * The alignement of the background.
+         * @see pegas.draw.Align
+         */
+        public var align:uint = 10 ;
+        
+        /**
+         * The radius of the bottom-left corner, in pixels.
+         */
+        public var bottomLeftRadius:Number = 0 ;
+        
+        /**
+         * The radius of the bottom-left corner, in pixels.
+         */
+        public var bottomRightRadius:Number = 0 ;
+        
         /**
          * Determinates the IFillStyle reference of this display.
          */
@@ -207,6 +223,16 @@ package asgard.display
         public var maxHeight:Number ;
         
         /**
+         * The radius of the upper-left corner, in pixels.
+         */
+        public var topLeftRadius:Number = 0 ;
+                
+        /**
+         * The radius of the upper-right corner, in pixels. 
+         */
+        public var topRightRadius:Number = 0 ;        
+        
+        /**
          * Indicates if the IFillStyle of this display use gradient box matrix (only if the IFillStyle is a FillGradientStyle).
          */
         public var useGradientBox:Boolean = false ;
@@ -257,7 +283,7 @@ package asgard.display
 				//                    
             }        
             
-            _pen.draw(offsetX, offsetY, $w, $h ) ;
+            _pen.draw(offsetX, offsetY, $w, $h, topLeftRadius , topRightRadius , bottomLeftRadius , bottomRightRadius, align ) ;
                     
             _real = new Dimension( $w, $h ) ;
 

@@ -1,4 +1,6 @@
-﻿// Copyright � 2004-2007. Adobe Systems Incorporated. All Rights Reserved.
+﻿package fl.video
+{
+	// Copyright � 2004-2007. Adobe Systems Incorporated. All Rights Reserved.
 
 	// version info for mx.video classes
 	// this file is included by several classes in that package so that
@@ -20,7 +22,7 @@
     * @langversion 3.0
     * @playerversion Flash 9.0.28.0
  	*/ 
-	public static const VERSION:String = "2.0.0.34";
+	//public static const VERSION:String = "2.0.0.34";
 	
 	/**
 	* State variable indicating the short version number of the component.  
@@ -39,4 +41,5 @@
     * @langversion 3.0
     * @playerversion Flash 9.0.28.0
 	*/
-	public static const SHORT_VERSION:String = "2.0" ;
+	//public static const SHORT_VERSION:String = "2.0" ;
+}

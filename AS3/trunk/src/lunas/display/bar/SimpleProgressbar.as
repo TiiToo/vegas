@@ -22,21 +22,23 @@
 */
 package lunas.display.bar 
 {
-	import flash.display.Shape;
-	import flash.geom.Rectangle;
-	
-	import lunas.core.AbstractProgressbar;
-	import lunas.core.Direction;
-	import lunas.core.EdgeMetrics;
-	
-	import pegas.draw.Align;
-	import pegas.draw.FillStyle;
-	import pegas.draw.IFillStyle;
-	import pegas.draw.ILineStyle;
-	import pegas.draw.LineStyle;
-	import pegas.draw.RectanglePen;	
+    import flash.display.Shape;
+    import flash.geom.Rectangle;
+    
+    import lunas.core.AbstractProgressbar;
+    import lunas.core.Direction;
+    import lunas.core.EdgeMetrics;
+    
+    import pegas.draw.Align;
+    import pegas.draw.FillStyle;
+    import pegas.draw.IFillStyle;
+    import pegas.draw.ILineStyle;
+    import pegas.draw.LineStyle;
+    import pegas.draw.RectanglePen;
+    
+    import system.numeric.Mathematics;    
 
-	/**
+    /**
      * The SimpleProgressbar component.
      * <p><b>Example :</b></p>
      * <pre class="prettyprint">
@@ -93,6 +95,12 @@ package lunas.display.bar
      *             bar.border              = new EdgeMetrics(2, 2, 2, 2) ;
      *             bar.unlock() ;
      *             bar.setSize( 200, 8 ) ;
+     *             break ;
+     *         }
+     *         case Keyboard.UP :
+     *         {
+     *             bar.minimum = 20  ;
+     *             bar.maximum = 200 ;
      *             break ;
      *         }
      *         default :
@@ -270,8 +278,8 @@ package lunas.display.bar
             
             var margin:Number = (direction == Direction.VERTICAL) ? mH : mW ;
             var max:Number    = (direction == Direction.VERTICAL) ? h : w ;
-            
-            var size:Number   =  Math.floor( position * (max - margin) / 100 ) ;
+                        
+            var size:Number =  Mathematics.map( position , minimum, maximum , 0 , (max - margin) ) ;
                     
             var $w:Number = (direction == Direction.VERTICAL) ? ( w - mW ) : size  ;
             var $h:Number = (direction == Direction.VERTICAL) ? size : ( h - mH ) ;
