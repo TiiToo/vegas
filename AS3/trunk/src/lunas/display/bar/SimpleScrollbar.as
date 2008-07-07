@@ -172,15 +172,11 @@ package lunas.display.bar
 			_barPen   = new RectanglePen( bar )   ;
 			_thumbPen = new RectanglePen( thumb ) ;
 			
-			lock() ;
-			
-			barFillStyle = new FillStyle( 0xA2A2A2, 1 ) ;
-			barLineStyle = new LineStyle( 1, 0xA2A2A2 , 1) ;
+			_barPen.fill = new FillStyle( 0xA2A2A2, 1 ) ;
+			_barPen.line = new LineStyle( 1, 0xA2A2A2 , 1) ;
 
-			thumbFillStyle = new FillStyle( 0xFFFFFF, 1 ) ;
-			thumbLineStyle = new LineStyle( 1, 0xA2A2A2 , 1) ;
-			
-			unlock() ;
+			_thumbPen.fill = new FillStyle( 0xFFFFFF, 1 ) ;
+			_thumbPen.line = new LineStyle( 1, 0xA2A2A2 , 1) ;
 			
 			setSize(200, 6) ;
 		

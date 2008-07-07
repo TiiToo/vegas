@@ -373,6 +373,7 @@ package andromeda.ioc.factory
                 }                
                 
                 invokeInitMethod( instance , definition ) ;
+                
             }
             
             return instance ;

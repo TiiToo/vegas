@@ -147,15 +147,11 @@ package lunas.display.bar
             addChild( background ) ;
             addChild( bar ) ;
             
-            lock() ;
+            _backgroundPen.fill = new FillStyle( 0xFFFFFF, 1 ) ;
+            _backgroundPen.line = new LineStyle( 1, 0xA2A2A2 , 1) ;
             
-            backgroundFillStyle = new FillStyle( 0xFFFFFF, 1 ) ;
-            backgroundLineStyle = new LineStyle( 1, 0xA2A2A2 , 1) ;
-            
-            barFillStyle = new FillStyle( 0xFF0000, 1 ) ;
-            barLineStyle = null ;
-            
-            unlock() ;
+            _barPen.fill = new FillStyle( 0xFF0000, 1 ) ;
+            _barPen.line = null ;
             
             setSize(150, 6) ;
             

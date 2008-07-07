@@ -28,7 +28,6 @@ package lunas.core
 
     /**
      * This class provides a skeletal implementation of all the <code class="prettyprint">IProgress</code> display components, to minimize the effort required to implement this interface.
-     * @author eKameleon
      */
     public class AbstractProgress extends AbstractComponent implements IProgress 
     {
@@ -112,10 +111,6 @@ package lunas.core
         {
             var old:Number = _position ;
             _position      = Mathematics.clamp( isNaN(value) ? 0 : value, _min , _max ) ;
-            if ( isLocked() )
-            {
-                return ;	
-            }
             viewPositionChanged( flag ) ;
             if (old != _position && noEvent != true ) 
             {
