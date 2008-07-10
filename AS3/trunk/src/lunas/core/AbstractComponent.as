@@ -306,19 +306,19 @@ package lunas.core
 			// overrides
 		}
 
-		/**
-		 * Returns the IBuilder Class of this instance.
-		 * @return the IBuilder Class of this instance.
-	 	 */
+        /**
+         * Returns the <code class="prettyprint">IBuilder</code> constructor use to initialize this component.
+         * @return the <code class="prettyprint">IBuilder</code> constructor use to initialize this component.
+         */
 		public function getBuilderRenderer():Class 
 		{
 			return null ; // overrides
 		}
 		
-		/**
-		 * Returns the IStyle Class of this instance.
-		 * @return the IStyle Class of this instance.
-	 	 */
+        /**
+         * Returns the <code class="prettyprint">IStyle</code> constructor use to initialize this component.
+         * @return the <code class="prettyprint">IStyle</code> constructor use to initialize this component.
+         */
 		public function getStyleRenderer():Class 
 		{
 			return null ; // overrides

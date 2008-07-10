@@ -29,7 +29,6 @@ package lunas.display.button
 
 	/**
 	 * The IStyle class of the LightFrameLabelButton component.
-	 * @author eKameleon
 	 */
 	public class LightFrameLabelButtonStyle extends AbstractStyle 
 	{

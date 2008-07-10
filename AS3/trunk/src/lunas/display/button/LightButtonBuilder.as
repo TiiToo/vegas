@@ -30,7 +30,6 @@ package lunas.display.button
 
 	/**
 	 * The IBuilder class of the LightButton component.
-	 * @author eKameleon
 	 */
 	public class LightButtonBuilder extends AbstractButtonBuilder
 	{

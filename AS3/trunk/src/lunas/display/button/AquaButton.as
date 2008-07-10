@@ -29,7 +29,6 @@ package lunas.display.button
 
 	/**
 	 * This AquaButton class defines a button component with a aqua effect inside.
-	 * @author eKameleon
 	 */
 	public class AquaButton extends AbstractButton 
 	{

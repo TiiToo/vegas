@@ -31,7 +31,6 @@ package lunas.display.button
 
 	/**
 	 * The IStyle class of the AquaButton component.
-	 * @author eKameleon
 	 */
 	public class AquaButtonStyle extends AbstractStyle 
 	{

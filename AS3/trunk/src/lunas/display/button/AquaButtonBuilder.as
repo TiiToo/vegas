@@ -39,7 +39,6 @@ package lunas.display.button
 
 	/**
 	 * The IBuilder class of the AquaButton component.
-	 * @author eKameleon
 	 */
 	public class AquaButtonBuilder extends AbstractButtonBuilder 
 	{

@@ -102,7 +102,6 @@ package lunas.display.button
 	 * bt.addEventListener( ButtonEvent.UNSELECT      , debug ) ;
 	 * bt.addEventListener( ButtonEvent.UP            , debug ) ;
 	 * </pre>
-	 * @author eKameleon
 	 */
 	public class FrameLabelButton extends AbstractButton 
 	{

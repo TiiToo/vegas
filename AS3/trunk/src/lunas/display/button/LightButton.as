@@ -30,7 +30,6 @@ package lunas.display.button
 
 	/**
 	 * This LightButton is a button who use a LightColor motion to creates light effects when the button is over or click.
-	 * @author eKameleon
 	 */
 	public class LightButton extends AbstractButton 
 	{

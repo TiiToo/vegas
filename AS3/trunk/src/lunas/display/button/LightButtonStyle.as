@@ -30,7 +30,6 @@ package lunas.display.button
 
     /**
 	 * The IStyle class of the LightButton component.
-	 * @author eKameleon
 	 */
 	public class LightButtonStyle extends AbstractStyle 
 	{
