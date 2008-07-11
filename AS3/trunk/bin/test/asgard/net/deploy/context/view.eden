@@ -26,6 +26,18 @@ objects =
     }
     ,
     {
+        id               : "my_picture" ,
+        type             : "flash.display.Bitmap"  ,
+        factoryReference : "assembly_picture" ,
+        properties : 
+        [
+            { name : "filters" , config : "display.filters" } ,
+			{ name : "x"       , value  : 470               } ,
+			{ name : "y"       , value  : 75                }
+        ]
+    }    
+    ,
+    {
         id         : "my_square" ,
         type       : "Square" ,
         properties : [ { name : "filters" , config : "display.filters" } ]
@@ -45,8 +57,8 @@ objects =
         ,
         methods :
         [
-            { name:"addChild" , arguments:[ { ref:"my_square" } ] } ,
-            { name:"addChild" , arguments:[ { ref:"my_field"  } ] }
+            { name:"addChild" , arguments:[ { ref:"my_square"  } ] } ,
+            { name:"addChild" , arguments:[ { ref:"my_field"   } ] } 
         ]        
     }  
     ,

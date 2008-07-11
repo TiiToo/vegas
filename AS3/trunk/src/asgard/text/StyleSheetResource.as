@@ -80,7 +80,7 @@ package asgard.text
                 var ss:StyleSheet ;       	        
        	        var factory:ObjectFactory = owner as ObjectFactory ;
        	        
-       	        if ( factory.containsObjectDefinition( id ) == false )
+       	        if ( factory != null && factory.containsObjectDefinition( id ) == false )
        	        {
  
        	        	if ( styleSheet != null )

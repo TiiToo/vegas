@@ -28,6 +28,8 @@ package andromeda.ioc.io
     import flash.system.LoaderContext;
     import flash.utils.getDefinitionByName;
     
+    import andromeda.ioc.core.ObjectDefinition;
+    import andromeda.ioc.factory.ObjectFactory;
     import andromeda.ioc.io.ObjectResource;
     import andromeda.process.ActionLoader;
     import andromeda.process.CoreActionLoader;
@@ -44,11 +46,17 @@ package andromeda.ioc.io
 		
 		/**
 		 * Creates a new AssemblyResource instance.
-		 */
+         * @param init A generic object containing properties with which to populate the newly instance. If this argument is null, it is ignored.
+         */
         public function AssemblyResource(init:Object = null)
         {
             super(init);
         }
+        
+        /**
+         * The default class name of the object definition if the id of the assembly is not 'null' or 'undefined'.
+         */
+        public static var DEFAULT_CLASS_NAME:String = "flash.display.DisplayObject" ;
         
         /**
          * The default Loader class use in all AssemblyResource to create a new resource process.
@@ -64,6 +72,12 @@ package andromeda.ioc.io
          * Indicates if the assembly must check a policy file in the server of the external library to load.
          */
         public var checkPolicyFile:Boolean ;
+        
+        /**
+         * Indicates the definition object to initialize the ObjectDefinition of the current assembly.
+         * Use this attribute only if the 'id' of the assembly resource is not 'null' or 'undefined'.
+         */
+        public var definition:Object ;
         
         /**
          * The loader to use to load the assembly.
@@ -112,6 +126,25 @@ package andromeda.ioc.io
                 }
                 
             }        	
+        	
+        	var factory:ObjectFactory = owner as ObjectFactory ;
+            
+            if ( id != null && id is String && factory != null && factory.containsObjectDefinition( id ) == false )
+            {
+                var init:Object = 
+                {
+                    id        : id  ,
+                    type      : DEFAULT_CLASS_NAME 
+                };
+                if ( definition != null )
+                {
+                	for (var prop:String in definition )
+                	{
+                	   init[prop] = definition[prop] ;	
+                	}
+                }
+                factory.addObjectDefinition( ObjectDefinition.create( init ) ) ;
+            }
         	
             var action:ActionLoader = new ActionLoader( currentLoader || new DEFAULT_LOADER() ) ;
 			

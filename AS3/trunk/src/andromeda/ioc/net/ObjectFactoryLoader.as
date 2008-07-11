@@ -27,11 +27,15 @@ package andromeda.ioc.net
     import flash.events.ProgressEvent;
     
     import andromeda.events.ActionEvent;
+    import andromeda.ioc.core.IObjectDefinition;
     import andromeda.ioc.core.ObjectAttribute;
     import andromeda.ioc.factory.ObjectFactory;
+    import andromeda.ioc.factory.strategy.ObjectFactoryValue;
+    import andromeda.ioc.io.AssemblyResource;
     import andromeda.ioc.io.ContextResource;
     import andromeda.ioc.io.ObjectResource;
     import andromeda.ioc.io.ObjectResourceBuilder;
+    import andromeda.process.ActionLoader;
     import andromeda.process.ActionURLLoader;
     import andromeda.process.CoreActionLoader;
     import andromeda.process.Sequencer;
@@ -190,9 +194,7 @@ package andromeda.ioc.net
         {
         	if ( _factory != null && _isRegister == false )
             {
-
                 _isRegister = true ;
-                
                 _factory.addEventListener( IOErrorEvent.IO_ERROR   , fireEvent ) ;
                 _factory.addEventListener( ProgressEvent.PROGRESS  , fireEvent ) ;
                 _factory.addEventListener( Event.COMPLETE          , fireEvent ) ;
@@ -209,15 +211,12 @@ package andromeda.ioc.net
         {
             if ( _factory != null && _isRegister )
             {
-            	
             	_isRegister = false  ;
-            	
                 _factory.removeEventListener( IOErrorEvent.IO_ERROR   , fireEvent ) ;
                 _factory.removeEventListener( ProgressEvent.PROGRESS  , fireEvent ) ;
                 _factory.removeEventListener( Event.COMPLETE          , fireEvent ) ;
                 _factory.removeEventListener( ActionEvent.START       , fireEvent ) ;
                 _factory.removeEventListener( ActionEvent.FINISH      , main      ) ;
-                
             }
         }
         
@@ -373,7 +372,56 @@ package andromeda.ioc.net
                 create() ;
             }
         }
-                
+        
+        private function _initResource( resource:ObjectResource , action:CoreActionLoader ):void
+        {
+            // trace(this + " progress :: + " + action.request.url ) ;
+            if ( resource != null  )
+            {
+                switch( true )
+                {
+                	case resource is AssemblyResource :
+                    {
+                        var al:ActionLoader = action as ActionLoader ;
+                        try
+                        {
+                            var id:* = resource.id ;
+                            if ( id != null && factory.containsObjectDefinition(id) )
+                            {
+                            	var d:IObjectDefinition  = factory.getObjectDefinition(id) ;
+                            	var s:ObjectFactoryValue = new ObjectFactoryValue( al.content ) ;
+                            	d.setFactoryStrategy( s ) ;
+                            }
+                        }
+                        catch( e1:Error )
+                        {
+                            if ( verbose )
+                            {
+                                getLogger().error( this + " init resource failed : " + e1 ) ;
+                            }
+                        }
+                        break ;
+                    }
+                    case resource is ContextResource :
+                    {
+                        var au:ActionURLLoader = action as ActionURLLoader ;
+                        try
+                        {
+                            _checkContext( au.data ) ;
+                        }
+                        catch( e2:Error )
+                        {
+                            if ( verbose )
+                            {
+                                getLogger().error( this + " init resource failed : " + e2 ) ;
+                            }
+                        }
+                        break ;
+                    }                    
+                }
+            }        	
+        }
+             
         /**
          * @private
          */
@@ -385,31 +433,12 @@ package andromeda.ioc.net
                 getLogger().debug(this + " progress sequencer : " + e) ;
             }
             
-            var current:* = sequencer.getCurrent() ;
-            
-            var resource:ObjectResource = _resources.remove(current) as ObjectResource ;
+            var action:CoreActionLoader = sequencer.getCurrent() as CoreActionLoader ;
+            var resource:ObjectResource = _resources.remove( action ) as ObjectResource ;
             
             // trace(this + " progress :: + " + resource + " :: " + _resources.size() ) ;
             
-            if ( resource != null && resource is ContextResource )
-            {
-            
-                var action:ActionURLLoader = current as ActionURLLoader ;
-            
-                // trace(this + " progress :: + " + action.request.url ) ;
-            
-                try
-                {
-                    _checkContext( action.data ) ;
-                }
-                catch( error:Error )
-                {
-                    if ( verbose )
-                    {
-                        getLogger().error( this + " failed : " + error ) ;
-                    }
-                }
-            }
+            _initResource( resource , action ) ;
             
         }
         

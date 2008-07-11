@@ -3,7 +3,16 @@ imports =
 
     // assembly
     
-    { resource : "library/dll.swf" , type:"assembly" } ,
+    { resource : "library/dll.swf"     , type:"assembly" } 
+    
+    ,
+    { 
+		id         : "assembly_picture" ,
+		resource   : "library/picture.jpg" , 
+		type       : "assembly" ,
+		definition : { type : "flash.display.Bitmap" }
+	} 
+	,    
     
     // config
     
