@@ -1,0 +1,83 @@
+imports =
+[
+
+    { resource : "fonts/fonts.swf" , type : "font" , fonts : [ "ArialBlack", "MyriadPro" ] } 
+    
+] ;
+
+objects =
+[
+	
+	{
+		id        : "format1" ,
+		type      : "flash.text.TextFormat" ,
+		arguments : 
+		[
+			{ value : "Arial Black" } ,
+			{ value : 13            } ,
+			{ value : 0xFFFFFF      } 
+		]
+	}
+	,
+	{
+		id        : "format2" ,
+		type      : "flash.text.TextFormat" ,
+		arguments : 
+		[
+			{ value : "Myriad Pro" } ,
+			{ value : 18           } ,
+			{ value : 0xF7EEA2     } 
+		]
+	}
+	,	
+	{
+		id   : "field1" ,
+		type : "flash.text.TextField" ,
+		properties :
+		[
+			{ name : "autoSize"          , value : "left"          } ,
+			{ name : "defaultTextFormat" , ref   : "format1"       } ,
+			{ name : "embedFonts"        , value : true            } ,
+			{ name : "text"              , value : "hello world 1" } ,
+			{ name : "x"                 , value : 25              } ,
+			{ name : "y"                 , value : 25              } 
+		]
+	}
+	,
+	{
+		id   : "field2" ,
+		type : "flash.text.TextField" ,
+		properties :
+		[
+			{ name : "autoSize"          , value : "left"          } ,
+			{ name : "defaultTextFormat" , ref   : "format2"       } ,
+			{ name : "embedFonts"        , value : true            } ,
+			{ name : "text"              , value : "hello world 2" } ,
+			{ name : "x"                 , value : 25              } ,
+			{ name : "y"                 , value : 50              } 
+		]
+	}
+	,
+	{
+		id               : "application" ,
+		type             : "flash.display.MovieClip" ,
+		factoryReference : "#root" ,
+		singleton        : true ,
+		methods          :
+		[
+			{ name : "addChild" , arguments : [ { ref : "field1" } ] } ,
+			{ name : "addChild" , arguments : [ { ref : "field2" } ] } 
+		]
+	}
+	,
+	{
+		id               : "stage" ,
+		type             : "flash.display.Stage" ,
+		factoryReference : "#stage" ,
+		singleton        : true ,
+		properties       :
+		[
+			{ name : "scaleMode" , value : "noScale" } 
+		]
+	}	
+]
