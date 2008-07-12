@@ -96,7 +96,7 @@ package andromeda.ioc.core
             {
             	
             	var o:Object ;
-            	var i:uint ;
+            	var i:int ;
                 
                 var evaluators:Array ;
                 var conf:String ;
@@ -105,8 +105,8 @@ package andromeda.ioc.core
                 var value:* ;
                                 
                 var args:Array  = [] ;
-                var l:uint   = a.length ;
-                for ( i=0 ; i<l ; i++ )
+                var l:int   = a.length ;
+                for ( i ; i<l ; i++ )
                 {
                 	o = a[i] ;
                 	if ( o != null )

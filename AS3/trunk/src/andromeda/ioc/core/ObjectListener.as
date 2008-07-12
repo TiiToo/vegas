@@ -207,12 +207,12 @@ package andromeda.ioc.core
             var def:Object ;
             var listeners:Array = [] ;
 
-            var len:uint = a.length ;
+            var len:int = a.length ;
             
             var dispatcher:String ;
             var type:String ;
             
-            for (var i:uint = 0 ; i<len ; i++)
+            for ( var i:int ; i<len ; i++)
             {
                     
                 def  = a[i] as Object ;

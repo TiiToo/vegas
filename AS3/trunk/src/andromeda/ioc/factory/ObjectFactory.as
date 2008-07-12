@@ -257,16 +257,16 @@ package andromeda.ioc.factory
             {
                 return null ;    
             }
-            var len:uint = args.length ;
+            var len:int = args.length ;
             if ( len > 0 )
             {
             	
-            	var i:uint ;
+            	var i:int ;
                 var stack:Array = [] ;
                 var item:ObjectArgument ;
                 var value:* ;
                 
-                for ( i = 0 ; i<len ; i++)
+                for ( ; i<len ; i++)
                 {
 
                     item  = args[i] as ObjectArgument ;
@@ -614,8 +614,8 @@ package andromeda.ioc.factory
                 var value:* ;
                 var name:String ;
                 var values:Array = properties.getValues() ;
-                var size:uint    = values.length ;
-                for( var i:uint = 0 ; i<size ; i++ )
+                var size:int     = values.length ;
+                for( var i:int = 0 ; i<size ; i++ )
                 {
                     prop = values[i] as ObjectProperty ;
                     

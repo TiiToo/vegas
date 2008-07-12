@@ -57,7 +57,7 @@ package asgard.system
     	public var loader:* ;
     	
         /**
-         * The custom loader reference use to load the locale resource (The class must inherit from the AbstractLocalizationLoader class).
+         * The optional path of the external locale file to load.
          */
     	public var path:String ;
     	

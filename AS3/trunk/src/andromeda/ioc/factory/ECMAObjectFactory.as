@@ -467,8 +467,8 @@ package andromeda.ioc.factory
             if ( _setDefinitions.isEmpty() == false )
             {
                 var ar:Array  = _setDefinitions.toArray() ;
-                var size:uint = ar.length ;
-                for ( var i:uint = 0 ; i<size ; i++ )
+                var size:int = ar.length ;
+                for ( var i:int ; i<size ; i++ )
                 {
                     getObject( ar[i] as String ) ;
                 } 

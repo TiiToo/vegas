@@ -45,6 +45,11 @@ package andromeda.ioc.io
         public static const CONTEXT:String = "context" ;
         
         /**
+         * The "font" resource type.
+         */
+        public static const FONT:String = "font" ;        
+        
+        /**
          * The "i18n" resource type.
          */
         public static const I18N:String = "i18n" ;        

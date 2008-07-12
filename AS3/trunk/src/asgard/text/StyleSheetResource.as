@@ -57,7 +57,7 @@ package asgard.text
         public static var DEFAULT_PATH:String = "" ;    	
     	
         /**
-         * The custom loader reference use to load the styleSheet file (The class must inherit from the AbstractLocalizationLoader class).
+         * The optional path of the external styleSheet file to load.
          */
     	public var path:String ;
 

@@ -352,8 +352,9 @@ package andromeda.ioc.net
             
             if ( _imports != null && _imports.length > 0 )
             {
+            	var i:int ;
             	var size:int = _imports.length ;
-                for (var i:int = 0 ; i<size ; i++ )
+                for ( ; i<size ; i++ )
                 {
                 	addResource( _imports[i] as ObjectResource ) ;
                 }

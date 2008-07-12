@@ -116,9 +116,9 @@ package andromeda.ioc.core
 
             var evaluators:Array ;
 
-            var len:uint = a.length ;
+            var len:int = a.length ;
             
-            for (var i:uint = 0 ; i<len ; i++)
+            for (var i:int ; i<len ; i++)
             {
                     
                 prop  = a[i] as Object ;

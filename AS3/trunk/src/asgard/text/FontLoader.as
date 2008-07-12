@@ -110,7 +110,7 @@ package asgard.text
         public function FontLoader( id:* = null, isConfigurable:Boolean = false, name:String = null )
         {
             super( id, isConfigurable, name );
-            contentLoaderInfo.addEventListener( Event.COMPLETE, complete ) ;
+            contentLoaderInfo.addEventListener( Event.COMPLETE, complete , false, 99999 ) ;
         }
         
         /**
@@ -166,7 +166,7 @@ package asgard.text
                     clazz = contentLoaderInfo.applicationDomain.getDefinition( name ) as Class ;
                     if ( clazz != null )
                     {
-                        if ( Reflection.getClassInfo(clazz).inheritFrom(Font) )  
+                        if ( Reflection.getClassInfo(clazz).inheritFrom( Font ) )  
                         {
                             Font.registerFont( clazz ) ;
                             font = new clazz() as Font ;

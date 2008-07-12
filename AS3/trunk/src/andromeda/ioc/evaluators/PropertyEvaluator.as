@@ -105,9 +105,9 @@ package andromeda.ioc.evaluators
             		
             		var value:*       = target ;
             		var members:Array = exp.split( separator ) ;
-            		var len:uint      = members.length ;
+            		var len:int       = members.length ;
             		
-            		for ( var i:uint = 0 ; i<len ; i++ )
+            		for ( var i:int ; i<len ; i++ )
             		{
                         if ( members[i] in value )
                         {
