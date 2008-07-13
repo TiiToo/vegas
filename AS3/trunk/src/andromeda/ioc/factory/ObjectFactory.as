@@ -314,8 +314,9 @@ package andromeda.ioc.factory
             var instance:* = singletons.get( id ) ;
             if( !instance ) 
             {
-                instance = createObject( definition ) ;
+                instance = _create( definition ) ;
                 singletons.put( id, instance ) ;
+                _initialize( instance , definition ) ;
             }
             return instance;
         }
@@ -326,58 +327,9 @@ package andromeda.ioc.factory
          */
         protected function createObject( definition:IObjectDefinition ):*
         {
-                  
-            var instance:*   = null ;
-            
-            var clazz:Class  = config.typeEvaluator.eval( definition.getType() ) as Class ;
-            
-            var strategy:IObjectFactoryStrategy = definition.getFactoryStrategy() ;
-            
-            try
-            {
-                if ( strategy == null )
-                {
-                    instance = ClassUtil.buildNewInstance( clazz, createArguments( definition.getConstructorArguments()) ) as clazz ;
-                }
-                else
-                {   
-                    instance = createObjectWithStrategy( strategy ) as clazz ;
-                }
-            }
-            catch( e:TypeError )
-            {
-                getLogger().fatal(this + " createObject failed, can't convert the instance with the specified type \"" + definition.getType() + "\" in the object definition \"" + definition.id + "\", this type don't exist in the application.") ;	
-            }
-            
-            if ( instance != null )
-            {
-                
-                populateIdentifiable ( instance , definition ) ;
-            	
-            	var flag:Boolean = isLockable( instance, definition ) ;
-            	
-            	if ( flag )
-            	{
-            		(instance as ILockable).lock() ;
-            	}
-                            	
-            	registerListeners( instance , definition.getListeners() ) ;
-            	
-                populateProperties( instance , definition.getProperties() );
-                
-                invokeMethods( instance , definition.getMethods() ) ;
-                
-                if ( flag )
-                {
-                    (instance as ILockable).unlock() ;
-                }                
-                
-                invokeInitMethod( instance , definition ) ;
-                
-            }
-            
+            var instance:* = _create( definition ) ;
+            _initialize( instance , definition ) ;
             return instance ;
-        
         }
         
         /**
@@ -713,6 +665,72 @@ package andromeda.ioc.factory
          * @private
          */
         private var _re:ReferenceEvaluator = new ReferenceEvaluator() ;
+        
+        /**
+         * @private
+         */
+        private function _create( definition:IObjectDefinition ):*
+        {
+                  
+            var instance:*   = null ;
+            
+            var clazz:Class  = config.typeEvaluator.eval( definition.getType() ) as Class ;
+            
+            var strategy:IObjectFactoryStrategy = definition.getFactoryStrategy() ;
+            
+            try
+            {
+                if ( strategy == null )
+                {
+                    instance = ClassUtil.buildNewInstance( clazz, createArguments( definition.getConstructorArguments()) ) as clazz ;
+                }
+                else
+                {   
+                    instance = createObjectWithStrategy( strategy ) as clazz ;
+                }
+            }
+            catch( e:TypeError )
+            {
+                getLogger().fatal(this + " createObject failed, can't convert the instance with the specified type \"" + definition.getType() + "\" in the object definition \"" + definition.id + "\", this type don't exist in the application.") ;   
+            }
+            
+            return instance ;
+        } 
+        
+
+        /**
+         * @private
+         */
+        private function _initialize( instance:* , definition:IObjectDefinition ):*
+        {
+            if ( instance != null && definition != null )
+            {
+                
+                populateIdentifiable ( instance , definition ) ;
+                
+                var flag:Boolean = isLockable( instance, definition ) ;
+                
+                if ( flag )
+                {
+                    (instance as ILockable).lock() ;
+                }
+                                
+                registerListeners( instance , definition.getListeners() ) ;
+                
+                populateProperties( instance , definition.getProperties() );
+                
+                invokeMethods( instance , definition.getMethods() ) ;
+                
+                if ( flag )
+                {
+                    (instance as ILockable).unlock() ;
+                }                
+                
+                invokeInitMethod( instance , definition ) ;
+                
+            }
+            return instance ;
+        }        
         
     }
 }
