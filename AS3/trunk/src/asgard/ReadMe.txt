@@ -1,5 +1,5 @@
  
-   ASGard AS3 version 1.0.0.1062 Release Candidate 4 (VEGAS Project extension)
+   ASGard AS3 version 1.0.0.1068 Release Candidate 4 (VEGAS Project extension)
  
    LICENCE 
 
@@ -21,7 +21,7 @@
    ABOUT
 
     * Author : ALCARAZ Marc (aka eKameleon)
-    * Version : 1.0.0.1062 Release Candidate 4 (AS3)
+    * Version : 1.0.0.1068 Release Candidate 4 (AS3)
     * Link : http://www.ekameleon.net/blog
     * Mail : vegas@ekameleon.net 
 

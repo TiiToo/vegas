@@ -64,7 +64,7 @@ package asgard.media
         public function validate( id:Number ):Boolean
         {
             var ar:Array = [ ON2_VP6_1, ON2_VP6_2, SCREEN_VIDEO, SCREEN_VIDEO_V2 , SORENSON] ;
-            return     ar.indexOf( id ) > - 1 ;
+            return ar.indexOf( id ) > - 1 ;
         }
             
     }
