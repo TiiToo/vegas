@@ -1,5 +1,5 @@
  
-   VEGAS AS3 - version 1.0.0.1068 Release Candidate 4
+   VEGAS AS3 - version 1.0.0.1070 Release Candidate 4
  
 
    The "vegas.swc" library contains all the AS3 source code of the VEGAS project with all this extensions.
@@ -24,7 +24,7 @@
    ABOUT
 
     * Author : eKameleon
-    * Version : 1.0.0.1062 Release Candidate 4 AS3
+    * Version : 1.0.0.1070 Release Candidate 4 AS3
     * Link : http://www.ekameleon.net/blog
     * Mail : vegas@ekameleon.net 
 
