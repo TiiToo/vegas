@@ -119,7 +119,7 @@ package asgard.config
 		 * The internal id of this object.
 		 * @private
 		 */
-		private var _id:* = null ; 
+		private var _id:* ; 
  
  	    /**
          * Determinates if the object is configurable.
