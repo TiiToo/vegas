@@ -5,7 +5,7 @@
 <link rel="stylesheet" href="../../style.css" type="text/css" media="screen">
 <link rel="stylesheet" href="../../print.css" type="text/css" media="print">
 <link rel="stylesheet" href="../../prettify.css" type="text/css">
-<meta content="Background,asgard.display.Background,align,bottomLeftRadius,bottomRightRadius,gradientRotation,maxHeight,maxWidth,minHeight,minWidth,topLeftRadius,topRightRadius,useGradientBox,fill,h,isFull,line,w,draw,getEventTypeRESIZE,initBackgroundPen,notifyResized,setEventTypeRESIZE,setSize,update,viewChanged" name="keywords">
+<meta content="Background,asgard.display.Background,align,bottomLeftRadius,bottomRightRadius,gradientRotation,maxHeight,maxWidth,minHeight,minWidth,topLeftRadius,topRightRadius,useGradientBox,direction,fill,h,isFull,line,w,draw,getEventTypeRESIZE,initBackgroundPen,notifyResized,setEventTypeRESIZE,setSize,update,viewChanged" name="keywords">
 <title>asgard.display.Background</title>
 </head>
 <body>
@@ -41,26 +41,39 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <tr>
 <td class="classHeaderTableLabel">Inheritance</td><td class="inheritanceList">Background <img class="inheritArrow" alt="Inheritance" title="Inheritance" src="../../images/inherit-arrow.gif"> <a href="CoreSprite.html">CoreSprite</a> <img class="inheritArrow" alt="Inheritance" title="Inheritance" src="../../images/inherit-arrow.gif"> flash.display.Sprite</td>
 </tr>
+<tr>
+<td class="classHeaderTableLabel">Implements</td><td><a href="../../pegas/draw/IDirectionable.html">IDirectionable</a></td>
+</tr>
 </table>
 <p></p>
      This display is used to create a background in your application or in an other display of the application.
-     <p></p>
-<br>
-<span class="label">Example</span>
-<br>     <pre class="prettyprint">
+     <p><b>Example :</b></p>
+     <pre class="prettyprint">
      import asgard.display.Background ;
      
-     import flash.display.GradientType ;
+     import flash.display.;
      
-     import pegas.draw.FillGradientStyle ;
-     import pegas.draw.FillStyle ;
+     import pegas.draw.;
      
      stage.align     = StageAlign.TOP_LEFT ;
      stage.scaleMode = StageScaleMode.NO_SCALE ;
      
      var background:Background = new Background( "background" ) ;
-     background.fill           = new FillStyle( 0x8D818F , 1 ) ;
-     background.setSize( 740, 400 ) ;
+     
+     background.lock() ; // lock the update method
+     
+     // background.topLeftRadius = 15 ;
+     // background.bottomLeftRadius = 15 ;
+     
+     background.fill = new FillStyle( 0xD97BD0  ) ;
+     // background.line = new LineStyle( 2, 0xFFFFFF ) ;
+     background.w    = 400 ;
+     background.h    = 300 ;
+     
+     background.unlock() ; // unlock the update method
+     background.update() ; // force update
+     
+     // background.setSize( 740, 400 ) ;
      
      addChild( background ) ;
      
@@ -71,23 +84,48 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
      
      var keyDown:Function = function( e:KeyboardEvent ):void
      {
-         if( background.isFull )
+         var code:uint = e.keyCode ;
+         switch( code )
          {
-             stage.removeEventListener( Event.RESIZE, resize ) ;
-             background.fill = new FillStyle( 0x8D818F , 1 ) ;
-             background.isFull = false ;
-         }
-         else
-         {
-             stage.addEventListener( Event.RESIZE, resize ) ;
-             background.gradientRotation = 90 ;
-             background.useGradientBox   = true ;
-             background.fill             = new FillGradientStyle( GradientType.LINEAR, [0x071E2C,0x81C2ED], [1,1], [0,255] ) ;
-             background.isFull           = true ;
+             case Keyboard.SPACE :
+             {
+                 if( background.isFull )
+                 {
+                     stage.removeEventListener( Event.RESIZE, resize ) ;
+                     background.fill   = new FillStyle( 0xD97BD0 ) ;
+                     background.isFull = false ;
+                 }
+                 else
+                 {
+                     stage.addEventListener( Event.RESIZE, resize ) ;
+                     background.gradientRotation = 90 ;
+                     background.useGradientBox   = true ;
+                     background.fill             = new FillGradientStyle( GradientType.LINEAR, [0x071E2C,0x81C2ED], [1,1], [0,255] ) ;
+                     background.isFull           = true ;
+                     background.direction        = null ;
+                 }
+                 break ;
+             }
+             case Keyboard.UP :
+             {
+                 background.fill      = new FillStyle( 0x000000 ) ;
+                 background.isFull    = true ;
+                 background.direction = Direction.HORIZONTAL ;
+                 break ;
+             }
+             case Keyboard.DOWN :
+             {
+                 background.fill      = new FillStyle( 0xFFFFFF ) ;
+                 background.isFull    = true ;
+                 background.direction = Direction.VERTICAL ;
+                 break ;
+             }
          }
      }
      
      stage.addEventListener( KeyboardEvent.KEY_DOWN , keyDown ) ;
+     
+     trace( "Press a key to change the view of the background." ) ;
      </pre>
      <p></p>
 <br>
@@ -124,6 +162,11 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 </td><td class="summaryTableOwnerCol">Background</td>
 </tr>
 <tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#direction">direction</a> : String<div class="summaryTableDescription">
+         Indicates the direction value of the background when the display is in this "full" mode (default value is null).</div>
+</td><td class="summaryTableOwnerCol">Background</td>
+</tr>
+<tr class="">
 <td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#fill">fill</a> : <a href="../../pegas/draw/IFillStyle.html">IFillStyle</a>
 <div class="summaryTableDescription">
          Determinates the IFillStyle reference of this display.</div>
@@ -131,7 +174,7 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 </tr>
 <tr class="">
 <td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#gradientRotation">gradientRotation</a> : Number = 0<div class="summaryTableDescription">
-         The rotation value to draw the linearGradientFill when draw the background.</div>
+         The rotation value to draw the linearGradientFill method when draw the background.</div>
 </td><td class="summaryTableOwnerCol">Background</td>
 </tr>
 <tr class="">
@@ -157,7 +200,7 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <tr class="">
 <td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#line">line</a> : <a href="../../pegas/draw/ILineStyle.html">ILineStyle</a>
 <div class="summaryTableDescription">
-         Determinates the ILineStyle reference of this display.</div>
+         Determinates the <code class="prettyprint">ILineStyle</code> reference of this display.</div>
 </td><td class="summaryTableOwnerCol">Background</td>
 </tr>
 <tr class="">
@@ -321,7 +364,7 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <div class="summarySignature">
 <a class="signatureLink" href="#setSize()">setSize</a>(w:Number, h:Number):void</div>
 <div class="summaryTableDescription">
-         Sets the virtual width and height values of the component.</div>
+         Sets the virtual width (w) and height (h) values of the component.</div>
 </td><td class="summaryTableOwnerCol">Background</td>
 </tr>
 <tr class="hideInheritedMethod">
@@ -442,6 +485,28 @@ showHideInherited();
 <code>public var bottomRightRadius:Number = 0</code><p>
          The radius of the bottom-left corner, in pixels.
          </p></div>
+<a name="direction"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">direction</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>direction:String</code>&nbsp;&nbsp;[read-write]<p>
+         Indicates the direction value of the background when the display is in this "full" mode (default value is null).
+         </p><span class="label">Implementation</span>
+<br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function get direction():String</code>
+<br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function set direction(value:String):void</code>
+<br>
+<p>
+<span class="label">See also</span>
+</p>
+<div class="seeAlso">
+<a href="../../pegas/draw/Direction.html" target="">pegas.draw.Direction</a>
+</div>
+</div>
 <a name="fill"></a>
 <table cellspacing="0" cellpadding="0" class="detailHeader">
 <tr>
@@ -466,7 +531,7 @@ showHideInherited();
 </table>
 <div class="detailBody">
 <code>public var gradientRotation:Number = 0</code><p>
-         The rotation value to draw the linearGradientFill when draw the background.
+         The rotation value to draw the linearGradientFill method when draw the background.
          </p></div>
 <a name="h"></a>
 <table cellspacing="0" cellpadding="0" class="detailHeader">
@@ -508,7 +573,7 @@ showHideInherited();
 </table>
 <div class="detailBody">
 <code>line:<a href="../../pegas/draw/ILineStyle.html">ILineStyle</a></code>&nbsp;&nbsp;[read-write]<p>
-         Determinates the ILineStyle reference of this display.
+         Determinates the <code class="prettyprint">ILineStyle</code> reference of this display.
          </p><span class="label">Implementation</span>
 <br>
 <code>&nbsp;&nbsp;&nbsp;&nbsp;public function get line():<a href="../../pegas/draw/ILineStyle.html">ILineStyle</a></code>
@@ -682,7 +747,7 @@ showHideInherited();
 <table border="0" cellspacing="0" cellpadding="0">
 <tr>
 <td width="20"></td><td><code><a href="../../pegas/geom/Dimension.html">Dimension</a></code> &mdash; 
-                        the Dimension object who defines the width and the height use in the method to draw the background.
+                        the <code class="prettyprint">Dimension</code> object who defines the width and the height use in the method to draw the background.
          
                         
                      </td>
@@ -764,7 +829,7 @@ showHideInherited();
 </table>
 <div class="detailBody">
 <code>public function setSize(w:Number, h:Number):void</code><p>
-         Sets the virtual width and height values of the component.
+         Sets the virtual width (w) and height (h) values of the component.
          </p><span class="label">Parameters</span>
 <table border="0" cellspacing="0" cellpadding="0">
 <tr>

@@ -27,7 +27,9 @@ package asgard.display
     
     import asgard.display.CoreSprite;
     
+    import pegas.draw.Direction;
     import pegas.draw.FillGradientStyle;
+    import pegas.draw.IDirectionable;
     import pegas.draw.IFillStyle;
     import pegas.draw.ILineStyle;
     import pegas.draw.IPen;
@@ -42,21 +44,33 @@ package asgard.display
 
     /**
      * This display is used to create a background in your application or in an other display of the application.
-     * @example
+     * <p><b>Example :</b></p>
      * <pre class="prettyprint">
      * import asgard.display.Background ;
      * 
-     * import flash.display.GradientType ;
+     * import flash.display.* ;
      * 
-     * import pegas.draw.FillGradientStyle ;
-     * import pegas.draw.FillStyle ;
+     * import pegas.draw.* ;
      * 
      * stage.align     = StageAlign.TOP_LEFT ;
      * stage.scaleMode = StageScaleMode.NO_SCALE ;
      * 
      * var background:Background = new Background( "background" ) ;
-     * background.fill           = new FillStyle( 0x8D818F , 1 ) ;
-     * background.setSize( 740, 400 ) ;
+     * 
+     * background.lock() ; // lock the update method
+     * 
+     * // background.topLeftRadius = 15 ;
+     * // background.bottomLeftRadius = 15 ;
+     * 
+     * background.fill = new FillStyle( 0xD97BD0  ) ;
+     * // background.line = new LineStyle( 2, 0xFFFFFF ) ;
+     * background.w    = 400 ;
+     * background.h    = 300 ;
+     * 
+     * background.unlock() ; // unlock the update method
+     * background.update() ; // force update
+     * 
+     * // background.setSize( 740, 400 ) ;
      * 
      * addChild( background ) ;
      * 
@@ -67,27 +81,52 @@ package asgard.display
      * 
      * var keyDown:Function = function( e:KeyboardEvent ):void
      * {
-     *     if( background.isFull )
+     *     var code:uint = e.keyCode ;
+     *     switch( code )
      *     {
-     *         stage.removeEventListener( Event.RESIZE, resize ) ;
-     *         background.fill = new FillStyle( 0x8D818F , 1 ) ;
-     *         background.isFull = false ;
-     *     }
-     *     else
-     *     {
-     *         stage.addEventListener( Event.RESIZE, resize ) ;
-     *         background.gradientRotation = 90 ;
-     *         background.useGradientBox   = true ;
-     *         background.fill             = new FillGradientStyle( GradientType.LINEAR, [0x071E2C,0x81C2ED], [1,1], [0,255] ) ;
-     *         background.isFull           = true ;
+     *         case Keyboard.SPACE :
+     *         {
+     *             if( background.isFull )
+     *             {
+     *                 stage.removeEventListener( Event.RESIZE, resize ) ;
+     *                 background.fill   = new FillStyle( 0xD97BD0 ) ;
+     *                 background.isFull = false ;
+     *             }
+     *             else
+     *             {
+     *                 stage.addEventListener( Event.RESIZE, resize ) ;
+     *                 background.gradientRotation = 90 ;
+     *                 background.useGradientBox   = true ;
+     *                 background.fill             = new FillGradientStyle( GradientType.LINEAR, [0x071E2C,0x81C2ED], [1,1], [0,255] ) ;
+     *                 background.isFull           = true ;
+     *                 background.direction        = null ;
+     *             }
+     *             break ;
+     *         }
+     *         case Keyboard.UP :
+     *         {
+     *             background.fill      = new FillStyle( 0x000000 ) ;
+     *             background.isFull    = true ;
+     *             background.direction = Direction.HORIZONTAL ;
+     *             break ;
+     *         }
+     *         case Keyboard.DOWN :
+     *         {
+     *             background.fill      = new FillStyle( 0xFFFFFF ) ;
+     *             background.isFull    = true ;
+     *             background.direction = Direction.VERTICAL ;
+     *             break ;
+     *         }
      *     }
      * }
      * 
      * stage.addEventListener( KeyboardEvent.KEY_DOWN , keyDown ) ;
+     * 
+     * trace( "Press a key to change the view of the background." ) ;
      * </pre>
      * @author eKameleon
      */
-    public class Background extends CoreSprite 
+    public class Background extends CoreSprite implements IDirectionable 
     {
         
         /**
@@ -121,6 +160,27 @@ package asgard.display
         public var bottomRightRadius:Number = 0 ;
         
         /**
+         * Indicates the direction value of the background when the display is in this "full" mode (default value is null).
+         * @see pegas.draw.Direction
+         */
+        public function get direction():String
+        {
+            return _direction ;
+        }
+
+        /**
+         * @private
+         */
+        public function set direction( value:String ):void
+        {
+            _direction = (value == Direction.VERTICAL || value == Direction.HORIZONTAL ) ? value : null ;
+            if ( isFull )
+            {
+            	update() ;
+            }
+        }
+        
+        /**
          * Determinates the IFillStyle reference of this display.
          */
         public function get fill():IFillStyle
@@ -142,7 +202,7 @@ package asgard.display
         }
 
         /**
-         * The rotation value to draw the linearGradientFill when draw the background.
+         * The rotation value to draw the linearGradientFill method when draw the background.
          */
         public var gradientRotation:Number = 0  ;
     
@@ -151,7 +211,7 @@ package asgard.display
          */
         public function get h():Number 
         {
-            return ( isFull && (stage != null) ) ? stage.stageHeight : _h ;    
+            return ( isFull && (stage != null) && (_direction != Direction.HORIZONTAL) ) ? stage.stageHeight : _h ;    
         }
         
         /**
@@ -182,7 +242,7 @@ package asgard.display
         }
 
         /**
-         * Determinates the ILineStyle reference of this display.
+         * Determinates the <code class="prettyprint">ILineStyle</code> reference of this display.
          */
         public function get line():ILineStyle
         {
@@ -242,7 +302,7 @@ package asgard.display
          */
         public function get w():Number 
         {
-            return ( isFull && (stage != null) ) ? stage.stageWidth : _w ;    
+            return ( isFull && (stage != null) && (_direction != Direction.VERTICAL) ) ? stage.stageWidth : _w ;    
         }
         
         /**
@@ -257,7 +317,7 @@ package asgard.display
 
         /**
          * Draw the display.    
-         * @return the Dimension object who defines the width and the height use in the method to draw the background.
+         * @return the <code class="prettyprint">Dimension</code> object who defines the width and the height use in the method to draw the background.
          */
         public function draw( w:Number=NaN , h:Number=NaN , offsetX:Number=0 , offsetY:Number=0 ):Dimension
          {
@@ -331,7 +391,7 @@ package asgard.display
         }
         
         /**
-         * Sets the virtual width and height values of the component.
+         * Sets the virtual width (w) and height (h) values of the component.
          */
         public function setSize( w:Number, h:Number ):void
         {
@@ -362,6 +422,11 @@ package asgard.display
         {
             // overrides
         }
+        
+        /**
+         * @private
+         */
+        private var _direction:String ;
         
         /**
          * @private
