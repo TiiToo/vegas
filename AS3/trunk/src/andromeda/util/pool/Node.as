@@ -25,7 +25,6 @@ package andromeda.util.pool
 
     /**
      * This class defines all nodes in the ObjectPool manager.
-     * @author eKameleon
      */
     internal class Node 
     {

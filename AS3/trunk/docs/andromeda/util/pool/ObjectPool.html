@@ -5,7 +5,7 @@
 <link rel="stylesheet" href="../../../style.css" type="text/css" media="screen">
 <link rel="stylesheet" href="../../../print.css" type="text/css" media="print">
 <link rel="stylesheet" href="../../../prettify.css" type="text/css">
-<meta content="ObjectPool,andromeda.util.pool.ObjectPool,builder,object,size,usageCount,wasteCount,allocate,destroy,flush,initialize" name="keywords">
+<meta content="ObjectPool,andromeda.util.pool.ObjectPool,grow,builder,object,size,usageCount,wasteCount,allocate,destroy,flush,initialize" name="keywords">
 <title>andromeda.util.pool.ObjectPool</title>
 </head>
 <body>
@@ -59,6 +59,11 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#builder">builder</a> : <a href="../pool/ObjectPoolBuilder.html">ObjectPoolBuilder</a>
 <div class="summaryTableDescription">
          Defines the builder responsible for creating all pool objects.</div>
+</td><td class="summaryTableOwnerCol">ObjectPool</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#grow">grow</a> : Boolean<div class="summaryTableDescription">
+         Indicates if the pool of objects is auto growing when a new user is called with the "object" property.</div>
 </td><td class="summaryTableOwnerCol">ObjectPool</td>
 </tr>
 <tr class="">
@@ -212,6 +217,16 @@ showHideInherited();
 <a href="../pool/ObjectPool.html#allocate" target="">allocate</a>
 </div>
 </div>
+<a name="grow"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">grow</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public var grow:Boolean</code><p>
+         Indicates if the pool of objects is auto growing when a new user is called with the "object" property.
+         </p></div>
 <a name="object"></a>
 <table cellspacing="0" cellpadding="0" class="detailHeader">
 <tr>
@@ -291,7 +306,8 @@ showHideInherited();
          </p><span class="label">Parameters</span>
 <table border="0" cellspacing="0" cellpadding="0">
 <tr>
-<td width="20px"></td><td><code><span class="label">grow</span>:Boolean</code> (default = <code>false</code>)<code></code></td>
+<td width="20px"></td><td><code><span class="label">grow</span>:Boolean</code> (default = <code>false</code>)<code></code> &mdash; Indicates if the pool of objects is auto growing when a new user is called with the "object" property.
+         </td>
 </tr>
 </table>
 </div>
@@ -356,14 +372,14 @@ showHideInherited();
          </p><span class="label">Parameters</span>
 <table border="0" cellspacing="0" cellpadding="0">
 <tr>
-<td width="20px"></td><td><code><span class="label">name</span>:String</code> &mdash; The function's name.
+<td width="20px"></td><td><code><span class="label">name</span>:String</code> &mdash; The name of the method invoked to initialize all objects in the pool.
          </td>
 </tr>
 <tr>
 <td class="paramSpacer">&nbsp;</td>
 </tr>
 <tr>
-<td width="20px"></td><td><code><span class="label">args</span>:Array</code> &mdash; The function's arguments.
+<td width="20px"></td><td><code><span class="label">args</span>:Array</code> &mdash; The Array representation of all arguments of the init method.
          </td>
 </tr>
 </table>

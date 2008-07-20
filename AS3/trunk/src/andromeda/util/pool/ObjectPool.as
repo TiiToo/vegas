@@ -22,22 +22,21 @@
 */
 package andromeda.util.pool 
 {
-    import vegas.core.CoreObject;                                    
+    import vegas.core.CoreObject;                                        
 
     /**
      * This class implements the object pool design pattern implementation.
-     * @author eKameleon
      */
     public class ObjectPool extends CoreObject 
     {
 
         /**
          * Creates a new ObjectPool instance.
+         * @param grow Indicates if the pool of objects is auto growing when a new user is called with the "object" property.
          */
         public function ObjectPool( grow:Boolean = false )
         {
-            super() ;
-            _grow = grow ;
+            this.grow = grow ;
         }
         
         /**
@@ -57,6 +56,11 @@ package andromeda.util.pool
         {
             _builder = builder ;
         }        
+                
+        /**
+         * Indicates if the pool of objects is auto growing when a new user is called with the "object" property.
+         */
+        public var grow:Boolean ;
  
         /**
          * Get the next available object from the pool or put it back for the
@@ -66,7 +70,7 @@ package andromeda.util.pool
         {
             if ( _usageCount == _currSize )
             {
-                if (_grow)
+                if ( grow )
                 {
                     _currSize += _initSize;
                     
@@ -237,15 +241,26 @@ package andromeda.util.pool
                 node =_head;
                 while (node)
                 {
-                    if (!node.data) a[int(i++)] = node;
-                    if (node == _tail) break;
+                    
+                    if (!node.data) 
+                    {
+                    	a[int(i++)] = node;
+                    }
+                    
+                    if (node == _tail) 
+                    {
+                    	break;
+                    }
+                    
                     node = node.next;   
+                
                 }
                 
                 _currSize = a.length;
                 _usageCount = _currSize;
                 
                 _head = _tail = a[0];
+                
                 for (i = 1; i < _currSize; i++)
                 {
                     node = a[i];
@@ -263,6 +278,7 @@ package andromeda.util.pool
                     var n:Node = _tail ;
                     var t:Node = _tail ;
                     var k:int = _initSize - _usageCount ;
+                    
                     for ( i = 0 ; i < k ; i++ )
                     {
                         node      = new Node();
@@ -281,15 +297,15 @@ package andromeda.util.pool
 
         /**
          * Helper method for applying a function to all objects in the pool.
-         * @param name The function's name.
-         * @param args The function's arguments.
+         * @param name The name of the method invoked to initialize all objects in the pool.
+         * @param args The Array representation of all arguments of the init method.
          */
         public function initialize( name:String , args:Array):void
         {
             var n:Node = _head;
             while (n)
             {
-            	if ( name in n.data )
+            	if ( name in n.data && n.data[ name ] is Function )
             	{
                     n.data[ name ].apply( n.data, args ) ;
             	}
@@ -320,12 +336,7 @@ package andromeda.util.pool
          * @private
          */
         private var _empty:Node;
-        
-        /**
-         * @private
-         */
-        private var _grow:Boolean ;
-        
+                
         /**
          * @private
          */
