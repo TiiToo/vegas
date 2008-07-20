@@ -22,11 +22,10 @@
 */
 package pegas.util 
 {
-	import pegas.geom.Vector2;	
-	
-	/**
+    import pegas.geom.Vector2;        		
+
+    /**
 	 * Static tool class to manipulate and transform <code class="prettyprint">Vector2</code> references.
-	 * @author eKameleon
 	 */
 	public class Vector2Util 
 	{
@@ -35,13 +34,11 @@ package pegas.util
 		 * Computes the addition of two Vector2 and returns the first vector.
 		 * @param v1 the first Vector2.
 		 * @param v2 the second Vector2.
-		 * @return the addition result of two Vector2.
 		 */
-		public static function addition( v1:Vector2, v2:Vector2 ):Vector2
+		public static function addition( v1:Vector2, v2:Vector2 ):void
 		{
 		 	v1.x += v2.x ;
 		 	v1.y += v2.y ;
-		 	return v1 ;	
 		}
 		
 		/**
@@ -93,7 +90,7 @@ package pegas.util
 		}
 		
 		/**
-		 * Normalizes the Vector2 instance passed in argument..
+		 * Normalizes the Vector2 instance passed in argument and returns a new Vector2 representation.
 		 * @param v the Vector2 to normalize.
 		 * @return a normalized Vector2, with length 1.
 		 */
@@ -158,31 +155,137 @@ package pegas.util
 		{
 			return new Vector2( (v1.x - v2.x) , (v1.y - v2.y) ) ;
 		}
-	
+		
+        /**
+         * Determines a point between two specified points. 
+         * The parameter f determines where the new interpolated point is located relative to the two end points specified by parameters {@code p1} and {@code p2}. 
+         * The closer the value of the parameter f is to 1.0, the closer the interpolated point is to the first point (parameter {@code p1}). 
+         * The closer the value of the parameter f is to 0, the closer the interpolated point is to the second point (parameter {@code p2}).
+         * <p><b>Example :</b></p>
+         * <pre class="prettyprint">
+         * import pegas.geom.Vector2 ;
+         * import pegas.util.Vector2Util ;
+         * 
+         * var v1:Vector2 = new Vector2(10,10) ;
+         * var v2:Vector2 = new Vector2(40,40) ;
+         * var v3:Vector2 ;
+         * 
+         * v3 = Vector2Util.interpolate( v1 , v2, 0 ) ;
+         * trace(v3) ; // [Vector2:{40,40}]
+         * 
+         * v3 = Vector2Util.interpolate( v1 , v2, 1 ) ;
+         * trace(v3) ; // [Vector2:{10,10}]
+         * 
+         * v3 = Vector2Util.interpolate( v1 , v2, 0.5 ) ;
+         * trace(v3) ; // [Vector2:{25,25}]
+         * </pre>
+         * @param p1 The first point.
+         * @param p2 The second Point.
+         * @param f the The level of interpolation between the two points. Indicates where the new point will be, along the line between {@code p1} and {@code p2}. If f=1, pt1 is returned; if f=0, pt2 is returned.
+         * @return The new interpolated Vector2 object.
+         */
+        public static function interpolate(v1:Vector2, v2:Vector2, f:Number):Vector2 
+        {
+            return new Vector2( v2.x + f * (v1.x - v2.x) , v2.y + f * (v1.y - v2.y) ) ;
+        }		
+		
+        /**
+         * Scales the line segment between (0,0) and the current point to a set length.
+         * <p><b>Example :</b></p>
+         * <pre class="prettyprint">
+         * import pegas.geom.Vector2 ;
+         * import pegas.util.Vector2Util ;
+         * 
+         * var v:Vector2 = new Vector2(0,5) ;
+         * 
+         * Vector2Util.normalize(v) ;
+         * 
+         * trace(v) ; // [Point:{0,1}]
+         * </pre>
+         * @param thickness The scaling value. For example, if the current point is (0,5), and you normalize it to 1, the point returned is at (0,1).
+         * @throws Error if a zero-length vector or a illegal NaN value is calculate in this method.
+         */
+        public static function normalize( v:Vector2, thickness:Number=1 ):void 
+        {
+            if ( isNaN(thickness) )
+            {
+                thickness = 1 ; 
+            }
+            var l:Number = getLength(v) ;
+            if (l > 0) 
+            {
+                l = thickness / l ;
+                v.x *= l ;
+                v.y *= l ;
+            }
+            else
+            {
+                throw new Error( "Vector2Util.normalize method failed with a zero-length vector or a illegal NaN value." ) ;
+            }
+        }	
+        
+        /**
+         * Rotates the Vector2 object with the specified angle passed-in argument.
+         * <p><b>Example :</b></p>
+         * <pre class="prettyprint">
+         * import pegas.geom.Vector2 ;
+         * import pegas.util.Vector2Util ;
+         * 
+         * var v:Vector2 = new Vector2(100,100) ;
+         * Vector2Util.rotate(v, Math.PI) ;
+         * trace(v) ;
+         * </pre> 
+         * @param angle the Angle to rotate the specified Vector2 object.
+         */
+        public static function rotate( v:Vector2 , angle:Number ):void 
+        {
+            var ca:Number = Trigo.cosD (angle) ;
+            var sa:Number = Trigo.sinD (angle) ;
+            var rx:Number = v.x * ca - v.y * sa ;
+            var ry:Number = v.x * ca + v.y * sa ;
+            v.x = rx ;
+            v.y = ry ;
+        }
+        
+        /**
+         * Scales the Vector2 with the specified <code class="prettyprint">n</pre> value in argument.
+         * <p><b>Example :</b></p>
+         * <pre class="prettyprint">
+         * import pegas.geom.Vector2 ;
+         * import pegas.util.Vector2Util ;
+         * 
+         * var v:Vector2 = new Vector2(0,2) ;
+         * Vector2Util.scale(v,2) ;
+         * trace(v) ; // [Point:{0,4}]
+         * </pre>
+         * @param n the value to scale this Point.
+         */
+        public static function scale( v:Vector2 , n:Number ):void 
+        {
+            v.x *= n ;
+            v.y *= n ;
+        }        
+        
 		/**
 	 	 * Sets the specified <code class="prettyprint">Vector2</code> object with the second <code class="prettyprint">Vector2</code> object passed in argument.
 		 * @param v1 the first <code class="prettyprint">Vector2</code>.
 		 * @param v2 the second <code class="prettyprint">Vector2</code>.
-		 * @return the first <code class="prettyprint">Vector2</code> transformed.
 		 */
-		public static function setByVector2( v1:Vector2, v2:Vector2):Vector2
+		public static function setByVector2( v1:Vector2, v2:Vector2):void
 		{
 			v1.x = v2.x ;
 			v1.y = v2.y ;
-			return v1 ;
 		}
 				
 		/**
 		 * Computes the substraction of two Vector2.
 		 * @param v1 the first Vector2.
 	 	 * @param v2 the second Vector2.
-	 	 * @return the substraction result of two Vector2.
 		 */
-		public static function substraction( v1:Vector2 , v2:Vector2 ):Vector2
+		public static function substraction( v1:Vector2 , v2:Vector2 ):void
 		{
 		 	v1.x -= v2.x ;
 			v1.y -= v2.y ;
-		 	return v1 ;	
 		}
 		
 	}

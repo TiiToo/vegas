@@ -27,9 +27,7 @@ package pegas.draw
     import pegas.draw.Pen;
     import pegas.geom.Line;
     import pegas.geom.Vector2;
-    import pegas.util.LineUtil;
-    
-    import vegas.errors.UnsupportedOperation;    
+    import pegas.util.LineUtil;    
 
     /**
      * This pen is the basic tool to draw a line.
@@ -55,7 +53,6 @@ package pegas.draw
      * 
      * addChild( shape ) ;
      * </pre>
-     * @author eKameleon
      */
    	dynamic public class LinePen extends Pen 
     {
@@ -66,29 +63,29 @@ package pegas.draw
          * @param start The default start Vector object.
          * @param end The default end Vector object.
          */
-        public function LinePen( graphic:* , start:Vector2 = null , end:Vector2 = null )
+        public function LinePen( graphic:* , start:* = null , end:* = null )
         {
             super( graphic );
-            setPen( start , end ) ;
+            setPen( end , start ) ;
         }
 
         /**
-          * @private
-          */
+         * @private
+         */
         public override function set align( align:uint ):void 
         {
-            throw new UnsupportedOperation( this + " align property can't be use to align this free shape.") ;
+            throw new Error( this + " align property can't be use to align this free shape.") ;
         }
 
         /**
          * The end vector object of this line pen.
          */
-        public var end:Vector2 ;
+        public var end:Vector2 = new Vector2() ;
 
         /**
-           * The start vector object of this line pen.
-          */
-        public var start:Vector2 ; 
+         * The start vector object of this line pen.
+         */
+        public var start:Vector2 = new Vector2() ; 
 
         /**
          * Draws the shape.
@@ -109,8 +106,11 @@ package pegas.draw
          */
         public override function drawShape():void
         {
-            graphics.moveTo( start.x, start.y ) ;
-            graphics.lineTo( end.x, end.y ) ;
+        	if ( start.equals(end) == false )
+        	{
+                graphics.moveTo( start.x, start.y ) ;
+                graphics.lineTo( end.x, end.y ) ;
+        	}
         }
 
         /**
@@ -131,11 +131,13 @@ package pegas.draw
         {
             if ( args[0] != null && ( args[0] is Vector2 || args[0] is Point ) )
             {
-                end = args[0] is Point ? new Vector2(args[0].x , args[0].y) : args[0] ;
+                end.x = args[0].x ;
+                end.y = args[0].y ;
             }
             if ( args[1] != null && ( args[1] is Vector2 || args[1] is Point ) )
             {
-                start = args[1] is Point ? new Vector2(args[1].x , args[1].y) : args[1] ;
+                start.x = args[1].x ;
+                start.y = args[1].y ;
             }
         }    
         

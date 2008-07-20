@@ -44,6 +44,32 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 </table>
 <p></p>
      This pen is the basic tool to draw a dash line.
+     <p><b>Example :</b></p>
+     <pre class="prettyprint">
+     import flash.display.;
+     
+     import pegas.draw.DashLinePen ;
+     import pegas.draw.LineStyle ;
+     
+     import pegas.geom.Vector2 ;
+     
+     stage.scaleMode = StageScaleMode.NO_SCALE ;
+     stage.align     = "" ;
+     
+     var shape:Shape = new Shape() ;
+     
+     shape.x = 10 ;
+     shape.y = 10 ;
+     
+     var start:Vector2 = new Vector2(0,0) ;
+     var end:Vector2   = new Vector2(100, 100) ;
+     
+     var pen:DashLinePen = new DashLinePen( shape , start , end , 4, 6) ;
+     pen.line            = new LineStyle( 2, 0xFFFFFF , 1 , true ) ;
+     pen.draw() ;
+     
+     addChild( shape ) ;
+     </pre>
      <p></p>
 <br>
 <hr>
@@ -114,7 +140,7 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <tr class="hideInheritedProperty">
 <td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol"><a class="signatureLink" href="LinePen.html#start">start</a> : <a href="../geom/Vector2.html">Vector2</a>
 <div class="summaryTableDescription">
-           The start vector object of this line pen.</div>
+         The start vector object of this line pen.</div>
 </td><td class="summaryTableOwnerCol"><a href="LinePen.html">LinePen</a></td>
 </tr>
 <tr class="hideInheritedProperty">
@@ -147,7 +173,7 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <tr class="">
 <td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
 <div class="summarySignature">
-<a class="signatureLink" href="#DashLinePen()">DashLinePen</a>(graphic:*, start:<a href="../geom/Vector2.html">Vector2</a> = null, end:<a href="../geom/Vector2.html">Vector2</a> = null, length:Number = 2, spacing:Number = 2)</div>
+<a class="signatureLink" href="#DashLinePen()">DashLinePen</a>(graphic:*, start:Number = null, end:Number = null, length:* = 2, spacing:* = 2)</div>
 <div class="summaryTableDescription">
          Creates a new DashLinePen instance.</div>
 </td><td class="summaryTableOwnerCol">DashLinePen</td>
@@ -368,7 +394,7 @@ showHideInherited();
 </tr>
 </table>
 <div class="detailBody">
-<code>public function DashLinePen(graphic:*, start:<a href="../geom/Vector2.html">Vector2</a> = null, end:<a href="../geom/Vector2.html">Vector2</a> = null, length:Number = 2, spacing:Number = 2)</code><p>
+<code>public function DashLinePen(graphic:*, start:Number = null, end:Number = null, length:* = 2, spacing:* = 2)</code><p>
          Creates a new DashLinePen instance.
          </p><span class="label">Parameters</span>
 <table border="0" cellspacing="0" cellpadding="0">
@@ -380,28 +406,28 @@ showHideInherited();
 <td class="paramSpacer">&nbsp;</td>
 </tr>
 <tr>
-<td width="20px"></td><td><code><span class="label">start</span>:<a href="../geom/Vector2.html">Vector2</a></code> (default = <code>null</code>)<code></code> &mdash; The vector object to defines the start position of the drawing.
+<td width="20px"></td><td><code><span class="label">start</span>:Number</code> (default = <code>null</code>)<code></code> &mdash; The vector object to defines the start position of the drawing.
          </td>
 </tr>
 <tr>
 <td class="paramSpacer">&nbsp;</td>
 </tr>
 <tr>
-<td width="20px"></td><td><code><span class="label">end</span>:<a href="../geom/Vector2.html">Vector2</a></code> (default = <code>null</code>)<code></code> &mdash; The vector object to defines the end position of the drawing.
+<td width="20px"></td><td><code><span class="label">end</span>:Number</code> (default = <code>null</code>)<code></code> &mdash; The vector object to defines the end position of the drawing.
          </td>
 </tr>
 <tr>
 <td class="paramSpacer">&nbsp;</td>
 </tr>
 <tr>
-<td width="20px"></td><td><code><span class="label">length</span>:Number</code> (default = <code>2</code>)<code></code> &mdash; The length of the dashs.
+<td width="20px"></td><td><code><span class="label">length</span>:*</code> (default = <code>2</code>)<code></code> &mdash; The length of the dashs.
          </td>
 </tr>
 <tr>
 <td class="paramSpacer">&nbsp;</td>
 </tr>
 <tr>
-<td width="20px"></td><td><code><span class="label">spacing</span>:Number</code> (default = <code>2</code>)<code></code> &mdash; The spacing between two dashs.
+<td width="20px"></td><td><code><span class="label">spacing</span>:*</code> (default = <code>2</code>)<code></code> &mdash; The spacing between two dashs.
          </td>
 </tr>
 </table>

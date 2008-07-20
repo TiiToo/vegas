@@ -22,12 +22,36 @@
 */
 package pegas.draw 
 {
-	import pegas.draw.LinePen;
-	import pegas.geom.Vector2;    
+    import pegas.geom.Vector2;        
 
-	/**
+    /**
      * This pen is the basic tool to draw a dash line.
-     * @author eKameleon
+     * <p><b>Example :</b></p>
+     * <pre class="prettyprint">
+     * import flash.display.* ;
+     * 
+     * import pegas.draw.DashLinePen ;
+     * import pegas.draw.LineStyle ;
+     * 
+     * import pegas.geom.Vector2 ;
+     * 
+     * stage.scaleMode = StageScaleMode.NO_SCALE ;
+     * stage.align     = "" ;
+     * 
+     * var shape:Shape = new Shape() ;
+     * 
+     * shape.x = 10 ;
+     * shape.y = 10 ;
+     * 
+     * var start:Vector2 = new Vector2(0,0) ;
+     * var end:Vector2   = new Vector2(100, 100) ;
+     * 
+     * var pen:DashLinePen = new DashLinePen( shape , start , end , 4, 6) ;
+     * pen.line            = new LineStyle( 2, 0xFFFFFF , 1 , true ) ;
+     * pen.draw() ;
+     * 
+     * addChild( shape ) ;
+     * </pre>
      */
     dynamic public class DashLinePen extends LinePen 
     {
@@ -40,7 +64,7 @@ package pegas.draw
          * @param length The length of the dashs.
          * @param spacing The spacing between two dashs.
          */
-        public function DashLinePen(graphic:*, start:Vector2 = null, end:Vector2 = null , length:Number = 2 , spacing:Number = 2 )
+        public function DashLinePen(graphic:*, start:* = null, end:* = null , length:Number = 2 , spacing:Number = 2 )
         {
             super( graphic );
             setPen( start, end, length, spacing ) ;
@@ -93,22 +117,33 @@ package pegas.draw
          */
         public override function drawShape():void
         {
-            var s:Vector2 = start ;
-            var e:Vector2 = end ;
+            
+            if ( start.equals( end ) )
+            {
+            	return ;
+            }
+            
             var segl:Number = length + spacing ;
+            
             if ( isNaN(segl) )
             {
                 segl = 0 ;
             }
-            var dx:Number     = e.x - s.x ;
-            var dy:Number     = e.y - s.y ;
+            
+            var dx:Number     = end.x - start.x ;
+            var dy:Number     = end.y - start.y ;
+            
             var delta:Number  = Math.sqrt((dx * dx) + (dy * dy));
             var nbSegs:Number = Math.floor(Math.abs(delta / segl)) ;
+            
             _radians = Math.atan2 ( dy, dx ) ;
-            __x = s.x;
-            __y = s.y;
+            
+            __x = start.x;
+            __y = start.y;
+            
             dx = Math.cos(_radians)* segl ;
             dy = Math.sin(_radians)* segl ;
+            
             for (var i:Number = 0; i < nbSegs; i++) 
             {
                 graphics.moveTo( __x, __y ) ;
@@ -116,8 +151,10 @@ package pegas.draw
                 __x += dx ;
                 __y += dy ;
             }
+            
             graphics.moveTo(__x, __y) ; 
-            delta = Math.sqrt((e.x - __x)*(e.x - __x)+ (e.y - __y)* (e.y - __y)) ;
+            delta = Math.sqrt((end.x - __x)*(end.x - __x)+ (end.y - __y)* (end.y - __y)) ;
+            
             if(delta>_length) 
             {
                 _lineRadiansTo ( _length ) ;
@@ -126,7 +163,9 @@ package pegas.draw
             {
                 _lineRadiansTo ( delta ) ;
             }
-            graphics.moveTo(e.x, e.y);
+            
+            graphics.moveTo(end.x, end.y);
+            
         }
         
         /**
@@ -179,8 +218,7 @@ package pegas.draw
         {
             graphics.lineTo ( __x + Math.cos(_radians) * n ,  __y + Math.sin(_radians) * n ) ;
         }
-
-        
+                
     }
 
 }
