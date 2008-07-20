@@ -22,20 +22,22 @@
 */
 package asgard.display 
 {
-	import asgard.config.IConfigurable;
-	
-	import vegas.core.IHashable;
-	import vegas.core.ILockable;
-	import vegas.core.Identifiable;
-	import vegas.logging.ILogable;	
-	
-	/**
+    import flash.events.IEventDispatcher;
+    
+    import asgard.config.IConfigurable;
+    
+    import vegas.core.IHashable;
+    import vegas.core.ILockable;
+    import vegas.core.Identifiable;
+    import vegas.logging.ILogable;    
+
+    /**
 	 * This interface defines all interfaces who implements the core displays in ASGard.
 	 * @author eKameleon
 	 */
-	public interface IDisplayObject extends IConfigurable, Identifiable, IHashable, ILockable, ILogable
+	public interface IDisplayObject extends IConfigurable, IEventDispatcher, Identifiable, IHashable, ILockable, ILogable
 	{
 		
 	}
-	
 }
+
