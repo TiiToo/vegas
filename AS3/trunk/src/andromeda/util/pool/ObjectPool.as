@@ -145,7 +145,7 @@ package andromeda.util.pool
          * @param parameters The optional Array representation of parameters to send in the ObjectPoolBuilder.build() method use in this method to create all pooling objects. 
          * This overwrites the current factory.
          */
-        public function allocate( clazz:Class = null , size:uint = 1 , parameters:Array=null ):void
+        public function allocate( size:uint = 1 , clazz:Class = null, parameters:Array=null ):void
         {
             
             destroy();
