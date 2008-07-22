@@ -33,7 +33,7 @@ package andromeda.util.pool
         /**
          * Builds a new object with the factory.
          */
-        function build():* ;    	
+        function build( ...args:Array ):* ;    	
     	
     }
 }

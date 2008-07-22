@@ -22,7 +22,7 @@
 */
 package andromeda.util.pool 
 {
-    import vegas.core.CoreObject;                                        
+    import vegas.core.CoreObject;                                                                                
 
     /**
      * This class implements the object pool design pattern implementation.
@@ -44,18 +44,7 @@ package andromeda.util.pool
          * If you don't want to use a factory, you must provide a class to the allocate method instead.
          * @see #allocate
          */
-        public function get builder():ObjectPoolBuilder
-        {
-            return _builder ;
-        }            
-        
-        /**
-         * @private
-         */
-        public function set builder( builder:ObjectPoolBuilder ):void
-        {
-            _builder = builder ;
-        }        
+        public var builder:ObjectPoolBuilder ;
                 
         /**
          * Indicates if the pool of objects is auto growing when a new user is called with the "object" property.
@@ -81,7 +70,7 @@ package andromeda.util.pool
                     for (var i:int = 0; i < _initSize; i++)
                     {
                         node      = new Node() ;
-                        node.data = _builder.build() ;
+                        node.data = builder.build() ;
                         t.next    = node ;
                         t         = node ; 
                     }
@@ -118,7 +107,12 @@ package andromeda.util.pool
                 _empty      = _empty.next;
             }
         }
- 
+        
+        /**
+         * The optional Array representation of parameters to send in the ObjectPoolBuilder.build() method use in the pool to create all objects. 
+         */
+        public var parameters:Array ;
+        
         /**
          * Indicates the pool size.
          */
@@ -148,19 +142,26 @@ package andromeda.util.pool
          * Allocates the pool by creating all objects from the builder. 
          * @param clazz The class to create for each object node in the pool.
          * @param size The number of objects to create.
+         * @param parameters The optional Array representation of parameters to send in the ObjectPoolBuilder.build() method use in this method to create all pooling objects. 
          * This overwrites the current factory.
          */
-        public function allocate( clazz:Class = null , size:uint = 1 ):void
+        public function allocate( clazz:Class = null , size:uint = 1 , parameters:Array=null ):void
         {
+            
             destroy();
+            
+            if ( parameters != null )
+            {
+                this.parameters = parameters ;	
+            }
             
             if ( clazz )
             {
-                _builder = new InstanceBuilder( clazz );
+                builder = new InstanceBuilder( clazz );
             }
             else
             {
-                if ( !_builder )
+                if ( !builder )
                 {
                     throw new Error( this + " allocate failed, nothing to instantiate.");
                 }
@@ -169,14 +170,14 @@ package andromeda.util.pool
             _initSize = _currSize = size;
             
             _head      = _tail = new Node();
-            _head.data = _builder.build();
+            _head.data = builder.build.apply(builder, this.parameters) ;
             
             var n:Node;
             
             for (var i:int = 1; i < _initSize; i++)
             {
                 n      = new Node() ;
-                n.data = _builder.build() ;
+                n.data = builder.build.apply(builder, this.parameters) ;
                 n.next = _head ;
                 _head  = n ;
             }
@@ -199,7 +200,9 @@ package andromeda.util.pool
                 cur.data = null ;
                 cur      = tmp ;
             }
-            _head = _tail = _empty = _allocate = null ;
+            _head      = _tail     = _empty      = _allocate = null ;
+            _initSize  = _currSize = _usageCount = 0 ;
+            parameters = null ;
         }
 
         /**
@@ -282,7 +285,7 @@ package andromeda.util.pool
                     for ( i = 0 ; i < k ; i++ )
                     {
                         node      = new Node();
-                        node.data = _builder.build();
+                        node.data = builder.build.apply(builder, parameters) ;
                         t.next    = node ;
                         t         = node ; 
                     }
@@ -302,7 +305,7 @@ package andromeda.util.pool
          */
         public function initialize( name:String , args:Array):void
         {
-            var n:Node = _head;
+            var n:Node = _head ;
             while (n)
             {
             	if ( name in n.data && n.data[ name ] is Function )
@@ -321,11 +324,6 @@ package andromeda.util.pool
          * @private
          */
         private var _allocate:Node;
-        
-        /**
-         * @private
-         */
-        private var _builder:ObjectPoolBuilder;        
         
         /**
          * @private

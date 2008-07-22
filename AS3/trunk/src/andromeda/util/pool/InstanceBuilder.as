@@ -22,6 +22,7 @@
 */
 package andromeda.util.pool 
 {
+    import vegas.util.ClassUtil;                        
 
     /**
      * This factory object create new instances with the specified Class object.
@@ -32,24 +33,29 @@ package andromeda.util.pool
     	
         /**
          * Creates a new InstanceBuilder instance.
+         * @param The Class reference to create a new instance with this builder.
          */
         public function InstanceBuilder( clazz:Class )
         {
-            _clazz = clazz;
+            this.clazz = clazz;
         }
         
         /**
+         * The Class reference to create objects.
+         */        
+        private var clazz:Class;
+         
+        /**
          * Builds a new object with the factory.
          */
-        public function build():*
+        public function build( ...args:Array ):*
         {
-            return new _clazz();
+        	if ( clazz == null )
+        	{
+        	   return null ;	
+        	}
+            return ClassUtil.buildNewInstance( clazz , args ) ;
         }    	
-        
-        /**
-         * @private
-         */        
-        private var _clazz:Class;
-        
+                
     }
 }

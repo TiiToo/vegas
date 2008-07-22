@@ -12,7 +12,7 @@ package test.pool
 			
 		}
 		
-		public function build():*
+		public function build( ...args:Array ):*
 		{
 			return new CoreObject() ;
 		}
