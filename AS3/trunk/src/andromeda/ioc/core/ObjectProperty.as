@@ -22,11 +22,8 @@
 */
 package andromeda.ioc.core 
 {
-    import buRRRn.eden;
+    import buRRRn.eden;    
     
-    import vegas.data.Map;
-    import vegas.data.map.ArrayMap;    
-
     /**
      * This object defines a property definition and this value in an object definition.
      * @author eKameleon
@@ -74,6 +71,7 @@ package andromeda.ioc.core
         {
         	switch (str)
         	{
+        		case ObjectAttribute.ARGUMENTS :
         		case ObjectAttribute.REFERENCE :
         		case ObjectAttribute.CONFIG    :
         		case ObjectAttribute.LOCALE    :        		
@@ -94,10 +92,10 @@ package andromeda.ioc.core
         public var value:* ;     
         
         /**
-         * Creates the Map definition of all properties defines in the passed-in array.
-         * @return the Map definition of all properties defines in the passed-in array.
+         * Creates the Array definition of all properties defines in the passed-in array.
+         * @return the Array definition of all properties defines in the passed-in array.
          */
-        public static function create( a:Array = null ):Map
+        public static function create( a:Array = null ):Array
         {
             
             if ( a == null || a.length == 0 )
@@ -105,8 +103,9 @@ package andromeda.ioc.core
                 return null ;
             }
 
-            var properties:ArrayMap = new ArrayMap() ; // use HashMap or ArrayMap (sort elements)
-
+            var properties:Array = [] ;
+            
+            var args:Array  ;
             var conf:String ;
             var i18n:String ;
             var prop:Object ;
@@ -118,53 +117,58 @@ package andromeda.ioc.core
 
             var len:int = a.length ;
             
-            for (var i:int ; i<len ; i++)
+            for ( var i:int ; i<len ; i++ )
             {
                     
-                prop  = a[i] as Object ;
+                prop = a[i] as Object ;
                 
                 if ( prop != null && ( ObjectAttribute.NAME in prop ) )
                 { 
                 
-                	name  = prop[ ObjectAttribute.NAME ] as String ;
+                    name  = prop[ ObjectAttribute.NAME ] as String ;
                 
-	                if ( name == null || name.length == 0 )
-    	            {
-                    	continue ;
-                	}
-                                        
-                    conf       = prop[ ObjectAttribute.CONFIG ] as String ;
-                    i18n       = prop[ ObjectAttribute.LOCALE ] as String ;               
-               		ref        = prop[ ObjectAttribute.REFERENCE ] as String  ;
-                	value      = prop[ ObjectAttribute.VALUE ] ;
-                	evaluators = prop[ObjectAttribute.EVALUATORS] as Array ;
-                                        
-                	if ( ref != null ) 
-                	{
-	                    properties.put( name , new ObjectProperty( name , ref , ObjectAttribute.REFERENCE , evaluators ) ) ; // ref property    
-                	}
+                    if ( name == null || name.length == 0 )
+                    {
+                        continue ;
+                    }
+                    
+                    args       = prop[ ObjectAttribute.ARGUMENTS  ] as Array ;
+                    evaluators = prop[ ObjectAttribute.EVALUATORS ] as Array ;
+                    conf       = prop[ ObjectAttribute.CONFIG     ] as String ;
+                    i18n       = prop[ ObjectAttribute.LOCALE     ] as String ;               
+                    ref        = prop[ ObjectAttribute.REFERENCE  ] as String  ;
+                    value      = prop[ ObjectAttribute.VALUE      ] ;
+                    
+                    if ( args != null )
+                    {
+                        properties.push( new ObjectProperty( name , ObjectArgument.create( args ) , ObjectAttribute.ARGUMENTS ) ) ; // arguments property
+                    }            
+                    else if ( ref != null ) 
+                    {
+                        properties.push( new ObjectProperty( name , ref , ObjectAttribute.REFERENCE , evaluators ) ) ; // ref property    
+                    }
                     else if ( conf != null && conf.length > 0 )
                     {
-                        properties.put( name, new ObjectProperty( name, conf , ObjectAttribute.CONFIG , evaluators ) ) ; // config property      
+                        properties.push( new ObjectProperty( name, conf , ObjectAttribute.CONFIG , evaluators ) ) ; // config property      
                     }
                     else if ( i18n != null && i18n.length > 0 )
                     {
-   						properties.put( name, new ObjectProperty( name, i18n , ObjectAttribute.LOCALE , evaluators ) ) ; // locale property                        		
-                    }             	
-                	else 
-                	{
-	                    properties.put( name , new ObjectProperty( name , value , ObjectAttribute.VALUE , evaluators ) ) ; // value property    
-                	}
+                        properties.push( new ObjectProperty( name, i18n , ObjectAttribute.LOCALE , evaluators ) ) ; // locale property                              
+                    }               
+                    else 
+                    {
+                        properties.push( new ObjectProperty( name , value , ObjectAttribute.VALUE , evaluators ) ) ; // value property    
+                    }
                 }
                 else
                 {
-                	trace( "ObjectProperty.create failed, a property definition is invalid at {" + i + "} with the value : " + eden.serialize(prop) ) ; // FIXME logs ?	
-                }			    
+                    trace( "ObjectProperty.create failed, a property definition is invalid at {" + i + "} with the value : " + eden.serialize(prop) ) ; // FIXME logs ? 
+                }               
             }
 
-            return ( properties.size() > 0 ) ? properties : null ;
+            return ( properties.length > 0 ) ? properties : null ;
 
-        }        
+        }         
         
         /**
          * @private

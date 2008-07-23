@@ -161,9 +161,6 @@ package andromeda.ioc.core
 import andromeda.ioc.factory.strategy.IObjectFactoryStrategy;
 import andromeda.ioc.factory.strategy.ObjectFactoryMethod;
 
-import vegas.data.Map;
-import vegas.data.map.HashMap;
-
 class ConcreteObjectDefinition implements IObjectDefinition
 {
 
@@ -198,9 +195,9 @@ class ConcreteObjectDefinition implements IObjectDefinition
 		return [] ;
 	}
 	
-	public function getProperties():Map
+	public function getProperties():Array
 	{
-		return new HashMap() ;
+		return new Array() ;
 	}
 	
 	public function getScope():String
@@ -258,7 +255,7 @@ class ConcreteObjectDefinition implements IObjectDefinition
 		throw new Error("setMethods") ;
 	}
 	
-	public function setProperties(value:Map = null):void
+	public function setProperties(ar:Array = null):void
 	{
 		throw new Error("setProperties") ;
 	}

@@ -1,8 +1,6 @@
 {
-    
     objects : 
     [
-        
         {   
             id          : "my_rectangle"  ,
             type        : "test.display.RectangleSprite" ,
@@ -17,7 +15,5 @@
                 { name : "y"     , value : 20       }                                 
             ]
         }
-        
     ]
-
 }

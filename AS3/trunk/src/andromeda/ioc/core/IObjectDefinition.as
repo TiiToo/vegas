@@ -24,8 +24,7 @@ package andromeda.ioc.core
 {
     import andromeda.ioc.factory.strategy.IObjectFactoryStrategy;
     
-    import vegas.core.Identifiable;
-    import vegas.data.Map;
+    import vegas.core.Identifiable;    
 
     /**
      * Describes an object instance, which has property values, constructor argument values, and further information supplied by concrete implementations.
@@ -93,10 +92,10 @@ package andromeda.ioc.core
         function getMethods():Array ; 
 
         /**
-         * Returns the Map of all properties of this Definition.
-         * @return the Map of all properties of this Definition.
+         * Returns the Array of all properties of this Definition.
+         * @return the Array of all properties of this Definition.
           */    
-        function getProperties():Map ; 
+        function getProperties():Array ; 
 
         /**
          * Determinates the scope of the object.
@@ -142,21 +141,21 @@ package andromeda.ioc.core
         function setInitMethodName( value:String = null ):void ;
 
         /**
-         * Sets the Array of all listener definition of this Definition.
+         * Sets the Array of all listener definition of this definition.
          * @param ar the Array of all listener definitions of the object.
          */
         function setListeners( ar:Array = null ):void ;  
 
         /**
-         * Sets the Array of all method definition of this Definition.
+         * Sets the Array of all method definition of this definition.
          * @param ar the Array of all method definitions of the object.
          */
         function setMethods( ar:Array = null ):void ; 
 
         /**
-         * Sets the Map of all properties of this Definition.
+         * Sets the Array of all properties of this definition.
          */
-        function setProperties( value:Map = null ):void ; 
+        function setProperties( ar:Array = null ):void ; 
         
         /**
          * Sets the scope of the object.

@@ -36,7 +36,6 @@ package andromeda.ioc.factory
     import vegas.core.IFactory;
     import vegas.core.ILockable;
     import vegas.core.Identifiable;
-    import vegas.data.Map;
     import vegas.data.map.HashMap;
     import vegas.events.EventListener;
     import vegas.util.ClassUtil;    
@@ -497,6 +496,23 @@ package andromeda.ioc.factory
                 method.call(o) ;
             }
         }
+       
+       
+        /**
+         * Invokes the method of the specified object.
+         */
+        protected function invokeMethod( o:* , method:ObjectMethod ):void
+        {
+            if ( o == null || method == null )
+            {
+                return ;
+            }
+            var name:String = method.name ;
+            if ( name in o )
+            {
+                o[ name ].apply( o , createArguments( method.arguments ) ) ;    
+            }
+        }       
         
         /**
          * Invokes the init method of the specified object, if the init method is define in the IDefinition object.
@@ -507,21 +523,14 @@ package andromeda.ioc.factory
             {
                 return ;
             }
-            var name:String ;
             var size:uint = methods.length ;
             if ( size > 0 )
             {
-                var m:ObjectMethod ;       	
                 for (var i:uint = 0 ; i<size ; i++) 
                 {
                     try
                     {
-                        m = methods[i] as ObjectMethod ;     
-                        name = m.name ;
-                        if ( name in o )
-                        {
-                            o[ name ].apply( o , createArguments( m.arguments ) ) ;    
-                        }
+                        invokeMethod( o , methods[i] as ObjectMethod );     
                     }
                     catch( e:Error ) 
                     {
@@ -554,49 +563,73 @@ package andromeda.ioc.factory
                 }
             }
         }
-
+                
         /**
          * Populates all properties in the Map passed in argument.
          */
-        protected function populateProperties( o:* , properties:Map=null ):void 
+        protected function populateProperties( o:* , properties:Array=null ):void 
         {
-            if (properties != null && properties.size() > 0)
+            if (properties != null && properties.length > 0)
             {
-                var prop:ObjectProperty ;
-                var value:* ;
-                var name:String ;
-                var values:Array = properties.getValues() ;
-                var size:int     = values.length ;
-                for( var i:int = 0 ; i<size ; i++ )
+                var size:int = properties.length ;
+                for( var i:int ; i < size ; i++ )
                 {
-                    prop = values[i] as ObjectProperty ;
-                    
-                    name  = prop.name ;
-                    value = prop.value ;
-                    
-                    if ( prop.evaluators != null && prop.evaluators.length > 0 )
-                    {
-                        value = eval( value , prop.evaluators  ) ;
-                    }                    
-                                        
-                    if ( prop.policy == ObjectAttribute.REFERENCE && value is String )
-                    {
-                        o[ name ] = _re.eval( value as String ) ;
-                    }
-                    else if ( prop.policy == ObjectAttribute.CONFIG )
-                    {
-                    	o[ name ] = config.configEvaluator.eval( value as String ) ;
-                    }
-                    else if ( prop.policy == ObjectAttribute.LOCALE )
-                    {
-                    	o[ name ] = config.localeEvaluator.eval( value as String ) ;
-                    }
-                    else
-                    {
-                        o[ name ] = value ;
-                    }
+                    populateProperty( o , properties[i] as ObjectProperty ) ;
                 }
             } 
+        }
+        
+        /**
+         * Populates a property in the specified object with the passed-in ObjectProperty object.
+         */
+        protected function populateProperty( o:* , prop:ObjectProperty ):void 
+        {
+            
+            if ( o == null )
+            {
+            	debug( this + " populate a new property failed, the object not must be 'null' or 'undefined'." ) ;
+            	return ;
+            }
+            
+            var name:String  = prop.name ;
+            
+            if ( !( name in o ) )
+            {
+            	debug( this + " populate a new property failed with tne name:" + name + ", this property don't exist in the object:" + o ) ;
+            	return ;
+            }
+            
+            var value:* = prop.value ;
+            
+            if ( o[name] is Function )
+            {
+                o[ name ].apply( o , createArguments( value as Array ) ) ; 
+            }
+            else 
+            {
+                
+                if ( prop.evaluators != null && prop.evaluators.length > 0 )
+                {
+                    value = eval( value , prop.evaluators  ) ;
+                }                    
+                                        
+                if ( prop.policy == ObjectAttribute.REFERENCE && value is String )
+                {
+                    o[ name ] = _re.eval( value as String ) ;
+                }
+                else if ( prop.policy == ObjectAttribute.CONFIG )
+                {
+                    o[ name ] = config.configEvaluator.eval( value as String ) ;
+                }
+                else if ( prop.policy == ObjectAttribute.LOCALE )
+                {
+                    o[ name ] = config.localeEvaluator.eval( value as String ) ;
+                }
+                else
+                {
+                    o[ name ] = value ;
+                }
+            }        
         }
         
         /**

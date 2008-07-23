@@ -26,7 +26,6 @@ package andromeda.ioc.core
     import andromeda.ioc.factory.strategy.ObjectFactoryBuilder;
     
     import vegas.core.CoreObject;
-    import vegas.data.Map;
     import vegas.errors.IllegalArgumentError;    
 
     /**
@@ -155,9 +154,7 @@ package andromeda.ioc.core
             definition.setFactoryStrategy      ( ObjectFactoryBuilder.create( o ) ) ;
             
             definition.setConstructorArguments ( ObjectArgument.create ( o[ ObjectAttribute.ARGUMENTS         ] as Array ) ) ;
-            
-            definition.setListeners            ( ObjectListener.create ( o[ ObjectAttribute.OBJECT_LISTENERS  ] ) ) ;
-                        
+            definition.setListeners            ( ObjectListener.create ( o[ ObjectAttribute.OBJECT_LISTENERS  ] as Array ) ) ;
             definition.setProperties           ( ObjectProperty.create ( o[ ObjectAttribute.OBJECT_PROPERTIES ] as Array ) ) ;
             definition.setMethods              ( ObjectMethod.create   ( o[ ObjectAttribute.OBJECT_METHODS    ] as Array ) ) ;
             
@@ -224,10 +221,10 @@ package andromeda.ioc.core
         }
         
         /**
-         * Returns the Map of all properties of this Definition.
-         * @return the Map of all properties of this Definition.
+         * Returns the Array of all properties of this Definition.
+         * @return the Array of all properties of this Definition.
          */    
-        public function getProperties():Map 
+        public function getProperties():Array 
         {
             return _properties ;
         }
@@ -323,12 +320,12 @@ package andromeda.ioc.core
         }
         
         /**
-         * Sets the map of all properties of this Definition.
-         * @param value the Map of all properties of the object.
+         * Sets the Array of all properties of this definition.
+         * @param ar the Array of all properties of the object.
          */    
-        public function setProperties( value:Map = null ):void 
+        public function setProperties( ar:Array = null ):void 
         {
-            _properties = value ;
+            _properties = ar ;
         }
 
         /**
@@ -404,10 +401,10 @@ package andromeda.ioc.core
         private var _methods:Array ;
         
         /**
-         * The internal Map of all properties of the object.
+         * The internal Array of all properties of the object.
          * @private
          */
-        private var _properties:Map ;
+        private var _properties:Array ;
         
         /**
          * The scope of the object.

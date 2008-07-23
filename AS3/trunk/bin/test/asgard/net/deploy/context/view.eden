@@ -51,15 +51,17 @@ objects =
         identify   : true  ,
         properties : 
         [
-            { name : "x" , value  : 50 } ,
-            { name : "y" , value  : 50 }
+            
+            // attributs
+            
+            { name : "x"        , value     : 50                       } ,
+            { name : "y"        , value     : 50                       } ,
+            
+            // methods
+            
+            { name : "addChild" , arguments : [ { ref:"my_square"  } ] } ,
+            { name : "addChild" , arguments : [ { ref:"my_field"   } ] }             
         ]
-        ,
-        methods :
-        [
-            { name:"addChild" , arguments:[ { ref:"my_square"  } ] } ,
-            { name:"addChild" , arguments:[ { ref:"my_field"   } ] } 
-        ]        
     }  
     ,
     {

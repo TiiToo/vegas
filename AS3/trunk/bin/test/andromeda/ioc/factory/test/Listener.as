@@ -10,7 +10,7 @@ package test
      */
     public class Listener implements EventListener
     {
-		
+        
         /**
          * Creates a new Listener instance.
          */
@@ -18,15 +18,23 @@ package test
         {
             //
         }
-		
+        
+        /**
+         * The custom callback method who handle an event.
+         */
+        public function change( e:Event ):void
+        {
+            trace( this + " change " + e ) ;
+        }        
+        
         /**
          * Handles the event.
          */
         public function handleEvent( e:Event ):void
         {
-			trace( this + " handleEvent " + e ) ;
+            trace( this + " handleEvent " + e ) ;
         }
-		
+        
     }
 
 }

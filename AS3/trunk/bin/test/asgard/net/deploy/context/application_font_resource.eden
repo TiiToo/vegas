@@ -63,7 +63,7 @@ objects =
 		type             : "flash.display.MovieClip" ,
 		factoryReference : "#root" ,
 		singleton        : true ,
-		methods          :
+		properties       :
 		[
 			{ name : "addChild" , arguments : [ { ref : "field1" } ] } ,
 			{ name : "addChild" , arguments : [ { ref : "field2" } ] } 
