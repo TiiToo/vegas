@@ -22,6 +22,7 @@
 */
 package asgard.net 
 {
+    import flash.media.SoundTransform;
     import flash.net.NetStream;
     
     import asgard.events.SoundEvent;
@@ -88,7 +89,8 @@ package asgard.net
 		 */
 		public function set pan( value:Number ):void
 		{
-			soundTransform.pan = Mathematics.clamp( isNaN(value) ? 0 : value , 0, 1) ; 
+            _pan = isNaN(value) ? 0 : value ;
+			soundTransform = new SoundTransform( _volume , _pan ) ; 
 			_fireSoundEvent( SoundEvent.SOUND_UPDATE ) ;
 		}		
 		
@@ -115,7 +117,8 @@ package asgard.net
 		 */
 		public function set volume( value:Number ):void
 		{
-			soundTransform.volume = Mathematics.clamp( isNaN(value) ? 0 : value , 0, 1) ; 
+			_volume = Mathematics.clamp( isNaN(value) ? 0 : value , 0, 1) ;
+            soundTransform = new SoundTransform( _volume , _pan ) ; 
 			_fireSoundEvent( SoundEvent.SOUND_UPDATE ) ;
 		}		
         
@@ -189,6 +192,16 @@ package asgard.net
 	     * @private
 	     */ 
 	    private var ___isLock___:Boolean = false ;
+		
+        /**
+         * @private
+         */
+        private var _pan:Number =  0 ;		
+		
+		/**
+		 * @private
+		 */
+		private var _volume:Number = 1 ;
 		
 		/**
 		 * @private

@@ -134,12 +134,7 @@ package andromeda.ioc.core
          * Defines the label of the "listeners" name property of the object.
          */        
         public static const OBJECT_LISTENERS:String = "listeners" ;
-
-        /**
-         * The name of the external object property to register the methods.
-         */
-        public static const OBJECT_METHODS:String = "methods" ;  
-
+        
         /**
          * The name of the external object property to register the properties.
          */

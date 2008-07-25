@@ -308,7 +308,7 @@ package andromeda.ioc.factory
          */
         public static function containsInstance( id:String ):Boolean
         {
-            return instances.containsKey( id ) ;
+            return _instances.containsKey( id ) ;
         }        
                 
         /**
@@ -316,7 +316,7 @@ package andromeda.ioc.factory
          */
         public static function flushInstance():void 
         {
-            instances.clear() ;
+            _instances.clear() ;
         }        
         
         /**
@@ -330,11 +330,11 @@ package andromeda.ioc.factory
             {
                 id = DEFAULT_SINGLETON_NAME ;
             }
-            if ( ! instances.containsKey(id) ) 
+            if ( ! _instances.containsKey(id) ) 
             {
-                instances.put( id , new ECMAObjectFactory( id ) ) ;
+                _instances.put( id , new ECMAObjectFactory( id ) ) ;
             }
-            return instances.get( id ) as  ECMAObjectFactory ;
+            return _instances.get( id ) as  ECMAObjectFactory ;
         }
 
         /**
@@ -348,9 +348,9 @@ package andromeda.ioc.factory
             {
                 id = DEFAULT_SINGLETON_NAME ;
             }
-            if ( instances.containsKey(id) ) 
+            if ( _instances.containsKey(id) ) 
             {
-                return instances.remove( id ) != null ;
+                return _instances.remove( id ) != null ;
             }
             else 
             {
@@ -415,7 +415,7 @@ package andromeda.ioc.factory
         /**
          * @private
          */    
-        private static var instances:HashMap = new HashMap() ;
+        private static var _instances:HashMap = new HashMap() ;
 
         /**
          * @private

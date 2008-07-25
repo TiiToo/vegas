@@ -61,7 +61,7 @@ objects =
     {   
         id         : "appointment_02"   ,
         type       : "test.Appointment" ,
-        methods    : 
+        properties : 
         [ 
             { 
 				name       : "setShedule" ,

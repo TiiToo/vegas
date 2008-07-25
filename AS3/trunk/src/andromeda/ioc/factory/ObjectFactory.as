@@ -459,10 +459,7 @@ package andromeda.ioc.factory
             }
             return value ;
         }
-        
-    
-              
-        
+            
         /**
          * Invokes the destroy method of the specified object, if the init method is define in the IDefinition object.
          */
@@ -496,52 +493,7 @@ package andromeda.ioc.factory
                 method.call(o) ;
             }
         }
-       
-       
-        /**
-         * Invokes the method of the specified object.
-         */
-        protected function invokeMethod( o:* , method:ObjectMethod ):void
-        {
-            if ( o == null || method == null )
-            {
-                return ;
-            }
-            var name:String = method.name ;
-            if ( name in o )
-            {
-                o[ name ].apply( o , createArguments( method.arguments ) ) ;    
-            }
-        }       
         
-        /**
-         * Invokes the init method of the specified object, if the init method is define in the IDefinition object.
-         */
-        protected function invokeMethods( o:* , methods:Array ):void
-        {
-            if ( o == null || methods == null )
-            {
-                return ;
-            }
-            var size:uint = methods.length ;
-            if ( size > 0 )
-            {
-                for (var i:uint = 0 ; i<size ; i++) 
-                {
-                    try
-                    {
-                        invokeMethod( o , methods[i] as ObjectMethod );     
-                    }
-                    catch( e:Error ) 
-                    {
-                        // do nothing
-                        debug( this + " invokeMethods failed with the scope '" + o + "' , in the collection of this methods at {" + i + "} : " + e.toString() ) ;
-                        //
-                    }    
-                }
-            }
-        }
-
         /**
          * Indicates if the specified object is ILockable and must be locked during the initialization of the properties and methods when is created.
          */
@@ -751,8 +703,6 @@ package andromeda.ioc.factory
                 registerListeners( instance , definition.getListeners() ) ;
                 
                 populateProperties( instance , definition.getProperties() );
-                
-                invokeMethods( instance , definition.getMethods() ) ;
                 
                 if ( flag )
                 {

@@ -84,17 +84,11 @@ package andromeda.ioc.core
          * @return the Array of all listener definitions of this definition.
          */    
         function getListeners():Array ; 
-
-        /**
-         * Returns the Array of all method definitions of this definition.
-         * @return the Array of all method definitions of this definition.
-         */    
-        function getMethods():Array ; 
-
+    
         /**
          * Returns the Array of all properties of this Definition.
          * @return the Array of all properties of this Definition.
-          */    
+         */    
         function getProperties():Array ; 
 
         /**
@@ -145,13 +139,7 @@ package andromeda.ioc.core
          * @param ar the Array of all listener definitions of the object.
          */
         function setListeners( ar:Array = null ):void ;  
-
-        /**
-         * Sets the Array of all method definition of this definition.
-         * @param ar the Array of all method definitions of the object.
-         */
-        function setMethods( ar:Array = null ):void ; 
-
+        
         /**
          * Sets the Array of all properties of this definition.
          */

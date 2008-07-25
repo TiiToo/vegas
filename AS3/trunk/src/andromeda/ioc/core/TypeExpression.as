@@ -49,7 +49,7 @@ package andromeda.ioc.core
         /**
          * Creates a new TypeExpression instance.
          */
-        public function TypeExpression(weakKeys:Boolean = false)
+        public function TypeExpression( weakKeys:Boolean = false )
         {
             super( weakKeys );
         }

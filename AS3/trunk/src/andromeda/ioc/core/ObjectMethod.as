@@ -24,7 +24,7 @@ package andromeda.ioc.core
 {
 
     /**
-     * This object defines a method definition and this arguments.
+     * This object defines a method definition with a method name and this arguments.
      * @author eKameleon
      */
     public class ObjectMethod
@@ -50,40 +50,6 @@ package andromeda.ioc.core
          * The name of the method to invoke to create the object.
          */
         public var name:String ;
-        
-        /**
-         * Creates the Array definition of all arguments defines in the passed-in array.
-         * @return the Array definition of all arguments defines in the passed-in array.
-         */
-        public static function create( a:Array = null ):Array
-        {
-            if ( a == null || a.length == 0 )
-            {
-                return null ;
-            }
-            else
-            {
-                var methods:Array  = [] ;
-                var o:Object ;
-                var i:int ;
-                var name:String  ;                
-                var l:int = a.length ;
-                for ( ; i<l ; i++ )
-                {
-                    o = a[i] ;
-                    if ( o != null && ( ObjectAttribute.NAME in o ) )
-                    {
-                        name = o[ ObjectAttribute.NAME ] as String ;                    	
-                        if ( name == null || name.length == 0 )
-                        {
-                            continue ;
-                        }
-                        methods.push( new ObjectMethod( name, ObjectArgument.create( o[ ObjectAttribute.ARGUMENTS ] as Array ) ) ) ;
-                    }
-                }
-                return methods.length > 0 ? methods : null ;
-            }
-        }          
-        
+          
     }
 }

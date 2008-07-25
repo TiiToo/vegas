@@ -156,8 +156,7 @@ package andromeda.ioc.core
             definition.setConstructorArguments ( ObjectArgument.create ( o[ ObjectAttribute.ARGUMENTS         ] as Array ) ) ;
             definition.setListeners            ( ObjectListener.create ( o[ ObjectAttribute.OBJECT_LISTENERS  ] as Array ) ) ;
             definition.setProperties           ( ObjectProperty.create ( o[ ObjectAttribute.OBJECT_PROPERTIES ] as Array ) ) ;
-            definition.setMethods              ( ObjectMethod.create   ( o[ ObjectAttribute.OBJECT_METHODS    ] as Array ) ) ;
-            
+                        
             definition.setDestroyMethodName    ( o[ ObjectAttribute.OBJECT_DESTROY_METHOD_NAME ] as String ) ;
             definition.setInitMethodName       ( o[ ObjectAttribute.OBJECT_INIT_METHOD_NAME    ] as String ) ;
             definition.setScope                ( o[ ObjectAttribute.OBJECT_SCOPE               ] as String ) ;
@@ -210,16 +209,7 @@ package andromeda.ioc.core
         {
         	return _listeners ;
         } 
-        
-        /**
-         * Returns the Array of all method definitions of this Definition.
-         * @return the Array of all method definitions of this Definition.
-         */    
-        public function getMethods():Array 
-        {
-            return _methods ;
-        }
-        
+                
         /**
          * Returns the Array of all properties of this Definition.
          * @return the Array of all properties of this Definition.
@@ -309,16 +299,7 @@ package andromeda.ioc.core
         {
         	_listeners = ar ;
         }
-        
-        /**
-         * Sets the Array of all method definition of this Definition.
-         * @param ar the Array of all method definitions of the object.
-         */    
-        public function setMethods( ar:Array = null ):void 
-        {
-            _methods = ar ;
-        }
-        
+                
         /**
          * Sets the Array of all properties of this definition.
          * @param ar the Array of all properties of the object.
@@ -393,13 +374,7 @@ package andromeda.ioc.core
          * @private
          */
         private var _lock:* = null ;        
-        
-        /**
-         * The internal Array of all method definitions of the object.
-         * @private
-         */
-        private var _methods:Array ;
-        
+                
         /**
          * The internal Array of all properties of the object.
          * @private
