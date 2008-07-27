@@ -16,30 +16,48 @@
   the Initial Developer. All Rights Reserved.
   
   Contributor(s):
+  Marc Alcaraz <ekameleon@gmail.com>.
   
 */
 
 package system.CLI
     {
     
-    /* Parse command line arguments.
-       
-       ex:
-       my.exe -h
-       my.exe /?
-       my.exe -s -T:hello myfile.txt
-       my.exe myfile1.txt myfile2.txt
-       
-       note:
-       we don't want to use events for Tamarin compatibility.
+    /**
+     * Parse command line arguments.
+     * <p><b>Example :</b></p>
+     * <pre>
+     * my.exe -h
+     * my.exe /?
+     * my.exe -s -T:hello myfile.txt
+     * my.exe myfile1.txt myfile2.txt
+     * </pre>
+     * <p><b>Note :</b>we don't want to use events for Tamarin compatibility.</p>
     */
     public class ArgumentsParser
         {
         
+        /**
+         * @private
+         */
         private var _switchSymbols:Array;
+
+        /**
+         * @private
+         */
         private var _caseSensitive:Boolean;
+
+        /**
+         * @private
+         */
         private var _switchChars:Array = [ "/", "-" ];
-        
+
+        /**
+         * Creates a new ArgumentParser instance.
+         * @param switchSymbols The Array representation of all switch symbols.
+         * @param caseSensitive Indicates if the case sensitive is enabled.
+         * @param switchChars The Array of all switch characters.
+         */        
         public function ArgumentsParser( switchSymbols:Array,
                                          caseSensitive:Boolean = false,
                                          switchChars:Array = null )
@@ -53,41 +71,45 @@ package system.CLI
                 }
             }
         
-        /* Method: onUsage
-           Used to display the usage string when an error occurs.
-           Need to be overrided.
-        */
+        /**
+         * Used to display the usage string when an error occurs.
+         * Need to be overrided.
+         */
         public function onUsage( errorInfo:String = "" ):void
             {
             
             }
         
-        /* Method: onSwitch
-           Need to be overrided.
-        */
+        /**
+         * Used to display the usage string when a switch occurs.
+         * Need to be overrided.
+         */
         public function onSwitch( symbol:String, value:String ):SwitchStatus
             {
             return SwitchStatus.error;
             }
         
-        /* Method: onNonSwitch
-           Need to be overrided.
-        */
+        /**
+         * Used to display the usage string when a non switch occurs.
+         * Need to be overrided.
+         */
         public function onNonSwitch( value:String ):SwitchStatus
             {
             return SwitchStatus.error;
             }
         
-        /* Method: onParsed
-           Need to be overrided.
-        */
+        /**
+         * Used to display the usage string when a parse occurs.
+         * Need to be overrided.
+         */
         public function onParsed():SwitchStatus
             {
             return SwitchStatus.error;
             }
         
-        /* Method: parse
-        */
+        /**
+         * Invoked to parse the specified Array of arguments.
+         */
         public function parse( args:Array ):Boolean
             {
             var slots:Array         = args;
@@ -128,7 +150,6 @@ package system.CLI
                 
                 return false;
                 };
-            
             
             for( num = 0; (status == SwitchStatus.noError) && (num < slots.length); num++ )
                 {
