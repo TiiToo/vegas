@@ -25,7 +25,7 @@ package vegas.core
     import flash.utils.getDefinitionByName;
     
     import system.Reflection;
-    import system.formatters.IFormatter;
+    import system.formatters.Formattable;
     
     import vegas.core.CoreObject;
     import vegas.core.ICloneable;
@@ -36,7 +36,7 @@ package vegas.core
 	 * Abstract class to creates classes who implemented IFormatter interface.
 	 * @author eKameleon
 	 */
-	public class Formatter extends CoreObject implements ICloneable, ICopyable, IFormatter
+	public class Formatter extends CoreObject implements ICloneable, ICopyable, Formattable
 	{
 		
 		/**

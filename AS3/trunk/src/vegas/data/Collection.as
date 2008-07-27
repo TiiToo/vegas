@@ -23,18 +23,17 @@
 
 package vegas.data
 {
-	import system.ISerializable;
-	
-	import vegas.core.ICloneable;
-	import vegas.core.ICopyable;
-	import vegas.core.IFormattable;
-	import vegas.data.iterator.Iterable;   
+    import system.Serializable;
+    
+    import vegas.core.ICloneable;
+    import vegas.core.ICopyable;
+    import vegas.data.iterator.Iterable;    
 
-	/**
+    /**
 	 * The root interface in the collection hierarchy. A collection represents a group of objects, known as its elements. Some collections allow duplicate elements and others do not. Some are ordered and others unordered. 
 	 * @author eKameleon
 	 */
-    public interface Collection extends ICloneable, ICopyable, IFormattable, ISerializable, Iterable
+    public interface Collection extends ICloneable, ICopyable, Serializable, Iterable
     {
         
 		/**

@@ -29,14 +29,14 @@ package buRRRn.eden
 	import system.Environment;	
 
 	/**
-	 * The Serializer class.
+	 * The BuiltinSerializer class.
 	 */
-	public class Serializer
-	{
-		
-		/**
-		 * Returns the serializer string representation of the specified array argument.
-		 * @return the serializer string representation of the specified array argument.
+	public class BuiltinSerializer
+    {
+
+        /**
+		 * Returns the serialized string representation of the specified array argument.
+		 * @return the serialized string representation of the specified array argument.
 		 */
 		public static function emitArray( value:Array ):String
 		{
@@ -69,8 +69,8 @@ package buRRRn.eden
 		}
 
 		/**
-		 * Returns the serializer string representation of the specified date argument.
-		 * @return the serializer string representation of the specified date argument.
+		 * Returns the serialized string representation of the specified date argument.
+		 * @return the serialized string representation of the specified date argument.
 		 */
 		public static function emitDate( value:Date ):String
 		{
@@ -98,8 +98,8 @@ package buRRRn.eden
 		}
 
 		/**
-		 * Returns the serializer string representation of the specified object argument.
-		 * @return the serializer string representation of the specified string argument.
+		 * Returns the serialized string representation of the specified object argument.
+		 * @return the serialized string representation of the specified string argument.
 		 */
 		public static function emitObject( value:Object ):String
 		{
@@ -136,8 +136,8 @@ package buRRRn.eden
 		}
 
 		/**
-		 * Returns the serializer string representation of the specified string argument.
-		 * @return the serializer string representation of the specified string argument.
+		 * Returns the serialized string representation of the specified string argument.
+		 * @return the serialized string representation of the specified string argument.
 		 */
 		public static function emitString( value:String ):String
 		{

@@ -22,13 +22,11 @@
 
 package buRRRn.ASTUce.framework
 {
-	import buRRRn.ASTUce.config;
-	import buRRRn.ASTUce.strings;
+    import buRRRn.ASTUce.config;
+    import buRRRn.ASTUce.strings;
+    import system.Equatable;
+    import system.Strings;	
 	
-	import system.IEquatable;
-	import system.Strings;
-	
-
 	/**
      * A set of assert methods. Messages are only displayed when an assert fails. It is a static only class.
      * <p><b>Notes :</b></p>
@@ -200,7 +198,7 @@ package buRRRn.ASTUce.framework
                 return;
                 }
             
-            if( (expected is IEquatable) && expected.equals( actual ) )
+            if( (expected is Equatable) && expected.equals( actual ) )
                 {
                 return;
                 }

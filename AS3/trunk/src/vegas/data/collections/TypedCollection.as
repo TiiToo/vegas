@@ -23,13 +23,13 @@
 
 package vegas.data.collections
 {
-	import vegas.data.Collection;
-	import vegas.data.iterator.Iterator;
-	import vegas.errors.IllegalArgumentError;
-	import vegas.util.AbstractTypeable;
-	import vegas.util.Serializer;	
+    import vegas.data.Collection;
+    import vegas.data.iterator.Iterator;
+    import vegas.errors.IllegalArgumentError;
+    import vegas.util.AbstractTypeable;
+    import vegas.util.Serializer;    
 
-	/**
+    /**
 	 * TypedCollection is a wrapper for Collection instances that ensures that only values of a specific type can be added to the wrapped collection.
 	 * @author eKameleon
 	 */	
@@ -187,12 +187,12 @@ package vegas.data.collections
 		 */
 		public override function toString():String
 		{
-			return _co.toString() ;
+			return (_co as TypedCollection).toString() ;
 		}
-
-		/**
-	 	 * The internal collection of this wrapped Collection.
-		 */
+        
+        /**
+         * @private
+         */
 		protected var _co:Collection ;
 	}
 }

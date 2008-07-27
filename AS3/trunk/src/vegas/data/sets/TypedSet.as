@@ -22,13 +22,13 @@
 */
 package vegas.data.sets
 {
-	import vegas.data.Set;
-	import vegas.data.iterator.Iterator;
-	import vegas.errors.IllegalArgumentError;
-	import vegas.util.AbstractTypeable;
-	import vegas.util.Serializer;	
+    import vegas.data.Set;
+    import vegas.data.iterator.Iterator;
+    import vegas.errors.IllegalArgumentError;
+    import vegas.util.AbstractTypeable;
+    import vegas.util.Serializer;	
 
-	/**
+    /**
      * TypedSet is a wrapper for Set instances that ensures that only values of a specific type can be added to the wrapped Set.
      * @author eKameleon
      */
@@ -191,9 +191,12 @@ package vegas.data.sets
     	 */
 		public override function toString():String 
 		{
-			return _set.toString() ;
+			return (_set as TypedSet).toString() ;
 		}
-
+        
+        /**
+         * @private
+         */
 		private var _set:Set ;
 	}
 }

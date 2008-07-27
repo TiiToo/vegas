@@ -20,7 +20,6 @@
 */
 package system.evaluators 
     {
-    import system.evaluators.IEvaluator;
     
     /**
      * This <code class="prettyprint">IEvaluator</code> use a <code class="prettyprint">Array</code> collection of evaluators to evaluate the specified value.
@@ -53,7 +52,7 @@ package system.evaluators
      * </pre>
      * @author eKameleon
      */
-    public class MultiEvaluator implements IEvaluator
+    public class MultiEvaluator implements Evaluator
         {
 
         /**
@@ -94,7 +93,7 @@ package system.evaluators
                 for ( i = 0 ; i<l ; i++ )
                     {
                     e = evaluators[i] ;
-                    if ( e is IEvaluator )
+                    if ( e is Evaluator )
                         {
                         _evaluators.push(e) ;        
                         }
@@ -103,7 +102,7 @@ package system.evaluators
                         c = (e as Array).length ;
                         for ( j=0 ; j<c ; j++ )
                             {
-                            if ( e[j] is IEvaluator )
+                            if ( e[j] is Evaluator )
                                 {
                                 _evaluators.push( e[j] ) ; 
                                 }
@@ -147,7 +146,7 @@ package system.evaluators
          * @param evaluator The <code class="prettyprint">IEvaluator</code> to find and remove.
          * @return <code class="prettyprint">true</code> if the IEvaluator is removed.
          */
-        public function remove( evaluator:IEvaluator ):Boolean
+        public function remove( evaluator:Evaluator ):Boolean
             {
             var index:int = _evaluators.indexOf(evaluator) ;
             if( index > -1 )

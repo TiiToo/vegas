@@ -22,9 +22,9 @@
 */
 package vegas.util 
 {
-	import system.IEquatable;		
+    import system.Equatable;			
 
-	/**
+    /**
 	 * The <code class="prettyprint">Comparater</code> utility class is an all-static class with a method to returns <code class="prettyprint">true</code> if two object are equals.
 	 * @author eKameleon
 	 */
@@ -47,9 +47,9 @@ package vegas.util
 			{
 				return true ;
 			}
-			if (o1 is IEquatable) 
+			if (o1 is Equatable) 
 			{
-				return IEquatable(o1).equals(o2) ;
+				return Equatable(o1).equals(o2) ;
 			}
 			else if ( o1 is Array ) 
 			{

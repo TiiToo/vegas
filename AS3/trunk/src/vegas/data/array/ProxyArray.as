@@ -26,15 +26,14 @@ package vegas.data.array
     import flash.utils.Proxy;
     import flash.utils.flash_proxy;
     
-    import buRRRn.eden.Serializer;
+    import buRRRn.eden.BuiltinSerializer;
     
-    import system.ISerializable;
     import system.Reflection;
+    import system.Serializable;
     
     import vegas.core.HashCode;
     import vegas.core.ICloneable;
     import vegas.core.ICopyable;
-    import vegas.core.IFormattable;
     import vegas.core.IHashable;
     import vegas.data.iterator.ArrayIterator;
     import vegas.data.iterator.Iterable;
@@ -82,7 +81,7 @@ package vegas.data.array
      * </pre>
      * @author eKameleon
      */
-    dynamic public class ProxyArray extends Proxy implements ICloneable, ICopyable, IFormattable, IHashable, Iterable, ISerializable
+    public dynamic class ProxyArray extends Proxy implements ICloneable, ICopyable, IHashable, Iterable, Serializable
     {
         
 		/**
@@ -209,7 +208,7 @@ package vegas.data.array
 		 */
         public function toSource( indent:int = 0 ):String 
         {
-            return "new " + Reflection.getClassPath(this) + "(" + Serializer.emitArray( _ar ) + ")" ;
+            return "new " + Reflection.getClassPath(this) + "(" + BuiltinSerializer.emitArray( _ar ) + ")" ;
         }
 
 		/**

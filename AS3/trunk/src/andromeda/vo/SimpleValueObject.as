@@ -22,17 +22,17 @@
 */
 package andromeda.vo
 {
-    import system.IEquatable;
+    import system.Equatable;
     import system.Reflection;
     
     import vegas.core.CoreObject;
-    import vegas.core.Identifiable;
+    import vegas.core.Identifiable;    
 
     /**
      * The SimpleValueObject class provides a basic implementation of the IValueObject interface.
      * @param init A generic object containing properties with which to populate the newly instance. If this argument is null, it is ignored.
      */
-    public class SimpleValueObject extends CoreObject implements IEquatable, IValueObject
+    public class SimpleValueObject extends CoreObject implements Equatable, IValueObject
     {
         
         /**

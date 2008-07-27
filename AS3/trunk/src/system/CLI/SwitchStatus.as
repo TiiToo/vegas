@@ -1,4 +1,4 @@
-﻿/*
+/*
   The contents of this file are subject to the Mozilla Public License Version
   1.1 (the "License"); you may not use this file except in compliance with
   the License. You may obtain a copy of the License at 
@@ -11,29 +11,33 @@
   The Original Code is [ES4a: ECMAScript 4 MaasHaack framework].
   
   The Initial Developer of the Original Code is
-  Marc Alcaraz <ekameleon@gmail.com>.
+  Zwetan Kjukov <zwetan@gmail.com>.
   Portions created by the Initial Developer are Copyright (C) 2006-2008
   the Initial Developer. All Rights Reserved.
   
   Contributor(s):
-    - Zwetan Kjukov <zwetan@gmail.com>
+  
 */
-package system.evaluators 
-{
 
-    /**
-     * An Evaluator is a class that can interpret an object to another object.
-     * <p>It's not necessary a parser, but the most common cases would be a string being evaluated to an object structure.</p>
-     * <p><b>Note:</b> eval always take one and only one argument, if you need to configure the evaluator pass different arguments in the constructor.</p>
-     */
-	public interface IEvaluator 
-	{
-	
-		/**
-		 * Evaluates the specified object.
-		 */
-		function eval( o:* ):* ;
+package system.CLI
+    {
+    import system.Enum;
+    
+    /* Enumerate the different switch states.
+    */
+    public class SwitchStatus extends Enum
+        {
+        
+        public function SwitchStatus( value:int, name:String )
+            {
+            super( value, name );
+            }
+        
+        public static const noError:SwitchStatus   = new SwitchStatus( 0, "noError" );
+        public static const error:SwitchStatus     = new SwitchStatus( 1, "error" );
+        public static const showUsage:SwitchStatus = new SwitchStatus( 2, "showUsage" );
+        
+        }
+    
+    }
 
-	}
-
-}

@@ -21,10 +21,10 @@
 
 */
 package system.numeric
-    {
-    import system.IEquatable;
-    import system.ISerializable;
-    import system.numeric.Mathematics;    
+{
+    import system.Equatable;
+    import system.Serializable;
+    import system.numeric.Mathematics;        
 
     /**
      * Represents an immutable range of values.
@@ -45,7 +45,7 @@ package system.numeric
      * trace ("r1 clamp 121      : " + r1.clamp(121)      ) ; // r1 clamp 121 : 120
      * </pre>
      */
-    public class Range implements IEquatable, ISerializable
+    public class Range implements Equatable, Serializable
         {
         
         /**

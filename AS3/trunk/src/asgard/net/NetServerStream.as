@@ -27,8 +27,8 @@ package asgard.net
     
     import asgard.events.SoundEvent;
     
-    import system.ISerializable;
     import system.Reflection;
+    import system.Serializable;
     import system.numeric.Mathematics;
     
     import vegas.core.HashCode;
@@ -43,7 +43,7 @@ package asgard.net
 	 * You can publish or play live (real-time) data and previously recorded data.
      * @author eKameleon
      */
-    public class NetServerStream extends NetStream implements IHashable, ILockable, ISerializable
+    public class NetServerStream extends NetStream implements IHashable, ILockable, Serializable
     {
 
 		/**

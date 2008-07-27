@@ -27,8 +27,8 @@ package system
      * Defines what a Serializer have to implements to be integrated in the framework.
      * <p><b>Note :</b>Every serializers (eden, json, wddx, etc.) should implement it.</p>
      */    
-    public interface ISerializer
-        {
+    public interface Serializer
+    {
         
         /**
          * The prettyIndent value of the serializer.

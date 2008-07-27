@@ -27,7 +27,7 @@ package andromeda.ioc.evaluators
     
     import buRRRn.ASTUce.framework.TestCase;
     
-    import system.evaluators.IEvaluator;
+    import system.evaluators.Evaluator;
     
     import vegas.core.CoreObject;    
 
@@ -71,7 +71,7 @@ package andromeda.ioc.evaluators
         public function testInherit():void
         {
             assertTrue( evaluator1 is TypeEvaluator , "inherit TypeEvaluator failed.") ;
-            assertTrue( evaluator1 is IEvaluator    , "implements IEvaluator failed.") ;
+            assertTrue( evaluator1 is Evaluator    , "implements IEvaluator failed.") ;
         }
         
         public function testConfig():void

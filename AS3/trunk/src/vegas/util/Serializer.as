@@ -28,10 +28,10 @@
  */
 package vegas.util
 {
-	import system.ISerializable;
-	import system.Reflection;	
+    import system.Reflection;
+    import system.Serializable;    	
 
-	/**
+    /**
 	 * The eden serializer of the VEGAS implementation.
 	 */
 	public class Serializer
@@ -87,7 +87,7 @@ package vegas.util
     		{
     			return "null" ;
     		}
-    		if (o is ISerializable) 
+    		if (o is Serializable) 
     		{
     		    return o.toSource.apply(o, arguments.slice(1)) ;
     		}

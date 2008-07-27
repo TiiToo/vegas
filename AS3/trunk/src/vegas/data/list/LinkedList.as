@@ -23,7 +23,7 @@
 
 package vegas.data.list
 {
-    import system.IEquatable;
+    import system.Equatable;
     
     import vegas.core.CoreObject;
     import vegas.data.Collection;
@@ -451,9 +451,9 @@ package vegas.data.list
             {
                 for ( e = _header.next ; e != _header ; e = e.next ) 
                 {
-                    if (o is IEquatable)
+                    if (o is Equatable)
                     {
-                        if ( (o as IEquatable).equals(e.element))
+                        if ( (o as Equatable).equals(e.element))
                         {
                             return index;
                         }
@@ -636,9 +636,9 @@ package vegas.data.list
                 for ( e = _header.previous ; e != _header ; e = e.previous ) 
                 {
                     index-- ;
-                    if (o is IEquatable)
+                    if (o is Equatable)
                     {
-                        if ( (o as IEquatable).equals(e.element) )
+                        if ( (o as Equatable).equals(e.element) )
                         {
                             return index;
                         }
@@ -714,9 +714,9 @@ package vegas.data.list
             {
                 for ( e = _header.next ; e != _header ; e = e.next ) 
                 {
-                    if ( o is IEquatable )
+                    if ( o is Equatable )
                     {
-                        if ( (o as IEquatable).equals( e.element ) ) 
+                        if ( (o as Equatable).equals( e.element ) ) 
                         {
                             removeEntry(e);
                             return true;

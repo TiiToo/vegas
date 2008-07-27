@@ -22,13 +22,13 @@
 */
 package vegas.data.map
 {
-	import vegas.data.Map;
-	import vegas.data.iterator.Iterator;
-	import vegas.errors.IllegalArgumentError;
-	import vegas.util.AbstractTypeable;
-	import vegas.util.Serializer;	
+    import vegas.data.Map;
+    import vegas.data.iterator.Iterator;
+    import vegas.errors.IllegalArgumentError;
+    import vegas.util.AbstractTypeable;
+    import vegas.util.Serializer;    
 
-	/**
+    /**
 	 * TypedMap is a wrapper for Map instances that ensures that only values of a specific type can be added to the wrapped Map.
 	 * @author eKameleon
 	 */
@@ -219,7 +219,7 @@ package vegas.data.map
 		 */
 		public override function toString():String
 		{
-			return _map.toString() ;
+			return (_map as TypedMap).toString() ;
 		}
 
 		private var _map:Map ;

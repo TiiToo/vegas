@@ -23,13 +23,13 @@
 
 package buRRRn.eden
 {
-	import system.ISerializable;
-	import system.ISerializer;    
+    import system.Serializable;
+    import system.Serializer;    
 
-	/**
+    /**
      * The eden Serializer class
      */    
-    public class EdenSerializer implements ISerializer, ISerializable
+    public class EdenSerializer implements Serializer, Serializable
         {
         	
 		/**
@@ -136,14 +136,14 @@ package buRRRn.eden
                 return "null";
                 }
             
-            if( value is ISerializable )
+            if( value is Serializable )
                 {
                 return value.toSource( prettyIndent );
                 }
             
             if( value is String )
                 {
-                return Serializer.emitString( value );
+                return BuiltinSerializer.emitString( value );
                 }
             
             if( value is Boolean )
@@ -158,7 +158,7 @@ package buRRRn.eden
             
             if( value is Date )
                 {
-                return Serializer.emitDate( value );
+                return BuiltinSerializer.emitDate( value );
                 }
             
             /* TODO:
@@ -170,12 +170,12 @@ package buRRRn.eden
             
             if( value is Array )
                 {
-                return Serializer.emitArray( value );
+                return BuiltinSerializer.emitArray( value );
                 }
             
             if( value is Object )
                 {
-                return Serializer.emitObject( value );
+                return BuiltinSerializer.emitObject( value );
                 }            
             
             return "<unknown>";

@@ -22,12 +22,12 @@
 */
 package vegas.core
 {
-    import system.ISerializable;
     import system.Reflection;
+    import system.Serializable;
     
     import vegas.logging.ILogable;
     import vegas.logging.ILogger;
-    import vegas.logging.Log;	
+    import vegas.logging.Log;    
 
     /**
 	 * CoreObject offers a default implementation of the IFormattable, IHashable and ISerializable interfaces.
@@ -43,7 +43,7 @@ package vegas.core
 	 * </p>
 	 * @author eKameleon
 	 */
-	public class CoreObject extends Object implements IFormattable, IHashable, ILogable, ISerializable
+	public class CoreObject extends Object implements IHashable, ILogable, Serializable
 	{
 		
 		/**

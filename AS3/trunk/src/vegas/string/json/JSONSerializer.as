@@ -45,7 +45,7 @@
 */
 package vegas.string.json 
 {
-    import system.ISerializer;    
+    import system.Serializer;        
 
     /**
      * This class is the concrete class of the JSON singleton.
@@ -110,7 +110,7 @@ package vegas.string.json
      * }
      * </pre>
      */
-    public class JSONSerializer implements ISerializer 
+    public class JSONSerializer implements Serializer 
     {
 
         use namespace jsonparser;

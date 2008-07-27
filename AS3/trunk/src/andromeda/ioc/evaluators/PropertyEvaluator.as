@@ -22,7 +22,7 @@
 */
 package andromeda.ioc.evaluators 
 {
-    import system.evaluators.IEvaluator;
+    import system.evaluators.Evaluator;
     
     import vegas.core.CoreObject;    
 
@@ -54,7 +54,7 @@ package andromeda.ioc.evaluators
      * </pre>
      * @author eKameleon
      */
-    public class PropertyEvaluator extends CoreObject implements IEvaluator 
+    public class PropertyEvaluator extends CoreObject implements Evaluator 
     {
         
         /**

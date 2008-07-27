@@ -22,6 +22,7 @@
 */
 package vegas.util
 {
+    import buRRRn.eden.BuiltinSerializer;        
 
     /**
      * Array static tool class.
@@ -29,9 +30,7 @@ package vegas.util
      */
     public class ArrayUtil 
     {
-        
-        import buRRRn.eden.Serializer ;
-        
+                
         /**
          * Creates the shallow copy of the Array.
          * <p><b>Example :</b></p>
@@ -95,7 +94,7 @@ package vegas.util
          */
         public static function toSource( ar:Array , ...rest:Array ):String 
         {
-            return buRRRn.eden.Serializer.emitArray(ar) ;
+            return BuiltinSerializer.emitArray(ar) ;
         }
 
     }    

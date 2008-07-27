@@ -26,7 +26,7 @@ package andromeda.ioc.evaluators
     
     import andromeda.ioc.factory.IObjectFactory;
     
-    import system.evaluators.IEvaluator;
+    import system.evaluators.Evaluator;
     
     import vegas.core.CoreObject;    
 
@@ -84,7 +84,7 @@ package andromeda.ioc.evaluators
      * </pre>
      * @author eKameleon
      */
-    public class ReferenceEvaluator extends CoreObject implements IEvaluator 
+    public class ReferenceEvaluator extends CoreObject implements Evaluator 
     {
         
         /**

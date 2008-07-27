@@ -23,21 +23,20 @@
 
 package vegas.errors
 {
-	import system.Reflection;
-	
-	import vegas.core.HashCode;
-	import vegas.core.IFormattable;
-	import vegas.core.IHashable;
-	import vegas.logging.ILogable;
-	import vegas.logging.ILogger;
-	import vegas.logging.Log;
-	import vegas.logging.LogEventLevel;	
+    import system.Reflection;
+    
+    import vegas.core.HashCode;
+    import vegas.core.IHashable;
+    import vegas.logging.ILogable;
+    import vegas.logging.ILogger;
+    import vegas.logging.Log;
+    import vegas.logging.LogEventLevel;	
 
-	/**
+    /**
 	 * This class provides a Abstract implementation to creates Error classes with an internal logging model. 
 	 * @author eKameleon
  	 */
-    internal class AbstractError extends Error implements IFormattable, IHashable, ILogable
+    internal class AbstractError extends Error implements IHashable, ILogable
     {
         
 		/**

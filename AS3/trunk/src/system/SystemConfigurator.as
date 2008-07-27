@@ -57,7 +57,7 @@ package system
         /**
          * The current serializer used used by the system 
          */        
-        public function get serializer():ISerializer
+        public function get serializer():Serializer
             {
             return _config.serializer;
             }
@@ -65,7 +65,7 @@ package system
         /**
          * @private
          */
-        public function set serializer( value:ISerializer ):void
+        public function set serializer( value:Serializer ):void
             {
             _config.serializer = value;
             }

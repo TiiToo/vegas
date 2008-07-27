@@ -23,7 +23,7 @@
 
 package vegas.data.array
 {
-    import buRRRn.eden.Serializer;
+    import buRRRn.eden.BuiltinSerializer;
     
     import system.Reflection;
     
@@ -180,7 +180,7 @@ package vegas.data.array
          */
         public override function toSource( indent:int = 0 ):String 
         {
-            return "new " + Reflection.getClassPath(this) + "(" + Reflection.getClassPath(_type) + "," + Serializer.emitArray( _ar ) + ")" ;
+            return "new " + Reflection.getClassPath(this) + "(" + Reflection.getClassPath(_type) + "," + BuiltinSerializer.emitArray( _ar ) + ")" ;
         }        
         
         /**

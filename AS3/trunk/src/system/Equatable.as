@@ -26,7 +26,7 @@ package system
 	/**
 	 * This interface is implemented by classes that can compare an object with their objects.
 	 */    
-    public interface IEquatable
+    public interface Equatable
     {
     	
 		/**

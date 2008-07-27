@@ -23,18 +23,18 @@
 
 package vegas.data.sets
 {
-	import system.IEquatable;
-	
-	import vegas.data.Collection;
-	import vegas.data.Set;
-	import vegas.data.collections.SimpleCollection;		
+    import system.Equatable;
+    
+    import vegas.data.Collection;
+    import vegas.data.Set;
+    import vegas.data.collections.SimpleCollection;	
 
-	/**
+    /**
      * This class provides a skeletal implementation of the Set interface to minimize the effort required to implement this interface.
      * A collection that contains no duplicate elements.
      * @author eKameleon
      */
-	internal class AbstractSet extends SimpleCollection implements IEquatable, Set
+	internal class AbstractSet extends SimpleCollection implements Equatable, Set
 	{
 		
 		/**

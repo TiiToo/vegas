@@ -26,7 +26,7 @@ package system.formatters
     /**
      * Interface implemented by classes that can format a value in a specific string expression.
      */
-    public interface IFormatter
+    public interface Formattable
         {
         
         /**

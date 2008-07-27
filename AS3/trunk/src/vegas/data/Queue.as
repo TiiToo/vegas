@@ -23,15 +23,14 @@
 
 package vegas.data
 {
-	import system.ISerializable;
-	
-	import vegas.core.ICloneable;
-	import vegas.core.ICopyable;
-	import vegas.core.IFormattable;
-	import vegas.core.IHashable;
-	import vegas.data.iterator.Iterable;    
+    import system.Serializable;
+    
+    import vegas.core.ICloneable;
+    import vegas.core.ICopyable;
+    import vegas.core.IHashable;
+    import vegas.data.iterator.Iterable;    
 
-	/**
+    /**
 	 * A collection designed for holding elements prior to processing. Besides basic Collection operations, queues provide additional insertion, extraction, and inspection operations.
 	 * <p>
 	 * Queues typically, but do not necessarily, order elements in a FIFO (first-in-first-out) manner.
@@ -39,7 +38,7 @@ package vegas.data
 	 * <p>Whatever the ordering used, the head of the queue is that element which would be removed by a call to remove() or poll().</p>
 	 * @author eKameleon
 	 */
-    public interface Queue extends ICloneable, ICopyable, IFormattable, IHashable, Iterable, ISerializable
+    public interface Queue extends ICloneable, ICopyable, IHashable, Iterable, Serializable
     {
     	
 		/**

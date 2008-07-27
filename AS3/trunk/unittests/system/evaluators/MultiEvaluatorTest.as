@@ -1,7 +1,7 @@
 ﻿
 package system.evaluators 
-    {
-    import buRRRn.ASTUce.framework.TestCase;                            
+{
+    import buRRRn.ASTUce.framework.TestCase;                                    
 
     /**
      * The MultiEvaluatorTest test case.
@@ -37,7 +37,7 @@ package system.evaluators
         public function testInterfaces():void
             {
             
-            assertTrue( evaluator is IEvaluator, "The MultiEvaluator instance implements IEvaluator failed.") ;
+            assertTrue( evaluator is Evaluator, "The MultiEvaluator instance implements IEvaluator failed.") ;
             
             }           
 
@@ -77,11 +77,9 @@ package system.evaluators
             }           
         
         }
-    }
+}
 
-import system.evaluators.IEvaluator;
-
-class CustomEvaluator implements IEvaluator
+class CustomEvaluator implements Evaluator
     {
 	
     public function CustomEvaluator()

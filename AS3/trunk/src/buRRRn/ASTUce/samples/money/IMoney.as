@@ -21,12 +21,12 @@
 */
 
 package buRRRn.ASTUce.samples.money
-    {
-    import system.IEquatable;
-    
+{
+    import system.Equatable;    
+
     /* The common interface for simple Monies and MoneyBags.
     */
-    public interface IMoney extends IEquatable
+    public interface IMoney extends Equatable
         {
         
         /* Adds a money to this money.

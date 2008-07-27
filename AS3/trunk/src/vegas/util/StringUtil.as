@@ -22,9 +22,9 @@
 */
 package vegas.util
 {
-	import buRRRn.eden.Serializer;	
+    import buRRRn.eden.BuiltinSerializer;    	
 
-	/**
+    /**
 	 * The <code class="prettyprint">StringUtil</code> utility class is an extended String class with methods for working with string.
 	 * This class complete the system.Strings static class.
 	 * @author eKameleon
@@ -230,7 +230,7 @@ package vegas.util
 		 */
 	    public static function toSource( str:String , ...rest:Array ):String 
 	    {
-		    return buRRRn.eden.Serializer.emitString(str) ;
+            return BuiltinSerializer.emitString(str) ;
 	    }
 	    
 		/**

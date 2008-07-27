@@ -29,7 +29,7 @@ package asgard.net
     import flash.net.URLRequest;
     import flash.net.URLVariables;
     
-    import system.ISerializer;    
+    import system.Serializer;    
 
     /**
 	 * This loader use a parse external data and deserialize it. 
@@ -56,7 +56,7 @@ package asgard.net
 		/**
 		 * Indicates the ISerializer object use to deserialize the external datas.
 		 */
-		public function get serializer():ISerializer
+		public function get serializer():Serializer
 		{
             return _serializer ;	
 		}
@@ -64,7 +64,7 @@ package asgard.net
 		/**
 		 * @private
 		 */
-        public function set serializer( serializer:ISerializer ):void
+        public function set serializer( serializer:Serializer ):void
         {
             _serializer = serializer ;  
         }		
@@ -112,7 +112,6 @@ package asgard.net
 		/**
 		 * @private
 		 */
-		private var _serializer:ISerializer ;
-		
-	}
+		private var _serializer:Serializer ;
+    }
 }

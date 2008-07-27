@@ -23,19 +23,18 @@
 
 package vegas.data
 {
-	import system.ISerializable;
-	
-	import vegas.core.ICloneable;
-	import vegas.core.ICopyable;
-	import vegas.core.IFormattable;
-	import vegas.data.iterator.Iterable;	
+    import system.Serializable;
+    
+    import vegas.core.ICloneable;
+    import vegas.core.ICopyable;
+    import vegas.data.iterator.Iterable;    
 
-	/**
+    /**
 	 * A collection designed for holding elements prior to processing. 
 	 * <p>Stacks typically, but do not necessarily, order elements in a LIFO (last-in-first-out) manner.</p>
 	 * @author eKameleon
 	 */
-    public interface Stack extends ICloneable, ICopyable, Iterable, IFormattable, ISerializable
+    public interface Stack extends ICloneable, ICopyable, Iterable, Serializable
     {
 
 		/**

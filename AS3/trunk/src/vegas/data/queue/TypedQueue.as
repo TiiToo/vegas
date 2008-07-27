@@ -23,13 +23,13 @@
 
 package vegas.data.queue
 {
-	import vegas.data.Queue;
-	import vegas.data.iterator.Iterator;
-	import vegas.errors.IllegalArgumentError;
-	import vegas.util.AbstractTypeable;
-	import vegas.util.Serializer;	
+    import vegas.data.Queue;
+    import vegas.data.iterator.Iterator;
+    import vegas.errors.IllegalArgumentError;
+    import vegas.util.AbstractTypeable;
+    import vegas.util.Serializer;    
 
-	/**
+    /**
      * TypedQueue is a wrapper for Queue instances that ensures that only values of a specific type can be added to the wrapped queue.
      * @author eKameleon
      */
@@ -196,12 +196,12 @@ package vegas.data.queue
     	 */
         public override function toString():String
         {
-            return _queue.toString() ;
+            return (_queue as TypedQueue).toString() ;
         }
    
-   	    /**
-	     * The internal queue reference.
-    	 */	
+        /**
+         * @private
+         */
         private var _queue:Queue ;
 	}
 }

@@ -23,13 +23,13 @@
 
 package vegas.data.stack
 {
-	import vegas.data.Stack;
-	import vegas.data.iterator.Iterator;
-	import vegas.errors.IllegalArgumentError;
-	import vegas.util.AbstractTypeable;
-	import vegas.util.Serializer;	
+    import vegas.data.Stack;
+    import vegas.data.iterator.Iterator;
+    import vegas.errors.IllegalArgumentError;
+    import vegas.util.AbstractTypeable;
+    import vegas.util.Serializer;	
 
-	/**
+    /**
      * TypedQueue is a wrapper for Stack instances that ensures that only values of a specific type can be added to the wrapped stack.
      * <p><b>Example :</b></p>
      * <pre class="prettyprint">
@@ -199,10 +199,14 @@ package vegas.data.stack
     	 */
 		public override function toString():String
 		{
-			return _stack.toString() ;
+			return (_stack as TypedStack).toString() ;
 		}
 
+        /**
+         * @private
+         */
 		private var _stack:Stack ;
+		
 	}
 }
 
