@@ -547,7 +547,7 @@ package andromeda.ioc.factory
             
             if ( !( name in o ) )
             {
-            	debug( this + " populate a new property failed with tne name:" + name + ", this property don't exist in the object:" + o ) ;
+            	debug( this + " populate a new property failed with the name:" + name + ", this property don't exist in the object:" + o ) ;
             	return ;
             }
             

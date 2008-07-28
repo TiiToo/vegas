@@ -32,7 +32,7 @@ package asgard.managers
     import vegas.data.iterator.Iterator;
     import vegas.data.map.HashMap;
     import vegas.data.sets.MultiHashSet;
-    import vegas.errors.IllegalArgumentError;
+    import vegas.errors.IllegalArgumentError;    
 
     /**
      * The TabManager manage visual tab process in the applications.
@@ -236,7 +236,7 @@ package asgard.managers
             {
                 unSelect() ;
                 _current = id ;
-                var it:Iterator     = _set.iteratorByKey( _current ) ;
+                var it:Iterator = _set.iteratorByKey( _current ) ;
                 var first:InteractiveObject ;
                 var isFirst:Boolean = true ;
                 while (it.hasNext()) 
@@ -249,8 +249,11 @@ package asgard.managers
                     }
                     next.tabEnabled = true ;    
                 }
-                first = (defaultChild != null && _set.containsValueByKey( id, defaultChild)) ? defaultChild : first ; 
-                next.stage.focus = first ;
+                first = (defaultChild != null && _set.containsValueByKey( id, defaultChild)) ? defaultChild : first ;
+                if ( next.stage != null )
+                {
+                    next.stage.focus = first ;
+                }
                 return true ;
             }
             else
