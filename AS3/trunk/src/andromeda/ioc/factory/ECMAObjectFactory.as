@@ -281,7 +281,7 @@ package andromeda.ioc.factory
     {
         
         /**
-         * Creates a new EdenObjectFactory instance.
+         * Creates a new ECMAObjectFactory instance.
          * @param bGlobal the flag to use a global event flow or a local event flow.
          * @param sChannel the name of the global event flow if the <code class="prettyprint">bGlobal</code> argument is <code class="prettyprint">true</code>.
          */

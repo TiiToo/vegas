@@ -140,7 +140,8 @@ package andromeda.ioc.net
             	if ( verbose )
             	{
                     getLogger().warn( this + " the factory is empty." ) ;
-            	}    
+            	} 
+                unregisterFactory() ;
             }    
         }
 
@@ -159,33 +160,11 @@ package andromeda.ioc.net
             
             addResource( new ContextResource( { resource:context } ) ) ;
             
+            notifyStarted() ;
+            
             sequencer.run() ;
             
         }        
-        
-        /**
-         * Invoked to debug the errors or warning during the factory process.
-         */
-        protected function fireEvent( e:* ):void
-        {
-            if ( verbose )
-            {        	
-                getLogger().info( this + " fireEvent(" + e + ")" ) ; // no event before the IOC factory initialization.
-            }
-            dispatchEvent( e ) ;
-        }
-        
-        /**
-         * Invoked when the factory is complete.
-         */
-        public function main( e:ActionEvent ):void
-        {
-            if ( verbose )
-            {
-                getLogger().debug( this + " main(" + e + ")" ) ;
-            }
-            fireEvent(e) ;
-        }
         
         /**
          * Register the current factory referenceof this loader. 
@@ -198,7 +177,6 @@ package andromeda.ioc.net
                 _factory.addEventListener( IOErrorEvent.IO_ERROR   , fireEvent ) ;
                 _factory.addEventListener( ProgressEvent.PROGRESS  , fireEvent ) ;
                 _factory.addEventListener( Event.COMPLETE          , fireEvent ) ;
-                _factory.addEventListener( ActionEvent.START       , fireEvent ) ;
                 _factory.addEventListener( ActionEvent.FINISH      , main      ) ;
 
             }
@@ -215,7 +193,6 @@ package andromeda.ioc.net
                 _factory.removeEventListener( IOErrorEvent.IO_ERROR   , fireEvent ) ;
                 _factory.removeEventListener( ProgressEvent.PROGRESS  , fireEvent ) ;
                 _factory.removeEventListener( Event.COMPLETE          , fireEvent ) ;
-                _factory.removeEventListener( ActionEvent.START       , fireEvent ) ;
                 _factory.removeEventListener( ActionEvent.FINISH      , main      ) ;
             }
         }
@@ -257,6 +234,31 @@ package andromeda.ioc.net
                 return false ;
             }
         }
+        
+        /**
+         * Invoked to debug the errors or warning during the factory process.
+         */
+        protected function fireEvent( e:* ):void
+        {
+            if ( verbose )
+            {           
+                getLogger().info( this + " fireEvent(" + e + ")" ) ; // no event before the IOC factory initialization.
+            }
+            dispatchEvent( e ) ;
+        }
+        
+        /**
+         * Invoked when the factory is complete.
+         */
+        protected function main( e:ActionEvent ):void
+        {
+            if ( verbose )
+            {
+                getLogger().debug( this + " main(" + e + ")" ) ;
+            }
+            unregisterFactory() ;
+            notifyFinished() ;
+        }        
         
         ///////// private        
            
