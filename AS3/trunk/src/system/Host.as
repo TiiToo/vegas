@@ -32,11 +32,13 @@ package system
 
 		/**
 		 * Creates a new Host instance.
+		 * @param id The HostID value of the Host object.
+		 * @param version The Version value of the Host object.
 		 */
 		public function Host( id:HostID, version:Version )
 		{
-			_id = id;
-			_version = version;
+			_id      = id ;
+			_version = version ;
 		}
 		
 		/**

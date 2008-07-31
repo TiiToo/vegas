@@ -21,9 +21,9 @@
 */
 
 package system
-    {
-    import flash.system.Capabilities;
-    
+{
+    import flash.system.Capabilities;    
+
     /**
 	 * This class defines the environment of the client application.
 	 */
@@ -33,7 +33,7 @@ package system
 		///**
 		// * @private
 		// */
-        //private static var _hostid:HostID      = _getHostID();
+        // private static var _hostid:HostID      = _getHostID();
         
 		/**
 		 * @private

@@ -27,7 +27,7 @@ package system
 	 * Represents information about an operating system, such as the version and platform identifier. 
 	 * This class cannot be inherited.
 	 */
-	final public class OperatingSystem
+	public class OperatingSystem
 	{
 
 		/**
