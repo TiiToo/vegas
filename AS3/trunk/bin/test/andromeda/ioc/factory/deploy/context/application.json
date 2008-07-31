@@ -45,7 +45,6 @@
 		{
 			id            : "square" , 
 			type          : "Square" , 
-			assemblyName  : "dll/dll.swf" ,
 			properties    : 
 			[
 				{ name:"x" , value : 100  } ,

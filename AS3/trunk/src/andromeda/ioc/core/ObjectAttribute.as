@@ -36,11 +36,6 @@ package andromeda.ioc.core
         public static const ARGUMENTS:String = "arguments" ;  
         
         /**
-         * Defines the label of the assembly name property of the object.
-         */
-        public static const ASSEMBLY_NAME:String = "assemblyName" ;
-
-        /**
          * Defines the attribute name of the "config" object in the configuration of the ioc factory.
          */
         public static const CONFIG:String = "config" ;  
