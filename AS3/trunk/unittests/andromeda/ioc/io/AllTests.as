@@ -40,7 +40,7 @@ package andromeda.ioc.io
             
             var suite:TestSuite = new TestSuite( "andromeda.ioc.io" );
             
-            suite.addTestSuite( AssemblyEntryTest ) ;            
+            //suite.addTestSuite( AssemblyResourceTest ) ;            
             
             return suite;
             

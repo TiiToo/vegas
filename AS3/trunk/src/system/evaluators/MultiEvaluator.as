@@ -52,7 +52,7 @@ package system.evaluators
      * </pre>
      * @author eKameleon
      */
-    public class MultiEvaluator implements Evaluator
+    public class MultiEvaluator implements Evaluable
         {
 
         /**
@@ -93,7 +93,7 @@ package system.evaluators
                 for ( i = 0 ; i<l ; i++ )
                     {
                     e = evaluators[i] ;
-                    if ( e is Evaluator )
+                    if ( e is Evaluable )
                         {
                         _evaluators.push(e) ;        
                         }
@@ -102,7 +102,7 @@ package system.evaluators
                         c = (e as Array).length ;
                         for ( j=0 ; j<c ; j++ )
                             {
-                            if ( e[j] is Evaluator )
+                            if ( e[j] is Evaluable )
                                 {
                                 _evaluators.push( e[j] ) ; 
                                 }
@@ -146,7 +146,7 @@ package system.evaluators
          * @param evaluator The <code class="prettyprint">IEvaluator</code> to find and remove.
          * @return <code class="prettyprint">true</code> if the IEvaluator is removed.
          */
-        public function remove( evaluator:Evaluator ):Boolean
+        public function remove( evaluator:Evaluable ):Boolean
             {
             var index:int = _evaluators.indexOf(evaluator) ;
             if( index > -1 )

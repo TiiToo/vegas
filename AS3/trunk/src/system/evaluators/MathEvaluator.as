@@ -131,7 +131,7 @@ package system.evaluators
      * <p>till the end of the tokens list</p>
      * </p>
      */
-    public class MathEvaluator implements Evaluator
+    public class MathEvaluator implements Evaluable
         {
         	
         use namespace mathparser;

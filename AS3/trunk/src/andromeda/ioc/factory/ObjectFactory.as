@@ -30,7 +30,7 @@ package andromeda.ioc.factory
     import andromeda.ioc.factory.strategy.*;
     
     import system.Reflection;
-    import system.evaluators.Evaluator;
+    import system.evaluators.Evaluable;
     import system.evaluators.MultiEvaluator;
     
     import vegas.core.IFactory;
@@ -446,7 +446,7 @@ package andromeda.ioc.factory
                 	o = getObject( o as String ) ;
                 }
                 
-                if ( o is Evaluator )
+                if ( o is Evaluable )
                 {
                     a.push( o ) ;                   
                 }  

@@ -23,7 +23,7 @@
 package system
 {
     import system.evaluators.EdenEvaluator;
-    import system.evaluators.Evaluator;        
+    import system.evaluators.Evaluable;    
 
     /**
      * A static class for String utilities.
@@ -60,7 +60,7 @@ package system
                indexes : []
             };
             
-            var defaultEvaluator:Evaluator = new EdenEvaluator();
+            var defaultEvaluator:Evaluable = new EdenEvaluator();
             
             var evaluators:Array = [];
 

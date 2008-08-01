@@ -19,9 +19,8 @@
   
 */
 package system.evaluators 
-    {
-    import system.evaluators.Evaluator;
-    import system.formatters.DateFormatter;    
+{
+    import system.formatters.DateFormatter;        
 
     /**
      * Evaluates Date object and transform it in string expressions.
@@ -46,7 +45,7 @@ package system.evaluators
      * trace( evaluator.eval( new Date(2008,1,21,14,15,0,0) ) ) ; // 02 h 15 mn 00 s PM
      * </pre>
      */
-    public class DateEvaluator implements Evaluator 
+    public class DateEvaluator implements Evaluable 
         {
 
         /**

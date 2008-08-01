@@ -26,7 +26,7 @@ package system.evaluators
     /**
      * Evaluates eden expression.
      */
-    public class EdenEvaluator implements Evaluator
+    public class EdenEvaluator implements Evaluable
         {
 
         /**

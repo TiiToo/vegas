@@ -29,7 +29,7 @@ package andromeda.ioc.evaluators
     import andromeda.ioc.core.TypePolicy;
     import andromeda.ioc.factory.ObjectConfig;
     
-    import system.evaluators.Evaluator;
+    import system.evaluators.Evaluable;
     
     import vegas.core.CoreObject;    
 
@@ -64,7 +64,7 @@ package andromeda.ioc.evaluators
      * </pre>
      * @author eKameleon
      */
-    public class TypeEvaluator extends CoreObject implements Evaluator 
+    public class TypeEvaluator extends CoreObject implements Evaluable 
     {
         
         /**

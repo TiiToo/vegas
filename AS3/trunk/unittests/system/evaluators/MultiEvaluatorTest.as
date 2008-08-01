@@ -37,7 +37,7 @@ package system.evaluators
         public function testInterfaces():void
             {
             
-            assertTrue( evaluator is Evaluator, "The MultiEvaluator instance implements IEvaluator failed.") ;
+            assertTrue( evaluator is Evaluable, "The MultiEvaluator instance implements IEvaluator failed.") ;
             
             }           
 
@@ -79,7 +79,7 @@ package system.evaluators
         }
 }
 
-class CustomEvaluator implements Evaluator
+class CustomEvaluator implements Evaluable
     {
 	
     public function CustomEvaluator()
