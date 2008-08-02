@@ -321,7 +321,7 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("OÂ
 </tr>
 <tr>
 <td width="20"></td><td>
-     This object defines a method definition and this arguments.</td>
+     This object defines a method definition with a method name and this arguments.</td>
 </tr>
 <tr>
 <td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('andromeda/ioc/core/class-list.html');" href="andromeda/ioc/core/ObjectMethod.html#ObjectMethod()">ObjectMethod</a>(name, arguments) &mdash; Constructor in class andromeda.ioc.core.<a onclick="javascript:loadClassListFrame('andromeda/ioc/core/class-list.html');" href="andromeda/ioc/core/ObjectMethod.html">ObjectMethod</a></td>
@@ -329,13 +329,6 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("OÂ
 <tr>
 <td width="20"></td><td>
          Creates a new ObjectMethod instance.</td>
-</tr>
-<tr>
-<td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('andromeda/ioc/core/class-list.html');" href="andromeda/ioc/core/ObjectAttribute.html#OBJECT_METHODS">OBJECT_METHODS</a> &mdash; Constant static property in class andromeda.ioc.core.<a onclick="javascript:loadClassListFrame('andromeda/ioc/core/class-list.html');" href="andromeda/ioc/core/ObjectAttribute.html">ObjectAttribute</a></td>
-</tr>
-<tr>
-<td width="20"></td><td>
-         The name of the external object property to register the methods.</td>
 </tr>
 <tr>
 <td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('buRRRn/ASTUce/class-list.html');" href="buRRRn/ASTUce/strings.html#objectNotCtor">objectNotCtor</a> &mdash; Static property in class buRRRn.ASTUce.<a onclick="javascript:loadClassListFrame('buRRRn/ASTUce/class-list.html');" href="buRRRn/ASTUce/strings.html">strings</a></td>
@@ -676,6 +669,20 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("OÂ
       Dispatched when the application receives descriptive information embedded in the video being played.</td>
 </tr>
 <tr>
+<td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('system/cli/class-list.html');" href="system/cli/ArgumentsParser.html#onNonSwitch()">onNonSwitch</a>(value) &mdash; Method in class system.cli.<a onclick="javascript:loadClassListFrame('system/cli/class-list.html');" href="system/cli/ArgumentsParser.html">ArgumentsParser</a></td>
+</tr>
+<tr>
+<td width="20"></td><td>
+         Used to display the usage string when a non switch occurs.</td>
+</tr>
+<tr>
+<td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('system/cli/class-list.html');" href="system/cli/ArgumentsParser.html#onParsed()">onParsed</a>() &mdash; Method in class system.cli.<a onclick="javascript:loadClassListFrame('system/cli/class-list.html');" href="system/cli/ArgumentsParser.html">ArgumentsParser</a></td>
+</tr>
+<tr>
+<td width="20"></td><td>
+         Used to display the usage string when a parse occurs.</td>
+</tr>
+<tr>
 <td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('asgard/net/class-list.html');" href="asgard/net/INetServerStreamClient.html#onPlayStatus()">onPlayStatus</a>(info) &mdash; Method in interface asgard.net.<a onclick="javascript:loadClassListFrame('asgard/net/class-list.html');" href="asgard/net/INetServerStreamClient.html">INetServerStreamClient</a></td>
 </tr>
 <tr>
@@ -688,6 +695,13 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("OÂ
 <tr>
 <td width="20"></td><td>
       Dispatched when the application receives descriptive information embedded in the video being played.</td>
+</tr>
+<tr>
+<td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('system/cli/class-list.html');" href="system/cli/ArgumentsParser.html#onSwitch()">onSwitch</a>(symbol, value) &mdash; Method in class system.cli.<a onclick="javascript:loadClassListFrame('system/cli/class-list.html');" href="system/cli/ArgumentsParser.html">ArgumentsParser</a></td>
+</tr>
+<tr>
+<td width="20"></td><td>
+         Used to display the usage string when a switch occurs.</td>
 </tr>
 <tr>
 <td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('asgard/net/class-list.html');" href="asgard/net/INetServerStreamClient.html#onTextData()">onTextData</a>(textData) &mdash; Method in interface asgard.net.<a onclick="javascript:loadClassListFrame('asgard/net/class-list.html');" href="asgard/net/INetServerStreamClient.html">INetServerStreamClient</a></td>
@@ -704,6 +718,13 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("OÂ
       Dispatched when Flash Player receives text data embedded in a media file that is playing.</td>
 </tr>
 <tr>
+<td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('system/cli/class-list.html');" href="system/cli/ArgumentsParser.html#onUsage()">onUsage</a>(errorInfo) &mdash; Method in class system.cli.<a onclick="javascript:loadClassListFrame('system/cli/class-list.html');" href="system/cli/ArgumentsParser.html">ArgumentsParser</a></td>
+</tr>
+<tr>
+<td width="20"></td><td>
+         Used to display the usage string when an error occurs.</td>
+</tr>
+<tr>
 <td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('andromeda/process/class-list.html');" href="andromeda/process/CoreActionLoader.html#open()">open</a>(e) &mdash; Method in class andromeda.process.<a onclick="javascript:loadClassListFrame('andromeda/process/class-list.html');" href="andromeda/process/CoreActionLoader.html">CoreActionLoader</a></td>
 </tr>
 <tr>
@@ -711,7 +732,7 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("OÂ
          Dispatch Event.OPEN event when the download operation commences following a call to the load() method.</td>
 </tr>
 <tr>
-<td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('system/class-list.html');" href="system/OperatingSystem.html">OperatingSystem</a> &mdash; Final class in package <a onclick="javascript:loadClassListFrame('system/class-list.html');" href="system/package-detail.html">system</a></td>
+<td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('system/class-list.html');" href="system/OperatingSystem.html">OperatingSystem</a> &mdash; Class in package <a onclick="javascript:loadClassListFrame('system/class-list.html');" href="system/package-detail.html">system</a></td>
 </tr>
 <tr>
 <td width="20"></td><td>
