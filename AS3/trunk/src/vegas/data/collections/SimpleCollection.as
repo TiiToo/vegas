@@ -59,7 +59,8 @@ package vegas.data.collections
 		public function containsAll(c:Collection):Boolean 
 		{
 			var it:Iterator = c.iterator() ;
-			while(it.hasNext()) {
+			while(it.hasNext()) 
+			{
 				if ( ! contains(it.next()) ) 
 				{
 					return false ;
