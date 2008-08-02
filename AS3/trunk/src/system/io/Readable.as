@@ -18,18 +18,22 @@
   Contributor(s):
 */
 
-package system.terminals
+package system.io
 {
-    import system.io.Readable;
-    import system.io.Writeable;    
-
-    /**
-    * A Comsole can read and write.
-    */
-    public interface Console extends Readable, Writeable
+    
+    public interface Readable
         {
         
+        /**
+        * Returns the last char.
+        */
+        function read():String;
+        
+        /**
+        * Returns the last line.
+        */
+        function readLine():String;
+        
         }
-    
     }
 

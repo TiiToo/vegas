@@ -10,7 +10,7 @@
   WITHOUT WARRANTY OF ANY KIND, either express or implied. See the License
   for the specific language governing rights and limitations under the License. 
   
-  The Original Code is ASGard Framework.
+  The Original Code is Andromeda Framework based on VEGAS.
   
   The Initial Developer of the Original Code is
   ALCARAZ Marc (aka eKameleon)  <ekameleon@gmail.com>.
@@ -20,7 +20,7 @@
   Contributor(s) :
   
 */
-package asgard.net
+package andromeda.net
 {
     import flash.net.URLRequest;
     
@@ -33,7 +33,8 @@ package asgard.net
      * import flash.events.Event ;
      * import flash.events.ProgressEvent ;
      * import flash.net.URLRequest ;
-     * import asgard.net.JSONLoader ;
+     * 
+     * import andromeda.net.JSONLoader ;
      * 
      * var loader:JSONLoader = new JSONLoader() ;
      * var request:URLRequest = new URLRequest("json/config.json");

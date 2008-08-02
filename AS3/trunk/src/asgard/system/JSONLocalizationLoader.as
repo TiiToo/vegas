@@ -21,9 +21,9 @@
 */
 package asgard.system
 {
-	import asgard.net.JSONLoader;	
-	
-	/**
+    import andromeda.net.JSONLoader;		
+
+    /**
 	 * The JSONLocalizationLoader class based on the JSON notation.
      * @author eKameleon
      */

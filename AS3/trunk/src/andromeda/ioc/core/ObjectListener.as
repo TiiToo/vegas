@@ -193,8 +193,8 @@ package andromeda.ioc.core
         public var useWeakReference:Boolean ;
         
         /**
-         * Creates the Map definition of all properties defines in the passed-in array.
-         * @return the Map definition of all properties defines in the passed-in array.
+         * Creates the Array definition of all listeners defines in the passed-in array.
+         * @return the Array definition of all listeners defines in the passed-in array.
          */
         public static function create( a:Array = null ):Array
         {

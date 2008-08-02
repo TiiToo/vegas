@@ -21,9 +21,9 @@
 */
 package asgard.system
 {
-	import asgard.net.EdenLoader;	
-	
-	/**
+    import andromeda.net.EdenLoader;		
+
+    /**
 	 * The EdenLocalizationLoader class based on the eden notation.
      * @author eKameleon
      */

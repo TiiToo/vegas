@@ -25,11 +25,10 @@ package andromeda.ioc.io
     import flash.net.URLRequest;
     import flash.utils.getDefinitionByName;
     
+    import andromeda.net.EdenLoader;
+    import andromeda.net.ParserLoader;
     import andromeda.process.ActionURLLoader;
     import andromeda.process.CoreActionLoader;
-    
-    import asgard.net.EdenLoader;
-    import asgard.net.ParserLoader;
     
     import system.Reflection;    
 

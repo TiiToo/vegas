@@ -31,10 +31,9 @@ package andromeda.ioc.io
     import andromeda.ioc.core.ObjectDefinition;
     import andromeda.ioc.factory.ObjectFactory;
     import andromeda.ioc.io.ObjectResource;
+    import andromeda.net.ParserLoader;
     import andromeda.process.ActionLoader;
     import andromeda.process.CoreActionLoader;
-    
-    import asgard.net.ParserLoader;
     
     import system.Reflection;    
 

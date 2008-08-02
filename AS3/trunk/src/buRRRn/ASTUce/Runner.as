@@ -29,10 +29,10 @@ package buRRRn.ASTUce
     import buRRRn.ASTUce.runner.BaseTestRunner;
     import buRRRn.ASTUce.strings;
     
-    import system.IO.Writeable;
     import system.Reflection;
     import system.Strings;
-    import system.console;    
+    import system.console;
+    import system.io.Writeable;    
 
     /**
      * This is the default TestRunner for ASTUce

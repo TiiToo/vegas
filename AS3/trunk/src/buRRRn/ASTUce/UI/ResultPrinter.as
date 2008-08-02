@@ -31,9 +31,9 @@ package buRRRn.ASTUce.UI
     import buRRRn.ASTUce.runner.BaseTestRunner;
     import buRRRn.ASTUce.strings;
     
-    import system.IO.Writeable;
     import system.Strings;
-    import system.console;    
+    import system.console;
+    import system.io.Writeable;    
 
     /**
      * The UI result printer object.

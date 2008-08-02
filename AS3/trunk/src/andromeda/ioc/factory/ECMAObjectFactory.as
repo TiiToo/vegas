@@ -30,7 +30,7 @@ package andromeda.ioc.factory
     import vegas.errors.NullPointerError;    
 
     /**
-     * This IoC factory use an ECMAScript collection of generic object to create and initialize all object definitions used in the application.
+     * This IoC factory use an ECMAScript collection of generic objects to create and initialize all object definitions used in the application.
      * <p><b>Example :</b></p>
      * <pre class="prettyprint">
      * import andromeda.ioc.factory.ECMAObjectFactory ;

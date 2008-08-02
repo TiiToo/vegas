@@ -10,7 +10,7 @@
   WITHOUT WARRANTY OF ANY KIND, either express or implied. See the License
   for the specific language governing rights and limitations under the License. 
   
-  The Original Code is AndromedAS Framework.
+  The Original Code is PEGAS Framework.
   
   The Initial Developer of the Original Code is
   ALCARAZ Marc (aka eKameleon)  <vegas@ekameleon.net>.
@@ -20,9 +20,9 @@
   Contributor(s) :
   
 */
-package asgard.net  
+package andromeda.net  
 {
-	import buRRRn.ASTUce.framework.ITest;
+    import buRRRn.ASTUce.framework.ITest;
 	import buRRRn.ASTUce.framework.TestSuite;	
 
 	/**

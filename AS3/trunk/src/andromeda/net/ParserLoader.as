@@ -10,7 +10,7 @@
   WITHOUT WARRANTY OF ANY KIND, either express or implied. See the License
   for the specific language governing rights and limitations under the License. 
   
-  The Original Code is ASGard Framework.
+  The Original Code is Andromeda Framework based on VEGAS.
   
   The Initial Developer of the Original Code is
   ALCARAZ Marc (aka eKameleon)  <ekameleon@gmail.com>.
@@ -21,7 +21,7 @@
   
 */
 
-package asgard.net
+package andromeda.net
 {
     import flash.events.Event;
     import flash.net.URLLoader;
@@ -49,7 +49,7 @@ package asgard.net
 		}
 
 		/**
-		 * Use deserializer method if this property is <true'.
+		 * Use a Sserializer object to deserialize the external data if this property is <code class='prettyprint'>true</code>.
 		 */
 		public var isDeserialize:Boolean = true ;	
 

@@ -18,18 +18,22 @@
   Contributor(s):
 */
 
-package system.terminals
+package system.io
 {
-    import system.io.Readable;
-    import system.io.Writeable;    
-
-    /**
-    * A Comsole can read and write.
-    */
-    public interface Console extends Readable, Writeable
+    
+    public interface Writeable
         {
         
+        /**
+         * Appends the message format.
+         */
+        function write( ...messages ):void;
+        
+        /**
+         * Appends the message format and add newline character.
+         */
+        function writeLine( ...messages ):void;
+        
         }
-    
     }
 

@@ -22,10 +22,11 @@
 
 package asgard.config
 {
-	import asgard.config.AbstractConfigLoader;
-	import asgard.net.EdenLoader;	
+    import andromeda.net.EdenLoader;
+    
+    import asgard.config.AbstractConfigLoader;	
 
-	/**
+    /**
      * The EdenConfigLoader class based on the eden notation.
      * @example
      * <pre class="prettyprint">

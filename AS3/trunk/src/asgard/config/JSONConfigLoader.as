@@ -22,10 +22,11 @@
 */
 package asgard.config
 {
-	import asgard.config.AbstractConfigLoader;
-	import asgard.net.JSONLoader;	    
+    import andromeda.net.JSONLoader;
+    
+    import asgard.config.AbstractConfigLoader;	
 
-	/**
+    /**
 	 * The JSONConfigLoader class based on the JSON notation.
      * <p><b>Example :</b></p>
      * <pre class="prettyprint">
