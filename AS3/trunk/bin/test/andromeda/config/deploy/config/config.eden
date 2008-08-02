@@ -1,23 +1,15 @@
+header = 
 {
-
-    header : 
-    {
-        name      : "CONFIG EDEN TEST" , 
-        namespace : "asgard.config" ,
-        version   : "1.0.0.0"
-    } 
+    name      : "CONFIG EDEN TEST" , 
+    namespace : "andromeda.config" ,
+    version   : "1.0.0.0"
+} ; 
     
-    ,
-
-    security : 
-    [ 
-        "http://code.google.com/p/vegas/" ,
-        "http://ekameleon.net/blog/" , 
-        "http://groups.google.com/group/vegasos" 
-    ] 
+security = 
+[ 
+    "http://code.google.com/p/vegas/" ,
+    "http://ekameleon.net/blog/" , 
+    "http://groups.google.com/group/vegasos" 
+] ; 
     
-    ,
-    
-    default_lang : "fr"
-
-}
+default_lang = "fr" ;

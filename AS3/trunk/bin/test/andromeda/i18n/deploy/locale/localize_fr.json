@@ -1,7 +1,7 @@
 ﻿{
 
     lang      : "fr" ,
-    namespace : "http://www.ekameleon.net/2008/asgard" ,
+    namespace : "http://www.ekameleon.net/2008/andromeda" ,
     version   : "1.0.0.0" ,
 
     type      : "json" ,

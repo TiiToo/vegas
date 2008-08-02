@@ -3,7 +3,7 @@
     header : 
     {
         name      : "CONFIG JSON TEST" , 
-        namespace : "asgard.config" ,
+        namespace : "andromeda.config" ,
         version   : "1.0.0.0"
     } 
     
