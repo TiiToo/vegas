@@ -40,13 +40,12 @@ package andromeda.i18n
      * <pre class="prettyprint">
      * import andromeda.events.ActionEvent ;
      * 
-     * import asgard.events.LocalizationEvent ;
-     * import asgard.system.EdenLocalizationLoader ;
-     * import asgard.system.Lang ;
-     * import asgard.system.Locale ;
-     * import asgard.system.Localization ;
+     * import andromeda.i18n.EdenLocalizationLoader ;
+     * import andromeda.i18n.Lang ;
+     * import andromeda.i18n.Locale ;
+     * import andromeda.i18n.Localization ;
      * 
-     * import vegas.events.Delegate ;
+     * import andromeda.events.LocalizationEvent ;
      * 
      * var debug:Function = function( e:Event ):void
      * {
@@ -100,8 +99,8 @@ package andromeda.i18n
      * stage.addEventListener( KeyboardEvent.KEY_DOWN , onKeyDown ) ; 
 	 * </pre> 
      * @author eKameleon
-     * @see asgard.system.Lang
-     * @see asgard.system.Locale
+     * @see andromeda.i18n.Lang
+     * @see andromeda.i18n.Locale
      */
     public class Localization extends CoreEventDispatcher implements Identifiable
     {

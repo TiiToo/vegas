@@ -28,9 +28,10 @@ package andromeda.config
 	 * The JSONConfigLoader class based on the JSON notation.
      * <p><b>Example :</b></p>
      * <pre class="prettyprint">
-     * import asgard.config.Config ;
-     * import asgard.config.JSONConfigLoader;
-     * import asgard.config.IConfigLoader;
+     * import andromeda.config.Config ;
+     * import andromeda.config.JSONConfigLoader;
+     * import andromeda.config.IConfigLoader;
+     * 
      * import flash.events.Event ;
      *        
      * var complete:Function = function ( e:Event ):void

@@ -30,8 +30,8 @@ package andromeda.config
      * <pre class="prettyprint">
      * import andromeda.events.ActionEvent ;
      * 
-     * import asgard.config.Config ;
-     * import asgard.config.EdenConfigLoader;
+     * import andromeda.config.Config ;
+     * import andromeda.config.EdenConfigLoader;
      * 
      * import flash.events.Event ;
      * 

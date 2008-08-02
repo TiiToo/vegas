@@ -37,7 +37,7 @@ package andromeda.i18n
      * 
      * trace( "Lang.ES.toString()        : " + Lang.ES.toString() ) ; // es
      * trace( "Lang.ES.valueOf()         : " + Lang.ES.valueOf() ) ; // es
-     * trace( "Lang.ES.toSource()        : " + Lang.ES.toSource() ) ; // new asgard.system.Lang("es","Spanish")
+     * trace( "Lang.ES.toSource()        : " + Lang.ES.toSource() ) ; // new andromeda.i18n.Lang("es","Spanish")
      * trace( "Lang.ES.label             : " + Lang.ES.label ) ; // Spanish
      * 
      * trace( "Lang.get('fr') == Lang.FR : " + ( Lang.get("fr") == Lang.FR ) ) ; // true
