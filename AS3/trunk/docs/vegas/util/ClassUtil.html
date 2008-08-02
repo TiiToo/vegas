@@ -57,7 +57,7 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <div class="summarySignature">
 <a class="signatureLink" href="#buildNewInstance()">buildNewInstance</a>(clazz:Class, args:Array = null):*</div>
 <div class="summaryTableDescription">[static]
-         Wrapping method which select which build method use according to the argument count.</div>
+         Wrapping method which select which build method use according to the argument count (32 max).</div>
 </td><td class="summaryTableOwnerCol">ClassUtil</td>
 </tr>
 <tr class="">
@@ -93,7 +93,7 @@ showHideInherited();
 </table>
 <div class="detailBody">
 <code>public static function buildNewInstance(clazz:Class, args:Array = null):*</code><p>
-         Wrapping method which select which build method use according to the argument count.
+         Wrapping method which select which build method use according to the argument count (32 max).
          </p><span class="label">Parameters</span>
 <table border="0" cellspacing="0" cellpadding="0">
 <tr>
