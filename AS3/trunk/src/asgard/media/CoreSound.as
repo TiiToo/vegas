@@ -32,12 +32,12 @@ package asgard.media
     import flash.net.URLRequest;
     import flash.utils.Timer;
     
+    import andromeda.config.Config;
+    import andromeda.config.ConfigCollector;
     import andromeda.events.ActionEvent;
     import andromeda.process.IAction;
     import andromeda.process.IStoppable;
     
-    import asgard.config.Config;
-    import asgard.config.ConfigCollector;
     import asgard.events.SoundEvent;
     
     import system.Reflection;
@@ -45,7 +45,7 @@ package asgard.media
     
     import vegas.core.HashCode;
     import vegas.logging.ILogger;
-    import vegas.logging.Log;	
+    import vegas.logging.Log;    
 
     /**
 	 * The CoreSound class extends the flash.media.Sound class and implements the IConfigurable, Identifiable, ILockable and ILogable interfaces.

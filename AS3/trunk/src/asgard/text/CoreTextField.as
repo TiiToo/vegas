@@ -25,8 +25,9 @@ package asgard.text
     import flash.events.Event;
     import flash.text.TextField;
     
-    import asgard.config.Config;
-    import asgard.config.ConfigCollector;
+    import andromeda.config.Config;
+    import andromeda.config.ConfigCollector;
+    
     import asgard.display.DisplayObjectCollector;
     import asgard.display.IDisplayObject;
     

@@ -22,19 +22,19 @@
 */
 package asgard.display 
 {
-	import flash.display.Bitmap;
-	import flash.display.BitmapData;
-	
-	import asgard.config.Config;
-	import asgard.config.ConfigCollector;
-	
-	import system.Reflection;
-	
-	import vegas.core.HashCode;
-	import vegas.logging.ILogger;
-	import vegas.logging.Log;	
+    import flash.display.Bitmap;
+    import flash.display.BitmapData;
+    
+    import andromeda.config.Config;
+    import andromeda.config.ConfigCollector;
+    
+    import system.Reflection;
+    
+    import vegas.core.HashCode;
+    import vegas.logging.ILogger;
+    import vegas.logging.Log;	
 
-	/**
+    /**
 	 * The CoreBitmap class extends the flash.display.Bitmap class and implements the IDisplayObject interface.
 	 * @example
 	 * <pre class="prettyprint">

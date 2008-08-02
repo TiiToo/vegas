@@ -33,7 +33,7 @@ package vegas.core
     import vegas.util.Serializer;    
 
     /**
-	 * Abstract class to creates classes who implemented IFormatter interface.
+	 * Basic class to creates classes who implemented Formattable interface.
 	 * @author eKameleon
 	 */
 	public class Formatter extends CoreObject implements ICloneable, ICopyable, Formattable

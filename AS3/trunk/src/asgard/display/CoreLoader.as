@@ -1,4 +1,4 @@
-﻿/*
+/*
 
   The contents of this file are subject to the Mozilla Public License Version
   1.1 (the "License"); you may not use this file except in compliance with
@@ -22,20 +22,20 @@
 */
 package asgard.display 
 {
-	import flash.display.Loader;
-	import flash.net.URLRequest;
-	import flash.system.LoaderContext;
-	
-	import asgard.config.Config;
-	import asgard.config.ConfigCollector;
-	
-	import system.Reflection;
-	
-	import vegas.core.HashCode;
-	import vegas.logging.ILogger;
-	import vegas.logging.Log;	
+    import flash.display.Loader;
+    import flash.net.URLRequest;
+    import flash.system.LoaderContext;
+    
+    import andromeda.config.Config;
+    import andromeda.config.ConfigCollector;
+    
+    import system.Reflection;
+    
+    import vegas.core.HashCode;
+    import vegas.logging.ILogger;
+    import vegas.logging.Log;	
 
-	/**
+    /**
 	 * The CoreLoader class extends the flash.display.Loader class and implements the IDisplayObject interface.
 	 * @example
 	 * <pre class="prettyprint">

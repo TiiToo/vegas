@@ -113,6 +113,20 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("GÂ
    Creates a new GenericParser instance.</td>
 </tr>
 <tr>
+<td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('andromeda/i18n/class-list.html');" href="andromeda/i18n/Lang.html#get()">get</a>(id) &mdash; Static method in class andromeda.i18n.<a onclick="javascript:loadClassListFrame('andromeda/i18n/class-list.html');" href="andromeda/i18n/Lang.html">Lang</a></td>
+</tr>
+<tr>
+<td width="20"></td><td>
+         Returns a Lang instance with the specified 'id' value.</td>
+</tr>
+<tr>
+<td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('andromeda/i18n/class-list.html');" href="andromeda/i18n/Localization.html#get()">get</a>(lang) &mdash; Method in class andromeda.i18n.<a onclick="javascript:loadClassListFrame('andromeda/i18n/class-list.html');" href="andromeda/i18n/Localization.html">Localization</a></td>
+</tr>
+<tr>
+<td width="20"></td><td>
+         Returns the current <code class="prettyprint">Locale</code> object defines with the specified <code class="prettyprint">Lang</code> object in argument.</td>
+</tr>
+<tr>
 <td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('andromeda/model/class-list.html');" href="andromeda/model/ModelCollector.html#get()">get</a>(id) &mdash; Static method in class andromeda.model.<a onclick="javascript:loadClassListFrame('andromeda/model/class-list.html');" href="andromeda/model/ModelCollector.html">ModelCollector</a></td>
 </tr>
 <tr>
@@ -153,20 +167,6 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("GÂ
 <tr>
 <td width="20"></td><td>
    Returns the RemotingConnection reference with the name passed in argument.</td>
-</tr>
-<tr>
-<td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('asgard/system/class-list.html');" href="asgard/system/Lang.html#get()">get</a>(id) &mdash; Static method in class asgard.system.<a onclick="javascript:loadClassListFrame('asgard/system/class-list.html');" href="asgard/system/Lang.html">Lang</a></td>
-</tr>
-<tr>
-<td width="20"></td><td>
-         Returns a Lang instance with the specified 'id' value.</td>
-</tr>
-<tr>
-<td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('asgard/system/class-list.html');" href="asgard/system/Localization.html#get()">get</a>(lang) &mdash; Method in class asgard.system.<a onclick="javascript:loadClassListFrame('asgard/system/class-list.html');" href="asgard/system/Localization.html">Localization</a></td>
-</tr>
-<tr>
-<td width="20"></td><td>
-         Returns the current <code class="prettyprint">Locale</code> object defines with the specified <code class="prettyprint">Lang</code> object in argument.</td>
 </tr>
 <tr>
 <td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('lunas/core/class-list.html');" href="lunas/core/StyleCollector.html#get()">get</a>(id) &mdash; Static method in class lunas.core.<a onclick="javascript:loadClassListFrame('lunas/core/class-list.html');" href="lunas/core/StyleCollector.html">StyleCollector</a></td>
@@ -754,18 +754,18 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("GÂ
    Returns the cubic tangente object of the specified vectors.</td>
 </tr>
 <tr>
+<td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('andromeda/events/class-list.html');" href="andromeda/events/LocalizationEvent.html#getCurrent()">getCurrent</a>() &mdash; Method in class andromeda.events.<a onclick="javascript:loadClassListFrame('andromeda/events/class-list.html');" href="andromeda/events/LocalizationEvent.html">LocalizationEvent</a></td>
+</tr>
+<tr>
+<td width="20"></td><td>
+         Returns the current Lang of the Localization singleton.</td>
+</tr>
+<tr>
 <td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('andromeda/process/class-list.html');" href="andromeda/process/Sequencer.html#getCurrent()">getCurrent</a>() &mdash; Method in class andromeda.process.<a onclick="javascript:loadClassListFrame('andromeda/process/class-list.html');" href="andromeda/process/Sequencer.html">Sequencer</a></td>
 </tr>
 <tr>
 <td width="20"></td><td>
          Returns the current process in progress.</td>
-</tr>
-<tr>
-<td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('asgard/events/class-list.html');" href="asgard/events/LocalizationEvent.html#getCurrent()">getCurrent</a>() &mdash; Method in class asgard.events.<a onclick="javascript:loadClassListFrame('asgard/events/class-list.html');" href="asgard/events/LocalizationEvent.html">LocalizationEvent</a></td>
-</tr>
-<tr>
-<td width="20"></td><td>
-         Returns the current Lang of the Localization singleton.</td>
 </tr>
 <tr>
 <td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('asgard/managers/class-list.html');" href="asgard/managers/TabManager.html#getCurrent()">getCurrent</a>() &mdash; Method in class asgard.managers.<a onclick="javascript:loadClassListFrame('asgard/managers/class-list.html');" href="asgard/managers/TabManager.html">TabManager</a></td>
@@ -971,6 +971,13 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("GÂ
          Returns the event name use in the <code class="prettyprint">setCurrentVO</code> method before is changed.</td>
 </tr>
 <tr>
+<td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('andromeda/i18n/class-list.html');" href="andromeda/i18n/Localization.html#getEventTypeCHANGE()">getEventTypeCHANGE</a>() &mdash; Method in class andromeda.i18n.<a onclick="javascript:loadClassListFrame('andromeda/i18n/class-list.html');" href="andromeda/i18n/Localization.html">Localization</a></td>
+</tr>
+<tr>
+<td width="20"></td><td>
+         Returns the event name use in the notifyChange method.</td>
+</tr>
+<tr>
 <td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('andromeda/model/class-list.html');" href="andromeda/model/AbstractModelObject.html#getEventTypeCHANGE()">getEventTypeCHANGE</a>() &mdash; Method in class andromeda.model.<a onclick="javascript:loadClassListFrame('andromeda/model/class-list.html');" href="andromeda/model/AbstractModelObject.html">AbstractModelObject</a></td>
 </tr>
 <tr>
@@ -983,13 +990,6 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("GÂ
 <tr>
 <td width="20"></td><td>
          Returns the event name use in the notifyChanged method.</td>
-</tr>
-<tr>
-<td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('asgard/system/class-list.html');" href="asgard/system/Localization.html#getEventTypeCHANGE()">getEventTypeCHANGE</a>() &mdash; Method in class asgard.system.<a onclick="javascript:loadClassListFrame('asgard/system/class-list.html');" href="asgard/system/Localization.html">Localization</a></td>
-</tr>
-<tr>
-<td width="20"></td><td>
-         Returns the event name use in the notifyChange method.</td>
 </tr>
 <tr>
 <td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('vegas/data/array/class-list.html');" href="vegas/data/array/ArrayFilter.html#getEventTypeCHANGE()">getEventTypeCHANGE</a>() &mdash; Method in class vegas.data.array.<a onclick="javascript:loadClassListFrame('vegas/data/array/class-list.html');" href="vegas/data/array/ArrayFilter.html">ArrayFilter</a></td>
@@ -1384,18 +1384,25 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("GÂ
          Returns the name of the method call when the object is instanciate.</td>
 </tr>
 <tr>
+<td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('andromeda/config/class-list.html');" href="andromeda/config/Config.html#getInstance()">getInstance</a>() &mdash; Static method in class andromeda.config.<a onclick="javascript:loadClassListFrame('andromeda/config/class-list.html');" href="andromeda/config/Config.html">Config</a></td>
+</tr>
+<tr>
+<td width="20"></td><td>
+   Returns the singleton reference of this class.</td>
+</tr>
+<tr>
+<td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('andromeda/i18n/class-list.html');" href="andromeda/i18n/Localization.html#getInstance()">getInstance</a>(id) &mdash; Static method in class andromeda.i18n.<a onclick="javascript:loadClassListFrame('andromeda/i18n/class-list.html');" href="andromeda/i18n/Localization.html">Localization</a></td>
+</tr>
+<tr>
+<td width="20"></td><td>
+         Returns a <code class="prettyprint">Localization</code> singleton reference with the specified name passed-in argument.</td>
+</tr>
+<tr>
 <td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('andromeda/ioc/factory/class-list.html');" href="andromeda/ioc/factory/ECMAObjectFactory.html#getInstance()">getInstance</a>(id) &mdash; Static method in class andromeda.ioc.factory.<a onclick="javascript:loadClassListFrame('andromeda/ioc/factory/class-list.html');" href="andromeda/ioc/factory/ECMAObjectFactory.html">ECMAObjectFactory</a></td>
 </tr>
 <tr>
 <td width="20"></td><td>
          Returns the singleton reference of this class.</td>
-</tr>
-<tr>
-<td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('asgard/config/class-list.html');" href="asgard/config/Config.html#getInstance()">getInstance</a>() &mdash; Static method in class asgard.config.<a onclick="javascript:loadClassListFrame('asgard/config/class-list.html');" href="asgard/config/Config.html">Config</a></td>
-</tr>
-<tr>
-<td width="20"></td><td>
-   Returns the singleton reference of this class.</td>
 </tr>
 <tr>
 <td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('asgard/managers/class-list.html');" href="asgard/managers/TabManager.html#getInstance()">getInstance</a>() &mdash; Static method in class asgard.managers.<a onclick="javascript:loadClassListFrame('asgard/managers/class-list.html');" href="asgard/managers/TabManager.html">TabManager</a></td>
@@ -1424,13 +1431,6 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("GÂ
 <tr>
 <td width="20"></td><td>
       Returns the singleton instance of class.</td>
-</tr>
-<tr>
-<td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('asgard/system/class-list.html');" href="asgard/system/Localization.html#getInstance()">getInstance</a>(id) &mdash; Static method in class asgard.system.<a onclick="javascript:loadClassListFrame('asgard/system/class-list.html');" href="asgard/system/Localization.html">Localization</a></td>
-</tr>
-<tr>
-<td width="20"></td><td>
-         Returns a <code class="prettyprint">Localization</code> singleton reference with the specified name passed-in argument.</td>
 </tr>
 <tr>
 <td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('lunas/groups/class-list.html');" href="lunas/groups/RadioButtonGroup.html#getInstance()">getInstance</a>() &mdash; Static method in class lunas.groups.<a onclick="javascript:loadClassListFrame('lunas/groups/class-list.html');" href="lunas/groups/RadioButtonGroup.html">RadioButtonGroup</a></td>
@@ -1693,14 +1693,14 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("GÂ
          Returns the Array of all listener definitions of this definition.</td>
 </tr>
 <tr>
-<td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('asgard/events/class-list.html');" href="asgard/events/LocalizationEvent.html#getLocale()">getLocale</a>(sID) &mdash; Method in class asgard.events.<a onclick="javascript:loadClassListFrame('asgard/events/class-list.html');" href="asgard/events/LocalizationEvent.html">LocalizationEvent</a></td>
+<td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('andromeda/events/class-list.html');" href="andromeda/events/LocalizationEvent.html#getLocale()">getLocale</a>(sID) &mdash; Method in class andromeda.events.<a onclick="javascript:loadClassListFrame('andromeda/events/class-list.html');" href="andromeda/events/LocalizationEvent.html">LocalizationEvent</a></td>
 </tr>
 <tr>
 <td width="20"></td><td>
          Returns the current <code class="prettyprint">Local</code> reference or the internal value of the Local property passed in argument with the string in argument.</td>
 </tr>
 <tr>
-<td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('asgard/system/class-list.html');" href="asgard/system/Localization.html#getLocale()">getLocale</a>(id) &mdash; Method in class asgard.system.<a onclick="javascript:loadClassListFrame('asgard/system/class-list.html');" href="asgard/system/Localization.html">Localization</a></td>
+<td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('andromeda/i18n/class-list.html');" href="andromeda/i18n/Localization.html#getLocale()">getLocale</a>(id) &mdash; Method in class andromeda.i18n.<a onclick="javascript:loadClassListFrame('andromeda/i18n/class-list.html');" href="andromeda/i18n/Localization.html">Localization</a></td>
 </tr>
 <tr>
 <td width="20"></td><td>

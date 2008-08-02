@@ -1,4 +1,4 @@
-﻿/*
+/*
 
   The contents of this file are subject to the Mozilla Public License Version
   1.1 (the "License"); you may not use this file except in compliance with
@@ -22,19 +22,19 @@
 */
 package asgard.display 
 {
-	import flash.display.DisplayObject;
-	import flash.display.SimpleButton;
-	
-	import asgard.config.Config;
-	import asgard.config.ConfigCollector;
-	
-	import system.Reflection;
-	
-	import vegas.core.HashCode;
-	import vegas.logging.ILogger;
-	import vegas.logging.Log;	
+    import flash.display.DisplayObject;
+    import flash.display.SimpleButton;
+    
+    import andromeda.config.Config;
+    import andromeda.config.ConfigCollector;
+    
+    import system.Reflection;
+    
+    import vegas.core.HashCode;
+    import vegas.logging.ILogger;
+    import vegas.logging.Log;	
 
-	/**
+    /**
 	 * The CoreSimpleButton class extends the flash.display.SimpleButton class and implements the IDisplayObject interface.
 	 * @example
 	 * <pre class="prettyprint">

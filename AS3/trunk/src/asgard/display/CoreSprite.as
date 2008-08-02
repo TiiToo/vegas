@@ -1,4 +1,4 @@
-﻿/*
+/*
 
   The contents of this file are subject to the Mozilla Public License Version
   1.1 (the "License"); you may not use this file except in compliance with
@@ -25,8 +25,8 @@ package asgard.display
     import flash.display.Sprite;
     import flash.events.Event;
     
-    import asgard.config.Config;
-    import asgard.config.ConfigCollector;
+    import andromeda.config.Config;
+    import andromeda.config.ConfigCollector;
     
     import system.Reflection;
     

@@ -1,4 +1,4 @@
-﻿/*
+/*
 
   The contents of this file are subject to the Mozilla Public License Version
   1.1 (the "License"); you may not use this file except in compliance with
@@ -22,14 +22,14 @@
 */
 package asgard.display 
 {
-	import flash.display.FrameLabel;
-	import flash.display.MovieClip;
-	
-	import vegas.core.CoreObject;
-	import vegas.errors.IllegalArgumentError;
-	import vegas.errors.NullPointerError;	
+    import flash.display.FrameLabel;
+    import flash.display.MovieClip;
+    
+    import vegas.core.CoreObject;
+    import vegas.errors.IllegalArgumentError;
+    import vegas.errors.NullPointerError;	
 
-	/**
+    /**
 	 * The TimeLineScript class use composition to register script function over MovieClip timelines.
      * @example
      * <pre class="prettyprint">

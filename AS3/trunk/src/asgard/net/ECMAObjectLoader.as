@@ -24,17 +24,17 @@ package asgard.net
 {
     import flash.display.DisplayObjectContainer;
     
+    import andromeda.config.Config;
+    import andromeda.config.ConfigResource;
+    import andromeda.events.LocalizationEvent;
+    import andromeda.i18n.LocaleResource;
+    import andromeda.i18n.Localization;
     import andromeda.ioc.factory.ECMAObjectFactory;
     import andromeda.ioc.factory.ObjectFactory;
     import andromeda.ioc.io.ObjectResourceBuilder;
     import andromeda.ioc.io.ObjectResourceType;
     import andromeda.ioc.net.ObjectFactoryLoader;
     
-    import asgard.config.Config;
-    import asgard.config.ConfigResource;
-    import asgard.events.LocalizationEvent;
-    import asgard.system.LocaleResource;
-    import asgard.system.Localization;
     import asgard.text.FontResource;
     import asgard.text.StyleSheetResource;    
 

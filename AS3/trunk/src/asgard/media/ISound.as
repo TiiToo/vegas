@@ -22,13 +22,13 @@
 */
 package asgard.media 
 {
-    import asgard.config.IConfigurable;
+    import andromeda.config.IConfigurable;
     
     import vegas.core.IHashable;
     import vegas.core.ILockable;
     import vegas.core.Identifiable;
     import vegas.logging.ILogable;    
-    
+
     /**
      * This interface defines all interfaces who implements the core sound objects in ASGard.
      * @author eKameleon
