@@ -38,7 +38,7 @@ package andromeda.i18n
     {
         
         /**
-         * Creates a new AbstractConfigLoader instance.
+         * Creates a new CoreLocalizationLoader instance.
          * @param localization The Localization singleton reference of this loader.
        	 * @param loader The URLLoader object to load.
 	     * @param bGlobal the flag to use a global event flow or a local event flow.
