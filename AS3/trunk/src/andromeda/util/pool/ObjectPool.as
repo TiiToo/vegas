@@ -26,6 +26,89 @@ package andromeda.util.pool
 
     /**
      * This class implements the object pool design pattern implementation.
+     * <pre class="prettyprint">
+     * import andromeda.util.pool.* ;
+     * 
+     * import test.pool.* ;
+     * 
+     * var i:int;
+     * 
+     * var pool:ObjectPool = new ObjectPool() ;
+     * 
+     * pool.allocate( 10 , MyClass , ["hello label"] ) ;
+     * 
+     * pool.initialize("init", ["arg1", "arg2"]) ;
+     * 
+     * var activeObjects:Array = [] ;
+     * 
+     * //read the first object
+     * 
+     * activeObjects[0] = pool.object;
+     * 
+     * var k:int = pool.wasteCount ;
+     * 
+     * trace("pool.wasteCount : " + pool.wasteCount) ; // 9
+     * 
+     * for ( i = 0 ; i < k ; i++ )
+     * {
+     *     activeObjects.push( pool.object ) ; // read the remaining 9 objects
+     * }
+     * 
+     * // wasteCount is now zero, but usageCount reports 10.
+     * 
+     * trace("pool.usageCount : " + pool.usageCount) ;
+     * 
+     * try
+     * {
+     *     //this will fail because the pool is now empty
+     *     activeObjects.push( pool.object );
+     * }
+     * catch (e:Error)
+     * {
+     *     trace(e);
+     * }
+     * 
+     * k = pool.size ;
+     * 
+     * // give all objects back to the pool
+     * 
+     * for (i = 0; i < k; i++)
+     * {
+     *     pool.object = activeObjects.shift();
+     * }
+     * 
+     * // usage count is zero
+     * 
+     * trace( pool.usageCount ) ;
+     * 
+     * trace( "======= use grow property" ) ;
+     * 
+     * pool.grow = true ;
+     * 
+     * pool.object ; // create a new object and the pool is growing witn 10 new objects inside the buffer.
+     * 
+     * trace("pool.usageCount : " + pool.usageCount) ; // 1
+     * 
+     * trace("pool.wasteCount : " + pool.wasteCount) ; // 9
+     * 
+     * trace( "======= use destroy method" ) ;
+     * 
+     * pool.destroy() ;
+     * 
+     * trace("pool.usageCount : " + pool.usageCount) ; // 0
+     * trace("pool.wasteCount : " + pool.wasteCount) ; // 0
+     * 
+     * trace( "======= Assign a custom object factory, see the test.pool.MyBuilder class") ;
+     * 
+     * pool.builder = new MyBuilder();
+     * 
+     * pool.allocate( 20 ) ;
+     * 
+     * trace( pool.object ) ;
+     * 
+     * trace("pool.usageCount : " + pool.usageCount) ; // 1
+     * trace("pool.wasteCount : " + pool.wasteCount) ; // 19   
+     * </pre>
      */
     public class ObjectPool extends CoreObject 
     {
