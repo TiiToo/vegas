@@ -22,21 +22,26 @@
 */
 package andromeda.i18n 
 {
-    import vegas.core.CoreObject;        
 
     /**
-     * The dynamic Locale reference to register all external locale properties.
-     * @author eKameleon
+     * The dynamic Locale reference to register all external locale properties with a Lang object.
      */
-    public dynamic class Locale extends CoreObject 
+    public dynamic class Locale
     {
 
         /**
          * Creates a new Locale instance.
+         * @param init A generic object containing properties with which to populate the newly instance. If this argument is null, it is ignored.
          */
-        public function Locale()
+        public function Locale( init:Object )
         {
-            super( );
+            if ( init != null )
+            {
+                for (var prop:String in init )
+                {
+                    this[prop] = init[prop] ;    
+                }     
+            }
         }
     
     }

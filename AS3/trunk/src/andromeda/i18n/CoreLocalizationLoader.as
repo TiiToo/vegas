@@ -28,7 +28,7 @@ package andromeda.i18n
     
     import andromeda.process.ActionURLLoader;
     
-    import system.Reflection;	
+    import system.Reflection;    
 
     /**
      * This skeletal class provides an easy implementation of the ILocalizationLoader interface. 
@@ -44,7 +44,7 @@ package andromeda.i18n
 	     * @param bGlobal the flag to use a global event flow or a local event flow.
      	 * @param sChannel the name of the global event flow if the <code class="prettyprint">bGlobal</code> argument is <code class="prettyprint">true</code>.
          */
-        public function CoreLocalizationLoader( localization:Localization , loader:URLLoader, bGlobal:Boolean = false, sChannel:String = null )
+        public function CoreLocalizationLoader( localization:Localization = null , loader:URLLoader = null, bGlobal:Boolean = false, sChannel:String = null )
         {
             super( loader , bGlobal, sChannel ) ;
            	this.localization = localization || Localization.getInstance() ;
@@ -197,14 +197,23 @@ package andromeda.i18n
          */
         public override function parse():void
         {
-            var current:Lang  = Lang.get( lang.toString() ) ;
-            var locale:Locale = new Locale() ;
-            for ( var prop:String in data ) 
-            {
-                locale[ prop ] = data[prop] ;
-            }
-            localization.put( current.value , locale ) ;
-			localization.current = current ;
+        	if ( data != null )
+        	{
+                var current:Lang  = Lang.get( lang.toString() ) ;
+                if ( current != null )
+                {
+                    localization.append( current.value , data ) ;
+                    localization.current = current ;
+                }
+                else
+                {
+                    getLogger().warn(this + " parse error : append the current Localization failed, the current Lang value not must be 'null' or 'undefined'.")	;
+                }
+        	}
+        	else
+        	{
+        		getLogger().warn(this + " parse error : append the current Localization failed, the external object date value not must be 'null' or 'undefined'.")   ;
+        	}
         }
 
 		/**

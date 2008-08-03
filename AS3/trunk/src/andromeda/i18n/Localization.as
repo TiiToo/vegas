@@ -192,6 +192,38 @@ package andromeda.i18n
         }
         
         /**
+         * Append the specified dynamic object values with the specificied lang value.
+         * If no exist a Locale Object with the specified lang id, a Locale Object is created.
+         * @param lang The language id, must be a String (valid in the Lang class) or a Lang object.
+         * @param o The dynamic object used to append the Locale object of the specified lang.
+         * @return <code class="prettyprint">true</code> if the append process is done.
+         */
+        public function append( lang:* , o:* ):Boolean 
+        {
+            if ( Lang.validate( lang ) && Reflection.getClassInfo(o).isDynamic() )
+            {
+            	var id:* = _getID( lang ) ;
+            	if (  contains( id ) )
+            	{
+                    var locale:Locale =  _map.get( _getID( lang ) ) as Locale ;
+                    for ( var prop:String in o ) 
+                    {
+                        locale[ prop ] = o[prop] ;
+                    }
+            	}
+            	else
+            	{
+            		_map.put( id , new Locale( o ) ) ;
+            	}
+                return true ;
+            }
+            else
+            {
+                return false  ;    
+            }
+        }        
+        
+        /**
          * Removes all singletons in the internal map of this object..
          */
         public function clear():void 
@@ -425,6 +457,7 @@ package andromeda.i18n
         /**
          * Returns the id of the specified argument.
          * @return the id of the specified argument.
+         * @private 
          */
         private function _getID( lang:* ):String
         {
@@ -447,6 +480,7 @@ package andromeda.i18n
 		/**
 		 * Internal method to register the Localization object in the static singleton HashMap of the class.
 		 * @see ModelCollector.
+		 * @private
 		 */
 		private function _setID( id:* ):void 
 		{
