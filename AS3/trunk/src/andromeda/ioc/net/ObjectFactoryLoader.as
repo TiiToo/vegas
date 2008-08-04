@@ -52,7 +52,7 @@ package andromeda.ioc.net
          * @param path The optional path of the external context file (default "").
          * @param factory The optional ECMAObjectFactory reference of this loader. By default the loader use the ECMAObjectFactory.getInstance() reference. 
          */
-        public function ObjectFactoryLoader( context:String="" , path:String="" , factory:ObjectFactory = null )
+        public function ObjectFactoryLoader( context:String=null , path:String="" , factory:ObjectFactory = null )
         {
             
             this.context  = context ;
@@ -112,7 +112,7 @@ package andromeda.ioc.net
         public var verbose:Boolean = false ;
         
         /**
-         * Clear all the resource in the loader and reset it.
+         * Clear all the resources in the loader and reset it.
          */
         public function clear():void
         {
@@ -124,7 +124,7 @@ package andromeda.ioc.net
         
         /**
          * Creates the objects.
-         * @param ...arguments An Array who contains all the object definitions to fill the IoC container.
+         * @param ...arguments An Array who contains all the object definitions to fill the IoC container. 
          */
         public function create( ...arguments:Array ):void         
         {
@@ -138,6 +138,7 @@ package andromeda.ioc.net
             	{
                     getLogger().warn( this + " create failed, the factory is empty." ) ;
             	} 
+                unregisterFactory() ;
             }    
         }
 
@@ -146,27 +147,53 @@ package andromeda.ioc.net
          */
         public override function run( ...arguments:Array ):void 
         {
-            if ( running == false )
+            
+            if ( running )
             {
-            
-                clear() ;
-            
-                if ( arguments.length > 0 && arguments[0] is String )
-                {
-                    context = arguments[0] as String ;
-                }
-            
-                addResource( new ContextResource( { resource:context } ) ) ;
-            
-                notifyStarted() ;
-            
-                setRunning( true ) ;
-            
-                sequencer.run() ;
-                
+            	return ;
             }
+            
+            clear() ;
+            
+            if ( arguments.length > 0 && arguments[0] is String )
+            {
+                context = arguments[0] as String ;
+            }
+            
+            addResource( new ContextResource( { resource:context } ) ) ;
+            
+            setRunning(true) ;
+            
+            notifyStarted() ;
+            
+            sequencer.run() ;
+            
         }        
-                
+        
+        /**
+         * Register the current factory referenceof this loader. 
+         */
+        public function registerFactory():void
+        {
+        	if ( _factory != null && _isRegister == false )
+            {
+                _isRegister = true ;
+                _factory.addEventListener( ActionEvent.FINISH , complete ) ;
+            }
+        }
+
+        /**
+         * Unregister the current factory referenceof this loader. 
+         */
+        public function unregisterFactory():void
+        {
+            if ( _factory != null && _isRegister )
+            {
+            	_isRegister = false  ;
+                _factory.removeEventListener( ActionEvent.FINISH , complete ) ;
+            }
+        }
+        
         ///////// protected   
                 
         /**
@@ -188,36 +215,27 @@ package andromeda.ioc.net
             if ( resource != null && resource.type != null )
             {
             	var loader:CoreActionLoader = resource.create() as CoreActionLoader ;
-            	if ( loader != null )
-            	{
-            	   _resources.put( loader , resource ) ;
-            	   return sequencer.addAction( loader ) ;
-            	}
+            	
+            	_resources.put( loader , resource ) ;
+            	
+                return sequencer.addAction( loader ) ;
             }
-            return false ;
-        }
-        
-        /**
-         * Invoked to debug the errors or warning during the factory process.
-         */
-        protected function fireEvent( e:* ):void
-        {
-            if ( verbose )
-            {           
-                getLogger().info( this + " fireEvent(" + e + ")" ) ; // no event before the IOC factory initialization.
+            else
+            {
+                return false ;
             }
-            dispatchEvent( e ) ;
         }
         
         /**
          * Invoked when the factory is complete.
          */
-        protected function main( e:ActionEvent ):void
+        protected function complete( e:ActionEvent ):void
         {
             if ( verbose )
             {
-                getLogger().debug( this + " main(" + e + ")" ) ;
+                getLogger().debug( this + " complete(" + e + ")" ) ;
             }
+            unregisterFactory() ;
             notifyFinished() ;
         }        
         
@@ -237,7 +255,12 @@ package andromeda.ioc.net
          * @private
          */
         private var _imports:Array ;
-                    
+                
+        /**
+         * @private
+         */
+        private var _isRegister:Boolean ;
+            
         /**
          * @private
          */
@@ -265,7 +288,7 @@ package andromeda.ioc.net
             
             var a:Array ;
                 
-            // objects 
+            // objects : the current object definitions
                 
             a = o[ ObjectAttribute.OBJECTS ] as Array ;
             if ( a != null && a.length > 0 )
@@ -300,7 +323,7 @@ package andromeda.ioc.net
          */
         private function _finishSequencer( e:ActionEvent ):void
         {
-
+        	
             if ( verbose )
             {
                 getLogger().debug(this + " finish sequencer : " + e) ;
@@ -328,8 +351,6 @@ package andromeda.ioc.net
             else
             {
                 create() ;
-                setRunning( false ) ;                
-                notifyFinished() ;
             }
         }
         
@@ -415,6 +436,7 @@ package andromeda.ioc.net
                 getLogger().debug(this + " start sequencer : " + e) ;
             }
             _imports = [] ;
+            registerFactory() ;
         }
 
     }

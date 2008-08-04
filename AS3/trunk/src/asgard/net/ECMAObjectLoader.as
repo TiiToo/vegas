@@ -194,7 +194,7 @@ package asgard.net
 		
     	ObjectResourceBuilder.addObjectResource( ObjectResourceType.FONT   , FontResource       ) ;
         ObjectResourceBuilder.addObjectResource( ObjectResourceType.STYLE  , StyleSheetResource ) ;
-        		
+        
     }
 }
 
