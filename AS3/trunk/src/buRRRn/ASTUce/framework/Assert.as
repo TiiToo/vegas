@@ -24,6 +24,8 @@ package buRRRn.ASTUce.framework
 {
     import buRRRn.ASTUce.config;
     import buRRRn.ASTUce.strings;
+    
+    import system.config;    
     import system.Equatable;
     import system.Strings;	
 	
@@ -42,15 +44,13 @@ package buRRRn.ASTUce.framework
         /**
          * @private
          */
-        private static function _serialize( o:* ):String
+        protected static function _serialize( o:* ):String
             {
             /* note:
                we don't want to have prettyPrinting messing
                with our lines output so we deactivate it
             */
-            
-            import system.config;   
-            
+                        
             var pretty:Boolean = system.config.serializer.prettyPrinting;
             
             system.config.serializer.prettyPrinting = false;

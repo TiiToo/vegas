@@ -25,13 +25,15 @@ package system.io
         {
         
         /**
-        * Returns the last char.
-        */
+         * Returns the last char.
+         * @return the last char.
+         */
         function read():String;
         
         /**
-        * Returns the last line.
-        */
+         * Returns the last line.
+         * @return the last line.
+         */
         function readLine():String;
         
         }
