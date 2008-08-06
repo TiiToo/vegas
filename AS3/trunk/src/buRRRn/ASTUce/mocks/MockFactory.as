@@ -109,14 +109,14 @@ package buRRRn.ASTUce.mocks
             if( o != null ) 
             {
 
-                if( typeof(o) == 'function' ) 
+                if( o as Class ) 
                 {
                     _populatesMethods( o       , mock ) ; // constants (static methods)
                     _populatesMethods( new o() , mock ) ; // properties // problem if the constructor need arguments
                 } 
-                else if( typeof(o) == 'object') 
+                else if( o is Object ) 
                 {
-                    _populatesMethods(o, mock);
+                    _populatesMethods( o , mock ) ;
                 } 
                 else 
                 {
@@ -215,12 +215,14 @@ package buRRRn.ASTUce.mocks
         
         /**
          * Creates the methods of the specified object in the mock object.
+         * @private
          */
         private function _populatesMethods( o:* , mock:Mock ):void
         {
             // finds methods with describeType 
             
-            // finds non enumerable properties in generic objects
+            // finds non enumerable properties in generic objects if is dynamic
+            
             for( var property:String in o )   
             {
                 if ( _isPublicMethod( o , property ) )
@@ -228,7 +230,9 @@ package buRRRn.ASTUce.mocks
                     createMethod( this , mock , property ); // only public methods.
                 }
             }
-        }        
+            
+        }
+                
         /**
          * @private
          */

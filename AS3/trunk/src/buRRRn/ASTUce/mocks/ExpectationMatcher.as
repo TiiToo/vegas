@@ -39,7 +39,7 @@ package buRRRn.ASTUce.mocks
          */
         public function get discrepancy():Discrepancy 
         {
-            return this.__discrepancy ; 
+            return this._discrepancy ; 
         }
         
         /**
@@ -50,7 +50,7 @@ package buRRRn.ASTUce.mocks
          */
         public function addActualMethodCall(  caller:* , method:String , methodArguments:Array ):void 
         {
-            __actualBehaviorList.push( new InvocationBehavior( caller, method, methodArguments ) ) ;
+            _actualBehaviorList.push( new InvocationBehavior( caller, method, methodArguments ) ) ;
         }
         
         /**
@@ -61,7 +61,7 @@ package buRRRn.ASTUce.mocks
          */
         public function addExpectedMethodCall( caller:* , method:String , methodArguments:Array ):void 
         {
-            __expectationBehaviorList.push( new InvocationBehavior(caller, method, methodArguments ) ) ;
+            _expectationBehaviorList.push( new InvocationBehavior(caller, method, methodArguments ) ) ;
         }
         
         /**
@@ -73,30 +73,30 @@ package buRRRn.ASTUce.mocks
             var matches:Boolean         = true ;
             eachIndexForMock
             ( 
-                __expectationBehaviorList , 
+                _expectationBehaviorList , 
                 function( index:uint, expectedBehavior:* ):Boolean 
                 { 
-                    var actualBehavior:* = (self.__actualBehaviorList.length > index) ? self.__actualBehaviorList[index] : null ;
+                    var actualBehavior:* = (self._actualBehaviorList.length > index) ? self._actualBehaviorList[index] : null ;
                     if(matches) 
                     {
                         if( actualBehavior === null ) 
                         {
-                            self.__discrepancy = new Discrepancy("Expected function not called", expectedBehavior);
+                            self._discrepancy = new Discrepancy("Expected function not called", expectedBehavior);
                             matches = false;
                         }   
                         else if( expectedBehavior.method != actualBehavior.method ) 
                         {
-                            self.__discrepancy = new Discrepancy("Surprise call", actualBehavior);
+                            self._discrepancy = new Discrepancy("Surprise call", actualBehavior);
                             matches = false;
                         }
                         else if( expectedBehavior.caller != actualBehavior.caller ) 
                         {
-                            self.__discrepancy = new Discrepancy("Surprise call from unexpected caller", actualBehavior);
+                            self._discrepancy = new Discrepancy("Surprise call from unexpected caller", actualBehavior);
                             matches = false ;
                         } 
                         else if( !this._matchArguments(expectedBehavior.methodArguments, actualBehavior.methodArguments) ) 
                         {
-                            self.__discrepancy = new Discrepancy("Unexpected Arguments", actualBehavior) ;
+                            self._discrepancy = new Discrepancy("Unexpected Arguments", actualBehavior) ;
                             matches = false ;
                         }
                         return matches ;
@@ -106,9 +106,9 @@ package buRRRn.ASTUce.mocks
 
             );
       
-            if( __actualBehaviorList.length > __expectationBehaviorList.length && matches ) 
+            if( _actualBehaviorList.length > _expectationBehaviorList.length && matches ) 
             {
-                __discrepancy = new Discrepancy("Surprise call", this.__actualBehaviorList[this.__expectationBehaviorList.length]) ;
+                _discrepancy = new Discrepancy("Surprise call", this._actualBehaviorList[this._expectationBehaviorList.length]) ;
                 matches = false ;
             } 
 
@@ -120,31 +120,31 @@ package buRRRn.ASTUce.mocks
          */
         public function reset():void
         {
-            __actualBehaviorList      = [] ;
-            __expectationBehaviorList = [] ;
-            __discrepancy             = null ; 
+            _actualBehaviorList      = [] ;
+            _expectationBehaviorList = [] ;
+            _discrepancy             = null ; 
         }
         
         /**
          * @private
          */
-        private var __actualBehaviorList:Array ;
+        private var _actualBehaviorList:Array ;
 
         /**
          * @private
          */
-        private var __discrepancy:Discrepancy ;
+        private var _discrepancy:Discrepancy ;
         
         /**
          * @private
          */
-        private var __expectationBehaviorList:Array ;
+        private var _expectationBehaviorList:Array ;
            
-           /**
-            * @private
-            */
-           protected function _matchArguments( expectedArgs:Array , actualArgs:Array ):Boolean 
-           {
+        /**
+         * @private
+         */
+        protected function _matchArguments( expectedArgs:Array , actualArgs:Array ):Boolean 
+        {
             var expectedArray:Array  = _convertArgumentsToArray( expectedArgs ) ;
             var actualArray:Array    = _convertArgumentsToArray( actualArgs ) ;
             return ArgumentMatcher.matches(expectedArray, actualArray);
@@ -156,9 +156,10 @@ package buRRRn.ASTUce.mocks
         protected function _convertArgumentsToArray( args:Array ):Array 
         {
             var convertedArguments:Array = [] ;
-            for(var i:uint = 0; i < args.length; i++) 
+            var size:int = args.length ;
+            for( var i:int ; i < size ; i++ ) 
             {
-                convertedArguments[i] = args[i];    
+                convertedArguments[i] = args[i] ;    
             }
             return convertedArguments;
         }
