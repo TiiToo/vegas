@@ -54,7 +54,7 @@ package vegas.util
          * trace( ar ) ;
          * //output: []
          * 
-         * // test with 0 arguments
+         * // test with 0 argument
          * ar = ClassUtil.buildNewInstance( Array , [] ) ;
          * trace( ar ) ;
          * //output: []
