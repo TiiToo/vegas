@@ -28,11 +28,11 @@ package vegas.util
     import vegas.core.IHashable;    
 
     /**
-	 * The <code class="prettyprint">ClassUtil</code> utility class is an all-static class with methods for working with function the Class in AS3.
-	 * @author eKameleon
-	 */
-	public class ClassUtil
-	{
+     * The <code class="prettyprint">ClassUtil</code> utility class is an all-static class with methods for working with function the Class in AS3.
+     * @author eKameleon
+     */
+    public class ClassUtil
+    {
         
         /**
          * Wrapping method which select which build method use according to the argument count (32 max).
@@ -50,7 +50,7 @@ package vegas.util
          * var ar:Array
          * 
          * // test with no argument
-         * ar = ClassUtil.buildNewInstance( Array , [] ) ;
+         * ar = ClassUtil.buildNewInstance( Array ) ;
          * trace( ar ) ;
          * //output: []
          * 
@@ -80,7 +80,7 @@ package vegas.util
          * @param args The array of all arguments to passed-in.
          */
         public static function buildNewInstance( clazz:Class, args:Array=null ):*
-		{
+        {
             if ( args != null && args.length > 0 )
             {
                 switch( args.length )
@@ -127,55 +127,55 @@ package vegas.util
             {
                 return new clazz() ;
             }
-	    }
-        
-		/**
-		 * Creates an instance with the passed-in Class.
-		 * @param c the class to instanciate.
-		 * @param initProperties An object with all properties to to pass over the new instance.
-		 * @return a new instance of the specified Class in argument.
-		 */
-		public static function createNewInstance( clazz:Class = null , initProperties:Object = null , args:Array=null ):* 
-		{
-			if ( clazz == null )
-			{
-				return null ;
-			}
-			var instance:* = buildNewInstance( clazz, args ) ;
-			if (initProperties != null) 
-			{
-				for (var prop:String in initProperties)
-				{
-					instance[prop] = initProperties[prop];
-				}
-			}
-			return instance ;
-		}
+        }
         
         /**
-		 * Returns the unique name of the specified instance in argument.
-		 * @return the unique name of the specified instance in argument.
-		 */
-		public static function getUniqueName(instance:*):String
-		{
-			var name:String = Reflection.getClassName( instance ) ;
-			var charCode:int = name.charCodeAt( name.length - 1 );
-			if (charCode >= 48 && charCode <= 57)
-			{
-				name += "_" ;
-			}
-			var count:uint ;
-			if ( instance is IHashable )
-			{
-				count = (instance as IHashable).hashCode() ;		 
-			}	
-			else
-			{
-				count = HashCode.next() ;
-			}
-			
-			return name + count ;
-		}
-	}	
+         * Creates an instance with the passed-in Class.
+         * @param c the class to instanciate.
+         * @param initProperties An object with all properties to to pass over the new instance.
+         * @return a new instance of the specified Class in argument.
+         */
+        public static function createNewInstance( clazz:Class = null , initProperties:Object = null , args:Array=null ):* 
+        {
+            if ( clazz == null )
+            {
+                return null ;
+            }
+            var instance:* = buildNewInstance( clazz, args ) ;
+            if (initProperties != null) 
+            {
+                for (var prop:String in initProperties)
+                {
+                    instance[prop] = initProperties[prop];
+                }
+            }
+            return instance ;
+        }
+        
+        /**
+         * Returns the unique name of the specified instance in argument.
+         * @return the unique name of the specified instance in argument.
+         */
+        public static function getUniqueName(instance:*):String
+        {
+            var name:String = Reflection.getClassName( instance ) ;
+            var charCode:int = name.charCodeAt( name.length - 1 );
+            if (charCode >= 48 && charCode <= 57)
+            {
+                name += "_" ;
+            }
+            var count:uint ;
+            if ( instance is IHashable )
+            {
+                count = (instance as IHashable).hashCode() ;         
+            }    
+            else
+            {
+                count = HashCode.next() ;
+            }
+            
+            return name + count ;
+        }
+    }    
 }
 
