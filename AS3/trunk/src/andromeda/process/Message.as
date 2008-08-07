@@ -25,9 +25,9 @@ package andromeda.process
     
     /**
      * This <code class="prettyprint">IAction</code> object create a pause in the process.
-     * <@example
+     * <p><b>Example :</b></p>
      * <pre class="prettyprint">
-     * import pegas.events.ActionEvent ;
+     * import andromeda.events.ActionEvent ;
      * 
      * var handleEvent:Function = function( e:ActionEvent ) :void
      * {

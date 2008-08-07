@@ -81,16 +81,6 @@ package andromeda.process
             assertFalse( action.running  , "Action running failed, default property value must be false." ) ;
         }	           
         
-        public function testGetEventTypeFINISH():void
-        {
-            assertEquals( action.getEventTypeFINISH(), ActionEvent.FINISH,  "Action getEventTypeFINISH failed." ) ;
-        }
-        
-        public function testGetEventTypeSTART():void
-        {
-            assertEquals( action.getEventTypeSTART(), ActionEvent.START,  "Action getEventTypeSTART failed." ) ;
-        }	        
-        
         public function testNotifyFinished():void
         {
             action.notifyFinished() ;
@@ -110,21 +100,7 @@ package andromeda.process
             assertTrue( "run" in action           , "Action run 01 method exist." ) ;
             assertTrue( action["run"] is Function , "Action run 02 method exist." ) ;
         }     		
-		
-
-        public function testSetEventTypeFINISH():void
-        {
-        	action.setEventTypeFINISH( "type" );
-            assertEquals( action.getEventTypeFINISH(), "type" ,  "Action setEventTypeFINISH failed." ) ;
-            action.setEventTypeFINISH( ActionEvent.FINISH );
-        }
-        
-        public function testSetEventTypeSTART():void
-        {
-        	action.setEventTypeSTART( "type" );
-            assertEquals( action.getEventTypeSTART(), "type" ,  "Action setEventTypeSTART failed." ) ;
-            action.setEventTypeSTART( ActionEvent.START );
-        }		
+        		
 		
 	}
 }

@@ -20,7 +20,7 @@
 <td align="left" class="titleTableTitle">VEGAS AS3 Reference</td><td align="right" class="titleTableTopNav"><a onclick="loadClassListFrame('../../all-classes.html')" href="../../package-summary.html">All&nbsp;Packages</a>&nbsp;|&nbsp;<a onclick="loadClassListFrame('../../all-classes.html')" href="../../class-summary.html">All&nbsp;Classes</a>&nbsp;|&nbsp;<a onclick="loadClassListFrame('../../index-list.html')" href="../../all-index-A.html">Index</a>&nbsp;|&nbsp;<a href="../../index.html?asgard/net/ECMAObjectLoader.html&amp;asgard/net/class-list.html" id="framesLink1">Frames</a><a onclick="parent.location=document.location" href="" style="display:none" id="noFramesLink1">No&nbsp;Frames</a></td><td rowspan="3" align="right" class="titleTableLogo"><img alt="Adobe Logo" title="Adobe Logo" class="logoImage" src="../../images/logo.jpg"></td>
 </tr>
 <tr class="titleTableRow2">
-<td align="left" id="subTitle" class="titleTableSubTitle">Class&nbsp;ECMAObjectLoader</td><td align="right" id="subNav" class="titleTableSubNav"><a href="#propertySummary">Properties</a>&nbsp;| <a href="#methodSummary">Methods</a></td>
+<td align="left" id="subTitle" class="titleTableSubTitle">Class&nbsp;ECMAObjectLoader</td><td align="right" id="subNav" class="titleTableSubNav"><a href="#propertySummary">Properties</a>&nbsp;| <a href="#methodSummary">Methods</a>&nbsp;| <a href="#eventSummary">Events</a></td>
 </tr>
 <tr class="titleTableRow3">
 <td colspan="2">&nbsp;</td>
@@ -28,7 +28,7 @@
 </table>
 <script type="text/javascript" language="javascript">
 <!--
-if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Class ECMAObjectLoader"); titleBar_setSubNav(false,true,false,false,false,false,true,false,false,false,false,false,false,false);}
+if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Class ECMAObjectLoader"); titleBar_setSubNav(false,true,false,false,true,false,true,false,false,false,false,false,false,false);}
 --></script>
 <div class="MainContent">
 <table cellspacing="0" cellpadding="0" class="classHeaderTable">
@@ -251,7 +251,7 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <div class="summarySignature">
 <a class="signatureLink" href="../../andromeda/ioc/net/ObjectFactoryLoader.html#clear()">clear</a>():void</div>
 <div class="summaryTableDescription">
-         Clear all the resource in the loader and reset it.</div>
+         Clear all the resources in the loader and reset it.</div>
 </td><td class="summaryTableOwnerCol"><a href="../../andromeda/ioc/net/ObjectFactoryLoader.html">ObjectFactoryLoader</a></td>
 </tr>
 <tr class="hideInheritedMethod">
@@ -286,22 +286,6 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <div class="summaryTableDescription">
    Returns the internal <code class="prettyprint">EventDispatcher</code> reference.</div>
 </td><td class="summaryTableOwnerCol"><a href="../../vegas/events/CoreEventDispatcher.html">CoreEventDispatcher</a></td>
-</tr>
-<tr class="hideInheritedMethod">
-<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol">
-<div class="summarySignature">
-<a class="signatureLink" href="../../andromeda/process/SimpleAction.html#getEventTypeFINISH()">getEventTypeFINISH</a>():String</div>
-<div class="summaryTableDescription">
-         Returns the event name use in the notifyFinished method.</div>
-</td><td class="summaryTableOwnerCol"><a href="../../andromeda/process/SimpleAction.html">SimpleAction</a></td>
-</tr>
-<tr class="hideInheritedMethod">
-<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol">
-<div class="summarySignature">
-<a class="signatureLink" href="../../andromeda/process/SimpleAction.html#getEventTypeSTART()">getEventTypeSTART</a>():String</div>
-<div class="summaryTableDescription">
-         Returns the event name use in the notifyStarted method.</div>
-</td><td class="summaryTableOwnerCol"><a href="../../andromeda/process/SimpleAction.html">SimpleAction</a></td>
 </tr>
 <tr class="hideInheritedMethod">
 <td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol">
@@ -356,14 +340,6 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <tr class="hideInheritedMethod">
 <td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol">
 <div class="summarySignature">
-<a class="signatureLink" href="../../andromeda/process/SimpleAction.html#initEventType()">initEventType</a>():void</div>
-<div class="summaryTableDescription">
-         Initialize the internal events of this process.</div>
-</td><td class="summaryTableOwnerCol"><a href="../../andromeda/process/SimpleAction.html">SimpleAction</a></td>
-</tr>
-<tr class="hideInheritedMethod">
-<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol">
-<div class="summarySignature">
 <a class="signatureLink" href="../../vegas/events/CoreEventDispatcher.html#isLocked()">isLocked</a>():Boolean</div>
 <div class="summaryTableDescription">
       Returns <code class="prettyprint">true</code> if the object is locked.</div>
@@ -404,6 +380,14 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <tr class="hideInheritedMethod">
 <td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol">
 <div class="summarySignature">
+<a class="signatureLink" href="../../andromeda/ioc/net/ObjectFactoryLoader.html#registerFactory()">registerFactory</a>():void</div>
+<div class="summaryTableDescription">
+         Register the current factory referenceof this loader.</div>
+</td><td class="summaryTableOwnerCol"><a href="../../andromeda/ioc/net/ObjectFactoryLoader.html">ObjectFactoryLoader</a></td>
+</tr>
+<tr class="hideInheritedMethod">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
 <a class="signatureLink" href="../../vegas/events/CoreEventDispatcher.html#removeEventListener()">removeEventListener</a>(type:String, listener:Function, useCapture:Boolean = false):void</div>
 <div class="summaryTableDescription"> 
    Removes a listener from the EventDispatcher object.</div>
@@ -424,22 +408,6 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <div class="summaryTableDescription">
    Sets the internal <code class="prettyprint">EventDispatcher</code> reference.</div>
 </td><td class="summaryTableOwnerCol"><a href="../../vegas/events/CoreEventDispatcher.html">CoreEventDispatcher</a></td>
-</tr>
-<tr class="hideInheritedMethod">
-<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol">
-<div class="summarySignature">
-<a class="signatureLink" href="../../andromeda/process/SimpleAction.html#setEventTypeFINISH()">setEventTypeFINISH</a>(type:String):void</div>
-<div class="summaryTableDescription">
-         Sets the event name use in the notifyFinished method.</div>
-</td><td class="summaryTableOwnerCol"><a href="../../andromeda/process/SimpleAction.html">SimpleAction</a></td>
-</tr>
-<tr class="hideInheritedMethod">
-<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol">
-<div class="summarySignature">
-<a class="signatureLink" href="../../andromeda/process/SimpleAction.html#setEventTypeSTART()">setEventTypeSTART</a>(type:String):void</div>
-<div class="summaryTableDescription">
-         Sets the event name use in the notifyStarted method.</div>
-</td><td class="summaryTableOwnerCol"><a href="../../andromeda/process/SimpleAction.html">SimpleAction</a></td>
 </tr>
 <tr class="hideInheritedMethod">
 <td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol">
@@ -492,6 +460,14 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <tr class="hideInheritedMethod">
 <td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol">
 <div class="summarySignature">
+<a class="signatureLink" href="../../andromeda/ioc/net/ObjectFactoryLoader.html#unregisterFactory()">unregisterFactory</a>():void</div>
+<div class="summaryTableDescription">
+         Unregister the current factory referenceof this loader.</div>
+</td><td class="summaryTableOwnerCol"><a href="../../andromeda/ioc/net/ObjectFactoryLoader.html">ObjectFactoryLoader</a></td>
+</tr>
+<tr class="hideInheritedMethod">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
 <a class="signatureLink" href="../../vegas/events/CoreEventDispatcher.html#willTrigger()">willTrigger</a>(type:String):Boolean</div>
 <div class="summaryTableDescription">
    Checks whether an event listener is registered with this EventDispatcher object or any of its ancestors for the specified event type.</div>
@@ -525,15 +501,7 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <tr class="hideInheritedProtectedMethod">
 <td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol">
 <div class="summarySignature">
-<a class="signatureLink" href="../../andromeda/ioc/net/ObjectFactoryLoader.html#fireEvent()">fireEvent</a>(e:*):void</div>
-<div class="summaryTableDescription">
-         Invoked to debug the errors or warning during the factory process.</div>
-</td><td class="summaryTableOwnerCol"><a href="../../andromeda/ioc/net/ObjectFactoryLoader.html">ObjectFactoryLoader</a></td>
-</tr>
-<tr class="hideInheritedProtectedMethod">
-<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol">
-<div class="summarySignature">
-<a class="signatureLink" href="../../andromeda/ioc/net/ObjectFactoryLoader.html#main()">main</a>(e:<a href="../../andromeda/events/ActionEvent.html">ActionEvent</a>):void</div>
+<a class="signatureLink" href="../../andromeda/ioc/net/ObjectFactoryLoader.html#complete()">complete</a>(e:<a href="../../andromeda/events/ActionEvent.html">ActionEvent</a>):void</div>
 <div class="summaryTableDescription">
          Invoked when the factory is complete.</div>
 </td><td class="summaryTableOwnerCol"><a href="../../andromeda/ioc/net/ObjectFactoryLoader.html">ObjectFactoryLoader</a></td>
@@ -543,7 +511,7 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <div class="summarySignature">
 <a class="signatureLink" href="../../andromeda/process/SimpleAction.html#setRunning()">setRunning</a>(b:Boolean):void</div>
 <div class="summaryTableDescription">
-         This protected method is an internal method to change the running property value.</div>
+         Changes the running property value.</div>
 </td><td class="summaryTableOwnerCol"><a href="../../andromeda/process/SimpleAction.html">SimpleAction</a></td>
 </tr>
 <tr class="">
@@ -554,6 +522,39 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
          Invoked when the localization of the application is changed or to update the locale object of 
          the IoC factory configuration with the current locale object of the application.</div>
 </td><td class="summaryTableOwnerCol">ECMAObjectLoader</td>
+</tr>
+</table>
+</div>
+<a name="eventSummary"></a>
+<div class="summarySection">
+<div class="summaryTableTitle">Events</div>
+<div class="showHideLinks">
+<div class="hideInheritedEvent" id="hideInheritedEvent">
+<a onclick="javascript:setInheritedVisible(false,'Event');" href="#eventSummary" class="showHideLink"><img src="../../images/expanded.gif" class="showHideLinkImage"> Hide Inherited Events</a>
+</div>
+<div class="showInheritedEvent" id="showInheritedEvent">
+<a onclick="javascript:setInheritedVisible(true,'Event');" href="#eventSummary" class="showHideLink"><img src="../../images/collapsed.gif" class="showHideLinkImage"> Show Inherited Events</a>
+</div>
+</div>
+<table id="summaryTableEvent" class="summaryTable hideInheritedEvent" cellpadding="3" cellspacing="0">
+<tr>
+<th>&nbsp;</th><th colspan="2">Event</th><th>Summary</th><th class="summaryTableOwnerCol">Defined&nbsp;by</th>
+</tr>
+<tr class="hideInheritedEvent">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="../../andromeda/process/SimpleAction.html#event:onFinished">onFinished</a>
+</div>
+</td><td class="summaryTableDescription summaryTableCol">
+     Dispatched when a process is finished.</td><td class="summaryTableOwnerCol"><a href="../../andromeda/process/SimpleAction.html">SimpleAction</a></td>
+</tr>
+<tr class="hideInheritedEvent">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="../../andromeda/process/SimpleAction.html#event:onStarted">onStarted</a>
+</div>
+</td><td class="summaryTableDescription summaryTableCol">
+     Dispatched when a process is started.</td><td class="summaryTableOwnerCol"><a href="../../andromeda/process/SimpleAction.html">SimpleAction</a></td>
 </tr>
 </table>
 </div>

@@ -22,8 +22,64 @@
 */
 package andromeda.process
 {
-    import andromeda.events.ActionEvent;
+    import andromeda.events.ActionEvent;        
 
+    /**
+     * Dispatched when a process is changed.
+     * @eventType andromeda.events.ActionEvent.CHANGE
+     * @see #notifyChanged
+     */
+    [Event(name="onChanged", type="andromeda.events.ActionEvent")]
+
+    /**
+     * Dispatched when a process is cleared.
+     * @eventType andromeda.events.ActionEvent.CLEAR
+     * @see #notifyCleared
+     */
+    [Event(name="onCleared", type="andromeda.events.ActionEvent")]
+        
+    /**
+     * Dispatched when an info process is running.
+     * @eventType andromeda.events.ActionEvent.INFO
+     * @see #notifyInfo
+     */
+    [Event(name="onInfo", type="andromeda.events.ActionEvent")]
+    
+    /**
+     * Dispatched when a process is looped.
+     * @eventType andromeda.events.ActionEvent.LOOP
+     * @see #notifyLooped
+     */
+    [Event(name="onLooped", type="andromeda.events.ActionEvent")]    
+    
+    /**
+     * Dispatched when a process is paused.
+     * @eventType andromeda.events.ActionEvent.PAUSE
+     * @see #notifyPaused
+     */
+    [Event(name="onPaused", type="andromeda.events.ActionEvent")]     
+    
+    /**
+     * Dispatched when a process is in progress.
+     * @eventType andromeda.events.ActionEvent.PROGRESS
+     * @see #notifyProgress
+     */
+    [Event(name="onProgress", type="andromeda.events.ActionEvent")]  
+    
+    /**
+     * Dispatched when a process is resumed.
+     * @eventType andromeda.events.ActionEvent.RESUME
+     * @see #notifyResumed
+     */
+    [Event(name="onResumed", type="andromeda.events.ActionEvent")]  
+        
+    /**
+     * Dispatched when a process is stopped.
+     * @eventType andromeda.events.ActionEvent.STOP
+     * @see #notifyStopped
+     */
+    [Event(name="onStopped", type="andromeda.events.ActionEvent")]      
+    
     /**
      * This class simplify a full implementation of the <code class="prettyprint">Action</code> interface.
      * @author eKameleon
@@ -39,6 +95,7 @@ package andromeda.process
         public function Action( bGlobal:Boolean = false , sChannel:String = null )
         {
             super( bGlobal, sChannel ) ;
+            initEventType() ;            
         }
 
         /**
@@ -130,9 +187,8 @@ package andromeda.process
         /**
          * Initialize the internal event's types of this process.
          */
-        public override function initEventType():void
+        public function initEventType():void
         {
-            super.initEventType() ;
             _sTypeChange   = ActionEvent.CHANGE   ;
             _sTypeClear    = ActionEvent.CLEAR    ;
             _sTypeInfo     = ActionEvent.INFO     ;

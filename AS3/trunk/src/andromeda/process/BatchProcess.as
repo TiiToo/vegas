@@ -24,7 +24,7 @@ package andromeda.process
 {
     import andromeda.events.ActionEvent;
     
-    import vegas.data.iterator.Iterator;
+    import vegas.data.iterator.Iterator;    
 
     /**
      * This <code class="prettyprint">IAction</code> object register <code class="prettyprint">IAction</code> objects in a batch process.
@@ -86,6 +86,7 @@ package andromeda.process
         {
             super(bGlobal, sChannel);
             _batch = new Batch() ;
+            initEventType() ;
             initialize() ;
         }
         
@@ -176,9 +177,8 @@ package andromeda.process
         /**
          * Initialize the internal events of this process.
          */
-        public override function initEventType():void
+        public function initEventType():void
         {
-            super.initEventType() ;
             _sTypeProgress = ActionEvent.PROGRESS ; 
         }
                 

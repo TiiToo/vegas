@@ -29,16 +29,22 @@ package andromeda.process
 
     /**
      * This <code class="prettyprint">IAction</code> object create a pause in the process.
-     * @example
+     * <p><b>Example :</b></p>
      * <pre class="prettyprint">
-     * var handleEvent:Function = function( ...args:Array ) :void
+     * import andromeda.events.ActionEvent ;
+     * 
+     * var handleEvent:Function = function( e:ActionEvent ) :void
      * {
      *     trace( this + " " + args) ;
      * }
+     * 
      * var p:Pause = new Pause(10, true) ;
+     * 
      * p.duration = 2 ;
+     * 
      * p.addEventListener( ActionEvent.START  , handleEvent ) ;
      * p.addEventListener( ActionEvent.FINISH , handleEvent ) ;
+     * 
      * p.run() ;
      * </pre>
      * @author eKameleon
@@ -64,8 +70,8 @@ package andromeda.process
         }
         
         /**
-         * (read-only) Returns the delay of the pause in ms. This property use the duration and useSeconds properties to defined the delay.
-         * @return the delay of the pause in ms.
+         * Indicates the delay of the pause in ms. This property use the duration and useSeconds properties to defined the delay.
+         * @see #duration
          */
         public function get delay():Number
         {
@@ -73,8 +79,7 @@ package andromeda.process
         }
 
         /**
-         * (read-write) Returns the duration of the process.
-         * @return the duration of the process.
+         * Indicates the duration of the process.
          */
         public function get duration():uint
         {
@@ -82,7 +87,7 @@ package andromeda.process
         }
     
         /**
-         * (read-write) Sets the duration of the process.
+         * @private
          */
         public function set duration( n:uint ):void 
         {
@@ -91,7 +96,7 @@ package andromeda.process
         }
     
         /**
-         * (read-write) Indicates if the process use seconds or not.
+         * Indicates if the pause use seconds or not.
          */
         public function get useSeconds():Boolean
         {
@@ -99,7 +104,7 @@ package andromeda.process
         }    
         
         /**
-         * (read-write) Indicates if the process use seconds or not.
+         * @private
          */
         public function set useSeconds( b:Boolean ):void
         {
@@ -161,7 +166,7 @@ package andromeda.process
             return Serializer.getSourceOf( this , [ delay , useSeconds ] ) ;
         }
         
-           /**
+        /**
          * Returns the string representation of this instance.
          * @return the string representation of this instance.
          */

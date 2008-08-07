@@ -19,8 +19,7 @@ the Initial Developer. All Rights Reserved.
   
 Contributor(s) :
   
- */
-
+*/
 package vegas.util
 {
     import system.Reflection;
@@ -34,26 +33,102 @@ package vegas.util
 	 */
 	public class ClassUtil
 	{
-
+        
         /**
          * Wrapping method which select which build method use according to the argument count (32 max).
+         * <p><b>Example :</b></p>
+         * <pre class="prettyprint">
+         * import system.Arrays ;
+         * 
+         * import vegas.util.ClassUtil ;
+         * 
+         * Array.prototype.toString = function():String
+         * {
+         *     return "[" + this.join(",") + "]" ;
+         * }
+         * 
+         * var ar:Array
+         * 
+         * // test with no argument
+         * ar = ClassUtil.buildNewInstance( Array , [] ) ;
+         * trace( ar ) ;
+         * //output: []
+         * 
+         * // test with 0 arguments
+         * ar = ClassUtil.buildNewInstance( Array , [] ) ;
+         * trace( ar ) ;
+         * //output: []
+         * 
+         * // test with 2 arguments
+         * ar = ClassUtil.buildNewInstance( Array , Arrays.initialize(2,0) ) ;
+         * trace( ar ) ;
+         * //output: [0,0]
+         * 
+         * // test with 32 arguments
+         * ar = ClassUtil.buildNewInstance( Array , Arrays.initialize(32,0) ) ;
+         * trace( ar ) ;
+         * //output: [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+         * 
+         * // test with 33 arguments
+         * ar = ClassUtil.buildNewInstance( Array , Arrays.initialize(33,0) ) ;
+         * trace( ar ) ;
+         * 
+         * //output:
+         * // ArgumentError: ClassUtil.buildNewInstance() method failed : arguments limit exceeded, you can pass a maximum of 32 arguments.
+         * </pre>
          * @param clazz The Class of the instance to build.
          * @param args The array of all arguments to passed-in.
          */
         public static function buildNewInstance( clazz:Class, args:Array=null ):*
 		{
-			var build:Function  = _builders[ (args != null) ? args.length : 0 ] ;
-			var params:Array    = [ clazz ] ;
-			if ( args != null )
-			{
-				if ( args.length > 0 )
-				{
-					params = params.concat( args );
-				}
-			}
-			return build.apply( null, params );
+            if ( args != null && args.length > 0 )
+            {
+                switch( args.length )
+                {
+                    case  1 : return new clazz(args[0]) ; break ;
+                    case  2 : return new clazz(args[0],args[1]) ; break ;
+                    case  3 : return new clazz(args[0],args[1],args[2]) ; break ;                
+                    case  4 : return new clazz(args[0],args[1],args[2],args[3]) ; break ;
+                    case  5 : return new clazz(args[0],args[1],args[2],args[3],args[4]) ; break ;
+                    case  6 : return new clazz(args[0],args[1],args[2],args[3],args[4],args[5]) ; break ;
+                    case  7 : return new clazz(args[0],args[1],args[2],args[3],args[4],args[5],args[6]) ; break ;
+                    case  8 : return new clazz(args[0],args[1],args[2],args[3],args[4],args[5],args[6],args[7]) ; break ;
+                    case  9 : return new clazz(args[0],args[1],args[2],args[3],args[4],args[5],args[6],args[7],args[8]) ; break ;
+                    case 10 : return new clazz(args[0],args[1],args[2],args[3],args[4],args[5],args[6],args[7],args[8],args[9]) ; break ;
+                    case 11 : return new clazz(args[0],args[1],args[2],args[3],args[4],args[5],args[6],args[7],args[8],args[9],args[10]) ; break ;
+                    case 12 : return new clazz(args[0],args[1],args[2],args[3],args[4],args[5],args[6],args[7],args[8],args[9],args[10],args[11]) ; break ;
+                    case 13 : return new clazz(args[0],args[1],args[2],args[3],args[4],args[5],args[6],args[7],args[8],args[9],args[10],args[11],args[12]) ; break ;
+                    case 14 : return new clazz(args[0],args[1],args[2],args[3],args[4],args[5],args[6],args[7],args[8],args[9],args[10],args[11],args[12],args[13]) ; break ;
+                    case 15 : return new clazz(args[0],args[1],args[2],args[3],args[4],args[5],args[6],args[7],args[8],args[9],args[10],args[11],args[12],args[13],args[14]) ; break ;
+                    case 16 : return new clazz(args[0],args[1],args[2],args[3],args[4],args[5],args[6],args[7],args[8],args[9],args[10],args[11],args[12],args[13],args[14],args[15]) ; break ;
+                    case 17 : return new clazz(args[0],args[1],args[2],args[3],args[4],args[5],args[6],args[7],args[8],args[9],args[10],args[11],args[12],args[13],args[14],args[15],args[16]) ; break ;
+                    case 18 : return new clazz(args[0],args[1],args[2],args[3],args[4],args[5],args[6],args[7],args[8],args[9],args[10],args[11],args[12],args[13],args[14],args[15],args[16],args[17]) ; break ;
+                    case 19 : return new clazz(args[0],args[1],args[2],args[3],args[4],args[5],args[6],args[7],args[8],args[9],args[10],args[11],args[12],args[13],args[14],args[15],args[16],args[17],args[18]) ; break ;
+                    case 20 : return new clazz(args[0],args[1],args[2],args[3],args[4],args[5],args[6],args[7],args[8],args[9],args[10],args[11],args[12],args[13],args[14],args[15],args[16],args[17],args[18],args[19]) ; break ;
+                    case 21 : return new clazz(args[0],args[1],args[2],args[3],args[4],args[5],args[6],args[7],args[8],args[9],args[10],args[11],args[12],args[13],args[14],args[15],args[16],args[17],args[18],args[19],args[20]) ; break ;
+                    case 22 : return new clazz(args[0],args[1],args[2],args[3],args[4],args[5],args[6],args[7],args[8],args[9],args[10],args[11],args[12],args[13],args[14],args[15],args[16],args[17],args[18],args[19],args[20],args[21]) ; break ;
+                    case 23 : return new clazz(args[0],args[1],args[2],args[3],args[4],args[5],args[6],args[7],args[8],args[9],args[10],args[11],args[12],args[13],args[14],args[15],args[16],args[17],args[18],args[19],args[20],args[21],args[22]) ; break ;
+                    case 24 : return new clazz(args[0],args[1],args[2],args[3],args[4],args[5],args[6],args[7],args[8],args[9],args[10],args[11],args[12],args[13],args[14],args[15],args[16],args[17],args[18],args[19],args[20],args[21],args[22],args[23]) ; break ;
+                    case 25 : return new clazz(args[0],args[1],args[2],args[3],args[4],args[5],args[6],args[7],args[8],args[9],args[10],args[11],args[12],args[13],args[14],args[15],args[16],args[17],args[18],args[19],args[20],args[21],args[22],args[23],args[24]) ; break ;
+                    case 26 : return new clazz(args[0],args[1],args[2],args[3],args[4],args[5],args[6],args[7],args[8],args[9],args[10],args[11],args[12],args[13],args[14],args[15],args[16],args[17],args[18],args[19],args[20],args[21],args[22],args[23],args[24],args[25]) ; break ;
+                    case 27 : return new clazz(args[0],args[1],args[2],args[3],args[4],args[5],args[6],args[7],args[8],args[9],args[10],args[11],args[12],args[13],args[14],args[15],args[16],args[17],args[18],args[19],args[20],args[21],args[22],args[23],args[24],args[25],args[26]) ; break ;
+                    case 28 : return new clazz(args[0],args[1],args[2],args[3],args[4],args[5],args[6],args[7],args[8],args[9],args[10],args[11],args[12],args[13],args[14],args[15],args[16],args[17],args[18],args[19],args[20],args[21],args[22],args[23],args[24],args[25],args[26],args[27]) ; break ;
+                    case 29 : return new clazz(args[0],args[1],args[2],args[3],args[4],args[5],args[6],args[7],args[8],args[9],args[10],args[11],args[12],args[13],args[14],args[15],args[16],args[17],args[18],args[19],args[20],args[21],args[22],args[23],args[24],args[25],args[26],args[27],args[28]) ; break ;
+                    case 30 : return new clazz(args[0],args[1],args[2],args[3],args[4],args[5],args[6],args[7],args[8],args[9],args[10],args[11],args[12],args[13],args[14],args[15],args[16],args[17],args[18],args[19],args[20],args[21],args[22],args[23],args[24],args[25],args[26],args[27],args[28],args[29]) ; break ;
+                    case 31 : return new clazz(args[0],args[1],args[2],args[3],args[4],args[5],args[6],args[7],args[8],args[9],args[10],args[11],args[12],args[13],args[14],args[15],args[16],args[17],args[18],args[19],args[20],args[21],args[22],args[23],args[24],args[25],args[26],args[27],args[28],args[29],args[30]) ; break ;
+                    case 32 : return new clazz(args[0],args[1],args[2],args[3],args[4],args[5],args[6],args[7],args[8],args[9],args[10],args[11],args[12],args[13],args[14],args[15],args[16],args[17],args[18],args[19],args[20],args[21],args[22],args[23],args[24],args[25],args[26],args[27],args[28],args[29],args[30],args[31]) ; break ;
+                    default :
+                    {
+                        throw new ArgumentError( "ClassUtil.buildNewInstance() method failed : arguments limit exceeded, you can pass a maximum of 32 arguments.") ; 
+                    }
+                }
+            }
+            else
+            {
+                return new clazz() ;
+            }
 	    }
-		
+        
 		/**
 		 * Creates an instance with the passed-in Class.
 		 * @param c the class to instanciate.
@@ -101,47 +176,6 @@ package vegas.util
 			
 			return name + count ;
 		}
-
-
-		/**
-		 * @private
-		 */
-		private static var _builders:Array =
-		[
-			function( clazz:Class  ):* { return new clazz() ; } ,
-			function( clazz:Class ,a01:* ):* { return new clazz(a01) ; } ,
-			function( clazz:Class ,a01:*,a02:* ):* { return new clazz(a01,a02) ; } ,
-			function( clazz:Class ,a01:*,a02:*,a03:* ):* { return new clazz(a01,a02,a03) ; } ,
-			function( clazz:Class ,a01:*,a02:*,a03:*,a04:* ):* { return new clazz(a01,a02,a03,a04) ; } ,
-			function( clazz:Class ,a01:*,a02:*,a03:*,a04:*,a05:* ):* { return new clazz(a01,a02,a03,a04,a05) ; } ,
-			function( clazz:Class ,a01:*,a02:*,a03:*,a04:*,a05:*,a06:* ):* { return new clazz(a01,a02,a03,a04,a05,a06) ; } ,
-			function( clazz:Class ,a01:*,a02:*,a03:*,a04:*,a05:*,a06:*,a07:* ):* { return new clazz(a01,a02,a03,a04,a05,a06,a07) ; } ,
-			function( clazz:Class ,a01:*,a02:*,a03:*,a04:*,a05:*,a06:*,a07:*,a08:* ):* { return new clazz(a01,a02,a03,a04,a05,a06,a07,a08) ; } ,
-			function( clazz:Class ,a01:*,a02:*,a03:*,a04:*,a05:*,a06:*,a07:*,a08:*,a09:* ):* { return new clazz(a01,a02,a03,a04,a05,a06,a07,a08,a09) ; } ,
-			function( clazz:Class ,a01:*,a02:*,a03:*,a04:*,a05:*,a06:*,a07:*,a08:*,a09:*,a10:*):* { return new clazz(a01,a02,a03,a04,a05,a06,a07,a08,a09,a10) ; } ,
-			function( clazz:Class ,a01:*,a02:*,a03:*,a04:*,a05:*,a06:*,a07:*,a08:*,a09:*,a10:*,a11:*):* { return new clazz(a01,a02,a03,a04,a05,a06,a07,a08,a09,a10,a11) ; } ,
-			function( clazz:Class ,a01:*,a02:*,a03:*,a04:*,a05:*,a06:*,a07:*,a08:*,a09:*,a10:*,a11:*,a12:*):* { return new clazz(a01,a02,a03,a04,a05,a06,a07,a08,a09,a10,a11,a12) ; } ,
-			function( clazz:Class ,a01:*,a02:*,a03:*,a04:*,a05:*,a06:*,a07:*,a08:*,a09:*,a10:*,a11:*,a12:*,a13:*):* { return new clazz(a01,a02,a03,a04,a05,a06,a07,a08,a09,a10,a11,a12,a13) ; } ,
-			function( clazz:Class ,a01:*,a02:*,a03:*,a04:*,a05:*,a06:*,a07:*,a08:*,a09:*,a10:*,a11:*,a12:*,a13:*,a14:*):* { return new clazz(a01,a02,a03,a04,a05,a06,a07,a08,a09,a10,a11,a12,a13,a14) ; } ,
-			function( clazz:Class ,a01:*,a02:*,a03:*,a04:*,a05:*,a06:*,a07:*,a08:*,a09:*,a10:*,a11:*,a12:*,a13:*,a14:*,a15:*):* { return new clazz(a01,a02,a03,a04,a05,a06,a07,a08,a09,a10,a11,a12,a13,a14,a15) ; } ,
-			function( clazz:Class ,a01:*,a02:*,a03:*,a04:*,a05:*,a06:*,a07:*,a08:*,a09:*,a10:*,a11:*,a12:*,a13:*,a14:*,a15:*,a16:*):* { return new clazz(a01,a02,a03,a04,a05,a06,a07,a08,a09,a10,a11,a12,a13,a14,a15,a16) ; } ,
-			function( clazz:Class ,a01:*,a02:*,a03:*,a04:*,a05:*,a06:*,a07:*,a08:*,a09:*,a10:*,a11:*,a12:*,a13:*,a14:*,a15:*,a16:*,a17:*):* { return new clazz(a01,a02,a03,a04,a05,a06,a07,a08,a09,a10,a11,a12,a13,a14,a15,a16,a17) ; } ,
-			function( clazz:Class ,a01:*,a02:*,a03:*,a04:*,a05:*,a06:*,a07:*,a08:*,a09:*,a10:*,a11:*,a12:*,a13:*,a14:*,a15:*,a16:*,a17:*,a18:*):* { return new clazz(a01,a02,a03,a04,a05,a06,a07,a08,a09,a10,a11,a12,a13,a14,a15,a16,a17,a18) ; } ,
-			function( clazz:Class ,a01:*,a02:*,a03:*,a04:*,a05:*,a06:*,a07:*,a08:*,a09:*,a10:*,a11:*,a12:*,a13:*,a14:*,a15:*,a16:*,a17:*,a18:*,a19:*):* { return new clazz(a01,a02,a03,a04,a05,a06,a07,a08,a09,a10,a11,a12,a13,a14,a15,a16,a17,a18,a19) ; } ,
-			function( clazz:Class ,a01:*,a02:*,a03:*,a04:*,a05:*,a06:*,a07:*,a08:*,a09:*,a10:*,a11:*,a12:*,a13:*,a14:*,a15:*,a16:*,a17:*,a18:*,a19:*,a20:*):* { return new clazz(a01,a02,a03,a04,a05,a06,a07,a08,a09,a10,a11,a12,a13,a14,a15,a16,a17,a18,a19,a20) ; } ,
-			function( clazz:Class ,a01:*,a02:*,a03:*,a04:*,a05:*,a06:*,a07:*,a08:*,a09:*,a10:*,a11:*,a12:*,a13:*,a14:*,a15:*,a16:*,a17:*,a18:*,a19:*,a20:*,a21:*):* { return new clazz(a01,a02,a03,a04,a05,a06,a07,a08,a09,a10,a11,a12,a13,a14,a15,a16,a17,a18,a19,a20,a21) ; } ,
-			function( clazz:Class ,a01:*,a02:*,a03:*,a04:*,a05:*,a06:*,a07:*,a08:*,a09:*,a10:*,a11:*,a12:*,a13:*,a14:*,a15:*,a16:*,a17:*,a18:*,a19:*,a20:*,a21:*,a22:*):* { return new clazz(a01,a02,a03,a04,a05,a06,a07,a08,a09,a10,a11,a12,a13,a14,a15,a16,a17,a18,a19,a20,a21,a22) ; } ,
-			function( clazz:Class ,a01:*,a02:*,a03:*,a04:*,a05:*,a06:*,a07:*,a08:*,a09:*,a10:*,a11:*,a12:*,a13:*,a14:*,a15:*,a16:*,a17:*,a18:*,a19:*,a20:*,a21:*,a22:*,a23:*):* { return new clazz(a01,a02,a03,a04,a05,a06,a07,a08,a09,a10,a11,a12,a13,a14,a15,a16,a17,a18,a19,a20,a21,a22,a23) ; } ,
-			function( clazz:Class ,a01:*,a02:*,a03:*,a04:*,a05:*,a06:*,a07:*,a08:*,a09:*,a10:*,a11:*,a12:*,a13:*,a14:*,a15:*,a16:*,a17:*,a18:*,a19:*,a20:*,a21:*,a22:*,a23:*,a24:*):* { return new clazz(a01,a02,a03,a04,a05,a06,a07,a08,a09,a10,a11,a12,a13,a14,a15,a16,a17,a18,a19,a20,a21,a22,a23,a24) ; } ,
-			function( clazz:Class ,a01:*,a02:*,a03:*,a04:*,a05:*,a06:*,a07:*,a08:*,a09:*,a10:*,a11:*,a12:*,a13:*,a14:*,a15:*,a16:*,a17:*,a18:*,a19:*,a20:*,a21:*,a22:*,a23:*,a24:*,a25:* ):* { return new clazz(a01,a02,a03,a04,a05,a06,a07,a08,a09,a10,a11,a12,a13,a14,a15,a16,a17,a18,a19,a20,a21,a22,a23,a24,a25) ; } ,
-			function( clazz:Class ,a01:*,a02:*,a03:*,a04:*,a05:*,a06:*,a07:*,a08:*,a09:*,a10:*,a11:*,a12:*,a13:*,a14:*,a15:*,a16:*,a17:*,a18:*,a19:*,a20:*,a21:*,a22:*,a23:*,a24:*,a25:*,a26:* ):* { return new clazz(a01,a02,a03,a04,a05,a06,a07,a08,a09,a10,a11,a12,a13,a14,a15,a16,a17,a18,a19,a20,a21,a22,a23,a24,a25,a26) ; } ,
-			function( clazz:Class ,a01:*,a02:*,a03:*,a04:*,a05:*,a06:*,a07:*,a08:*,a09:*,a10:*,a11:*,a12:*,a13:*,a14:*,a15:*,a16:*,a17:*,a18:*,a19:*,a20:*,a21:*,a22:*,a23:*,a24:*,a25:*,a26:*,a27:* ):* { return new clazz(a01,a02,a03,a04,a05,a06,a07,a08,a09,a10,a11,a12,a13,a14,a15,a16,a17,a18,a19,a20,a21,a22,a23,a24,a25,a26,a27) ; } ,
-			function( clazz:Class ,a01:*,a02:*,a03:*,a04:*,a05:*,a06:*,a07:*,a08:*,a09:*,a10:*,a11:*,a12:*,a13:*,a14:*,a15:*,a16:*,a17:*,a18:*,a19:*,a20:*,a21:*,a22:*,a23:*,a24:*,a25:*,a26:*,a27:*,a28:* ):* { return new clazz(a01,a02,a03,a04,a05,a06,a07,a08,a09,a10,a11,a12,a13,a14,a15,a16,a17,a18,a19,a20,a21,a22,a23,a24,a25,a26,a27,a28) ; } ,
-			function( clazz:Class ,a01:*,a02:*,a03:*,a04:*,a05:*,a06:*,a07:*,a08:*,a09:*,a10:*,a11:*,a12:*,a13:*,a14:*,a15:*,a16:*,a17:*,a18:*,a19:*,a20:*,a21:*,a22:*,a23:*,a24:*,a25:*,a26:*,a27:*,a28:*,a29:* ):* { return new clazz(a01,a02,a03,a04,a05,a06,a07,a08,a09,a10,a11,a12,a13,a14,a15,a16,a17,a18,a19,a20,a21,a22,a23,a24,a25,a26,a27,a28,a29) ; } ,
-			function( clazz:Class ,a01:*,a02:*,a03:*,a04:*,a05:*,a06:*,a07:*,a08:*,a09:*,a10:*,a11:*,a12:*,a13:*,a14:*,a15:*,a16:*,a17:*,a18:*,a19:*,a20:*,a21:*,a22:*,a23:*,a24:*,a25:*,a26:*,a27:*,a28:*,a29:*,a30:* ):* { return new clazz(a01,a02,a03,a04,a05,a06,a07,a08,a09,a10,a11,a12,a13,a14,a15,a16,a17,a18,a19,a20,a21,a22,a23,a24,a25,a26,a27,a28,a29,a30) ; } ,
-			function( clazz:Class ,a01:*,a02:*,a03:*,a04:*,a05:*,a06:*,a07:*,a08:*,a09:*,a10:*,a11:*,a12:*,a13:*,a14:*,a15:*,a16:*,a17:*,a18:*,a19:*,a20:*,a21:*,a22:*,a23:*,a24:*,a25:*,a26:*,a27:*,a28:*,a29:*,a30:*,a31:*):* { return new clazz(a01,a02,a03,a04,a05,a06,a07,a08,a09,a10,a11,a12,a13,a14,a15,a16,a17,a18,a19,a20,a21,a22,a23,a24,a25,a26,a27,a28,a29,a30,a31) ; } ,
-			function( clazz:Class ,a01:*,a02:*,a03:*,a04:*,a05:*,a06:*,a07:*,a08:*,a09:*,a10:*,a11:*,a12:*,a13:*,a14:*,a15:*,a16:*,a17:*,a18:*,a19:*,a20:*,a21:*,a22:*,a23:*,a24:*,a25:*,a26:*,a27:*,a28:*,a29:*,a30:*,a31:*,a32:*):* { return new clazz(a01,a02,a03,a04,a05,a06,a07,a08,a09,a10,a11,a12,a13,a14,a15,a16,a17,a18,a19,a20,a21,a22,a23,a24,a25,a26,a27,a28,a29,a30,a31,a32) ; } 			
-		] ;
-
-	}
+	}	
 }
+

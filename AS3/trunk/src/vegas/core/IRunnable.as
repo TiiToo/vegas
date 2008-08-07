@@ -34,7 +34,7 @@ package vegas.core
 	{
 	
 		/**
-		 * Run the command.
+		 * Run the process.
 		 */
 		function run( ...arguments:Array ):void ;
 	

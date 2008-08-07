@@ -27,6 +27,20 @@ package andromeda.process
     import vegas.events.CoreEventDispatcher;    
 
     /**
+     * Dispatched when a process is finished.
+     * @eventType andromeda.events.ActionEvent.FINISH
+     * @see #notifyFinished
+     */
+    [Event(name="onFinished", type="andromeda.events.ActionEvent")]
+    
+    /**
+     * Dispatched when a process is started.
+     * @eventType andromeda.events.ActionEvent.START
+     * @see #notifyStarted
+     */
+    [Event(name="onStarted", type="andromeda.events.ActionEvent")]
+
+    /**
      * A simple representation of the <code class="prettyprint">IAction</code> interface.
      * @author eKameleon
      */
@@ -41,7 +55,6 @@ package andromeda.process
         function SimpleAction( bGlobal:Boolean = false , sChannel:String = null ) 
         {
             super(bGlobal, sChannel);        
-            initEventType() ;
         }
 
         /**
@@ -61,25 +74,7 @@ package andromeda.process
         {
             return new SimpleAction() ;
         }
-
-        /**
-         * Returns the event name use in the notifyFinished method.
-         * @return the event name use in the notifyFinished method.
-         */
-        public function getEventTypeFINISH():String
-        {
-            return _sTypeFinish ;
-        }
-        
-        /**
-         * Returns the event name use in the notifyStarted method.
-         * @return the event name use in the notifyStarted method.
-         */
-        public function getEventTypeSTART():String
-        {
-            return _sTypeStart ;
-        }
-        
+                
         /**
          * Returns <code class="prettyprint">true</code> if the process is in progress.
          * @return <code class="prettyprint">true</code> if the process is in progress.
@@ -90,20 +85,11 @@ package andromeda.process
         }
         
         /**
-         * Initialize the internal events of this process.
-         */
-        public function initEventType():void
-        {
-            _sTypeFinish = ActionEvent.FINISH ;
-            _sTypeStart  = ActionEvent.START  ;
-        }
-        
-        /**
          * Notify an ActionEvent when the process is finished.
          */
         public function notifyFinished():void 
         {
-            dispatchEvent( new ActionEvent( _sTypeFinish , this ) ) ;
+            dispatchEvent( new ActionEvent( ActionEvent.FINISH , this ) ) ;
         }
 
         /**
@@ -111,11 +97,12 @@ package andromeda.process
          */
         public function notifyStarted():void
         {
-            dispatchEvent( new ActionEvent( _sTypeStart , this ) ) ;
+            dispatchEvent( new ActionEvent( ActionEvent.START , this ) ) ;
         }
         
         /**
          * Run the process.
+         * You can overrides this method in your iherited class. 
          */
         public function run( ...arguments:Array ):void 
         {
@@ -123,38 +110,12 @@ package andromeda.process
         }
 
         /**
-         * This protected method is an internal method to change the running property value.
+         * Changes the running property value.
          */
-        protected function setRunning(b:Boolean):void
+        protected function setRunning( b:Boolean ):void
         {
             _isRunning = b ;    
         }
-
-        /**
-         * Sets the event name use in the notifyFinished method.
-         */
-        public function setEventTypeFINISH( type:String ):void
-        {
-            _sTypeFinish = type || ActionEvent.FINISH ;
-        }
-        
-        /**
-         * Sets the event name use in the notifyStarted method.
-         */
-        public function setEventTypeSTART( type:String ):void
-        {
-            _sTypeStart = type || ActionEvent.START ;
-        }
-    
-        /**
-         * @private
-         */
-        private var _sTypeFinish:String ;
-
-        /**
-         * @private
-         */
-        private var _sTypeStart:String ;
 
         /**
          * @private

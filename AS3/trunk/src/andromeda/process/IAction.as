@@ -25,8 +25,22 @@ package andromeda.process
     import flash.events.IEventDispatcher;
     
     import vegas.core.ICloneable;
-    import vegas.core.IRunnable;
-
+    import vegas.core.IRunnable;    
+    
+    /**
+     * Dispatched when a process is finished.
+     * @eventType andromeda.events.ActionEvent.FINISH
+     * @see #notifyFinished
+     */
+    [Event(name="onFinished", type="andromeda.events.ActionEvent")]
+    
+    /**
+     * Dispatched when a process is started.
+     * @eventType andromeda.events.ActionEvent.START
+     * @see #notifyStarted
+     */
+    [Event(name="onStarted", type="andromeda.events.ActionEvent")]
+    
     /**
      * This interface represents a process object.
      * @author eKameleon

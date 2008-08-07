@@ -43,9 +43,9 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 </tr>
 </table>
 <p></p>
-    The VirtualConsole class emulate a console
-    with stdout, stderr and stdin streams.
-    <p></p>
+     The VirtualConsole class emulate a console
+     with stdout, stderr and stdin streams.
+     <p></p>
 <br>
 <hr>
 </div>
@@ -57,15 +57,18 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <th>&nbsp;</th><th colspan="2">Property</th><th class="summaryTableOwnerCol">Defined&nbsp;by</th>
 </tr>
 <tr class="">
-<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#stderr">stderr</a> : String<div class="summaryTableDescription"></div>
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#stderr">stderr</a> : String<div class="summaryTableDescription">
+         Standard error is another output stream typically used by programs to output error messages or diagnostics.</div>
 </td><td class="summaryTableOwnerCol">VirtualConsole</td>
 </tr>
 <tr class="">
-<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#stdin">stdin</a> : String<div class="summaryTableDescription"></div>
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#stdin">stdin</a> : String<div class="summaryTableDescription">
+         Standard input is data (often text) going into a program.</div>
 </td><td class="summaryTableOwnerCol">VirtualConsole</td>
 </tr>
 <tr class="">
-<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#stdout">stdout</a> : String<div class="summaryTableDescription"></div>
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#stdout">stdout</a> : String<div class="summaryTableDescription">
+         Standard output is the stream where a program writes its output data.</div>
 </td><td class="summaryTableOwnerCol">VirtualConsole</td>
 </tr>
 </table>
@@ -81,42 +84,48 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
 <div class="summarySignature">
 <a class="signatureLink" href="#VirtualConsole()">VirtualConsole</a>()</div>
-<div class="summaryTableDescription"></div>
+<div class="summaryTableDescription">
+         Creates a new VirtualConsole instance.</div>
 </td><td class="summaryTableOwnerCol">VirtualConsole</td>
 </tr>
 <tr class="">
 <td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
 <div class="summarySignature">
 <a class="signatureLink" href="#clear()">clear</a>():void</div>
-<div class="summaryTableDescription"></div>
+<div class="summaryTableDescription">
+         Clear all standard streams.</div>
 </td><td class="summaryTableOwnerCol">VirtualConsole</td>
 </tr>
 <tr class="">
 <td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
 <div class="summarySignature">
 <a class="signatureLink" href="#read()">read</a>():String</div>
-<div class="summaryTableDescription"></div>
+<div class="summaryTableDescription">
+         Returns the last char.</div>
 </td><td class="summaryTableOwnerCol">VirtualConsole</td>
 </tr>
 <tr class="">
 <td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
 <div class="summarySignature">
 <a class="signatureLink" href="#readLine()">readLine</a>():String</div>
-<div class="summaryTableDescription"></div>
+<div class="summaryTableDescription">
+         Returns the last line.</div>
 </td><td class="summaryTableOwnerCol">VirtualConsole</td>
 </tr>
 <tr class="">
 <td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
 <div class="summarySignature">
 <a class="signatureLink" href="#write()">write</a>(... messages):void</div>
-<div class="summaryTableDescription"></div>
+<div class="summaryTableDescription">
+         Appends the message format.</div>
 </td><td class="summaryTableOwnerCol">VirtualConsole</td>
 </tr>
 <tr class="">
 <td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
 <div class="summarySignature">
 <a class="signatureLink" href="#writeLine()">writeLine</a>(... messages):void</div>
-<div class="summaryTableDescription"></div>
+<div class="summaryTableDescription">
+         Appends the message format and add newline character.</div>
 </td><td class="summaryTableOwnerCol">VirtualConsole</td>
 </tr>
 </table>
@@ -135,7 +144,10 @@ showHideInherited();
 </tr>
 </table>
 <div class="detailBody">
-<code>stderr:String</code>&nbsp;&nbsp;[read-write]<span class="label">Implementation</span>
+<code>stderr:String</code>&nbsp;&nbsp;[read-write]<p>
+         Standard error is another output stream typically used by programs to output error messages or diagnostics. 
+         It is a stream independent of standard output and can be redirected separately.
+         </p><span class="label">Implementation</span>
 <br>
 <code>&nbsp;&nbsp;&nbsp;&nbsp;public function get stderr():String</code>
 <br>
@@ -149,7 +161,11 @@ showHideInherited();
 </tr>
 </table>
 <div class="detailBody">
-<code>stdin:String</code>&nbsp;&nbsp;[read-write]<span class="label">Implementation</span>
+<code>stdin:String</code>&nbsp;&nbsp;[read-write]<p>
+         Standard input is data (often text) going into a program. 
+         The program requests data transfers by use of the read operation.
+         Not all programs require input.
+         </p><span class="label">Implementation</span>
 <br>
 <code>&nbsp;&nbsp;&nbsp;&nbsp;public function get stdin():String</code>
 <br>
@@ -163,7 +179,11 @@ showHideInherited();
 </tr>
 </table>
 <div class="detailBody">
-<code>stdout:String</code>&nbsp;&nbsp;[read-write]<span class="label">Implementation</span>
+<code>stdout:String</code>&nbsp;&nbsp;[read-write]<p>
+         Standard output is the stream where a program writes its output data. 
+         The program requests data transfer with the write operation.
+         Not all programs generate output.
+         </p><span class="label">Implementation</span>
 <br>
 <code>&nbsp;&nbsp;&nbsp;&nbsp;public function get stdout():String</code>
 <br>
@@ -179,8 +199,9 @@ showHideInherited();
 </tr>
 </table>
 <div class="detailBody">
-<code>public function VirtualConsole()</code>
-</div>
+<code>public function VirtualConsole()</code><p>
+         Creates a new VirtualConsole instance.
+         </p></div>
 <a name="methodDetail"></a>
 <div class="detailSectionHeader">Method detail</div>
 <a name="clear()"></a>
@@ -190,8 +211,9 @@ showHideInherited();
 </tr>
 </table>
 <div class="detailBody">
-<code>public function clear():void</code>
-</div>
+<code>public function clear():void</code><p>
+         Clear all standard streams.
+         </p></div>
 <a name="read()"></a>
 <table cellspacing="0" cellpadding="0" class="detailHeader">
 <tr>
@@ -199,12 +221,14 @@ showHideInherited();
 </tr>
 </table>
 <div class="detailBody">
-<code>public function read():String</code>
-<p></p>
+<code>public function read():String</code><p>
+         Returns the last char.
+         </p><p></p>
 <span class="label">Returns</span>
 <table border="0" cellspacing="0" cellpadding="0">
 <tr>
-<td width="20"></td><td><code>String</code></td>
+<td width="20"></td><td><code>String</code> &mdash; the last char.
+         </td>
 </tr>
 </table>
 </div>
@@ -215,12 +239,14 @@ showHideInherited();
 </tr>
 </table>
 <div class="detailBody">
-<code>public function readLine():String</code>
-<p></p>
+<code>public function readLine():String</code><p>
+         Returns the last line.
+         </p><p></p>
 <span class="label">Returns</span>
 <table border="0" cellspacing="0" cellpadding="0">
 <tr>
-<td width="20"></td><td><code>String</code></td>
+<td width="20"></td><td><code>String</code> &mdash; the last line.
+         </td>
 </tr>
 </table>
 </div>
@@ -231,7 +257,9 @@ showHideInherited();
 </tr>
 </table>
 <div class="detailBody">
-<code>public function write(... messages):void</code><span class="label">Parameters</span>
+<code>public function write(... messages):void</code><p>
+         Appends the message format.
+         </p><span class="label">Parameters</span>
 <table border="0" cellspacing="0" cellpadding="0">
 <tr>
 <td width="20px"></td><td><code>... <span class="label">messages</span></code></td>
@@ -245,7 +273,9 @@ showHideInherited();
 </tr>
 </table>
 <div class="detailBody">
-<code>public function writeLine(... messages):void</code><span class="label">Parameters</span>
+<code>public function writeLine(... messages):void</code><p>
+         Appends the message format and add newline character.
+         </p><span class="label">Parameters</span>
 <table border="0" cellspacing="0" cellpadding="0">
 <tr>
 <td width="20px"></td><td><code>... <span class="label">messages</span></code></td>

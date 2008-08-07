@@ -20,7 +20,7 @@
 <td align="left" class="titleTableTitle">VEGAS AS3 Reference</td><td align="right" class="titleTableTopNav"><a onclick="loadClassListFrame('../../all-classes.html')" href="../../package-summary.html">All&nbsp;Packages</a>&nbsp;|&nbsp;<a onclick="loadClassListFrame('../../all-classes.html')" href="../../class-summary.html">All&nbsp;Classes</a>&nbsp;|&nbsp;<a onclick="loadClassListFrame('../../index-list.html')" href="../../all-index-A.html">Index</a>&nbsp;|&nbsp;<a href="../../index.html?andromeda/process/Pause.html&amp;andromeda/process/class-list.html" id="framesLink1">Frames</a><a onclick="parent.location=document.location" href="" style="display:none" id="noFramesLink1">No&nbsp;Frames</a></td><td rowspan="3" align="right" class="titleTableLogo"><img alt="Adobe Logo" title="Adobe Logo" class="logoImage" src="../../images/logo.jpg"></td>
 </tr>
 <tr class="titleTableRow2">
-<td align="left" id="subTitle" class="titleTableSubTitle">Class&nbsp;Pause</td><td align="right" id="subNav" class="titleTableSubNav"><a href="#propertySummary">Properties</a>&nbsp;| <a href="#methodSummary">Methods</a></td>
+<td align="left" id="subTitle" class="titleTableSubTitle">Class&nbsp;Pause</td><td align="right" id="subNav" class="titleTableSubNav"><a href="#propertySummary">Properties</a>&nbsp;| <a href="#methodSummary">Methods</a>&nbsp;| <a href="#eventSummary">Events</a></td>
 </tr>
 <tr class="titleTableRow3">
 <td colspan="2">&nbsp;</td>
@@ -28,7 +28,7 @@
 </table>
 <script type="text/javascript" language="javascript">
 <!--
-if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Class Pause"); titleBar_setSubNav(false,true,false,false,false,false,true,false,false,false,false,false,false,false);}
+if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Class Pause"); titleBar_setSubNav(false,true,false,false,true,false,true,false,false,false,false,false,false,false);}
 --></script>
 <div class="MainContent">
 <table cellspacing="0" cellpadding="0" class="classHeaderTable">
@@ -47,18 +47,22 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 </table>
 <p></p>
      This <code class="prettyprint">IAction</code> object create a pause in the process.
-     <p></p>
-<br>
-<span class="label">Example</span>
-<br>     <pre class="prettyprint">
-     var handleEvent:Function = function( ...args:Array ) :void
+     <p><b>Example :</b></p>
+     <pre class="prettyprint">
+     import andromeda.events.ActionEvent ;
+     
+     var handleEvent:Function = function( e:ActionEvent ) :void
      {
          trace( this + " " + args) ;
      }
+     
      var p:Pause = new Pause(10, true) ;
+     
      p.duration = 2 ;
+     
      p.addEventListener( ActionEvent.START  , handleEvent ) ;
      p.addEventListener( ActionEvent.FINISH , handleEvent ) ;
+     
      p.run() ;
      </pre>
      <p></p>
@@ -87,12 +91,12 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 </tr>
 <tr class="">
 <td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#delay">delay</a> : Number<div class="summaryTableDescription">[read-only]
-         (read-only) Returns the delay of the pause in ms.</div>
+         Indicates the delay of the pause in ms.</div>
 </td><td class="summaryTableOwnerCol">Pause</td>
 </tr>
 <tr class="">
 <td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#duration">duration</a> : uint<div class="summaryTableDescription">
-         (read-write) Returns the duration of the process.</div>
+         Indicates the duration of the process.</div>
 </td><td class="summaryTableOwnerCol">Pause</td>
 </tr>
 <tr class="hideInheritedProperty">
@@ -112,7 +116,7 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 </tr>
 <tr class="">
 <td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#useSeconds">useSeconds</a> : Boolean<div class="summaryTableDescription">
-         (read-write) Indicates if the process use seconds or not.</div>
+         Indicates if the pause use seconds or not.</div>
 </td><td class="summaryTableOwnerCol">Pause</td>
 </tr>
 </table>
@@ -192,14 +196,6 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <tr class="hideInheritedMethod">
 <td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol">
 <div class="summarySignature">
-<a class="signatureLink" href="SimpleAction.html#getEventTypeFINISH()">getEventTypeFINISH</a>():String</div>
-<div class="summaryTableDescription">
-         Returns the event name use in the notifyFinished method.</div>
-</td><td class="summaryTableOwnerCol"><a href="SimpleAction.html">SimpleAction</a></td>
-</tr>
-<tr class="hideInheritedMethod">
-<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol">
-<div class="summarySignature">
 <a class="signatureLink" href="Action.html#getEventTypeINFO()">getEventTypeINFO</a>():String</div>
 <div class="summaryTableDescription">
          Returns the event name use in the notifyInfo method.</div>
@@ -228,14 +224,6 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <div class="summaryTableDescription">
          Returns the event name use in the notifyResumed method.</div>
 </td><td class="summaryTableOwnerCol"><a href="Action.html">Action</a></td>
-</tr>
-<tr class="hideInheritedMethod">
-<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol">
-<div class="summarySignature">
-<a class="signatureLink" href="SimpleAction.html#getEventTypeSTART()">getEventTypeSTART</a>():String</div>
-<div class="summaryTableDescription">
-         Returns the event name use in the notifyStarted method.</div>
-</td><td class="summaryTableOwnerCol"><a href="SimpleAction.html">SimpleAction</a></td>
 </tr>
 <tr class="hideInheritedMethod">
 <td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol">
@@ -394,14 +382,6 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <tr class="hideInheritedMethod">
 <td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol">
 <div class="summarySignature">
-<a class="signatureLink" href="SimpleAction.html#setEventTypeFINISH()">setEventTypeFINISH</a>(type:String):void</div>
-<div class="summaryTableDescription">
-         Sets the event name use in the notifyFinished method.</div>
-</td><td class="summaryTableOwnerCol"><a href="SimpleAction.html">SimpleAction</a></td>
-</tr>
-<tr class="hideInheritedMethod">
-<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol">
-<div class="summarySignature">
 <a class="signatureLink" href="Action.html#setEventTypeINFO()">setEventTypeINFO</a>(type:String):void</div>
 <div class="summaryTableDescription">
          Sets the event name use in the notifyInfo method.</div>
@@ -430,14 +410,6 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <div class="summaryTableDescription">
          Sets the event name use in the notifyResumed method.</div>
 </td><td class="summaryTableOwnerCol"><a href="Action.html">Action</a></td>
-</tr>
-<tr class="hideInheritedMethod">
-<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol">
-<div class="summarySignature">
-<a class="signatureLink" href="SimpleAction.html#setEventTypeSTART()">setEventTypeSTART</a>(type:String):void</div>
-<div class="summaryTableDescription">
-         Sets the event name use in the notifyStarted method.</div>
-</td><td class="summaryTableOwnerCol"><a href="SimpleAction.html">SimpleAction</a></td>
 </tr>
 <tr class="hideInheritedMethod">
 <td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol">
@@ -613,8 +585,105 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <div class="summarySignature">
 <a class="signatureLink" href="SimpleAction.html#setRunning()">setRunning</a>(b:Boolean):void</div>
 <div class="summaryTableDescription">
-         This protected method is an internal method to change the running property value.</div>
+         Changes the running property value.</div>
 </td><td class="summaryTableOwnerCol"><a href="SimpleAction.html">SimpleAction</a></td>
+</tr>
+</table>
+</div>
+<a name="eventSummary"></a>
+<div class="summarySection">
+<div class="summaryTableTitle">Events</div>
+<div class="showHideLinks">
+<div class="hideInheritedEvent" id="hideInheritedEvent">
+<a onclick="javascript:setInheritedVisible(false,'Event');" href="#eventSummary" class="showHideLink"><img src="../../images/expanded.gif" class="showHideLinkImage"> Hide Inherited Events</a>
+</div>
+<div class="showInheritedEvent" id="showInheritedEvent">
+<a onclick="javascript:setInheritedVisible(true,'Event');" href="#eventSummary" class="showHideLink"><img src="../../images/collapsed.gif" class="showHideLinkImage"> Show Inherited Events</a>
+</div>
+</div>
+<table id="summaryTableEvent" class="summaryTable hideInheritedEvent" cellpadding="3" cellspacing="0">
+<tr>
+<th>&nbsp;</th><th colspan="2">Event</th><th>Summary</th><th class="summaryTableOwnerCol">Defined&nbsp;by</th>
+</tr>
+<tr class="hideInheritedEvent">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="Action.html#event:onChanged">onChanged</a>
+</div>
+</td><td class="summaryTableDescription summaryTableCol">
+     Dispatched when a process is changed.</td><td class="summaryTableOwnerCol"><a href="Action.html">Action</a></td>
+</tr>
+<tr class="hideInheritedEvent">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="Action.html#event:onCleared">onCleared</a>
+</div>
+</td><td class="summaryTableDescription summaryTableCol">
+     Dispatched when a process is cleared.</td><td class="summaryTableOwnerCol"><a href="Action.html">Action</a></td>
+</tr>
+<tr class="hideInheritedEvent">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="SimpleAction.html#event:onFinished">onFinished</a>
+</div>
+</td><td class="summaryTableDescription summaryTableCol">
+     Dispatched when a process is finished.</td><td class="summaryTableOwnerCol"><a href="SimpleAction.html">SimpleAction</a></td>
+</tr>
+<tr class="hideInheritedEvent">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="Action.html#event:onInfo">onInfo</a>
+</div>
+</td><td class="summaryTableDescription summaryTableCol">
+     Dispatched when an info process is running.</td><td class="summaryTableOwnerCol"><a href="Action.html">Action</a></td>
+</tr>
+<tr class="hideInheritedEvent">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="Action.html#event:onLooped">onLooped</a>
+</div>
+</td><td class="summaryTableDescription summaryTableCol">
+     Dispatched when a process is looped.</td><td class="summaryTableOwnerCol"><a href="Action.html">Action</a></td>
+</tr>
+<tr class="hideInheritedEvent">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="Action.html#event:onPaused">onPaused</a>
+</div>
+</td><td class="summaryTableDescription summaryTableCol">
+     Dispatched when a process is paused.</td><td class="summaryTableOwnerCol"><a href="Action.html">Action</a></td>
+</tr>
+<tr class="hideInheritedEvent">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="Action.html#event:onProgress">onProgress</a>
+</div>
+</td><td class="summaryTableDescription summaryTableCol">
+     Dispatched when a process is in progress.</td><td class="summaryTableOwnerCol"><a href="Action.html">Action</a></td>
+</tr>
+<tr class="hideInheritedEvent">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="Action.html#event:onResumed">onResumed</a>
+</div>
+</td><td class="summaryTableDescription summaryTableCol">
+     Dispatched when a process is resumed.</td><td class="summaryTableOwnerCol"><a href="Action.html">Action</a></td>
+</tr>
+<tr class="hideInheritedEvent">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="SimpleAction.html#event:onStarted">onStarted</a>
+</div>
+</td><td class="summaryTableDescription summaryTableCol">
+     Dispatched when a process is started.</td><td class="summaryTableOwnerCol"><a href="SimpleAction.html">SimpleAction</a></td>
+</tr>
+<tr class="hideInheritedEvent">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="Action.html#event:onStopped">onStopped</a>
+</div>
+</td><td class="summaryTableDescription summaryTableCol">
+     Dispatched when a process is stopped.</td><td class="summaryTableOwnerCol"><a href="Action.html">Action</a></td>
 </tr>
 </table>
 </div>
@@ -633,11 +702,17 @@ showHideInherited();
 </table>
 <div class="detailBody">
 <code>delay:Number</code>&nbsp;&nbsp;[read-only]<p>
-         (read-only) Returns the delay of the pause in ms. This property use the duration and useSeconds properties to defined the delay.
+         Indicates the delay of the pause in ms. This property use the duration and useSeconds properties to defined the delay.
          </p><span class="label">Implementation</span>
 <br>
 <code>&nbsp;&nbsp;&nbsp;&nbsp;public function get delay():Number</code>
 <br>
+<p>
+<span class="label">See also</span>
+</p>
+<div class="seeAlso">
+<a href="../process/Pause.html#duration" target="">duration</a>
+</div>
 </div>
 <a name="duration"></a>
 <table cellspacing="0" cellpadding="0" class="detailHeader">
@@ -647,7 +722,7 @@ showHideInherited();
 </table>
 <div class="detailBody">
 <code>duration:uint</code>&nbsp;&nbsp;[read-write]<p>
-         (read-write) Returns the duration of the process.
+         Indicates the duration of the process.
          </p><span class="label">Implementation</span>
 <br>
 <code>&nbsp;&nbsp;&nbsp;&nbsp;public function get duration():uint</code>
@@ -663,7 +738,7 @@ showHideInherited();
 </table>
 <div class="detailBody">
 <code>useSeconds:Boolean</code>&nbsp;&nbsp;[read-write]<p>
-         (read-write) Indicates if the process use seconds or not.
+         Indicates if the pause use seconds or not.
          </p><span class="label">Implementation</span>
 <br>
 <code>&nbsp;&nbsp;&nbsp;&nbsp;public function get useSeconds():Boolean</code>

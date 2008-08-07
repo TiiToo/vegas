@@ -94,7 +94,49 @@ showHideInherited();
 <div class="detailBody">
 <code>public static function buildNewInstance(clazz:Class, args:Array = null):*</code><p>
          Wrapping method which select which build method use according to the argument count (32 max).
-         </p><span class="label">Parameters</span>
+         </p><p><b>Example :</b></p>
+         <pre class="prettyprint">
+         import system.Arrays ;
+         
+         import vegas.util.ClassUtil ;
+         
+         Array.prototype.toString = function():String
+         {
+             return "[" + this.join(",") + "]" ;
+         }
+         
+         var ar:Array
+         
+         // test with no argument
+         ar = ClassUtil.buildNewInstance( Array , [] ) ;
+         trace( ar ) ;
+         //output: []
+         
+         // test with 0 arguments
+         ar = ClassUtil.buildNewInstance( Array , [] ) ;
+         trace( ar ) ;
+         //output: []
+         
+         // test with 2 arguments
+         ar = ClassUtil.buildNewInstance( Array , Arrays.initialize(2,0) ) ;
+         trace( ar ) ;
+         //output: [0,0]
+         
+         // test with 32 arguments
+         ar = ClassUtil.buildNewInstance( Array , Arrays.initialize(32,0) ) ;
+         trace( ar ) ;
+         //output: [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+         
+         // test with 33 arguments
+         ar = ClassUtil.buildNewInstance( Array , Arrays.initialize(33,0) ) ;
+         trace( ar ) ;
+         
+         //output:
+         // ArgumentError: ClassUtil.buildNewInstance() method failed : arguments limit exceeded, you can pass a maximum of 32 arguments.
+         //  at vegas.util::ClassUtil$/buildNewInstance()
+         //  at ClassUtil_fla::MainTimeline/ClassUtil_fla::frame1()
+         </pre>
+         <span class="label">Parameters</span>
 <table border="0" cellspacing="0" cellpadding="0">
 <tr>
 <td width="20px"></td><td><code><span class="label">clazz</span>:Class</code> &mdash; The Class of the instance to build.

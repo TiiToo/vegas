@@ -34,7 +34,7 @@ package andromeda.events
     {
         
         /**
-         * Creates a new BasicEvent instance.
+         * Creates a new ActionEvent instance.
          * @param type the string type of the instance. 
          * @param target the target of the event.
          * @param info The information object of this event.
@@ -51,57 +51,68 @@ package andromeda.events
         
         /**
          * The name of the event when the process is changed.
+         * @eventType onChanged
          */
         public static const CHANGE:String = "onChanged" ;
 
         /**
          * The name of the event when the process is cleared.
+         * @eventType onCleared
          */
         public static const CLEAR:String = "onCleared" ;
         
         /**
          * The name of the event when the process is finished.
+         * @eventType onFinished
          */
         public static const FINISH:String = "onFinished" ;
 
         /**
          * The name of the event when the process info is changed.
+         * @eventType onChanged
          */
         public static const INFO:String = "onInfo" ;
 
         /**
          * The name of the event when the process is looped.
+         * @eventType onLooped
          */
         public static const LOOP:String = "onLooped" ;
 
         /**
          * The name of the event when the process is in pause.
+         * @eventType onPaused
          */
         public static const PAUSE:String = "onPaused" ;
 
         /**
          * The name of the event when the process is in progress.
+         * @eventType onProgress
          */
         public static const PROGRESS:String = "onProgress" ;
 
         /**
          * The name of the event when the process is resumed.
+         * @eventType onResumed
          */
         public static const RESUME:String = "onResumed" ;
 
         /**
          * The name of the event when the process is started.
-         */        
+         * @eventType onStarted
+         */         
         public static const START:String = "onStarted" ;
 
         /**
          * The name of the event when the process is stopped.
+         * @eventType onStopped
          */        
         public static const STOP:String = "onStopped" ;    
 
         /**
          * The name of the event when the process is cleared.
-         */        
+         * @eventType onTimeOut
+         */       
         public static const TIMEOUT:String = "onTimeOut" ;
         
         /**

@@ -52,7 +52,8 @@ package andromeda.events
     
         /**
          * The name of the event when the localization is changed.
-         */
+         * @eventType change
+         */  
         public static var CHANGE:String = Event.CHANGE  ;
         
         /**
@@ -70,10 +71,9 @@ package andromeda.events
         }
     
         /**
-         * Returns the current Lang of the Localization singleton.
-         * @return the current Lang of the Localization singleton.
+         * Indicates the current Lang value of the internal Localization.
          */
-        public function getCurrent():Lang
+        public function get current():Lang
         {
             var localization:Localization = target as Localization ;
             return ( localization != null ) ? ( target as Localization ).current : null ;
