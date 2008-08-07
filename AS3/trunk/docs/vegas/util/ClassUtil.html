@@ -5,7 +5,7 @@
 <link rel="stylesheet" href="../../style.css" type="text/css" media="screen">
 <link rel="stylesheet" href="../../print.css" type="text/css" media="print">
 <link rel="stylesheet" href="../../prettify.css" type="text/css">
-<meta content="ClassUtil,vegas.util.ClassUtil,buildNewInstance,createNewInstance,getUniqueName" name="keywords">
+<meta content="ClassUtil,vegas.util.ClassUtil,buildNewInstance,getUniqueName" name="keywords">
 <title>vegas.util.ClassUtil</title>
 </head>
 <body>
@@ -63,15 +63,7 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <tr class="">
 <td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
 <div class="summarySignature">
-<a class="signatureLink" href="#createNewInstance()">createNewInstance</a>(clazz:Class = null, initProperties:Object = null, args:Array = null):*</div>
-<div class="summaryTableDescription">[static]
-         Creates an instance with the passed-in Class.</div>
-</td><td class="summaryTableOwnerCol">ClassUtil</td>
-</tr>
-<tr class="">
-<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
-<div class="summarySignature">
-<a class="signatureLink" href="#getUniqueName()">getUniqueName</a>(instance:*):String</div>
+<a class="signatureLink" href="#getUniqueName()">getUniqueName</a>(o:*, isFull:Boolean = false):String</div>
 <div class="summaryTableDescription">[static]
          Returns the unique name of the specified instance in argument.</div>
 </td><td class="summaryTableOwnerCol">ClassUtil</td>
@@ -156,44 +148,6 @@ showHideInherited();
 </tr>
 </table>
 </div>
-<a name="createNewInstance()"></a>
-<table cellspacing="0" cellpadding="0" class="detailHeader">
-<tr>
-<td class="detailHeaderName">createNewInstance</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
-</tr>
-</table>
-<div class="detailBody">
-<code>public static function createNewInstance(clazz:Class = null, initProperties:Object = null, args:Array = null):*</code><p>
-         Creates an instance with the passed-in Class.
-         </p><span class="label">Parameters</span>
-<table border="0" cellspacing="0" cellpadding="0">
-<tr>
-<td width="20px"></td><td><code><span class="label">clazz</span>:Class</code> (default = <code>null</code>)<code></code> &mdash; the class to instanciate.
-         </td>
-</tr>
-<tr>
-<td class="paramSpacer">&nbsp;</td>
-</tr>
-<tr>
-<td width="20px"></td><td><code><span class="label">initProperties</span>:Object</code> (default = <code>null</code>)<code></code> &mdash; An object with all properties to to pass over the new instance.
-         </td>
-</tr>
-<tr>
-<td class="paramSpacer">&nbsp;</td>
-</tr>
-<tr>
-<td width="20px"></td><td><code><span class="label">args</span>:Array</code> (default = <code>null</code>)<code></code></td>
-</tr>
-</table>
-<p></p>
-<span class="label">Returns</span>
-<table border="0" cellspacing="0" cellpadding="0">
-<tr>
-<td width="20"></td><td><code>*</code> &mdash; a new instance of the specified Class in argument.
-         </td>
-</tr>
-</table>
-</div>
 <a name="getUniqueName()"></a>
 <table cellspacing="0" cellpadding="0" class="detailHeader">
 <tr>
@@ -201,12 +155,28 @@ showHideInherited();
 </tr>
 </table>
 <div class="detailBody">
-<code>public static function getUniqueName(instance:*):String</code><p>
+<code>public static function getUniqueName(o:*, isFull:Boolean = false):String</code><p>
          Returns the unique name of the specified instance in argument.
-         </p><span class="label">Parameters</span>
+         </p><p><b>Example :</b></p>
+         <pre class="prettyprint">
+         import flash.display.Sprite ;
+         
+         trace( ClassUtil.getUniqueName( new Sprite()  ) ) ; // Sprite0
+         trace( ClassUtil.getUniqueName( new Sprite()  ) ) ; // Sprite1
+         
+         trace( ClassUtil.getUniqueName( new Sprite() , true ) ) ; // flash.display.Sprite0
+         trace( ClassUtil.getUniqueName( new Sprite() , true ) ) ; // flash.display.Sprite1
+         </pre>
+         <span class="label">Parameters</span>
 <table border="0" cellspacing="0" cellpadding="0">
 <tr>
-<td width="20px"></td><td><code><span class="label">instance</span>:*</code></td>
+<td width="20px"></td><td><code><span class="label">o</span>:*</code></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><code><span class="label">isFull</span>:Boolean</code> (default = <code>false</code>)<code></code></td>
 </tr>
 </table>
 <p></p>
