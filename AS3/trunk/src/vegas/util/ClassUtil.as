@@ -80,10 +80,10 @@ package vegas.util
          */
         public static function buildNewInstance( clazz:Class, args:Array=null ):*
         {
-        	var c:Class = clazz ;
+            var c:Class = clazz ;
             if ( args != null && args.length > 0 )
             {
-            	var a:Array = args ;
+                var a:Array = args ;
                 switch( a.length )
                 {
                     case  1 : return new c(a[0]) ;
@@ -154,11 +154,11 @@ package vegas.util
             }
             if ( _clazzBuffer[name] == null )
             {
-                _clazzBuffer[name] = 0 ;	
+                _clazzBuffer[name] = 0 ;    
             }
             else
             {
-            	_clazzBuffer[name] ++ ;
+                _clazzBuffer[name] ++ ;
             }
             return name + _clazzBuffer[name] ;
         }
