@@ -51,22 +51,18 @@ package system
         private static function _evaluate( value:String ):Object
             {
             	
-            // TODO: there are no test for }...$ sequence so yeah it's weak and yeah you could break 
-            // it with something like ${{a:1,b:"}",c:"$"}}$
-            	
-            var obj:Object  = 
-            {
-               format  : "" ,
-               indexes : []
-            };
+            var obj:Object  = {};
+                obj.format  = "";
+                obj.indexes = [];
             
             var defaultEvaluator:Evaluable = new EdenEvaluator();
             
-            var evaluators:Array = [];
+            var evaluators:Array    = [] ;
 
-            var evalSequence:String = "";
-            var evalString:String   = "";
-            var inBetween:String    = "";
+            var evalSequence:String = "" ;
+            var evalString:String   = "" ;
+            var inBetween:String    = "" ;
+            
             var pos1:int;
             var pos2:int;
             var lpos:int;
@@ -122,7 +118,7 @@ package system
                             /* TODO:
                                throw an error here ?
                             */
-                            trace( "## Warning: \"" +evaluatorsAlias[i]+ "\" is not a valid evaluator ##"  );
+                            trace( "## Warning: \""  + evaluatorsAlias[i] + "\" is not a valid evaluator ##"  );
                             }
                         }
                     
@@ -274,8 +270,8 @@ package system
                 return true;
                 }
             var test:Array = str.split( "" );
-            var len:uint   = test.length ;
-            for( var i:uint = 0; i<len; i++ )
+            var len:int    = test.length ;
+            for( var i:int = 0; i<len; i++ )
                 {
                 if( !_isValidChar( test[i] ) )
                     {

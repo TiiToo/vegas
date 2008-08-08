@@ -16,7 +16,8 @@
   the Initial Developer. All Rights Reserved.
   
   Contributor(s):
-  Marc Alcaraz <ekameleon@gmail.com>.
+  
+    - Marc Alcaraz <ekameleon@gmail.com>
 
 */
 
@@ -63,7 +64,7 @@ package system
          * @return a new Array with an arbitrary number of elements (index), 
          * with every element containing the passed parameter value or by default the null value.
          */
-        public static function initialize( elements:int = 0, value:* = null ):Array
+        public static function initialize( elements:uint = 0, value:* = null ):Array
             {
             var arr:Array = [];
             for( var i:int = 0; i < elements ; i++ )

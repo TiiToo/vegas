@@ -25,91 +25,110 @@ package system
     import flash.system.Capabilities;    
 
     /**
-	 * This class defines the environment of the client application.
-	 */
+     * This class defines the environment of the client application.
+     */
     public class Environment
         {
         
-		///**
-		// * @private
-		// */
+        ///**
+        // * @private
+        // */
         // private static var _hostid:HostID      = _getHostID();
         
-		/**
-		 * @private
-		 */
+        /**
+         * @private
+         */
         private static var _host:Host          = null;
         
-		/**
-		 * @private
-		 */
+        /**
+         * @private
+         */
         private static var _os:OperatingSystem = null;
         
-		/**
-		 * @private
-		 */
+        /**
+         * @private
+         */
         private static function _getHostID():HostID
             {
             var runtime:String = Capabilities.playerType;
             
             switch( runtime )
                 {
-                case "ActiveX":
-                case "External":
-                case "PlugIn":
-                case "StandAlone":
-                return HostID.Flash;
-                
+                case "ActiveX"    :
+                case "External"   :
+                case "PlugIn"     :
+                case "StandAlone" :
+                    {
+                    return HostID.Flash ;
+                    }
                 case "Desktop":
-                return HostID.Air;
-                
+                    {
+                    return HostID.Air ;
+                    }
                 default:
-                return HostID.Unknown;
+                    {
+                    return HostID.Unknown ;
+                    }
                 }
             }
 
-		/**
-		 * @private
-		 */
+        /**
+         * @private
+         */
         private static function _getPlatformID():PlatformID
             {
             var platform:String = Capabilities.os;
             
             switch( platform )
                 {
-                case "Windows 95":
-                case "Windows 98/ME":
-                case "Windows NT":
-                case "Windows 2000":
-                case "Windows XP":
-                case "Windows CE":
-                case "win32":
-                return PlatformID.Windows;
                 
-                case "Mac OS 10.5.2":
-                case "MacOS":
-                case "mac":
-                return PlatformID.Macintosh;
+                case "Windows Vista" :
+                case "Windows 95"    :
+                case "Windows 98/ME" :
+                case "Windows NT"    :
+                case "Windows 2000"  :
+                case "Windows XP"    :
+                case "Windows CE"    :
+                case "win32"         :
+                    {
+                    return PlatformID.Windows ;
+                    }
                 
-                case "Linux":
-                case "unix":
-                return PlatformID.Unix;
+                case "Mac OS 10.5.2" :
+                case "MacOS"         :
+                case "mac"           :
+                    {
+                    return PlatformID.Macintosh ;
+                    }
+                
+                case "Linux" :
+                case "unix"  :
+                    {
+                    return PlatformID.Unix;
+                    }
                 
                 case "arm":
-                return PlatformID.Arm;
+                    {
+                    return PlatformID.Arm ;
+                    }
 
-                case "web":
-                return PlatformID.Web;
+                case "web" :
+                    {
+                    return PlatformID.Web ;
+                    }
                 
-                case "unknown":
-                default:
-                return PlatformID.Unknown;
+                case "unknown" :
+                default        :
+                    {
+                    return PlatformID.Unknown;
+                    }
+                    
                 }
             }
 
-		/**
-		 * @private
-		 */
+        /**
+         * @private
+         */
         private static function _getHostVersion():Version
             {
             /* note:
@@ -123,10 +142,10 @@ package system
             return Version.fromString( str );
             }
         
-		/**
-		 * Returns the Host reference of the client application.
-		 * @return the Host reference of the client application.
-		 */
+        /**
+         * Returns the Host reference of the client application.
+         * @return the Host reference of the client application.
+         */
         public static function get host():Host
             {
             if( _host != null )
@@ -142,10 +161,10 @@ package system
             return _host;
             }
             
-		/**
-		 * Returns the os OperatingSystem value of the current client application.
-		 * @return the os OperatingSystem value of the current client application.
-		 */        
+        /**
+         * Returns the os OperatingSystem value of the current client application.
+         * @return the os OperatingSystem value of the current client application.
+         */        
         public static function get os():OperatingSystem
             {
             if( _os != null )
@@ -166,10 +185,10 @@ package system
             return _os;
             }
         
-		/**
-		 * Returns the new line string value in the current environment.
-		 * @return the new line string value in the current environment.
-		 */
+        /**
+         * Returns the new line string value in the current environment.
+         * @return the new line string value in the current environment.
+         */
         public static function get newLine():String
             {
             /* FIXME:

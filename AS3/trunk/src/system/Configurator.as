@@ -16,66 +16,66 @@
   the Initial Developer. All Rights Reserved.
   
   Contributor(s):
-  Marc Alcaraz <ekameleon@gmail.com>.
+  
+    - Marc Alcaraz <ekameleon@gmail.com>
 
 */
 
 package system
-{
+    {
 
     /**
      * The Configurator class defines the basic class used to creates custom configurations.
      */
     public class Configurator implements Serializable
-    {
-
+        {
+    	
+        /**
+         * The internal config object of the configurator.
+         * @private
+         */
+        protected var _config:Object;    	
+        
         /**
          * Creates a new Configurator object.
          * @param config This argument initialize the configurator with a generic object.
          */
         public function Configurator( config:Object )
-        {
+            {
             _config = {}   ;
             load( config ) ;
-        }
+            }
         
         /**
          * Copy all properties in the specified passed-in object in the internal config object of the Configurator.
          */
         public function load( config:Object ):void
-        {
-            for( var member:String in config )
             {
+            for( var member:String in config )
+                {
                 _config[member] = config[member] ;
+                }
             }
-        }
         
         /**
          * Returns the source code string representation of the object.
          * @return the source code string representation of the object.
          */
         public function toSource( indent:int = 0 ):String
-        {
+            {
             config.serializer.prettyIndent = indent;
             return config.serializer.serialize( _config );
-        }
+            }
         
         /**
          * Returns the String representation of the object.
          * @return the String representation of the object.
          */
         public function toString():String
-        {
+            {
             return toSource();
-        }
-        
-        /**
-         * The internal config object of the configurator.
-         * @private
-         */
-        protected var _config:Object;
-        
-    }
+            }
     
-}
+        }
+    }
 

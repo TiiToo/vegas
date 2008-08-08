@@ -21,13 +21,13 @@
 */
 
 package system
-{
+    {
  
 	/**
 	 * This interface is implemented by classes that can compare an object with their objects.
 	 */    
     public interface Equatable
-    {
+        {
     	
 		/**
 		 * Compares the specified object with this object for equality.
@@ -35,7 +35,7 @@ package system
 		 */
         function equals( o:* ):Boolean;
         
-    }
+        }
     
-}
+    }
 

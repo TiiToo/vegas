@@ -20,7 +20,7 @@
 */
 
 package system
-{
+    {
     
     /**
      * Display ES4a about.
@@ -29,5 +29,5 @@ package system
         {
         console.writeLine( info( verbose, showConfig ) );
         }
-    }
 
+    }
