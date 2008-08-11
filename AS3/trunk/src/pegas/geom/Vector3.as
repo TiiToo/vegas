@@ -23,13 +23,13 @@
 
 package pegas.geom 
 {
-	import pegas.geom.Vector2;
-	
-	import system.Reflection;
-	
-	import vegas.util.Serializer;	
+    import pegas.geom.Vector2;
+    
+    import system.Reflection;
+    
+    import vegas.util.Serializer;    
 
-	/**
+    /**
 	 * Represents a vector in a 3D world with the coordinates x, y and z.
 	 * @author eKameleon
 	 */
@@ -47,6 +47,16 @@ package pegas.geom
 			super( x , y ) ;
 			this.z = isNaN( z ) ? 0 : z ;
 		}
+		
+        /**
+         * Computes the addition of two vectors.
+         * @param v the vector object to add.
+         */
+        public override function addition( v:* ):void
+        {
+             super.addition( v ) ;
+             z += v.z ;
+        }		
 		
 		/**
 		 * Defines the Vector3 object with the x, y and z properties set to zero.
@@ -82,24 +92,80 @@ package pegas.geom
 	 	 */
 		public override function equals( o:* ):Boolean 
 		{
-			if ( o is Vector3)
+			if ( o is Vector3 )
 			{
 				return (o.x == x) && (o.y == y) && (o.z == z) ;
 			}
 			return false ;
 		}
-
+		
+        /**
+         * Calculates and returns the perspective ratio needed to scale an object correctly.
+         * <p><b>Example :</b></p>
+         * <code class="prettyprint">
+         * var v:Vector3 = new Vector3(50,20,40);
+         * var p:Number  = v.getPerspective();
+         * trace(p) ;
+         * </code>
+         * @param distance The viewing distance of the projection.
+         * @return the perspective ratio needed to scale an object correctly.
+         */
+        public function getPerspective( distance:Number=NaN ):Number 
+        {
+            distance = isNaN(distance) ? 300 : distance ;
+            return distance / (z + distance) ;
+        }		
+        
+        /**
+         * Performs a perspective projection on a 3d point. It converts (x, y, z) coordinates to a 2d location (x, y) on the screen.
+         * @param v the Vector3 reference.
+         * @param perspective The perspective ratio. If no value is specified, it is calculated automatically by calling the getPerspective() method.
+         * <p><b>Example :</b></p>
+         * <code class="prettyprint">
+         * var v:Vector3 = new Vector3(50,20,40) ;
+         * v.project(v);
+         * trace(v) ;
+         * </code>
+         */
+        public function project( perspective:Number ):void 
+        {
+            perspective = isNaN(perspective) ? getPerspective() : perspective ;
+            x *= perspective ;
+            y *= perspective ;
+            z  = 0 ;
+        }          
+        
+        /**
+         * Scales the vector object with the input value.
+         * @param value a real number to scale the current vector object.
+         */
+        public override function scale( value:Number ):void
+        {
+            super.scale( value ) ;
+            z *= value ;
+        }        
+        
+        /**
+         * Computes the substraction of the current vector object with an other.
+         * @param v the vector to substract.
+         */
+        public override function substraction( v:* ):void
+        {
+            super.substraction(v) ;
+            z -= v.z ;
+        }        
+        
 		/**
 		 * Returns the Object representation of this object.
 		 * @return the Object representation of this object.
 		 */
-		public override function toObject() : Object 
+		public override function toObject():Object 
 		{
 			return { x:x , y:y , z:z } ;
 		}
 		
 		/**
-		 * Returns a Eden reprensation of the object.
+		 * Returns an eden represensation of the object.
 		 * @return a string representing the source code of the object.
 		 */
 		public override function toSource( indent:int = 0 ):String 

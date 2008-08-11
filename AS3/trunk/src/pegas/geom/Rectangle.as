@@ -473,7 +473,7 @@ package pegas.geom
 		}
 
 		/**
-		 * Returns a <b>eden</b> reprensation of the object.
+		 * Returns a <b>eden</b> represensation of the object.
 		 * @return a string representing the source code of the object.
 	 	 */
 		public override function toSource( indent:int = 0 ):String 

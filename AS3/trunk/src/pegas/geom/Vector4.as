@@ -23,13 +23,13 @@
 
 package pegas.geom 
 {
-	import pegas.geom.Vector3;
-	
-	import system.Reflection;
-	
-	import vegas.util.Serializer;	
+    import pegas.geom.Vector3;
+    
+    import system.Reflection;
+    
+    import vegas.util.Serializer;    
 
-	/**
+    /**
 	 * Represents a vector in a 3D world with the coordinates x, y, z and w.
 	 * @author eKameleon
 	 */
@@ -58,6 +58,16 @@ package pegas.geom
 		 * Defined the w coordinate.
 		 */
 		public var w:Number;
+	
+        /**
+         * Computes the addition of two Vector4 object.
+         * @param v the vector object to add.
+         */
+        public override function addition( v:* ):void
+        {
+             super.addition(v) ;
+             w = v.w ;
+        }
 	
 		/**
 		 * Returns a shallow copy of this instance.
@@ -93,6 +103,26 @@ package pegas.geom
 			} 	
 		}
 		
+        /**
+         * Scales the vector object with the input value.
+         * @param value a real number to scale the current vector object.
+         */
+        public override function scale( value:Number ):void
+        {
+            super.scale( value ) ;
+            w *= value ;
+        }    		
+		
+        /**
+         * Computes the substraction of the current Vector3 object with an other.
+         * @param v the vector to substract.
+         */
+        public override function substraction( v:* ):void
+        {
+            super.substraction(v) ;
+            w -= v.w ;
+        } 		
+		
 		/**
 	 	 * Returns the Object representation of this object.
 	 	 * @return the Object representation of this object.
@@ -103,7 +133,7 @@ package pegas.geom
 		}
 	
 		/**
-	 	 * Returns a Eden reprensation of the object.
+	 	 * Returns a Eden represensation of the object.
 	 	 * @return a string representing the source code of the object.
 	 	 */
 		public override function toSource( indent:int = 0 ):String  

@@ -44,7 +44,7 @@ package pegas.geom
 	 	 */ 	
 		public function Vector2( x:Number=0 , y:Number=0 )
 		{
-			super( );
+			super() ;
 			this.x = isNaN(x) ? 0 : x ;
 			this.y = isNaN(y) ? 0 : y ;
 		}
@@ -63,6 +63,16 @@ package pegas.geom
 		 * Defined the y coordinate.
 	 	 */
 		public var y:Number ;
+		
+        /**
+         * Computes the addition of two vectors.
+         * @param v the vector object to add.
+         */
+        public function addition( v:* ):void
+        {
+             x += v.x ;
+             y += v.y ;
+        }		
 		
 		/**
 		 * Returns a shallow copy of this instance.
@@ -97,7 +107,27 @@ package pegas.geom
 				return false ;	
 			} 	
 		}
+		
+        /**
+         * Scales the vector object with the input value.
+         * @param value a real number to scale the current vector object.
+         */
+        public function scale( value:Number ):void
+        {
+            x *= value ;
+            y *= value ;
+        }  		
 
+        /**
+         * Computes the substraction of the current vector object with an other.
+         * @param v the vector to substract.
+         */
+        public function substraction( v:* ):void
+        {
+            x -= v.x ;
+            y -= v.y ;
+        }
+        
 		/**
 		 * Returns a flash.geom.Point reference of this object.
 		 * @return a flash.geom.Point reference of this object.
@@ -117,7 +147,7 @@ package pegas.geom
 		}
 
 		/**
-		 * Returns a Eden reprensation of the object.
+		 * Returns a Eden represensation of the object.
          * @return a string representing the source code of the object.
 	 	 */
 		public override function toSource( indent:int = 0 ):String 

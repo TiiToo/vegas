@@ -78,7 +78,7 @@ package pegas.util
 		 * @param v2	Vector4 The second Vector4.
 		 * @return the angle in radian between the two vectors.
 		 */
-		public static function getAngle ( v1:Vector4, v2:Vector4 ):Number
+		public static function getAngle( v1:Vector4, v2:Vector4 ):Number
 		{
 			var ncos:Number = ( Vector4Util.getDot( v1, v2 ) ) / ( getNorm(v1) * getNorm(v2) );
 			var sin2:Number = 1 - (ncos * ncos) ;
@@ -239,21 +239,6 @@ package pegas.util
 			v.z *= value ;
 			v.w *= value ;
 		}
-			
-		/**
-	 	 * Computes the substraction of two Vector4.
-	 	 * @param v1 the first Vector3.
-	 	 * @param v2 the second Vector3.
-	 	 * @return the substraction result of two Vector4.
-	 	 */
-		public static function substraction( v1:Vector4 , v2:Vector4 ):Vector4
-		{
-		 	v1.x -= v2.x ;
-		 	v1.y -= v2.y ;
-		 	v1.z -= v2.z ;
-		 	v1.w -= v2.w ;
-		 	return v1 ;	
-		}
-		
+        		
 	}
 }

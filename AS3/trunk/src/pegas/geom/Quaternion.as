@@ -22,21 +22,22 @@
 */
 package pegas.geom 
 {
-	import pegas.geom.Vector3;
-	
-	import system.Reflection;
-	
-	import vegas.util.Serializer;	
+    import pegas.geom.Vector3;
+    
+    import system.Reflection;
+    
+    import vegas.util.Serializer;    
 
-	/**
-	 * Quaternions are hypercomplex numbers used to represent spatial rotations in three dimensions.
+    /**
+	 * Quaternions are hypercomplex numbers used to represent spatial rotations in three dimensions. 
+	 * This class encapsulates an Hamiltonian quaternion having the form <code class="prettyprint">xi + yj + zk + w</code>.
 	 * @author eKameleon
  	 */
 	public class Quaternion extends Vector3 
 	{
 
 		/**
-		 * Creates a new <code class="prettyprint">Vector3</code> instance.
+		 * Creates a new <code class="prettyprint">Quaternion</code> instance.
 		 * @param x the x coordinate.
 		 * @param y the y coordinate.
 		 * @param z the z coordinate.
@@ -52,6 +53,32 @@ package pegas.geom
 		 * Represents the w component of the quaternion.
 		 */
 		public var w:Number ;
+        
+        /**
+         * Adds the specified Quaternion. 
+         */
+        public function add(q:Quaternion):void 
+        {
+            var w2:Number = q.w; 
+            var x2:Number = q.x; 
+            var y2:Number = q.y; 
+            var z2:Number = q.z;
+            
+            w = w*w2 - x*x2 - y*y2 - z*z2 ;
+            x = w*x2 + x*w2 + y*z2 - z*y2 ;
+            y = w*y2 + y*w2 + z*x2 - x*z2 ;
+            z = w*z2 + z*w2 + x*y2 - y*x2 ;
+        }		
+		
+        /**
+         * Change the Quaterion in this conjugate.
+         */
+        public function conjugate():void
+        {
+            x = -x ;
+            y = -y ;
+            z = -z ;
+        }		
 		
 		/**
 		 * Returns a shallow copy of this instance.
@@ -86,7 +113,42 @@ package pegas.geom
 				return false ;	
 			} 
 		}
-	
+		
+        /**
+         * Returns the magnitude of a Quaternion, measured in the Euclidean norm.
+         * @return the magnitude of a Quaternion, measured in the Euclidean norm.
+         */
+        public function getMagnitude():Number
+        {
+            return Math.sqrt( w*w + x*x + y*y + z*z ) ;
+        }	
+        
+
+        
+        /**
+         * Multiply the Quaternion with an other Quaternion.
+         * @param q The Quaternion to multiply with the current Quaternion object.
+         */
+        public function multiply( q:Quaternion ):void
+        {
+            x = ( w * q.x ) + ( x * q.w ) + ( y * q.z ) - ( z * q.y ) ;
+            y = ( w * q.y ) + ( y * q.w ) + ( z * q.x ) - ( x * q.z ) ;
+            z = ( w * q.z ) + ( z * q.w ) + ( x * q.y ) - ( y * q.x ) ;
+            w = ( w * q.w ) - ( x * q.x ) - ( y * q.y ) - ( z * q.z ) ;
+        }
+        
+        /**
+         * Normalizes the Quaternion instance.
+         */
+        public function normalize():void
+        {
+            var magnitude:Number = getMagnitude() ;
+            w /= magnitude ;
+            scale ( 1.0 / magnitude );
+        }
+        
+      
+        
 		/**
 	 	 * Returns the Object representation of this object.
 	 	 * @return the Object representation of this object.
@@ -97,7 +159,7 @@ package pegas.geom
 		}
 		
 		/**
-	 	 * Returns a Eden reprensation of the object.
+	 	 * Returns a Eden represensation of the object.
 	 	 * @return a string representing the source code of the object.
 	 	 */
 		public override function toSource( indent:int = 0 ):String  
@@ -116,7 +178,6 @@ package pegas.geom
 		
 	// Inspired by the MSDN documentation : <http://msdn2.microsoft.com/en-us/library/microsoft.windowsmobile.directx.quaternion_methods.aspx>
 	// TODO implements QuaternionUtil class with :
-	// TODO static adds() : Adds two quaternions.
 	// TODO dot() : Returns the dot product of two quaternions.
 	// TODO exp() : Calculates the exponential of a quaternion.
 	// TODO invert() : Conjugates and renormalizes a quaternion.

@@ -40,7 +40,7 @@ package pegas.geom
 
 		/**
 		 * Creates a new <code class="prettyprint">Ray</code> instance.
-		 * @example
+		 * <p><b>Example :</b></p>
 	 	 * <p>With a Ray object passed in the argument of the constructor :</p>
 		 * <pre class="prettyprint">
 		 * var r:Ray = new Ray( r:Ray) ;
@@ -128,7 +128,7 @@ package pegas.geom
 		}
 
 		/**
-		 * Returns a Eden reprensation of the object.
+		 * Returns a Eden represensation of the object.
 		 * @return a string representing the source code of the object.
 		 */
 		public override function toSource( indent:int = 0 ):String 
@@ -153,7 +153,7 @@ package pegas.geom
 			if (q != null)
 			{
 				Vector3Util.setByVector3(q, p) ;
-				Vector3Util.addition(q, v) ;
+				q.addition(v) ;
 			}
 			else
 			{

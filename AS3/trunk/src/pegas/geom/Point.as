@@ -22,13 +22,13 @@
 */
 package pegas.geom 
 {
-	import pegas.geom.Vector2;
-	import pegas.util.Trigo;
-	
-	import vegas.errors.IllegalArgumentError;
-	import vegas.util.Serializer;	
+    import pegas.geom.Vector2;
+    import pegas.util.Trigo;
+    
+    import vegas.errors.IllegalArgumentError;
+    import vegas.util.Serializer;    
 
-	/**
+    /**
 	 * The Point class represents a location in a two-dimensional coordinate system, where x represents the horizontal axis and y represents the vertical axis.
 	 * <p>The following code creates a point at (0,0) :</p>
 	 * <pre class="prettyprint">
@@ -601,7 +601,7 @@ package pegas.geom
 		 * Rotates the Point with the specified angle in argument.
 		 * @param angle the Angle to rotate this Point.
 	 	 */
-		public function rotate(angle:Number):void 
+		public function rotate( angle:Number ):void 
 		{
 			var ca:Number = Trigo.cosD (angle) ;
 			var sa:Number = Trigo.sinD (angle) ;
@@ -622,17 +622,7 @@ package pegas.geom
 			p.rotate (angle) ;
 			return p ;
 		}
-
-		/**
-		 * Scales the Point with the specified <code class="prettyprint">n</pre> value in argument.
-		 * @param n the value to scale this Point.
-		 */
-		public function scale(n:Number):void 
-		{
-			x *= n ;
-			y *= n ;
-		}
-
+        
 		/**
 		 * Rotates the Point with the specified <code class="prettyprint">s</pre> value in argument and creates a new Point.
 		 * @param n the value to scale this Point.
@@ -642,17 +632,7 @@ package pegas.geom
 		{
 			return new Point( x * n , y * n ) ;
 		}
-
-		/**
-		 * Subtracts the coordinates of another point from the coordinates of this point.
-		 * @param p The point to be subtracted.
-		 */
-		public function subtract( p:* ):void 
-		{
-			x -= p.x ;
-			y -= p.y ;
-		}
-	
+        
 		/**
 		 * Subtracts the coordinates of another point from the coordinates of this point to create a new point.
 		 * @param p The point to be subtracted.
@@ -685,7 +665,7 @@ package pegas.geom
 		}
 	
 		/**
-		 * Returns a Eden reprensation of the object.
+		 * Returns a Eden represensation of the object.
 		 * @return a string representing the source code of the object.
 		 */
 		public override function toSource( indent:int = 0 ):String 

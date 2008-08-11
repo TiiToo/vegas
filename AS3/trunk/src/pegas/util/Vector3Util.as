@@ -22,7 +22,7 @@
 */
 package pegas.util 
 {
-    import pegas.geom.Vector3;            
+    import pegas.geom.Vector3;                    
 
     /**
      * Static tool class to manipulate and transform <code class="prettyprint">Vector3</code> references.
@@ -30,21 +30,7 @@ package pegas.util
      */
     public class Vector3Util 
     {
-    
-        /**
-         * Computes the addition of two Vector3 and returns the first vector.
-         * @param v1 the first Vector3.
-         * @param v2 the second Vector3.
-         * @return the addition result of two Vector3.
-         */
-        public static function addition( v1:Vector3, v2:Vector3 ):Vector3
-        {
-             v1.x += v2.x ;
-             v1.y += v2.y ;
-             v1.z += v2.z ;
-             return v1 ;    
-        }
-        
+                
         /**
          * Computes the addition of two Vector3.
          * @param v1 a Vector3 to concat.
@@ -133,25 +119,7 @@ package pegas.util
         {
             return Math.sqrt( (v.x * v.x) + (v.y * v.y) + (v.z * v.z) );
         }
-        
-        /**
-         * Calculates and returns the perspective ratio needed to scale an object correctly.
-         * <p><b>Example :</b></p>
-         * <code class="prettyprint">
-         * var v:Vector3 = new Vector3(50,20,40);
-         * var p:Number  = Vector3Util.getPerspective(v);
-         * trace(p) ;
-         * </code>
-         * @param v the Vector3 reference.
-         * @param distance The viewing distance of the projection.
-         * @return the perspective ratio needed to scale an object correctly.
-         */
-        public static function getPerspective( v:Vector3 , distance:Number=NaN ):Number 
-        {
-            distance = isNaN(distance) ? 300 : distance ;
-            return distance / (v.z + distance) ;
-        }
-        
+                
         /**
          * Computes the power of the specified Vector3.
          * @param v the Vector3 reference.
@@ -227,24 +195,7 @@ package pegas.util
             return true ;
         }
         
-        /**
-         * Performs a perspective projection on a 3d point. It converts (x, y, z) coordinates to a 2d location (x, y) on the screen.
-         * @param v the Vector3 reference.
-         * @param perspective The perspective ratio. If no value is specified, it is calculated automatically by calling the getPerspective() method.
-         * <p><b>Example :</b></p>
-         * <code class="prettyprint">
-         * var v:Vector3 = new Vector3(50,20,40) ;
-         * Vector3Util.project(v);
-         * trace(v) ;
-         * </code>
-         */
-        public static function project( v:Vector3, perspective:Number ):void 
-        {
-            perspective = isNaN(perspective) ? getPerspective(v) : perspective ;
-            v.x *= perspective ;
-            v.y *= perspective ;
-            v.z  = 0 ;
-        }
+
         
         /**
          * Performs a perspective projection on a 3d point. It converts (x, y, z) coordinates to a 2d location (x, y) on the screen.
@@ -260,7 +211,7 @@ package pegas.util
         public static function projectNew( v:Vector3, perspective:Number ):Vector3
         {
             var c:Vector3 = v.clone() ;
-            project(c, perspective) ;
+            c.project( perspective ) ;
             return c ;
         }
         
@@ -483,32 +434,7 @@ package pegas.util
             v1.z = v2.z ;
             return v1 ;
         }
-
-        /**
-         * Scales the specified Vector3 with the input value.
-         * @param vector the Vector3 reference to transform.
-         * @param value a real number to scale the current Vector3.
-         */
-        public static function scale( v:Vector3, value:Number ):void
-        {
-            v.x *= value ;
-            v.y *= value ;
-            v.z *= value ;
-        }
         
-        /**
-         * Computes the substraction of two Vector3.
-         * @param v1 the first Vector3.
-         * @param v2 the second Vector3.
-         * @return the substraction result of two Vector3.
-         */
-        public static function substraction( v1:Vector3 , v2:Vector3 ):Vector3
-        {
-            v1.x -= v2.x ;
-             v1.y -= v2.y ;
-             v1.z -= v2.z ;
-             return v1 ;    
-        }
     
     }
 

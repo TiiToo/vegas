@@ -28,7 +28,7 @@ package pegas.geom
 
 	/**
 	 * Defines a linear equation of the form : <code class="prettyprint"> ax + by = c</code> with fixed real coefficients a, b and c such that a and b are not both zero.
-	 * @example
+	 * <p><b>Example :</b></p>
  	 * <pre class="prettyprint">
 	 * var l:Line = new Line(10, 20, 5) ;
 	 * trace(l) ; // {a:10,b:20,c:5}
@@ -119,7 +119,7 @@ package pegas.geom
 		}
 		
 		/**
-		 * Returns a Eden reprensation of the object.
+		 * Returns a Eden represensation of the object.
 		 * @return a string representing the source code of the object.
 		 */
 		public override function toSource( indent:int = 0 ):String 
