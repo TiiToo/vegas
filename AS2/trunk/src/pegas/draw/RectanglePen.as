@@ -34,11 +34,13 @@ class pegas.draw.RectanglePen extends EasyPen
 
 	/**
 	 * Creates a new RectanglePen instance.
+	 * @param target The target reference of this pen.
+	 * @param isNew This optional flag indicates if the pen must draw the shape in a child movieclip reference or not.
 	 */
 	public function RectanglePen(target:MovieClip, isNew:Boolean) 
 	{
+		super( target, isNew ) ;
 		_rectangle = new Rectangle() ;
-		initialize(target, isNew) ;
 	}
 
 	/**
@@ -75,35 +77,62 @@ class pegas.draw.RectanglePen extends EasyPen
 	/**
 	 * Draws the shape in the movieclip reference of this pen.
 	 */
-	public function draw(p_w:Number, p_h:Number, p_x:Number, p_y:Number, p_align:Number):Void {
-		if (arguments.length > 0) {
+	public function draw(p_w:Number, p_h:Number, p_x:Number, p_y:Number, p_align:Number):Void 
+	{
+		if (arguments.length > 0) 
+		{
 			setRectangle(p_w, p_h, p_x, p_y, p_align) ;
 		}
 		var r:Rectangle = getRectangle() ;
-		var nX:Number = r.x ;
-		var nY:Number = r.y ;
-		var nW:Number = nX + r.width ;
-		var nH:Number = nY + r.height ;
+		var nX:Number   = r.x ;
+		var nY:Number   = r.y ;
+		var nW:Number   = nX + r.width ;
+		var nH:Number   = nY + r.height ;
 		moveTo(nX, nY) ;
 		lineTo(nW, nY) ;
 		lineTo(nW, nH) ;
 		lineTo(nX, nH) ;
 		lineTo(nX, nY) ;
-		if (isEndFill) endFill() ;		
+		if (isEndFill) 
+		{
+			endFill() ;
+		}		
 	}
 	
+	/**
+	 * Returns the Rectangle reference of this pen.
+	 * @return the Rectangle reference of this pen.
+	 */
 	public function getRectangle():Rectangle 
 	{
 		return _rectangle ;	
 	}
 	
+	/**
+	 * Sets the rectangle properties.
+	 */
 	public function setRectangle(p_w:Number, p_h:Number, p_x:Number, p_y:Number, p_align:Number):Void 
 	{
-		if (!isNaN(p_w)) w = p_w ;
-		if (!isNaN(p_h)) h = p_h ;
-		if (!isNaN(p_x)) x = p_x ;
-		if (!isNaN(p_y)) y = p_y ;
-		if (!isNaN(p_align)) setAlign(p_align, true) ;
+		if (!isNaN(p_w)) 
+		{
+			w = p_w ;
+		}
+		if (!isNaN(p_h)) 
+		{
+			h = p_h ;
+		}
+		if (!isNaN(p_x)) 
+		{
+			x = p_x ;
+		}
+		if (!isNaN(p_y)) 
+		{
+			y = p_y ;
+		}
+		if (!isNaN(p_align)) 
+		{
+			setAlign(p_align, true) ;
+		}
 		_rectangle.x = isNaN(x) ? 0 : x ;
 		_rectangle.y = isNaN(y) ? 0 : y ;
 		var a:Number = getAlign() ;
@@ -151,6 +180,9 @@ class pegas.draw.RectanglePen extends EasyPen
 		_rectangle.height = h ;
 	}
 
+	/**
+	 * @private
+	 */
 	private var _rectangle:Rectangle ;
 	
 }

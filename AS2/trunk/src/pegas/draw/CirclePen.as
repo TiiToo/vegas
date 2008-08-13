@@ -39,12 +39,30 @@ class pegas.draw.CirclePen extends EasyPen
 		super(target, isNew);
 	}
 	
+	/**
+	 * The theta value of this pen.
+	 */
 	public static var THETA:Number = Math.PI/4 ;
 	
+	/**
+	 * The radius value of the circle pen.
+	 */
 	public var radius:Number ;
+	
+	/**
+	 * The offset x value of the center of the circle.
+	 */
 	public var x:Number ;
+
+	/**
+	 * The offset y value of the center of the circle.
+	 */
 	public var y:Number ;
 	
+	/**
+	 * Returns a shallow copy of this object.
+	 * @return a shallow copy of this object.
+	 */
 	public function clone()
 	{
 		var pen:CirclePen = new CirclePen(getTarget()) ;
@@ -52,6 +70,9 @@ class pegas.draw.CirclePen extends EasyPen
 		return pen ;
 	}
 	
+	/**
+	 * Draws the shape.
+	 */
 	public function draw(px:Number, py:Number, pradius:Number, palign:Number):Void
 	{
 		
@@ -90,6 +111,9 @@ class pegas.draw.CirclePen extends EasyPen
 		
 	}
 
+	/**
+	 * Sets the pen properties.
+	 */
 	public function setPen(nX:Number, nY:Number, nRadius:Number, nAlign:Number):Void
 	{
 		
@@ -104,7 +128,7 @@ class pegas.draw.CirclePen extends EasyPen
 		
 		if (a == Align.CENTER) 
 		{
-			
+			// default
 		}
 		else if (a == Align.BOTTOM) 
 		{

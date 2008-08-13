@@ -86,11 +86,21 @@ class pegas.maths.Prime
 	 */
 	public static function isPrime(n:Number):Boolean 
 	{ 
-		if (n<3) return ( n == 2 ) ; 
-		else if ((n%2) == 0) return false ;
+		if (n<3) 
+		{
+			return ( n == 2 ) ;
+		}
+		else if ((n%2) == 0) 
+		{
+			return false ;
+		}
 		var i:Number = 3 ;
-		while (i*i <= n) {
-			if ( (n%i) == 0 ) return false ;
+		while (i*i <= n) 
+		{
+			if ( (n%i) == 0 ) 
+			{
+				return false ;
+			}
 			i+= 2 ;
 		}
 		return true ;

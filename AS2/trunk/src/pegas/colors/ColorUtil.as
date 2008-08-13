@@ -41,7 +41,8 @@ class pegas.colors.ColorUtil
 	public static function invert(c:Color):Void 
 	{
 		var t:Object = c.getTransform();
-		c.setTransform ( 
+		c.setTransform 
+		( 
 			{
 				ra : -t.ra , ga : -t.ga , ba : -t.ba ,
 				rb : 255 - t.rb , gb : 255 - t.gb , bb : 255 - t.bb 

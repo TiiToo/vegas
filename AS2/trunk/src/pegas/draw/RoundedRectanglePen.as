@@ -34,6 +34,8 @@ class pegas.draw.RoundedRectanglePen extends CornerRectanglePen
 
 	/**
 	 * Creates a new RoundedRectanglePen instance.
+	 * @param target The target reference of this pen.
+	 * @param isNew This optional flag indicates if the pen must draw the shape in a child movieclip reference or not.
 	 */
 	public function RoundedRectanglePen(target:MovieClip, isNew:Boolean) 
 	{
@@ -74,21 +76,24 @@ class pegas.draw.RoundedRectanglePen extends CornerRectanglePen
 	public function draw(p_w:Number, p_h:Number, p_x:Number, p_y:Number, p_align:Number, p_round:Number, corner:Corner):Void 
 	{
 		
-		if (arguments.length > 0) setRectangle.apply(this, arguments) ;
+		if (arguments.length > 0) 
+		{
+			setRectangle.apply(this, arguments) ;
+		}
 		
-		if (_round > 0) 
+		if ( _round > 0 ) 
 		{
 			
 			var r:Rectangle = getRectangle() ;
-			var nX:Number = r.x ;
-			var nY:Number = r.y ;
-			var nW:Number = nX + r.width ;
-			var nH:Number = nY + r.height ;
-			var c:Corner = getCorner() ;
-			var tr:Boolean = c.getTr() ;
-			var br:Boolean = c.getBr() ;
-			var bl:Boolean = c.getBl() ;
-			var tl:Boolean = c.getTl() ;
+			var nX:Number   = r.x ;
+			var nY:Number   = r.y ;
+			var nW:Number   = nX + r.width ;
+			var nH:Number   = nY + r.height ;
+			var c:Corner    = getCorner() ;
+			var tr:Boolean  = c.tr ;
+			var br:Boolean  = c.br ;
+			var bl:Boolean  = c.bl ;
+			var tl:Boolean  = c.tl ;
 			
 			_currentRadius  = (_round > (Math.min (w, h) / 2) ) ? (Math.max (w, h) / 2) : _round  ;
 
@@ -135,7 +140,10 @@ class pegas.draw.RoundedRectanglePen extends CornerRectanglePen
 			{
 				lineTo( nX , nY ) ;
 			}
-			if (isEndFill) endFill() ;	
+			if (isEndFill) 
+			{
+				endFill() ;
+			}	
 			_angle = null ;
 			
 		} 
@@ -183,11 +191,17 @@ class pegas.draw.RoundedRectanglePen extends CornerRectanglePen
 	/**
 	 * Sets the rectangle options to draw the shape.
 	 */
-	public function setRectangle(p_w:Number, p_h:Number, p_x:Number, p_y:Number, p_align:Number, p_rnd:Number, p_corner:Corner):Void 
+	public function setRectangle( w:Number, h:Number, x:Number, y:Number, align:Number, round:Number, corner:Corner):Void 
 	{
-		super.setRectangle(p_w, p_h, p_x, p_y, p_align) ;
-		if (!isNaN(p_rnd)) setRound(p_rnd, true) ;
-		if (p_corner) setCorner(p_corner, true) ;
+		super.setRectangle(w, h, x, y, align) ;
+		if (!isNaN( round) ) 
+		{
+			setRound(round, true) ;
+		}
+		if (corner)
+		{
+			setCorner(corner, true) ;
+		}
 	}
 
 	/**

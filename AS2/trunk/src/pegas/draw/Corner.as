@@ -36,57 +36,54 @@ class pegas.draw.Corner extends CoreObject implements ICloneable
 	/**
 	 * Creates a new Corner instance.
 	 */
-	public function Corner(tl:Boolean , tr:Boolean, br:Boolean, bl:Boolean) {
+	public function Corner(tl:Boolean , tr:Boolean, br:Boolean, bl:Boolean) 
+	{
 		super() ;
-		if (tl != null) _tl = tl ;
-		if (br!= null) _br = br ;
-		if (tr!= null) _tr = tr ;
-		if (bl!= null) _bl = bl ;
+		if (tl != null) 
+		{
+			this.tl = tl ;
+		}
+		if (br!= null) 
+		{
+			this.br = br ;
+		}
+		if (tr!= null) 
+		{
+			this.tr = tr ;
+		}
+		if (bl!= null) 
+		{
+			this.bl = bl ;
+		}
 	}
 	
-	public function get bl():Boolean 
-	{
-		return getBl() ;	
-	}
-	
-	public function get br():Boolean 
-	{
-		return getBr() ;	
-	}
+	/**
+	 * The bottom left flag value.
+	 */
+	public var bl:Boolean = true ; 
 
-	public function get tl():Boolean 
-	{
-		return getTl() ;	
-	}
+	/**
+	 * The bottom right flag value.
+	 */
+	public var br:Boolean = true ; 
+
+	/**
+	 * The top left flag value.
+	 */
+	public var tl:Boolean = true ; 
+
+	/**
+	 * The top right flag value.
+	 */
+	public var tr:Boolean = true ; 
 	
-	public function get tr():Boolean 
-	{
-		return getTr() ;	
-	}
-	
+	/**
+	 * Returns a shallow copy of the object.
+	 * @return a shallow copy of the object.
+	 */
 	public function clone() 
 	{
-		return new Corner(getTl() , getTr(), getBr(), getBl()) ;	
-	}
-
-	public function getBl():Boolean 
-	{
-		return _bl ;
-	}
-
-	public function getBr():Boolean 
-	{
-		return _br ;
-	}
-	
-	public function getTl():Boolean 
-	{
-		return _tl ;
-	}
-
-	public function getTr():Boolean 
-	{
-		return _tr ;
+		return new Corner(tl , tr, br, bl) ;	
 	}
 
 	/**
@@ -95,7 +92,7 @@ class pegas.draw.Corner extends CoreObject implements ICloneable
 	 */
 	public function toSource():String 
 	{
-		return Serializer.getSourceOf(this, [getTl(), getTr(), getBr(), getBl()] )  ;
+		return Serializer.getSourceOf(this, [tl, tr, br, bl] )  ;
 	}
 	
 	/**
@@ -104,12 +101,7 @@ class pegas.draw.Corner extends CoreObject implements ICloneable
 	 */
 	public function toString():String 
 	{
-		return "[" + ConstructorUtil.getName(this) + " tl:" + _tl + ", br:" + _br + ", tr:" + _tr + ", bl:" + _bl + "]" ;
+		return "[" + ConstructorUtil.getName(this) + " tl:" + tl + ", br:" + br + ", tr:" + tr + ", bl:" + bl + "]" ;
 	}
-
-	private var _tl:Boolean = true ;
-	private var _tr:Boolean = true ;
-	private var _bl:Boolean = true ;
-	private var _br:Boolean = true ;
 	
 }

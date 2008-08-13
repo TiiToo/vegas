@@ -33,6 +33,8 @@ class pegas.draw.EasyPen extends AbstractPen
 
 	/**
 	 * Creates a new EasyPen instance.
+	 * @param target The target reference of this pen.
+	 * @param isNew This optional flag indicates if the pen must draw the shape in a child movieclip reference or not.
 	 */
 	public function EasyPen(target:MovieClip, isNew:Boolean) 
 	{

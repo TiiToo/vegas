@@ -19,7 +19,9 @@
   
   Contributor(s) :
   
- */import pegas.draw.AbstractPen;
+ */
+ 
+import pegas.draw.AbstractPen;
 import pegas.geom.Line;
 import pegas.geom.Point;
 import pegas.geom.Vector2;
@@ -86,37 +88,66 @@ class pegas.draw.LinePen extends AbstractPen
 		setEnd(p) ;	
 	}
 	
+	/**
+	 * The line alpha value of this pen.
+	 */
 	public var la:Number = 100 ;
 
+	/**
+	 * The line color value of this pen.
+	 */
 	public var lc:Number = 0x000000 ;
 	
+	/**
+	 * Returns the Line equation object of this pen.
+	 * @return the Line equation object of this pen.
+	 */
 	public function get line():Line 
 	{
 		return getLine() ;	
 	}
 
-	public function get start():Point 
+	/**
+	 * (read-write) The start vector object of this line pen.
+	 */
+	public function get start():Vector2 
 	{
 		return getStart() ;	
 	}
 	
-	public function set start(p:Point):Void 
+	/**
+	 * @private
+	 */
+	public function set start(p:Vector2):Void 
 	{
 		setStart(p) ;	
 	}
+	
+	/**
+	 * The thickness value of the pen.
+	 */
+	public var t:Number = 1 ;
 
-	public var t : Number = 1 ;
-
+	/**
+	 * (read-write) The thickness value of the pen.
+	 */
 	public function get thickness():Number 
 	{
 		return getThickness() ;	
 	}
 	
+	/**
+	 * @private
+	 */
 	public function set thickness(n:Number):Void 
 	{
 		setThickness(n) ;	
 	}
 
+	/**
+	 * Returns a shallow copy of this object.
+	 * @return a shallow copy of this object.
+	 */
 	public function clone() 
 	{
 		var p:LinePen = new LinePen(_target) ;
@@ -124,6 +155,9 @@ class pegas.draw.LinePen extends AbstractPen
 		return p ;
 	}
 	
+	/**
+	 * Draw the pen.
+	 */
 	public function draw(p_start:Point, p_end:Point, p_thickness:Number, p_color:Number, p_alpha:Number):Void 
 	{
 		if (arguments.length > 0) 
@@ -136,52 +170,88 @@ class pegas.draw.LinePen extends AbstractPen
 		lineTo(_pEnd.x, _pEnd.y) ;
 	}
 
+	/**
+	 * Returns the alpha value of this pen.
+	 * @return the alpha value of this pen.
+	 */
 	public function getAlpha():Number 
 	{ 
 		return la ;
 	}
 
+	/**
+	 * Returns the color value of this pen.
+	 * @return the color value of this pen.
+	 */
 	public function getColor():Number 
 	{ 
 		return lc ;
 	}
 	
+	/**
+	 * Returns the end vector reference of this pen.
+	 * @return the end vector reference of this pen.
+	 */
 	public function getEnd():Vector2 
 	{
 		return _pEnd ;	
 	}
 	
+	/**
+	 * Returns the Line reference of this pen.
+	 * @return the Line reference of this pen.
+	 */
 	public function getLine():Line 
 	{
 		return Line.getLine( _pStart, _pEnd ) ;	
 	}
 
+	/**
+	 * Returns the start vector reference of this pen.
+	 * @return the start vector reference of this pen.
+	 */
 	public function getStart():Vector2 
 	{
 		return _pStart ;	
 	}
 
+	/**
+	 * Returns the thickness value of this pen.
+	 * @return the thickness value of this pen.
+	 */
 	public function getThickness():Number 
 	{
 		return t ;	
 	}
-	
+
+	/**
+	 * Indicates if the pen use auto clear.
+	 */
 	public function isAutoClear():Boolean 
 	{
 		return _autoClear ;	
 	}
 
+	/**
+	 * Sets the alpha value of the line pen.
+	 */
 	public function setAlpha(nAlpha:Number, noDraw:Boolean):Void 
 	{ 
 		la = isNaN(nAlpha) ? default_la : nAlpha ; 
 		if (!noDraw) draw() ;	
 	}
 	
+	/**
+	 * Sets the auto clear feature of this pen.
+	 */
 	public function setAutoClear(b:Boolean):Void 
 	{
 		_autoClear = b ;	
 	}
 	
+	/**
+	 * Sets the color value of the pen.
+	 */
 	public function setColor(nColor:Number, noDraw:Boolean):Void 
 	{ 
 		lc = isNaN(nColor) ? default_lc : nColor ; 

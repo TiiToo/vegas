@@ -33,31 +33,49 @@ class pegas.draw.CornerRectanglePen extends RectanglePen
 
 	/**
 	 * Creates a new CornerRectanglePen instance. Overrides this constructor to used it.
+	 * @param target The target reference of this pen.
+	 * @param isNew This optional flag indicates if the pen must draw the shape in a child movieclip reference or not.
 	 */
 	private function CornerRectanglePen(target:MovieClip, isNew:Boolean) 
 	{
 		super(target, isNew) ;
 	}
 
+	/**
+	 * (read-write) Determinates the Corner value of this pen.
+	 */
 	public function get corner():Corner 
 	{
 		return getCorner() ;
 	}
 	
+	/**
+	 * @private
+	 */
 	public function set corner(c:Corner):Void 
 	{
 		setCorner(c) ;
 	}
 
+	/**
+	 * Returns the Corner reference of this pen.
+	 * @return the Corner reference of this pen.
+	 */
 	public function getCorner():Corner 
 	{
 		return _corner || new Corner() ;
 	}
 	
+	/**
+	 * Sets the Corner reference of this pen.
+	 */
 	public function setCorner(c:Corner , noDraw:Boolean):Void 
 	{
 		_corner = c ;
-		if (!noDraw) draw() ;
+		if (!noDraw) 
+		{
+			draw() ;
+		}
 	}
 
 	private var _corner:Corner ;

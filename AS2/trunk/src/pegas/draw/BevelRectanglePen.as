@@ -34,6 +34,8 @@ class pegas.draw.BevelRectanglePen extends CornerRectanglePen
 
 	/**
 	 * Creates a new BevelRectanglePen instance.
+	 * @param target The target reference of this pen.
+	 * @param isNew This optional flag indicates if the pen must draw the shape in a child movieclip reference or not.
 	 */
 	public function BevelRectanglePen(target:MovieClip, isNew:Boolean) 
 	{
@@ -99,15 +101,15 @@ class pegas.draw.BevelRectanglePen extends CornerRectanglePen
 		if (hb > 0 && vb > 0) {
 			
 			var r:Rectangle = getRectangle() ;
-			var nX:Number = r.x ;
-			var nY:Number = r.y ;
-			var nW:Number = nX + r.width ;
-			var nH:Number = nY + r.height ;
-			var c:Corner = getCorner() ;
-			var tr:Boolean = c.getTr() ;
-			var br:Boolean = c.getBr() ;
-			var bl:Boolean = c.getBl() ;
-			var tl:Boolean = c.getTl() ;
+			var nX:Number   = r.x ;
+			var nY:Number   = r.y ;
+			var nW:Number   = nX + r.width ;
+			var nH:Number   = nY + r.height ;
+			var c:Corner    = getCorner() ;
+			var tr:Boolean  = c.tr ;
+			var br:Boolean  = c.br ;
+			var bl:Boolean  = c.bl ;
+			var tl:Boolean  = c.tl ;
 			
 			moveTo ( nX + hb , nY) ;
 			if (tr) 
@@ -214,9 +216,14 @@ class pegas.draw.BevelRectanglePen extends CornerRectanglePen
 		if (!noDraw) draw();
 	}	
 	
-
+	/**
+	 * @private
+	 */
 	private var _hBevel:Number = 10 ;
-	
+
+	/**
+	 * @private
+	 */
 	private var _vBevel:Number = 15 ;
 	
 }

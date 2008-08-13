@@ -19,10 +19,9 @@
   
   Contributor(s) :
   
-*/
+ */import pegas.maths.Prime;
 
-import pegas.maths.Prime;
-
+import vegas.errors.IllegalArgumentError;
 import vegas.errors.ValueOutOfBoundsError;
 
 /**
@@ -33,26 +32,39 @@ class pegas.maths.Factor
 {
 
 	/**
-	 * The max number of recursions.
-	 */
-	public static var maxRecursion:Number = 254 ;
-
-	/**
-	 * Recursive method that defines the factorial of a positive integer.
+	 * Returns the factorial of a positive integer.
+	 * @param n The value to use to calculate the factorial.
+	 * @throws IllegalArgumentError if the passed-in value is NaN.
+	 * @throws ValueOutOfBoundsError if the passed-in value is out of bounds.
+	 * @return the factorial of a positive integer.
 	 */
 	public static function factorial(n:Number):Number 
 	{
-		if (n > maxRecursion) 
+		if ( isNaN( n ) )
 		{
-			throw new ValueOutOfBoundsError() ;
+			throw new IllegalArgumentError( "Factor.factorial method failed with a NaN passed-in value.") ;	
 		}
-		if (n!=0) 
+		else if ( n < 0 ) 
 		{
-			return n * Factor.factorial(n-1) ;
+			throw new ValueOutOfBoundsError( "Factor.factorial method failed with a value out of bounds : " + n ) ;
+		}
+		else if ( n == 0 ) 
+		{
+			return 1 ;
 		}
 		else 
 		{
-			return 1 ;
+			n -= n%1 ; // no decimal number
+			var result:Number = n ;
+			while (--n > 1)
+			{
+				result *= n ;
+				if ( result == Number.POSITIVE_INFINITY ) // optimization AS2 the Infinity value is return with a value >= 171
+				{
+					return Infinity ;
+				}
+			}
+			return result;
 		}
     }
 
