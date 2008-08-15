@@ -1,31 +1,33 @@
 #labels Documentation
-= VEGAS version 1 Release Candidate 4 =
+= VEGAS version 1 Release Candidate 5 =
 
 Vegas is an OpenSource Framework based on ECMASCript.
 
 ==Description==
 
-You can use the same framework in ActionScript 1,2,3 and SSAS to deploy your RIAs.
+You can use the same framework in ActionScript 3,2,1 and SSAS to deploy your RIAs.
 
-With Vegas you can use 3 other libraries based on VEGAS : PEGAS, ASGard and LunAS. This 3 libraries are in the SVN of VEGAS.
+With Vegas you can use 5 other libraries based on VEGAS : AndromedAS, PEGAS, ASGard, LunAS, CalistA. 
+
+This 5 libraries are in the SVN repository of VEGAS.
 
 ==Install VEGAS==
 
  * [InstallVEGASwithSVN Install the SVN VEGAS sources with TortoiseSVN (AS2 and AS3)]
- * Use the *OSFlash* SVN repository : http://svn1.cvsdude.com/osflash/vegas (work server) 
+ * Download the sources with the top-level SVN repository : http://vegas.googlecode.com/svn
 
 ==Documentation==
 
  * [TutorialsVEGAS Tutorials]
- * [http://vegas.ekameleon.net/docs Documentation online] 
+ * [http://www.ekameleon.net/vegas/docs/ Documentation online] 
  * [http://wiki.mediabox.fr/tutoriaux/vegas French tutorials]
 
 ==Examples==
 
 For the moment in the Subversion repository of VEGAS. (in progress) 
 
- * [http://svn1.cvsdude.com/osflash/vegas/AS2/trunk/bin/test/ AS2 Flash examples] 
- * [http://svn1.cvsdude.com/osflash/vegas/AS3/trunk/bin/test/ AS3 Flash CS3 examples] 
+ * [http://vegas.googlecode.com/svn/AS3/trunk/bin/test/ AS3 Flash CS3 examples] 
+ * [http://vegas.googlecode.com/svn/AS2/trunk/bin/test/ AS2 Flash examples] 
 
 *NB :* Use your SVN client to update this examples (read the installation tutorial) but you can use the "export" process of your SVN client to manipulate all examples.
 
@@ -35,7 +37,7 @@ For the moment in the Subversion repository of VEGAS. (in progress)
 
 ==About==
 
- * Version : 1 RC4
+ * Version : 1 RC5
  * Author  : ALCARAZ Marc (aka eKameleon)
  * Link : http://www.ekameleon.net/blog
  * Mail : vegas@ekameleon.net 
@@ -57,6 +59,14 @@ For the moment in the Subversion repository of VEGAS. (in progress)
  * Pattern MVC : 3 implementations with a FrontController or IView, IModel and IController or IObservable/IObserver implementation.
  * Pattern Visitor interfaces (IVisitor, IVisitable).
  * Factory tools (DisplayObjectFactory, ContextMenuItemFactory...)
+
+===AndromedAS===
+
+ * [http://code.google.com/p/andromed-as/ AndromedA page project (Google Code)]
+
+A library based on MVC tools (for the moment) to develop richmedia applications and creates the link between VEGAS and ASGard.
+
+This library implement a full IOC package based on the Spring.net, AS3 Indigo framework and Eden the ECMAScript data exchange notation.
 
 ===PEGAS===
 
@@ -101,15 +111,6 @@ In the SSAS(Server Side ActionScript) version for Flash Media Server :
  * asgard.server.Application class to creates your FMS application based on VEGAS.
  * asgard.server.Gateway class to creates a Gateway based on the FrontController of Vegas (used AS2 Event in the client application and send this events with the NetConnection.call method directly in the server side FrontController.
 
-===AndromedA===
-
- * [http://code.google.com/p/andromed-as/ AndromedA page project (Google Code)]
-
-A library based on MVC tools (for the moment) to develop richmedia applications and creates the link between VEGAS and ASGard.
-
-This library implement a full IOC package based on the Spring.net, AS3 Indigo framework and Eden the ECMAScript data exchange notation.
-
-This library is in progress but you can use the MVC and Model patterns now with it since problem.
 
 ===LunAS===
 
@@ -151,8 +152,8 @@ You can use my library in your projects with :
 
  * AS2 : Flash MX2004 or Flash8 or Flash CS3.
  * AS2 : [http://www.mtasc.org/ MTASC]
- * AS2 : [http://www.eclipse.org/ Eclipse] and [http://fdt.powerflasher.com/ FTD]
- * AS3 : [http://www.adobe.com/products/flex/sdk/ Flex 2 SDK].
+ * AS2 : [http://www.eclipse.org/ Eclipse] and [http://fdt.powerflasher.com/ FDT]
+ * AS3 : [http://www.adobe.com/products/flex/sdk/ Flex SDK].
 
  * SSAS : *FC 1.5* or *Flash Media Server 2* or *Flash Media Server 3*
  * SSAS : [http://fczone.com/eclipse/ FMS Eclipse]
