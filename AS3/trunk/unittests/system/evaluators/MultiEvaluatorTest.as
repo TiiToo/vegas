@@ -79,6 +79,8 @@ package system.evaluators
         }
 }
 
+import system.evaluators.Evaluable;
+
 class CustomEvaluator implements Evaluable
     {
 	
