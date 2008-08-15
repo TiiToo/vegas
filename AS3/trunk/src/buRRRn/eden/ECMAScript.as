@@ -24,9 +24,7 @@
 package buRRRn.eden
 {
     import system.Reflection;
-    import system.Strings;
-    
-    import vegas.util.ClassUtil;    
+    import system.Strings;    
 
     /**
      * The ECMAScript parser static class.
@@ -1193,7 +1191,7 @@ package buRRRn.eden
                     
                     try
                         {
-                        return ClassUtil.buildNewInstance(fcnObj, args) ; // VEGAS hack for the moment (35 arguments in this static build method)
+                        return Reflection.invokeClass(fcnObj as Class, args) ;
                         }
                     catch( e:Error )
                         {

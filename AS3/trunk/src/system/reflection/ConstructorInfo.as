@@ -39,6 +39,11 @@ package system.reflection
          */
         function construct( ...args:Array ):*;
         
+        /**
+         * Invoke the constructor representation with an array of parameters.
+         */
+        function invoke( params:Array ):*;        
+        
         }
     }
 

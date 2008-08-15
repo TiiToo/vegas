@@ -22,40 +22,45 @@
 
 package system.reflection
     {
-    
     [ExcludeClass]
-
+    
     /**
-     * The concrete class of the TypeInfo interface.
+     * Implementation of the ClassInfo interface.
      */
-    public class _TypeInfo implements TypeInfo
+    public class _ConstructorInfo implements ConstructorInfo
         {
         
-        protected var type:*;
-        
         /**
-         * Creates a new _TypeInfo instance.
+         * Creates a new _ConstructorInfo instance.
          */
-        public function _TypeInfo( o:* )
+        public function _ConstructorInfo( o:* )
             {
-            type = o;
+            super();
             }
         
         /**
-         * Indicates if the specified Class can be convert to an other with the "as" keyword.
-         */
-        public function canConvertTo( o:Class ):Boolean
+         * Indicates the Array represent of all arguments in a constructor.
+         */        
+        public function get arguments():Array
             {
-            return (type as o) != null;
-            }
-
+            return ;
+            }        
+        
         /**
-         * Indicates if the specified Class be used with the "is" keyword.
-         */
-        public function isSubtypeOf( o:Class ):Boolean
+         * Creates the constructor representation.
+         */        
+        public function construct( ...args:Array ):*
             {
-            return type is o;
+            return ;
             }
+        
+        /**
+         * Invoke the constructor representation with an array of parameters.
+         */        
+        public function invoke( args:Array ):*
+            {
+            return construct.apply(null, args) ;
+            }        
         
         /**
          * Returns the String representation of the object.
@@ -63,9 +68,17 @@ package system.reflection
          */
         public function toString():String
             {
-            return "[TypeInfo]" ;
-            }          
+            return "[ConstructorInfo]" ;
+            }        
         
+        /**
+         * Returns the XML representation of the constructor.
+         * @return the XML representation of the constructor.
+         */
+        public function toXML():XML
+        	{
+        	return ;
+            }
+                
         }
     }
-

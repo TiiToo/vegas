@@ -22,7 +22,7 @@
 */
 package andromeda.util.pool 
 {
-    import vegas.util.ClassUtil;                        
+    import system.Reflection;                
 
     /**
      * This factory object create new instances with the specified Class object.
@@ -54,7 +54,7 @@ package andromeda.util.pool
         	{
         	   return null ;	
         	}
-            return ClassUtil.buildNewInstance( clazz , args ) ;
+            return Reflection.invokeClass(clazz, args) ; 
         }    	
                 
     }

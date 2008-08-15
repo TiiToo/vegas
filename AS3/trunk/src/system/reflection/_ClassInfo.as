@@ -21,7 +21,7 @@
 */
 
 package system.reflection
-{
+    {
     import flash.utils.describeType;
     import flash.utils.getDefinitionByName;
     
@@ -458,6 +458,15 @@ package system.reflection
             {
             return _class.@isStatic == "true";
             }
+            
+        /**
+         * Returns the String representation of the object.
+         * @return the String representation of the object.
+         */
+        public override function toString():String
+            {
+            return "[ClassInfo]" ;
+            }                
         
         /**
          * Returns the XML representation of the class.

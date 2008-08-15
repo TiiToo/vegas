@@ -37,8 +37,7 @@ package andromeda.ioc.factory
     import vegas.core.ILockable;
     import vegas.core.Identifiable;
     import vegas.data.map.HashMap;
-    import vegas.events.EventListener;
-    import vegas.util.ClassUtil;    
+    import vegas.events.EventListener;    
 
     /**
      * The basic Inversion of Control container/factory class.
@@ -667,7 +666,7 @@ package andromeda.ioc.factory
             {
                 if ( strategy == null )
                 {
-                    instance = ClassUtil.buildNewInstance( clazz, createArguments( definition.getConstructorArguments()) ) as clazz ;
+                    instance = Reflection.invokeClass( clazz , createArguments( definition.getConstructorArguments()) ) as clazz ;
                 }
                 else
                 {   
