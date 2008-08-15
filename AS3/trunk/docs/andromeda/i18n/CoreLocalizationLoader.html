@@ -252,7 +252,7 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <tr class="">
 <td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
 <div class="summarySignature">
-<a class="signatureLink" href="#CoreLocalizationLoader()">CoreLocalizationLoader</a>(localization:<a href="Localization.html">Localization</a>, loader:URLLoader, bGlobal:Boolean = false, sChannel:String = null)</div>
+<a class="signatureLink" href="#CoreLocalizationLoader()">CoreLocalizationLoader</a>(localization:<a href="Localization.html">Localization</a> = null, loader:URLLoader = null, bGlobal:Boolean = false, sChannel:String = null)</div>
 <div class="summaryTableDescription">
          Creates a new CoreLocalizationLoader instance.</div>
 </td><td class="summaryTableOwnerCol">CoreLocalizationLoader</td>
@@ -1005,19 +1005,19 @@ showHideInherited();
 </tr>
 </table>
 <div class="detailBody">
-<code>public function CoreLocalizationLoader(localization:<a href="Localization.html">Localization</a>, loader:URLLoader, bGlobal:Boolean = false, sChannel:String = null)</code><p>
+<code>public function CoreLocalizationLoader(localization:<a href="Localization.html">Localization</a> = null, loader:URLLoader = null, bGlobal:Boolean = false, sChannel:String = null)</code><p>
          Creates a new CoreLocalizationLoader instance.
          </p><span class="label">Parameters</span>
 <table border="0" cellspacing="0" cellpadding="0">
 <tr>
-<td width="20px"></td><td><code><span class="label">localization</span>:<a href="Localization.html">Localization</a></code> &mdash; The Localization singleton reference of this loader.
+<td width="20px"></td><td><code><span class="label">localization</span>:<a href="Localization.html">Localization</a></code> (default = <code>null</code>)<code></code> &mdash; The Localization singleton reference of this loader.
          </td>
 </tr>
 <tr>
 <td class="paramSpacer">&nbsp;</td>
 </tr>
 <tr>
-<td width="20px"></td><td><code><span class="label">loader</span>:URLLoader</code> &mdash; The URLLoader object to load.
+<td width="20px"></td><td><code><span class="label">loader</span>:URLLoader</code> (default = <code>null</code>)<code></code> &mdash; The URLLoader object to load.
       </td>
 </tr>
 <tr>

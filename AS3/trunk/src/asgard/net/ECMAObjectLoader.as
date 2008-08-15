@@ -25,9 +25,7 @@ package asgard.net
     import flash.display.DisplayObjectContainer;
     
     import andromeda.config.Config;
-    import andromeda.config.ConfigResource;
     import andromeda.events.LocalizationEvent;
-    import andromeda.i18n.LocaleResource;
     import andromeda.i18n.Localization;
     import andromeda.ioc.factory.ECMAObjectFactory;
     import andromeda.ioc.factory.ObjectFactory;
@@ -38,167 +36,77 @@ package asgard.net
     import asgard.text.FontResource;
     import asgard.text.StyleSheetResource;    
 
-    // TODO add events and progress UI to notify the IOC external process in progress.
-    
     /**
-     * This loader load an external IOC ECMAObject and this dependencies and create the ECMAObjectFactory container of the application.
-     * See the ECMAObjectFactory class to use this loader. 
-     * <p><b>Example :</b></p>
-     * <p><b>1 -</b> The custom <code class="prettyprint">test.User</code> class.</b></p>
+     * This loader load an external file who contains a context with all object definitions, resources and configuration objects to create and manage the ECMAObjectFactory IoC container.
+     * <p><b>Example : "hello world"</b></p>
+     * <p><b>1 -</b> The top-level context eden application file : <b>"hello_world.eden"</b></p>
      * <pre class="prettyprint">
-     * package test
-     * {
-     * 
-     *     import system.Reflection;
-     *     import vegas.core.CoreObject;
-     *     
-     *     public class User extends CoreObject
+     * objects =
+     * [
      *     {
-     *     
-     *         public function User( name:String = null )
-     *         {
-     *             this.name    = name ;
-     *         }
-     *         
-     *         public var name:String ;
-     *         
-     *         public function initialize():void
-     *         {
-     *             trace( this + " initialize.") ;
-     *         }
-     *         
-     *         public override function toString():String
-     *         {
-     *             return "[" + Reflection.getClassName(this) + ( name != null ? " " + name : "" ) + "]" ;
-     *         }
-     *     }
-     * }
-     * </pre>
-     * <p><b>2 -</b> The main context eden application file : <b>"application.eden"</b></p>
-     * <pre class="prettyprint">
-     * {
-     *     configuration :
-     *     {
-     *         defaultInitMethod    : "initialize" ,
-     *         defaultDestroyMethod : "destroy"    ,
-     *         identify             : true
+     *         id        : "my_format" ,
+     *         type      : "flash.text.TextFormat" ,
+     *         arguments : [ { value:"arial" } , { value:24 } , { value:0xFEF292 } , { value:true } ]
      *     }
      *     ,
-     *     imports :
-     *     [
-     *         { resource : "view.eden" }
-     *     ]
+     *     {
+     *         id         : "my_field" ,
+     *         type       : "flash.text.TextField"  ,
+     *         properties :
+     *         [
+     *             { name : "autoSize"          , value  : "left"            } ,
+     *             { name : "defaultTextFormat" , ref    : "my_format"       } ,
+     *             { name : "text"              , value  : "HELLO WORLD"     } ,
+     *             { name : "x"                 , value  : 10                } ,
+     *             { name : "y"                 , value  : 10                }
+     *         ]
+     *     }
      *     ,
-     *     objects :
-     *     [
-     *         {
-     *              id        : "user" ,
-     *              type      : "test.User" ,
-     *              singleton : true ,
-     *              arguments :
-     *              [
-     *                  { value : "ekameleon" }
-     *              ]
-     *         }
-     *     ]
-     * }
+     *     {
+     *         id               : "stage" ,
+     *         type             : "flash.display.Stage"  ,
+     *         factoryReference : "#stage" ,
+     *         singleton        : true ,
+     *         properties       :
+     *         [
+     *             { name : "align"     , value:""        } ,
+     *             { name : "scaleMode" , value:"noScale" }
+     *         ]
+     *     }
+     *     ,
+     *     {
+     *         id               : "root" ,
+     *         type             : "flash.display.MovieClip"  ,
+     *         factoryReference : "#root" ,
+     *         singleton        : true ,
+     *         properties       :
+     *         [
+     *             { name : "addChild" , arguments  : [ { ref:"my_field" } ]}
+     *         ]
+     *     }
+     * ] ;
      * </pre>
-     * <p><b>3 -</b> The import eden context file : <b>"view.eden"</b></p>
+     * <p><b>2 -</b> The main source code :</p>
      * <pre class="prettyprint">
-     * {
-     *     objects :
-     *     [
-     *         {
-     *             id         : "my_field" ,
-     *             type       : "flash.text.TextField"  , // this class is created and embed in the library of the swf.
-     *             properties :
-     *             [
-     *                 { name : "autoSize"          , value : "left" } ,
-     *                 { name : "defaultTextFormat" , value : new flash.text.TextFormat('arial', 12, 0xFFFFFF) } ,
-     *                 { name : "filters"           , value : [ new flash.filters.DropShadowFilter(2,90,0x000000,0.6,8,8,1,3) ] } ,
-     *                 { name : "text"              , value : "hello world" } ,
-     *                 { name : "x"                 , value : 10 } ,
-     *                 { name : "y"                 , value : 10 }
-     *             ]
-     *         }
-     *         ,
-     *         {
-     *             id         : "my_sprite" ,
-     *             type       : "asgard.display.CoreSprite" ,
-     *             singleton  : true // must be a singleton to test the ObjectConfig.identify flag.
-     *         }
-     *         ,
-     *         {
-     *             id         : "square" ,
-     *             type       : "Square" ,
-     *             singleton  : true     ,
-     *             properties :
-     *             [
-     *                 { name:"x" , value : 50  } ,
-     *                 { name:"y" , value : 50  }
-     *             ]
-     *             ,
-     *             methods :
-     *             [
-     *                 { name:"addChild" , arguments:[ { ref:"my_field" } ] }
-     *             ]
-     *         }
-     *     ]
-     * 
-     * }
-     * </pre>
-     * <p><b>4 -</b> The main source code of the example :</p>
-     * <pre class="prettyprint">
-     * import buRRRn.eden.config;
-     * 
      * import andromeda.events.ActionEvent;
      * import andromeda.ioc.factory.ECMAObjectFactory;
      * 
-     * import asgard.display.CoreSprite ;
      * import asgard.net.ECMAObjectLoader ;
-     *  
-     * import test.User ;
      * 
-     * //// eden white list : allow class and package to deserialize custom objects.
-     * 
-     * config.addAuthorized( "flash.filters.DropShadowFilter" ) ;
-     * config.addAuthorized( "flash.text.TextField" ) ;
-     * config.addAuthorized( "flash.text.TextFormat" ) ;
-     * 
-     * //// Enforces the class in the swf to use it in the eden context files.
-     * 
-     * var enforcer:Array = [ User ] ;
-     * 
-     * ////
-     * 
-     * var start:Function = function( e:Event ):void
+     * var debug:Function = function( e:Event ):void
      * {
      *     trace( e ) ;
      * }
      * 
-     * var finish:Function = function( e:Event ):void
-     * {
-     *     trace( e ) ;
-     *     
-     *     // see the config.identify flag in the external context of the factory.
-     *     
-     *     var mySprite:CoreSprite = factory.getObject("my_sprite") as CoreSprite ;
-     *     trace( mySprite + " id:" + mySprite.id ) ; // my_sprite
-     *     
-     *     addChild( mySprite ) ;
-     *     
-     *     mySprite.addChild( factory.getObject("square") ) ;
-     * }
+     * var loader:ECMAObjectLoader = new ECMAObjectLoader( "hello_world.eden" , "context/" ) ;
      * 
-     * var factory = ECMAObjectFactory.getInstance() ;
+     * loader.root = this ;
      * 
-     * var loader:ECMAObjectLoader = new ECMAObjectLoader( "application.eden" , "context/" ) ;
-     * loader.addEventListener( ActionEvent.START  , start ) ;
-     * loader.addEventListener( ActionEvent.FINISH , finish ) ;
+     * loader.addEventListener( ActionEvent.START  , debug ) ;
+     * loader.addEventListener( ActionEvent.FINISH , debug ) ;
      * 
      * loader.run() ;
      * </pre>
-     * @author eKameleon
      * @see andromeda.ioc.factory.ECMAObjectFactory
      */
     public class ECMAObjectLoader extends ObjectFactoryLoader
@@ -282,11 +190,9 @@ package asgard.net
          */
         private var _localization:Localization ;
 		
-		// Fill the ObjectResourceBuilder with the custom config and i18n ObjectResource class.
+		// Fill the ObjectResourceBuilder with the custom font and style ObjectResource class.
 		
-    	ObjectResourceBuilder.addObjectResource( ObjectResourceType.CONFIG , ConfigResource     ) ;
     	ObjectResourceBuilder.addObjectResource( ObjectResourceType.FONT   , FontResource       ) ;
-    	ObjectResourceBuilder.addObjectResource( ObjectResourceType.I18N   , LocaleResource     ) ;
         ObjectResourceBuilder.addObjectResource( ObjectResourceType.STYLE  , StyleSheetResource ) ;
         		
     }

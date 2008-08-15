@@ -38,12 +38,9 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <tr>
 <td class="classHeaderTableLabel">Class</td><td class="classSignature">public dynamic  class Locale</td>
 </tr>
-<tr>
-<td class="classHeaderTableLabel">Inheritance</td><td class="inheritanceList">Locale <img class="inheritArrow" alt="Inheritance" title="Inheritance" src="../../images/inherit-arrow.gif"> <a href="../../vegas/core/CoreObject.html">CoreObject</a></td>
-</tr>
 </table>
 <p></p>
-     The dynamic Locale reference to register all external locale properties.
+     The dynamic Locale reference to register all external locale properties with a Lang object.
      <p></p>
 <br>
 <hr>
@@ -51,14 +48,6 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <a name="methodSummary"></a>
 <div class="summarySection">
 <div class="summaryTableTitle">Public Methods</div>
-<div class="showHideLinks">
-<div class="hideInheritedMethod" id="hideInheritedMethod">
-<a onclick="javascript:setInheritedVisible(false,'Method');" href="#methodSummary" class="showHideLink"><img src="../../images/expanded.gif" class="showHideLinkImage"> Hide Inherited Public Methods</a>
-</div>
-<div class="showInheritedMethod" id="showInheritedMethod">
-<a onclick="javascript:setInheritedVisible(true,'Method');" href="#methodSummary" class="showHideLink"><img src="../../images/collapsed.gif" class="showHideLinkImage"> Show Inherited Public Methods</a>
-</div>
-</div>
 <table id="summaryTableMethod" class="summaryTable " cellpadding="3" cellspacing="0">
 <tr>
 <th>&nbsp;</th><th colspan="2">Method</th><th class="summaryTableOwnerCol">Defined&nbsp;by</th>
@@ -66,51 +55,10 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <tr class="">
 <td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
 <div class="summarySignature">
-<a class="signatureLink" href="#Locale()">Locale</a>()</div>
+<a class="signatureLink" href="#Locale()">Locale</a>(init:Object)</div>
 <div class="summaryTableDescription">
          Creates a new Locale instance.</div>
 </td><td class="summaryTableOwnerCol">Locale</td>
-</tr>
-<tr class="hideInheritedMethod">
-<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol">
-<div class="summarySignature">
-<a class="signatureLink" href="../../vegas/core/CoreObject.html#getLogger()">getLogger</a>():<a href="../../vegas/logging/ILogger.html">ILogger</a>
-</div>
-<div class="summaryTableDescription">
-   Returns the internal <code class="prettyprint">ILogger</code> reference of this <code class="prettyprint">ILogable</code> object.</div>
-</td><td class="summaryTableOwnerCol"><a href="../../vegas/core/CoreObject.html">CoreObject</a></td>
-</tr>
-<tr class="hideInheritedMethod">
-<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol">
-<div class="summarySignature">
-<a class="signatureLink" href="../../vegas/core/CoreObject.html#hashCode()">hashCode</a>():uint</div>
-<div class="summaryTableDescription">
-   Returns a hashcode value for the object.</div>
-</td><td class="summaryTableOwnerCol"><a href="../../vegas/core/CoreObject.html">CoreObject</a></td>
-</tr>
-<tr class="hideInheritedMethod">
-<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol">
-<div class="summarySignature">
-<a class="signatureLink" href="../../vegas/core/CoreObject.html#setLogger()">setLogger</a>(log:<a href="../../vegas/logging/ILogger.html">ILogger</a> = null):void</div>
-<div class="summaryTableDescription">
-   Sets the internal <code class="prettyprint">ILogger</code> reference of this <code class="prettyprint">ILogable</code> object.</div>
-</td><td class="summaryTableOwnerCol"><a href="../../vegas/core/CoreObject.html">CoreObject</a></td>
-</tr>
-<tr class="hideInheritedMethod">
-<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol">
-<div class="summarySignature">
-<a class="signatureLink" href="../../vegas/core/CoreObject.html#toSource()">toSource</a>(indent:int = 0):String</div>
-<div class="summaryTableDescription">
-   Returns the string representation the source code of the object.</div>
-</td><td class="summaryTableOwnerCol"><a href="../../vegas/core/CoreObject.html">CoreObject</a></td>
-</tr>
-<tr class="hideInheritedMethod">
-<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol">
-<div class="summarySignature">
-<a class="signatureLink" href="../../vegas/core/CoreObject.html#toString()">toString</a>():String</div>
-<div class="summaryTableDescription">
-   Returns the string representation of this instance.</div>
-</td><td class="summaryTableOwnerCol"><a href="../../vegas/core/CoreObject.html">CoreObject</a></td>
 </tr>
 </table>
 </div>
@@ -128,9 +76,16 @@ showHideInherited();
 </tr>
 </table>
 <div class="detailBody">
-<code>public function Locale()</code><p>
+<code>public function Locale(init:Object)</code><p>
          Creates a new Locale instance.
-         </p></div>
+         </p><span class="label">Parameters</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td><code><span class="label">init</span>:Object</code> &mdash; A generic object containing properties with which to populate the newly instance. If this argument is null, it is ignored.
+         </td>
+</tr>
+</table>
+</div>
 <br>
 <br>
 <hr>
