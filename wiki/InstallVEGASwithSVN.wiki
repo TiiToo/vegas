@@ -1,0 +1,195 @@
+#labels Install,Phase-Deploy,Documentation,Featured
+#Install the VEGAS project with Subversion and TortoiseSVN.
+
+= Introduction =
+
+VEGAS is an opensource project with a main SVN server :
+
+  * OSFlash (SVN)     : http://svn1.cvsdude.com/osflash/vegas (work server)
+
+= Installation of the sources with the SVN (subversion) repository =
+
+== With TortoiseSVN (PC) ==
+
+*Tortoise SVN* is a powerfull *SVN* client to manager all your opensource or your private Surversion projects.
+
+1 - Download the last version of *Tortoise SVN* : http://tortoisesvn.net/downloads
+
+2 - Creates a SVN directory in your hard disk, for example : c:\workspace\vegas
+
+3 - Right-click over the directory in Windows and select the *SVN checkout* item.
+
+4 - Use the SVN link http://svn1.cvsdude.com/osflash/vegas and validate.
+
+5 - All files are installed in your hard disk.. you can now use the right-click the *"update"* of the tortoiseSVN context menu to update *VEGAS*.
+
+== With SVN command line ==
+
+Non-members may check out a *read-only* working copy anonymously over HTTP.
+
+{{{
+svn checkout http://svn1.cvsdude.com/osflash/vegas
+}}}
+
+== Other systems ==
+
+In *Mac OSX* you can use [http://scplugin.tigris.org/ scplugin] or [http://www.apple.com/downloads/macosx/development_tools/svnx.html SvnX] or [http://rapidsvn.tigris.org/ RapidSVN] to install the Vegas sources and examples.
+
+This project's Subversion repository may be accessed using many [http://subversion.tigris.org/links.html#clients different client programs and plug-ins]. See your client's documentation for more information.
+
+= Use VEGAS in Flash =
+
+== AS3 project == 
+
+Install the VEGAS classpath in Flash CS3. 
+
+1 - Open Flash :)
+
+2 - Select *Edit > Preferences (Windows)* or *Flash > Preferences (Macintosh)* to open the Preferences dialog box.
+
+http://vegas.googlecode.com/files/vegas_flash_classpath_01.jpg
+
+3 - Click the *ActionScript* in the left column, and then click the *ActionScript 3.0 Settings* button.
+
+4 - Add an item in the list and click the *Browse to Path* button to browse to the directory : *AS3/trunk/src* in the *VEGAS* project repository.
+
+http://vegas.googlecode.com/files/vegas_flash_classpath_02.jpg
+
+5 - click *OK*
+
+6 - In flash creates a new AS3 document and in an ActionScript layer write :
+{{{
+import vegas.core.CoreObject ;
+ 
+var oC:CoreObject = new CoreObject() ;
+trace("hasCode :: " + oC.hashCode()) ;
+trace("toString :: " + oC) ;
+ 
+/* output
+hasCode :: 0
+toString :: [CoreObject]
+*/
+}}}
+
+== AS2 project == 
+
+=== Install the classpath of VEGAS AS2 in Flash7 or Flash8 or Flash CS3. ===
+
+1 - Open Flash (a second time ?) :)
+
+2 - Select *Edit > Preferences (Windows)* or *Flash > Preferences (Macintosh)* to open the Preferences dialog box.
+
+3 - Click the *ActionScript* in the left column, and then click the *ActionScript 2.0 Settings* button.
+
+4 - Add an item in the list and click the *Browse to Path* button to browse to the directory : *AS2/trunk/src* in the *VEGAS* project.
+
+5 - click *OK*
+
+6 - In flash creates a new AS2 document and in an ActionScript layer write :
+{{{
+import vegas.core.CoreObject ;
+ 
+var oC:CoreObject = new CoreObject() ;
+trace("hasCode :: " + oC.hashCode()) ;
+trace("toString :: " + oC) ;
+ 
+/* output
+hasCode :: 0
+toString :: [CoreObject]
+*/
+}}}
+
+=== Use VEGAS with MTASC ===
+
+You can use my AS2 framework too with [http://www.mtasc.org/ MTASC].
+
+You must target your VEGAS '''AS2/trunk/src/''' directory with the '''-cp''' command in your MTASC task (Ant task or other...)
+
+= Use VEGAS in Flex Builder 3 =
+
+=== Phase 1 ===
+
+Creates a new Flex Project or ActionScript project.
+
+http://vegas.googlecode.com/files/vegas_flex_project_01.jpg
+
+_Press next to continue_
+
+=== Phase 2 ===
+
+http://vegas.googlecode.com/files/vegas_flex_project_02.jpg
+
+Sets the name of the project and defines your project location and application type. 
+
+_Press next to continue_
+
+=== Phase 3 ===
+
+You can now change the default project folder name.
+
+http://vegas.googlecode.com/files/vegas_flex_project_03.jpg
+
+*NB :* In my personal projects i use the name *deploy*. 
+
+_Press next to continue_
+
+=== Phase 4 ===
+
+Add the *AS3/trunk/src* folder in the source path list of your project.
+
+http://vegas.googlecode.com/files/vegas_flex_project_04.jpg
+
+When your project is created you can right-click the project and change this list in the properties panel of the project.
+
+*NB :* By default in my projects i use the main source folder : *src*
+
+=== Phase 5 ===
+
+You can now try the next script in the main *Application.mxml* class of the project.
+
+{{{
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Application 
+	
+	xmlns:mx="http://www.adobe.com/2006/mxml" 
+	layout="absolute"
+	initialize="complete(event);"
+	backgroundColor="#666666"
+	
+>
+	
+	<mx:Script>
+		<![CDATA[
+
+		import vegas.core.CoreObject;
+
+		
+		/**
+		 * Invoked when the Flex application is initialize.
+		 */		
+		public function complete( e:Event ):void
+		{
+			
+			var core:CoreObject = new CoreObject() ;
+			trace( "core     : " + core ) ;            // core      : [CoreObject]
+			trace( "hashCode : " + core.hashCode() ) ; // hashCode  : 0
+			
+		}			
+			
+		]]>
+	</mx:Script>
+	
+	
+</mx:Application>
+}}}
+
+= A problem ? =
+
+Don't forget to use the [http://code.google.com/p/vegas/issues/list Google Code Issues List] of the project if you find a bug and the [http://groups.google.com/group/vegasos VEGAS Google Group] for all questions about it.
+
+If the svn repository link don't work try the backup repositories :
+
+  * Google Code (SVN) : http://vegas.googlecode.com/svn/ (backup)
+  * RIAForge (SVN)    : http://svn.riaforge.org/vegas/ (backup)
+
+You can use the direct download button in the project page of RIAForge.

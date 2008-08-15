@@ -1,0 +1,40 @@
+#labels Documentation,Documentation-events,Featured
+ * [TutorialsVEGAS Returns tutorial index page]
+
+= AS2 and SSAS Event Model =
+
+Modèle événementiel basé sur le DOM2/3 du modèle événementiel du W3C
+
+The event model of *VEGAS* is based on the [http://www.w3.org/TR/DOM-Level-2-Events/events.html DOM2/3 W3C model events].
+
+The *AS2* and *SSAS* versions of this event model are full compatible. The AS3 is compatible but based on the *AS3 event model*.
+
+You can use the on-line documentation of *VEGAS* to complete the reading of the tutorials : http://www.ekameleon.net/vegas/docs/
+
+== Use the EventDispatcher, EventListener, Event class and interfaces ==
+
+ # [VegasTutorialsEvents_def Definitions]
+ # [VegasTutorialsEvents_intro Introduction]
+ # [VegasTutorialsEvents_basic Basic example]
+ # [VegasTutorialsEvents_global Global event-listeners]
+ # [VegasTutorialsEvents_multi MultiDispatcher & singletons]
+ # [VegasTutorialsEvents_cancel Cancelling events]
+ # [VegasTutorialsEvents_remove Removing listeners]
+ # [VegasTutorialsEvents_priority Eventlistener priority]
+ # [VegasTutorialsEvents_autoremove Auto-remove feature]
+ # [VegasTutorialsEvents_queue Event queue]
+ # [VegasTutorialsEvents_delegate The Delegate EventListener]
+ # [VegasTutorialsEvents_eventlistener_batch The EventListener batch class]
+ # [VegasTutorialsEvents_frontcontroller The Design Pattern FrontController]
+ # [VegasTutorialsEvents_eventflow Capturing and bubbling event flow]
+ # [VegasTutorialsEvents_AbstractCoreEventDispatcher The AbstractCoreEventDispatcher class]
+
+== French tutorials ==
+
+You can find the french tutorials of *VEGAS* in the [http://groups.google.com/group/vegasos Google Group VEGASOS] of *VEGAS*.
+
+ # [http://groups.google.com/group/vegasos/web/events-based-w3c-dom2-3-model-events---mode-demploi-partie-1 Events based W3C DOM2/3 model events - Mode d'emploi (partie 1)]
+ # [http://groups.google.com/group/vegasos/web/events-based-w3c-dom2-3-model-events---mode-demploi-partie-2 Events based W3C DOM2/3 model events - Mode d'emploi (partie 2)]
+ # [http://groups.google.com/group/vegasos/web/events-based-w3c-dom2-3-model-events---mode-demploi-partie-3 Events based W3C DOM2/3 model events - Mode d'emploi (partie 3) ]
+ # [http://groups.google.com/group/vegasos/web/utilisation-de-la-classe-basicevent-et-dynamicevent Utilisation de la classe BasicEvent et DynamicEvent.]
+ # [http://groups.google.com/group/vegasos/web/utilisation-de-la-classe-eventdispatcher-et-de-linterface-eventlistener  Utilisation de la classe EventDispatcher et de l'interface EventListener  ]

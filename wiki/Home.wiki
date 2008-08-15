@@ -1,0 +1,164 @@
+#labels Documentation
+= VEGAS version 1 Release Candidate 4 =
+
+Vegas is an OpenSource Framework based on ECMASCript.
+
+==Description==
+
+You can use the same framework in ActionScript 1,2,3 and SSAS to deploy your RIAs.
+
+With Vegas you can use 3 other libraries based on VEGAS : PEGAS, ASGard and LunAS. This 3 libraries are in the SVN of VEGAS.
+
+==Install VEGAS==
+
+ * [InstallVEGASwithSVN Install the SVN VEGAS sources with TortoiseSVN (AS2 and AS3)]
+ * Use the *OSFlash* SVN repository : http://svn1.cvsdude.com/osflash/vegas (work server) 
+
+==Documentation==
+
+ * [TutorialsVEGAS Tutorials]
+ * [http://vegas.ekameleon.net/docs Documentation online] 
+ * [http://wiki.mediabox.fr/tutoriaux/vegas French tutorials]
+
+==Examples==
+
+For the moment in the Subversion repository of VEGAS. (in progress) 
+
+ * [http://svn1.cvsdude.com/osflash/vegas/AS2/trunk/bin/test/ AS2 Flash examples] 
+ * [http://svn1.cvsdude.com/osflash/vegas/AS3/trunk/bin/test/ AS3 Flash CS3 examples] 
+
+*NB :* Use your SVN client to update this examples (read the installation tutorial) but you can use the "export" process of your SVN client to manipulate all examples.
+
+==Licence==
+
+ * [http://www.opensource.org/licenses/mozilla1.1.php Mozilla Public License 1.1 (MPL1.1)]
+
+==About==
+
+ * Version : 1 RC4
+ * Author  : ALCARAZ Marc (aka eKameleon)
+ * Link : http://www.ekameleon.net/blog
+ * Mail : vegas@ekameleon.net 
+
+==FEATURES LIST==
+
+===VEGAS===
+
+ * AS3, SSAS and AS2 Framework.
+ * Unit Test based on ASTUce.
+ * AS2 librairie is “MTASC compatible” !
+ * Ready to use EDEN.
+ * SSAS library based on Core2 and EDEN.
+ * ADT (Abstract Data Type) package in AS2, AS3 ans SSAS libraries (queue, map, collections, stack, bag, iterator, ... polymorphism with JAVA Collections)
+ * Events package : Event's model based on W3C Dom2 with bubbling, capturing etc + FrontController pattern.
+ * String tools : JSON, Eden serialization/deserialization, Lunh, wildcard, StringFormat...
+ * Tools : Serializer, Copier, ArrayUtil, etc..
+ * Logging model to use SOS console, LuminicBox FlashInspector, XPanel... AS2 logging model use polymorphism with mx.logging package in AS3 framework.
+ * Pattern MVC : 3 implementations with a FrontController or IView, IModel and IController or IObservable/IObserver implementation.
+ * Pattern Visitor interfaces (IVisitor, IVisitable).
+ * Factory tools (DisplayObjectFactory, ContextMenuItemFactory...)
+
+===PEGAS===
+
+ * [http://code.google.com/p/pegas/ PEGAS page project (Google Code)]
+
+ * Color Manipulation.
+ * draw API tools (ArcPen, BezierPen, RectanglePen, Canvas....)
+ * Transitions package (Tween, ..)
+ * *geom* package with flash.geom polymorphism for FP7 & FP8 and other tool class (Vertex, Vector2, Vector3, Quaternion...)
+ * Maths tools (Prime, Factor, Range...)
+ * Process package (Sequencer & Action).
+ * UI package. (KeyValidator, DoubleClick...)
+
+===ASGard===
+
+ * [http://code.google.com/p/as-gard/ ASGard page project (Google Code)]
+
+AS3 version :
+
+ * Date and time tools.
+ * Config pattern.
+ * Localization and system package.
+ * Display custom tools.
+ * Configuration model.
+ * media package with extended video, sound and stream class.
+ * Tool text package (StyleSheet, ...)
+ * Net tools (remoting, eden and json loader, etc)
+
+AS2 version :
+
+ * AS3 Framework polymorphism.
+ * Display package (Bitmap, DisplayObject, DisplayLoader, FlashPaperLoader, VideoDisplay, ZoomDisplay...)
+ * Loader package (URLLoader, JSONLoader, EdenLoader, StyleSheetLoader...)
+ * Remoting package with no Macromedia Framework’s dependencies.
+ * Localization and system package
+ * Configuration model.
+ * Text Package (StyleSheet, ...) like AS3 flash.text framework.
+
+In the SSAS(Server Side ActionScript) version for Flash Media Server :
+
+ * The same Remoting class like AS2 and AS3 libraries.
+ * asgard.server.Application class to creates your FMS application based on VEGAS.
+ * asgard.server.Gateway class to creates a Gateway based on the FrontController of Vegas (used AS2 Event in the client application and send this events with the NetConnection.call method directly in the server side FrontController.
+
+===AndromedA===
+
+ * [http://code.google.com/p/andromed-as/ AndromedA page project (Google Code)]
+
+A library based on MVC tools (for the moment) to develop richmedia applications and creates the link between VEGAS and ASGard.
+
+This library implement a full IOC package based on the Spring.net, AS3 Indigo framework and Eden the ECMAScript data exchange notation.
+
+This library is in progress but you can use the MVC and Model patterns now with it since problem.
+
+===LunAS===
+
+This library based on ASGard and VEGAS to create components. It's not a component of framework but a framework to make components.
+
+ * [http://code.google.com/p/lun-as/ LunAS page project (Google Code)] 
+
+Use examples in AS2/bin/test/lunas to test this framework.
+
+ * *bar* package : Progressbar, scrollbar...
+ * *button* package
+ * *container* package : SimpleContainer, ListContainer, ScrollContainer, AutoScrollContainer, MatrixContainer...
+ * *cell* package : cells in list and datagrids
+ * *list* package : List components based on containers and with a polymophism with mx package of macromedia.
+ * *shape* package : all shape components.
+ * *stepper* package : basic implementation to create Stepper components.
+ * *text* package : Label, TextArea and TextInput abstract implementation.
+
+===CalistA===
+
+ * [http://code.google.com/p/calista/ CalistA page project (Google Code)] 
+
+CalistA is a little cryptography library written in Actionscript include in the VEGAS framework with SHA1, TEA, MD5, LZW, Base64 and Base8 algorithms.
+
+=== MarS ===
+
+This extension is an opensource helper library based on *VEGAS* (only AS2 for the moment) and this extensions to create Rich Applications with all basic tools.
+
+===ASTr'O===
+
+ActionScript Template application framework based on VEGAS. This opensource library contains a skeletal to implement rich application with VEGAS and this extensions. For the moment this library is an experimental laboratory to implements a concrete example with VEGAS.
+
+ * Download the sources of this project in the Google Code page : http://code.google.com/p/astr/
+
+
+==Requirements==
+
+You can use my library in your projects with :
+
+ * AS2 : Flash MX2004 or Flash8 or Flash CS3.
+ * AS2 : [http://www.mtasc.org/ MTASC]
+ * AS2 : [http://www.eclipse.org/ Eclipse] and [http://fdt.powerflasher.com/ FTD]
+ * AS3 : [http://www.adobe.com/products/flex/sdk/ Flex 2 SDK].
+
+ * SSAS : *FC 1.5* or *Flash Media Server 2* or *Flash Media Server 3*
+ * SSAS : [http://fczone.com/eclipse/ FMS Eclipse]
+ * SSAS : [http://labs.adobe.com/technologies/jseclipse/ JSEclipse]
+
+== Thanks ==
+
+ * [http://zwetan.com/ Zwetan] : ECMAScript Concepts, all discussions and hosting 
+ * [http://powerflasher.com/ PowerFlasher] and [http://fdt.powerflasher.com FDT] OpenSource Licence.

@@ -1,0 +1,29 @@
+#labels Documentation,Featured
+= VEGAS Tutorials =
+
+ * [http://code.google.com/p/vegas/ Home Page]
+
+_( All tutorials are in progress )_
+
+== English Tutorials ==
+
+ * [VegasTutorialsEvents Event model] : (based on W3C DOM2/3 event model)
+
+ * [VegasTutorialsADT Abstract Data Type] : Based on the [http://java.sun.com/j2se/1.4.2/docs/guide/collections/ JAVA Collections] and the [http://jakarta.apache.org/commons/collections/ Jakarta Collections] Frameworks.
+
+ * [VegasTutorialsErrors The 'vegas.errors' package]
+
+ * [VegasTutorialsCore The 'vegas.core' package]
+
+ * [VegasTutorialsLogging Logging model] : based on the *mx.logging AS3* package.
+
+ * [VegasTutorialsString The vegas.string package]
+
+ * [VegasTutorialsUtil The vegas.util package] : all tools class in VEGAS.
+
+== French Tutorials ==
+
+you can find the french VEGAS tutorials :
+
+ * in my blog : [http://www.ekameleon.net/blog/index.php?q=%5BVEGAS%5D Vegas tutorial in my blog]
+ * in the wiki of media-box : http://wiki.media-box.net/tutoriaux/vegas

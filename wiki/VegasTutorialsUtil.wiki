@@ -1,0 +1,15 @@
+#labels Documentation,Phase-Implementation
+ * [TutorialsVEGAS Returns tutorial index page]
+
+= Package vegas.util =
+
+In this package you can find all tool class of VEGAS.
+
+ * [VegasTutorialsUtil_maths_util MathsUtil]
+
+ * [VegasTutorialsUtil_constructor_util ConstructorUtil]
+ * [VegasTutorialsUtil_array_util ArrayUtil]
+ * [VegasTutorialsUtil_string_util StringUtil]
+ * [VegasTutorialsUtil_type_util TypeUtil]
+
+ * [VegasTutorialsUtil_timers Timer and FrameTimer]

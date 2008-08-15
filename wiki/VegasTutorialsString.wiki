@@ -1,0 +1,16 @@
+#labels Documentation,Documentation-string
+ * [TutorialsVEGAS Returns tutorial index page]
+
+= The String tools =
+
+== Description ==
+
+The *vegas.string* package contains the tools to serialize/deserialize and format strings.
+
+== Usage ==
+
+ # [VegasTutorialsString_JSON The JSON class]
+ # [VegasTutorialsString_HTMLStringFormatter The HTMLStringFormatter class]
+ # [VegasTutorialsString_StringFormatter The StringFormatter class]
+ # [VegasTutorialsString_unicode The UnicodeChar tool class]
+ # [VegasTutorialsString_wildcards The wildcards with VEGAS]

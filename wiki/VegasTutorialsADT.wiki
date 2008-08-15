@@ -1,0 +1,19 @@
+#labels Documentation,Documentation-collections,Featured
+ * [TutorialsVEGAS Returns tutorial index page]
+
+= Abstract Data Type and Collections with VEGAS =
+
+The collections framework is a unified architecture for representing and manipulating collections, allowing them to be manipulated independently of the details of their representation. It reduces programming effort while increasing performance. 
+
+The *VEGAS* collection framework is based on the [http://java.sun.com/j2se/1.4.2/docs/guide/collections/ JAVA Collections Framework] and the [http://commons.apache.org/collections/ Jakarta Collections Framework].
+
+This framework is based on interfaces to defines the differents types of collections.
+
+ * [VegasTutorials_collection_map The vegas.data.Map interface and this implementations]
+
+ * [VegasTutorials_collection_intro Introduction]
+ * [VegasTutorials_collection_bag Bag]
+ * [VegasTutorials_collection_collections Collections]
+ * [VegasTutorials_collection_iterator Iterator]
+ * [VegasTutorials_collection_set Set]
+ * [VegasTutorials_collection_stack Queue & Stack]
