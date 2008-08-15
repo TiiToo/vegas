@@ -21,9 +21,9 @@
   	- Alcaraz Marc (aka eKameleon) <ekameleon@gmail.com> (2007-2008)
 
 */
-package buRRRn
-	{
-	import buRRRn.eden.EdenSerializer;	
+package system
+{
+    import system.eden.EdenSerializer;    	
 	
 	/**
 	 * The eden singleton serializer.

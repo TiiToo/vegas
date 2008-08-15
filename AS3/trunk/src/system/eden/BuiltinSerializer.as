@@ -21,14 +21,13 @@
 
 */
 
-package buRRRn.eden
+package system.eden
 {
-	import buRRRn.eden;
-	
-	import system.Arrays;
-	import system.Environment;	
+    import system.Arrays;
+    import system.Environment;
+    import system.eden;    
 
-	/**
+    /**
 	 * The BuiltinSerializer class.
 	 */
 	public class BuiltinSerializer

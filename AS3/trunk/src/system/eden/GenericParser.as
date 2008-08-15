@@ -21,7 +21,7 @@
 
 */
 
-package buRRRn.eden
+package system.eden
 {
 
 	/**
@@ -126,7 +126,7 @@ package buRRRn.eden
 		 */
 		public static function evaluate( source:String ):*
 		{
-			var parser:GenericParser = new buRRRn.eden.GenericParser( source );
+			var parser:GenericParser = new system.eden.GenericParser( source );
 			return parser.eval( );
 		}
 

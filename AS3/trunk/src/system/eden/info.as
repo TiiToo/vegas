@@ -21,14 +21,12 @@
 
 */
 
-package buRRRn.eden
+package system.eden
 {
-	import buRRRn.eden;
-	import buRRRn.eden.config;
+    import system.Strings;
+    import system.Version;
+    import system.eden;	
 	
-	import system.Strings;
-	import system.Version;    
-    
     /**
      * Basic eden info.
      */

@@ -25,7 +25,7 @@ package andromeda.net
 {
     import flash.net.URLRequest;
     
-    import buRRRn.eden;    
+    import system.eden;    
 
     /**
 	 * This loader load an external file with eden document inside and deserialize it when the loading is complete.

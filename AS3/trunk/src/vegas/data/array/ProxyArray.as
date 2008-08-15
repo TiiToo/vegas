@@ -26,10 +26,9 @@ package vegas.data.array
     import flash.utils.Proxy;
     import flash.utils.flash_proxy;
     
-    import buRRRn.eden.BuiltinSerializer;
-    
     import system.Reflection;
     import system.Serializable;
+    import system.eden.BuiltinSerializer;
     
     import vegas.core.HashCode;
     import vegas.core.ICloneable;

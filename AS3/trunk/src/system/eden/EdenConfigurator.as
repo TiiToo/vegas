@@ -21,13 +21,12 @@
 
 */
 
-package buRRRn.eden
+package system.eden
 {
-	import buRRRn.eden;
-	
-	import system.Configurator;	
+    import system.Configurator;
+    import system.eden;	
 
-	/**
+    /**
 	 * The configurator object of the eden parser.
 	 */
 	public class EdenConfigurator extends Configurator
@@ -274,7 +273,7 @@ package buRRRn.eden
 	        paths = [].concat(arguments) ;
 			
         	var l:uint = paths.length ;
-        	for( i=0; i < l ; i++ )
+        	for( i=0 ; i < l ; i++ )
             {
 	            found = _config.authorized.indexOf( paths[i] );
 	            if( found > -1 )

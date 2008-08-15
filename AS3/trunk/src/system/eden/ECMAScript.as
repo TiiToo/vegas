@@ -21,7 +21,7 @@
 
 */
 
-package buRRRn.eden
+package system.eden
 {
     import system.Reflection;
     import system.Strings;    
@@ -94,7 +94,7 @@ package buRRRn.eden
          */
         public static function evaluate( source:String ):*
         {
-            var parser:ECMAScript = new buRRRn.eden.ECMAScript( source );
+            var parser:ECMAScript = new system.eden.ECMAScript( source );
             return parser.eval( );
         }
         

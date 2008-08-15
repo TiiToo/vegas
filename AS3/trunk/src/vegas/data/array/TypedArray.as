@@ -23,9 +23,8 @@
 
 package vegas.data.array
 {
-    import buRRRn.eden.BuiltinSerializer;
-    
     import system.Reflection;
+    import system.eden.BuiltinSerializer;
     
     import vegas.core.ITypeable;
     import vegas.core.IValidator;

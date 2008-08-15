@@ -22,9 +22,8 @@
 */
 
 package system
-    {
-	import buRRRn.eden;		
-	
+{
+    
 	/**
 	 * The System configurator.
 	 */
