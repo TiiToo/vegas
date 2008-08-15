@@ -1,7 +1,5 @@
 #labels Install,Phase-Deploy,Documentation,Featured
-#Install the VEGAS project with Subversion and TortoiseSVN.
-
-= Introduction =
+= Install the VEGAS project with Subversion and TortoiseSVN =
 
 VEGAS is an opensource project with a top-level SVN repository :
 
@@ -25,9 +23,9 @@ VEGAS is an opensource project with a top-level SVN repository :
 
 *Note :* If you want install only AS3 or AS2 sources in your disk you can target a specific branches in the top-level repository :
 
- * AS3  : http://vegas.googlecode.com/svn/AS3
- * AS2  : http://vegas.googlecode.com/svn/AS2
- * SSAS : http://vegas.googlecode.com/svn/SSAS
+ * *AS3 version*  : http://vegas.googlecode.com/svn/AS3
+ * *AS2 version*  : http://vegas.googlecode.com/svn/AS2
+ * *SSAS version* : http://vegas.googlecode.com/svn/SSAS
 
 == With SVN command line ==
 
