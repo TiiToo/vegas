@@ -3,9 +3,9 @@
 
 = Introduction =
 
-VEGAS is an opensource project with a main SVN server :
+VEGAS is an opensource project with a top-level SVN repository :
 
-  * OSFlash (SVN)     : http://svn1.cvsdude.com/osflash/vegas (work server)
+  * http://vegas.googlecode.com/svn
 
 = Installation of the sources with the SVN (subversion) repository =
 
@@ -15,20 +15,26 @@ VEGAS is an opensource project with a main SVN server :
 
 1 - Download the last version of *Tortoise SVN* : http://tortoisesvn.net/downloads
 
-2 - Creates a SVN directory in your hard disk, for example : c:\workspace\vegas
+2 - Creates a SVN directory in your hard disk, for example : c:\vegas
 
 3 - Right-click over the directory in Windows and select the *SVN checkout* item.
 
-4 - Use the SVN link http://svn1.cvsdude.com/osflash/vegas and validate.
+4 - Use the SVN link http://vegas.googlecode.com/svn and validate.
 
 5 - All files are installed in your hard disk.. you can now use the right-click the *"update"* of the tortoiseSVN context menu to update *VEGAS*.
+
+*Note :* If you want install only AS3 or AS2 sources in your disk you can target a specific branches in the top-level repository :
+
+ * AS3  : http://vegas.googlecode.com/svn/AS3
+ * AS2  : http://vegas.googlecode.com/svn/AS2
+ * SSAS : http://vegas.googlecode.com/svn/SSAS
 
 == With SVN command line ==
 
 Non-members may check out a *read-only* working copy anonymously over HTTP.
 
 {{{
-svn checkout http://svn1.cvsdude.com/osflash/vegas
+svn checkout http://vegas.googlecode.com/svn
 }}}
 
 == Other systems ==
@@ -180,16 +186,7 @@ You can now try the next script in the main *Application.mxml* class of the proj
 	</mx:Script>
 	
 	
-</mx:Application>
-}}}
-
+</mx:App
 = A problem ? =
 
-Don't forget to use the [http://code.google.com/p/vegas/issues/list Google Code Issues List] of the project if you find a bug and the [http://groups.google.com/group/vegasos VEGAS Google Group] for all questions about it.
-
-If the svn repository link don't work try the backup repositories :
-
-  * Google Code (SVN) : http://vegas.googlecode.com/svn/ (backup)
-  * RIAForge (SVN)    : http://svn.riaforge.org/vegas/ (backup)
-
-You can use the direct download button in the project page of RIAForge.
+Don't forget to use the [http://code.google.com/p/vegas/issues/list Google Code Issues List] of the project if you find a bug and to use the [http://groups.google.com/group/vegasos|Google Groups of VEGAS] to ask all your question about it.
