@@ -186,7 +186,9 @@ You can now try the next script in the main *Application.mxml* class of the proj
 	</mx:Script>
 	
 	
-</mx:App
+</mx:Application>
+}}}
+
 = A problem ? =
 
 Don't forget to use the [http://code.google.com/p/vegas/issues/list Google Code Issues List] of the project if you find a bug and to use the [http://groups.google.com/group/vegasos|Google Groups of VEGAS] to ask all your question about it.
