@@ -254,9 +254,7 @@ package system.text.html
         add( new Entity(  "ý" , "yacute" , 253 ) ) ; // small y, acute accent
         add( new Entity(  "þ" ,  "thorn" , 254 ) ) ; // small thorn, Icelandic
         add( new Entity(  "ÿ" ,   "yuml" , 255 ) ) ; // small y, umlaut mark
-        
-
-        
+                
         /* ISO 8859-15 Symbol Entities
            see http://fr.wikipedia.org/wiki/ISO_8859-15
            

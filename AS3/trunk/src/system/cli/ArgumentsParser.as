@@ -179,7 +179,6 @@ package system.cli
                 
                 }
             
-            
             if( status == SwitchStatus.noError )
                 {
                 status = this.onParsed();

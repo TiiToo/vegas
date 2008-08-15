@@ -25,7 +25,7 @@ package system
     {
     
     /**
-     * Array static tool class.
+     * A static class for Array utilities.
      */
     public class Arrays
         {

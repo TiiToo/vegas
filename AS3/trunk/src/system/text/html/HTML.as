@@ -39,6 +39,9 @@ package system.text.html
     public class HTML
         {
         
+        /**
+         * @private
+         */
         private var _data:String;
         
         /**
