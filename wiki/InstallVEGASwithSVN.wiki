@@ -5,6 +5,14 @@ VEGAS is an opensource project with a top-level SVN repository :
 
   * http://vegas.googlecode.com/svn
 
+You can access the different source pages of this project :
+
+  * [http://code.google.com/p/vegas/source/checkout Checkout]
+  * [http://code.google.com/p/vegas/source/browse Browse] 
+  * [http://code.google.com/p/vegas/source/list Changes]
+
+or continue to read this tutorial.
+
 = Installation of the sources with the SVN (subversion) repository =
 
 == With TortoiseSVN (PC) ==
