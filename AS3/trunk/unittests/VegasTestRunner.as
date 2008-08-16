@@ -44,7 +44,7 @@ package
                 buRRRn.ASTUce.config.allowStackTrace     = false ;
                 buRRRn.ASTUce.config.maxColumn           = 62 ;
                 buRRRn.ASTUce.config.showConstructorList = false ;
-                                
+               
                 // testing all.
                 
                 Runner.main( AllTests );

@@ -24,9 +24,8 @@
 package system.eden
 {
     import system.Strings;
-    import system.Version;
-    import system.eden;	
-	
+    import system.Version;    
+    
     /**
      * Basic eden info.
      */

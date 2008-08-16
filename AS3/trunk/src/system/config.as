@@ -23,6 +23,7 @@
 
 package system
 {
+    import system.eden.eden;    
     
 	/**
 	 * The System configurator.

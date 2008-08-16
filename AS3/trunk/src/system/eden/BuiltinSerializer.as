@@ -24,8 +24,7 @@
 package system.eden
 {
     import system.Arrays;
-    import system.Environment;
-    import system.eden;    
+    import system.Environment;    
 
     /**
 	 * The BuiltinSerializer class.

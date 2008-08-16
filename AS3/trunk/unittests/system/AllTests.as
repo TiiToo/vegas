@@ -22,7 +22,8 @@ package system
 {
     import buRRRn.ASTUce.framework.ITest;
     import buRRRn.ASTUce.framework.TestSuite;
-    
+
+    import system.eden.*;        
     import system.evaluators.*;    
 
     /**
@@ -39,6 +40,7 @@ package system
         {
             var suite:TestSuite = new TestSuite( "system" );
             
+            suite.addTest( system.eden.AllTests.suite()  ) ;
             suite.addTest( system.evaluators.AllTests.suite()  ) ;
             
             return suite;

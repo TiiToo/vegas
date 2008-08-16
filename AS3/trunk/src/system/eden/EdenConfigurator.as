@@ -23,8 +23,7 @@
 
 package system.eden
 {
-    import system.Configurator;
-    import system.eden;	
+    import system.Configurator;    
 
     /**
 	 * The configurator object of the eden parser.

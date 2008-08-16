@@ -149,6 +149,14 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
    Creates a <code class="prettyprint">new Vertex</code> instance.</div>
 </td><td class="summaryTableOwnerCol">Vertex</td>
 </tr>
+<tr class="hideInheritedMethod">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="Vector3.html#addition()">addition</a>(v:*):void</div>
+<div class="summaryTableDescription">
+         Computes the addition of two vectors.</div>
+</td><td class="summaryTableOwnerCol"><a href="Vector3.html">Vector3</a></td>
+</tr>
 <tr class="">
 <td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
 <div class="summarySignature">
@@ -182,6 +190,14 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
    Returns the internal <code class="prettyprint">ILogger</code> reference of this <code class="prettyprint">ILogable</code> object.</div>
 </td><td class="summaryTableOwnerCol"><a href="../../vegas/core/CoreObject.html">CoreObject</a></td>
 </tr>
+<tr class="hideInheritedMethod">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="Vector3.html#getPerspective()">getPerspective</a>(distance:Number):Number</div>
+<div class="summaryTableDescription">
+         Calculates and returns the perspective ratio needed to scale an object correctly.</div>
+</td><td class="summaryTableOwnerCol"><a href="Vector3.html">Vector3</a></td>
+</tr>
 <tr class="">
 <td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
 <div class="summarySignature">
@@ -211,10 +227,34 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <tr class="hideInheritedMethod">
 <td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol">
 <div class="summarySignature">
+<a class="signatureLink" href="Vector3.html#project()">project</a>(perspective:Number):void</div>
+<div class="summaryTableDescription">
+         Performs a perspective projection on a 3d point.</div>
+</td><td class="summaryTableOwnerCol"><a href="Vector3.html">Vector3</a></td>
+</tr>
+<tr class="hideInheritedMethod">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="Vector3.html#scale()">scale</a>(value:Number):void</div>
+<div class="summaryTableDescription">
+         Scales the vector object with the input value.</div>
+</td><td class="summaryTableOwnerCol"><a href="Vector3.html">Vector3</a></td>
+</tr>
+<tr class="hideInheritedMethod">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
 <a class="signatureLink" href="../../vegas/core/CoreObject.html#setLogger()">setLogger</a>(log:<a href="../../vegas/logging/ILogger.html">ILogger</a> = null):void</div>
 <div class="summaryTableDescription">
    Sets the internal <code class="prettyprint">ILogger</code> reference of this <code class="prettyprint">ILogable</code> object.</div>
 </td><td class="summaryTableOwnerCol"><a href="../../vegas/core/CoreObject.html">CoreObject</a></td>
+</tr>
+<tr class="hideInheritedMethod">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="Vector3.html#substraction()">substraction</a>(v:*):void</div>
+<div class="summaryTableDescription">
+         Computes the substraction of the current vector object with an other.</div>
+</td><td class="summaryTableOwnerCol"><a href="Vector3.html">Vector3</a></td>
 </tr>
 <tr class="hideInheritedMethod">
 <td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol">
@@ -237,7 +277,7 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <div class="summarySignature">
 <a class="signatureLink" href="#toSource()">toSource</a>(indent:int = 0):String</div>
 <div class="summaryTableDescription">
-   Returns a Eden reprensation of the object.</div>
+   Returns a Eden represensation of the object.</div>
 </td><td class="summaryTableOwnerCol">Vertex</td>
 </tr>
 <tr class="">
@@ -531,7 +571,7 @@ showHideInherited();
 </table>
 <div class="detailBody">
 <code>public override function toSource(indent:int = 0):String</code><p>
-   Returns a Eden reprensation of the object.
+   Returns a Eden represensation of the object.
    </p><span class="label">Parameters</span>
 <table border="0" cellspacing="0" cellpadding="0">
 <tr>
