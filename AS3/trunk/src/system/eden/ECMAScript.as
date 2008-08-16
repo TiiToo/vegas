@@ -1632,7 +1632,7 @@ package system.eden
          * A pool contains string indexes to object references (yeah this could be surely optimized with a Dictionnary)
          * <p><b>Example :</b></p>
          * <pre class="prettyprint">
-         * _globalPool[ "buRRRn.eden.config" ] = buRRRn.eden.config;
+         * _globalPool[ "system.eden.config" ] = system.eden.config;
          * _localPool[ "x.y.z" ] = localScope.x.y.z;
          * </pre>
          * @private

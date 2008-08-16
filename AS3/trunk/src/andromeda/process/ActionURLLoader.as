@@ -35,7 +35,7 @@ package andromeda.process
 	 * import andromeda.events.ActionEvent ;
 	 * import andromeda.process.ActionURLLoader ;
 	 * 
-	 * import buRRRn.eden ;
+	 * import system.eden ;
 	 * 
 	 * import flash.net.URLLoader ;
 	 * import flash.net.URLRequest ;
