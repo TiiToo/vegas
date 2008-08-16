@@ -106,6 +106,29 @@ package system.eden
             _prettyPrinting = value;
             }
         
+        /**
+         * Inserts an authorized path in the white list of the parser.
+         */
+        public function addAuthorized( ...arguments:Array ):void
+        {
+            var a:Array = config.authorized as Array ;
+            if ( a != null )
+                {
+                var l:uint  = arguments.length ;
+                for( var i:Number = 0 ; i<l; i++ )
+                    {
+                    if( ! a.indexOf( arguments[i] ) > -1 )
+                        {
+                        a.push( arguments[i] );
+                        }
+                    }
+                }
+            else
+                {
+                throw new Error( this + " addAuthorized failed with a null 'authorized' Array to configurate the eden parser.") ;
+                }
+            }        
+        
 		/**
 		 * Parse a string and interpret the source code to the correct ECMAScript construct.
 		 * <p><b>Example :</b></p>
@@ -120,6 +143,28 @@ package system.eden
             {
             return ECMAScript.evaluate( source );
             }
+        
+        /**
+         * Removes an authorized path in the white list of the parser.
+         */
+        public function removeAuthorized( ...arguments:Array ):void
+            {
+            var paths:* ;
+            var i:uint ;
+            var found:* ;
+            
+            paths = [].concat(arguments) ;
+            
+            var l:uint = paths.length ;
+            for( i=0 ; i < l ; i++ )
+                {
+                found = config.authorized.indexOf( paths[i] );
+                if( found > -1 )
+                    {
+                   config.authorized.splice( found, 1 );
+                    }
+                }
+            }         
         
 		/**
 		 * Serialize the specified value object passed-in argument.

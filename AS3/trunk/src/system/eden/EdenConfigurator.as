@@ -23,7 +23,7 @@
 
 package system.eden
 {
-    import system.Configurator;    
+    import system.Configurator;        
 
     /**
 	 * The configurator object of the eden parser.
@@ -235,53 +235,7 @@ package system.eden
 		{
 			_config.security = value;
 		}
-
-   		/**
-		 * Inserts an authorized path in the white list of the parser.
-		 */
-	    public function addAuthorized( ...arguments:Array ):void
-        {
-			
-			var a:Array = _config.authorized as Array ;
-			if ( a != null )
-			{
-    	    	var l:uint  = arguments.length ;
-        		for( var i:Number = 0 ; i<l; i++ )
-            	{
-	            	if( ! a.indexOf( arguments[i] ) > -1 )
-                	{
-		                a.push( arguments[i] );
-                	}
-            	}
-        	}
-        	else
-        	{
-        		throw new Error( this + " addAuthorized failed with a null 'authorized' Array to configurate the eden parser.") ;
-			}
-        }        
-        
-   		/**
-		 * Removes an authorized path in the white list of the parser.
-		 */
-	    public function removeAuthorized( ...arguments:Array ):void
-        {
-    	    var paths:* ;
-    	    var i:uint ;
-    	    var found:* ;
-    	    
-	        paths = [].concat(arguments) ;
-			
-        	var l:uint = paths.length ;
-        	for( i=0 ; i < l ; i++ )
-            {
-	            found = _config.authorized.indexOf( paths[i] );
-	            if( found > -1 )
-                {
-    	           _config.authorized.splice( found, 1 );
-                }
-            }
-        }
-		
+        		
 	}
 }
 

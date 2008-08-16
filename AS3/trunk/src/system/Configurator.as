@@ -43,13 +43,13 @@ package system
         public function Configurator( config:Object )
             {
             _config = {}   ;
-            load( config ) ;
+            map( config ) ;
             }
         
         /**
          * Copy all properties in the specified passed-in object in the internal config object of the Configurator.
          */
-        public function load( config:Object ):void
+        public function map( config:Object ):void
             {
             for( var member:String in config )
                 {

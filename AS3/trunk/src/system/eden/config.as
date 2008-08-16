@@ -27,7 +27,7 @@ package system.eden
     /**
      * The EdenConfigurator reference used to configure the eden parser.
      */
-    public var config:EdenConfigurator = new EdenConfigurator
+    public const config:EdenConfigurator = new EdenConfigurator
     ({
 		compress          : true  ,
 		copyObjectByValue : false ,
