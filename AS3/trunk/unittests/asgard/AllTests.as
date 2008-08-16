@@ -22,21 +22,18 @@
 */
 package asgard  
 {
-	
-	import buRRRn.ASTUce.framework.ITest;
-	import buRRRn.ASTUce.framework.TestSuite;	
-
-    import asgard.config.AllTests;
     import asgard.display.AllTests;
     import asgard.events.AllTests;
     import asgard.managers.AllTests;
     import asgard.media.AllTests;
     import asgard.net.AllTests;
     import asgard.process.AllTests;
-    import asgard.system.AllTests;
     import asgard.text.AllTests;
+    
+    import buRRRn.ASTUce.framework.ITest;
+    import buRRRn.ASTUce.framework.TestSuite;	
 
-	/**
+    /**
 	 * This class launch all tests.
 	 * @author eKameleon
 	 */
@@ -49,14 +46,12 @@ package asgard
         public static function suite():ITest
         {
             var suite:TestSuite = new TestSuite( "asgard" );
-            suite.addTest( asgard.config.AllTests.suite() ) ;
             suite.addTest( asgard.display.AllTests.suite() ) ;
             suite.addTest( asgard.events.AllTests.suite() ) ;
             suite.addTest( asgard.managers.AllTests.suite() ) ;
             suite.addTest( asgard.media.AllTests.suite() ) ;
             suite.addTest( asgard.net.AllTests.suite() ) ;
             suite.addTest( asgard.process.AllTests.suite() ) ;
-            suite.addTest( asgard.system.AllTests.suite() ) ;
             suite.addTest( asgard.text.AllTests.suite() ) ;
             return suite;
         }
