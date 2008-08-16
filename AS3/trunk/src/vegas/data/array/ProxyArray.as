@@ -28,7 +28,7 @@ package vegas.data.array
     
     import system.Reflection;
     import system.Serializable;
-    import system.eden.BuiltinSerializer;
+    import system.serializers.eden.BuiltinSerializer;
     
     import vegas.core.HashCode;
     import vegas.core.ICloneable;

@@ -22,7 +22,7 @@
 */
 package vegas.util
 {
-    import system.eden.BuiltinSerializer;            
+    import system.serializers.eden.BuiltinSerializer;                
 
     /**
      * Array static tool class.

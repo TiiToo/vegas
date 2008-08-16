@@ -24,9 +24,11 @@ package system.eden
     import buRRRn.ASTUce.framework.*;
     
     import system.Version;
-    import system.eden.config;
+    import system.eden;
     import system.eden.samples.BasicClass;
-    import system.eden.samples.CtorNoDefaultValue;    
+    import system.eden.samples.CtorNoDefaultValue;
+    import system.serializers.eden.ECMAScript;
+    import system.serializers.eden.config;    
 
     public class DeserializeTest extends TestCase
         {
@@ -116,17 +118,17 @@ package system.eden
         
         public function testGlobalKeywords():void
             {
-            assertEquals( system.eden.config, ECMAScript.evaluate( "system.eden.config" ) );
-            assertEquals( system.eden.config.authorized, ECMAScript.evaluate( "system.eden.config.authorized" ) );
-            assertEquals( system.eden.config.compress, ECMAScript.evaluate( "system.eden.config.compress" ) );
-            assertEquals( system.eden.config, ECMAScript.evaluate( "system.eden.config" ) );
+            assertEquals( system.serializers.eden.config, ECMAScript.evaluate( "system.serializers.eden.config" ) );
+            assertEquals( system.serializers.eden.config.authorized, ECMAScript.evaluate( "system.serializers.eden.config.authorized" ) );
+            assertEquals( system.serializers.eden.config.compress, ECMAScript.evaluate( "system.serializers.eden.config.compress" ) );
+            assertEquals( system.serializers.eden.config, ECMAScript.evaluate( "system.serializers.eden.config" ) );
             
-            var original:Boolean = system.eden.config.verbose;
-            var result:* = ECMAScript.evaluate( "system.eden.config.verbose = " + (!original).toString() + ";" );
-            assertEquals( system.eden.config.verbose, !original );
-            assertEquals( !system.eden.config.verbose, original );
+            var original:Boolean = system.serializers.eden.config.verbose;
+            var result:* = ECMAScript.evaluate( "system.serializers.eden.config.verbose = " + (!original).toString() + ";" );
+            assertEquals( system.serializers.eden.config.verbose, !original );
+            assertEquals( !system.serializers.eden.config.verbose, original );
             assertEquals( eden.serialize( {} ), eden.serialize( result ) );
-            system.eden.config.compress = original;
+            system.serializers.eden.config.compress = original;
             }
         
         public function testObject():void

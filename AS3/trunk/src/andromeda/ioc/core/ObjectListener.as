@@ -22,7 +22,7 @@
 */
 package andromeda.ioc.core 
 {
-    import system.eden.eden;                                            
+    import system.eden;                                                
 
     /**
      * This object defines a listener definition in an object definition.

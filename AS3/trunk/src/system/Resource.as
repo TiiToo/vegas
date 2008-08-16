@@ -17,19 +17,17 @@
   
   Contributor(s):
 
-    - Marc ALCARAZ <ekameleon@gmail.com>
-
 */
 
 package system
-{
-        
+    {
     
-	/**
-	 * The System configurator.
-	 */
-    public var config:SystemConfigurator = new SystemConfigurator( {
-                                                                   verbose    : false ,
-                                                                   serializer : eden
-                                                                   } );    
+    /**
+     * The Resource interface.
+     */
+    public interface Resource
+        {
+        
+        }
     }
+

@@ -21,7 +21,7 @@
 
 package system.evaluators
 {
-    import system.eden.eden;            
+    import system.eden;                
 
     /**
      * Evaluates eden expression.

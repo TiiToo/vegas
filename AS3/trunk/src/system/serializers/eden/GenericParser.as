@@ -21,7 +21,7 @@
 
 */
 
-package system.eden
+package system.serializers.eden
 {
 
 	/**
@@ -126,7 +126,7 @@ package system.eden
 		 */
 		public static function evaluate( source:String ):*
 		{
-			var parser:GenericParser = new system.eden.GenericParser( source );
+			var parser:GenericParser = new system.serializers.eden.GenericParser( source );
 			return parser.eval( );
 		}
 

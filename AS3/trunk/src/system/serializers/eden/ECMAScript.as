@@ -21,7 +21,7 @@
 
 */
 
-package system.eden
+package system.serializers.eden
 {
     import system.Reflection;
     import system.Strings;    
@@ -94,7 +94,7 @@ package system.eden
          */
         public static function evaluate( source:String ):*
         {
-            var parser:ECMAScript = new system.eden.ECMAScript( source );
+            var parser:ECMAScript = new system.serializers.eden.ECMAScript( source );
             return parser.eval( );
         }
         

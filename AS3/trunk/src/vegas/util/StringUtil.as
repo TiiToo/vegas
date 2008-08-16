@@ -22,7 +22,7 @@
 */
 package vegas.util
 {
-    import system.eden.BuiltinSerializer;        	
+    import system.serializers.eden.BuiltinSerializer;            	
 
     /**
 	 * The <code class="prettyprint">StringUtil</code> utility class is an extended String class with methods for working with string.

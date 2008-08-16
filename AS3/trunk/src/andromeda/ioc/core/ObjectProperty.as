@@ -22,7 +22,7 @@
 */
 package andromeda.ioc.core 
 {
-    import system.eden.eden;            
+    import system.eden;                
 
     /**
      * This object defines a property definition and this value in an object definition.

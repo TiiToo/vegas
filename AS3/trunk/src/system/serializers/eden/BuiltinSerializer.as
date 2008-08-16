@@ -21,10 +21,11 @@
 
 */
 
-package system.eden
+package system.serializers.eden
 {
     import system.Arrays;
-    import system.Environment;    
+    import system.Environment;
+    import system.eden;    
 
     /**
 	 * The BuiltinSerializer class.

@@ -21,7 +21,7 @@
 
 */
 
-package system.eden
+package system.serializers.eden
 {
     import system.Serializable;
     import system.Serializer;    

@@ -21,7 +21,9 @@
 
 package system.eden
 {
-    import buRRRn.ASTUce.framework.*;    
+    import buRRRn.ASTUce.framework.*;
+    
+    import system.serializers.eden.GenericParser;        
 
     public class GenericParserTest extends TestCase
         {

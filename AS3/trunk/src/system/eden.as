@@ -17,33 +17,17 @@
   the Initial Developer. All Rights Reserved.
   
   Contributor(s):
-  Marc Alcaraz <ekameleon@gmail.com>.
+  
+  	- Alcaraz Marc (aka eKameleon) <ekameleon@gmail.com> (2007-2008)
 
 */
-
-package system.eden
+package system
 {
-    
-    /**
-     * The EdenConfigurator reference used to configure the eden parser.
-     */
-    public const config:EdenConfigurator = new EdenConfigurator
-    ({
-		compress          : true  ,
-		copyObjectByValue : false ,
-		strictMode        : true  ,
-		undefineable      : undefined ,
-		verbose           : false ,
-		security          : true  ,
-		authorized        : 
-		[ 
-			"Array.*"  , "Boolean" , "Date"   , "Error" , "Math.*" , 
-			"Number.*" , "Object"  , "String" ,  "Infinity" 
-		] ,
-		allowFunctionCall   : true  ,
-		autoAddScopePath    : false ,
-		arrayIndexAsBracket : false
-	} );
-    
-}
+    import system.serializers.eden.EdenSerializer;        	
+	
+	/**
+	 * The eden singleton serializer.
+	 */
+	public var eden:EdenSerializer = new EdenSerializer();
+	}
 

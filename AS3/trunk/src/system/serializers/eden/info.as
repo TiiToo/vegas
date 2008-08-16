@@ -21,10 +21,11 @@
 
 */
 
-package system.eden
+package system.serializers.eden
 {
     import system.Strings;
-    import system.Version;    
+    import system.Version;
+    import system.eden;    
     
     /**
      * Basic eden info.

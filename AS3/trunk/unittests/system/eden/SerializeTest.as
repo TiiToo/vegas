@@ -21,7 +21,9 @@
 
 package system.eden
 {
-    import buRRRn.ASTUce.framework.TestCase;    
+    import buRRRn.ASTUce.framework.TestCase;
+    
+    import system.eden;        
 
     public class SerializeTest extends TestCase
         {
