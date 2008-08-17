@@ -23,6 +23,8 @@ package system.text
 	import buRRRn.ASTUce.framework.ITest;
 	import buRRRn.ASTUce.framework.TestSuite;
 	
+	import system.text.diff.AllTests;	
+
 	/**
 	 * This class launch all tests.
 	 * @author eKameleon
@@ -36,6 +38,9 @@ package system.text
         public static function suite():ITest
         {
             var suite:TestSuite = new TestSuite( "system.text" );
+
+            suite.addTest( system.text.diff.AllTests.suite()  ) ;
+
             return suite;
         }
 	}
