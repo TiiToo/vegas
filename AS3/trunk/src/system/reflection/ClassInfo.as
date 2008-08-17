@@ -30,6 +30,16 @@ package system.reflection
         {
         
         /**
+         * List all accessors in the class.
+         */
+        function get accessors():Array;        
+        
+        /**
+         * List all constants in the class.
+         */
+        function get constants():Array;
+        
+        /**
          * The filter type reference of this class info.
          */
         function get filter():FilterType;
@@ -46,41 +56,31 @@ package system.reflection
         function get members():Array;
         
         /**
+         * List all methods in the class.
+         */
+        function get methods():Array;  
+        
+        /**
+         * Indicates the name of the class.
+         */
+        function get name():String;        
+        
+        /**
          * List all properties in the class.
          * Properties are the combination of variables, constants and accessors.
          */
         function get properties():Array;
         
         /**
-        * List all variables in the class.
-        */
-        function get variables():Array;
-        
-        /**
-        * List all constants in the class.
-        */
-        function get constants():Array;
-        
-        /**
-        * List all accessors in the class.
-        */
-        function get accessors():Array;
-        
-        /**
-         * List all methods in the class.
-         */
-        function get methods():Array;        
-        
-        /**
-         * Indicates the name of the class.
-         */
-        function get name():String;
-        
-        /**
          * Indicates the ClassInfo object of the super class.
          */
-        function get superClass():ClassInfo;
+        function get superClass():ClassInfo;        
         
+        /**
+         * List all variables in the class.
+         */
+        function get variables():Array;
+          
         /**
          * Indicates if the specified class implements all interfaces passed-in arguments.
          * @param ...interfaces All the interfaces to search in the current ClassInfo.
@@ -97,21 +97,43 @@ package system.reflection
                 
         /**
          * Indicates if the specified object is dynamic.
+         * <p><b>Example :</b></p>
+         * <pre class="prettyprint">
+         * import system.Reflection ;
+         * trace( Reflection.getClassInfo(Object).isDynamic() ) ; // true
+         * </pre>
          */
         function isDynamic():Boolean;
         
         /**
          * Indicates if the specified object is final.
+         * <p><b>Example :</b></p>
+         * <pre class="prettyprint">
+         * import system.Reflection ;
+         * trace( Reflection.getClassInfo(String).isFinal() ) ; // true
+         * </pre>
          */
         function isFinal():Boolean;
 
         /**
          * Indicates if the specified object is instance.
+         * <p><b>Example :</b></p>
+         * <pre class="prettyprint">
+         * import system.Reflection ;
+         * 
+         * trace( Reflection.getClassInfo( Array ).isInstance() ) ; // false
+         * trace( Reflection.getClassInfo( new Array() ).isInstance() ) ; // true
+         * </pre>
          */
         function isInstance():Boolean;   
         
         /**
          * Indicates if the specified object is static.
+         * <p><b>Example :</b></p>
+         * <pre class="prettyprint">
+         * import system.Reflection ;
+         * trace( Reflection.getClassInfo(Math).isStatic() ) ; // true
+         * </pre>
          */
         function isStatic():Boolean;        
         

@@ -260,8 +260,7 @@ package system.numeric
                 }
             return ( n < 0 ) ? -1 : 1 ;
             }
-            
-
+        
         }
 
     }
