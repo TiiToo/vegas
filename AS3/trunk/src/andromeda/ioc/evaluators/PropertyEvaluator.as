@@ -24,7 +24,7 @@ package andromeda.ioc.evaluators
 {
     import system.evaluators.Evaluable;
     
-    import vegas.core.CoreObject;    
+    import vegas.core.CoreObject;        
 
     /**
      * Evaluates a type string expression and return the property value who corresponding in the target object specified in this evaluator.
@@ -71,7 +71,7 @@ package andromeda.ioc.evaluators
          */
         public function get target():*
         {
-        	return _target ;
+            return _target ;
         }
         
         /**
@@ -79,9 +79,9 @@ package andromeda.ioc.evaluators
          */
         public function set target( o:* ):void
         {
-        	_target = o ;
+            _target = o ;
         }        
-		
+        
         /**
          * The separator of the expression evaluator.
          */
@@ -99,30 +99,25 @@ package andromeda.ioc.evaluators
         {
             if ( o is String && target != null )
             {
-            	var exp:String = o as String ;
-            	if ( exp.length > 0 )
-            	{
-            		
-            		var value:*       = target ;
-            		var members:Array = exp.split( separator ) ;
-            		var len:int       = members.length ;
-            		
-            		for ( var i:int ; i<len ; i++ )
-            		{
+                var exp:String = o as String ;
+                if ( exp.length > 0 )
+                {
+                    var value:*       = target ;
+                    var members:Array = exp.split( separator ) ;
+                    var len:int       = members.length ;
+                    for ( var i:int ; i<len ; i++ )
+                    {
                         if ( members[i] in value )
                         {
-                            value = value[ members[i] ] ;	
+                            value = value[ members[i] ] ;    
                         }
                         else
                         {
-                        	getLogger().warn(this + " eval failed with the expression : " + o ) ;
-                        	return null ;
+                            throw new EvalError( this + " eval failed with the expression : " + o ) ;
                         }
-            		}
-            		
-            		return value ;
-            		
-            	}
+                    }
+                    return value ;
+                }
             }
             return undefineable ;
         }

@@ -118,9 +118,7 @@ package andromeda.ioc.evaluators
                                 type = aliases.getValue(type) ;
                             }
                         }
-                        
                     }
-                                        
                 }
                 
                 try
@@ -129,8 +127,7 @@ package andromeda.ioc.evaluators
                 }
                 catch( e:Error )
                 {
-                	getLogger().warn(this + " eval failed : " + e.toString() ) ;
-                    return null ;
+                	throw new EvalError(this + " eval failed : " + e.toString() ) ;
                 }
             
             }

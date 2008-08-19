@@ -308,6 +308,11 @@ package andromeda.ioc.factory
         }        
         
         /**
+         * Indicates if the logger model is used in the IoC factory to log the warning and errors.
+         */
+        public var useLogger:Boolean = true ;        
+        
+        /**
          * Initialize the config object.
          * @param init A generic object containing properties with which to populate the newly instance. If this argument is null, it is ignored.
          */

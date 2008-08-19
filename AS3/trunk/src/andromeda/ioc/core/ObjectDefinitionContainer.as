@@ -22,8 +22,6 @@
 */
 package andromeda.ioc.core 
 {
-    import vegas.errors.IllegalArgumentError;    
-    
     import andromeda.ioc.core.IObjectDefinitionContainer;
     import andromeda.process.Action;
     
@@ -84,12 +82,13 @@ package andromeda.ioc.core
         /**
          * Registers a new object definition in the container.
          * @param definition The Identifiable ObjectDefinition reference to register in the container.
+         * @throws ArgumentError If the specified object definition is null or if this id attribut is null.
          */
         public function addObjectDefinition( definition:IObjectDefinition ):void 
         {
         	if ( definition == null || definition.id == null )
         	{
-        		throw new IllegalArgumentError( this + " addObjectDefinition failed, the specified object definition not must be 'null' or 'undefined' or not identifiable." ) ;
+        		throw new ArgumentError( this + " addObjectDefinition failed, the specified object definition not must be 'null' or 'undefined' or not identifiable." ) ;
         	}
         	else
         	{
@@ -119,7 +118,7 @@ package andromeda.ioc.core
          * Returns the IObjectDefinition object register in the container with the specified id.
          * @param id the id name of the ObjectDefinition to return. 
          * @return the IObjectDefinition object register in the container with the specified id.
-         * @throws IllegalArgumentError If the specified object definition don't exist in the container.
+         * @throws ArgumentError If the specified object definition don't exist in the container.
          */
         public function getObjectDefinition( id:String ):IObjectDefinition 
         {
@@ -129,14 +128,14 @@ package andromeda.ioc.core
             }
             else
             {
-                throw new IllegalArgumentError( this + " getObjectDefinition failed, the specified object definition don't exist : " + id ) ;
+                throw new ArgumentError( this + " getObjectDefinition failed, the specified object definition don't exist : " + id ) ;
             }
         }
         
         /**
          * Unregisters an object definition in the container.
          * @param id The id of the object definition to remove.
-         * @throws IllegalArgumentError If the specified object definition don't exist in the container.
+         * @throws ArgumentError If the specified object definition don't exist in the container.
          */
         public function removeObjectDefinition( id:String ):void 
         {
@@ -146,7 +145,7 @@ package andromeda.ioc.core
             }
             else
             {
-                throw new IllegalArgumentError( this + " removeObjectDefinition failed, the specified object definition don't exist : " + id ) ;    
+                throw new ArgumentError( this + " removeObjectDefinition failed, the specified object definition don't exist : " + id ) ;    
             }
         }        
         

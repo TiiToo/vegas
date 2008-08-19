@@ -149,16 +149,7 @@ package andromeda.ioc.factory
         {
             run.apply( this, arguments ) ;
         }        
-        
-        /**
-         * The custom debug method of this factory.
-         * You can overrides this method, the prototype object is dynamic.
-         */
-        public function debug( o:* ):void
-        {
-            getLogger().warn( o ) ; // use trace in this method if you want debug in Flash or the Flash debugger.
-        }
-        
+                
         /**
          * This method returns an object with the specified id in argument.
          * @param id The 'id' of the object to return.
@@ -192,7 +183,7 @@ package andromeda.ioc.factory
             }
             catch(e:Error)
             {
-                debug( this + " getObject failed with the id '" + id + "' : " + e.toString() ) ;
+                warn( this + " getObject failed with the id '" + id + "' : " + e.toString() ) ;
             }
             return instance || null ;
         }
@@ -245,6 +236,22 @@ package andromeda.ioc.factory
             }
         }
 
+        /**
+         * The custom warn method of this factory to log a warning message in the application.
+         * You can overrides this method, the prototype object is dynamic.
+         */
+        public function warn( ...args:Array ):void
+        {
+        	if ( config.useLogger )
+        	{
+                getLogger().warn.apply( null , args ) ;
+        	}
+        	else
+        	{
+                trace.apply(null, args) ;
+        	}
+        }
+
 	    /**
          * Creates the arguments Array representation of the specified definition.
          * @return the arguments Array representation of the specified definition.
@@ -271,28 +278,36 @@ package andromeda.ioc.factory
                     
                     value = item.value ;
                     
-                    if ( item.evaluators != null && item.evaluators.length > 0 )
+                    try
                     {
-                        value = eval( value , item.evaluators  ) ;
-                    }
                     
-                    if ( item.policy == ObjectAttribute.REFERENCE )
-                    {
-                        stack.push( _re.eval( value as String ) ) ;    
-                    }
-                    else if ( item.policy == ObjectAttribute.CONFIG )
-                    {
-                    	stack.push( config.configEvaluator.eval( value as String ) ) ;
-                    }
-                    else if ( item.policy == ObjectAttribute.LOCALE )
-                    {
-                    	stack.push( config.localeEvaluator.eval( value as String ) ) ;
-                    }                                  
-                    else
-                    {
-                        stack.push( value ) ;    
-                    }
+                        if ( item.evaluators != null && item.evaluators.length > 0 )
+                        {
+                            value = eval( value , item.evaluators  ) ;
+                        }
                     
+                        if ( item.policy == ObjectAttribute.REFERENCE )
+                        {
+                            stack.push( _re.eval( value as String ) ) ;    
+                        }
+                        else if ( item.policy == ObjectAttribute.CONFIG )
+                        {
+                        	stack.push( config.configEvaluator.eval( value as String ) ) ;
+                        }
+                        else if ( item.policy == ObjectAttribute.LOCALE )
+                        {
+                        	stack.push( config.localeEvaluator.eval( value as String ) ) ;
+                        }                                  
+                        else
+                        {
+                            stack.push( value ) ;    
+                        }
+                    
+                    }
+                    catch( e:Error )
+                    {
+                        warn( this + " createArguments failed : " + e.toString() ) ;
+                    }
                 }
                 return stack ;        
             }
@@ -538,7 +553,7 @@ package andromeda.ioc.factory
             
             if ( o == null )
             {
-            	debug( this + " populate a new property failed, the object not must be 'null' or 'undefined'." ) ;
+            	warn( this + " populate a new property failed, the object not must be 'null' or 'undefined'." ) ;
             	return ;
             }
             
@@ -546,7 +561,7 @@ package andromeda.ioc.factory
             
             if ( !( name in o ) )
             {
-            	debug( this + " populate a new property failed with the name:" + name + ", this property don't exist in the object:" + o ) ;
+            	warn( this + " populate a new property failed with the name:" + name + ", this property don't exist in the object:" + o ) ;
             	return ;
             }
             
@@ -559,26 +574,34 @@ package andromeda.ioc.factory
             else 
             {
                 
-                if ( prop.evaluators != null && prop.evaluators.length > 0 )
+                try
                 {
-                    value = eval( value , prop.evaluators  ) ;
-                }                    
-                                        
-                if ( prop.policy == ObjectAttribute.REFERENCE && value is String )
-                {
-                    o[ name ] = _re.eval( value as String ) ;
+                    if ( prop.evaluators != null && prop.evaluators.length > 0 )
+                    {
+                        value = eval( value , prop.evaluators  ) ;
+                    }                    
+                
+                               
+                    if ( prop.policy == ObjectAttribute.REFERENCE && value is String )
+                    {
+                        o[ name ] = _re.eval( value as String ) ;
+                    }
+                    else if ( prop.policy == ObjectAttribute.CONFIG )
+                    {
+                        o[ name ] = config.configEvaluator.eval( value as String ) ;
+                    }
+                    else if ( prop.policy == ObjectAttribute.LOCALE )
+                    {
+                        o[ name ] = config.localeEvaluator.eval( value as String ) ;
+                    }
+                    else
+                    {
+                        o[ name ] = value ;
+                    }
                 }
-                else if ( prop.policy == ObjectAttribute.CONFIG )
+                catch( e:Error )
                 {
-                    o[ name ] = config.configEvaluator.eval( value as String ) ;
-                }
-                else if ( prop.policy == ObjectAttribute.LOCALE )
-                {
-                    o[ name ] = config.localeEvaluator.eval( value as String ) ;
-                }
-                else
-                {
-                    o[ name ] = value ;
+                	warn( this + " populateProperty failed : " + e.toString() ) ;
                 }
             }        
         }
@@ -623,7 +646,7 @@ package andromeda.ioc.factory
                     catch( e:Error ) 
                     {
                         // do nothing
-                        debug( this + " registerListeners failed with the target '" + o + "' , in the collection of this listeners at {" + i + "} : " + e.toString() ) ;
+                        warn( this + " registerListeners failed with the target '" + o + "' , in the collection of this listeners at {" + i + "} : " + e.toString() ) ;
                         //
                     }    
                 }
@@ -656,14 +679,15 @@ package andromeda.ioc.factory
         private function _create( definition:IObjectDefinition ):*
         {
                   
-            var instance:*   = null ;
-            
-            var clazz:Class  = config.typeEvaluator.eval( definition.getType() ) as Class ;
-            
-            var strategy:IObjectFactoryStrategy = definition.getFactoryStrategy() ;
-            
+            var instance:* = null ;
+
             try
             {
+            
+                var clazz:Class  = config.typeEvaluator.eval( definition.getType() ) as Class ;
+            
+                var strategy:IObjectFactoryStrategy = definition.getFactoryStrategy() ;
+                
                 if ( strategy == null )
                 {
                     instance = Reflection.invokeClass( clazz , createArguments( definition.getConstructorArguments()) ) as clazz ;
@@ -675,7 +699,7 @@ package andromeda.ioc.factory
             }
             catch( e:TypeError )
             {
-                getLogger().fatal(this + " createObject failed, can't convert the instance with the specified type \"" + definition.getType() + "\" in the object definition \"" + definition.id + "\", this type don't exist in the application.") ;   
+                warn(this + " createObject failed, can't convert the instance with the specified type \"" + definition.getType() + "\" in the object definition \"" + definition.id + "\", this type don't exist in the application.") ;   
             }
             
             return instance ;

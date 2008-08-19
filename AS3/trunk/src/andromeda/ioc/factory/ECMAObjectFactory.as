@@ -224,7 +224,7 @@ package andromeda.ioc.factory
             }
             else
             {
-                debug( this + " create new object definition failed with a 'null' or 'undefined' object." ) ;
+                warn( this + " create new object definition failed with a 'null' or 'undefined' object." ) ;
             }
         }
         
