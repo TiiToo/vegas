@@ -24,6 +24,7 @@ package andromeda.i18n
     import flash.errors.IllegalOperationError;
     
     import andromeda.events.LocalizationEvent;
+    import andromeda.ioc.evaluators.PropertyEvaluator;
     
     import system.Reflection;
     
@@ -115,8 +116,9 @@ package andromeda.i18n
         {
             super(bGlobal, sChannel) ;
             _setID( id ) ;
-            _map    = new HashMap() ;
-            _loader = new EdenLocalizationLoader(this) ;
+            _evaluator = new PropertyEvaluator() ;
+            _map       = new HashMap() ;
+            _loader    = new EdenLocalizationLoader(this) ;
         }
         
         /**
@@ -296,7 +298,15 @@ package andromeda.i18n
             if ( id != null && _current != null ) 
             {
             	var item:Object = this.get( _current ) ;
-           		return ( item != null && id in item ) ? item[id] : null ;
+           		if ( item != null ) 
+           		{
+           			_evaluator.target = item ;
+           			return _evaluator.eval(id) ;
+           		}
+           		else
+           		{
+           		   return null ;	
+           		}
             }
             else 
             {
@@ -428,6 +438,11 @@ package andromeda.i18n
          * @private
          */
         private var _current:Lang = null ;
+        
+        /**
+         * @private
+         */
+        private var _evaluator:PropertyEvaluator ;
         
         /**
          * @private

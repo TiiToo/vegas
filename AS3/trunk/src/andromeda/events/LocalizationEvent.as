@@ -83,10 +83,10 @@ package andromeda.events
          * Returns the current <code class="prettyprint">Local</code> reference or the internal value of the Local property passed in argument with the string in argument.
          * @return the current <code class="prettyprint">Local</code> reference or the internal value of the Local property passed in argument with the string in argument.
          */
-        public function getLocale( sID:String=null ):*
+        public function getLocale( id:String=null ):*
         {
             var localization:Localization = target as Localization ;
-            return ( localization != null ) ? ( target as Localization ).getLocale( sID ) : null ;
+            return ( localization != null ) ? localization.getLocale( id ) : null ;
         }
     
         /**
