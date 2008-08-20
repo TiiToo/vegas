@@ -23,13 +23,11 @@
 
 package pegas.colors 
 {
-	import flash.display.DisplayObject;
-	import flash.geom.ColorTransform;
-	import flash.geom.Transform;
-	
-	import vegas.core.CoreObject;	
+    import flash.display.DisplayObject;
+    import flash.geom.ColorTransform;
+    import flash.geom.Transform;	
 
-	/**
+    /**
 	 * <code class="prettyprint">BasicColor</code> extends the Color Object.
 	 * <p><b>Example :</b></p>
 	 * <pre class="prettyprint">
@@ -39,7 +37,7 @@ package pegas.colors
 	 * </pre>
 	 * @author eKameleon
 	 */	
-	public class Color extends CoreObject
+	public class Color
 	{
 
 		/**
@@ -98,6 +96,21 @@ package pegas.colors
 			return display.transform.colorTransform.color ;
 		}
 		
+        /**
+         * Returns the string representation of the passed color with ECMAScript formatting (0xrrggbb).
+         * @return the string representation of the passed color with ECMAScript formatting (0xrrggbb).
+         */
+        public static function getRGBStr( c:Color ):String 
+        {
+            var str:String = c.getRGB().toString(16);
+            var toFill:Number = 6 - str.length;
+            while ( toFill-- ) 
+            {
+                str = "0" + str ;
+            }   
+            return str.toUpperCase();
+        }		
+		
 		/**
 		 * Returns the transform value set by the last setTransform() call.
 		 * @return An object whose properties contain the current offset and percentage values for the specified color.
@@ -141,6 +154,14 @@ package pegas.colors
 			ct.color = offset ;
 			display.transform.colorTransform = ct;
 		}
+		
+        /**
+         * Sets the color of the passed Color instance with the specified string expression of the color.
+         */
+        public static function setRGBStr( c:Color, str:String ):void 
+        {
+            c.setRGB (parseInt (str.substr (-6, 6), 16));
+        }		
 
 		/**
 		 * Sets color transform information for a Color object.

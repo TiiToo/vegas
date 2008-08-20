@@ -23,12 +23,9 @@
 
 package pegas.colors 
 {
-	
-	import flash.display.DisplayObject;
-	
-	import pegas.colors.Color;	
-
-	/**
+    import flash.display.DisplayObject;    
+    
+    /**
 	 * Transformation class to modify the filters on a Color object with Photoshop filters.
 	 * @author eKameleon
 	 */
@@ -49,7 +46,7 @@ package pegas.colors
 		 */
 		public function addition(n:Number):void 
 		{
-			var o:Object = ColorRGB.hex2rgb(n) ;
+			var o:Object = RGB.numberToRGB(n) ;
 			setTransform ( { rb:o.r , gb:o.g , bb:o.b });
 		}
 		
@@ -58,7 +55,7 @@ package pegas.colors
 		 */
 		public function colorDodge(n:Number):void 
 		{
-			var o:Object = ColorRGB.hex2rgb(n) ;
+			var o:Object = RGB.numberToRGB(n) ;
 			setTransform ({ ra:_dodge(o.r) , ga:_dodge(o.g) , ba:_dodge(o.b) } );
 		}
 		
@@ -67,7 +64,7 @@ package pegas.colors
 		 */
 		public function difference (n:Number):void 
 		{
-			var o:Object = ColorRGB.hex2rgb(n) ;
+			var o:Object = RGB.numberToRGB(n) ;
 			setTransform ( { rb:-o.r , gb:-o.g , bb:-o.b });
 		}
 		
@@ -76,7 +73,7 @@ package pegas.colors
 		 */
 		public function divide(n:Number):void 
 		{
-			var o:Object = ColorRGB.hex2rgb(n) ;
+			var o:Object = RGB.numberToRGB(n) ;
 			setTransform ({ ra:_div(o.r) , ga:_div(o.g) , ba:_div(o.b) } );
 		}
 			
@@ -85,7 +82,7 @@ package pegas.colors
 	 	 */
 		public function linearBurn (n:Number):void 
 		{
-			var o:Object = ColorRGB.hex2rgb(n) ;
+			var o:Object = RGB.numberToRGB(n) ;
 			setTransform ({ rb:o.r-255 , gb:o.g-255, bb:o.b-255 });
 		}
 		
@@ -94,7 +91,7 @@ package pegas.colors
 	 	 */
 		public function linearDodge (n:Number):void 
 		{
-			var o:Object = ColorRGB.hex2rgb(n) ;
+			var o:Object = RGB.numberToRGB(n) ;
 			setTransform ({ rb:o.r , gb:o.g, bb:o.b });
 		}
 			
@@ -103,7 +100,7 @@ package pegas.colors
 		 */
 		public function multiply(n:Number):void 
 		{
-			var o:Object = ColorRGB.hex2rgb(n) ;
+			var o:Object = RGB.numberToRGB(n) ;
 			setTransform ({ ra:o.r/2.55 , ga:o.g/2.55 , ba:o.b/2.55 });
 		}
 		
@@ -120,7 +117,7 @@ package pegas.colors
 	 	 */
 		public function screen (n:Number):void 
 		{
-			var o:Object = ColorRGB.hex2rgb(n) ;
+			var o:Object = RGB.numberToRGB(n) ;
 			setTransform ({ ra:_scr(o.r), ga:_scr(o.g), ba:_scr(o.b), rb:o.r, gb:o.g, bb:o.b } );
 		}
 		
@@ -129,7 +126,7 @@ package pegas.colors
 		 */
 		public function substraction (n:Number):void 
 		{
-			var o:Object = ColorRGB.hex2rgb(n) ;
+			var o:Object = RGB.numberToRGB(n) ;
 			setTransform ({ ra:-100, ga:-100, ba:-100, rb:o.r, gb:o.g, bb:o.b } );
 		}
 		

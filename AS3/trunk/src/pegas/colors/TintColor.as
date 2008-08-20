@@ -23,11 +23,9 @@
 
 package pegas.colors 
 {
-	import flash.display.DisplayObject;
-	
-	import pegas.colors.Color;	
+    import flash.display.DisplayObject;	
 
-	/**
+    /**
 	 * Control the tint of a Color object.
 	 * <p>Thanks 2003 Robert Penner - Use freely, giving credit where possible.</p>
 	 * <p>This code is based on the book : Robert Penner's Programming Macromedia Flash MX. More informations in :
@@ -89,7 +87,7 @@ package pegas.colors
 			var t:Object = getTransform();
 			var percent:Number = 100 - t.ra ;
 			var ratio:Number = 100 / percent ;
-			return { percent : percent , rgb : ColorRGB.rgb2hex( t.rb*ratio , t.gb*ratio , t.bb*ratio ) } ;
+			return { percent : percent , rgb : RGB.rgbToNumber( t.rb*ratio , t.gb*ratio , t.bb*ratio ) } ;
 		}
 		
 		/**
@@ -143,7 +141,7 @@ package pegas.colors
 		 */
 		public function setTint2(hex:Number, percent:Number):void 
 		{	
-			var c:Object = ColorRGB.hex2rgb (hex) ;
+			var c:Object = RGB.numberToRGB( hex ) ;
 			var ratio:Number = percent / 100 ;
 			var t:Object = {rb:c.r*ratio, gb:c.g*ratio, bb:c.b*ratio};
 			t.ra = t.ga = t.ba = 100-percent;

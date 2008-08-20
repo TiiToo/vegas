@@ -23,11 +23,9 @@
 
 package pegas.colors 
 {
-	import flash.display.DisplayObject;
-	
-	import pegas.colors.Color;	
+    import flash.display.DisplayObject;	
 
-	/**
+    /**
 	 * This class is the basic extension of the actionscript Color class to changed light and contrast over a MovieClip. 
 	 * <p>Thanks 2003 Robert Penner - Use freely, giving credit where possible.</p>
  	 * <p>This code is based on the book : Robert Penner's Programming Macromedia Flash MX. More informations in :

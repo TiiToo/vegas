@@ -23,14 +23,43 @@
 
 package pegas.colors 
 {
-	import pegas.colors.ColorHTML;
-	
-	import vegas.data.map.HashMap;	
+    import vegas.data.map.HashMap;		
 
-	/**
+    /**
 	 * All SVG W3C standard colors. 
-	 * Basic W3C SVG colors : <a href='http://www.w3.org/TR/css3-color/'>4.3. SVG color keywords</a>.
+	 * Basic W3C SVG colors : <a href='http://www.w3.org/TR/css3-color/'>4.3. SVG color keywords</a>. 
 	 * Scalable Vector Graphics Color Names : <a href='http://www.december.com/html/spec/colorsvg.html'>http://www.december.com/html/spec/colorsvg.html</a>
+	 * <p><b>Example :</b></p>
+	 * <pre class="prettyprint">
+	 * import pegas.colors.ColorSVG ;
+	 * 
+	 * var c:ColorSVG ;
+	 * 
+	 * c = ColorSVG.ALICE_BLUE ;
+	 * trace(c.toString() + " : " + c.valueOf()) ;
+	 * 
+	 * trace( "---------" ) ;
+	 * 
+	 * c  = ColorSVG.YELLOW ;
+	 * trace(c.toString() + " : " + c.toString(true)) ;
+	 * 
+	 * trace( "---------" ) ;
+	 * 
+	 * var c1:ColorSVG = ColorSVG.PURPLE ;
+	 * var c2:ColorSVG = ColorSVG.get("purple") ;
+	 * 
+	 * trace( c1 == c2 ) ; // true
+	 * 
+	 * trace( "---------" ) ;
+	 * 
+	 * trace( "contains 'YELLOW' : " + ColorSVG.contains( ColorSVG.YELLOW ) ) ;
+	 * trace( "contains 'yellow' : " + ColorSVG.contains( "yellow" ) ) ;
+	 * 
+	 * trace("---------") ;
+	 * 
+	 * trace( "ColorSVG.ELEMENTS size : " + ColorSVG.ELEMENTS.size() ) ;
+	 * trace( "ColorSVG.ELEMENTS      : "      + ColorSVG.ELEMENTS ) ;
+	 * </pre>
 	 * @author eKameleon
  	 */
 	public class ColorSVG extends ColorHTML 
@@ -800,11 +829,11 @@ package pegas.colors
 		{
 			if ( o is ColorSVG )
 			{
-				return ColorSVG.ELEMENTS.containsKey( o.name.toLowerCase() ) ;
+				return ColorSVG.ELEMENTS.containsKey( ( o.name ).toLowerCase() ) ;
 			}
 			else if ( o is String )
 			{
-				return ColorSVG.ELEMENTS.containsKey(o.toLowerCase()) ;
+				return ColorSVG.ELEMENTS.containsKey( ( o as String ).toLowerCase() ) ;
 			}
 			else
 			{

@@ -68,6 +68,7 @@ package vegas.core.types
 
 		/**
 		 * Returns the real value of the object.
+		 * @return the real value of the object.
 		 */
         public function valueOf():Object
         {

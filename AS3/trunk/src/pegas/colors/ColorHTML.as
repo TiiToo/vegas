@@ -23,11 +23,6 @@
 
 package pegas.colors
 {
-    import system.Equatable;
-    
-    import vegas.core.CoreObject;
-    import vegas.core.IConvertible;
-    import vegas.util.ObjectUtil;	
 
     /**
  	 * Enumeration static class to defined Basic HTML data types.
@@ -40,10 +35,24 @@ package pegas.colors
 	 * trace("convert #FF0000 : "  + n) ;
 	 * 
 	 * var c:ColorHTML = ColorHTML.YELLOW ;
-	 * trace(c.toString() + " : " + c.valueOf()) ;
+	 * trace("c.toString()     : " + c.toString() ) ;
+	 * 
+	 * trace("c.toString(true) : " + c.toString(true) ) ;
+	 * trace("c.toString(true) : " + c.valueOf() ) ;
+	 * 
+	 * var htmlCode:String = ColorHTML.hexToHtml( 0xFF0000 ) ;
+	 * 
+	 * trace("convert 0xFF0000 : "  + htmlCode) ;
+	 * 
+	 * // output:
+	 * // convert #FF0000 : 16711680
+	 * // c.toString()     : Yellow
+	 * // c.toString(true) : [RGBA r:255 g:255 b:0 a:0 hex:0x00FFFF00]
+	 * // c.toString(true) : 16776960
+	 * // convert 0xFF0000 : #FF0000
  	 * </pre>
  	 */
-	public class ColorHTML extends CoreObject implements IConvertible, Equatable
+	public class ColorHTML extends RGBA
 	{
 		
 		/**
@@ -51,17 +60,10 @@ package pegas.colors
 		 * @param value the decimal color number value.
 		 * @param name the name of the color.
 		 */
-		public function ColorHTML( value:Number=NaN , name:String=null )
+		public function ColorHTML( value:Number = 0 , name:String = null )
 		{
-			super();
-			if ( name != null )
-			{
-				this.name = name ;
-			}
-			if ( !isNaN(value) ) 
-			{
-				this.value = value ;
-			}
+			fromNumber( value ) ;
+			this.name = name ;
 		}
 
 		/**
@@ -153,16 +155,12 @@ package pegas.colors
 		 * The value of the color.
 		 */
 		public var value:Number ;
-
-		/**
-		 * Compares the specified object with this object for equality.
-		 * @return <code class="prettyprint">true</code> if the the specified object is equal with this object.
-	 	 */
-		public function equals( o:* ):Boolean 
-		{
-			return ( o.valueOf() == valueOf() && toString() == o.toString()) ;	
-		}
-
+        
+        /**
+         * The verbose mode of all ColorHTML reference.
+         */
+        public static var VERBOSE:Boolean ;
+                
 		/**
 		 * Converts the string passed in argument (the html color) in a number representation.
 		 */
@@ -178,53 +176,25 @@ package pegas.colors
 		/**
 	 	 * Converts the number passed in argument (the html color in hex with ECMAScript notation 0xrrggbb) in a HTML string representation.
 	 	 */
-		public static function hexToHtml( hex:Number):String
+		public static function hexToHtml( hex:Number ):String
 		{
 			return "#" + (hex.toString(16)).toUpperCase() ; 
 		}
-
-		/**
-		 * Converts an object to an equivalent Boolean value.
-		 */
-		public function toBoolean():Boolean 
-		{
-			return ObjectUtil.toBoolean(this) ;	
-		}
-
-		/**
-		 * Converts an object to an equivalent Number value.
-		 */
-		public function toNumber():Number 
-		{
-			return ObjectUtil.toNumber(this) ;	
-		}
-	
-		/**
-		 * Converts an object to an equivalent Object value.
-		 */
-		public function toObject():Object 
-		{
-			return ObjectUtil.toObject(this) ;	
-		}
-	
+        	
 		/**
 		 * Returns the string representation of this instance.
+		 * <pre class="prettyprint">
+		 * var c:ColorHTML = ColorHTML.YELLOW ;
+		 * trace( c.toString() + " : " + c.toString(true) ) ;
+		 * </pre>
+		 * @param verbose A boolean used to use the verbose mode and see all components and informations about this instance.
 		 * @return the string representation of this instance
  	 	 */
-		public override function toString():String 
+		public override function toString( ...args:Array ):String 
 		{
-			return this.name ;
+			return ( args[0] is Boolean && args[0] == true) || VERBOSE ? super.toString() : this.name ;
 		}
-
-		/**
-		 * Returns the value in number of this ColorHTML instance.
-		 * @return the value in number of this ColorHTML instance.
-		 */
-		public function valueOf():Number
-		{
-			return this.value ;	
-		}
-	
+        	
 	}
 
 }

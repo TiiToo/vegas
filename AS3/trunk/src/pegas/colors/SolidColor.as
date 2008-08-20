@@ -23,11 +23,9 @@
 
 package pegas.colors 
 {
-	import flash.display.DisplayObject;
-	
-	import pegas.colors.Color;	
-
-	/**
+    import flash.display.DisplayObject;    
+    
+    /**
 	 * Control the solid color of a Color Object.
 	 * <p>Thanks 2003 Robert Penner - Use freely, giving credit where possible.</p>
 	 * <p>This code is based on the book : Robert Penner's Programming Macromedia Flash MX. More informations in :
@@ -309,7 +307,7 @@ package pegas.colors
 		public function setBlue(amount:Number):void 
 		{
 			var t:Object = getTransform() ;
-			setRGB (ColorRGB.rgb2hex(t.rb, t.gb, amount)) ;
+			setRGB ( RGB.rgbToNumber(t.rb, t.gb, amount) ) ;
 		}
 		
 		/**
@@ -339,7 +337,7 @@ package pegas.colors
 		public function setGreen(amount:Number):void
 		{
 			var t:Object = getTransform();
-			setRGB (ColorRGB.rgb2hex(t.rb, amount, t.bb)) ;
+			setRGB ( RGB.rgbToNumber(t.rb, amount, t.bb) ) ;
 		}
 		
 		/**
@@ -369,7 +367,7 @@ package pegas.colors
 		public function setRed(amount:Number):void
 		{
 			var t:Object = getTransform();
-			setRGB (ColorRGB.rgb2hex(amount, t.gb, t.bb)) ;
+			setRGB ( RGB.rgbToNumber(amount, t.gb, t.bb) ) ;
 		}
 		
 		/**
@@ -405,7 +403,7 @@ package pegas.colors
 		 */
 		public function setRGB2(r:Number, g:Number, b:Number):void  
 		{ 
-			setRGB(ColorRGB.rgb2hex(r,g,b)) ; 
+			setRGB( RGB.rgbToNumber(r,g,b) ) ; 
 		}
 
 	}
