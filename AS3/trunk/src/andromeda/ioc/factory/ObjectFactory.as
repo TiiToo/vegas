@@ -88,7 +88,6 @@ package andromeda.ioc.factory
         public function ObjectFactory( id:*=null , bGlobal:Boolean = false , sChannel:String = null )
         {
             super( bGlobal, sChannel ) ;
-            _re.factory      = this ;
             this.id          = id ;            
             singletons       = new HashMap() ;
             config           = new ObjectConfig() ; // the default empty ObjectConfig instance.
@@ -108,6 +107,7 @@ package andromeda.ioc.factory
         public function set config( o:ObjectConfig ):void
         {
             _config = o || new ObjectConfig() ;
+            _config.referenceEvaluator.factory = this ;
         }        
         
         /**
@@ -288,7 +288,7 @@ package andromeda.ioc.factory
                     
                         if ( item.policy == ObjectAttribute.REFERENCE )
                         {
-                            stack.push( _re.eval( value as String ) ) ;    
+                            stack.push( _config.referenceEvaluator.eval( value as String ) ) ;    
                         }
                         else if ( item.policy == ObjectAttribute.CONFIG )
                         {
@@ -426,7 +426,7 @@ package andromeda.ioc.factory
             }
             else if ( strategy is ObjectFactoryReference )
             {
-            	instance = _re.eval((strategy as ObjectFactoryReference).ref ) ;
+            	instance = _config.referenceEvaluator.eval((strategy as ObjectFactoryReference).ref ) ;
             }            
             return instance ;
         }
@@ -584,7 +584,7 @@ package andromeda.ioc.factory
                                
                     if ( prop.policy == ObjectAttribute.REFERENCE && value is String )
                     {
-                        o[ name ] = _re.eval( value as String ) ;
+                        o[ name ] = _config.referenceEvaluator.eval( value as String ) ;
                     }
                     else if ( prop.policy == ObjectAttribute.CONFIG )
                     {
@@ -626,7 +626,7 @@ package andromeda.ioc.factory
                     try
                     {
                         listener   = listeners[i] as ObjectListener ;     
-                        dispatcher = _re.eval( listener.dispatcher ) as IEventDispatcher ;
+                        dispatcher = _config.referenceEvaluator.eval( listener.dispatcher ) as IEventDispatcher ;
                         if ( dispatcher != null && listener.type != null )
                         {
                             if ( listener.method != null && listener.method in o ) 
@@ -667,12 +667,7 @@ package andromeda.ioc.factory
          * @private
          */
         private var _e:MultiEvaluator = new MultiEvaluator() ;
-        
-        /**
-         * @private
-         */
-        private var _re:ReferenceEvaluator = new ReferenceEvaluator() ;
-        
+                
         /**
          * @private
          */

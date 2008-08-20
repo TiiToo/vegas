@@ -24,9 +24,9 @@ package andromeda.i18n
     import flash.errors.IllegalOperationError;
     
     import andromeda.events.LocalizationEvent;
-    import andromeda.ioc.evaluators.PropertyEvaluator;
     
     import system.Reflection;
+    import system.evaluators.PropertyEvaluator;
     
     import vegas.core.Identifiable;
     import vegas.data.map.HashMap;
@@ -194,6 +194,22 @@ package andromeda.i18n
         }
         
         /**
+         * Indicates if the class throws errors or return null when an error is throwing.
+         */        
+        public function get throwError():Boolean
+        {
+            return _evaluator.throwError ;	
+        }
+        
+        /**
+         * @private
+         */        
+        public function set throwError( b:Boolean ):void
+        {
+            _evaluator.throwError = b ;  
+        }        
+        
+        /**
          * Append the specified dynamic object values with the specificied lang value.
          * If no exist a Locale Object with the specified lang id, a Locale Object is created.
          * @param lang The language id, must be a String (valid in the Lang class) or a Lang object.
@@ -301,16 +317,7 @@ package andromeda.i18n
            		if ( item != null ) 
            		{
            			_evaluator.target = item ;
-           			try
-           			{
-                        item = _evaluator.eval(id) ;
-           			}
-           			catch( e:Error )
-           			{
-           				getLogger().warn( this + " getLocale failed : " + e.toString() ) ; // TODO : add a silent mode.
-                        return null ;	
-           			}
-           			return item ;
+                    return _evaluator.eval(id) ;
            		}
            		else
            		{

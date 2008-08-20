@@ -82,6 +82,11 @@ package andromeda.ioc.evaluators
         public var config:ObjectConfig ;
         
         /**
+         * Indicates if the eval() method throws errors or return null when an error is throwing.
+         */
+        public var throwError:Boolean ;        
+        
+        /**
          * Evaluates the specified object.
          */
         public function eval( o:* ):*
@@ -127,12 +132,16 @@ package andromeda.ioc.evaluators
                 }
                 catch( e:Error )
                 {
-                	throw new EvalError(this + " eval failed : " + e.toString() ) ;
+                	if ( throwError )
+                	{
+                        throw new EvalError(this + " eval failed : " + e.toString() ) ;
+                	}
                 }
-            
             }
-            
+
             return null ;
+
         }
+
     }
 }

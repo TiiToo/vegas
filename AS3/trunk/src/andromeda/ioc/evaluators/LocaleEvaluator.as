@@ -22,7 +22,9 @@
 */
 package andromeda.ioc.evaluators 
 {
-    import andromeda.ioc.factory.ObjectConfig;                            
+    import andromeda.ioc.factory.ObjectConfig;
+    
+    import system.evaluators.PropertyEvaluator;                                
 
     /**
      * Evaluates a type string expression and return the value who corresponding in the locale reference in the configuration of the factory.

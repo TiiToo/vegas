@@ -27,8 +27,7 @@ package andromeda.ioc.evaluators
     import andromeda.ioc.factory.IObjectFactory;
     
     import system.evaluators.Evaluable;
-    
-    import vegas.core.CoreObject;    
+    import system.evaluators.PropertyEvaluator;    
 
     /**
      * Evaluates a reference string expression and return the property value who corresponding in the target object specified in this evaluator.
@@ -84,7 +83,7 @@ package andromeda.ioc.evaluators
      * </pre>
      * @author eKameleon
      */
-    public class ReferenceEvaluator extends CoreObject implements Evaluable 
+    public class ReferenceEvaluator implements Evaluable 
     {
         
         /**
@@ -131,6 +130,22 @@ package andromeda.ioc.evaluators
          * The reference pattern who represents the current factory.
          */
         public var thisPattern:String = "#this" ;
+        
+        /**
+         * Indicates if the class throws errors or return null when an error is throwing.
+         */        
+        public function get throwError():Boolean
+        {
+            return _propEvaluator.throwError ;  
+        }
+        
+        /**
+         * @private
+         */        
+        public function set throwError( b:Boolean ):void
+        {
+            _propEvaluator.throwError = b ;  
+        }        
         
         /**
          * The undefineable value returns in the eval method if the expression can't be evaluate.

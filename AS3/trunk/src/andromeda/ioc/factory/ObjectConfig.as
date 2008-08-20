@@ -28,9 +28,11 @@ package andromeda.ioc.factory
     import andromeda.ioc.core.TypePolicy;
     import andromeda.ioc.evaluators.ConfigEvaluator;
     import andromeda.ioc.evaluators.LocaleEvaluator;
+    import andromeda.ioc.evaluators.ReferenceEvaluator;
     import andromeda.ioc.evaluators.TypeEvaluator;
     
     import system.Reflection;
+    import system.evaluators.PropertyEvaluator;
     
     import vegas.core.CoreObject;
     import vegas.data.iterator.Iterator;    
@@ -74,7 +76,9 @@ package andromeda.ioc.factory
             _typeAliases     = new TypeAliases() ;
             _localeEvaluator = new LocaleEvaluator(this) ;
             _typeEvaluator   = new TypeEvaluator(this) ;
-
+            
+            throwError       = true ;
+            
             initialize( init ) ;
 
         }
@@ -154,10 +158,37 @@ package andromeda.ioc.factory
         public var lock:Boolean ;
         
         /**
+         * Indicates the reference evaluator object. 
+         */
+        public function get referenceEvaluator():ReferenceEvaluator
+        {
+            return _referenceEvaluator ;
+        }          
+        
+        /**
          * The root reference of the application. 
          * This property is optional and can be target in the IoC factory with the "ref" attribute with the value "#root".
          */
         public var root:* ;
+        
+        /**
+         * Indicates if the class throws errors or return null when an error is throwing.
+         */        
+        public function get throwError():Boolean
+        {
+            return _configEvaluator.throwError && _localeEvaluator.throwError && _typeEvaluator.throwError && _referenceEvaluator.throwError ;  
+        }
+        
+        /**
+         * @private
+         */        
+        public function set throwError( b:Boolean ):void
+        {
+            _configEvaluator.throwError    = b ;
+            _localeEvaluator.throwError    = b ;
+            _referenceEvaluator.throwError = b ;
+            _typeEvaluator.throwError      = b ;            
+        }          
         
         /**
          * Determinates the typeAliases reference of this config object.
@@ -401,7 +432,12 @@ package andromeda.ioc.factory
          * @private
          */
         private var _localeEvaluator:LocaleEvaluator ; 
-		        
+		
+        /**
+         * @private
+         */
+        private var _referenceEvaluator:ReferenceEvaluator = new ReferenceEvaluator() ;
+		
         /**
          * @private
          */
