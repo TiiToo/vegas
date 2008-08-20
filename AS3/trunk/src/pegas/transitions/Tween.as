@@ -268,7 +268,7 @@ package pegas.transitions
 				return ;
 			}
 			var a:Array  = _model.toArray() ;
-			var l:Number = a.length ;
+			var l:int = a.length ;
 			while(--l > -1) 
 			{
 				var e:TweenEntry = a[l] ;

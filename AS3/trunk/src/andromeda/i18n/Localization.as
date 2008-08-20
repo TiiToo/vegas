@@ -297,11 +297,20 @@ package andromeda.i18n
         {
             if ( id != null && _current != null ) 
             {
-            	var item:Object = this.get( _current ) ;
+            	var item:* = this.get( _current ) ;
            		if ( item != null ) 
            		{
            			_evaluator.target = item ;
-           			return _evaluator.eval(id) ;
+           			try
+           			{
+                        item = _evaluator.eval(id) ;
+           			}
+           			catch( e:Error )
+           			{
+           				getLogger().warn( this + " getLocale failed : " + e.toString() ) ; // TODO : add a silent mode.
+                        return null ;	
+           			}
+           			return item ;
            		}
            		else
            		{
