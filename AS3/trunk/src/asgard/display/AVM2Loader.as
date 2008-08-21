@@ -1,4 +1,4 @@
-/*
+﻿/*
 
   The contents of this file are subject to the Mozilla Public License Version
   1.1 (the "License"); you may not use this file except in compliance with
@@ -124,22 +124,30 @@ package asgard.display
          */
         public override function loadBytes( bytes:ByteArray , context:LoaderContext=null ):void
         {
-            // uncompress if compressed
+        	
+        	// uncompress if compressed
+           
             bytes.endian = Endian.LITTLE_ENDIAN ;
-            if( bytes[0]==0x43 )
+           
+            if( bytes[0] == 0x43 )
             {
-                //many thanks for be-interactive.org
+                // many thanks for be-interactive.org
+                
                 var compressedBytes:ByteArray = new ByteArray();
+                
                 compressedBytes.writeBytes(bytes, 8);
                 compressedBytes.uncompress();
                 
-                bytes.length = 8;
+                bytes.length   = 8;
                 bytes.position = 8;
-                bytes.writeBytes(compressedBytes);
-                compressedBytes.length = 0;
+                bytes.writeBytes(compressedBytes) ;
                 
-                //flag uncompressed
+                compressedBytes.length = 0 ;
+                
+                // flag uncompressed
+                
                 bytes[0] = 0x46 ;
+                
             }
             hackBytes(bytes);
             super.loadBytes(bytes, context);
@@ -168,16 +176,16 @@ package asgard.display
          */
         private function hackBytes(bytes:ByteArray):void
         {
-            if(bytes[4]<0x09)
+            if( bytes[4] < 0x09 )
             {
                 bytes[4] = 0x09 ;  
             }
             var imax:int = Math.min( bytes.length, 100 ) ;
             for( var i:int=23; i<imax; i++ )
             {
-                if(bytes[i-2]==0x44 && bytes[i-1] == 0x11)
+                if( bytes[i-2] == 0x44 && bytes[i-1] == 0x11 )
                 {
-                    bytes[i] = bytes[i] | 0x08;
+                    bytes[i] = bytes[i] | 0x08 ;
                     return ;
                 }
             }
