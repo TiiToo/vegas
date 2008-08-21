@@ -39,7 +39,7 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <td class="classHeaderTableLabel">Class</td><td class="classSignature">public class ConfigEvaluator</td>
 </tr>
 <tr>
-<td class="classHeaderTableLabel">Inheritance</td><td class="inheritanceList">ConfigEvaluator <img class="inheritArrow" alt="Inheritance" title="Inheritance" src="../../../images/inherit-arrow.gif"> <a href="PropertyEvaluator.html">PropertyEvaluator</a> <img class="inheritArrow" alt="Inheritance" title="Inheritance" src="../../../images/inherit-arrow.gif"> <a href="../../../vegas/core/CoreObject.html">CoreObject</a></td>
+<td class="classHeaderTableLabel">Inheritance</td><td class="inheritanceList">ConfigEvaluator <img class="inheritArrow" alt="Inheritance" title="Inheritance" src="../../../images/inherit-arrow.gif"> <a href="../../../system/evaluators/PropertyEvaluator.html">PropertyEvaluator</a></td>
 </tr>
 </table>
 <p></p>
@@ -99,9 +99,9 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 </td><td class="summaryTableOwnerCol">ConfigEvaluator</td>
 </tr>
 <tr class="hideInheritedProperty">
-<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol"><a class="signatureLink" href="PropertyEvaluator.html#separator">separator</a> : String = "."<div class="summaryTableDescription">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol"><a class="signatureLink" href="../../../system/evaluators/PropertyEvaluator.html#separator">separator</a> : String = "."<div class="summaryTableDescription">
          The separator of the expression evaluator.</div>
-</td><td class="summaryTableOwnerCol"><a href="PropertyEvaluator.html">PropertyEvaluator</a></td>
+</td><td class="summaryTableOwnerCol"><a href="../../../system/evaluators/PropertyEvaluator.html">PropertyEvaluator</a></td>
 </tr>
 <tr class="">
 <td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#target">target</a> : *<div class="summaryTableDescription">
@@ -109,9 +109,14 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 </td><td class="summaryTableOwnerCol">ConfigEvaluator</td>
 </tr>
 <tr class="hideInheritedProperty">
-<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol"><a class="signatureLink" href="PropertyEvaluator.html#undefineable">undefineable</a> : * = null<div class="summaryTableDescription">
-         The undefineable value returns in the eval method if the expression can't be evaluate.</div>
-</td><td class="summaryTableOwnerCol"><a href="PropertyEvaluator.html">PropertyEvaluator</a></td>
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol"><a class="signatureLink" href="../../../system/evaluators/PropertyEvaluator.html#throwError">throwError</a> : Boolean<div class="summaryTableDescription">
+         Indicates if the eval() method throws errors or return null when an error is throwing.</div>
+</td><td class="summaryTableOwnerCol"><a href="../../../system/evaluators/PropertyEvaluator.html">PropertyEvaluator</a></td>
+</tr>
+<tr class="hideInheritedProperty">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol"><a class="signatureLink" href="../../../system/evaluators/PropertyEvaluator.html#undefineable">undefineable</a> : * = null<div class="summaryTableDescription">
+         This attributs defines the value returns from the eval() method if the expression can't be evaluate.</div>
+</td><td class="summaryTableOwnerCol"><a href="../../../system/evaluators/PropertyEvaluator.html">PropertyEvaluator</a></td>
 </tr>
 </table>
 </div>
@@ -141,51 +146,10 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <tr class="hideInheritedMethod">
 <td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol">
 <div class="summarySignature">
-<a class="signatureLink" href="PropertyEvaluator.html#eval()">eval</a>(o:*):*</div>
+<a class="signatureLink" href="../../../system/evaluators/PropertyEvaluator.html#eval()">eval</a>(o:*):*</div>
 <div class="summaryTableDescription">
          Evaluates the specified object.</div>
-</td><td class="summaryTableOwnerCol"><a href="PropertyEvaluator.html">PropertyEvaluator</a></td>
-</tr>
-<tr class="hideInheritedMethod">
-<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol">
-<div class="summarySignature">
-<a class="signatureLink" href="../../../vegas/core/CoreObject.html#getLogger()">getLogger</a>():<a href="../../../vegas/logging/ILogger.html">ILogger</a>
-</div>
-<div class="summaryTableDescription">
-   Returns the internal <code class="prettyprint">ILogger</code> reference of this <code class="prettyprint">ILogable</code> object.</div>
-</td><td class="summaryTableOwnerCol"><a href="../../../vegas/core/CoreObject.html">CoreObject</a></td>
-</tr>
-<tr class="hideInheritedMethod">
-<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol">
-<div class="summarySignature">
-<a class="signatureLink" href="../../../vegas/core/CoreObject.html#hashCode()">hashCode</a>():uint</div>
-<div class="summaryTableDescription">
-   Returns a hashcode value for the object.</div>
-</td><td class="summaryTableOwnerCol"><a href="../../../vegas/core/CoreObject.html">CoreObject</a></td>
-</tr>
-<tr class="hideInheritedMethod">
-<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol">
-<div class="summarySignature">
-<a class="signatureLink" href="../../../vegas/core/CoreObject.html#setLogger()">setLogger</a>(log:<a href="../../../vegas/logging/ILogger.html">ILogger</a> = null):void</div>
-<div class="summaryTableDescription">
-   Sets the internal <code class="prettyprint">ILogger</code> reference of this <code class="prettyprint">ILogable</code> object.</div>
-</td><td class="summaryTableOwnerCol"><a href="../../../vegas/core/CoreObject.html">CoreObject</a></td>
-</tr>
-<tr class="hideInheritedMethod">
-<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol">
-<div class="summarySignature">
-<a class="signatureLink" href="../../../vegas/core/CoreObject.html#toSource()">toSource</a>(indent:int = 0):String</div>
-<div class="summaryTableDescription">
-   Returns the string representation the source code of the object.</div>
-</td><td class="summaryTableOwnerCol"><a href="../../../vegas/core/CoreObject.html">CoreObject</a></td>
-</tr>
-<tr class="hideInheritedMethod">
-<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol">
-<div class="summarySignature">
-<a class="signatureLink" href="../../../vegas/core/CoreObject.html#toString()">toString</a>():String</div>
-<div class="summaryTableDescription">
-   Returns the string representation of this instance.</div>
-</td><td class="summaryTableOwnerCol"><a href="../../../vegas/core/CoreObject.html">CoreObject</a></td>
+</td><td class="summaryTableOwnerCol"><a href="../../../system/evaluators/PropertyEvaluator.html">PropertyEvaluator</a></td>
 </tr>
 </table>
 </div>

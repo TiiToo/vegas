@@ -54,12 +54,12 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("In
 </tr>
 <tr class="">
 <td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#accessors">accessors</a> : Array<div class="summaryTableDescription">[read-only]
-        List all accessors in the class.</div>
+         List all accessors in the class.</div>
 </td><td class="summaryTableOwnerCol">ClassInfo</td>
 </tr>
 <tr class="">
 <td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#constants">constants</a> : Array<div class="summaryTableDescription">[read-only]
-        List all constants in the class.</div>
+         List all constants in the class.</div>
 </td><td class="summaryTableOwnerCol">ClassInfo</td>
 </tr>
 <tr class="">
@@ -96,7 +96,7 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("In
 </tr>
 <tr class="">
 <td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#variables">variables</a> : Array<div class="summaryTableDescription">[read-only]
-        List all variables in the class.</div>
+         List all variables in the class.</div>
 </td><td class="summaryTableOwnerCol">ClassInfo</td>
 </tr>
 </table>
@@ -205,8 +205,8 @@ showHideInherited();
 </table>
 <div class="detailBody">
 <code>accessors:Array</code>&nbsp;&nbsp;[read-only]<p>
-        List all accessors in the class.
-        </p><span class="label">Implementation</span>
+         List all accessors in the class.
+         </p><span class="label">Implementation</span>
 <br>
 <code>&nbsp;&nbsp;&nbsp;&nbsp;public function get accessors():Array</code>
 <br>
@@ -219,8 +219,8 @@ showHideInherited();
 </table>
 <div class="detailBody">
 <code>constants:Array</code>&nbsp;&nbsp;[read-only]<p>
-        List all constants in the class.
-        </p><span class="label">Implementation</span>
+         List all constants in the class.
+         </p><span class="label">Implementation</span>
 <br>
 <code>&nbsp;&nbsp;&nbsp;&nbsp;public function get constants():Array</code>
 <br>
@@ -321,8 +321,8 @@ showHideInherited();
 </table>
 <div class="detailBody">
 <code>variables:Array</code>&nbsp;&nbsp;[read-only]<p>
-        List all variables in the class.
-        </p><span class="label">Implementation</span>
+         List all variables in the class.
+         </p><span class="label">Implementation</span>
 <br>
 <code>&nbsp;&nbsp;&nbsp;&nbsp;public function get variables():Array</code>
 <br>
@@ -388,7 +388,12 @@ showHideInherited();
 <div class="detailBody">
 <code>public function isDynamic():Boolean</code><p>
          Indicates if the specified object is dynamic.
-         </p><p></p>
+         </p><p><b>Example :</b></p>
+         <pre class="prettyprint">
+         import system.Reflection ;
+         trace( Reflection.getClassInfo(Object).isDynamic() ) ; // true
+         </pre>
+         <p></p>
 <span class="label">Returns</span>
 <table border="0" cellspacing="0" cellpadding="0">
 <tr>
@@ -405,7 +410,12 @@ showHideInherited();
 <div class="detailBody">
 <code>public function isFinal():Boolean</code><p>
          Indicates if the specified object is final.
-         </p><p></p>
+         </p><p><b>Example :</b></p>
+         <pre class="prettyprint">
+         import system.Reflection ;
+         trace( Reflection.getClassInfo(String).isFinal() ) ; // true
+         </pre>
+         <p></p>
 <span class="label">Returns</span>
 <table border="0" cellspacing="0" cellpadding="0">
 <tr>
@@ -422,7 +432,14 @@ showHideInherited();
 <div class="detailBody">
 <code>public function isInstance():Boolean</code><p>
          Indicates if the specified object is instance.
-         </p><p></p>
+         </p><p><b>Example :</b></p>
+         <pre class="prettyprint">
+         import system.Reflection ;
+         
+         trace( Reflection.getClassInfo( Array ).isInstance() ) ; // false
+         trace( Reflection.getClassInfo( new Array() ).isInstance() ) ; // true
+         </pre>
+         <p></p>
 <span class="label">Returns</span>
 <table border="0" cellspacing="0" cellpadding="0">
 <tr>
@@ -439,7 +456,12 @@ showHideInherited();
 <div class="detailBody">
 <code>public function isStatic():Boolean</code><p>
          Indicates if the specified object is static.
-         </p><p></p>
+         </p><p><b>Example :</b></p>
+         <pre class="prettyprint">
+         import system.Reflection ;
+         trace( Reflection.getClassInfo(Math).isStatic() ) ; // true
+         </pre>
+         <p></p>
 <span class="label">Returns</span>
 <table border="0" cellspacing="0" cellpadding="0">
 <tr>

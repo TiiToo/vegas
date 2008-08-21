@@ -39,7 +39,7 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <td class="classHeaderTableLabel">Class</td><td class="classSignature">public class TransformColor</td>
 </tr>
 <tr>
-<td class="classHeaderTableLabel">Inheritance</td><td class="inheritanceList">TransformColor <img class="inheritArrow" alt="Inheritance" title="Inheritance" src="../../images/inherit-arrow.gif"> <a href="Color.html">Color</a> <img class="inheritArrow" alt="Inheritance" title="Inheritance" src="../../images/inherit-arrow.gif"> <a href="../../vegas/core/CoreObject.html">CoreObject</a></td>
+<td class="classHeaderTableLabel">Inheritance</td><td class="inheritanceList">TransformColor <img class="inheritArrow" alt="Inheritance" title="Inheritance" src="../../images/inherit-arrow.gif"> <a href="Color.html">Color</a></td>
 </tr>
 </table>
 <p></p>
@@ -139,15 +139,6 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <tr class="hideInheritedMethod">
 <td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol">
 <div class="summarySignature">
-<a class="signatureLink" href="../../vegas/core/CoreObject.html#getLogger()">getLogger</a>():<a href="../../vegas/logging/ILogger.html">ILogger</a>
-</div>
-<div class="summaryTableDescription">
-   Returns the internal <code class="prettyprint">ILogger</code> reference of this <code class="prettyprint">ILogable</code> object.</div>
-</td><td class="summaryTableOwnerCol"><a href="../../vegas/core/CoreObject.html">CoreObject</a></td>
-</tr>
-<tr class="hideInheritedMethod">
-<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol">
-<div class="summarySignature">
 <a class="signatureLink" href="Color.html#getRGB()">getRGB</a>():Number</div>
 <div class="summaryTableDescription">
    Returns the R+G+B combination currently in use by the color object
@@ -157,18 +148,18 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <tr class="hideInheritedMethod">
 <td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol">
 <div class="summarySignature">
-<a class="signatureLink" href="Color.html#getTransform()">getTransform</a>():Object</div>
-<div class="summaryTableDescription">
-   Returns the transform value set by the last setTransform() call.</div>
+<a class="signatureLink" href="Color.html#getRGBStr()">getRGBStr</a>(c:<a href="../colors/Color.html">Color</a>):String</div>
+<div class="summaryTableDescription">[static]
+         Returns the string representation of the passed color with ECMAScript formatting (0xrrggbb).</div>
 </td><td class="summaryTableOwnerCol"><a href="Color.html">Color</a></td>
 </tr>
 <tr class="hideInheritedMethod">
 <td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol">
 <div class="summarySignature">
-<a class="signatureLink" href="../../vegas/core/CoreObject.html#hashCode()">hashCode</a>():uint</div>
+<a class="signatureLink" href="Color.html#getTransform()">getTransform</a>():Object</div>
 <div class="summaryTableDescription">
-   Returns a hashcode value for the object.</div>
-</td><td class="summaryTableOwnerCol"><a href="../../vegas/core/CoreObject.html">CoreObject</a></td>
+   Returns the transform value set by the last setTransform() call.</div>
+</td><td class="summaryTableOwnerCol"><a href="Color.html">Color</a></td>
 </tr>
 <tr class="hideInheritedMethod">
 <td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol">
@@ -229,17 +220,17 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <tr class="hideInheritedMethod">
 <td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol">
 <div class="summarySignature">
-<a class="signatureLink" href="../../vegas/core/CoreObject.html#setLogger()">setLogger</a>(log:<a href="../../vegas/logging/ILogger.html">ILogger</a> = null):void</div>
+<a class="signatureLink" href="Color.html#setRGB()">setRGB</a>(offset:Number):void</div>
 <div class="summaryTableDescription">
-   Sets the internal <code class="prettyprint">ILogger</code> reference of this <code class="prettyprint">ILogable</code> object.</div>
-</td><td class="summaryTableOwnerCol"><a href="../../vegas/core/CoreObject.html">CoreObject</a></td>
+   Specifies an RGB color for a Color object.</div>
+</td><td class="summaryTableOwnerCol"><a href="Color.html">Color</a></td>
 </tr>
 <tr class="hideInheritedMethod">
 <td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol">
 <div class="summarySignature">
-<a class="signatureLink" href="Color.html#setRGB()">setRGB</a>(offset:Number):void</div>
-<div class="summaryTableDescription">
-   Specifies an RGB color for a Color object.</div>
+<a class="signatureLink" href="Color.html#setRGBStr()">setRGBStr</a>(c:<a href="../colors/Color.html">Color</a>, str:String):void</div>
+<div class="summaryTableDescription">[static]
+         Sets the color of the passed Color instance with the specified string expression of the color.</div>
 </td><td class="summaryTableOwnerCol"><a href="Color.html">Color</a></td>
 </tr>
 <tr class="hideInheritedMethod">
@@ -257,22 +248,6 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <div class="summaryTableDescription">
    Corresponding a filter in mode "substraction" in photoshop over a movieclip.</div>
 </td><td class="summaryTableOwnerCol">TransformColor</td>
-</tr>
-<tr class="hideInheritedMethod">
-<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol">
-<div class="summarySignature">
-<a class="signatureLink" href="../../vegas/core/CoreObject.html#toSource()">toSource</a>(indent:int = 0):String</div>
-<div class="summaryTableDescription">
-   Returns the string representation the source code of the object.</div>
-</td><td class="summaryTableOwnerCol"><a href="../../vegas/core/CoreObject.html">CoreObject</a></td>
-</tr>
-<tr class="hideInheritedMethod">
-<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol">
-<div class="summarySignature">
-<a class="signatureLink" href="../../vegas/core/CoreObject.html#toString()">toString</a>():String</div>
-<div class="summaryTableDescription">
-   Returns the string representation of this instance.</div>
-</td><td class="summaryTableOwnerCol"><a href="../../vegas/core/CoreObject.html">CoreObject</a></td>
 </tr>
 </table>
 </div>

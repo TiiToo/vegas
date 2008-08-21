@@ -65,8 +65,8 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <div class="summarySignature">
 <a class="signatureLink" href="#initialize()">initialize</a>(elements:uint = 0, value:* = null):Array</div>
 <div class="summaryTableDescription">[static]
-         Initializes a new Array with an arbitrary number of elements (index), 
-         with every element containing the passed parameter value or by default the null value.</div>
+   Initializes a new Array with an arbitrary number of elements (index), 
+   with every element containing the passed parameter value or by default the null value.</div>
 </td><td class="summaryTableOwnerCol">Arrays</td>
 </tr>
 <tr class="">
@@ -82,7 +82,7 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <div class="summarySignature">
 <a class="signatureLink" href="#spliceInto()">spliceInto</a>(inserted:Array, container:Array, containerPosition:Number = 0, countReplaced:Number = 0):void</div>
 <div class="summaryTableDescription">[static] 
-         Splice one array into another.</div>
+   Splice one array into another.</div>
 </td><td class="summaryTableOwnerCol">Arrays</td>
 </tr>
 </table>
@@ -143,17 +143,16 @@ showHideInherited();
 </table>
 <div class="detailBody">
 <code>public static function initialize(elements:uint = 0, value:* = null):Array</code><p>
-         Initializes a new Array with an arbitrary number of elements (index), 
-         with every element containing the passed parameter value or by default the null value.
-         </p><p><b>Example :</b></p>
-         <pre class="prettyprint">
-         import system.Arrays ;
-         var test:Array  = Arrays.initialize( 3 ); //define [null,null,null]
-         var test1:Array = Arrays.initialize( 3, 0 ); //define [0,0,0]
-         var test2:Array = Arrays.initialize( 3, true ); //define [true,true,true]
-         var test3:Array = Arrays.initialize( 3, "" ); //define ["","",""]
-         </pre>
-         <span class="label">Parameters</span>
+   Initializes a new Array with an arbitrary number of elements (index), 
+   with every element containing the passed parameter value or by default the null value.
+   </p><p><b>Example :</b></p>
+   <pre class="prettyprint">
+   var test:Array  = Arrays.initialize( 3 ); //define [null,null,null]
+   var test1:Array = Arrays.initialize( 3, 0 ); //define [0,0,0]
+   var test2:Array = Arrays.initialize( 3, true ); //define [true,true,true]
+   var test3:Array = Arrays.initialize( 3, "" ); //define ["","",""]
+   </pre>
+   <span class="label">Parameters</span>
 <table border="0" cellspacing="0" cellpadding="0">
 <tr>
 <td width="20px"></td><td><code><span class="label">elements</span>:uint</code> (default = <code>0</code>)<code></code></td>
@@ -170,8 +169,8 @@ showHideInherited();
 <table border="0" cellspacing="0" cellpadding="0">
 <tr>
 <td width="20"></td><td><code>Array</code> &mdash; a new Array with an arbitrary number of elements (index), 
-         with every element containing the passed parameter value or by default the null value.
-         </td>
+   with every element containing the passed parameter value or by default the null value.
+   </td>
 </tr>
 </table>
 </div>
@@ -222,77 +221,77 @@ showHideInherited();
 </table>
 <div class="detailBody">
 <code>public static function spliceInto(inserted:Array, container:Array, containerPosition:Number = 0, countReplaced:Number = 0):void</code><p> 
-         Splice one array into another.
-         Like the python 
-         <pre class="prettyprint">
-         container[containerPosition:containerPosition + countReplaced] = inserted
-         </pre>
-         </p><span class="label">Parameters</span>
+   Splice one array into another.
+   Like the python 
+   <pre class="prettyprint">
+     container[containerPosition:containerPosition + countReplaced] = inserted
+     </pre>
+     </p><span class="label">Parameters</span>
 <table border="0" cellspacing="0" cellpadding="0">
 <tr>
 <td width="20px"></td><td><code><span class="label">inserted</span>:Array</code> &mdash; The Array of char inserted in the Array container.
-         </td>
+     </td>
 </tr>
 <tr>
 <td class="paramSpacer">&nbsp;</td>
 </tr>
 <tr>
 <td width="20px"></td><td><code><span class="label">container</span>:Array</code> &mdash; The container modified in place.
-         </td>
+     </td>
 </tr>
 <tr>
 <td class="paramSpacer">&nbsp;</td>
 </tr>
 <tr>
 <td width="20px"></td><td><code><span class="label">containerPosition</span>:Number</code> (default = <code>0</code>)<code></code> &mdash; The position in the container to inserted the Array of chars.
-         </td>
+     </td>
 </tr>
 <tr>
 <td class="paramSpacer">&nbsp;</td>
 </tr>
 <tr>
 <td width="20px"></td><td><code><span class="label">countReplaced</span>:Number</code> (default = <code>0</code>)<code></code> &mdash; The count value to replaced values.
-         </td>
+     </td>
 </tr>
 </table>
 <br>
 <span class="label">Example</span>
-<br>         <pre class="prettyprint">
-         import system.Arrays ;
-         
-         var inserted:Array  ;
-         var container:Array ;
-         
-         inserted  = [1, 2, 3, 4] ;
-         container = [5, 6, 7, 8] ;
-         
-         trace( "inserted  : " + inserted  ) ;
-         trace( "container : " + container ) ;
-         
-         trace("---") ;
-         
-         inserted  = [1, 2, 3, 4] ;
-         container = [5, 6, 7, 8] ;
-         
-         Arrays.spliceInto( inserted, container ) ;
-         trace( "Arrays.spliceInto( inserted, container, 0 , 0 ) : " + container ) ; // 1,2,3,4,5,6,7,8
-         
-         trace("---") ;
-         inserted  = [1, 2, 3, 4] ;
-         container = [5, 6, 7, 8] ;
-         
-         Arrays.spliceInto( inserted, container, 0 , 4 ) ;
-         trace( "Arrays.spliceInto( inserted, container, 0 , 4 ) : " + container ) ; // 1,2,3,4
-         
-         trace("---") ;
-         
-         inserted  = [1, 2, 3, 4] ;
-         container = [5, 6, 7, 8] ;
-         
-         Arrays.spliceInto( inserted, container, 0 , 2 ) ;
-         trace( "Arrays.spliceInto( inserted, container, 0 , 4 ) : " + container ) ; // 1,2,3,4,7,8
-         </pre>
-         <p></p>
+<br>   <pre class="prettyprint">
+     import system.Arrays ;
+     
+     var inserted:Array  ;
+     var container:Array ;
+     
+     inserted  = [1, 2, 3, 4] ;
+     container = [5, 6, 7, 8] ;
+     
+     trace( "inserted  : " + inserted  ) ;
+     trace( "container : " + container ) ;
+     
+     trace("---") ;
+     
+     inserted  = [1, 2, 3, 4] ;
+     container = [5, 6, 7, 8] ;
+     
+     Arrays.spliceInto( inserted, container ) ;
+     trace( "Arrays.spliceInto( inserted, container, 0 , 0 ) : " + container ) ; // 1,2,3,4,5,6,7,8
+     
+     trace("---") ;
+     inserted  = [1, 2, 3, 4] ;
+     container = [5, 6, 7, 8] ;
+     
+     Arrays.spliceInto( inserted, container, 0 , 4 ) ;
+     trace( "Arrays.spliceInto( inserted, container, 0 , 4 ) : " + container ) ; // 1,2,3,4
+     
+     trace("---") ;
+     
+     inserted  = [1, 2, 3, 4] ;
+     container = [5, 6, 7, 8] ;
+     
+     Arrays.spliceInto( inserted, container, 0 , 2 ) ;
+     trace( "Arrays.spliceInto( inserted, container, 0 , 4 ) : " + container ) ; // 1,2,3,4,7,8
+     </pre>
+     <p></p>
 </div>
 <br>
 <br>

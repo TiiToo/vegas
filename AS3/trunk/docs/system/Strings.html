@@ -54,16 +54,16 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 </tr>
 <tr class="">
 <td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#evaluators">evaluators</a> : Object<div class="summaryTableDescription">[static]
-         Contains a list of evaluators to be used in Strings.format
-         
-         ex:
-         Strings.evaluators = { math: new MathEvaluator() };
-         Strings.format( "my result is ${2+3}math$" ); // "my result is 5"
-         
-         note:
-         property names in the evaluators object can only contains
-         lower case alphabetical chars and digit chars
-         </div>
+        Contain a list of evaluators to be used in Strings.format
+        
+        ex:
+        Strings.evaluators = { math: new MathEvaluator() };
+        Strings.format( "my result is ${2+3}math$" ); // "my result is 5"
+        
+        note:
+        property names in the evaluators object can only contains
+        lower case alphabetical chars and digit chars
+        </div>
 </td><td class="summaryTableOwnerCol">Strings</td>
 </tr>
 </table>
@@ -218,16 +218,16 @@ showHideInherited();
 </table>
 <div class="detailBody">
 <code>public static var evaluators:Object</code><p>
-         Contains a list of evaluators to be used in Strings.format
-         
-         ex:
-         Strings.evaluators = { math: new MathEvaluator() };
-         Strings.format( "my result is ${2+3}math$" ); // "my result is 5"
-         
-         note:
-         property names in the evaluators object can only contains
-         lower case alphabetical chars and digit chars
-         </p></div>
+        Contain a list of evaluators to be used in Strings.format
+        
+        ex:
+        Strings.evaluators = { math: new MathEvaluator() };
+        Strings.format( "my result is ${2+3}math$" ); // "my result is 5"
+        
+        note:
+        property names in the evaluators object can only contains
+        lower case alphabetical chars and digit chars
+        </p></div>
 <a name="methodDetail"></a>
 <div class="detailSectionHeader">Method detail</div>
 <a name="center()"></a>
@@ -444,7 +444,7 @@ showHideInherited();
          Strings.format( "the host is ${system.Environment.host}eden$" ); //"the host is Flash 9.0.115.0"
          
          //use chained evaluators
-         Strings.evaluators = { eden: new EdenEvaluator(false), date: new DateEvaluator() } ;
+         Strings.evaluators = { eden: new EdenEvaluator(false), date: new DateEvaluator() ];
          Strings.format( "my date is ${new Date(2007,4,22,13,13,13)}eden,date$" ); //"my date is 22.05.2007 13:13:13"
          
          </pre>

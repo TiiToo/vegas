@@ -41,7 +41,22 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 </table>
 <p></p>
      The HTML entities tool class.
-     <p><b>See :</b> http://www.w3.org/TR/REC-html40/sgml/entities.html</p>
+     <p><b>Example :</b></p>
+     <pre class="prettyprint">
+     import system.text.html.Entities ;
+     
+     var findByChar:Boolean = Entities.findByChar("€") ;
+     trace( findByChar ) ;  // true
+     
+     var findByName:Boolean = Entities.findByName("&euro;") ;
+     trace( findByName ) ;  // true
+     
+     var toHTML:String = Entities.toHTML("€") ;
+     trace( toHTML ) ; // &euro;
+     
+     var fromName:String = Entities.fromName("&euro;") ;
+     trace( fromName ) ;  // €
+     </pre>
      <p></p>
 <br>
 <hr>
@@ -153,7 +168,13 @@ showHideInherited();
 <div class="detailBody">
 <code>public static function findByChar(char:String):Boolean</code><p>
          Finds the entity by character.
-         </p><span class="label">Parameters</span>
+         </p><p><b>Example :</b></p>
+         <pre class="prettyprint">
+         import system.text.html.Entities ;
+         var findByChar:Boolean = Entities.findByChar("€") ;
+         trace( findByChar ) ; // true
+         </pre>
+         <span class="label">Parameters</span>
 <table border="0" cellspacing="0" cellpadding="0">
 <tr>
 <td width="20px"></td><td><code><span class="label">char</span>:String</code></td>
@@ -177,7 +198,13 @@ showHideInherited();
 <div class="detailBody">
 <code>public static function findByName(name:String):Boolean</code><p>
          Finds the entity by name.
-         </p><span class="label">Parameters</span>
+         </p><p><b>Example :</b></p>
+         <pre class="prettyprint">
+         import system.text.html.Entities ;
+         var findByName:Boolean = Entities.findByName("&euro;") ;
+         trace( findByName ) ; // true
+         </pre>
+         <span class="label">Parameters</span>
 <table border="0" cellspacing="0" cellpadding="0">
 <tr>
 <td width="20px"></td><td><code><span class="label">name</span>:String</code></td>
@@ -201,7 +228,13 @@ showHideInherited();
 <div class="detailBody">
 <code>public static function fromName(name:String):String</code><p>
          Returns the character determinates by the name in argument.
-         </p><span class="label">Parameters</span>
+         </p><p><b>Example :</b></p>
+         <pre class="prettyprint">
+         import system.text.html.Entities ;
+         var fromName:String = Entities.fromName("&euro;") ;
+         trace( fromName ) ;  // €
+         </pre>
+         <span class="label">Parameters</span>
 <table border="0" cellspacing="0" cellpadding="0">
 <tr>
 <td width="20px"></td><td><code><span class="label">name</span>:String</code></td>
@@ -225,7 +258,13 @@ showHideInherited();
 <div class="detailBody">
 <code>public static function toHTML(char:String):String</code><p>
          Transforms the characters in HTML entity format.
-         </p><span class="label">Parameters</span>
+         </p><p><b>Example :</b></p>
+         <pre class="prettyprint">
+         import system.text.html.Entities ;
+         var toHTML:String = Entities.toHTML("€") ;
+         trace( toHTML ) ;  // &euro;
+         </pre>
+         <span class="label">Parameters</span>
 <table border="0" cellspacing="0" cellpadding="0">
 <tr>
 <td width="20px"></td><td><code><span class="label">char</span>:String</code></td>

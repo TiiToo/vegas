@@ -44,6 +44,12 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 </table>
 <p></p>
      Evaluates eden expression.
+     <pre class="prettyprint">
+     import system.evaluators.;
+     var e:EdenEvaluator = new EdenEvaluator(false) ;
+     var result:= e.eval("new Date(2007,5,12,22,10,5)") ;
+     trace("evaluate new Date(2007,5,12,22,10,5) : " + result ) ; // evaluate new Date(2007,5,12,22,10,5) : Tue Jun 12 22:10:05 GMT+0200 2007
+     </pre>
      <p></p>
 <br>
 <hr>
@@ -92,7 +98,7 @@ showHideInherited();
          </p><span class="label">Parameters</span>
 <table border="0" cellspacing="0" cellpadding="0">
 <tr>
-<td width="20px"></td><td><code><span class="label">serialized</span>:Boolean</code> (default = <code>true</code>)<code></code> &mdash; An optional flag who indicates if the result of the eval must be serialized or not.
+<td width="20px"></td><td><code><span class="label">serialized</span>:Boolean</code> (default = <code>true</code>)<code></code> &mdash; This Boolean flag indicates if the object must be evaluates with a final serialized or not value.
          </td>
 </tr>
 </table>

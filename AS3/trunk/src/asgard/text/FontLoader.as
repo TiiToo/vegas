@@ -226,7 +226,5 @@ package asgard.text
          */
         protected var _fontClassNames:HashSet = new HashSet() ;
         
-
-
     }
 }
