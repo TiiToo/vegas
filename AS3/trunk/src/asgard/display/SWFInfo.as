@@ -27,6 +27,43 @@ package asgard.display
 
     /**
      * This tool class can check a swf bytecode and returns the list of all class inside.
+     * <p><b>Example :</b></p>
+     * <pre class="prettyprint">
+     * import asgard.display.SWFInfo ;
+     * 
+     * import flash.display.Loader ;
+     * import flash.net.URLRequest ;
+     * import flash.system.LoaderContext ;
+     * 
+     * var complete:Function = function( e:Event ):void
+     * {
+     *     trace("-------") ;
+     *     
+     *     var swf:ByteArray = e.currentTarget.bytes ;
+     *     
+     *     trace( "SWF complete : " +  swf  ) ;
+     *     
+     *     var info:SWFInfo  = new SWFInfo( swf ) ;
+     *     
+     *     trace( "SWF frameCount         : " + info.frameCount ) ;
+     *     trace( "SWF frameRate          : " + info.frameRate  ) ;
+     *     trace( "SWF length             : " + info.length  ) ;
+     *     trace( "SWF version            : " + info.version  ) ;
+     *     trace( "SWF symbol class names : " + info.symbolClassNames ) ;
+     *     
+     *     trace("-------") ;
+     * }
+     * 
+     * var loader:Loader = new Loader() ;
+     * 
+     * loader.contentLoaderInfo.addEventListener( Event.COMPLETE , complete ) ;
+     * 
+     * addChild( loader ) ;
+     * 
+     * var request:URLRequest = new URLRequest( "library.swf"  ) ;
+     * 
+     * loader.load( request ) ;
+     * </pre>
      * @author eKameleon
      */
     public class SWFInfo 
