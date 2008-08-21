@@ -27,6 +27,7 @@ package asgard.text
     import flash.text.Font;
     
     import asgard.display.CoreLoader;
+    import asgard.display.SWFInfo;
     import asgard.events.FontEvent;
     
     import system.Reflection;
@@ -93,6 +94,9 @@ package asgard.text
      * loader.registerFontClassName( "ArialBlack" ) ;
      * loader.registerFontClassName( "MyriadPro" ) ;
      * 
+     * // You can use the autoRegister flag, the loader find the Font class in the external library for you
+     * // loader.autoRegister = true ;
+     * 
      * loader.load( request  ) ;
      * </pre>
      * <p>the external file "font/fonts.swf" contains in this library the two Font symbols.</p>
@@ -114,12 +118,40 @@ package asgard.text
         }
         
         /**
+         * Indicates if the fonts in the external swf library (symbol class) are auto registered when the external file is loading. 
+         */
+        public var autoRegister:Boolean ;
+        
+        /**
          * Registers a new FontClassName in the specified FontLoader.
          */
         public function registerFontClassName( name:String ):Boolean
         {
             return _fontClassNames.insert( name ) ;
         }
+        
+        /**
+         * Register the specified Font with the passed-in font name.
+         * @param name The full class name of the font to register. 
+         * @param domain The ApplicationDomain use to get the definition of the Font class with the specified name. If this parameter is null the ApplicationDomain.currentDomain is used.
+         */
+        public function registerFontByName( name:String , domain:ApplicationDomain=null ):void
+        {
+            if ( domain == null )
+            {
+                domain = ApplicationDomain.currentDomain ;
+            }
+            var clazz:Class = domain.getDefinition( name ) as Class ;
+            if ( clazz != null )
+            {
+                if ( Reflection.getClassInfo(clazz).inheritFrom( Font ) )  
+                {
+                    Font.registerFont( clazz ) ;
+                    var font:Font = new clazz() as Font ;
+                    dispatchEvent( new FontEvent( FontEvent.ADD_FONT , font , this ) ) ;
+                }
+            }   
+        }        
         
         /**
          * Unregisters a new FontClassName in the specified FontLoader.
@@ -151,28 +183,39 @@ package asgard.text
          * Invoked when the FontLoader process is complete.
          */
         protected function complete( e:Event ) : void
-        {
+        {   
+        	var domain:ApplicationDomain = contentLoaderInfo.applicationDomain as ApplicationDomain ;
+            if ( autoRegister )
+            {
+                if ( contentLoaderInfo.bytes != null )
+                {
+                	var info:SWFInfo = new SWFInfo( contentLoaderInfo.bytes ) ;
+                	var fonts:Array  = info.symbolClassNames ;
+                	if ( fonts != null && fonts.length > 0 )
+                	{
+                	   var name:String  ;
+                	   var size:uint    = fonts.length ;
+                	   while( --size > -1 )
+                	   {
+                            name = fonts[size] as String ;
+                            if ( name == null || _fontClassNames.contains(name) )
+                            {
+                            	continue ;
+                            }
+                            else
+                            {
+                            	registerFontByName( name , domain ) ;
+                            }
+                	   }
+                	}
+                }
+            }
             if ( _fontClassNames.size() > 0 )
             {
-
                 var it:Iterator = _fontClassNames.iterator() ;
-                var name:String  ;
-                var clazz:Class  ; 
-                var font:Font    ;
-                
                 while ( it.hasNext() )
                 {
-                    name  = it.next() ;    
-                    clazz = contentLoaderInfo.applicationDomain.getDefinition( name ) as Class ;
-                    if ( clazz != null )
-                    {
-                        if ( Reflection.getClassInfo(clazz).inheritFrom( Font ) )  
-                        {
-                            Font.registerFont( clazz ) ;
-                            font = new clazz() as Font ;
-                            dispatchEvent( new FontEvent( FontEvent.ADD_FONT , font , this ) ) ;
-                        }
-                    }
+                    registerFontByName( it.next() as String , domain ) ;
                 }
             }            
 
@@ -182,6 +225,8 @@ package asgard.text
          * The font class name.
          */
         protected var _fontClassNames:HashSet = new HashSet() ;
+        
+
 
     }
 }

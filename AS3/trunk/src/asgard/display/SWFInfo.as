@@ -23,6 +23,7 @@
 package asgard.display 
 {
     import flash.utils.ByteArray;
+    import flash.utils.Dictionary;
     import flash.utils.Endian;    
 
     /**
@@ -119,13 +120,21 @@ package asgard.display
         /**
          * Indicates the compressed byte value the specified SWF.
          */
-        public function get compressed():uint
+        public function get compressed():Boolean
         {
            return _compressed ;
         }
         
         /**
-         * Indicates the frameCount value of the specified SWF.
+         * Indicates the length of entire file in bytes.
+         */
+        public function get fileLength():int
+        {
+           return _fileLength ;
+        }        
+        
+        /**
+         * Indicates the total number of frames in the file.
          */
         public function get frameCount():int
         {
@@ -133,20 +142,12 @@ package asgard.display
         }
     	
         /**
-         * Indicates the frameRate value of the specified SWF.
+         * Indicates the frame delay in number of frames per second.
          */
         public function get frameRate():int
         {
            return _frameRate ;
-        }
-        
-        /**
-         * Indicates the length value of the specified SWF.
-         */
-        public function get length():int
-        {
-           return _length ;
-        }        
+        } 
         
         /**
          * Indicates the version value of the specified SWF.
@@ -180,8 +181,8 @@ package asgard.display
             _bytes = b ;
             
             _bytes.position = 0 ;
-            
-            _compressed = bytes.readUnsignedByte();
+                        
+            _compressed = bytes.readUnsignedByte() == COMPRESSED ;
             
             _bytes.position += 2 ;
             
@@ -189,7 +190,7 @@ package asgard.display
                         
             _bytes.endian = Endian.LITTLE_ENDIAN;
 
-            _length = bytes.readUnsignedInt() ; 
+            _fileLength = bytes.readUnsignedInt() ; 
             
             var swf:ByteArray = new ByteArray();
             
@@ -197,23 +198,27 @@ package asgard.display
             
             _bytes.position = 0 ;
             
-            if ( compressed == COMPRESSED ) 
+            if ( _compressed ) 
             {
             	swf.uncompress() ;
             }
             
             swf.endian = Endian.LITTLE_ENDIAN ;
             
-            var nBits:int = ( ( ( ( swf.readByte() >> 3 ) & 0x1F )*4 ) / 8 ) + 1 ;
+            var nBits:int = ( ( ( ( swf.readByte() >> 3 ) & 0x1F ) * 4 ) / 8 ) + 1 ;
             
-            swf.position += nBits + 1 ;
+            // _frameSize        = swf.readByte() ;
             
-            _frameRate        = swf.readByte() ; 
-            _frameCount       = swf.readShort() ; 
+            swf.position += nBits + 1;
+            
+            //trace(_frameSize) ;
+            
+            _frameRate        = swf.readByte()   ; 
+            _frameCount       = swf.readShort()  ; 
             
             _symbolClassNames = [] ;
             
-            var dictionary:*  = _browseSymbols( swf ) ; 
+            var dictionary:Dictionary  = _browseSymbols( swf ) ; 
             
             if ( dictionary[ SYMBOL_CLASS ] )
             {
@@ -251,24 +256,24 @@ package asgard.display
          */
         public function reset():void
         {
-        	_bytes            = null ;
-        	_compressed       = 0    ;
-        	_frameCount       = 0    ;
-        	_frameRate        = 0    ;
-        	_length           = 0    ;
-            _symbolClassNames = null ;
-            _version          = 0    ;
+        	_bytes            = null  ;
+        	_compressed       = false ;
+        	_fileLength       = 0     ;
+        	_frameCount       = 0     ;
+        	_frameRate        = 0     ;
+            _symbolClassNames = null  ;
+            _version          = 0     ;
         }
         
         /**
          * @private
          */
-        private static function _browseSymbols( bytes:ByteArray ):Object
+        private static function _browseSymbols( bytes:ByteArray ):Dictionary
         {
             
             var currentTag:int;
             var step:int;
-            var dictionary:Object = {};
+            var dictionary:Dictionary = new Dictionary() ;
             
             while ( currentTag = ((bytes.readShort() >> 6) & 0x3FF) )
             {
@@ -305,7 +310,12 @@ package asgard.display
         /**
          * @private
          */        
-        private var _compressed:uint ;
+        private var _compressed:Boolean ;
+        
+        /**
+         * @private
+         */
+        private var _fileLength:uint ;        
         
         /**
          * @private
@@ -316,12 +326,12 @@ package asgard.display
          * @private
          */
         private var _frameRate:int ;     
-        
+             
         /**
          * @private
          */
-        private var _length:uint ;
-        
+        // TODO : private var _frameSize:* ;              
+                
         /**
          * @private
          */

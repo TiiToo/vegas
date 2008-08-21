@@ -53,6 +53,11 @@ package asgard.text
         public static var DEFAULT_PATH:String = "" ;    	
     	
         /**
+         * Indicates if the fonts in the external swf library (symbol class) are auto registered when the external file is loading. 
+         */   	
+        public var autoRegister:Boolean ;
+            	
+        /**
          * Indicates if the assembly must check a policy file in the server of the external library to load.
          */
         public var checkPolicyFile:Boolean ;    	
@@ -73,27 +78,31 @@ package asgard.text
         public override function create():CoreActionLoader
         {
        	    var action:ActionLoader ;
-       	    if ( fonts != null && fonts.length > 0 )
+       	    var isRegistered:Boolean = ( fonts != null && fonts.length > 0 ) ;
+       	    if ( autoRegister || isRegistered  )
        	    {
        	    	var name:String ;
+       	    	var path:String       = path || DEFAULT_PATH ;
        	        var loader:FontLoader = new FontLoader() ;
-       	        var path:String       = path || DEFAULT_PATH ;
-       	        var size:int = fonts.length ;
-       	        for ( var i:int ; i<size ; i++ )
-       	        {
-       	        	name = fonts[i] as String ;
-       	        	if (name != null && name.length > 0 )
-       	        	{
-       	        	   loader.registerFontClassName(name) ;
-       	        	}
-       	        }
+                loader.autoRegister   = autoRegister ;
+                if ( isRegistered )
+                {
+                     
+       	            var size:int          = fonts.length ;
+       	            for ( var i:int ; i<size ; i++ )
+       	            {
+           	        	name = fonts[i] as String ;
+       	        	   if (name != null && name.length > 0 )
+       	        	   {
+           	        	   loader.registerFontClassName(name) ;
+       	        	   }
+       	            }
+                }
        	        action          = new ActionLoader( loader ) ;
        	        action.context  = new LoaderContext( checkPolicyFile , ApplicationDomain.currentDomain ) ; 
                 action.request  = new URLRequest( path + resource ) ;
        	    }
-            
             return action ;
-            
         }    	
     	
     }

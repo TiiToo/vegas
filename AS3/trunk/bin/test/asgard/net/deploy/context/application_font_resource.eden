@@ -1,8 +1,12 @@
 imports =
 [
 
-    { resource : "fonts/fonts.swf" , type : "font" , fonts : [ "ArialBlack", "MyriadPro" ] } 
-    
+    // { resource : "fonts/fonts.swf" , type : "font" , fonts : [ "ArialBlack", "MyriadPro" ] } 
+	
+	// use the autoRegister flag
+	
+	{ resource : "fonts/fonts.swf" , type : "font" , autoRegister:true } 
+	
 ] ;
 
 objects =
