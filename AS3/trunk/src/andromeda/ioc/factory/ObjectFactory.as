@@ -501,10 +501,9 @@ package andromeda.ioc.factory
             {
                 name = config.defaultInitMethod ;
             }
-            var method:Function = Reflection.getMethodByName( o , name ) ;
-            if( method != null ) 
+            if( (name in o) && (o[name] is Function) ) 
             {
-                method.call(o) ;
+                (o[name] as Function).call(o) ;
             }
         }
         
