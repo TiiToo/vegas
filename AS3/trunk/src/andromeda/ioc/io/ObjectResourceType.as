@@ -59,5 +59,10 @@ package andromeda.ioc.io
          */
         public static const STYLE:String = "style" ;   
     	
+        /**
+         * The "xml" resource type.
+         */
+        public static const XML:String = "xml" ;     	
+    	
     }
 }

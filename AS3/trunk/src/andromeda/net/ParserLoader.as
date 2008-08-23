@@ -45,7 +45,7 @@ package andromeda.net
 		public function ParserLoader( request:URLRequest=null )
 		{
 			super( request );
-			addEventListener(Event.COMPLETE, complete) ;
+			addEventListener( Event.COMPLETE, complete ) ;
 		}
 
 		/**

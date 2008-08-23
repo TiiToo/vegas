@@ -105,11 +105,11 @@ package andromeda.ioc.io
         		}
         		
         	}
-        	
+
             var action:ActionURLLoader = new ActionURLLoader( currentLoader || new DEFAULT_LOADER() ) ;
-			
+
 			action.request             = new URLRequest( path + resource ) ;
-            
+
             return action ;
             
         }

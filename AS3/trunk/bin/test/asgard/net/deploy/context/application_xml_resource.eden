@@ -1,0 +1,22 @@
+imports =
+[
+
+    { resource : "data/data.xml" , type : "xml" , id : "data"  , path : "data/" } 
+	
+] ;
+
+objects =
+[
+    { 
+        id         : "data_title"      , 
+        type       : "String"     ,
+        arguments  : [ { ref : "data.title" } ] 
+    }
+    ,
+    { 
+        id         : "data_type" , 
+        type       : "String"    ,
+        arguments  : [ { ref : "data.@type" } ] 
+    }   
+    
+]

@@ -75,7 +75,16 @@ package andromeda.ioc.io
         {
         	return null ;
         }
-                
+        
+        /**
+         * The optional method invoked when the resource is loading.
+         * Overrides this method.
+         */
+        public function initialize( ...args:Array ):void
+        {
+        	//
+        }
+        
         /**
          * Returns the <code class="prettyprint">String</code> representation of this object.
          * @return the <code class="prettyprint">String</code> representation of this object.

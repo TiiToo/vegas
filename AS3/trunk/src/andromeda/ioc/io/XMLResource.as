@@ -22,49 +22,33 @@
 */
 package andromeda.ioc.io 
 {
-    import flash.display.Loader;
     import flash.net.URLRequest;
-    import flash.system.ApplicationDomain;
-    import flash.system.LoaderContext;
-    import flash.utils.getDefinitionByName;
     
     import andromeda.ioc.core.ObjectDefinition;
     import andromeda.ioc.factory.ObjectFactory;
     import andromeda.ioc.factory.strategy.ObjectFactoryValue;
     import andromeda.ioc.io.ObjectResource;
-    import andromeda.net.ParserLoader;
-    import andromeda.process.ActionLoader;
-    import andromeda.process.CoreActionLoader;
-    
-    import system.Reflection;    
+    import andromeda.net.XMLLoader;
+    import andromeda.process.ActionURLLoader;
+    import andromeda.process.CoreActionLoader;    
 
     /**
-     * This value object contains all information about a dll to load in the application. 
+     * This value object contains all information to load an external XML file and create a new object definition in a IoC factory.
      */
-    public class AssemblyResource extends ObjectResource 
+    public class XMLResource extends ObjectResource 
     {
 		
 		/**
-		 * Creates a new AssemblyResource instance.
+		 * Creates a new XMLResource instance.
          * @param init A generic object containing properties with which to populate the newly instance. If this argument is null, it is ignored.
          */
-        public function AssemblyResource(init:Object = null)
+        public function XMLResource( init:Object = null )
         {
-            super(init);
+            super( init );
         }
         
         /**
-         * The default class name of the object definition if the id of the assembly is not 'null' or 'undefined'.
-         */
-        public static var DEFAULT_CLASS_NAME:String = "flash.display.DisplayObject" ;
-        
-        /**
-         * The default Loader class use in all AssemblyResource to create a new resource process.
-         */
-        public static var DEFAULT_LOADER:Class = Loader ;        
-        
-        /**
-         * The root path of all assembly resources.
+         * The root path of all xml files.
          */
         public static var DEFAULT_PATH:String = "" ;        
         
@@ -78,14 +62,9 @@ package andromeda.ioc.io
          * Use this attribute only if the 'id' of the assembly resource is not 'null' or 'undefined'.
          */
         public var definition:Object ;
-        
+                
         /**
-         * The loader to use to load the assembly.
-         */
-        public var loader:* ;        
-        
-        /**
-         * The optional root path of the assembly.
+         * The optional root path of the xml file.
          */
         public var path:String ;        
         
@@ -95,50 +74,17 @@ package andromeda.ioc.io
         public override function create():CoreActionLoader
         {
         	
-        	_action     = null ;
-        	_definition = null ;
-        	        	
             var path:String  = path || DEFAULT_PATH ;        	
         	
-            var currentLoader:Loader ;
+        	var action:ActionURLLoader ;
             
-            if ( loader != null )
-            {
-                
-                var clazz:Class ;
-                
-                if (loader is String)
-                {
-                    clazz = getDefinitionByName( loader as String )  as Class ;
-                }
-                else if ( loader is Class )
-                {
-                    clazz = loader as Class ;   
-                }
-                
-                if ( clazz != null  )
-                {
-                    if ( Reflection.getClassInfo(clazz).inheritFrom(Loader) ) 
-                    {
-                        currentLoader = new clazz() as Loader ;
-                    }
-                } 
-                else if ( loader is ParserLoader )
-                {
-                    currentLoader = loader as Loader ;
-                }
-                
-            }        	
-        	
+            _loader = new XMLLoader() ;
+            
         	var factory:ObjectFactory = owner as ObjectFactory ;
             
             if ( id != null && id is String && factory != null && factory.containsObjectDefinition( id ) == false )
             {
-                var init:Object = 
-                {
-                    id        : id  ,
-                    type      : DEFAULT_CLASS_NAME 
-                };
+                var init:Object = { id : id  , type : "XML" } ;
                 if ( definition != null )
                 {
                 	for (var prop:String in definition )
@@ -147,43 +93,41 @@ package andromeda.ioc.io
                 	}
                 }
                 _definition = ObjectDefinition.create( init ) ;
-                
-                factory.addObjectDefinition( _definition  ) ;
+                factory.addObjectDefinition( _definition ) ;
             }
-        	
-            _action = new ActionLoader( currentLoader || new DEFAULT_LOADER() ) ;
-			
-			_action.request          = new URLRequest( path + resource ) ;
-			_action.context          = new LoaderContext( checkPolicyFile , ApplicationDomain.currentDomain ) ;
+                	
+            action         = new ActionURLLoader( _loader  ) ;
+			action.request = new URLRequest( path + resource ) ;
+                        
+            return action ;
             
-            return _action ;
-            
-        } 
+        }    
         
         /**
          * The optional method invoked when the resource is loading.
+         * @throws Error if the resource can be initialize.
          */
         public override function initialize( ...args:Array ):void
         {
-            if ( _definition != null && _action != null )
+            if ( _definition != null && _loader != null )
             {
-                _definition.setFactoryStrategy( new ObjectFactoryValue( _action.content ) ) ;
+                _definition.setFactoryStrategy( new ObjectFactoryValue( _loader.data ) ) ;
             }
             else
             {
                 throw new Error( this + " initialize resource failed." ) ;
             }
-        }          
-        
-        /**
-         * @private
-         */
-        private var _action:ActionLoader ;
+        }        
         
         /**
          * @private
          */
         private var _definition:ObjectDefinition ;
+        
+        /**
+         * @private
+         */
+        private var _loader:XMLLoader ;        
         
     }
 }

@@ -23,15 +23,11 @@
 package andromeda.ioc.net 
 {
     import andromeda.events.ActionEvent;
-    import andromeda.ioc.core.IObjectDefinition;
     import andromeda.ioc.core.ObjectAttribute;
     import andromeda.ioc.factory.ObjectFactory;
-    import andromeda.ioc.factory.strategy.ObjectFactoryValue;
-    import andromeda.ioc.io.AssemblyResource;
     import andromeda.ioc.io.ContextResource;
     import andromeda.ioc.io.ObjectResource;
     import andromeda.ioc.io.ObjectResourceBuilder;
-    import andromeda.process.ActionLoader;
     import andromeda.process.ActionURLLoader;
     import andromeda.process.CoreActionLoader;
     import andromeda.process.Sequencer;
@@ -134,11 +130,11 @@ package andromeda.ioc.net
             }
             else
             {
-            	if ( verbose )
+            	if ( verbose && factory.sizeObjectDefinition() == 0 )
             	{
-                    getLogger().warn( this + " create failed, the factory is empty." ) ;
+                    getLogger().warn( this + " the factory is empty, no object definition are found." ) ;
             	} 
-                unregisterFactory() ;
+                complete() ;
             }    
         }
 
@@ -229,7 +225,7 @@ package andromeda.ioc.net
         /**
          * Invoked when the factory is complete.
          */
-        protected function complete( e:ActionEvent ):void
+        protected function complete( e:ActionEvent = null ):void
         {
             if ( verbose )
             {
@@ -362,46 +358,23 @@ package andromeda.ioc.net
             // trace(this + " progress :: + " + action.request.url ) ;
             if ( resource != null  )
             {
-                switch( true )
+                try
                 {
-                	case resource is AssemblyResource :
+                    if ( resource is ContextResource )
                     {
-                        var al:ActionLoader = action as ActionLoader ;
-                        try
-                        {
-                            var id:* = resource.id ;
-                            if ( id != null && factory.containsObjectDefinition(id) )
-                            {
-                            	var d:IObjectDefinition  = factory.getObjectDefinition(id) ;
-                            	var s:ObjectFactoryValue = new ObjectFactoryValue( al.content ) ;
-                            	d.setFactoryStrategy( s ) ;
-                            }
-                        }
-                        catch( e1:Error )
-                        {
-                            if ( verbose )
-                            {
-                                getLogger().error( this + " init resource failed : " + e1 ) ;
-                            }
-                        }
-                        break ;
+                        _checkContext( ( action as ActionURLLoader ).data ) ;
                     }
-                    case resource is ContextResource :
+                    else
                     {
-                        var au:ActionURLLoader = action as ActionURLLoader ;
-                        try
-                        {
-                            _checkContext( au.data ) ;
-                        }
-                        catch( e2:Error )
-                        {
-                            if ( verbose )
-                            {
-                                getLogger().error( this + " init resource failed : " + e2 ) ;
-                            }
-                        }
-                        break ;
-                    }                    
+                        resource.initialize() ;	
+                    }
+                }
+                catch( e:Error )
+                {
+                    if ( verbose )
+                    {
+                        getLogger().error( this + " init resource failed : " + resource ) ;
+                    }
                 }
             }        	
         }

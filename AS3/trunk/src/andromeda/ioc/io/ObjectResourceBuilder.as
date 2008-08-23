@@ -24,6 +24,7 @@ package andromeda.ioc.io
 {
     import andromeda.config.ConfigResource;
     import andromeda.i18n.LocaleResource;    
+        
     /**
      * This tool class is a helper to create an ObjectResource object with a generic object in the IoC context.
      */
@@ -41,5 +42,6 @@ package andromeda.ioc.io
 
     ObjectResourceBuilder.addObjectResource( ObjectResourceType.I18N     , LocaleResource   ) ;
 	    
+    ObjectResourceBuilder.addObjectResource( ObjectResourceType.XML      , XMLResource      ) ;
 
 }
