@@ -5,7 +5,7 @@ imports =
 	
 	// use the autoRegister flag
 	
-	{ resource : "fonts/fonts.swf" , type : "font" , autoRegister:true } 
+	{ resource : "fonts/fonts.swf" , type : "font" , autoRegister:true , verbose:true } 
 	
 ] ;
 

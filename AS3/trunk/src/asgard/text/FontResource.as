@@ -25,11 +25,16 @@ package asgard.text
     import flash.net.URLRequest;
     import flash.system.ApplicationDomain;
     import flash.system.LoaderContext;
+    import flash.text.Font;
     
+    import andromeda.ioc.factory.ObjectConfig;
+    import andromeda.ioc.factory.ObjectFactory;
     import andromeda.ioc.io.ObjectResource;
     import andromeda.ioc.io.ObjectResourceType;
     import andromeda.process.ActionLoader;
-    import andromeda.process.CoreActionLoader;    
+    import andromeda.process.CoreActionLoader;
+    
+    import asgard.events.FontEvent;    
 
     /**
      * This resource object contains all information about an external library (swf) to embed fonts in the application.
@@ -71,7 +76,12 @@ package asgard.text
          * The optional path of the external font library to load.
          */
     	public var path:String ;
-                    	    	
+        
+        /**
+         * Indicates the flag of the verbose mode.
+         */
+        public var verbose:Boolean ;         
+             	    	
         /**
          * Creates a new CoreActionLoader object with the resource.
          */
@@ -84,6 +94,9 @@ package asgard.text
        	    	var name:String ;
        	    	var path:String       = path || DEFAULT_PATH ;
        	        var loader:FontLoader = new FontLoader() ;
+       	        
+       	        loader.addEventListener( FontEvent.ADD_FONT , _addFont ) ;
+       	        
                 loader.autoRegister   = autoRegister ;
                 if ( isRegistered )
                 {
@@ -104,6 +117,31 @@ package asgard.text
        	    }
             return action ;
         }    	
+    	
+    	/**
+    	 * @private
+    	 */
+    	private function _addFont( e:FontEvent ):void
+    	{
+    		if ( verbose )
+    		{
+    			var font:Font = e.font ;
+    			if ( font != null )
+    			{
+    				var message:String = this + " register a new font : [ name:" + font.fontName + ", type:" + font.fontType + ", style:" + font.fontStyle + "]" ;
+    				var factory:ObjectFactory = owner as ObjectFactory ;
+    				if ( factory != null )
+    				{
+    					if ( factory.config.useLogger )
+    					{
+    						getLogger().info( message ) ;
+    						return ;
+    					}
+    				}
+    				trace( message ) ;
+    			}
+    		}
+    	}
     	
     }
 }
