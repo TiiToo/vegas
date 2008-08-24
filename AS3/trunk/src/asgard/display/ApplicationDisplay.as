@@ -47,10 +47,25 @@ package asgard.display
 			
 			super( id , isConfigurable , name ) ;
 			
-			ApplicationDisplay.flashVars = new FlashVars( this ) ;
-			ApplicationDisplay.stage     = this.stage ;
-			ApplicationDisplay.root      = this       ;
-			ApplicationDisplay.global    = _global    ;
+			if ( ApplicationDisplay.flashVars == null )
+			{
+				ApplicationDisplay.flashVars = new FlashVars( this ) ;
+			}
+			
+			if ( ApplicationDisplay.stage == null )
+			{
+				ApplicationDisplay.stage = this.stage ;
+			}
+			
+			if ( ApplicationDisplay.root == null )
+			{
+				ApplicationDisplay.root = this       ;
+			}
+			
+			if ( ApplicationDisplay.global == null )
+			{			
+				ApplicationDisplay.global = _global    ;
+			}
 			
 		}
 		
