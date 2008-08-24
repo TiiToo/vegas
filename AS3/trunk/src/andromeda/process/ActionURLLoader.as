@@ -209,7 +209,7 @@ package andromeda.process
 		 */
 		public function enumerate( o:Object ):void
 		{
-			getLogger().info( this + " enumerate." ) ;			
+			getLogger().debug( this + " enumerate." ) ;			
 			_enumerate(o) ;
 		}
 
