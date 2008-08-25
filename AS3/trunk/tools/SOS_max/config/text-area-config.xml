@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<text-area-config>
+  <property name="search_regex" type="boolean"><![CDATA[false]]></property>
+  <property name="keyConfig_win_w" type="int"><![CDATA[0]]></property>
+  <property name="search_case" type="boolean"><![CDATA[false]]></property>
+  <property name="keyConfig_win_h" type="int"><![CDATA[0]]></property>
+  <property name="prefix" type="string"><![CDATA[]]></property>
+  <property name="search_wrap" type="boolean"><![CDATA[true]]></property>
+</text-area-config>
