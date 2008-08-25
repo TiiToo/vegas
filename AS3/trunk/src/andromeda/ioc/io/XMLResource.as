@@ -52,12 +52,7 @@ package andromeda.ioc.io
          * The root path of all xml files.
          */
         public static var DEFAULT_PATH:String = "" ;        
-        
-        /**
-         * Indicates if the assembly must check a policy file in the server of the external library to load.
-         */
-        public var checkPolicyFile:Boolean ;
-        
+                
         /**
          * Indicates the definition object to initialize the ObjectDefinition of the current assembly.
          * Use this attribute only if the 'id' of the assembly resource is not 'null' or 'undefined'.
@@ -67,7 +62,12 @@ package andromeda.ioc.io
         /**
          * The optional root path of the xml file.
          */
-        public var path:String ;        
+        public var path:String ;
+        
+        /**
+         * Indicates if the object definition of this resource must be a singleton.
+         */
+        public var singleton:Boolean ;  
         
         /**
          * Creates a new ActionURLLoader object with the resource.
@@ -94,7 +94,13 @@ package andromeda.ioc.io
                     throw new Error( this + " create failed, the factory already contains the specified id : " + id ) ;
                 }
                                  
-                var init:Object = { id : id  , type : "XML" } ;
+                var init:Object = 
+                { 
+                    id        : id    , 
+                    type      : "XML" , 
+                    singleton : singleton 
+                } ;
+                
                 if ( definition != null )
                 {
                  	for (var prop:String in definition )
