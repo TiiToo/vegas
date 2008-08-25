@@ -153,8 +153,8 @@ package andromeda.ioc.io
         	
             _action = new ActionLoader( currentLoader || new DEFAULT_LOADER() ) ;
 			
-			_action.request          = new URLRequest( path + resource ) ;
-			_action.context          = new LoaderContext( checkPolicyFile , ApplicationDomain.currentDomain ) ;
+			_action.request = new URLRequest( path + resource ) ;
+			_action.context = new LoaderContext( checkPolicyFile , ApplicationDomain.currentDomain ) ;
             
             return _action ;
             

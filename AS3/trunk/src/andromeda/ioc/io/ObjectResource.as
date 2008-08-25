@@ -68,6 +68,11 @@ package andromeda.ioc.io
         public var type:String ;
         
         /**
+         * Indicates the verbose mode of the resource.
+         */
+        public var verbose:Boolean ;          
+        
+        /**
          * Creates a new ActionURLLoader object with the resource.
          * Overrides this method.
          */

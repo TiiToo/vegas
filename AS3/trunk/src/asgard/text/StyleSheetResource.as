@@ -72,76 +72,90 @@ package asgard.text
         public override function create():CoreActionLoader
         {
        	    
-       	    var action:ActionURLLoader ;
-       	    
-       	    if ( owner != null && owner is ObjectFactory && id != null )
+       	    try
        	    {
                 
-                var ss:StyleSheet ;       	        
-       	        var factory:ObjectFactory = owner as ObjectFactory ;
-       	        
-       	        if ( factory != null && factory.containsObjectDefinition( id ) == false )
-       	        {
- 
-       	        	if ( styleSheet != null )
-       	        	{
-                        var clazz:Class ;
-                        if ( styleSheet is String )
-                        {
-                            clazz = getDefinitionByName( styleSheet as String )  as Class ;
-                        }       	        		
-       	        		else if ( styleSheet is Class )
-                        {
-                            clazz = styleSheet as Class ;   
-                        }
-                        
-                        if ( clazz != null  )
-                        {
-                            if ( Reflection.getClassInfo(clazz).inheritFrom(StyleSheet) )  
-                            {
-                                ss = new clazz() as StyleSheet ;
-                            }
-                        } 
-                        else if ( styleSheet is StyleSheet )
-                        {
-                            ss = styleSheet as StyleSheet ;
-                        }                        
-       	        	}
-       	        	
-                    if ( ss == null )
+                if ( id == null || !(id is String) || id == "" )
+                {
+                    throw new Error( this + " create failed, the String id value of this resource not must be empty or 'null'" ) ;
+                }
+                
+                var factory:ObjectFactory = owner as ObjectFactory ;
+                
+                if ( factory == null )
+                {            
+                    throw new Error( this + " create failed, the factory reference of this resource not must be 'null'." ) ;
+                }
+                
+                if ( factory.containsObjectDefinition( id ) )
+                {
+                    throw new Error( this + " create failed, the factory already contains the specified id : " + id ) ;
+                } 
+                
+                var ss:StyleSheet ;
+                
+                if ( styleSheet != null )
+                {
+                    var clazz:Class ;
+                    if ( styleSheet is String )
                     {
-                        ss = new StyleSheet() ;	
+                        clazz = getDefinitionByName( styleSheet as String )  as Class ;
+                    }                           
+                    else if ( styleSheet is Class )
+                    {
+                        clazz = styleSheet as Class ;   
                     }
-       	        	
-   	                var init:Object = 
-   	                {
-       	                id           : id  ,
-   	                    type         : "flash.text.StyleSheet" ,
-   	                    singleton    : true ,
-   	                    lazyInit     : true ,
-   	                    factoryValue : ss	
-   	                };
-       	            
-   	                factory.addObjectDefinition( ObjectDefinition.create( init ) ) ;
-       	            	
-       	        }
+                        
+                    if ( clazz != null  )
+                    {
+                        if ( Reflection.getClassInfo(clazz).inheritFrom(StyleSheet) )  
+                        {
+                            ss = new clazz() as StyleSheet ;
+                        }
+                    } 
+                    else if ( styleSheet is StyleSheet )
+                    {
+                        ss = styleSheet as StyleSheet ;
+                    }                        
+                }
+                    
+                if ( ss == null )
+                {
+                    ss = new StyleSheet() ; 
+                }
+                    
+                var init:Object = 
+                {
+                    id           : id  ,
+                    type         : "flash.text.StyleSheet" ,
+                    singleton    : true ,
+                    lazyInit     : true ,
+                    factoryValue : ss   
+                };
+                    
+                var definition:ObjectDefinition = ObjectDefinition.create( init ) ;
+                    
+                factory.addObjectDefinition( definition ) ;
 
-   	        	ss = factory.getObject( id ) as StyleSheet ;
-       	        
-       	        if ( ss != null )	
-       	        {
-       	            
-       	            var path:String  = path || DEFAULT_PATH ;
+                var path:String  = path || DEFAULT_PATH ;
+                   
+                var loader:StyleSheetLoader = new StyleSheetLoader( ss ) ;
+                var action:ActionURLLoader  = new ActionURLLoader( loader ) ;
                     
-                    var loader:StyleSheetLoader = new StyleSheetLoader( ss ) ;
+                action.request = new URLRequest( path + resource ) ;
                     
-                    action          = new ActionURLLoader( loader ) ;
-                    action.request  = new URLRequest( path + resource ) ;
-       	        }
-            
+                return action ;
+                
+       	    }
+       	    catch( e:Error )
+       	    {
+                if ( verbose )
+                {
+                    getLogger().info( e.message ) ;
+                }
+                return null ;   
        	    }
             
-            return action ;
         }    	
     	
     }

@@ -44,7 +44,8 @@ package andromeda.ioc.io
          */
         public function XMLResource( init:Object = null )
         {
-            super( init );
+            super( init ) ;
+            _loader = new XMLLoader() ;
         }
         
         /**
@@ -73,33 +74,55 @@ package andromeda.ioc.io
          */
         public override function create():CoreActionLoader
         {
-        	
-            var path:String  = path || DEFAULT_PATH ;        	
-        	
-        	var action:ActionURLLoader ;
-            
-            _loader = new XMLLoader() ;
-            
-        	var factory:ObjectFactory = owner as ObjectFactory ;
-            
-            if ( id != null && id is String && factory != null && factory.containsObjectDefinition( id ) == false )
+        	try
             {
+                
+                if ( id == null || !(id is String) || id == "" )
+                {
+                	throw new Error( this + " create failed, the String id value of this resource not must be empty or 'null'" ) ;
+                }
+
+                var factory:ObjectFactory = owner as ObjectFactory ;
+                
+                if ( factory == null )
+                {            
+                    throw new Error( this + " create failed, the factory reference of this resource not must be 'null'." ) ;
+                }
+                
+                if ( factory.containsObjectDefinition( id ) )
+                {
+                    throw new Error( this + " create failed, the factory already contains the specified id : " + id ) ;
+                }
+                                 
                 var init:Object = { id : id  , type : "XML" } ;
                 if ( definition != null )
                 {
-                	for (var prop:String in definition )
-                	{
-                	   init[prop] = definition[prop] ;	
-                	}
+                 	for (var prop:String in definition )
+               	    {
+                   	    init[prop] = definition[prop] ;	
+              	    }
                 }
+                                
                 _definition = ObjectDefinition.create( init ) ;
+                
                 factory.addObjectDefinition( _definition ) ;
+                                
+                var path:String  = path || DEFAULT_PATH ;
+                
+                var action:ActionURLLoader = new ActionURLLoader( _loader  )   ;
+                action.request             = new URLRequest( path + resource ) ;
+                                
+                return action ;
+                
             }
-                	
-            action         = new ActionURLLoader( _loader  ) ;
-			action.request = new URLRequest( path + resource ) ;
-                        
-            return action ;
+            catch( e:Error )
+            {
+            	if ( verbose )
+            	{
+                    getLogger().info( e.message ) ;
+                }
+                return null ;	
+            }
             
         }    
         
@@ -109,7 +132,7 @@ package andromeda.ioc.io
          */
         public override function initialize( ...args:Array ):void
         {
-            if ( _definition != null && _loader != null )
+            if ( _definition != null )
             {
                 _definition.setFactoryStrategy( new ObjectFactoryValue( _loader.data ) ) ;
             }

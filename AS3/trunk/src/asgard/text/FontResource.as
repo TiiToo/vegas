@@ -78,11 +78,6 @@ package asgard.text
     	public var path:String ;
         
         /**
-         * Indicates the flag of the verbose mode.
-         */
-        public var verbose:Boolean ;         
-             	    	
-        /**
          * Creates a new CoreActionLoader object with the resource.
          */
         public override function create():CoreActionLoader

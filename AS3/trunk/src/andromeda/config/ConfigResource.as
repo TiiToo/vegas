@@ -71,12 +71,7 @@ package andromeda.config
          * The suffix of the full config file name.
          */
         public var suffix:String ;           
-    	
-        /**
-         * Indicates the flag of the verbose mode.
-         */
-        public var verbose:* ; 
-        
+                
         /**
          * Creates a new CoreActionLoader object with the resource.
          */
@@ -123,7 +118,7 @@ package andromeda.config
 			{
 				if ( path != null )
                 {
-                    action.path   = path   ;
+                    action.path = path   ;
                 }
                 if ( suffix != null )
                 {                            
@@ -133,10 +128,7 @@ package andromeda.config
                 {
                     action.fileName = resource ;
                 }
-                if ( verbose != null )
-                {
-                    action.verbose = (verbose is Boolean) ? (verbose as Boolean) : false;
-                }                            
+                action.verbose = verbose ;
             }
 			
 			return action ;

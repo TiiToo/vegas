@@ -280,28 +280,30 @@ package andromeda.ioc.factory
                     
                     try
                     {
-                    
-                        if ( item.evaluators != null && item.evaluators.length > 0 )
-                        {
-                            value = eval( value , item.evaluators  ) ;
-                        }
-                    
+                                        
                         if ( item.policy == ObjectAttribute.REFERENCE )
                         {
-                            stack.push( _config.referenceEvaluator.eval( value as String ) ) ;    
+                            value = _config.referenceEvaluator.eval( value as String ) ;    
                         }
                         else if ( item.policy == ObjectAttribute.CONFIG )
                         {
-                        	stack.push( config.configEvaluator.eval( value as String ) ) ;
+                        	value = _config.configEvaluator.eval( value as String ) ;
                         }
                         else if ( item.policy == ObjectAttribute.LOCALE )
                         {
-                        	stack.push( config.localeEvaluator.eval( value as String ) ) ;
+                        	value = _config.localeEvaluator.eval( value as String ) ;
                         }                                  
                         else
                         {
-                            stack.push( value ) ;    
+                            // do nothing    
                         }
+                        
+                        if ( item.evaluators != null && item.evaluators.length > 0 )
+                        {
+                            value = eval( value , item.evaluators  ) ;
+                        }                        
+                        
+                        stack.push( value ) ;
                     
                     }
                     catch( e:Error )
@@ -371,8 +373,8 @@ package andromeda.ioc.factory
                 
                 factoryMethod = strategy as ObjectMethod ;
                 
-                name          = factoryMethod.name ;
-                args          = createArguments( factoryMethod.arguments ) ;
+                name = factoryMethod.name ;
+                args = createArguments( factoryMethod.arguments ) ;
                                 
                 if ( factoryMethod is ObjectStaticFactoryMethod )
                 {
@@ -575,12 +577,7 @@ package andromeda.ioc.factory
                 
                 try
                 {
-                    if ( prop.evaluators != null && prop.evaluators.length > 0 )
-                    {
-                        value = eval( value , prop.evaluators  ) ;
-                    }                    
-                
-                               
+                          
                     if ( prop.policy == ObjectAttribute.REFERENCE && value is String )
                     {
                         o[ name ] = _config.referenceEvaluator.eval( value as String ) ;
@@ -597,6 +594,12 @@ package andromeda.ioc.factory
                     {
                         o[ name ] = value ;
                     }
+                    
+                    if ( prop.evaluators != null && prop.evaluators.length > 0 )
+                    {
+                        o[ name ] = eval( o[ name ] , prop.evaluators  ) ;
+                    }                     
+                    
                 }
                 catch( e:Error )
                 {

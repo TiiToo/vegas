@@ -72,11 +72,6 @@ package andromeda.i18n
         public var suffix:String ;           
 
         /**
-         * Indicates the flag of the verbose mode.
-         */
-        public var verbose:* ;  	
-    	
-        /**
          * Creates a new CoreActionLoader object with the resource.
          */
         public override function create():CoreActionLoader
@@ -128,10 +123,7 @@ package andromeda.i18n
                 {                            
                     action.suffix = suffix ;
                 }
-                if ( verbose != null )
-                {
-                    action.verbose = ( verbose is Boolean ) ? ( verbose as Boolean) : false;
-                }
+                action.verbose = verbose ;
                 if ( resource != null )
                 {
                     action.lang = resource ;
