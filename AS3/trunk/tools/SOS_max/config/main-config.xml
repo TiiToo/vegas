@@ -7,14 +7,14 @@
   <property name="fontSystemName" type="string"><![CDATA[Monospaced]]></property>
   <property name="fontSystem" type="boolean"><![CDATA[true]]></property>
   <property name="logPort" type="int"><![CDATA[4444]]></property>
-  <property name="win_width" type="int"><![CDATA[967]]></property>
+  <property name="win_width" type="int"><![CDATA[1144]]></property>
   <property name="commandPort" type="int"><![CDATA[4445]]></property>
-  <property name="traceEnabled" type="boolean"><![CDATA[true]]></property>
   <property name="allowKeyChanges" type="boolean"><![CDATA[false]]></property>
+  <property name="traceEnabled" type="boolean"><![CDATA[true]]></property>
   <property name="traceAutoGenerate" type="boolean"><![CDATA[true]]></property>
-  <property name="traceLocation" type="string"><![CDATA[C:\Documents and Settings\Particulier\Application Data\Macromedia\Flash Player\Logs\flashlog.txt]]></property>
-  <property name="bringToFront" type="int"><![CDATA[2]]></property>
   <property name="win_y" type="int"><![CDATA[126]]></property>
+  <property name="bringToFront" type="int"><![CDATA[2]]></property>
+  <property name="traceLocation" type="string"><![CDATA[C:\Documents and Settings\Particulier\Application Data\Macromedia\Flash Player\Logs\flashlog.txt]]></property>
   <property name="win_x" type="int"><![CDATA[-1406]]></property>
   <property name="win_height" type="int"><![CDATA[703]]></property>
   <property name="fontSize" type="int"><![CDATA[11]]></property>
