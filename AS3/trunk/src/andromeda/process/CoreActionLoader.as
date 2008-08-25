@@ -116,7 +116,7 @@ package andromeda.process
 		 */
 		public function set request( request:URLRequest ):void
 		{
-			_request = request ;	
+			_request = request ;
 		}
 		
         /**

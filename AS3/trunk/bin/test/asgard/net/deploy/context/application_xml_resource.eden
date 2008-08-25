@@ -1,7 +1,7 @@
 imports =
 [
 
-    { resource : "data/data.xml" , type : "xml" , id : "data" , path : "data/" } //, singleton : true } //, verbose : true } 
+    { resource : "data.xml" , type : "xml" , id : "data" , path : "data/" } //, singleton : true } //, verbose : true } 
 	
 ] ;
 

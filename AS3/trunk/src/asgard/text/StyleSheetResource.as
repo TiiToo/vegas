@@ -153,8 +153,8 @@ package asgard.text
                 {
                     getLogger().info( e.message ) ;
                 }
-                return null ;   
        	    }
+       	    return null ; 
             
         }    	
     	

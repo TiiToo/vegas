@@ -113,11 +113,11 @@ package andromeda.ioc.io
                 
                 factory.addObjectDefinition( _definition ) ;
                                 
-                var path:String  = path || DEFAULT_PATH ;
-                
-                var action:ActionURLLoader = new ActionURLLoader( _loader  )   ;
-                action.request             = new URLRequest( path + resource ) ;
+                var uri:String = (path || DEFAULT_PATH) + resource ;
                                 
+                var action:ActionURLLoader = new ActionURLLoader( _loader  )   ;
+                action.request             = new URLRequest( uri ) ;
+                                               
                 return action ;
                 
             }
@@ -127,9 +127,8 @@ package andromeda.ioc.io
             	{
                     getLogger().info( e.message ) ;
                 }
-                return null ;	
             }
-            
+            return null ;
         }    
         
         /**
