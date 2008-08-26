@@ -5,7 +5,7 @@
 <link rel="stylesheet" href="../../../style.css" type="text/css" media="screen">
 <link rel="stylesheet" href="../../../print.css" type="text/css" media="print">
 <link rel="stylesheet" href="../../../prettify.css" type="text/css">
-<meta content="XMLResource,andromeda.ioc.io.XMLResource,DEFAULT_PATH,checkPolicyFile,definition,path,create,initialize" name="keywords">
+<meta content="XMLResource,andromeda.ioc.io.XMLResource,DEFAULT_PATH,definition,path,singleton,create,initialize" name="keywords">
 <title>andromeda.ioc.io.XMLResource</title>
 </head>
 <body>
@@ -64,11 +64,6 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <th>&nbsp;</th><th colspan="2">Property</th><th class="summaryTableOwnerCol">Defined&nbsp;by</th>
 </tr>
 <tr class="">
-<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#checkPolicyFile">checkPolicyFile</a> : Boolean<div class="summaryTableDescription">
-         Indicates if the assembly must check a policy file in the server of the external library to load.</div>
-</td><td class="summaryTableOwnerCol">XMLResource</td>
-</tr>
-<tr class="">
 <td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#DEFAULT_PATH">DEFAULT_PATH</a> : String = ""<div class="summaryTableDescription">[static]
          The root path of all xml files.</div>
 </td><td class="summaryTableOwnerCol">XMLResource</td>
@@ -103,6 +98,11 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
       The resource value.</div>
 </td><td class="summaryTableOwnerCol"><a href="ObjectResource.html">ObjectResource</a></td>
 </tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#singleton">singleton</a> : Boolean<div class="summaryTableDescription">
+         Indicates if the object definition of this resource must be a singleton.</div>
+</td><td class="summaryTableOwnerCol">XMLResource</td>
+</tr>
 <tr class="hideInheritedProperty">
 <td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol"><a class="signatureLink" href="ObjectResource.html#title">title</a> : String<div class="summaryTableDescription">
          The title of this resource.</div>
@@ -111,6 +111,11 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <tr class="hideInheritedProperty">
 <td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol"><a class="signatureLink" href="ObjectResource.html#type">type</a> : String<div class="summaryTableDescription">
       The type of the resource.</div>
+</td><td class="summaryTableOwnerCol"><a href="ObjectResource.html">ObjectResource</a></td>
+</tr>
+<tr class="hideInheritedProperty">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol"><a class="signatureLink" href="ObjectResource.html#verbose">verbose</a> : Boolean<div class="summaryTableDescription">
+         Indicates the verbose mode of the resource.</div>
 </td><td class="summaryTableOwnerCol"><a href="ObjectResource.html">ObjectResource</a></td>
 </tr>
 </table>
@@ -213,20 +218,10 @@ showHideInherited();
 <div class="MainContent">
 <a name="propertyDetail"></a>
 <div class="detailSectionHeader">Property detail</div>
-<a name="checkPolicyFile"></a>
-<table cellspacing="0" cellpadding="0" class="detailHeader">
-<tr>
-<td class="detailHeaderName">checkPolicyFile</td><td class="detailHeaderType">property</td>
-</tr>
-</table>
-<div class="detailBody">
-<code>public var checkPolicyFile:Boolean</code><p>
-         Indicates if the assembly must check a policy file in the server of the external library to load.
-         </p></div>
 <a name="DEFAULT_PATH"></a>
 <table cellspacing="0" cellpadding="0" class="detailHeader">
 <tr>
-<td class="detailHeaderName">DEFAULT_PATH</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
+<td class="detailHeaderName">DEFAULT_PATH</td><td class="detailHeaderType">property</td>
 </tr>
 </table>
 <div class="detailBody">
@@ -253,6 +248,16 @@ showHideInherited();
 <div class="detailBody">
 <code>public var path:String</code><p>
          The optional root path of the xml file.
+         </p></div>
+<a name="singleton"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">singleton</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public var singleton:Boolean</code><p>
+         Indicates if the object definition of this resource must be a singleton.
          </p></div>
 <a name="constructorDetail"></a>
 <div class="detailSectionHeader">Constructor detail</div>
