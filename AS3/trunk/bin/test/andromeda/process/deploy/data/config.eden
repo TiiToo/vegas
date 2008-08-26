@@ -1,7 +1,0 @@
-{
-	project : "andromeda" ,
-	author  : "ekameleon"  ,
-	version : "1.0.0.0"    ,
-	mail    : "ekameleon@gmail.com" , 
-	error   : new Error("file_error")
-}
