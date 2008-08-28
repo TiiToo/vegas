@@ -10,3 +10,12 @@ display =
    ] 
 
 };
+
+field =
+{
+    autoSize          : "left" ,
+    defaultTextFormat : new flash.text.TextFormat("Arial", 14, 0xEEED2B) ,
+    text              : "hello world" ,
+    x                 : 25 ,
+    y                 : 25
+};
