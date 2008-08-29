@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<componentPackage>
+    
+    <!-- vegas.core -->
+	
+    <component id="vegas.core:CoreObject"   class="vegas.core.CoreObject"   />
+	<component id="vegas.core:HashCode"     class="vegas.core.HashCode"     />
+	<component id="vegas.core:ICloneable"   class="vegas.core.ICloneable"   />
+	<component id="vegas.core:IComparable"  class="vegas.core.IComparable"  /> 
+	<component id="vegas.core:IComparator"  class="vegas.core.IComparator"  />
+	<component id="vegas.core:IComparer"    class="vegas.core.IComparer"    />
+	<component id="vegas.core:IConvertible" class="vegas.core.IConvertible" /> 
+	<component id="vegas.core:Identifiable" class="vegas.core.Identifiable" />
+	<component id="vegas.core:IFactory"     class="vegas.core.IFactory"     />
+	<component id="vegas.core:IFormat"      class="vegas.core.IFormat"      />
+	<component id="vegas.core:IHashable"    class="vegas.core.IHashable"    />
+	<component id="vegas.core:ILockable"    class="vegas.core.ILockable"    />
+	<component id="vegas.core:IRunnable"    class="vegas.core.IRunnable"    />
+	<component id="vegas.core:ITypeable"    class="vegas.core.ITypeable"    />
+	<component id="vegas.core:IValidator"   class="vegas.core.IValidator"   />
+    
+    <!-- vegas.core.char -->
+    
+    <component id="vegas.core.types:Char" class="vegas.core.types.Char"  />
+
+    <!-- vegas.data -->
+    
+    <component id="vegas.data:Bag"               class="vegas.data.Bag"               />
+    <component id="vegas.data:BidiMap"           class="vegas.data.BidiMap"           />
+    <component id="vegas.data:Boundable"         class="vegas.data.Boundable"         />
+    <component id="vegas.data:BoundedCollection" class="vegas.data.BoundedCollection" />
+    <component id="vegas.data:BoundedList"       class="vegas.data.BoundedList"       />
+    <component id="vegas.data:BoundedMap"        class="vegas.data.BoundedMap"        />
+    <component id="vegas.data:BoundedQueue"      class="vegas.data.BoundedQueue"      />
+    <component id="vegas.data:BoundedSet"        class="vegas.data.BoundedSet"        />
+    <component id="vegas.data:BoundedStack"      class="vegas.data.BoundedStack"      />
+    <component id="vegas.data:Collection"        class="vegas.data.Collection"        />
+    <component id="vegas.data:Entry"             class="vegas.data.Entry"             />
+    <component id="vegas.data:List"              class="vegas.data.List"              />
+    <component id="vegas.data:Map"               class="vegas.data.Map"               />
+    <component id="vegas.data:MultiMap"          class="vegas.data.MultiMap"          />
+    <component id="vegas.data:Queue"             class="vegas.data.Queue"             />
+    <component id="vegas.data:Set"               class="vegas.data.Set"               />
+    <component id="vegas.data:SortedBag"         class="vegas.data.SortedBag"         />
+    <component id="vegas.data:SortedMap"         class="vegas.data.SortedMap"         />
+    <component id="vegas.data:Stack"             class="vegas.data.Stack"             />
+    
+    <!-- vegas.data.array -->
+
+    <component id="vegas.data.array:ArrayFilter" class="vegas.data.array.ArrayFilter" />
+    <component id="vegas.data.array:ProxyArray"  class="vegas.data.array.ProxyArray"  />
+    <component id="vegas.data.array:TypedArray"  class="vegas.data.array.TypedArray"  />
+    
+    <!-- vegas.data.bag -->
+    
+    <component id="vegas.data.bag:AbstractBag" class="vegas.data.bag.AbstractBag" />
+    <component id="vegas.data.bag:BagFormat"   class="vegas.data.bag.BagFormat"   />
+    <component id="vegas.data.bag:HashBag"     class="vegas.data.bag.HashBag"     />
+    
+    <!-- vegas.data.collections -->
+    
+    <component id="vegas.data.collections:AbstractCollection" class="vegas.data.collections.AbstractCollection" />
+    <component id="vegas.data.collections:CollectionFormat"   class="vegas.data.collections.CollectionFormat"   />
+    <component id="vegas.data.collections:SimpleCollection"   class="vegas.data.collections.SimpleCollection"   />
+    <component id="vegas.data.collections:TypedCollection"    class="vegas.data.collections.TypedCollection"    />
+    
+    <!-- vegas.data.iterator -->
+    
+    <component id="vegas.data.iterator:ArrayFieldIterator" class="vegas.data.iterator.ArrayFieldIterator"  />    
+    <component id="vegas.data.iterator:ArrayIterator"      class="vegas.data.iterator.ArrayIterator"       />    
+    <component id="vegas.data.iterator:BagIterator"        class="vegas.data.iterator.BagIterator"         />
+    <component id="vegas.data.iterator:Iterable"           class="vegas.data.iterator.Iterable"            />
+    <component id="vegas.data.iterator:Iterator"           class="vegas.data.iterator.Iterator"            />
+    <component id="vegas.data.iterator:ListIterator"       class="vegas.data.iterator.ListIterator"        />
+    <component id="vegas.data.iterator:MapIterator"        class="vegas.data.iterator.MapIterator"         />
+    <component id="vegas.data.iterator:ObjectIterator"     class="vegas.data.iterator.ObjectIterator"      />
+    <component id="vegas.data.iterator:OrderedIterator"    class="vegas.data.iterator.OrderedIterator"     />
+    <component id="vegas.data.iterator:PageByPageIterator" class="vegas.data.iterator.PageByPageIterator"  />
+    <component id="vegas.data.iterator:ProtectedIterator"  class="vegas.data.iterator.ProtectedIterator"   />
+    <component id="vegas.data.iterator:StringIterator"     class="vegas.data.iterator.StringIterator"      />
+    
+    <!-- vegas.data.list -->
+    
+    <component id="vegas.data.list:AbstractList"    class="vegas.data.list.AbstractList"    />
+    <component id="vegas.data.list:ArrayList"       class="vegas.data.list.ArrayList"       />
+    <component id="vegas.data.list:LinkedList"      class="vegas.data.list.LinkedList"      />
+    <component id="vegas.data.list:LinkedListEntry" class="vegas.data.list.LinkedListEntry" />    
+    <component id="vegas.data.list:SortedArrayList" class="vegas.data.list.SortedArrayList" />   
+    
+    <!-- vegas.data.map -->
+    
+    <component id="vegas.data.map:ArrayMap"       class="vegas.data.map.ArrayMap"       />    
+    <component id="vegas.data.map:HashMap"        class="vegas.data.map.HashMap"        />    
+    <component id="vegas.data.map:MapFormat"      class="vegas.data.map.MapFormat"      />    
+    <component id="vegas.data.map:MapUtil"        class="vegas.data.map.MapUtil"        />    
+    <component id="vegas.data.map:MultiHashMap"   class="vegas.data.map.MultiHashMap"   />    
+    <component id="vegas.data.map:MultiMapFormat" class="vegas.data.map.MultiMapFormat" />    
+    <component id="vegas.data.map:SortedArrayMap" class="vegas.data.map.SortedArrayMap" />    
+    <component id="vegas.data.map:TypedMap"       class="vegas.data.map.TypedMap"       />    
+    
+    <!-- vegas.data.queue -->
+    
+    <component id="vegas.data.queue:CircularQueue" class="vegas.data.queue.CircularQueue" />
+    <component id="vegas.data.queue:LinearQueue"   class="vegas.data.queue.LinearQueue"   />
+    <component id="vegas.data.queue:PriorityQueue" class="vegas.data.queue.PriorityQueue" />
+    <component id="vegas.data.queue:QueueFormat"   class="vegas.data.queue.QueueFormat"   />    
+    <component id="vegas.data.queue:TypedQueue"    class="vegas.data.queue.TypedQueue"    />      
+    
+    <!-- vegas.data.sets -->
+    
+    <component id="vegas.data.sets:AbstractSet"  class="vegas.data.sets.AbstractSet"  />    
+    <component id="vegas.data.sets:HashSet"      class="vegas.data.sets.HashSet"      />
+    <component id="vegas.data.sets:MultiHashSet" class="vegas.data.sets.MultiHashSet" /> 
+    <component id="vegas.data.sets:TypedSet"     class="vegas.data.sets.TypedSet"     /> 
+    
+    <!-- vegas.data.stack -->
+
+    <component id="vegas.data.stack:SimpleStack" class="vegas.data.stack.SimpleStack" />   
+    <component id="vegas.data.stack:TypedStack"  class="vegas.data.stack.TypedStack"  />   
+    
+    <!-- vegas.errors -->
+    
+    <!-- vegas.events -->
+    
+    <!-- vegas.logging -->
+    
+    <!-- vegas.string -->
+    
+    <!-- vegas.util -->
+
+    <!-- vegas.comparators -->
+    
+</componentPackage>

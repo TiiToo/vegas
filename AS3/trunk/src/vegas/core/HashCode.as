@@ -13,7 +13,7 @@
   The Original Code is Vegas Framework.
   
   The Initial Developer of the Original Code is
-  ALCARAZ Marc (aka eKameleon)  <ekameleon@gmail.com>.
+  ALCARAZ Marc (aka eKameleon) <ekameleon@gmail.com>.
   Portions created by the Initial Developer are Copyright (C) 2004-2008
   the Initial Developer. All Rights Reserved.
   
@@ -26,7 +26,6 @@ package vegas.core
 	/**
 	 * Collected methods which allow easy implementation of <code class="prettyprint">hashCode</code>.
 	 * @author eKameleon
-	 * @version 1.0.0.0
 	 */
 	public class HashCode
 	{

@@ -24,7 +24,7 @@
 package
 {
     
-    public namespace VEGAS = "http://www.ekameleon.net/vegas" ;
+    public namespace VEGAS = "http://www.ekameleon.net/vegas/2009" ;
     
 }
 
