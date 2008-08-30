@@ -25,9 +25,8 @@ package pegas.transitions
 {
     import vegas.data.Map;
     import vegas.data.map.HashMap;
-    import vegas.errors.IllegalArgumentError;
     import vegas.events.CoreEventDispatcher;
-    import vegas.util.TypeUtil;	
+    import vegas.util.TypeUtil;    
 
     /**
 	 * The TransitionController register all the ITransition of the application.
@@ -97,14 +96,14 @@ package pegas.transitions
 		/**
 		 * Adds a new entry into the TransitionController.
 		 * @param transition the ITransition to register in the TransitionController.
-	 	 * @throws IllegalArgumentError if the argument is 'null' or 'undefined'.
-		 * @throws IllegalArgumentError if the ITransition object ID is empty.
+	 	 * @throws ArgumentError if the argument is 'null' or 'undefined'.
+		 * @throws ArgumentError if the ITransition object ID is empty.
 		 */
 		public function insert( transition:ITransition ):void 
 		{
 			if (transition == null)
 			{
-				throw new IllegalArgumentError( this + " insert failed, the transition argument not must be 'null' or 'undefined'") ;
+				throw new ArgumentError( this + " insert failed, the transition argument not must be 'null' or 'undefined'") ;
 			}
 			if ( transition.id != null )
 			{
@@ -112,7 +111,7 @@ package pegas.transitions
 			}
 			else
 			{
-				throw new IllegalArgumentError( this + " insert failed if the passed-in ITransition object don't contains an empty ID.") ;	
+				throw new ArgumentError( this + " insert failed if the passed-in ITransition object don't contains an empty ID.") ;	
 			}
 		}
 	
@@ -141,14 +140,14 @@ package pegas.transitions
 		/**
 		 * Run the specified Transition.
 		 * @param id the id of the Transition to be run.
-		 * @throws IllegalArgumentError if the <code class="prettyprint">id</code> passed in argument isn't register in this TransitionCntroller
-		 * @throws IllegalArgumentError if the <code class="prettyprint">id</code> passed in argument is 'null' or 'undefined'.
+		 * @throws ArgumentError if the <code class="prettyprint">id</code> passed in argument isn't register in this TransitionCntroller
+		 * @throws ArgumentError if the <code class="prettyprint">id</code> passed in argument is 'null' or 'undefined'.
 		 */
 		public function run( id:String ):void
 		{
 			if (id == null)
 			{
-				throw new IllegalArgumentError(this + " run method failed, the 'id' passed in argument not must be 'null' or 'undefined'.") ;	
+				throw new ArgumentError(this + " run method failed, the 'id' passed in argument not must be 'null' or 'undefined'.") ;	
 			}
 			if (contains(id))
 			{
@@ -156,7 +155,7 @@ package pegas.transitions
 			}
 			else
 			{
-				throw new IllegalArgumentError(this + " run method failed, the 'id' passed in argument isn't register in this TransitionController : " + id) ;	
+				throw new ArgumentError(this + " run method failed, the 'id' passed in argument isn't register in this TransitionController : " + id) ;	
 			}
 		}
 		

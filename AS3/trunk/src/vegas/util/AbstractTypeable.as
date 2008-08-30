@@ -23,15 +23,14 @@
 
 package vegas.util
 {
-	import system.Reflection;
-	
-	import vegas.core.CoreObject;
-	import vegas.core.ITypeable;
-	import vegas.core.IValidator;
-	import vegas.errors.IllegalArgumentError;
-	import vegas.errors.TypeMismatchError;	
+    import system.Reflection;
+    
+    import vegas.core.CoreObject;
+    import vegas.core.ITypeable;
+    import vegas.core.IValidator;
+    import vegas.errors.TypeMismatchError;	
 
-	/**
+    /**
      * This abstract class is used to create concrete <code class="prettyprint">ITypeable</code> implementations.
      * @author eKameleon
      * @see ITypeable
@@ -50,7 +49,7 @@ package vegas.util
        		
        		if (type == null) 
             {
-    			throw new IllegalArgumentError("Argument 'type' must not be 'null' or 'undefined'.") ;
+    			throw new ArgumentError("Argument 'type' must not be 'null' or 'undefined'.") ;
 	    	}
 		    _type = type ;
             

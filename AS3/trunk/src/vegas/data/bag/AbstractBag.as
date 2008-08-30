@@ -23,24 +23,23 @@
 
 package vegas.data.bag
 {
-	import vegas.core.CoreObject;
-	import vegas.data.Bag;
-	import vegas.data.Collection;
-	import vegas.data.List;
-	import vegas.data.Map;
-	import vegas.data.Set;
-	import vegas.data.bag.BagFormat;
-	import vegas.data.bag.HashBag;
-	import vegas.data.iterator.BagIterator;
-	import vegas.data.iterator.Iterator;
-	import vegas.data.list.ArrayList;
-	import vegas.data.map.MapUtil;
-	import vegas.data.sets.HashSet;
-	import vegas.errors.IllegalArgumentError;
-	import vegas.errors.UnsupportedOperation;
-	import vegas.util.Serializer;	
+    import vegas.core.CoreObject;
+    import vegas.data.Bag;
+    import vegas.data.Collection;
+    import vegas.data.List;
+    import vegas.data.Map;
+    import vegas.data.Set;
+    import vegas.data.bag.BagFormat;
+    import vegas.data.bag.HashBag;
+    import vegas.data.iterator.BagIterator;
+    import vegas.data.iterator.Iterator;
+    import vegas.data.list.ArrayList;
+    import vegas.data.map.MapUtil;
+    import vegas.data.sets.HashSet;
+    import vegas.errors.UnsupportedOperation;
+    import vegas.util.Serializer;	
 
-	/**
+    /**
 	 * This class provides a skeletal implementation of the <code class="prettyprint">Bag</code> interface, to minimize the effort required to implement this interface.
 	 * <p>To implement a bag, the programmer needs only to extend this class and provide implementations for the cursor, insert and size methods. For supporting the removal of elements, the cursor returned by the cursor method must additionally implement its remove method.</p>
 	 * @author eKameleon
@@ -399,7 +398,7 @@ package vegas.data.bag
 		{
 			if (m == null || m.isEmpty() == false) 
 			{
-	            throw new IllegalArgumentError(this + ", the map must be non-null and empty.") ;
+	            throw new ArgumentError(this + ", the map must be non-null and empty.") ;
 	        }
 	        _map = m ;
 		}

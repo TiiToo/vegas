@@ -24,7 +24,6 @@ package vegas.data.map
 {
     import vegas.data.Map;
     import vegas.data.iterator.Iterator;
-    import vegas.errors.IllegalArgumentError;
     import vegas.util.AbstractTypeable;
     import vegas.util.Serializer;    
 
@@ -39,14 +38,14 @@ package vegas.data.map
 	 	 * Creates a new TypedMap instance.
 		 * @param fType the type of all values in this TypedMap.
 		 * @param m the map to wrapp.
-		 * @throws IllegalArgumentError if the specified map in argument is <code class="prettyprint">null</code> or <code class="prettyprint">undefined</code>.
+		 * @throws ArgumentError if the specified map in argument is <code class="prettyprint">null</code> or <code class="prettyprint">undefined</code>.
 		 */
 		public function TypedMap(type:*, map:Map)
 		{
 			super(type) ;
 			if (!map) 
 			{
-				throw new IllegalArgumentError(this + " constructor, argument 'map' must not be 'null' or 'undefined'.") ;
+				throw new ArgumentError(this + " constructor, argument 'map' must not be 'null' or 'undefined'.") ;
 			}
 			if (map.size() > 0) {
 				var it:Iterator = map.iterator() ;

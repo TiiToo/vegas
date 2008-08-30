@@ -25,7 +25,6 @@ package vegas.data.collections
 {
     import vegas.data.Collection;
     import vegas.data.iterator.Iterator;
-    import vegas.errors.IllegalArgumentError;
     import vegas.util.AbstractTypeable;
     import vegas.util.Serializer;    
 
@@ -38,14 +37,14 @@ package vegas.data.collections
 		
 		/**
 		 * Creates a new TypedCollection.
-		 * @throws IllegalArgumentError if the specified collection in argument is <code class="prettyprint">null</code> or <code class="prettyprint">undefined</code> 
+		 * @throws ArgumentError if the specified collection in argument is <code class="prettyprint">null</code> or <code class="prettyprint">undefined</code> 
 	 	 */
 		public function TypedCollection(type:*, co:Collection=null)
 		{
 			super(type);
 			if (co == null) 
 			{
-				throw new IllegalArgumentError("Argument 'co' must not be 'null' or 'undefined'.") ;
+				throw new ArgumentError("Argument 'co' must not be 'null' or 'undefined'.") ;
 			}
 			if (co.size() > 0) 
 			{

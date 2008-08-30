@@ -25,9 +25,8 @@ package vegas.data.stack
 {
     import vegas.data.Stack;
     import vegas.data.iterator.Iterator;
-    import vegas.errors.IllegalArgumentError;
     import vegas.util.AbstractTypeable;
-    import vegas.util.Serializer;	
+    import vegas.util.Serializer;    
 
     /**
      * TypedQueue is a wrapper for Stack instances that ensures that only values of a specific type can be added to the wrapped stack.
@@ -59,15 +58,15 @@ package vegas.data.stack
     	 * Creates a new TypedStack instance.
     	 * @param type the type class of this ITypeable object.
     	 * @param stack the Stack reference protected with this ITypeable object.
-    	 * @throws IllegalArgumentError if the <code class="prettyprint">type</code> argument is <code class="prettyprint">null</code> or <code class="prettyprint">undefined</code>.
-    	 * @throws IllegalArgumentError if the <code class="prettyprint">stack</code> argument is <code class="prettyprint">null</code> or <code class="prettyprint">undefined</code>.
+    	 * @throws ArgumentError if the <code class="prettyprint">type</code> argument is <code class="prettyprint">null</code> or <code class="prettyprint">undefined</code>.
+    	 * @throws ArgumentError if the <code class="prettyprint">stack</code> argument is <code class="prettyprint">null</code> or <code class="prettyprint">undefined</code>.
 	     */
 		public function TypedStack(type:*, stack:Stack)
 		{
 			super(type);
 			if (stack == null) 
 			{
-				throw new IllegalArgumentError("TypedStack constructor, argument 'stack' must not be 'null' or 'undefined'.") ;
+				throw new ArgumentError("TypedStack constructor, argument 'stack' must not be 'null' or 'undefined'.") ;
 			}
 			this._stack = stack ;
 			if (_stack.size() > 0) 

@@ -1,4 +1,4 @@
-/*
+﻿/*
 
   The contents of this file are subject to the Mozilla Public License Version
   1.1 (the "License"); you may not use this file except in compliance with
@@ -28,7 +28,6 @@ package asgard.display
     
     import vegas.core.CoreObject;
     import vegas.data.iterator.OrderedIterator;
-    import vegas.errors.IllegalArgumentError;
     import vegas.errors.UnsupportedOperation;    
 
     /**
@@ -87,7 +86,7 @@ package asgard.display
          * @param target The MovieClip reference of this iterator.
          * @param framePosition the default framePosition of the specified MovieClip target (default frame 1).
          * @param stepSize (optional) the step between two frames returns by the iterator (default 1).
-         * @throws IllegalArgumentError if the <code class="prettyprint">target</code> argument of this constructor is empty.
+         * @throws ArgumentError if the <code class="prettyprint">target</code> argument of this constructor is empty.
          */
         public function TimelineIterator( target:MovieClip , framePosition:Number=NaN, stepSize:uint=1 )
         {
@@ -95,7 +94,7 @@ package asgard.display
         
             if (target == null)
             {
-                throw new IllegalArgumentError( this + " can't be instanciate with an empty MovieClip reference in the first argument of the constructor.") ;    
+                throw new ArgumentError( this + " can't be instanciate with an empty MovieClip reference in the first argument of the constructor.") ;    
             }
             
             this._target = target ;

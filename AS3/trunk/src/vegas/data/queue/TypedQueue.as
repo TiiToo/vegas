@@ -25,7 +25,6 @@ package vegas.data.queue
 {
     import vegas.data.Queue;
     import vegas.data.iterator.Iterator;
-    import vegas.errors.IllegalArgumentError;
     import vegas.util.AbstractTypeable;
     import vegas.util.Serializer;    
 
@@ -46,7 +45,7 @@ package vegas.data.queue
             super(type);
             if (queue == null) 
             {
-                throw new IllegalArgumentError(this + " argument 'queue' must not be 'null' or 'undefined'.") ;
+                throw new ArgumentError(this + " argument 'queue' must not be 'null' or 'undefined'.") ;
             }
             if (queue.size() > 0) 
             {

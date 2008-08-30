@@ -31,8 +31,7 @@ package asgard.managers
     
     import vegas.data.iterator.Iterator;
     import vegas.data.map.HashMap;
-    import vegas.data.sets.MultiHashSet;
-    import vegas.errors.IllegalArgumentError;    
+    import vegas.data.sets.MultiHashSet;    
 
     /**
      * The TabManager manage visual tab process in the applications.
@@ -178,13 +177,13 @@ package asgard.managers
          * @param id The key of the group to collect the specified interactive object.
          * @param child The interactive object to collect in the manager.
          * @return <code class="prettyprint">true</code> if the interactive object is inserted in the manager.
-         * @throws IllegalArgumentError the id argument not must be 'null' or 'undefined'.
+         * @throws ArgumentError the id argument not must be 'null' or 'undefined'.
          */
         public function insert( id:* , child:InteractiveObject ):Boolean
         {
             if ( id == null )
             {
-                throw new IllegalArgumentError( this + " insert failed, the id argument not must be 'null' or 'undefined'.") ;
+                throw new ArgumentError( this + " insert failed, the id argument not must be 'null' or 'undefined'.") ;
             }
             var b:Boolean = _set.put( id , child ) ;
             if ( b )
@@ -201,13 +200,13 @@ package asgard.managers
          * @param id The key of the group to collect the specified interactive object.
          * @param child The interactive object to collect in the manager.
          * @return <code class="prettyprint">true</code> if the interactive object is removed in the manager.
-         * @throws IllegalArgumentError the id argument not must be 'null' or 'undefined'.
+         * @throws ArgumentError the id argument not must be 'null' or 'undefined'.
          */
         public function remove( id:* , child:InteractiveObject ):Boolean
         {
             if ( id == null )
             {
-                throw new IllegalArgumentError( this + " insert failed, the id argument not must be 'null' or 'undefined'.") ;
+                throw new ArgumentError( this + " insert failed, the id argument not must be 'null' or 'undefined'.") ;
             }
             var b:Boolean = _set.removeByKey( id , child ) ; 
             if ( b )
@@ -224,13 +223,13 @@ package asgard.managers
          * @param id The key of the tab group of interactive objects.
          * @param defaultChild (optional) The default interactive object to select by default when the group is selected.
          * @return <code class="prettyprint">true</code> if the specified group of interactive objects is selected.
-         * @throws IllegalArgumentError the id argument not must be 'null' or 'undefined'.
+         * @throws ArgumentError the id argument not must be 'null' or 'undefined'.
          */
         public function select( id:* , defaultChild:InteractiveObject = null ):Boolean
         {
             if ( id == null )
             {
-                throw new IllegalArgumentError( this + " insert failed, the id argument not must be 'null' or 'undefined'.") ;
+                throw new ArgumentError( this + " insert failed, the id argument not must be 'null' or 'undefined'.") ;
             }
             if ( contains( id ) )
             {

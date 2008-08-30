@@ -1,4 +1,4 @@
-/*
+﻿/*
 
   The contents of this file are subject to the Mozilla Public License Version
   1.1 (the "License"); you may not use this file except in compliance with
@@ -26,8 +26,7 @@ package asgard.display
     import flash.display.MovieClip;
     
     import vegas.core.CoreObject;
-    import vegas.errors.IllegalArgumentError;
-    import vegas.errors.NullPointerError;	
+    import vegas.errors.NullPointerError;    
 
     /**
 	 * The TimeLineScript class use composition to register script function over MovieClip timelines.
@@ -86,7 +85,7 @@ package asgard.display
             super();
             if (target == null)
             {
-                throw new IllegalArgumentError( this + " can't be instanciate with an empty MovieClip reference in argument of the constructor.") ;    
+                throw new ArgumentError( this + " can't be instanciate with an empty MovieClip reference in argument of the constructor.") ;    
             }
             this._target = target ;
             if (autoStop)
@@ -163,7 +162,7 @@ package asgard.display
         {
             if ( label == null || label.length == 0 )
             {
-                throw new IllegalArgumentError( this + " resolve label failed with a 'null' or 'undefined' label argument.") ;
+                throw new ArgumentError( this + " resolve label failed with a 'null' or 'undefined' label argument.") ;
             }
             var frame:uint ;
             var currentLabels:Array = _target.currentLabels ;

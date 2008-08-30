@@ -116,7 +116,16 @@ package asgard.net
 		{
 			return code ;	
 		}
-				
+	    
+        /**
+         * Returns the object representation of this object.
+         * @return the object representation of this object.
+         */
+        public function valueOf():* 
+        {
+            return code ;   
+        }	    
+	    
 		// enumerations
 		
 		/**

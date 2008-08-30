@@ -23,10 +23,8 @@
 
 package vegas.events.dom
 {
-	import vegas.core.IComparator;
-	import vegas.core.CoreObject;
-
-	import vegas.errors.IllegalArgumentError ;
+    import vegas.core.CoreObject;
+    import vegas.core.IComparator;	
 
     [ExcludeClass]
 
@@ -88,7 +86,7 @@ package vegas.events.dom
 			}
 			else 
 			{
-				throw new IllegalArgumentError(this + ".compare(" + o1 + "," + o2 + "), arguments must be EventListenerContainer.") ;
+				throw new ArgumentError(this + ".compare(" + o1 + "," + o2 + "), arguments must be EventListenerContainer.") ;
 			}
 		}
 	

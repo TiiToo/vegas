@@ -317,7 +317,6 @@ package pegas.geom
 
         /**
          * Sets matrix[x][y] with the specified value.
-         * @throws IllegalArgumentError if the x or y value are <code class="prettyprint">null</pre> or <code class="prettyprint">undefined</code>.
          */
         public function setEntry( x:Number , y:Number , value:* ):void
         {

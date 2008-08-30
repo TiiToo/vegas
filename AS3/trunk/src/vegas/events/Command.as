@@ -24,11 +24,10 @@
 package vegas.events 
 {    import vegas.core.CoreObject;
     import vegas.core.IRunnable;
-    import vegas.errors.IllegalArgumentError;
     import vegas.events.BasicEvent;
     import vegas.events.EventDispatcher;
     import vegas.events.FrontController;
-    import vegas.util.Serializer;	
+    import vegas.util.Serializer;    
 
     /**
 	 * A command is a easy entry with name and value property to launch a global command in the Commands static tool class.
@@ -44,7 +43,7 @@ package vegas.events
 		 * var c2:Command = new Command([name:String [, value:*[, channel:String]]]) ;
 		 * var c3:Command = new Command([initObject:Object]) ; 
 		 * </pre>
-		 * @throws IllegalArgumentError if the optional passed-in arguments failed the initialization of the new <code class="prettyprint">Command</code> instance. 
+		 * @throws ArgumentError if the optional passed-in arguments failed the initialization of the new <code class="prettyprint">Command</code> instance. 
 		 */ 
         public function Command( ...arguments:Array )
         { 			if (arguments.length == 1)
@@ -62,7 +61,7 @@ package vegas.events
 					}
 					else
 					{
-						throw new IllegalArgumentError( toString() + CONSTRUCTOR_ERROR ) ;	
+						throw new ArgumentError( toString() + CONSTRUCTOR_ERROR ) ;	
 					}
 								
 					this.value   = arg.value   || null ;
@@ -70,7 +69,7 @@ package vegas.events
 				}
 				else
 				{
-					throw IllegalArgumentError(this + CONSTRUCTOR_ERROR) ;	
+					throw ArgumentError(this + CONSTRUCTOR_ERROR) ;	
 				}
 			}
 			else if (arguments.length > 2)
@@ -81,7 +80,7 @@ package vegas.events
 				}
 				else
 				{
-					throw IllegalArgumentError(this + CONSTRUCTOR_ERROR) ;	
+					throw ArgumentError(this + CONSTRUCTOR_ERROR) ;	
 				}
 				this.value   = arguments[1] || null ;
 				this.channel = arguments[2] || null ;
@@ -92,7 +91,7 @@ package vegas.events
 			}
         }		
 		/**
-		 * The internal string message used in the constructor if the constructor notify an IllegalArgumentError.
+		 * The internal string message used in the constructor if the constructor notify an ArgumentError.
 	 	 */
 		public static var CONSTRUCTOR_ERROR:String = ", you can't create this instance without 'name' definition." ;
 			

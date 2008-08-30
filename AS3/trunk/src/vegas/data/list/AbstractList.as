@@ -26,7 +26,7 @@ package vegas.data.list
     import vegas.data.List;
     import vegas.data.collections.SimpleCollection;
     import vegas.data.iterator.ListIterator;
-    import vegas.errors.IndexOutOfBoundsError;	
+    import vegas.errors.IndexOutOfBoundsError;    
 
     /**
  	 * This class provides a skeletal implementation of the List interface to minimize the effort required to implement this interface.
@@ -202,7 +202,6 @@ import vegas.data.List;
 import vegas.data.iterator.ListIterator;
 import vegas.data.list.AbstractList;
 import vegas.errors.ConcurrentModificationError;
-import vegas.errors.IllegalArgumentError;
 import vegas.errors.IllegalStateError;
 import vegas.errors.IndexOutOfBoundsError;
 import vegas.errors.NoSuchElementError;
@@ -221,7 +220,7 @@ class ListItr extends CoreObject implements ListIterator
 	{
 		if (!li) 
 		{
-			throw new IllegalArgumentError(this + " constructor, 'list' must not be 'null' nor 'undefined'.") ;
+			throw new ArgumentError(this + " constructor, 'list' must not be 'null' nor 'undefined'.") ;
 		}
 		_list = li ;
 		_key = 0 ;

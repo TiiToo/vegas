@@ -30,8 +30,7 @@ package asgard.media
     
     import asgard.events.CameraExpertEvent;
     
-    import vegas.data.map.HashMap;
-    import vegas.errors.IllegalArgumentError;    
+    import vegas.data.map.HashMap;    
 
     /**
      * This expert manage all Camera reference in the application.
@@ -132,7 +131,7 @@ package asgard.media
 		{
 			if ( id == null )
 			{
-				throw new IllegalArgumentError( "CameraExpert.getInstance() failed, the 'id' passed-in argument not must be 'null' or 'undefined'.") ;
+				throw new ArgumentError( "CameraExpert.getInstance() failed, the 'id' passed-in argument not must be 'null' or 'undefined'.") ;
             }
 			if ( _map == null)
 			{

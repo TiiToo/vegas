@@ -23,18 +23,16 @@
  
 package pegas.transitions 
 {
-	
-	import andromeda.model.AbstractModel;
-	
-	import pegas.events.TweenEntryEvent;
-	
-	import vegas.data.Map;
-	import vegas.data.iterator.Iterable;
-	import vegas.data.iterator.Iterator;
-	import vegas.data.map.HashMap;
-	import vegas.errors.IllegalArgumentError;	
+    import andromeda.model.AbstractModel;
+    
+    import pegas.events.TweenEntryEvent;
+    
+    import vegas.data.Map;
+    import vegas.data.iterator.Iterable;
+    import vegas.data.iterator.Iterator;
+    import vegas.data.map.HashMap;	
 
-	/**
+    /**
  	 * The model of the Tween class.
 	 * @author eKameleon
  	 */
@@ -197,7 +195,7 @@ package pegas.transitions
 			}
 			else 
 			{
-				throw new IllegalArgumentError(this + " remove method failed with an unknow argument value : " + entry ) ;
+				throw new ArgumentError(this + " remove method failed with an unknow argument value : " + entry ) ;
 			} 
 			if ( contains(p) ) 
 			{

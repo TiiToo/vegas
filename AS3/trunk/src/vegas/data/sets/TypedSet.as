@@ -24,9 +24,8 @@ package vegas.data.sets
 {
     import vegas.data.Set;
     import vegas.data.iterator.Iterator;
-    import vegas.errors.IllegalArgumentError;
     import vegas.util.AbstractTypeable;
-    import vegas.util.Serializer;	
+    import vegas.util.Serializer;    
 
     /**
      * TypedSet is a wrapper for Set instances that ensures that only values of a specific type can be added to the wrapped Set.
@@ -43,7 +42,7 @@ package vegas.data.sets
 			super(type);
 			if (s == null) 
 			{
-				throw new IllegalArgumentError(this + " argument 's' must not be 'null' or 'undefined'.") ;
+				throw new ArgumentError(this + " argument 's' must not be 'null' or 'undefined'.") ;
 			}
 			if (s.size() > 0) 
 			{

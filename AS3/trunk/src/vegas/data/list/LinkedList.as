@@ -867,7 +867,7 @@ package vegas.data.list
          * list.removeRange(2, 4) ; 
          * trace(list) ; // {item1,item2,item5}
          * </pre>
-         * @throws IllegalArgumentError if the 'from' or 'to' argument is NaN.
+         * @throws ArgumentError if the 'from' or 'to' argument is NaN.
          * @throws RangeError if the 'to' > 'from'
          */
         public function removeRange( from:uint, to:uint ):void 

@@ -25,7 +25,6 @@ package pegas.geom
     import pegas.geom.Vector2;
     import pegas.util.Trigo;
     
-    import vegas.errors.IllegalArgumentError;
     import vegas.util.Serializer;    
 
     /**
@@ -493,7 +492,7 @@ package pegas.geom
 		 * </pre>
 		 * @param thickness The scaling value. For example, if the current point is (0,5), and you normalize it to 1, the point returned is at (0,1).
 		 * @see length
-		 * @throws IllegalArgumentError if a zero-length vector or a illegal NaN value is calculate in this method.
+		 * @throws ArgumentError if a zero-length vector or a illegal NaN value is calculate in this method.
 		 */
 		public function normalize( thickness:Number=NaN ):void 
 		{
@@ -510,7 +509,7 @@ package pegas.geom
 			}
 			else
 			{
-				throw new IllegalArgumentError(this + " normalize method failed with a zero-length vector or a illegal NaN value.") ;
+				throw new ArgumentError(this + " normalize method failed with a zero-length vector or a illegal NaN value.") ;
 			}
 		}
 	
