@@ -22,18 +22,17 @@
 */
 package andromeda.process 
 {
-	import flash.events.Event;
-	
-	import andromeda.events.ActionEvent;
-	import andromeda.process.mocks.MockSimpleActionListener;
-	
-	import buRRRn.ASTUce.framework.TestCase;
-	
-	import vegas.errors.IllegalArgumentError;
-	import vegas.events.BasicEvent;
-	import vegas.events.FrontController;	
+    import flash.events.Event;
+    
+    import andromeda.events.ActionEvent;
+    import andromeda.process.mocks.MockSimpleActionListener;
+    
+    import buRRRn.ASTUce.framework.TestCase;
+    
+    import vegas.events.BasicEvent;
+    import vegas.events.FrontController;	
 
-	/**
+    /**
 	 * @author eKameleon
 	 */
 	public class EventDispatcherProcessTest extends TestCase 
@@ -77,7 +76,7 @@ package andromeda.process
 				p = new EventDispatcherProcess(null) ;
 				fail("constructor failed, the event argument not must be 'null' or 'undefined'.") ;
 			}
-			catch( e1:IllegalArgumentError )
+			catch( e1:ArgumentError )
 			{
 				// do nothing
 				
