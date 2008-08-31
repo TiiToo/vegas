@@ -2,6 +2,12 @@
 
 <componentPackage>
     
+    
+    <!-- vegas -->
+
+    <component id="vegas:global" class="global"   />
+    <component id="vegas:VEGAS"  class="VEGAS"   />
+    
     <!-- vegas.core -->
 	
     <component id="vegas.core:CoreObject"   class="vegas.core.CoreObject"   />
@@ -121,14 +127,102 @@
     
     <!-- vegas.errors -->
     
+    <component id="vegas.errors:AbstractError"               class="vegas.errors.AbstractError" />       
+    <component id="vegas.errors:ClassCastError"              class="vegas.errors.ClassCastError" />
+    <component id="vegas.errors:ConcurrentModificationError" class="vegas.errors.ConcurrentModificationError" />
+    <component id="vegas.errors:FatalError"                  class="vegas.errors.FatalError" />
+    <component id="vegas.errors:IllegalStateError"           class="vegas.errors.IllegalStateError" />
+    <component id="vegas.errors:NoSuchElementError"          class="vegas.errors.NoSuchElementError" />
+    <component id="vegas.errors:NullPointerError"            class="vegas.errors.NullPointerError" />
+    <component id="vegas.errors:RuntimeError"                class="vegas.errors.RuntimeError" />
+    <component id="vegas.errors:TypeMismatchError"           class="vegas.errors.TypeMismatchError" />
+    <component id="vegas.errors:UnsupportedOperation"        class="vegas.errors.UnsupportedOperation" />
+    <component id="vegas.errors:Warning"                     class="vegas.errors.Warning" />
+    
     <!-- vegas.events -->
+
+    <component id="vegas.events:AbstractEventDispatcher" class="vegas.events.AbstractEventDispatcher" />  
+    <component id="vegas.events:ArrayEvent"              class="vegas.events.ArrayEvent" />
+    <component id="vegas.events:BasicEvent"              class="vegas.events.BasicEvent" />
+    <component id="vegas.events:BooleanEvent"            class="vegas.events.BooleanEvent" />
+    <component id="vegas.events:Command"                 class="vegas.events.Command" />
+    <component id="vegas.events:CommandEvent"            class="vegas.events.CommandEvent" />
+    <component id="vegas.events:CoreEventDispatcher"     class="vegas.events.CoreEventDispatcher" />
+    <component id="vegas.events:DateEvent"               class="vegas.events.DateEvent" />
+    <component id="vegas.events:Delegate"                class="vegas.events.Delegate" />
+    <component id="vegas.events:DynamicEvent"            class="vegas.events.DynamicEvent" />
+    <component id="vegas.events:EventDispatcher"         class="vegas.events.EventDispatcher" />
+    <component id="vegas.events:EventListener"           class="vegas.events.EventListener" />
+    <component id="vegas.events:EventListenerBatch"      class="vegas.events.EventListenerBatch" />
+    <component id="vegas.events:FrontController"         class="vegas.events.FrontController" />
+    <component id="vegas.events:IEventDispatcher"        class="vegas.events.IEventDispatcher" />
+    <component id="vegas.events:NumberEvent"             class="vegas.events.NumberEvent" />
+    <component id="vegas.events:StringEvent"             class="vegas.events.StringEvent" />
     
     <!-- vegas.logging -->
     
+    <component id="vegas.logging:AbstractTarget"  class="vegas.logging.AbstractTarget" />          
+    <component id="vegas.logging:ILogable"        class="vegas.logging.ILogable" />
+    <component id="vegas.logging:ILogger"         class="vegas.logging.ILogger" />
+    <component id="vegas.logging:ITarger"         class="vegas.logging.ITarget" />
+    <component id="vegas.logging:Log"             class="vegas.logging.Log" />
+    <component id="vegas.logging:LogEvent"        class="vegas.logging.LogEvent" />
+    <component id="vegas.logging:LogEventLevel"   class="vegas.logging.LogEventLevel" />
+    <component id="vegas.logging:LogLogger"       class="vegas.logging.LogLogger" />
+    
+    <!-- vegas.logging.errors -->
+    
+    <component id="vegas.logging.errors:InvalidCategoryError" class="vegas.logging.errors.InvalidCategoryError" />
+    <component id="vegas.logging.errors:InvalidFilterError"   class="vegas.logging.errors.InvalidFilterError" />
+    
+    <!-- vegas.logging.targets -->    
+
+    <component id="vegas.logging.targets:AirLoggerTarget"     class="vegas.logging.targets.AirLoggerTarget" />
+    <component id="vegas.logging.targets:LineFormattedTarget" class="vegas.logging.targets.LineFormattedTarget" />
+    <component id="vegas.logging.targets:LuminicTarget"       class="vegas.logging.targets.LuminicTarget" />
+    <component id="vegas.logging.targets:SOSTarget"           class="vegas.logging.targets.SOSTarget" />
+    <component id="vegas.logging.targets:TraceTarget"         class="vegas.logging.targets.TraceTarget" />
+    <component id="vegas.logging.targets:XPanelTarget"        class="vegas.logging.targets.XPanelTarget" />
+    
     <!-- vegas.string -->
+    
+    <component id="vegas.string:Expression"          class="vegas.string.Expression" />
+    <component id="vegas.string:HTMLStringFormatter" class="vegas.string.HTMLStringFormatter" />
+    <component id="vegas.string:JSON"                class="vegas.string.JSON" />
+    <component id="vegas.string:Luhn"                class="vegas.string.Luhn" />
+    <component id="vegas.string:UnicodeChar"         class="vegas.string.UnicodeChar" />
+    
+    <!-- vegas.string.json -->    
+    
+    <component id="vegas.string.json:JSONError"       class="vegas.string.json.JSONError" />    
+    <component id="vegas.string.json:JSONSerializer"  class="vegas.string.json.JSONSerializer" />
     
     <!-- vegas.util -->
 
+    <component id="vegas.util:AbstractTypeable" class="vegas.util.AbstractTypeable" />   
+    <component id="vegas.util:ArrayUtil"        class="vegas.util.ArrayUtil" />
+    <component id="vegas.util:BooleanUtil"      class="vegas.util.BooleanUtil" />
+    <component id="vegas.util:ClassUtil"        class="vegas.util.ClassUtil" />
+    <component id="vegas.util:Comparater"       class="vegas.util.Comparater" />
+    <component id="vegas.util:Copier"           class="vegas.util.Copier" />
+    <component id="vegas.util:DateUtil"         class="vegas.util.DateUtil" />
+    <component id="vegas.util:ErrorUtil"        class="vegas.util.ErrorUtil" />
+    <component id="vegas.util:FunctionUtil"     class="vegas.util.FunctionUtil" />
+    <component id="vegas.util:NumberUtil"       class="vegas.util.NumberUtil" />
+    <component id="vegas.util:ObjectUtil"       class="vegas.util.ObjectUtil" />
+    <component id="vegas.util:Serializer"       class="vegas.util.Serializer" />
+    <component id="vegas.util:StringUtil"       class="vegas.util.StringUtil" />
+    <component id="vegas.util:TypeUtil"         class="vegas.util.TypeUtil" />
+
     <!-- vegas.comparators -->
+    
+    <component id="vegas.util.comparators:BooleanComparator"    class="vegas.util.comparators.BooleanComparator" />  
+    <component id="vegas.util.comparators:ComparableComparator" class="vegas.util.comparators.ComparableComparator" />
+    <component id="vegas.util.comparators:DateComparator"       class="vegas.util.comparators.DateComparator" />
+    <component id="vegas.util.comparators:GenericComparator"    class="vegas.util.comparators.GenericComparator" />
+    <component id="vegas.util.comparators:NullComparator"       class="vegas.util.comparators.NullComparator" />
+    <component id="vegas.util.comparators:NumberComparator"     class="vegas.util.comparators.NumberComparator" />
+    <component id="vegas.util.comparators:ReverseComparator"    class="vegas.util.comparators.ReverseComparator" />
+    <component id="vegas.util.comparators:StringComparator"     class="vegas.util.comparators.StringComparator" />
     
 </componentPackage>

@@ -25,8 +25,7 @@ package vegas.data.list
     import vegas.data.Collection;
     import vegas.data.List;
     import vegas.data.collections.SimpleCollection;
-    import vegas.data.iterator.ListIterator;
-    import vegas.errors.IndexOutOfBoundsError;    
+    import vegas.data.iterator.ListIterator;    
 
     /**
  	 * This class provides a skeletal implementation of the List interface to minimize the effort required to implement this interface.
@@ -68,9 +67,9 @@ package vegas.data.list
 		 */
 		public function insertAt(id:uint, o:*):void 
 		{
-			if (id<0 || id>size()) 
+			if ( id > size() ) 
 			{
-				throw new IndexOutOfBoundsError() ;
+				throw new RangeError( this + " insertAt method failed, the specified index '" + id + "' is out of bounds.") ;
 			}
 			_a.splice(id, 0, o) ;
 		}
@@ -203,7 +202,6 @@ import vegas.data.iterator.ListIterator;
 import vegas.data.list.AbstractList;
 import vegas.errors.ConcurrentModificationError;
 import vegas.errors.IllegalStateError;
-import vegas.errors.IndexOutOfBoundsError;
 import vegas.errors.NoSuchElementError;
 
 /**
@@ -299,7 +297,7 @@ class ListItr extends CoreObject implements ListIterator
 		}
 		else 
 		{	
-			throw new NoSuchElementError() ;
+			throw new NoSuchElementError(this + " next method failed.") ;
 		}
 	}
 	
@@ -326,10 +324,10 @@ class ListItr extends CoreObject implements ListIterator
 			_listast = _key  = i ;
 			return prev ;
 		}
-		catch(e:IndexOutOfBoundsError) 
+		catch( e:RangeError ) 
 		{
 			checkForComodification();
-			throw new NoSuchElementError() ;
+			throw new NoSuchElementError(this + " previous method failed.") ;
 		}
 	}
 
@@ -357,7 +355,7 @@ class ListItr extends CoreObject implements ListIterator
 		} 
 		catch (e:ConcurrentModificationError) 
 		{
-			throw new ConcurrentModificationError() ;
+			throw new ConcurrentModificationError( this + " remove method failed.") ;
 		}
 	}	
 

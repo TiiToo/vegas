@@ -33,7 +33,6 @@ package vegas.data.list
     import vegas.data.collections.SimpleCollection;
     import vegas.data.iterator.Iterator;
     import vegas.data.iterator.ListIterator;
-    import vegas.errors.IndexOutOfBoundsError;
     import vegas.errors.NoSuchElementError;
     import vegas.util.Copier;
     import vegas.util.Serializer;    
@@ -377,7 +376,7 @@ package vegas.data.list
             } 
             catch( e:NoSuchElementError ) 
             {
-                   throw new IndexOutOfBoundsError("LinkedList 'get' method failed, index:" + key ) ;
+                throw new RangeError("LinkedList 'get' method failed, index:" + key ) ;
             }
         }
         
@@ -502,9 +501,9 @@ package vegas.data.list
          */
         public function insertAllAt( index:uint , c:Collection ):Boolean
         {
-            if (index < 0 || index > _size)
+            if ( index > _size)
             {
-                throw new IndexOutOfBoundsError("LinkedList insertAllAt method failed, index:"+index+ ", size: " + _size + "." ) ;
+                throw new RangeError("LinkedList insertAllAt method failed, index:"+index+ ", size: " + _size + "." ) ;
             }
             
             if ( c == null )
@@ -874,7 +873,7 @@ package vegas.data.list
         {
             if ( from >= _size )
             {
-                throw new IndexOutOfBoundsError( this + " removeRange failed with a from value out of bounds, from > size().") ;
+                throw new RangeError( this + " removeRange failed with a from value out of bounds, from > size().") ;
             }            
             if ( to < from )
             {
@@ -976,7 +975,7 @@ package vegas.data.list
             }
             catch( e:NoSuchElementError ) 
             {
-                throw new IndexOutOfBoundsError("LinkedList setAt method failed, index:" + id ) ;
+                throw new RangeError("LinkedList setAt method failed, index:" + id ) ;
             }
         }
         
@@ -1100,9 +1099,9 @@ package vegas.data.list
          */
         private function _entry( index:uint ):LinkedListEntry
         {
-            if (index < 0 || index >= _size)
+            if ( index >= _size)
             {
-                throw new IndexOutOfBoundsError("LinkedList private '_entry' method failed, index:" + index + ", size:" + _size + "." ) ;
+                throw new RangeError("LinkedList private '_entry' method failed, index:" + index + ", size:" + _size + "." ) ;
             }
             var e:LinkedListEntry = _header ;
             var i:Number ;
@@ -1147,7 +1146,6 @@ import vegas.data.list.LinkedListEntry;
 import vegas.errors.ClassCastError;
 import vegas.errors.ConcurrentModificationError;
 import vegas.errors.IllegalStateError;
-import vegas.errors.IndexOutOfBoundsError;
 import vegas.errors.NoSuchElementError;
 import vegas.errors.UnsupportedOperation;
 
@@ -1346,7 +1344,7 @@ class LinkedListIterator extends CoreObject implements ListIterator
     /**
      * Change the position of the internal pointer of the iterator (optional operation).
      */
-    public function seek( position:*):void 
+    public function seek( position:* ):void 
     {
 
         this._lastReturned = this._list.getHeader() ;
@@ -1362,7 +1360,7 @@ class LinkedListIterator extends CoreObject implements ListIterator
         
         if (position < 0 || position > size)
         {
-            throw new IndexOutOfBoundsError( this + " seek failed, index:" + position + ", size:" + size + "." ) ;
+            throw new RangeError( this + " seek failed, index:" + position + ", size:" + size + "." ) ;
         }
         
         if ( position < ( size >> 1 ) ) 
