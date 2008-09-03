@@ -23,9 +23,9 @@
 
 package vegas.data
 {
+    import system.Cloneable;
     import system.Serializable;
     
-    import vegas.core.ICloneable;
     import vegas.core.ICopyable;
     import vegas.data.iterator.Iterable;    
 
@@ -33,7 +33,7 @@ package vegas.data
 	 * The root interface in the collection hierarchy. A collection represents a group of objects, known as its elements. Some collections allow duplicate elements and others do not. Some are ordered and others unordered. 
 	 * @author eKameleon
 	 */
-    public interface Collection extends ICloneable, ICopyable, Serializable, Iterable
+    public interface Collection extends Cloneable, ICopyable, Serializable, Iterable
     {
         
 		/**

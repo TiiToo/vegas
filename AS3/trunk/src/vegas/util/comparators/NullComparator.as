@@ -23,12 +23,13 @@
 
 package vegas.util.comparators
 {
-    import vegas.core.CoreObject;
-    import vegas.core.ICloneable;
-    import vegas.core.IComparator;
-    import vegas.core.ICopyable;
+    import system.Cloneable;
     
-	/**
+    import vegas.core.CoreObject;
+    import vegas.core.IComparator;
+    import vegas.core.ICopyable;    
+
+    /**
 	 * This comparator compare Null objects.
  	 * When comparing two non-null objects, the ComparableComparator is used if the nonNullComparator isnt' define.
 	 * <p><b>Example :</b></p>
@@ -53,7 +54,7 @@ package vegas.util.comparators
  	 * </pre>
   	 * @author eKameleon
 	 */
-	public class NullComparator extends CoreObject implements IComparator, ICloneable, ICopyable
+	public class NullComparator extends CoreObject implements IComparator, Cloneable, ICopyable
 	{
 		
 		/**

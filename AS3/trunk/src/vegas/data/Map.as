@@ -23,9 +23,9 @@
 
 package vegas.data
 {
+    import system.Cloneable;
     import system.Serializable;
     
-    import vegas.core.ICloneable;
     import vegas.core.ICopyable;
     import vegas.core.IHashable;
     import vegas.data.iterator.Iterable;
@@ -35,7 +35,7 @@ package vegas.data
 	 * An object that maps keys to values. A map cannot contain duplicate keys. Each key can map to at most one value.
 	 * @author eKameleon
 	 */
-    public interface Map extends ICloneable, ICopyable, IHashable, Serializable, Iterable
+    public interface Map extends Cloneable, ICopyable, IHashable, Serializable, Iterable
     {
      
 		/**

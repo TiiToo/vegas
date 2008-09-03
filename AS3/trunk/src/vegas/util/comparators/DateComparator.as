@@ -23,14 +23,14 @@
 
 package vegas.util.comparators
 {
+    import system.Cloneable;
+    
+    import vegas.core.CoreObject;
+    import vegas.core.IComparator;
+    import vegas.core.ICopyable;
+    import vegas.errors.ClassCastError;	
 
-	import vegas.core.CoreObject;
-	import vegas.core.ICloneable;
-	import vegas.core.IComparator;
-	import vegas.core.ICopyable;
-	import vegas.errors.ClassCastError;
-	
-	/**
+    /**
 	 * This comparator compare Date objects.
 	 * <p><b>Example :</b></p>
  	 * <pre class="prettyprint">
@@ -53,7 +53,7 @@ package vegas.util.comparators
  	 * </pre>
 	 * @author eKameleon
  	 */
-	public class DateComparator extends CoreObject implements IComparator, ICloneable, ICopyable
+	public class DateComparator extends CoreObject implements IComparator, Cloneable, ICopyable
 	{
 		
 		/**

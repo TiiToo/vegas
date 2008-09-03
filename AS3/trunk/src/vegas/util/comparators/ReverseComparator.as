@@ -23,13 +23,13 @@
 
 package vegas.util.comparators
 {
-	
-	import vegas.core.CoreObject;
-	import vegas.core.ICloneable;
-	import vegas.core.IComparator;
-	import vegas.core.ICopyable;
-	
-	/**
+    import system.Cloneable;
+    
+    import vegas.core.CoreObject;
+    import vegas.core.IComparator;
+    import vegas.core.ICopyable;	
+
+    /**
 	 * Reverse an IComparator object. For example if the comparator must return 1 the reverse comparator return -1.
 	 * <p><b>Example :</b></p>
 	 * <pre class="prettyprint">
@@ -44,7 +44,7 @@ package vegas.util.comparators
 	 * </pre>
 	 * @author eKameleon
 	 */
-	public class ReverseComparator extends CoreObject implements IComparator, ICloneable, ICopyable
+	public class ReverseComparator extends CoreObject implements IComparator, Cloneable, ICopyable
 	{
 		
 		/**

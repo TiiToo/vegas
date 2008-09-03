@@ -33,9 +33,9 @@ package asgard.net.remoting
     
     import asgard.events.RemotingEvent;
     
+    import system.Cloneable;
     import system.Reflection;
     
-    import vegas.core.ICloneable;
     import vegas.errors.Warning;    
 
     /**
@@ -201,7 +201,7 @@ package asgard.net.remoting
      * </pre>
      * @author eKameleon
       */
-    public class RemotingService extends Action implements ICloneable
+    public class RemotingService extends Action implements Cloneable
     {
         
         /**

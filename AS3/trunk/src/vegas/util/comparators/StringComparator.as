@@ -23,14 +23,14 @@
 
 package vegas.util.comparators
 {
-	import system.Strings;
-	
-	import vegas.core.CoreObject;
-	import vegas.core.ICloneable;
-	import vegas.core.IComparator;
-	import vegas.core.ICopyable;	
+    import system.Cloneable;
+    import system.Strings;
+    
+    import vegas.core.CoreObject;
+    import vegas.core.IComparator;
+    import vegas.core.ICopyable;	
 
-	/**
+    /**
 	 * This comparator compare String objects.
 	 * <p><b>Example :</b></p>
 	 * <pre class="prettyprint">
@@ -54,7 +54,7 @@ package vegas.util.comparators
 	 * </pre>
 	 * @author eKameleon
  	 */
-	public class StringComparator extends CoreObject implements IComparator, ICloneable, ICopyable
+	public class StringComparator extends CoreObject implements IComparator, Cloneable, ICopyable
 	{
 		
 		/**

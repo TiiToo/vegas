@@ -23,15 +23,15 @@
 
 package vegas.util.comparators
 {
+    import system.Cloneable;
+    
+    import vegas.core.CoreObject;
+    import vegas.core.IComparator;
+    import vegas.core.ICopyable;
+    import vegas.errors.ClassCastError;
+    import vegas.errors.NullPointerError;	
 
-	import vegas.core.CoreObject;
-	import vegas.core.ICloneable;
-	import vegas.core.IComparator;
-	import vegas.core.ICopyable;
-	import vegas.errors.ClassCastError;
-	import vegas.errors.NullPointerError;
-	
-	/**
+    /**
 	 * An IComparator for <code class="prettyprint">Boolean</code> objects that can sort either <code class="prettyprint">true</code> or <code class="prettyprint">false</code> first.
 	 * <p><b>Example :</b></p>
 	 * <pre class="prettyprint">
@@ -43,7 +43,7 @@ package vegas.util.comparators
 	 * </pre>
 	 * @author eKameleon
  	 */
-	public class BooleanComparator extends CoreObject implements IComparator, ICloneable, ICopyable
+	public class BooleanComparator extends CoreObject implements IComparator, Cloneable, ICopyable
 	{
 		
 		/**

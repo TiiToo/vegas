@@ -23,15 +23,16 @@
 
 package pegas.transitions 
 {
-	import vegas.core.CoreObject;
-	import vegas.core.ICloneable;
-	import vegas.core.ICopyable;	
+    import system.Cloneable;
+    
+    import vegas.core.CoreObject;
+    import vegas.core.ICopyable;	
 
-	/**
+    /**
 	 * A basic TweenEntry used in the Tween and TweenLite class.
 	 * @author eKameleon
 	 */
-	public class TweenEntry extends CoreObject implements ICloneable, ICopyable 
+	public class TweenEntry extends CoreObject implements Cloneable, ICopyable 
 	{
 
 		/**

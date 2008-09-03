@@ -23,9 +23,9 @@
 
 package vegas.data
 {
+    import system.Cloneable;
     import system.Serializable;
     
-    import vegas.core.ICloneable;
     import vegas.core.ICopyable;
     import vegas.core.IHashable;
     import vegas.data.iterator.Iterable;    
@@ -38,7 +38,7 @@ package vegas.data
 	 * <p>Whatever the ordering used, the head of the queue is that element which would be removed by a call to remove() or poll().</p>
 	 * @author eKameleon
 	 */
-    public interface Queue extends ICloneable, ICopyable, IHashable, Iterable, Serializable
+    public interface Queue extends Cloneable, ICopyable, IHashable, Iterable, Serializable
     {
     	
 		/**

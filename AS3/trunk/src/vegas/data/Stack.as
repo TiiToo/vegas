@@ -23,9 +23,9 @@
 
 package vegas.data
 {
+    import system.Cloneable;
     import system.Serializable;
     
-    import vegas.core.ICloneable;
     import vegas.core.ICopyable;
     import vegas.data.iterator.Iterable;    
 
@@ -34,7 +34,7 @@ package vegas.data
 	 * <p>Stacks typically, but do not necessarily, order elements in a LIFO (last-in-first-out) manner.</p>
 	 * @author eKameleon
 	 */
-    public interface Stack extends ICloneable, ICopyable, Iterable, Serializable
+    public interface Stack extends Cloneable, ICopyable, Iterable, Serializable
     {
 
 		/**

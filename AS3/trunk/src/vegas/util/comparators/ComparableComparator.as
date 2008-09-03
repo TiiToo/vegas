@@ -23,20 +23,20 @@
 
 package vegas.util.comparators
 {
+    import system.Cloneable;
+    
+    import vegas.core.CoreObject;
+    import vegas.core.IComparable;
+    import vegas.core.IComparator;
+    import vegas.core.ICopyable;
+    import vegas.errors.ClassCastError;
+    import vegas.errors.NullPointerError;	
 
-	import vegas.core.CoreObject;
-	import vegas.core.ICloneable;
-	import vegas.core.IComparable;
-	import vegas.core.IComparator;
-	import vegas.core.ICopyable;
-	import vegas.errors.ClassCastError;
-	import vegas.errors.NullPointerError;
-	
-	/**
+    /**
  	 * A Comparator that compares IComparable objects.
 	 * @author eKameleon
  	 */
-	public class ComparableComparator extends CoreObject implements IComparator, ICloneable, ICopyable
+	public class ComparableComparator extends CoreObject implements IComparator, Cloneable, ICopyable
 	{
 		
 		/**

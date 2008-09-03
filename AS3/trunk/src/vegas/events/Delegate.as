@@ -23,13 +23,14 @@
 
 package vegas.events
 {
-	import flash.events.Event;
-	
-	import vegas.core.CoreObject;
-	import vegas.core.ICloneable;
-	import vegas.core.IRunnable;
-	
-	/**
+    import flash.events.Event;
+    
+    import system.Cloneable;
+    
+    import vegas.core.CoreObject;
+    import vegas.core.IRunnable;	
+
+    /**
 	 * Delegate was originally created by Mike Chambers for Macromedia mx.events package.
 	 * <p>This version is also inspired from <a href='http://www.peterjoel.com/blog/index.php?archive=2004_08_01_archive.xml#109320812208031938'>Peter Hall's EventDelegate</a> implementation and from the Francis bourre framework "<a href="http://osflash.org/pixlib">Pixlib</a>".</p>
 	 * <p>You can instantiate and keep a reference of a Delegate instance.</p>
@@ -39,7 +40,7 @@ package vegas.events
 	 * </p>
  	 * @author eKameleon
 	 */
-	public class Delegate extends CoreObject implements EventListener, ICloneable, IRunnable
+	public class Delegate extends CoreObject implements EventListener, Cloneable, IRunnable
     {
         
 		/**
