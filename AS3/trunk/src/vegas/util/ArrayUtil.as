@@ -89,6 +89,61 @@ package vegas.util
         }
         
         /**
+         * Splices an array (removes an element) and returns either the entire array or the removed element.
+         * <p><b>Example :</b></p>
+         * <pre class="prettyprint">
+         * import vegas.util.ArrayUtil ;
+         * 
+         * var ar:Array = new Array(0, 1, 2, 3, 4, 5, 6, 7, 8, 9);
+         * trace("+ " + ar);
+         * trace( "ArrayUtil.pierce( ar, 1 ) : " + ArrayUtil.pierce( ar, 1 ) ) ;
+         * trace("+ " + ar) ;
+         * }
+         * </pre>
+         * @param ar the array.
+         * @param index the index of the array element to remove from the array.
+         * @param flag a boolean {@code true} to return a new spliced array of false to return the removed element.
+         * @return The newly spliced array or the removed element in function of the flag parameter.
+         */
+        public static function pierce(ar:Array, index:Number, flag:Boolean ):*
+        {
+            var item:* = ar[index] ;
+            ar.splice(index, 1) ;
+            return (flag) ? ar : item ;
+        }
+    
+        /**
+         * Shuffles an array.
+         * <p><b>Example :</b></p>
+         * <pre class="prettyprint">
+         * import vegas.util.ArrayUtil ;
+         * var ar = new Array(0, 1, 2, 3, 4, 5, 6, 7, 8, 9);
+         * trace("+ " + ar);
+         * ArrayUtil.shuffle(ar);
+         * trace("+ " + ar) ;
+         * }
+         * </pre>
+         * @return the shuffled array.
+         * @see #pierce method.
+         */
+        public static function shuffle( ar:Array ):Array 
+        {
+            var tmp:Array = [] ;
+            var len:int   = ar.length;
+            var index:int = len - 1 ;
+            for (var i:int = 0; i < len; i++) 
+            {
+                tmp.push( ArrayUtil.pierce( ar, Math.round(Math.random() * index), false) );
+                index-- ;
+            }
+            while(--len > -1) 
+            {
+                ar[len] = tmp[len] ;
+            }
+            return ar ;
+        }        
+        
+        /**
          * Returns a string representing the source code of the array.
          * @return a string representing the source code of the array.
          */

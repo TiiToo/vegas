@@ -23,17 +23,18 @@
 
 package pegas.transitions 
 {
-	import flash.events.IEventDispatcher;
-	import flash.events.TimerEvent;
-	import flash.utils.getTimer;
-	
-	import andromeda.process.Action;	
+    import flash.events.IEventDispatcher;
+    import flash.events.TimerEvent;
+    import flash.utils.getTimer;
+    
+    import andromeda.process.Action;
+    import andromeda.process.IStoppable;    
 
-	/**
+    /**
 	 * The Motion class.
 	 * @author eKameleon
  	 */
-	public class Motion extends Action 
+	public class Motion extends Action implements IStoppable
 	{
 
 		/**
@@ -257,11 +258,12 @@ package pegas.transitions
 		/**
 		 * Stops the tweened animation at its current position.
 		 */
-		public function stop():void 
+		public function stop( ...args:Array ):*
 		{
-			stopInterval() ;
-			_stopping = true ;
+            stopInterval() ;
+            _stopping = true ;
 			notifyStopped() ;
+			return true ;
 		}
 		
 		/**
@@ -281,12 +283,34 @@ package pegas.transitions
 			//
 		}
 	
+	    /**
+         * @private
+         */
 		protected var _duration:Number ;
+		
+		/**
+         * @private
+         */
 		protected var _time:Number ;
 		
+		/**
+		 * @private
+		 */
 		private   var _fps:Number ;
+		
+		/**
+         * @private
+         */
 		private   var _startTime:Number ;
+		
+		/**
+         * @private
+         */
 		private   var _stopping:Boolean ;
+		
+		/**
+         * @private
+         */
 		private   var _timer:ITimer ;
 	
 		/**
