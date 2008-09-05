@@ -9,6 +9,11 @@
         </source-path>
         
         <namespaces>
+        
+            <namespace>
+                <uri>http://www.ekameleon.net/system/2009</uri>
+                <manifest>./manifests/system_manifest.xml</manifest>
+            </namespace>        
             
             <namespace>
                 <uri>http://www.ekameleon.net/vegas/2009</uri>
@@ -21,6 +26,7 @@
     
     <include-namespaces>
 
+        <uri>http://www.ekameleon.net/system/2009</uri>
         <uri>http://www.ekameleon.net/vegas/2009</uri>
 
     </include-namespaces>

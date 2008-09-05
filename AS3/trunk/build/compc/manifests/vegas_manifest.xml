@@ -12,7 +12,6 @@
 	
     <component id="vegas.core:CoreObject"   class="vegas.core.CoreObject"   />
 	<component id="vegas.core:HashCode"     class="vegas.core.HashCode"     />
-	<component id="vegas.core:ICloneable"   class="vegas.core.ICloneable"   />
 	<component id="vegas.core:IComparable"  class="vegas.core.IComparable"  /> 
 	<component id="vegas.core:IComparator"  class="vegas.core.IComparator"  />
 	<component id="vegas.core:IComparer"    class="vegas.core.IComparer"    />

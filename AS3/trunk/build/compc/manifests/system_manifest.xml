@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<componentPackage>
+        
+    <!-- system -->
+
+    <component id="system:about"              class="system.about"              />
+    <component id="system:Arrays"             class="system.Arrays"             />
+    <component id="system:Cloneable"          class="system.Cloneable"          />
+    <component id="system:config"             class="system.config"             />
+    <component id="system:Configurator"       class="system.Configurator"       />
+    <component id="system:console"            class="system.console"            />
+    <component id="system:eden"               class="system.eden"               />
+    <component id="system:Enum"               class="system.Enum"               />
+    <component id="system:Environment"        class="system.Environment"        />
+    <component id="system:Equatable"          class="system.Equatable"          />
+    <component id="system:Host"               class="system.Host"               />
+    <component id="system:HostID"             class="system.HostID"             />
+    <component id="system:info"               class="system.info"               />
+    <component id="system:OperatingSystem"    class="system.OperatingSystem"    />
+    <component id="system:PlatformID"         class="system.PlatformID"         />
+    <component id="system:Reflection"         class="system.Reflection"         />
+    <component id="system:Resource"           class="system.Resource"           />
+    <component id="system:ResourceString"     class="system.ResourceString"     />
+    <component id="system:ResourceString"     class="system.ResourceString"     />
+    <component id="system:Serializable"       class="system.Serializable"       />
+    <component id="system:Serializer"         class="system.Serializer"         />
+    <component id="system:Strings"            class="system.Strings"            />
+    <component id="system:SystemConfigurator" class="system.SystemConfigurator" />
+    <component id="system:Version"            class="system.Version"            />
+    
+    <!-- system.cli -->
+    
+    <component id="system.cli:ArgumentsParser" class="system.cli.ArgumentsParser" />
+    <component id="system.cli:SwitchStatus"    class="system.cli.SwitchStatus"    />
+    
+    <!-- system.diagnostics -->
+    
+    <component id="system.diagnostics:TraceConsole"   class="system.diagnostics.TraceConsole"   />
+    <component id="system.diagnostics:VirtualMachine" class="system.diagnostics.VirtualMachine" />
+
+    <!-- system.evaluators -->
+
+    <component id="system.evaluators:DateEvaluator"     class="system.evaluators.DateEvaluator"     />
+    <component id="system.evaluators:EdenEvaluator"     class="system.evaluators.EdenEvaluator"     />
+    <component id="system.evaluators:Evaluable"         class="system.evaluators.Evaluable"         />
+    <component id="system.evaluators:MathEvaluator"     class="system.evaluators.MathEvaluator"     />
+    <component id="system.evaluators:MultiEvaluator"    class="system.evaluators.MultiEvaluator"    />
+    <component id="system.evaluators:PropertyEvaluator" class="system.evaluators.PropertyEvaluator" />
+    
+    <!-- system.formatters -->    
+    
+    <component id="system.formatters:DateFormatter" class="system.formatters.DateFormatter" />
+    <component id="system.formatters:Formattable"   class="system.formatters.Formattable"   />    
+        
+    <!-- system.io -->  
+    
+    <component id="system.io:Readable"  class="system.io.Readable"  />
+    <component id="system.io:Writeable" class="system.io.Writeable" />
+    
+    <!-- system.network -->  
+        
+    <!-- system.numeric -->
+    
+    <component id="system.numeric:Mathematics" class="system.numeric.Mathematics" />
+    <component id="system.numeric:Range"       class="system.numeric.Range"       />
+    
+    <!-- system.reflection -->    
+    
+    <component id="system.reflection:_ClassInfo"             class="system.reflection._ClassInfo"             />      
+    <component id="system.reflection:_ConstructorInfo"       class="system.reflection._ConstructorInfo"       />
+    <component id="system.reflection:_TypeInfo"              class="system.reflection._TypeInfo"              />
+    <component id="system.reflection:AccessorInfo"           class="system.reflection.AccessorInfo"           />
+    <component id="system.reflection:AccessorType"           class="system.reflection.AccessorType"           />
+    <component id="system.reflection:ArgumentInfo"           class="system.reflection.ArgumentInfo"           />
+    <component id="system.reflection:ClassInfo"              class="system.reflection.ClassInfo"              />
+    <component id="system.reflection:config"                 class="system.reflection.config"                 />
+    <component id="system.reflection:ConstructorInfo"        class="system.reflection.ConstructorInfo"        />
+    <component id="system.reflection:FilterType"             class="system.reflection.FilterType"             />
+    <component id="system.reflection:InterfaceInfo"          class="system.reflection.InterfaceInfo"          />
+    <component id="system.reflection:MemberInfo"             class="system.reflection.MemberInfo"             />
+    <component id="system.reflection:MemberType"             class="system.reflection.MemberType"             />
+    <component id="system.reflection:MethodInfo"             class="system.reflection.MethodInfo"             />
+    <component id="system.reflection:ReflectionConfigurator" class="system.reflection.ReflectionConfigurator" />
+    <component id="system.reflection:TypeInfo"               class="system.reflection.TypeInfo"               />
+    
+    <!-- system.resources -->
+    
+    <!-- system.serializers.eden -->
+    
+    <component id="system.serializers.eden:BuiltinSerializer" class="system.serializers.eden.BuiltinSerializer" />    
+    <component id="system.serializers.eden:config"            class="system.serializers.eden.config"            />
+    <component id="system.serializers.eden:debug"             class="system.serializers.eden.debug"             />
+    <component id="system.serializers.eden:ECMAScript"        class="system.serializers.eden.ECMAScript"        />
+    <component id="system.serializers.eden:EdenConfigurator"  class="system.serializers.eden.EdenConfigurator"  />
+    <component id="system.serializers.eden:EdenSerializer"    class="system.serializers.eden.EdenSerializer"    />
+    <component id="system.serializers.eden:GenericParser"     class="system.serializers.eden.GenericParser"     />
+    <component id="system.serializers.eden:info"              class="system.serializers.eden.info"              />
+    <component id="system.serializers.eden:release"           class="system.serializers.eden.release"           />
+    <component id="system.serializers.eden:strings"           class="system.serializers.eden.strings"           />    
+    
+    <!-- system.terminals -->
+    
+    <component id="system.terminals:Console"            class="system.terminals.Console"            />
+    <component id="system.terminals:InteractiveConsole" class="system.terminals.InteractiveConsole" />
+    <component id="system.terminals:VirtualConsole"     class="system.terminals.VirtualConsole"     />
+    
+    <!-- system.text.html -->
+
+    <component id="system.text.html:Entities" class="system.text.html.Entities" />
+    <component id="system.text.html:Entity"   class="system.text.html.Entity"   />
+    <component id="system.text.html:HTML"     class="system.text.html.HTML"     />
+
+    <!-- system.text.prettifier -->
+    
+    <component id="system.text.prettifier:Keywords"      class="system.text.prettifier.Keywords"      />    
+    <component id="system.text.prettifier:Prettify"      class="system.text.prettifier.Prettify"      />
+    <component id="system.text.prettifier:PrettifyToken" class="system.text.prettifier.PrettifyToken" />
+    
+</componentPackage>
