@@ -14,15 +14,8 @@
     <component id="system:Enum"               class="system.Enum"               />
     <component id="system:Environment"        class="system.Environment"        />
     <component id="system:Equatable"          class="system.Equatable"          />
-    <component id="system:Host"               class="system.Host"               />
-    <component id="system:HostID"             class="system.HostID"             />
     <component id="system:info"               class="system.info"               />
-    <component id="system:OperatingSystem"    class="system.OperatingSystem"    />
-    <component id="system:PlatformID"         class="system.PlatformID"         />
     <component id="system:Reflection"         class="system.Reflection"         />
-    <component id="system:Resource"           class="system.Resource"           />
-    <component id="system:ResourceString"     class="system.ResourceString"     />
-    <component id="system:ResourceString"     class="system.ResourceString"     />
     <component id="system:Serializable"       class="system.Serializable"       />
     <component id="system:Serializer"         class="system.Serializer"         />
     <component id="system:Strings"            class="system.Strings"            />
@@ -52,6 +45,13 @@
     
     <component id="system.formatters:DateFormatter" class="system.formatters.DateFormatter" />
     <component id="system.formatters:Formattable"   class="system.formatters.Formattable"   />    
+    
+    <!-- system.hosts -->    
+    
+    <component id="system.hosts:Host"            class="system.hosts.Host"            />
+    <component id="system.hosts:HostID"          class="system.hosts.HostID"          />    
+    <component id="system.hosts:OperatingSystem" class="system.hosts.OperatingSystem" />
+    <component id="system.hosts:PlatformID"      class="system.hosts.PlatformID"      />
         
     <!-- system.io -->  
     
@@ -86,6 +86,9 @@
     
     <!-- system.resources -->
     
+    <component id="system.resources:Resource"       class="system.resources.Resource"           />
+    <component id="system.resources:ResourceString" class="system.resources.ResourceString"     />    
+    
     <!-- system.serializers.eden -->
     
     <component id="system.serializers.eden:BuiltinSerializer" class="system.serializers.eden.BuiltinSerializer" />    
@@ -94,7 +97,6 @@
     <component id="system.serializers.eden:ECMAScript"        class="system.serializers.eden.ECMAScript"        />
     <component id="system.serializers.eden:EdenConfigurator"  class="system.serializers.eden.EdenConfigurator"  />
     <component id="system.serializers.eden:EdenSerializer"    class="system.serializers.eden.EdenSerializer"    />
-    <component id="system.serializers.eden:GenericParser"     class="system.serializers.eden.GenericParser"     />
     <component id="system.serializers.eden:info"              class="system.serializers.eden.info"              />
     <component id="system.serializers.eden:release"           class="system.serializers.eden.release"           />
     <component id="system.serializers.eden:strings"           class="system.serializers.eden.strings"           />    
@@ -110,6 +112,10 @@
     <component id="system.text.html:Entities" class="system.text.html.Entities" />
     <component id="system.text.html:Entity"   class="system.text.html.Entity"   />
     <component id="system.text.html:HTML"     class="system.text.html.HTML"     />
+
+    <!-- system.text.parser -->
+
+    <component id="system.text.parser:GenericParser" class="system.text.parser.GenericParser" />
 
     <!-- system.text.prettifier -->
     
