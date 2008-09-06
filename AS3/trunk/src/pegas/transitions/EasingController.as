@@ -23,11 +23,10 @@
 
 package pegas.transitions 
 {
-	import vegas.core.CoreObject;
-	import vegas.data.Map;
-	import vegas.data.map.HashMap;	
+    import vegas.data.Map;
+    import vegas.data.map.HashMap;	
 
-	/**
+    /**
 	 * The EasingController register easing methods. 
 	 * This controller can be use with an external configuration or a dynamic easing engine.
 	 * This controller centralize all easing method in the application.
@@ -49,7 +48,7 @@ package pegas.transitions
 	 * </pre>
 	 * @author eKameleon
  	 */
-	public class EasingController extends CoreObject 
+	public class EasingController 
 	{
 
 		/**

@@ -1,13 +1,13 @@
 ﻿
 package pegas.transitions 
 {
-	import flash.events.Event;
-	import flash.events.TimerEvent;
-	import flash.utils.getTimer;
-	
-	import andromeda.process.SimpleAction;	
+    import flash.events.Event;
+    import flash.events.TimerEvent;
+    import flash.utils.getTimer;
+    
+    import andromeda.process.SimpleAction;    
 
-	/**
+    /**
 	 * Constructs a <code class="prettyprint">new FrameTimer</code> object with the specified delay and repeat state. 
 	 * This timer use the frames by second of the animation. 
 	 * The timer does not start automatically, you much call the <code class="prettyprint">start()</code> method to start it.
@@ -63,15 +63,7 @@ package pegas.transitions
 			{
 				throw new Error( this + " the delay specified is negative or not a finite number." ) ;
 			} ;
-			if ( running )
-			{
-				this.stop() ;
-			}
 			_delay = (time > 0) ? time : 0 ;
-			if ( running )
-			{
-				this.start() ;	
-			}
 		}
 		
 		/**
@@ -91,21 +83,20 @@ package pegas.transitions
 			_repeatCount = count ;
 		}
 
-		/**
-	     * Returns <code class="prettyprint">true</code> if the process is in progress.
-	     * @return <code class="prettyprint">true</code> if the process is in progress.
-	     */
-		public override function getRunning():Boolean 
-		{
-			return _engine.getRunning() ;
-		}
-		
+        /**
+         * (read-only) Indicates <code class="prettyprint">true</code> if the process is in progress.
+         */
+        public override function get running():Boolean 
+        {
+            return _engine.running ;    
+        }
+        		
 		/**
 		 * Stops the timer, if it is running, and sets the currentCount property back to 0, like the reset button of a stopwatch.
 		 */
 		public function reset():void
 		{
-			if ( running )
+			if ( _engine.running )
 			{
 				this.stop() ;
 			}
@@ -119,8 +110,7 @@ package pegas.transitions
 		{
 			start() ;
 		}
-
-		
+        		
 		/**
 		 * Starts the timer, if it is not already running.
 		 */
@@ -167,33 +157,25 @@ package pegas.transitions
 		 */
 		protected var _repeatCount:int ;
 		
-		
 		/**
 		 * Invoked when the frame engine is in progress.
 		 */		
 		protected function enterFrame( e:Event ):void
 		{
-			
-			var step:Number = getTimer() - _lastTime ;
-			_lastTime = getTimer() ;
-			
-			_next     += step ;
-			
+			_next     += getTimer() - _lastTime ;
+			_lastTime  = getTimer() ;
 			if ( _next >= _delay ) 
 			{
 				_count ++ ;
 				dispatchEvent( new TimerEvent( TimerEvent.TIMER ) ) ;
 				_next = 0 ;
 			}
-			
-			if ( _repeatCount != 0 && _count >= _repeatCount) 
+			if ( _repeatCount != 0 && _count >= _repeatCount ) 
 			{
 				dispatchEvent( new TimerEvent( TimerEvent.TIMER_COMPLETE ) ) ;
 				this.reset() ;
 			}
-		
 		}
-
 		
 	}
 }

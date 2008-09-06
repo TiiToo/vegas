@@ -23,31 +23,16 @@
 
 package pegas.transitions 
 {
-	
-	import pegas.transitions.Motion;
-	
-	/**
+    import pegas.transitions.Motion;    	
+
+    /**
 	 * The Tween class lets you use ActionScript to move, resize, and fade movie clips easily on the Stage by specifying a property of the target movie clip to be tween animated over a number of frames or seconds.
 	 * The Tween class also lets you specify a variety of easing methods.
 	 * <p>Easing refers to gradual acceleration or deceleration during an animation, which helps your animations appear more realistic.</p>
 	 * <p><b>Example :</b></p>
 	 * <pre class="prettyprint">
-	 * import pegas.process.ActionEvent ;
 	 * import pegas.transitions.Tween ;
-	 * import pegas.transitions.easing.Elastic ;
-	 * 
-	 * import vegas.events.Delegate ;
-	 * import vegas.events.EventListener ;
-	 * 
-	 * var onDebug:Function = function(ev:ActionEvent):void
-	 * {
- 	 *     trace ("debug : " + ev.getType() + " : " + ev.getTarget() ) ;
- 	 * }
- 	 * 
-	 * var debug:EventListener = new Delegate(this, onDebug) ;
-	 * 
 	 * var tw:Tween = new Tween (mc, "_x", Elastic.easeOut, mc._x, 400, 2, true, true) ;
-	 * tw.addGlobalEventListener( debug ) ;
 	 * </pre>
 	 * @author eKameleon
 	 */
@@ -64,12 +49,15 @@ package pegas.transitions
 	 	 */
 		public function Tween( ...arguments:Array )
 		{
+			
+			_model = new TweenModel() ;
+			
 			if (arguments[0] != null) 
 			{
 				target = arguments[0] ;
 			}
 			
-			var a:Boolean = false ;
+			var auto:Boolean ;
 		
 			var l:uint = arguments.length ;
 			if ( l > 1 )
@@ -79,7 +67,7 @@ package pegas.transitions
 					model      = arguments[1] ;
 					duration   = arguments[2] > 0 ? arguments[2] : null ;
 					useSeconds = arguments[3] == true ;
-					a          = arguments[4] == true ;
+					auto       = arguments[4] == true ;
 					setGlobal( arguments[5] || null , arguments[6] || null ) ;				
 				}
 				else
@@ -87,11 +75,11 @@ package pegas.transitions
 					insert( new TweenEntry( arguments[1] , arguments[2], arguments[3], arguments[4]) )  ;
 					duration   = ( arguments[5] > 0 ) ? arguments[5] : null ;
 					useSeconds = arguments[6] == true ;
-					a          = arguments[7] == true ; // auto start
+					auto       = arguments[7] == true ; // auto start
 				}
 			}
 				
-			if ( a == true ) 
+			if ( auto ) 
 			{
 				run() ;
 			}
@@ -100,10 +88,11 @@ package pegas.transitions
 		
 		/**
 		 * (read-write) Determinates the model of this Tween.
+		 * @see pegas.transitions.TweenModel
 		 */
-		public function get model():TweenModel 
+		public function get model():* 
 		{
-			return getTweenModel() ;
+			return _model ;
 		}
 		
 		/**
@@ -111,7 +100,18 @@ package pegas.transitions
 		 */
 		public function set model( o:* ):void 
 		{
-			setTweenModel(o) ;
+            if ( o is TweenModel ) 
+            {
+                _model = o as TweenModel ;
+            }
+            else if ( o is Array ) 
+            {
+                _model = new TweenModel( null , o as Array ) ;
+            }
+            else 
+            {
+                _model = new TweenModel() ;
+            }
 		}
 
 		/**
@@ -146,26 +146,13 @@ package pegas.transitions
 			}
 			return t ;
 		}
-
-		/**
-		 * Returns the TweenModel reference of this Tween object.
-		 * @return the TweenModel model reference of this Tween object.
-		 */
-		public function getTweenModel():TweenModel
-		{
-			return _model ;
-		}
-	
+        	
 		/**
 		 * Inserts a TweenEnry in the model of the Tween object.
 		 * @param entry a TweenEntry reference.
 		 */
 		public function insert( entry:TweenEntry ):void 
 		{
-			if ( _model == null )
-			{
-				setTweenModel() ;
-			}
 			_model.insert( entry ) ;
 		}
 
@@ -188,19 +175,17 @@ package pegas.transitions
 		 * Remove a TweenEntry in the Tween Object.
 		 * @param entry The entry to remove in this Tween.
 		 */
-		public function remove( entry:TweenEntry ):void 
+		public function remove( entry:TweenEntry ):Boolean 
 		{
-			if (running) stop() ;
-			_model.remove(entry) ;
+			return _model.remove( entry ) ;
 		}	
 	
 		/**
 		 * Remove a property in the Tween Object.
 		 */
-		public function removeProperty(prop:String):Boolean 
+		public function removeProperty( prop:String ):Boolean 
 		{
-			if (running) stop() ;
-			return _model.remove(prop) ;
+			return _model.remove( prop ) ;
 		}
 
 		/**
@@ -212,14 +197,9 @@ package pegas.transitions
 		 */
 		public function setTweenEntry( prop:String, easing:Function , begin:Number , finish:Number ):void
 		{
-			if ( _model == null )
-			{
-				setTweenModel() ;
-			}
 			if ( _model.contains( prop ) )
 			{
 				var entry:TweenEntry = _model.get(prop) ;
-				entry.prop   = prop   ;
 				entry.easing = easing ; 	
 				entry.begin  = begin  ;
 				entry.finish = finish ;
@@ -229,26 +209,7 @@ package pegas.transitions
 				insertProperty.apply(this, arguments) ;	
 			}
 		}
-
-		/**
-		 * Sets the model of this Tween object.
-		 */
-		public function setTweenModel( o:* = null ):void 
-		{
-			if ( o is TweenModel ) 
-			{
-				_model = o as TweenModel ;
-			}
-			else if ( o is Array ) 
-			{
-				_model = new TweenModel( null , o as Array ) ;
-			}
-			else 
-			{
-				_model = new TweenModel() ;
-			}
-		}
-	
+        
 		/**
 		 * Returns the numbers of elements(properties) in the model of this Tween.
 		 * @return the numbers of elements(properties) in the model of this Tween.
@@ -263,16 +224,16 @@ package pegas.transitions
 		 */
 		public override function update():void 
 		{
-			if ( _model == null )
+			if ( _model == null || _model.size() == 0 )
 			{
 				return ;
 			}
-			var a:Array  = _model.toArray() ;
-			var l:int = a.length ;
+			var a:Array = _model.toArray() ;
+			var l:int   = a.length ;
 			while(--l > -1) 
 			{
 				var e:TweenEntry = a[l] ;
-				target[e.prop] = e.setPosition( e.getPosition(_time, _duration) ) ;
+				target[ e.prop ] = e.setPosition( e.getPosition( _time , _duration ) ) ;
 			}
 			notifyChanged() ;
 		}

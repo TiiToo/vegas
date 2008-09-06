@@ -23,31 +23,28 @@
 
 package pegas.transitions 
 {
-    import system.Cloneable;
-    
-    import vegas.core.CoreObject;
-    import vegas.core.ICopyable;	
+    import system.Cloneable;    
 
     /**
 	 * A basic TweenEntry used in the Tween and TweenLite class.
 	 * @author eKameleon
 	 */
-	public class TweenEntry extends CoreObject implements Cloneable, ICopyable 
+	public class TweenEntry implements Cloneable 
 	{
 
 		/**
 		 * Creates a new TweenEntry instance.
-	 	 * @param p the property string value.
-		 * @param e the easing function of the tween entry.
-		 * @param b the begin value.
-		 * @param f the finish value.
+	 	 * @param prop the property string value.
+		 * @param easing the easing function of the tween entry.
+		 * @param begin the begin value.
+		 * @param finish the finish value.
 	 	 */	
-		public function TweenEntry( p:String=null , e:Function=null , b:Number=NaN , f:Number=NaN )
+		public function TweenEntry( prop:String=null , easing:Function=null , begin:Number=NaN , finish:Number=NaN )
 		{
-			begin  = b ;
-			easing = e ;
-			finish = f ;
-			prop   = p ;
+			this.begin  = begin  ;
+			this.easing = easing ;
+			this.finish = finish ;
+			this.prop   = prop   ;
 		}
 		
 		/**
@@ -93,7 +90,8 @@ package pegas.transitions
 		public function set finish(n:Number):void 
 		{
 			_finish = n ;
-			setChange(n) ;
+            var c:Number = n - begin ;
+            _change = isNaN(c) ? 0 : c ;
 		}
 
 		/**
@@ -114,23 +112,14 @@ package pegas.transitions
 		{
 			return new TweenEntry(prop, easing, begin, finish);
 		}
-
-		/**
-		 * Returns a deep copy of this entry.
-		 * @return a deep copy of this entry.
-		 */
-		public function copy():*
-		{
-			return new TweenEntry (prop, easing, begin, finish);
-		}
-
+        
 		/**
 		 * Returns the current position of this entry with the specified time value and with the specified duration.
 	 	 * @param t The time position of the motion.
 		 * @param d The duration value of the motion.
 		 * @return the current position of this entry with the specified time value and with the specified duration.
 		 */
-		public function getPosition(t:Number , d:Number):Number 
+		public function getPosition( t:Number , d:Number ):Number 
 		{
 			return _easing( t, begin, _change , d ) ;
 		}
@@ -146,10 +135,10 @@ package pegas.transitions
 		/**
 		 * Sets the position of the tween entry with the specified value.
 		 */
-		public function setPosition(value:Number):Number 
+		public function setPosition( value:Number ):Number 
 		{
-			prevPos = _pos ;
-			_pos = value ;
+			prevPos = _pos  ;
+			_pos    = value ;
 			return value ;
 		}
 			
@@ -157,7 +146,7 @@ package pegas.transitions
 	 	 * Returns the String representation of the object.
 	 	 * @return the String representation of the object.
 	 	 */
-		public override function toString():String 
+		public function toString():String 
 		{
 			return "[TweenEntry" + (prop ? (":" + prop) : "") + "]" ;
 		}
@@ -165,7 +154,7 @@ package pegas.transitions
 		/**
 		 * @private
 		 */
-		private var _change:Number ;
+		private var _change:Number = 0 ;
 		
 		/**
 		 * @private
@@ -182,15 +171,6 @@ package pegas.transitions
 		 */
 		private var _pos:Number ;
 	
-		/**
-		 * Sets the new change value of this entry.
-	 	 */
-		protected function setChange(n:Number):void 
-		{
-			var c:Number = n - begin ;
-			_change = isNaN(c) ? 0 : c ;
-		}
-
 	}
 
 }

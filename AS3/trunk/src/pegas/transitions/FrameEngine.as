@@ -48,16 +48,7 @@ package pegas.transitions
     		setGlobal( bGlobal , sChannel ) ;
     		_shape = new Shape() ;
 		}
-
-		/**
-		 * Returns the event name use in the notifyStarted method.
-		 * @return the event name use in the notifyStarted method.
-		 */
-		public function getEventTypeENTER_FRAME():String
-		{
-			return _sTypeEnterFrame ;
-		}
-
+        
 		/**
 		 * Returns the singleton reference of the class.
 		 * @return the singleton reference of the class.
@@ -82,15 +73,7 @@ package pegas.transitions
 				_instance = null;
 			}
 		}		
-
-		/**
-		 * Sets the event name use in the notifyStarted method.
-		 */
-		public function setEventTypeENTER_FRAME( type:String=null ):void
-		{
-			_sTypeEnterFrame = type || Event.ENTER_FRAME ;
-		}
-
+        
 		/**
 		 * Start the process.
 		 */
@@ -130,16 +113,11 @@ package pegas.transitions
 		private var _shape:Shape ;
 		
 		/**
-		 * @private
-		 */
-		private var _sTypeEnterFrame:String = Event.ENTER_FRAME ;
-
-		/**
 		 * Invoked during the enterframe propagation.
 		 */
 		private function _enterFrame( e:Event ):void
 		{
-			dispatchEvent( new BasicEvent( _sTypeEnterFrame , this ) ) ;
+			dispatchEvent( new BasicEvent( Event.ENTER_FRAME , this ) ) ;
 		}
 		
 	}

@@ -35,12 +35,10 @@ package pegas.transitions
 	 * import pegas.transitions.TweenLite ;
 	 * import pegas.transitions.easing.Back ;
 	 * 
-	 * var onDebug:Function = function( ev:ActionEvent ):void
+	 * var debug:Function = function( ev:ActionEvent ):void
 	 * {
 	 *     trace (":: debug -> " + ev.type + " : " + ev.target ) ;
 	 * }
-	 * 
-	 * var debug:EventListener = new Delegate(this, onDebug) ;
 	 * 
 	 * var tw:TweenLite = new TweenLite (mc, "x", Back.easeOut, mc.x, 400, 2, true, true) ;
 	 * tw.looping = true ;
@@ -180,7 +178,7 @@ package pegas.transitions
 		 */
 		public override function update():void 
 		{
-			target[_entry.prop] = _entry.setPosition( _entry.getPosition(_time, _duration) ) ;
+			target[ _entry.prop ] = _entry.setPosition( _entry.getPosition( _time, _duration ) ) ;
 			notifyChanged() ;
 		}
 		
