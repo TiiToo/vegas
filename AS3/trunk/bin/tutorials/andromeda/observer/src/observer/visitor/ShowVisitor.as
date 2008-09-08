@@ -1,16 +1,14 @@
 ﻿
 package observer.visitor
 {
-	
-	import andromeda.util.visitor.IVisitable;
-	import andromeda.util.visitor.IVisitor;
-	
-	import observer.display.PictureDisplay;
-	
-	import vegas.core.CoreObject;
-	import vegas.errors.IllegalArgumentError;    
+    import andromeda.util.visitor.IVisitable;
+    import andromeda.util.visitor.IVisitor;
+    
+    import observer.display.PictureDisplay;
+    
+    import vegas.core.CoreObject;	
 
-	public class ShowVisitor extends CoreObject implements IVisitor
+    public class ShowVisitor extends CoreObject implements IVisitor
     {
         
         /**
@@ -34,7 +32,7 @@ package observer.visitor
             }
             else
             {
-                throw new IllegalArgumentError(this + " 'visit' method failed, the argument of this method must be a PictureDisplay instance.") ;
+                throw new ArgumentError(this + " 'visit' method failed, the argument of this method must be a PictureDisplay instance.") ;
             }
         }
         

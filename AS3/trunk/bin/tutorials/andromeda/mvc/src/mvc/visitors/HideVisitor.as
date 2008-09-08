@@ -6,8 +6,7 @@ package mvc.visitors
     
     import mvc.display.PictureDisplay;
     
-    import vegas.core.CoreObject;
-    import vegas.errors.IllegalArgumentError;    
+    import vegas.core.CoreObject;    
 
     public class HideVisitor extends CoreObject implements IVisitor
     {
@@ -33,7 +32,7 @@ package mvc.visitors
             }
             else
             {
-                throw new IllegalArgumentError(this + " 'visit' method failed, the argument of this method must be a PictureDisplay instance.") ;
+                throw new ArgumentError(this + " 'visit' method failed, the argument of this method must be a PictureDisplay instance.") ;
             }
         }
         

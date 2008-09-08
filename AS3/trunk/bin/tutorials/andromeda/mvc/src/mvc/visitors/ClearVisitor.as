@@ -11,8 +11,7 @@ package mvc.visitors
     import mvc.display.PictureDisplay;
     import mvc.display.UIList;
     
-    import vegas.core.CoreObject;
-    import vegas.errors.IllegalArgumentError;    
+    import vegas.core.CoreObject;    
 
     /**
      * This class clear the view of a Picture instance.
@@ -48,7 +47,7 @@ package mvc.visitors
             }
             else
             {
-                throw new IllegalArgumentError(this + " 'visit' method failed, the argument of this method must be a PictureDisplay instance.") ;
+                throw new ArgumentError(this + " 'visit' method failed, the argument of this method must be a PictureDisplay instance.") ;
             }
         }
         
