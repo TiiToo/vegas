@@ -41,7 +41,6 @@ package andromeda.events
             var suite:TestSuite = new TestSuite( "andromeda.events" );
 
             // FIXME suite.addTestSuite( ActionEventTest ) ;
-            // FIXME suite.addTestSuite( ModelChangedEventTest ) ;
             // FIXME suite.addTestSuite( ModelObjectEventTest ) ;
 
             return suite;
