@@ -4,27 +4,24 @@ imports =
     { resource : "library/dll.swf" , type:"assembly" } 
     ,
     { 
-		id         : "assembly_picture" ,
+		id         : "my_picture" ,
 		resource   : "library/picture.jpg" , 
 		type       : "assembly" ,
-		definition : { type : "flash.display.Bitmap" }
+		definition : 
+        { 
+            type       : "flash.display.Bitmap" ,
+            properties : 
+            [
+                { name : "x" , value  : 270 } ,
+                { name : "y" , value  : 75  }
+            ]
+        }
 	} 
 	
 ] ;
 
 objects =
 [
-    {
-        id               : "my_picture" ,
-        type             : "flash.display.Bitmap"  ,
-        factoryReference : "assembly_picture" ,
-        properties       : 
-        [
-			{ name : "x" , value  : 270 } ,
-			{ name : "y" , value  : 75  }
-        ]
-    }    
-    ,
     {
         id         : "my_logo" ,
         type       : "Logo"    , // in the external library : dll.swf
