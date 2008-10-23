@@ -169,6 +169,11 @@ class ConcreteObjectDefinition implements IObjectDefinition
 		return [] ;
 	}
 	
+    public function getDependsOn():Array
+    {
+        return ["d1","d2"] ;
+    }
+    	
 	public function getDestroyMethodName():String
 	{
 		return "destroy" ;
@@ -179,6 +184,11 @@ class ConcreteObjectDefinition implements IObjectDefinition
     {
     	return new ObjectFactoryMethod("factory","name",["arg1","arg2"]) ;
     }	
+	
+    public function getGenerates():Array
+    {
+        return ["g1","g2"] ;
+    }   	
 	
 	public function getInitMethodName():String
 	{
@@ -225,11 +235,16 @@ class ConcreteObjectDefinition implements IObjectDefinition
 		throw new Error("setConstructorArguments") ;
 	}
 	
+    public function setDependsOn(ar:Array):void
+    {
+        throw new Error("setDependsOn") ;
+    }	
+	
 	public function setDestroyMethodName(value:String = null):void
 	{
 		throw new Error("setDestroyMethodName") ;
 	}
-	
+		
 	public function setFactoryMethod(value:ObjectMethod):void
 	{
 		throw new Error("setFactoryMethod") ;
@@ -239,6 +254,11 @@ class ConcreteObjectDefinition implements IObjectDefinition
     {
     	throw new Error("setFactoryStrategy") ;
     }	
+	
+    public function setGenerates(ar:Array):void
+    {
+        throw new Error("setGenerates") ;
+    }   	
 	
 	public function setInitMethodName(value:String = null):void
 	{
@@ -322,5 +342,4 @@ class ConcreteObjectDefinition implements IObjectDefinition
      */
     private var _lock:* ;
     
-  
 }
