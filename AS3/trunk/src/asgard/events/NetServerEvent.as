@@ -22,139 +22,119 @@
 */
 package asgard.events
 {
-    import flash.events.Event;
-    
     import asgard.net.NetServerConnection;
     import asgard.net.NetServerInfo;
     import asgard.net.NetServerStatus;
     
-    import vegas.events.BasicEvent;    
+    import vegas.events.BasicEvent;
+    
+    import flash.events.Event;    
 
     /**
-     * This Event contains the NetServerConnection and status of a connection in the application.
+     * This is invoked in a NetServerConnection object during a connection with a server.
      * @author eKameleon
-     * @version 1.0.0.0
      */    
     public class NetServerEvent extends BasicEvent    
     {
         
         /**
          * Creates a new NetServerEvent instance.
+         * @param type the string type of the instance.
+         * @param connection The NetServerConnection reference of this event.
+         * @param status The NetServerStatus reference of this event.
+         * @param info The information object of the event (NetServerInfo or generic object).
          */
-        public function NetServerEvent(type:String, connection:NetServerConnection=null, status:NetServerStatus=null, info:* = null)
+        public function NetServerEvent( type:String, connection:NetServerConnection=null, status:NetServerStatus=null, info:* = null )
         {
             super(type) ;
-            setConnection(connection) ;
-            setInfo( info ) ;
-            setStatus( status ) ;
+            this.connection = connection ;
+            this.info       = info ;
+            this.status     = status ;
         }
 
         /**
          * The name of the NetServerEvent when the connection is accepted.
          */
-        public static const ACCEPTED:String = "onAccepted" ;
+        public static const ACCEPT:String = "accept" ;
     
         /**
          * The name of the NetServerEvent when the connection is closed.
          */
-         public static const CLOSE:String = "onClosed" ;
-
+        public static const CLOSE:String = "close" ;
+        
         /**
-         * The name of the NetServerEvent when the connection is finished.
+         * The name of the NetServerEvent when the connection is rejected.
          */
-        public static const FINISH:String = "onFinished" ;
-    
+        public static const REJECT:String = "reject" ;
+        
         /**
-         * The name of the NetServerEvent when the connection is started.
+         * Indicates the NetServerConnection target of this event.
          */
-        public static const START:String = "onStarted" ;
-    
+        public function get connection():NetServerConnection
+        {
+            return _connection ;
+        }        
+        
         /**
-         * The name of the NetServerEvent when the connection status is changed.
+         * @private
          */
-        public static const NET_STATUS:String = "onStatus" ;
-
+        public function set connection( connection:NetServerConnection ):void
+        {
+            _connection = connection ;
+        }        
+        
         /**
-         * The name of the NetServerEvent when the connection is out of time.
+         * Indicates the NetServerInfo reference of this event.
          */
-        public static const TIMEOUT:String = "onTimeOut" ;
-
+        public function get info():* 
+        {
+            return _info ;    
+        }        
+        
+        /**
+         * @private
+         */
+        public function set info( info:* ):void 
+        {
+            if (info is NetServerInfo) 
+            {
+                _info = info ;
+            } 
+            else if ( info is Object ) 
+            {
+                _info = new NetServerInfo(info) ;    
+            }     
+            else
+            {
+                _info = null ;
+            }
+        }        
+        
+        /**
+         * Indicates the NetServerStatus reference of this event.
+         */
+        public function get status():NetServerStatus 
+        {
+            return _status ;    
+        }
+            
+        /**
+         * @private
+         */
+        public function set status(status:NetServerStatus):void 
+        {
+            _status = NetServerStatus.validate(status) ? status : null ;
+        }        
+        
         /**
          * Returns a shallow copy of this object.
          * @return a shallow copy of this object.
          */
         public override function clone():Event
         {
-            var e:NetServerEvent = new NetServerEvent( type , getConnection(), getStatus(), getInfo()) ;
-            e.setInfo (e.getInfo()) ;
-            e.setStatus(e.getStatus()) ;
-            return e ;
+            return new NetServerEvent( type , connection, status, info ) ;
         }
-        
-        /**
-         * Returns the NetServerConnection target of this event.
-         * @return the NetServerConnection target of this event.
-         */
-        public function getConnection():NetServerConnection
-        {
-            return _connection ;
-        }
-
-        /**
-         * Returns the NetServerInfo reference of this event.
-         * @return the NetServerInfo reference of this event.
-         */
-        public function getInfo():NetServerInfo 
-        {
-            return _info ;    
-        }
-    
-        /**
-         * Returns the NetServerStatus reference of this event.
-         * @return the NetServerStatus reference of this event.
-         */
-        public function getStatus():NetServerStatus 
-        {
-            return _status ;    
-        }
-
-        /**
-         * Sets the NetServerConnection target of this event.
-         */
-        public function setConnection(connection:NetServerConnection):void
-        {
-            _connection = connection ;
-        }
-
-        /**
-         * Sets the NetServerInfo reference of this event.
-         * @param oInfo the info <code class="prettyprint">Object</code> used to define the NetServerInfo reference.
-         */
-        public function setInfo( oInfo:* ):void 
-        {
-            if (oInfo is NetServerInfo) 
-            {
-                _info = oInfo ;
-            } 
-            else if ( oInfo is Object ) 
-            {
-                _info = new NetServerInfo(oInfo) ;    
-            }     
-            else
-            {
-                _info = null ;
-            }
-        }
-    
-        /**
-         * Sets the NetServerStatus reference of this event.
-         * @param status the NetServerStatus of this event.
-         */
-        public function setStatus(status:NetServerStatus):void 
-        {
-            _status = NetServerStatus.validate(status) ? status : null ;
-        }
-        
+                
         /**
          * @private
          */

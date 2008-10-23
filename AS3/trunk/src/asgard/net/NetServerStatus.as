@@ -26,6 +26,8 @@ package asgard.net
 
     /**
      * Defines the enumeration of all NetServerConnection status codes.
+     * <p>Read the online documentation of the NetStatusEvent class to see the different code : 
+     * <a href="http://livedocs.adobe.com/flash/9.0_fr/ActionScriptLangRefV3/flash/events/NetStatusEvent.html">NetStatusEvent documentation</a></p>
      * @author eKameleon
      */
     public class NetServerStatus extends CoreObject

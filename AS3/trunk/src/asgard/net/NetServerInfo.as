@@ -23,10 +23,12 @@
 
 package asgard.net
 {
-	import vegas.core.CoreObject;
-	import vegas.util.Serializer;	
+    import system.eden;
+    
+    import vegas.core.CoreObject;
+    import vegas.util.Serializer;	
 
-	/**
+    /**
 	 * Defines the information object in a onStatus callback method.
 	 * @author eKameleon
 	 * @version 1.0.0.0
@@ -114,12 +116,15 @@ package asgard.net
 			}
 			if (application != null)
 			{
-				s += ",application:" + application  ;	
+				s += ",application:" + eden.serialize(application)  ;	
 			}
 			s += "]" ;
 			return s ;
 		}
-	
+	   
+	    /**
+	     * @private
+	     */
 		private var _oInfo:Object ;
 		
 	}

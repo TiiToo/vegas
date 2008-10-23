@@ -22,6 +22,17 @@
 */
 package asgard.net
 {
+    import andromeda.events.ActionEvent;
+    import andromeda.process.TimeoutPolicy;
+    
+    import asgard.events.NetServerEvent;
+    
+    import system.Cloneable;
+    
+    import vegas.core.IRunnable;
+    import vegas.events.CoreEventDispatcher;
+    
+    import flash.events.AsyncErrorEvent;
     import flash.events.Event;
     import flash.events.IOErrorEvent;
     import flash.events.NetStatusEvent;
@@ -30,19 +41,58 @@ package asgard.net
     import flash.net.NetConnection;
     import flash.net.ObjectEncoding;
     import flash.net.Responder;
-    import flash.utils.Timer;
-    
-    import andromeda.process.TimeoutPolicy;
-    
-    import asgard.events.NetServerEvent;
-    
-    import system.Cloneable;
-    
-    import vegas.core.IRunnable;
-    import vegas.events.CoreEventDispatcher;    
+    import flash.utils.Timer;    
 
     /**
  	 * This class extends the NetConnection class and defined an implementation based on VEGAS to used Flash Remoting or Flash MediaServer (with AMF protocol).
+ 	 * <p><b>Example :</b></p>
+ 	 * <pre class="prettyprint">
+ 	 * import andromeda.events.ActionEvent ;
+ 	 * import asgard.events.NetServerEvent ;
+ 	 * import asgard.net.NetServerConnection ;
+ 	 * 
+ 	 * import flash.events.Event ;
+ 	 * 
+ 	 * var status:Function = function( e:NetStatusEvent ):void
+ 	 * {
+ 	 *     trace("status " + e ) ;
+ 	 *     var info:Object = e.info ;
+ 	 *     for (var prop:String in info)
+ 	 *     {
+ 	 *         trace(prop + " : " + info[prop]) ;
+ 	 *     }
+ 	 *     trace("----") ;
+ 	 * }
+ 	 * 
+ 	 * var accept:Function = function( e:NetServerEvent ):void
+ 	 * {
+ 	 *     trace("accept " + e.info ) ;
+ 	 *     trace("----") ;
+ 	 * }
+ 	 * 
+ 	 * var reject:Function = function( e:NetServerEvent ):void
+ 	 * {
+ 	 *     trace("reject " + e.info ) ;
+ 	 *     trace("----") ;
+ 	 * }
+ 	 * 
+ 	 * var debug:Function = function( e:Event ):void
+ 	 * {
+ 	 *     trace(">>>> " + e) ;
+ 	 * }
+ 	 * 
+ 	 * var nc:NetServerConnection = new NetServerConnection() ;
+ 	 * 
+ 	 * nc.addEventListener(ActionEvent.FINISH    , debug ) ;
+ 	 * nc.addEventListener(ActionEvent.START     , debug ) ;
+ 	 * nc.addEventListener(NetServerEvent.ACCEPT , accept ) ;
+ 	 * nc.addEventListener(NetServerEvent.REJECT , reject ) ;
+ 	 * nc.addEventListener(NetStatusEvent.NET_STATUS , status ) ;
+ 	 * 
+ 	 * nc.objectEncoding = ObjectEncoding.AMF0 ;
+ 	 * 
+ 	 * nc.connect("rtmp://localhost/yourapplication") ; // creates in your FMS server a little main.asc file
+ 	 * </pre>
 	 * @author eKameleon
 	 */	
 	public class NetServerConnection extends CoreEventDispatcher implements Cloneable, IRunnable
@@ -62,18 +112,17 @@ package asgard.net
 			_nc.client = this ;
 			_nc.objectEncoding = ObjectEncoding.AMF0 ; // DEFAULT AMF0
 			
-			_nc.addEventListener( IOErrorEvent.IO_ERROR             , _onIOError) ;
-			_nc.addEventListener( NetStatusEvent.NET_STATUS         , _onStatus) ;
-			_nc.addEventListener( SecurityErrorEvent.SECURITY_ERROR , _onSecurityError);
+			_nc.addEventListener(AsyncErrorEvent.ASYNC_ERROR        , _onAsyncError ) ;
+			_nc.addEventListener( IOErrorEvent.IO_ERROR             , _onIOError ) ;
+			_nc.addEventListener( NetStatusEvent.NET_STATUS         , _onStatus ) ;
+			_nc.addEventListener( SecurityErrorEvent.SECURITY_ERROR , _onSecurityError );
 			
 			_timer = new Timer( DEFAULT_DELAY, 1 ) ;
 			_timer.addEventListener(TimerEvent.TIMER_COMPLETE , _onTimeOut) ;
 			
-			initEventType() ;
-			
-		}
-
-		/**
+        }
+        
+        /**
 	     * The default internal timeout delay value in milliseconds.
 	     */
 		public static const DEFAULT_DELAY:uint = 8000 ; // 8 secondes
@@ -240,14 +289,14 @@ package asgard.net
 			_timer.stop() ;
 			if (!noEvent) 
 			{
-			    notifyClose() ;
+			    notifyClosed() ;
 			}
 		}
 
 		/**
 		 * Connect the client with this method.
 		 */
-		public function connect( command:String, ... arguments):void
+		public function connect( command:String, ...arguments:Array ):void
 		{
 			notifyStarted() ;
 			_nc.connect.apply( _nc, [command].concat(arguments)) ;
@@ -272,52 +321,7 @@ package asgard.net
 			return _nc ;	
 		}
 		
-    	/**
-    	 * Returns the event name use in the connection is closed.
-    	 * @return the event name use in the connection is closed.
-    	 */
-	    public function getEventTypeCLOSE():String
-	    {
-			return _sTypeClose ;
-		}
-    
-    	/**
-	     * Returns the event name use in the connection is finished.
-	     * @return the event name use in the connection is finished.
-	     */
-	    public function getEventTypeFINISH():String
-	    {
-			return _sTypeFinish ;
-		}
-        	
-    	/**
-    	 * Returns the event name use in the connection is started.
-	     * @return the event name use in the connection is started.
-	     */
-    	public function getEventTypeSTART():String
-    	{
-			return _sTypeStart ;
-		}
-    	
-    	/**
-	     * Returns the event name use in the connection status changed.
-	     * @return the event name use in the connection status changed.
-	     */
-	    public function getEventTypeSTATUS():String
-	    {
-			return _sTypeStatus ;
-		}
-    
         /**
-	     * Returns the event name use in the connection is out of time.
-    	 * @return the event name use in the connection is out of time.
-    	 */
-	    public function getEventTypeTIMEOUT():String
-	    {
-			return _sTypeTimeOut ;
-		}
-
-		/**
 		 * Returns timeout interval duration.
 		 */
 		public function getDelay():uint
@@ -347,26 +351,21 @@ package asgard.net
 		{
 			return _policy ;	
 		}
-		
-    	/**
-    	 * This method is invoked in the constructor of the class to initialize all events.
-    	 * Overrides this method.
-    	 */
-    	public function initEventType():void
-    	{
-			_sTypeClose   = NetServerEvent.CLOSE  ;
-			_sTypeFinish  = NetServerEvent.FINISH ;
-			_sTypeStart   = NetServerEvent.START  ;
-			_sTypeStatus  = NetServerEvent.NET_STATUS ;
-			_sTypeTimeOut = NetServerEvent.TIMEOUT ;			   
-	    }
-
+        
+        /**
+         * Invoked when the connection is accepted.
+         */
+        protected function notifyAccepted( status:NetServerStatus , info:* = null ):void 
+        {
+            dispatchEvent( new NetServerEvent( NetServerEvent.ACCEPT , this , status , info ) ) ; 
+        }        
+        
     	/**
     	 * Invoked when the connection is closed.
     	 */
-		protected function notifyClose():void 
+		protected function notifyClosed():void 
 		{
-			dispatchEvent( new NetServerEvent( _sTypeClose , this ) ) ;	
+			dispatchEvent( new NetServerEvent( NetServerEvent.CLOSE , this ) ) ;	
 		}
 
     	/**
@@ -374,8 +373,16 @@ package asgard.net
     	 */
 		protected function notifyFinished():void 
 		{
-			dispatchEvent( new NetServerEvent( _sTypeFinish , this ) ) ;
+			dispatchEvent( new ActionEvent( ActionEvent.FINISH , this ) ) ;
 		}
+		
+        /**
+         * Invoked when the connection is rejected.
+         */
+        protected function notifyRejected( status:NetServerStatus , info:* = null ):void 
+        {
+            dispatchEvent( new NetServerEvent( NetServerEvent.REJECT , this , status , info ) ) ; 
+        } 		
 
     	/**
     	 * Invoked when the connection is started.
@@ -383,23 +390,17 @@ package asgard.net
 		protected function notifyStarted():void 
 		{
 			_timer.start() ;
-			dispatchEvent( new NetServerEvent( _sTypeStart , this ) ) ;
+			dispatchEvent( new ActionEvent( ActionEvent.START , this ) ) ;
 		}
 		
-    	/**
-    	 * Invoked when the status of the connection is changed.
-    	 */
-		protected function notifyStatus( status:NetServerStatus , info:* = null ):void 
-		{
-			dispatchEvent( new NetServerEvent( _sTypeStatus, this , status , info ) ) ;	
-		}
+
 	
     	/**
 	     * Invoked when the connection is timeout.
 	     */
 	    protected function notifyTimeOut():void
 		{
-			dispatchEvent( new NetServerEvent( _sTypeTimeOut, this ) ) ;
+			dispatchEvent( new ActionEvent( ActionEvent.TIMEOUT, this) ) ;
 		}
 
 	    /**
@@ -419,47 +420,7 @@ package asgard.net
 			if (useSeconds) t = Math.round(t * 1000) ;
 			_timer.delay = t ;
 		}
-
-	    /**
-	     * Sets the event name use in the connection is closed.
-	     */
-	    public function setEventTypeCLOSE( type:String ):void
-	    {
-    		_sTypeClose = type ;
-    	}
-
-    	/**
-	     * Sets the event name use in the connection is finished.
-	     */
-	    public function setEventTypeFINISH( type:String ):void
-	    {
-    		_sTypeFinish = type ;
-    	}
-	
-    	/**
-	     * Sets the event name use in the connection is started.
-	     */
-    	public function setEventTypeSTART( type:String ):void
-	    {
-    		_sTypeStart = type ;
-    	}
-	    
-	    /**
-	     * Sets the event name use in the connection status changed.
-	     */
-	    public function setEventTypeSTATUS( type:String ):void
-	    {
-			_sTypeStatus = type ;
-    	}
         
-	    /**
-	     * Sets the event name use in the connection is out of time.
-	     */
-	    public function setEventTypeTIMEOUT( type:String ):void
-	    {
-			_sTypeTimeOut = type ;
-    	}
-
 		/**
 		 * Use limit timeout interval.
 		 * @see TimeoutPolicy
@@ -508,32 +469,6 @@ package asgard.net
 		 */
 		private var _policy:TimeoutPolicy ;
 
-
-		/**
-		 * @private
-		 */
-		private var _sTypeClose:String ;
-
-		/**
-		 * @private
-		 */
-		private var _sTypeFinish:String ;
-
-		/**
-		 * @private
-		 */
-		private var _sTypeStart:String ;
-
-		/**
-		 * @private
-		 */
-		private var _sTypeStatus:String ;
-
-		/**
-		 * @private
-		 */
-		private var _sTypeTimeOut:String ;
-
 		/**
 		 * @private
 		 */
@@ -543,24 +478,34 @@ package asgard.net
 		 * @private
 		 */
 		private var _uri:String ;
+	    	
+        /**
+         * @private
+         */
+        protected function _onAsyncError(e:AsyncErrorEvent):void
+        {
+            _timer.stop() ;
+            dispatchEvent(e) ;
+            notifyFinished() ;
+        }
 		
         /**
-         * Invoked when a IOErrorEvent is notified.
          * @private
          */
         protected function _onIOError(e:IOErrorEvent):void
         {
             _timer.stop() ;
+            dispatchEvent(e) ;            
             notifyFinished() ;
         }
 
         /**
-         * Invoked when a SecurityErrorEvent is notified.
          * @private
          */
         protected function _onSecurityError(e:SecurityErrorEvent):void
         {
             _timer.stop() ;
+            dispatchEvent(e) ;            
             notifyFinished() ;
         }		
 		
@@ -569,18 +514,28 @@ package asgard.net
          */
         private function _onStatus( e:NetStatusEvent ):void
         {
-            var status:NetServerStatus = NetServerStatus.get( e.info.code ) ;
+        	var info:Object = e.info ;
+        	var code:String = info.code ;
+            var status:NetServerStatus = NetServerStatus.get( code ) ;
             _timer.stop() ;
             dispatchEvent( e ) ;
-            if ( status != null  )
+            switch ( code )
             {
-                notifyStatus( status , e.info) ;
+            	case NetServerStatus.CONNECT_REJECTED.code :
+            	{
+            	   notifyRejected( status , e.info ) ;
+            	   break ;
+            	}
+            	case NetServerStatus.CONNECT_SUCCESS.code :
+                {
+                   notifyAccepted( status , e.info ) ;
+                   break ;
+                }
             }
             notifyFinished() ;
         }		
 		
 		/**
-	     * Invoked when the connection is out of time.
 	     * @private
 	     */
 		protected function _onTimeOut(e:TimerEvent):void 
