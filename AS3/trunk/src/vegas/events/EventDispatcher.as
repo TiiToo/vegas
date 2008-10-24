@@ -22,7 +22,7 @@
 */
 package vegas.events
 {
-    import vegas.data.map.ArrayMap;        						
+    import vegas.data.map.ArrayMap;            						
 
     /**
     * Stores the listeners object an notifies them with the DOM Events level 2/3 of the W3C.
@@ -34,7 +34,7 @@ package vegas.events
     * </p>
     * @author eKameleon
     */
-    public class EventDispatcher extends AbstractEventDispatcher implements IEventDispatcher
+    public class EventDispatcher extends AbstractEventDispatcher
     {
         
         /**
