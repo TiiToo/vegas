@@ -1,15 +1,19 @@
 #labels Documentation
-= VEGAS version 1 Release Candidate 5 =
+= VEGAS version 1 =
 
 Vegas is an OpenSource Framework based on ECMASCript.
 
 ==Description==
+
+<wiki:gadget url="http://www.ohloh.net/projects/vegas/widgets/project_thin_badge.xml" height="36"  border="0" />
 
 You can use the same framework in ActionScript 3,2,1 and SSAS to deploy your RIAs.
 
 With Vegas you can use 5 other libraries based on VEGAS : AndromedAS, PEGAS, ASGard, LunAS, CalistA. 
 
 This 5 libraries are in the SVN repository of VEGAS.
+
+<wiki:gadget url="http://www.ohloh.net/projects/vegas/widgets/project_basic_stats.xml" height="250"  border="0" />
 
 ==Install VEGAS==
 
@@ -150,7 +154,7 @@ ActionScript Template application framework based on VEGAS. This opensource libr
 
 You can use my library in your projects with :
 
- * AS2 : Flash MX2004 or Flash8 or Flash CS3.
+ * AS2 : Flash MX2004 or Flash8 or Flash CS3/4.
  * AS2 : [http://www.mtasc.org/ MTASC]
  * AS2 : [http://www.eclipse.org/ Eclipse] and [http://fdt.powerflasher.com/ FDT]
  * AS3 : [http://www.adobe.com/products/flex/sdk/ Flex SDK].
@@ -163,3 +167,4 @@ You can use my library in your projects with :
 
  * [http://zwetan.com/ Zwetan] : ECMAScript Concepts, all discussions and hosting 
  * [http://powerflasher.com/ PowerFlasher] and [http://fdt.powerflasher.com FDT] OpenSource Licence.
+
