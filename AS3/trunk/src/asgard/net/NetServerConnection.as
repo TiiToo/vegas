@@ -22,6 +22,16 @@
 */
 package asgard.net
 {
+    import flash.events.AsyncErrorEvent;
+    import flash.events.Event;
+    import flash.events.IOErrorEvent;
+    import flash.events.NetStatusEvent;
+    import flash.events.SecurityErrorEvent;
+    import flash.events.TimerEvent;
+    import flash.net.NetConnection;
+    import flash.net.Responder;
+    import flash.utils.Timer;
+    
     import andromeda.events.ActionEvent;
     import andromeda.process.TimeoutPolicy;
     
@@ -30,18 +40,7 @@ package asgard.net
     import system.Cloneable;
     
     import vegas.core.IRunnable;
-    import vegas.events.CoreEventDispatcher;
-    
-    import flash.events.AsyncErrorEvent;
-    import flash.events.Event;
-    import flash.events.IOErrorEvent;
-    import flash.events.NetStatusEvent;
-    import flash.events.SecurityErrorEvent;
-    import flash.events.TimerEvent;
-    import flash.net.NetConnection;
-    import flash.net.ObjectEncoding;
-    import flash.net.Responder;
-    import flash.utils.Timer;    
+    import vegas.events.CoreEventDispatcher;    
 
     /**
  	 * This class extends the NetConnection class and defined an implementation based on VEGAS to used Flash Remoting or Flash MediaServer (with AMF protocol).
@@ -108,9 +107,9 @@ package asgard.net
 			
 			super( bGlobal , sChannel ) ;	
 						
-			_nc = new NetConnection() ;
-			_nc.client = this ;
-			_nc.objectEncoding = ObjectEncoding.AMF0 ; // DEFAULT AMF0
+			_nc                = new NetConnection() ;
+			_nc.client         = this ;
+			// _nc.objectEncoding = ObjectEncoding.AMF0 ; // DEFAULT AMF0
 			
 			_nc.addEventListener(AsyncErrorEvent.ASYNC_ERROR        , _onAsyncError ) ;
 			_nc.addEventListener( IOErrorEvent.IO_ERROR             , _onIOError ) ;
@@ -281,16 +280,17 @@ package asgard.net
 		
 		/**
 		 * Closes the connection that was opened locally or with the server and dispatches the netStatus event with a code property of NetConnection.Connect.Closed. 
-		 * @param noEvent if this argument is <code class="prettyprint">true</code> the event propagation is disabled.
+		 * @return A boolean to indicates if the connection is closed.
 		 */		
-		public function close( noEvent:Boolean = false ):void 
+		public function close( noEvent:Boolean = false ):Boolean 
 		{
-			_nc.close() ;
-			_timer.stop() ;
-			if (!noEvent) 
-			{
-			    notifyClosed() ;
-			}
+            _timer.stop() ;
+            if ( _nc.connected )
+            {
+                _nc.close() ;
+                return true ;
+            }
+            return false ;
 		}
 
 		/**
@@ -301,26 +301,7 @@ package asgard.net
 			notifyStarted() ;
 			_nc.connect.apply( _nc, [command].concat(arguments)) ;
 		}
-
-    	/**
-    	 * Returns and creates a new empty ModelObjectEvent. You can override this method.
-    	 * @param type the type of the event.
-    	 * @return a new empty ModelObjectEvent with the type specified in argument.
-    	 */
-	    public function createNewEvent( type:String ):NetServerEvent
-	    {
-    		return new NetServerEvent( type || null , this ) ;
-    	}
-    	
-    	/**
-    	 * Returns the internal NetConnection reference of this object.
-    	 * @return the internal NetConnection reference of this object.
-    	 */
-		public function getNetConnection():NetConnection
-		{
-			return _nc ;	
-		}
-		
+        		
         /**
 		 * Returns timeout interval duration.
 		 */
@@ -352,22 +333,6 @@ package asgard.net
 			return _policy ;	
 		}
         
-        /**
-         * Invoked when the connection is accepted.
-         */
-        protected function notifyAccepted( status:NetServerStatus , info:* = null ):void 
-        {
-            dispatchEvent( new NetServerEvent( NetServerEvent.ACCEPT , this , status , info ) ) ; 
-        }        
-        
-    	/**
-    	 * Invoked when the connection is closed.
-    	 */
-		protected function notifyClosed():void 
-		{
-			dispatchEvent( new NetServerEvent( NetServerEvent.CLOSE , this ) ) ;	
-		}
-
     	/**
 	     * Invoked when the connection is finished.
     	 */
@@ -377,13 +342,13 @@ package asgard.net
 		}
 		
         /**
-         * Invoked when the connection is rejected.
+         * Invoked when the connection is closed.
          */
-        protected function notifyRejected( status:NetServerStatus , info:* = null ):void 
+        protected function notifyNetServerEvent( type:String , status:NetServerStatus = null , info:* = null ):void 
         {
-            dispatchEvent( new NetServerEvent( NetServerEvent.REJECT , this , status , info ) ) ; 
-        } 		
-
+            dispatchEvent( new NetServerEvent( type , this , status , info ) ) ;    
+        }		
+        
     	/**
     	 * Invoked when the connection is started.
     	 */
@@ -392,9 +357,7 @@ package asgard.net
 			_timer.start() ;
 			dispatchEvent( new ActionEvent( ActionEvent.START , this ) ) ;
 		}
-		
-
-	
+			
     	/**
 	     * Invoked when the connection is timeout.
 	     */
@@ -452,6 +415,15 @@ package asgard.net
     			_nc.call( event, null, context ) ;
 		    }
 	    }
+	    
+        /**
+         * Returns the internal NetConnection reference of this object.
+         * @return the internal NetConnection reference of this object.
+         */
+        public function toNetConnection():NetConnection
+        {
+            return _nc ;    
+        }	    
         		
 		/**
 		 * @private
@@ -521,14 +493,19 @@ package asgard.net
             dispatchEvent( e ) ;
             switch ( code )
             {
+                case NetServerStatus.CONNECT_CLOSED.code :
+                {
+                   notifyNetServerEvent( NetServerEvent.CLOSE, status, e.info ) ;
+                   break ;
+                }            	
             	case NetServerStatus.CONNECT_REJECTED.code :
             	{
-            	   notifyRejected( status , e.info ) ;
+            	   notifyNetServerEvent( NetServerEvent.REJECT, status , e.info ) ;
             	   break ;
             	}
             	case NetServerStatus.CONNECT_SUCCESS.code :
                 {
-                   notifyAccepted( status , e.info ) ;
+                   notifyNetServerEvent( NetServerEvent.ACCEPT, status , e.info ) ;
                    break ;
                 }
             }

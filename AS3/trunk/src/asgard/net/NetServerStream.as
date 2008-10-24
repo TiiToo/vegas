@@ -52,7 +52,7 @@ package asgard.net
 		 */
         public function NetServerStream( connection:* )
         {
-            super( ( connection is NetServerConnection ) ? ( connection as NetServerConnection ).getNetConnection() : connection ) ;
+            super( ( connection is NetServerConnection ) ? ( connection as NetServerConnection ).toNetConnection() : connection ) ;
             this.client = new NetServerStreamClient(this) ;
         }
         
