@@ -22,15 +22,15 @@
 */
 package asgard.media 
 {
-    import flash.events.ActivityEvent;
-    import flash.events.StatusEvent;
-    import flash.media.Camera;
-    
     import andromeda.model.AbstractModel;
     
     import asgard.events.CameraExpertEvent;
     
-    import vegas.data.map.HashMap;    
+    import vegas.data.map.HashMap;
+    
+    import flash.events.ActivityEvent;
+    import flash.events.StatusEvent;
+    import flash.media.Camera;    
 
     /**
      * This expert manage all Camera reference in the application.
@@ -50,53 +50,69 @@ package asgard.media
         {
             
             super( id , bGlobal, sChannel );
-            
-            _camera = Camera.getCamera(name) ;
-            _camera.addEventListener( ActivityEvent.ACTIVITY , _onCameraActivity ) ;
-            _camera.addEventListener( StatusEvent.STATUS     , _onCameraStatus ) ;
-        
+            initEvent() ;
+            setCamera(name) ;
+            setting = DEFAULT_SETTING ;
+            update() ;
         }
-	
+	   
+	    // mode
+	   
 		/**
 	 	 * The default camera mode favor area value.
 		 */
-		public static var DEFAULT_CAMERA_MODE_FAVOR_AREA:Boolean = true ;
+		public static var DEFAULT_MODE_FAVOR_AREA:Boolean = true ;
 			
 		/**
 		 * The default camera mode fps value.
 		 */
-		public static var DEFAULT_CAMERA_MODE_FPS:Number = 24 ;
+		public static var DEFAULT_MODE_FPS:Number = 24 ;
 			
 		/**
 		 * The default camera mode height value.
 		 */
-		public static var DEFAULT_CAMERA_MODE_HEIGHT:Number = 120 ;
+		public static var DEFAULT_MODE_HEIGHT:Number = 120 ;
 		
 		/**
 		 * The default camera mode width value.
 	 	 */
-		public static var DEFAULT_CAMERA_MODE_WIDTH:Number = 160 ;
-			
+		public static var DEFAULT_MODE_WIDTH:Number = 160 ;
+		
 		/**
 		 * The default camera motion level.
 		 */
-		public static var DEFAULT_CAMERA_MOTION_LEVEL:Number = 50 ;
+		public static var DEFAULT_MOTION_LEVEL:Number = 50 ;
 		
 		/**
 		 * The default camera motion timeout.
 		 */
-		public static var DEFAULT_CAMERA_MOTION_TIMEOUT:Number = 2000 ;
+		public static var DEFAULT_MOTION_TIMEOUT:Number = 2000 ;
 		
 		/**
 		 * The default camera quality bandwidth.
 		 */
-		public static var DEFAULT_CAMERA_QUALITY_BANDWIDTH:Number = 16384 ;
-		
+		public static var DEFAULT_QUALITY_BANDWIDTH:Number = 16384 ;
+        		
 		/**
 		 * The default camera quality level.
 		 */
-		public static var DEFAULT_CAMERA_QUALITY_LEVEL:Number = 0 ;        
-     
+		public static var DEFAULT_QUALITY_LEVEL:Number = 0 ;        
+        
+        /**
+         * The default settings of the Camera objects.
+         */
+        public static var DEFAULT_SETTING:CameraVO = new CameraVO
+        ({
+            bandwidth     : DEFAULT_QUALITY_BANDWIDTH , 
+            favorarea     : DEFAULT_MODE_FAVOR_AREA , 
+            fps           : DEFAULT_MODE_FPS, 
+            height        : DEFAULT_MODE_HEIGHT,
+            motionLevel   : DEFAULT_MOTION_LEVEL , 
+            motionTimeout : DEFAULT_MOTION_TIMEOUT ,
+            quality       : DEFAULT_QUALITY_LEVEL , 
+            width         : DEFAULT_MODE_WIDTH
+        }) ;
+        
 		/**
 		 * Returns {@code true} if the CameraExpert contains the specified camera id.
 		 * @return {@code true} if the CameraExpert contains the specified camera id.
@@ -114,6 +130,24 @@ package asgard.media
 		{
 			return _camera ;
 		}
+		
+		/**
+		 * Determinates the settings of the current Camera object with a CameraVO object.
+		 * <p>By default the expert use the DEFAULT_SETTING
+		 */
+		public function get setting():*
+		{
+			return _vo ;
+		}
+		
+		/**
+		 * @private
+		 */
+		public function set setting( value:* ):void
+        {
+            _vo = ( value as CameraVO ) || DEFAULT_SETTING ;
+            update() ;
+        }
 		
 		/**
 		 * Indicates if the expert use verbose debug mode or not.
@@ -208,7 +242,7 @@ package asgard.media
 		{
 			if ( verbose )
 			{
-				getLogger().info( this + " setMotionLevel({0},{1},{2},{3})" , width, height, fps, favorArea ) ;
+				getLogger().info( this + " setMode({0},{1},{2},{3})" , width, height, fps, favorArea ) ;
 			}
 			_camera.setMode( width , height, fps, favorArea ) ;		
 		}
@@ -246,15 +280,34 @@ package asgard.media
 		/**
 		 * Updates the Camera setting.
 		 */
-		public function updateCamera( vo:CameraVO = null ):void
+		public function update():void
 		{
-			if ( vo == null )
-			{
-				vo = new CameraVO() ;	
-			}
-			vo.apply( camera ) ;
-        }		
-
+    		if ( camera != null )
+    		{	
+                _vo.apply( camera ) ;
+    		}
+		}
+        
+        /**
+         * Sets the camera reference of the expert.
+         * @param name The name of the camera to use (default null to use the default system Camera object).
+         */
+        public function setCamera( name:String = null ):void
+        {
+        	if ( _camera != null )
+        	{
+                _camera.removeEventListener( ActivityEvent.ACTIVITY , _onCameraActivity ) ;
+                _camera.removeEventListener( StatusEvent.STATUS     , _onCameraStatus ) ;
+        	}
+            _camera = Camera.getCamera( name ) ;
+            
+            if ( _camera != null )
+            {
+                _camera.addEventListener( ActivityEvent.ACTIVITY , _onCameraActivity ) ;
+                _camera.addEventListener( StatusEvent.STATUS     , _onCameraStatus ) ;
+            }
+        }
+        
 		/**
 		 * @private
 		 */
@@ -278,18 +331,23 @@ package asgard.media
 		/**
 		 * @private
 		 */
-		private var _sTypeUnmuted:String ;        
-     
+		private var _sTypeUnmuted:String ;
+        
+        /**
+         * @private
+         */
+        private var _vo:CameraVO ;
+        
 		/**
 		 * Invoked when the camera starts or stops detecting sound.
 		 */
-		public function _onCameraActivity( e:ActivityEvent ):void
+		public function _onCameraActivity( e:ActivityEvent = null ):void
 		{
 			if ( verbose )
 			{
 				getLogger().info( this + " activity:"  + e.activating ) ;
 			}
-            var ev:CameraExpertEvent = new CameraExpertEvent(_sTypeActivity , this ) ;
+			var ev:CameraExpertEvent = new CameraExpertEvent( _sTypeActivity , this ) ;
             ev.activating = e.activating ;
             dispatchEvent( ev ) ;
         }
@@ -297,7 +355,7 @@ package asgard.media
 		/**
 		 * Invoked when the camera status change.
 		 */
-		private function _onCameraStatus( e:StatusEvent ):void
+		private function _onCameraStatus( e:StatusEvent = null ):void
 		{
 			var code:String = e.code ;
 			if ( verbose )

@@ -22,10 +22,13 @@
 */
 package asgard.media 
 {
-    import flash.media.Camera;
-    import flash.net.registerClassAlias;
+    import andromeda.vo.SimpleValueObject;
     
-    import andromeda.vo.SimpleValueObject;    
+    import system.Reflection;
+    import system.eden;
+    
+    import flash.media.Camera;
+    import flash.net.registerClassAlias;    
 
     /**
      * This value object contains all values to set a Camera object.
@@ -66,11 +69,6 @@ package asgard.media
          */
         public var height:int ;
         
-		/**
-		 * A numeric value that specifies the amount of motion required to invoke the activity event.
-		 */
-        public var level:int ;         
-        
         /**
          * An integer specifying the required level of picture quality, as determined by the amount of compression being applied to each video frame.
          */
@@ -108,6 +106,38 @@ package asgard.media
     	{
 	        registerClassAlias( aliasName , CameraVO ) ;
 	    }
-	        
+	    
+        /**
+         * Returns the <code class="prettyprint">Object</code> representation of this object.
+         * @return the <code class="prettyprint">Object</code> representation of this object.
+         */
+        public function toObject():Object
+        {
+            var o:Object =
+            {
+                bandwidth     : bandwidth  ,
+                favorarea     : favorarea ,
+                fps           : fps   ,
+                height        : height  ,
+                quality       : quality   ,
+                motionLevel   : motionLevel   ,
+                motionTimeout : motionTimeout ,
+                width         : width
+            };
+            return o ;
+        }	    
+	    
+        /**
+         * Returns the <code class="prettyprint">String</code> representation of this object.
+         * @return the <code class="prettyprint">String</code> representation of this object.
+         */
+        public override function toString():String
+        {
+            var str:String = "[" + Reflection.getClassName(this) ;
+            str += eden.serialize(toObject()) ;
+            str += "]" ;
+            return str ;
+        } 
+	    
     }
 }
