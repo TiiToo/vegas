@@ -22,9 +22,6 @@
 */
 package asgard.net 
 {
-    import flash.media.SoundTransform;
-    import flash.net.NetStream;
-    
     import asgard.events.SoundEvent;
     
     import system.Reflection;
@@ -33,7 +30,11 @@ package asgard.net
     
     import vegas.core.HashCode;
     import vegas.core.IHashable;
-    import vegas.core.ILockable;    
+    import vegas.core.ILockable;
+    
+    import flash.events.NetStatusEvent;
+    import flash.media.SoundTransform;
+    import flash.net.NetStream;    
 
     /**
      * The NetServerStream class opens a one-way streaming connection between Flash Player and RTMP server through 
@@ -53,7 +54,8 @@ package asgard.net
         public function NetServerStream( connection:* )
         {
             super( ( connection is NetServerConnection ) ? ( connection as NetServerConnection ).toNetConnection() : connection ) ;
-            this.client = new NetServerStreamClient(this) ;
+            client = new NetServerStreamClient(this) ;
+            addEventListener( NetStatusEvent.NET_STATUS , netStatus , false, 9999 ) ;
         }
         
 		/**
@@ -177,6 +179,15 @@ package asgard.net
 	        ___isLock___ = false ;
 	    }
         
+        /**
+         * This method is invoked when the NetStatusEvent.NET_STATUS event is invoked.
+         * <p>You can override this method</p>
+         */
+        protected function netStatus( e:NetStatusEvent ):void
+        {
+            //
+        }        
+        
 		/**
 		 * @private
 		 */
@@ -213,7 +224,8 @@ package asgard.net
 				return ;	
 			}
 			dispatchEvent( new SoundEvent( type, this , soundTransform ) ) ; 
-		}		
+		}
+			
     }
 }
 

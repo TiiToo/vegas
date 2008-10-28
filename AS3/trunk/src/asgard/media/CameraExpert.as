@@ -26,8 +26,6 @@ package asgard.media
     
     import asgard.events.CameraExpertEvent;
     
-    import vegas.data.map.HashMap;
-    
     import flash.events.ActivityEvent;
     import flash.events.StatusEvent;
     import flash.media.Camera;    
@@ -41,23 +39,20 @@ package asgard.media
 
 		/**
 		 * Creates a new CameraExpert instance.
-		 * @param id the id of the model.
+		 * @param setting The CameraVO reference to set the current Camera object.
 		 * @param name Specifies which camera to get, as determined from the array returned by the names property. For most applications, get the default camera by omitting this parameter.
+		 * @param id the id of the model.
 		 * @param bGlobal the flag to use a global event flow or a local event flow.
 		 * @param sChannel the name of the global event flow if the <code class="prettyprint">bGlobal</code> argument is <code class="prettyprint">true</code>.
 		 */
-        public function CameraExpert( id:* = null , name:String=null , bGlobal:Boolean = false, sChannel:String = null )
+        public function CameraExpert( setting:CameraVO = null , name:*=null , id:* = null , bGlobal:Boolean = false, sChannel:String = null )
         {
-            
             super( id , bGlobal, sChannel );
             initEvent() ;
+            this.setting = setting || DEFAULT_SETTING ;
             setCamera(name) ;
-            setting = DEFAULT_SETTING ;
-            update() ;
         }
-	   
-	    // mode
-	   
+        	   
 		/**
 	 	 * The default camera mode favor area value.
 		 */
@@ -112,16 +107,7 @@ package asgard.media
             quality       : DEFAULT_QUALITY_LEVEL , 
             width         : DEFAULT_MODE_WIDTH
         }) ;
-        
-		/**
-		 * Returns {@code true} if the CameraExpert contains the specified camera id.
-		 * @return {@code true} if the CameraExpert contains the specified camera id.
-	 	 */
-		public static function contains( id:*  ):Boolean
-		{
-			return _map.containsKey( id ) ;	
-		}     
-    	 
+         
 		/**
 		 * Returns the Camera client reference.
 		 * @return the Camera client reference.
@@ -155,30 +141,6 @@ package asgard.media
 		public var verbose:Boolean = true ;
 
 		/**
-		 * Returns and creates a CameraExpert singleton.
-		 * @param id the id of the CameraExpert singleton to creates or returns.
-		 * @param name (optional) this String defines the name of the Camera to use in the specified expert.
-		 * This argument is used only the first time when the specifiec CameraExpert is created. To get the default camera (which is recommended for most applications), omit this parameter.
-		 * @return a CameraExpert singleton or null .
-		 */
-		public static function getInstance( id:*=null , name:String=null ):CameraExpert
-		{
-			if ( id == null )
-			{
-				throw new ArgumentError( "CameraExpert.getInstance() failed, the 'id' passed-in argument not must be 'null' or 'undefined'.") ;
-            }
-			if ( _map == null)
-			{
-				_map = new HashMap() ;	
-			}
-			if ( !_map.containsKey( id ) )
-			{
-				_map.put( id , new CameraExpert( id , name ) ) ;
-			}
-			return _map.get( id ) as CameraExpert ;
-		}
-
-		/**
 		 * This method is invoked in the constructor of the class to initialize all event types.
 		 */
 		public function initEvent():void
@@ -187,23 +149,7 @@ package asgard.media
 			_sTypeMuted    = CameraExpertEvent.MUTED ;
 			_sTypeUnmuted  = CameraExpertEvent.UNMUTED ;
 		}
-		
-		/**
-		 * Release the specified singleton CameraExpert instance.
-		 * @param id The id of the CameraExpert to remove.
-		 */
-		public static function releaseInstance( id:* ):CameraExpert
-		{
-			if ( _map.containsKey( id ) )
-			{
-				return _map.remove( id ) ;
-			}
-			else
-			{
-				return null ;
-			}
-		}		
-
+        
 		/**
 		 * Sets the event name when the Camera activity change.
 		 */
@@ -282,7 +228,7 @@ package asgard.media
 		 */
 		public function update():void
 		{
-    		if ( camera != null )
+    		if ( camera != null && _vo != null )
     		{	
                 _vo.apply( camera ) ;
     		}
@@ -292,19 +238,19 @@ package asgard.media
          * Sets the camera reference of the expert.
          * @param name The name of the camera to use (default null to use the default system Camera object).
          */
-        public function setCamera( name:String = null ):void
+        public function setCamera( name:* = null ):void
         {
         	if ( _camera != null )
         	{
                 _camera.removeEventListener( ActivityEvent.ACTIVITY , _onCameraActivity ) ;
                 _camera.removeEventListener( StatusEvent.STATUS     , _onCameraStatus ) ;
         	}
-            _camera = Camera.getCamera( name ) ;
-            
+            _camera = Camera.getCamera( name != null ? String(name) : null ) ;
             if ( _camera != null )
             {
                 _camera.addEventListener( ActivityEvent.ACTIVITY , _onCameraActivity ) ;
                 _camera.addEventListener( StatusEvent.STATUS     , _onCameraStatus ) ;
+            	update() ;
             }
         }
         
@@ -312,11 +258,6 @@ package asgard.media
 		 * @private
 		 */
 		private var _camera:Camera ;
-		
-		/**
-		 * @private
-		 */
-		private static var _map:HashMap  ;     
         
 		/**
 		 * @private
