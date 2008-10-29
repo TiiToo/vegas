@@ -22,8 +22,9 @@
 */
 
 package vegas.events 
-{    import vegas.core.CoreObject;
-    import vegas.core.IRunnable;
+{    import system.process.Runnable;
+    
+    import vegas.core.CoreObject;
     import vegas.events.BasicEvent;
     import vegas.events.EventDispatcher;
     import vegas.events.FrontController;
@@ -33,7 +34,7 @@ package vegas.events
 	 * A command is a easy entry with name and value property to launch a global command in the Commands static tool class.
 	 * @author eKameleon
 	 */
-    public class Command extends CoreObject implements IRunnable 
+    public class Command extends CoreObject implements Runnable 
     {        
 		/**
 		 * Creates a new Command instance.

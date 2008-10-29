@@ -23,12 +23,12 @@
 
 package vegas.events
 {
-    import flash.events.Event;
-    
     import system.Cloneable;
+    import system.process.Runnable;
     
     import vegas.core.CoreObject;
-    import vegas.core.IRunnable;	
+    
+    import flash.events.Event;    
 
     /**
 	 * Delegate was originally created by Mike Chambers for Macromedia mx.events package.
@@ -36,11 +36,11 @@ package vegas.events
 	 * <p>You can instantiate and keep a reference of a Delegate instance.</p>
 	 * <p>In the VEGAS implementation :
  	 * <li>The <code class="prettyprint">Delegate</code> class implements <code class="prettyprint">EventListener</code> interface. you can use a Delegate instances in the <code class="prettyprint">addEventListener</code> method for all <code class="prettyprint">EventTarget</code> implementations.</li>
-	 * <li>The <code class="prettyprint">Delegate</code> class implements <code class="prettyprint">IRunnable</code> interface</li>
+	 * <li>The <code class="prettyprint">Delegate</code> class implements <code class="prettyprint">system.process.Runnable</code> interface</li>
 	 * </p>
  	 * @author eKameleon
 	 */
-	public class Delegate extends CoreObject implements EventListener, Cloneable, IRunnable
+	public class Delegate extends CoreObject implements EventListener, Cloneable, Runnable
     {
         
 		/**
