@@ -22,6 +22,16 @@
 */
 package asgard.net
 {
+    import andromeda.events.ActionEvent;
+    import andromeda.process.TimeoutPolicy;
+    
+    import asgard.events.NetServerEvent;
+    
+    import system.Cloneable;
+    import system.process.Runnable;
+    
+    import vegas.events.CoreEventDispatcher;
+    
     import flash.events.AsyncErrorEvent;
     import flash.events.Event;
     import flash.events.IOErrorEvent;
@@ -30,17 +40,7 @@ package asgard.net
     import flash.events.TimerEvent;
     import flash.net.NetConnection;
     import flash.net.Responder;
-    import flash.utils.Timer;
-    
-    import andromeda.events.ActionEvent;
-    import andromeda.process.TimeoutPolicy;
-    
-    import asgard.events.NetServerEvent;
-    
-    import system.Cloneable;
-    
-    import vegas.core.IRunnable;
-    import vegas.events.CoreEventDispatcher;    
+    import flash.utils.Timer;    
 
     /**
  	 * This class extends the NetConnection class and defined an implementation based on VEGAS to used Flash Remoting or Flash MediaServer (with AMF protocol).
@@ -94,7 +94,7 @@ package asgard.net
  	 * </pre>
 	 * @author eKameleon
 	 */	
-	public class NetServerConnection extends CoreEventDispatcher implements Cloneable, IRunnable
+	public class NetServerConnection extends CoreEventDispatcher implements Cloneable, Runnable
 	{
 		
 		/**
@@ -229,7 +229,7 @@ package asgard.net
          * The URI of the application server that was passed to NetConnection.connect(), if connect was used to connect to a server. 
          * If NetConnection.connect() hasn't yet been called or if no URI was passed, this property is undefined.
          * In The VEGAS implementation the uri property is a read-write property and we can use this property in to launch the connect process with the run method.
-         * @see IRunnable
+         * @see Runnable
          */
 		public function get uri():String
 	    {
