@@ -4,7 +4,8 @@
     
     import observer.event.PictureModelEvent;
     
-    import vegas.core.IRunnable;
+    import system.process.Runnable;
+    
     import vegas.data.Set;
     import vegas.data.iterator.Iterator;
     import vegas.data.sets.HashSet;    
@@ -13,7 +14,7 @@
      * The model to change the Picture with differents external files.
      * @author eKameleon
      */
-    public class PictureModel extends Observable implements IRunnable
+    public class PictureModel extends Observable implements Runnable
     {
     
     	/**

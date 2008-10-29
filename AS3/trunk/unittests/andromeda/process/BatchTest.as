@@ -22,13 +22,13 @@
 */
 package andromeda.process 
 {
-	import andromeda.process.mocks.MockCommand;
-	
-	import buRRRn.ASTUce.framework.TestCase;
-	
-	import vegas.core.IRunnable;	
+    import andromeda.process.mocks.MockCommand;
+    
+    import buRRRn.ASTUce.framework.TestCase;
+    
+    import system.process.Runnable;	
 
-	/**
+    /**
 	 * @author eKameleon
 	 */
 	public class BatchTest extends TestCase 
@@ -60,7 +60,7 @@ package andromeda.process
         {
             assertNotNull( batch , "Batch constructor failed, the instance not must be null." ) ;
             assertTrue( batch is Batch , "batch must be a Batch object." ) ;
-            assertTrue( batch is IRunnable , "batch implements the IRunnable interface." ) ;
+            assertTrue( batch is Runnable , "batch implements the Runnable interface." ) ;
         }
 		
         public function testClear():void
@@ -81,7 +81,7 @@ package andromeda.process
         {
         	MockCommand.reset() ;
         	batch.run() ;
-        	assertEquals( MockCommand.COUNT , batch.size() , "run method failed, the batch must launch " + batch.size + " IRunnable objects." ) ;
+        	assertEquals( MockCommand.COUNT , batch.size() , "run method failed, the batch must launch " + batch.size + " Runnable objects." ) ;
         }
         
         public function testSize():void

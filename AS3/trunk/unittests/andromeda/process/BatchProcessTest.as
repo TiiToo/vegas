@@ -75,7 +75,7 @@ package andromeda.process
 			MockSimpleAction.reset() ;
         	batch.run() ;
         	assertTrue( mockListener.isRunning , "The MockSimpleActionListener.isRunning property failed, must be true." ) ;
-        	assertEquals( MockSimpleAction.COUNT , batch.size() , "run method failed, the batch must launch " + batch.size + " IRunnable objects." ) ;
+        	assertEquals( MockSimpleAction.COUNT , batch.size() , "run method failed, the batch must launch " + batch.size + " Runnable objects." ) ;
         	assertFalse( batch.running , "The running property of the BatchProcess must be false after the process." ) ;
         }
 		

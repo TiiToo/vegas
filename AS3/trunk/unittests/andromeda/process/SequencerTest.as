@@ -132,7 +132,7 @@ package andromeda.process
         	
         	s.run() ;
 
-        	assertEquals( MockSimpleAction.COUNT , size , "run method failed, the sequencer must launch " + s.size() + " IRunnable objects." ) ;
+        	assertEquals( MockSimpleAction.COUNT , size , "run method failed, the sequencer must launch " + s.size() + " Runnable objects." ) ;
         	assertEquals( s.size()               ,    0 , "run method failed, the sequencer must be empty after the run process." ) ;
         	        	
         	MockSimpleAction.reset() ;
@@ -158,7 +158,7 @@ package andromeda.process
        		c.run() ;
         	
        	
-        	assertEquals( MockSimpleAction.COUNT , size , "run method failed, the sequencer must launch " + s.size() + " IRunnable objects." ) ;
+        	assertEquals( MockSimpleAction.COUNT , size , "run method failed, the sequencer must launch " + s.size() + " Runnable objects." ) ;
         	assertEquals( c.size()               ,    0 , "run method failed, the sequencer must be empty after the run process." ) ;
         	
         	

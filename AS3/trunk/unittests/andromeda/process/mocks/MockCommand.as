@@ -22,13 +22,14 @@
 */
 package andromeda.process.mocks 
 {
-	import vegas.core.CoreObject;
-	import vegas.core.IRunnable;	
+    import system.process.Runnable;
+    
+    import vegas.core.CoreObject;	
 
-	/**
+    /**
 	 * @author eKameleon
 	 */
-	public class MockCommand extends CoreObject implements IRunnable
+	public class MockCommand extends CoreObject implements Runnable
 	{
 
 		public function MockCommand()
