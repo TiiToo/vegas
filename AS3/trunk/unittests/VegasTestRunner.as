@@ -22,34 +22,75 @@
 */
 package  
 {
-	import flash.display.Sprite;
-	
-	import buRRRn.ASTUce.Runner;
-	import buRRRn.ASTUce.config;    
+    import buRRRn.ASTUce.Runner;
+    import buRRRn.ASTUce.config;
+    
+    import system.console;
+    import system.ui.TextFieldConsole;
+    
+    import flash.display.Sprite;
+    import flash.display.StageAlign;
+    import flash.display.StageScaleMode;
+    import flash.events.Event;
+    import flash.text.TextField;
+    import flash.text.TextFormat;    
 
-	/**
+    /**
 	 * The main VEGAS TestRunner launcher.
-	 * @author eKameleon
 	 */
 	public class VegasTestRunner extends Sprite
 	{
 		
-            public function VegasTestRunner()
-            {
-
-                // buRRRn.ASTUce.config.allowErrorTrace     = false ;
-                // buRRRn.ASTUce.config.showPrinterDetails  = false ;
-                // buRRRn.ASTUce.config.showPrinterShortTests = false ;
+        public function VegasTestRunner()
+        {
                 
-                buRRRn.ASTUce.config.allowStackTrace     = false ;
-                buRRRn.ASTUce.config.maxColumn           = 62 ;
-                buRRRn.ASTUce.config.showConstructorList = false ;
-               
-                // testing all.
+            // init
+            
+            stage.align     = StageAlign.TOP_LEFT;
+            stage.scaleMode = StageScaleMode.NO_SCALE;
+            
+            textfield                   = new TextField() ;
+            textfield.defaultTextFormat = new TextFormat( "Courier New" , 14 , 0xFFFFFF ) ; 
+            textfield.multiline         = true ;
+            textfield.selectable        = true ;
+            textfield.wordWrap          = true ;
                 
-                Runner.main( AllTests );
-
+            addChild( textfield ) ;
+                
+            stage.addEventListener( Event.RESIZE , resize ) ;
+            resize() ;
+            
+            console = new TextFieldConsole( textfield ) ;            
+            
+            system.config.serializer.prettyPrinting = false;
+            system.about( false, false );
+            
+            // ASTUce
+            
+            buRRRn.ASTUce.config.allowStackTrace     = false ;
+            buRRRn.ASTUce.config.maxColumn           = 62 ;
+            buRRRn.ASTUce.config.showConstructorList = false ;
+            
+            // run tests           
+           
+            Runner.main( AllTests );                
+                
             
         }
+            
+        /**
+         * The debug textfield of this application.
+         */
+        public var textfield:TextField ;            
+        
+        /**
+         * Invoked to resize the application content.
+         */
+        public function resize( e:Event = null ):void
+        {
+            textfield.width  = stage.stageWidth ;
+            textfield.height = stage.stageHeight ;
+        }               
+        
 	}
 }

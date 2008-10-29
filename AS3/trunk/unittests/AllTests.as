@@ -31,6 +31,8 @@ package
     
     import pegas.AllTests;
     
+    import system.AllTests;
+    
     import vegas.AllTests;    
 
     /**
