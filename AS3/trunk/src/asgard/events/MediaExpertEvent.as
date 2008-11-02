@@ -22,19 +22,21 @@
 */
 package asgard.events 
 {
-    import flash.events.Event;
+    import vegas.events.BasicEvent;
     
-    import vegas.events.BasicEvent;    
+    import flash.events.Event;    
 
     /**
-     * Dispatcherd when a Camera status is changed "muted" or "unmuted" or if this activity is changed in a CameraExpert singleton.
+     * Dispatched when a Microphone or Camera status is changed "muted" or "unmuted" or if this activity is changed.
      * @author eKameleon
+     * @see asgard.media.CameraExpert
+     * @see asgard.media.MicrophoneExpert
      */
-    public class CameraExpertEvent extends BasicEvent 
+    public class MediaExpertEvent extends BasicEvent 
     {
 
         /**
-         * Creates a new CameraExpertEvent instance.
+         * Creates a new MediaExpertEvent instance.
          * @param type the string type of the instance.
          * @param target the target of the event.
          * @param context the optional context object of the event.
@@ -42,38 +44,28 @@ package asgard.events
          * @param cancelable indicates if the event is a cancelable event.
          * @param time this optional parameter is used in the eden deserialization to copy the timestamp value of this event.
          */
-        public function CameraExpertEvent(type:String, target:Object = null, context:* = null, bubbles:Boolean = false, cancelable:Boolean = false, time:Number = 0)
+        public function MediaExpertEvent(type:String, target:Object = null, context:* = null, bubbles:Boolean = false, cancelable:Boolean = false, time:Number = 0)
         {
             super(type, target, context, bubbles, cancelable, time);
         }
-        
+                
 		/**
-		 * The name of the event when the Camera activity is changed.
-		 */       
-        public static const ACTIVITY:String = "activity" ;	
-        
-		/**
-		 * The name of the event when the Camera is muted.
+		 * The name of the event when the Microphone is muted.
 		 */        
         public static const MUTED:String = "muted" ;
         
 		/**
-		 * The name of the event when the Camera is unmuted.
+		 * The name of the event when the Microphone is unmuted.
 		 */        
         public static const UNMUTED:String = "unmuted" ;
         
-        /**
-         * True if the device is activating or false if it is deactivating.
-         */
-        public var activating:Boolean ;
-
         /**
          * Returns a shallow copy of this object.
          * @return a shallow copy of this object.
          */
         public override function clone():Event
         {
-            return new CameraExpertEvent( type , target , context ) ;
+            return new MediaExpertEvent( type , target , context ) ;
         }        
         
     }

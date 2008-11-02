@@ -28,61 +28,57 @@ package asgard.media
     
     import flash.events.ActivityEvent;
     import flash.events.StatusEvent;
-    import flash.media.Camera;    
+    import flash.media.Microphone;    
 
     /**
-     * This expert manage all Camera reference in the application.
+     * This expert manage all Microphone reference in the application.
      * @author eKameleon
      */
-    public class CameraExpert extends SimpleModelObject 
+    public class MicrophoneExpert extends SimpleModelObject 
     {
 
 		/**
-		 * Creates a new CameraExpert instance.
-		 * @param setting The CameraVO reference to set the current Camera object.
-		 * @param name Specifies which camera to get, as determined from the array returned by the names property. For most applications, get the default camera by omitting this parameter.
+		 * Creates a new MicrophoneExpert instance.
+		 * @param setting The MicrophoneVO reference to set the current Microphone object.
+		 * @param index The index value of the microphone. 
 		 * @param id the id of the model.
 		 * @param bGlobal the flag to use a global event flow or a local event flow.
 		 * @param sChannel the name of the global event flow if the <code class="prettyprint">bGlobal</code> argument is <code class="prettyprint">true</code>.
 		 */
-        public function CameraExpert( setting:CameraVO = null , name:*=null , id:* = null , bGlobal:Boolean = false, sChannel:String = null )
+        public function MicrophoneExpert( setting:MicrophoneVO = null , index:int = 0 , id:* = null , bGlobal:Boolean = false, sChannel:String = null )
         {
             super( id , bGlobal, sChannel );
             this.setting = setting || DEFAULT_SETTING ;
-            setCamera(name) ;
+            setMicrophone( index ) ;
         }
         
         /**
-         * The default settings of the Camera objects.
+         * The default settings of the Microphone objects.
          */
-        public static var DEFAULT_SETTING:CameraVO = new CameraVO
+        public static var DEFAULT_SETTING:MicrophoneVO = new MicrophoneVO
         ({
-            bandwidth     : 16384 , 
-            favorarea     : true , 
-            fps           : 24 , 
-            height        : 120,
-            motionLevel   : 50 , 
-            motionTimeout : 2000 ,
-            quality       : 0 , 
-            width         : 160
+        	loopBack           : true ,
+            rate               : 11   , 
+            silenceLevel       : 10   , 
+            silenceTimeout     : 1000 , 
+            useEchoSuppression : false
         }) ;
          
 		/**
-		 * Returns the Camera client reference.
-		 * @return the Camera client reference.
+		 * Returns the Microphone client reference.
+		 * @return the Microphone client reference.
 	 	*/
-		public function get camera():Camera
+		public function get microphone():Microphone
 		{
-			return _camera ;
+			return _micro ;
 		}
 		
 		/**
-		 * Determinates the settings of the current Camera object with a CameraVO object.
-		 * <p>By default the expert use the DEFAULT_SETTING
+		 * Determinates the settings of the current Microphone object with a MicrophoneVO object.
 		 */
 		public function get setting():*
 		{
-            return getCurrentVO() as MicrophoneVO ;
+			return getCurrentVO() as MicrophoneVO ;
 		}
 		
 		/**
@@ -103,19 +99,19 @@ package asgard.media
          * This method is invoked in the constructor of the class to initialize all events.
          */
         public override function initEventType():void
-		{
-            super.initEventType() ;			
-			_sTypeActivity = ActivityEvent.ACTIVITY ;	
-			_sTypeMuted    = MediaExpertEvent.MUTED ;
-			_sTypeUnmuted  = MediaExpertEvent.UNMUTED ;
-		}
+        {
+            super.initEventType() ;
+            _sActivityType = ActivityEvent.ACTIVITY ;   
+            _sMutedType    = MediaExpertEvent.MUTED ;
+            _sUnmutedType  = MediaExpertEvent.UNMUTED ;            
+        }		
         
 		/**
 		 * Sets the event name when the Camera activity change.
 		 */
 		public function setEventTypeACTIVITY(type:String ):void
 		{
-			_sTypeActivity = type || ActivityEvent.ACTIVITY ;		
+			_sActivityType = type || ActivityEvent.ACTIVITY ;		
 		}
 
 		/**
@@ -123,7 +119,7 @@ package asgard.media
 		 */
 		public function setEventTypeMUTED( type:String ):void
 		{
-			_sTypeMuted = type || MediaExpertEvent.MUTED ;		
+			_sMutedType = type || MediaExpertEvent.MUTED ;		
         }
 	
 		/**
@@ -131,7 +127,7 @@ package asgard.media
 		 */
 		public function setEventTypeUNMUTED( type:String ):void
 		{
-			_sTypeUnmuted = type || MediaExpertEvent.UNMUTED ;	
+			_sUnmutedType = type || MediaExpertEvent.UNMUTED ;	
 		}
         
 		/**
@@ -139,9 +135,9 @@ package asgard.media
 		 */
 		public function update():void
 		{
-    		if ( camera != null && (setting as CameraVO) != null )
+    		if ( _micro != null && (setting as MicrophoneVO) != null )
     		{	
-                (setting as CameraVO).apply( camera ) ;
+                ( setting as MicrophoneVO).apply( _micro ) ;
     		}
 		}
         
@@ -149,18 +145,18 @@ package asgard.media
          * Sets the camera reference of the expert.
          * @param name The name of the camera to use (default null to use the default system Camera object).
          */
-        public function setCamera( name:* = null ):void
+        public function setMicrophone( index:int = 0 ):void
         {
-        	if ( _camera != null )
+        	if ( _micro != null )
         	{
-                _camera.removeEventListener( ActivityEvent.ACTIVITY , onActivity ) ;
-                _camera.removeEventListener( StatusEvent.STATUS     , onStatus ) ;
+                _micro.removeEventListener( ActivityEvent.ACTIVITY , onActivity ) ;
+                _micro.removeEventListener( StatusEvent.STATUS     , onStatus ) ;
         	}
-            _camera = Camera.getCamera( name != null ? String(name) : null ) ;
-            if ( _camera != null )
+            _micro = Microphone.getMicrophone( index ) ;
+            if ( _micro != null )
             {
-                _camera.addEventListener( ActivityEvent.ACTIVITY , onActivity ) ;
-                _camera.addEventListener( StatusEvent.STATUS     , onStatus ) ;
+                _micro.addEventListener( ActivityEvent.ACTIVITY , onActivity ) ;
+                _micro.addEventListener( StatusEvent.STATUS     , onStatus ) ;
             	update() ;
             }
         }
@@ -172,31 +168,31 @@ package asgard.media
          */
         public override function supports( value:* ):Boolean 
         {
-            return value is CameraVO ;
+            return value is MicrophoneVO ;
         }        
-                
+        
 		/**
 		 * @private
 		 */
-		private var _camera:Camera ;
+		private var _micro:Microphone ;
         
 		/**
 		 * @private
 		 */		
-		private var _sTypeActivity:String ;
+		private var _sActivityType:String ;
 	
 		/**
 		 * @private
 		 */
-		private var _sTypeMuted:String ;
+		private var _sMutedType:String ;
 		
 		/**
 		 * @private
 		 */
-		private var _sTypeUnmuted:String ;
+		private var _sUnmutedType:String ;
                 
 		/**
-		 * Invoked when the camera starts or stops detecting movement.
+		 * Invoked when the microphone starts or stops detecting sound.
 		 */
 		protected function onActivity( e:ActivityEvent = null ):void
 		{
@@ -208,25 +204,25 @@ package asgard.media
         }
 
 		/**
-		 * Invoked when the camera status change.
+		 * Invoked when the microphone status change.
 		 */
 		protected function onStatus( e:StatusEvent = null ):void
 		{
 			var code:String = e.code ;
 			if ( verbose )
 			{
-				getLogger().info( this + " camera status, code:" + code + " level:" + e.level ) ;
+				getLogger().info( this + " microphone status, code:" + code + " level:" + e.level ) ;
 			}
 			switch( code )
 			{
-				case CameraStatus.MUTED :
+				case MicrophoneStatus.MUTED :
 				{
-					dispatchEvent( new MediaExpertEvent( _sTypeMuted, this ) ) ;
+					dispatchEvent( new MediaExpertEvent( _sMutedType, this ) ) ;
                     break ;
 				}	
-				case CameraStatus.UNMUTED :
+				case MicrophoneStatus.UNMUTED :
 				{
-					dispatchEvent( new MediaExpertEvent( _sTypeUnmuted, this ) ) ;
+					dispatchEvent( new MediaExpertEvent( _sUnmutedType, this ) ) ;
 					break ;	
 				}
 			}

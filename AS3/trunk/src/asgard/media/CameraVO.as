@@ -94,15 +94,18 @@ package asgard.media
      	 */
      	public function apply( camera:Camera ):void
      	{
-			camera.setQuality( bandwidth , quality ) ;
-			camera.setMode( width, height, fps, favorarea ) ;
-            camera.setMotionLevel( motionLevel, motionTimeout ) ;     		
+     	    if ( camera != null )
+     	    {
+                camera.setQuality( bandwidth , quality ) ;
+			    camera.setMode( width, height, fps, favorarea ) ;
+                camera.setMotionLevel( motionLevel, motionTimeout ) ;
+     	    }     		
      	}
      	
     	/**
 	     * Preserves the class (type) of an object when the object is encoded in Action Message Format (AMF). 
 	     */
-    	public static function register( aliasName:String="CameraVO" ):void
+    	public static function register( aliasName:String = "CameraVO" ):void
     	{
 	        registerClassAlias( aliasName , CameraVO ) ;
 	    }
@@ -134,7 +137,7 @@ package asgard.media
         public override function toString():String
         {
             var str:String = "[" + Reflection.getClassName(this) ;
-            str += eden.serialize(toObject()) ;
+            str += ":" + eden.serialize(toObject()) ;
             str += "]" ;
             return str ;
         } 
