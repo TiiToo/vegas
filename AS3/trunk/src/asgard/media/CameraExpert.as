@@ -22,10 +22,6 @@
 */
 package asgard.media 
 {
-    import andromeda.model.SimpleModelObject;
-    
-    import asgard.events.MediaExpertEvent;
-    
     import flash.events.ActivityEvent;
     import flash.events.StatusEvent;
     import flash.media.Camera;    
@@ -34,7 +30,7 @@ package asgard.media
      * This expert manage all Camera reference in the application.
      * @author eKameleon
      */
-    public class CameraExpert extends SimpleModelObject 
+    public class CameraExpert extends MediaExpert 
     {
 
 		/**
@@ -93,51 +89,11 @@ package asgard.media
             setCurrentVO( ( value as MicrophoneVO ) || DEFAULT_SETTING ) ;
             update() ;
         }
-		
-		/**
-		 * Indicates if the expert use verbose debug mode or not.
-		 */
-		public var verbose:Boolean = true ;
-
-        /**
-         * This method is invoked in the constructor of the class to initialize all events.
-         */
-        public override function initEventType():void
-		{
-            super.initEventType() ;			
-			_sTypeActivity = ActivityEvent.ACTIVITY ;	
-			_sTypeMuted    = MediaExpertEvent.MUTED ;
-			_sTypeUnmuted  = MediaExpertEvent.UNMUTED ;
-		}
         
 		/**
-		 * Sets the event name when the Camera activity change.
+		 * Updates the Camera settings.
 		 */
-		public function setEventTypeACTIVITY(type:String ):void
-		{
-			_sTypeActivity = type || ActivityEvent.ACTIVITY ;		
-		}
-
-		/**
-		 * Sets the event name when the Camera is muted.
-		 */
-		public function setEventTypeMUTED( type:String ):void
-		{
-			_sTypeMuted = type || MediaExpertEvent.MUTED ;		
-        }
-	
-		/**
-		 * Sets the event name when the Camera is unmuted.
-		 */
-		public function setEventTypeUNMUTED( type:String ):void
-		{
-			_sTypeUnmuted = type || MediaExpertEvent.UNMUTED ;	
-		}
-        
-		/**
-		 * Updates the Camera setting.
-		 */
-		public function update():void
+		public override function update():void
 		{
     		if ( camera != null && (setting as CameraVO) != null )
     		{	
@@ -179,58 +135,6 @@ package asgard.media
 		 * @private
 		 */
 		private var _camera:Camera ;
-        
-		/**
-		 * @private
-		 */		
-		private var _sTypeActivity:String ;
-	
-		/**
-		 * @private
-		 */
-		private var _sTypeMuted:String ;
-		
-		/**
-		 * @private
-		 */
-		private var _sTypeUnmuted:String ;
-                
-		/**
-		 * Invoked when the camera starts or stops detecting movement.
-		 */
-		protected function onActivity( e:ActivityEvent = null ):void
-		{
-			if ( verbose )
-			{
-				getLogger().info( this + " activity:"  + e.activating ) ;
-			}
-            dispatchEvent( e ) ;
-        }
-
-		/**
-		 * Invoked when the camera status change.
-		 */
-		protected function onStatus( e:StatusEvent = null ):void
-		{
-			var code:String = e.code ;
-			if ( verbose )
-			{
-				getLogger().info( this + " camera status, code:" + code + " level:" + e.level ) ;
-			}
-			switch( code )
-			{
-				case CameraStatus.MUTED :
-				{
-					dispatchEvent( new MediaExpertEvent( _sTypeMuted, this ) ) ;
-                    break ;
-				}	
-				case CameraStatus.UNMUTED :
-				{
-					dispatchEvent( new MediaExpertEvent( _sTypeUnmuted, this ) ) ;
-					break ;	
-				}
-			}
-		}     
         
     }
 }

@@ -22,11 +22,11 @@
 */
 package asgard.net 
 {
-    import flash.net.NetStream;
-    
     import asgard.media.FLVMetaData;
     
-    import vegas.events.CoreEventDispatcher;    
+    import vegas.events.CoreEventDispatcher;
+    
+    import flash.net.NetStream;    
 
     /**
      * Specifies the object on which callback methods are invoked by a NetStream object.
@@ -69,6 +69,10 @@ package asgard.net
         public function set netStream( ns:NetStream ):void
         {
             _netStream = ns ;
+            if( _netStream != null )
+            {
+            	_netStream.client = this ;
+            }
         }
                   
         /**
@@ -98,7 +102,7 @@ package asgard.net
         public function onMetaData(info:Object):void 
         {
                metadata = new FLVMetaData( info ) ;
-               if ( metadata != null && netStream is NetServerStream )
+               if ( metadata != null && ( netStream as NetServerStream != null ) )
                {
                    (netStream as NetServerStream).setDuration( metadata.duration ) ;    
                }

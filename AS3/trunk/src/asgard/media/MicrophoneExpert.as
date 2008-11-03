@@ -22,10 +22,6 @@
 */
 package asgard.media 
 {
-    import andromeda.model.SimpleModelObject;
-    
-    import asgard.events.MediaExpertEvent;
-    
     import flash.events.ActivityEvent;
     import flash.events.StatusEvent;
     import flash.media.Microphone;    
@@ -34,7 +30,7 @@ package asgard.media
      * This expert manage all Microphone reference in the application.
      * @author eKameleon
      */
-    public class MicrophoneExpert extends SimpleModelObject 
+    public class MicrophoneExpert extends MediaExpert 
     {
 
 		/**
@@ -57,7 +53,7 @@ package asgard.media
          */
         public static var DEFAULT_SETTING:MicrophoneVO = new MicrophoneVO
         ({
-        	loopBack           : true ,
+        	loopBack           : false ,
             rate               : 11   , 
             silenceLevel       : 10   , 
             silenceTimeout     : 1000 , 
@@ -89,51 +85,10 @@ package asgard.media
             setCurrentVO( ( value as MicrophoneVO ) || DEFAULT_SETTING ) ;
             update() ;
         }
-		
 		/**
-		 * Indicates if the expert use verbose debug mode or not.
+		 * Updates the Microphone settings.
 		 */
-		public var verbose:Boolean = true ;
-
-        /**
-         * This method is invoked in the constructor of the class to initialize all events.
-         */
-        public override function initEventType():void
-        {
-            super.initEventType() ;
-            _sActivityType = ActivityEvent.ACTIVITY ;   
-            _sMutedType    = MediaExpertEvent.MUTED ;
-            _sUnmutedType  = MediaExpertEvent.UNMUTED ;            
-        }		
-        
-		/**
-		 * Sets the event name when the Camera activity change.
-		 */
-		public function setEventTypeACTIVITY(type:String ):void
-		{
-			_sActivityType = type || ActivityEvent.ACTIVITY ;		
-		}
-
-		/**
-		 * Sets the event name when the Camera is muted.
-		 */
-		public function setEventTypeMUTED( type:String ):void
-		{
-			_sMutedType = type || MediaExpertEvent.MUTED ;		
-        }
-	
-		/**
-		 * Sets the event name when the Camera is unmuted.
-		 */
-		public function setEventTypeUNMUTED( type:String ):void
-		{
-			_sUnmutedType = type || MediaExpertEvent.UNMUTED ;	
-		}
-        
-		/**
-		 * Updates the Camera setting.
-		 */
-		public function update():void
+		public override function update():void
 		{
     		if ( _micro != null && (setting as MicrophoneVO) != null )
     		{	
@@ -175,58 +130,6 @@ package asgard.media
 		 * @private
 		 */
 		private var _micro:Microphone ;
-        
-		/**
-		 * @private
-		 */		
-		private var _sActivityType:String ;
-	
-		/**
-		 * @private
-		 */
-		private var _sMutedType:String ;
-		
-		/**
-		 * @private
-		 */
-		private var _sUnmutedType:String ;
-                
-		/**
-		 * Invoked when the microphone starts or stops detecting sound.
-		 */
-		protected function onActivity( e:ActivityEvent = null ):void
-		{
-			if ( verbose )
-			{
-				getLogger().info( this + " activity:"  + e.activating ) ;
-			}
-            dispatchEvent( e ) ;
-        }
-
-		/**
-		 * Invoked when the microphone status change.
-		 */
-		protected function onStatus( e:StatusEvent = null ):void
-		{
-			var code:String = e.code ;
-			if ( verbose )
-			{
-				getLogger().info( this + " microphone status, code:" + code + " level:" + e.level ) ;
-			}
-			switch( code )
-			{
-				case MicrophoneStatus.MUTED :
-				{
-					dispatchEvent( new MediaExpertEvent( _sMutedType, this ) ) ;
-                    break ;
-				}	
-				case MicrophoneStatus.UNMUTED :
-				{
-					dispatchEvent( new MediaExpertEvent( _sUnmutedType, this ) ) ;
-					break ;	
-				}
-			}
-		}     
         
     }
 }
