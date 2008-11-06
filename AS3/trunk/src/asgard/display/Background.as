@@ -48,9 +48,14 @@ package asgard.display
      * <pre class="prettyprint">
      * import asgard.display.Background ;
      * 
-     * import flash.display.* ;
+     * import flash.display.GradientType ;
+     * import flash.display.StageAlign ;
+     * import flash.display.StageScaleMode ;
      * 
-     * import pegas.draw.* ;
+     * import pegas.draw.Direction ;
+     * import pegas.draw.FillStyle ;
+     * import pegas.draw.FillGradientStyle ;
+     * import pegas.draw.LineStyle ;
      * 
      * stage.align     = StageAlign.TOP_LEFT ;
      * stage.scaleMode = StageScaleMode.NO_SCALE ;
