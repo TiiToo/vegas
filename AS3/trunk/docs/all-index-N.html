@@ -148,13 +148,6 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("NÂ
          Defines a <code class="prettyprint">Matrix4</code> cell.</td>
 </tr>
 <tr>
-<td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('andromeda/config/class-list.html');" href="andromeda/config/ConfigResource.html#name">name</a> &mdash; Property in class andromeda.config.<a onclick="javascript:loadClassListFrame('andromeda/config/class-list.html');" href="andromeda/config/ConfigResource.html">ConfigResource</a></td>
-</tr>
-<tr>
-<td width="20"></td><td>
-      The name of the full config file name.</td>
-</tr>
-<tr>
 <td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('andromeda/ioc/core/class-list.html');" href="andromeda/ioc/core/ObjectMethod.html#name">name</a> &mdash; Property in class andromeda.ioc.core.<a onclick="javascript:loadClassListFrame('andromeda/ioc/core/class-list.html');" href="andromeda/ioc/core/ObjectMethod.html">ObjectMethod</a></td>
 </tr>
 <tr>
@@ -328,7 +321,7 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("NÂ
 </tr>
 <tr>
 <td width="20"></td><td>
-     This Event contains the NetServerConnection and status of a connection in the application.</td>
+     This is invoked in a NetServerConnection object during a connection with a server.</td>
 </tr>
 <tr>
 <td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('asgard/events/class-list.html');" href="asgard/events/NetServerEvent.html#NetServerEvent()">NetServerEvent</a>(type, connection:<a href="asgard/net/NetServerConnection.html" onclick="javascript:loadClassListFrame('asgard/net./class-list.html');">asgard.net:NetServerConnection</a>, status:<a href="asgard/net/NetServerStatus.html" onclick="javascript:loadClassListFrame('asgard/net./class-list.html');">asgard.net:NetServerStatus</a>, info) &mdash; Constructor in class asgard.events.<a onclick="javascript:loadClassListFrame('asgard/events/class-list.html');" href="asgard/events/NetServerEvent.html">NetServerEvent</a></td>
@@ -430,11 +423,11 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("NÂ
          Creates a new NetServerStreamClient instance.</td>
 </tr>
 <tr>
-<td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('asgard/events/class-list.html');" href="asgard/events/NetServerEvent.html#NET_STATUS">NET_STATUS</a> &mdash; Constant static property in class asgard.events.<a onclick="javascript:loadClassListFrame('asgard/events/class-list.html');" href="asgard/events/NetServerEvent.html">NetServerEvent</a></td>
+<td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('asgard/net/class-list.html');" href="asgard/net/NetServerStream.html#netStatus()">netStatus</a>(e) &mdash; Method in class asgard.net.<a onclick="javascript:loadClassListFrame('asgard/net/class-list.html');" href="asgard/net/NetServerStream.html">NetServerStream</a></td>
 </tr>
 <tr>
 <td width="20"></td><td>
-         The name of the NetServerEvent when the connection status is changed.</td>
+         This method is invoked when the NetStatusEvent.NET_STATUS event is invoked.</td>
 </tr>
 <tr>
 <td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('asgard/net/class-list.html');" href="asgard/net/NetServerStreamClient.html#netStream">netStream</a> &mdash; Property in class asgard.net.<a onclick="javascript:loadClassListFrame('asgard/net/class-list.html');" href="asgard/net/NetServerStreamClient.html">NetServerStreamClient</a></td>
@@ -462,7 +455,7 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("NÂ
 </tr>
 <tr>
 <td width="20"></td><td>
-   Returns the new line string value in the current environment.</td>
+         Returns the new line string value in the current environment.</td>
 </tr>
 <tr>
 <td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('andromeda/model/array/class-list.html');" href="andromeda/model/array/PageableArrayModel.html#next()">next</a>() &mdash; Method in class andromeda.model.array.<a onclick="javascript:loadClassListFrame('andromeda/model/array/class-list.html');" href="andromeda/model/array/PageableArrayModel.html">PageableArrayModel</a></td>
@@ -486,11 +479,18 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("NÂ
    The next value.</td>
 </tr>
 <tr>
-<td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('system/serializers/eden/class-list.html');" href="system/serializers/eden/GenericParser.html#next()">next</a>() &mdash; Method in class system.serializers.eden.<a onclick="javascript:loadClassListFrame('system/serializers/eden/class-list.html');" href="system/serializers/eden/GenericParser.html">GenericParser</a></td>
+<td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('system/serializers/eden/class-list.html');" href="system/serializers/eden/ECMAScript.html#next()">next</a>() &mdash; Method in class system.serializers.eden.<a onclick="javascript:loadClassListFrame('system/serializers/eden/class-list.html');" href="system/serializers/eden/ECMAScript.html">ECMAScript</a></td>
 </tr>
 <tr>
 <td width="20"></td><td>
-   Returns the next character in the source of this parser.</td>
+         Returns the next character in the source of this parser.</td>
+</tr>
+<tr>
+<td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('system/text/parser/class-list.html');" href="system/text/parser/GenericParser.html#next()">next</a>() &mdash; Method in class system.text.parser.<a onclick="javascript:loadClassListFrame('system/text/parser/class-list.html');" href="system/text/parser/GenericParser.html">GenericParser</a></td>
+</tr>
+<tr>
+<td width="20"></td><td>
+         Returns the next character in the source of this parser.</td>
 </tr>
 <tr>
 <td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('vegas/core/class-list.html');" href="vegas/core/HashCode.html#next()">next</a>() &mdash; Static method in class vegas.core.<a onclick="javascript:loadClassListFrame('vegas/core/class-list.html');" href="vegas/core/HashCode.html">HashCode</a></td>
@@ -788,32 +788,32 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("NÂ
 </tr>
 <tr>
 <td width="20"></td><td>
-   "{0}" is not an authorized constructor
-   </td>
+         "{0}" is not an authorized constructor
+         </td>
 </tr>
 <tr>
 <td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('system/serializers/eden/class-list.html');" href="system/serializers/eden/strings.html#notAuthorizedExternalReference">notAuthorizedExternalReference</a> &mdash; Static property in class system.serializers.eden.<a onclick="javascript:loadClassListFrame('system/serializers/eden/class-list.html');" href="system/serializers/eden/strings.html">strings</a></td>
 </tr>
 <tr>
 <td width="20"></td><td>
-   "{0}" is not an authorized external reference
-   </td>
+         "{0}" is not an authorized external reference
+         </td>
 </tr>
 <tr>
 <td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('system/serializers/eden/class-list.html');" href="system/serializers/eden/strings.html#notAuthorizedFunction">notAuthorizedFunction</a> &mdash; Static property in class system.serializers.eden.<a onclick="javascript:loadClassListFrame('system/serializers/eden/class-list.html');" href="system/serializers/eden/strings.html">strings</a></td>
 </tr>
 <tr>
 <td width="20"></td><td>
-   "{0}" is not an authorized function
-   </td>
+         "{0}" is not an authorized function
+         </td>
 </tr>
 <tr>
 <td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('system/serializers/eden/class-list.html');" href="system/serializers/eden/strings.html#notAuthorizedPath">notAuthorizedPath</a> &mdash; Static property in class system.serializers.eden.<a onclick="javascript:loadClassListFrame('system/serializers/eden/class-list.html');" href="system/serializers/eden/strings.html">strings</a></td>
 </tr>
 <tr>
 <td width="20"></td><td>
-   "{0}" is not an authorized path
-   </td>
+         "{0}" is not an authorized path
+         </td>
 </tr>
 <tr>
 <td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('asgard/display/class-list.html');" href="asgard/display/SWFInfo.html#NOT_COMPRESSED">NOT_COMPRESSED</a> &mdash; Constant static property in class asgard.display.<a onclick="javascript:loadClassListFrame('asgard/display/class-list.html');" href="asgard/display/SWFInfo.html">SWFInfo</a></td>
@@ -828,8 +828,8 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("NÂ
 </tr>
 <tr>
 <td width="20"></td><td>
-   function call "{0}( {1} )"is not allowed
-   </td>
+         function call "{0}( {1} )"is not allowed
+         </td>
 </tr>
 <tr>
 <td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('andromeda/model/collections/class-list.html');" href="andromeda/model/collections/CollectionModel.html#notifyAdd()">notifyAdd</a>(vo:<a href="andromeda/vo/IValueObject.html" onclick="javascript:loadClassListFrame('andromeda/vo./class-list.html');">andromeda.vo:IValueObject</a>) &mdash; Method in class andromeda.model.collections.<a onclick="javascript:loadClassListFrame('andromeda/model/collections/class-list.html');" href="andromeda/model/collections/CollectionModel.html">CollectionModel</a></td>
@@ -900,13 +900,6 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("NÂ
 <tr>
 <td width="20"></td><td>
          Notify an ActionEvent when the process is cleared.</td>
-</tr>
-<tr>
-<td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('asgard/net/class-list.html');" href="asgard/net/NetServerConnection.html#notifyClose()">notifyClose</a>() &mdash; Method in class asgard.net.<a onclick="javascript:loadClassListFrame('asgard/net/class-list.html');" href="asgard/net/NetServerConnection.html">NetServerConnection</a></td>
-</tr>
-<tr>
-<td width="20"></td><td>
-      Invoked when the connection is closed.</td>
 </tr>
 <tr>
 <td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('andromeda/model/queue/class-list.html');" href="andromeda/model/queue/QueueModel.html#notifyDequeue()">notifyDequeue</a>(vo:<a href="andromeda/vo/IValueObject.html" onclick="javascript:loadClassListFrame('andromeda/vo./class-list.html');">andromeda.vo:IValueObject</a>) &mdash; Method in class andromeda.model.queue.<a onclick="javascript:loadClassListFrame('andromeda/model/queue/class-list.html');" href="andromeda/model/queue/QueueModel.html">QueueModel</a></td>
@@ -1033,6 +1026,13 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("NÂ
 <tr>
 <td width="20"></td><td>
       Notify an ActionEvent when the process is looped.</td>
+</tr>
+<tr>
+<td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('asgard/net/class-list.html');" href="asgard/net/NetServerConnection.html#notifyNetServerEvent()">notifyNetServerEvent</a>(type, status:<a href="asgard/net/NetServerStatus.html" onclick="javascript:loadClassListFrame('asgard/net./class-list.html');">asgard.net:NetServerStatus</a>, info) &mdash; Method in class asgard.net.<a onclick="javascript:loadClassListFrame('asgard/net/class-list.html');" href="asgard/net/NetServerConnection.html">NetServerConnection</a></td>
+</tr>
+<tr>
+<td width="20"></td><td>
+         Invoked when the connection is closed.</td>
 </tr>
 <tr>
 <td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('andromeda/util/observer/class-list.html');" href="andromeda/util/observer/Observable.html#notifyObservers()">notifyObservers</a>(arg) &mdash; Method in class andromeda.util.observer.<a onclick="javascript:loadClassListFrame('andromeda/util/observer/class-list.html');" href="andromeda/util/observer/Observable.html">Observable</a></td>
@@ -1210,13 +1210,6 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("NÂ
       Notify an ActionEvent when the process is started.</td>
 </tr>
 <tr>
-<td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('asgard/net/class-list.html');" href="asgard/net/NetServerConnection.html#notifyStatus()">notifyStatus</a>(status:<a href="asgard/net/NetServerStatus.html" onclick="javascript:loadClassListFrame('asgard/net./class-list.html');">asgard.net:NetServerStatus</a>, info) &mdash; Method in class asgard.net.<a onclick="javascript:loadClassListFrame('asgard/net/class-list.html');" href="asgard/net/NetServerConnection.html">NetServerConnection</a></td>
-</tr>
-<tr>
-<td width="20"></td><td>
-      Invoked when the status of the connection is changed.</td>
-</tr>
-<tr>
 <td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('lunas/core/class-list.html');" href="lunas/core/AbstractScrollbar.html#notifyStopDrag()">notifyStopDrag</a>() &mdash; Method in class lunas.core.<a onclick="javascript:loadClassListFrame('lunas/core/class-list.html');" href="lunas/core/AbstractScrollbar.html">AbstractScrollbar</a></td>
 </tr>
 <tr>
@@ -1284,23 +1277,23 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("NÂ
 </tr>
 <tr>
 <td width="20"></td><td>
-   "{0}" is not a valid constructor.</td>
+         "{0}" is not a valid constructor.</td>
 </tr>
 <tr>
 <td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('system/serializers/eden/class-list.html');" href="system/serializers/eden/strings.html#notValidFunction">notValidFunction</a> &mdash; Static property in class system.serializers.eden.<a onclick="javascript:loadClassListFrame('system/serializers/eden/class-list.html');" href="system/serializers/eden/strings.html">strings</a></td>
 </tr>
 <tr>
 <td width="20"></td><td>
-   "{0}" is not a valid function
-   </td>
+         "{0}" is not a valid function
+         </td>
 </tr>
 <tr>
 <td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('system/serializers/eden/class-list.html');" href="system/serializers/eden/strings.html#notValidPath">notValidPath</a> &mdash; Static property in class system.serializers.eden.<a onclick="javascript:loadClassListFrame('system/serializers/eden/class-list.html');" href="system/serializers/eden/strings.html">strings</a></td>
 </tr>
 <tr>
 <td width="20"></td><td>
-   "{0} is not a valid path
-   </td>
+         "{0} is not a valid path
+         </td>
 </tr>
 <tr>
 <td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('kronos/date/class-list.html');" href="kronos/date/Month.html#NOVEMBER">NOVEMBER</a> &mdash; Static property in class kronos.date.<a onclick="javascript:loadClassListFrame('kronos/date/class-list.html');" href="kronos/date/Month.html">Month</a></td>
@@ -1413,20 +1406,6 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("NÂ
 <tr>
 <td width="20"></td><td>
    Creates a new <code class="prettyprint">NumberEvent</code> instance.</td>
-</tr>
-<tr>
-<td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('vegas/errors/class-list.html');" href="vegas/errors/NumberFormatError.html">NumberFormatError</a> &mdash; Class in package <a onclick="javascript:loadClassListFrame('vegas/errors/class-list.html');" href="vegas/errors/package-detail.html">vegas.errors</a></td>
-</tr>
-<tr>
-<td width="20"></td><td>
-  Thrown to indicate that the application has attempted to convert a string to one of the numeric types, but that the string does not have the appropriate format.</td>
-</tr>
-<tr>
-<td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('vegas/errors/class-list.html');" href="vegas/errors/NumberFormatError.html#NumberFormatError()">NumberFormatError</a>(message, id) &mdash; Constructor in class vegas.errors.<a onclick="javascript:loadClassListFrame('vegas/errors/class-list.html');" href="vegas/errors/NumberFormatError.html">NumberFormatError</a></td>
-</tr>
-<tr>
-<td width="20"></td><td>
-   Creates a new NumberFormatError instance.</td>
 </tr>
 <tr>
 <td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('pegas/colors/class-list.html');" href="pegas/colors/RGB.html#numberToRGB()">numberToRGB</a>(value) &mdash; Static method in class pegas.colors.<a onclick="javascript:loadClassListFrame('pegas/colors/class-list.html');" href="pegas/colors/RGB.html">RGB</a></td>

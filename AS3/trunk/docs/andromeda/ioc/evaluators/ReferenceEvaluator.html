@@ -1,0 +1,314 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" href="../../../style.css" type="text/css" media="screen">
+<link rel="stylesheet" href="../../../print.css" type="text/css" media="print">
+<link rel="stylesheet" href="../../../prettify.css" type="text/css">
+<meta content="ReferenceEvaluator,andromeda.ioc.evaluators.ReferenceEvaluator,rootPattern,separator,stagePattern,thisPattern,undefineable,factory,throwError,eval" name="keywords">
+<title>andromeda.ioc.evaluators.ReferenceEvaluator</title>
+</head>
+<body>
+<script type="text/javascript" language="javascript" src="../../../prettify.js"></script><script type="text/javascript" language="javascript" src="../../../asdoc.js"></script><script type="text/javascript" language="javascript" src="../../../cookies.js"></script><script type="text/javascript" language="javascript">
+<!--
+				asdocTitle = 'ReferenceEvaluator - VEGAS AS3 Reference';
+				var baseRef = '../../../';
+				window.onload = configPage;
+			--></script>
+<table style="display:none" id="titleTable" cellspacing="0" cellpadding="0" class="titleTable">
+<tr>
+<td align="left" class="titleTableTitle">VEGAS AS3 Reference</td><td align="right" class="titleTableTopNav"><a onclick="loadClassListFrame('../../../all-classes.html')" href="../../../package-summary.html">All&nbsp;Packages</a>&nbsp;|&nbsp;<a onclick="loadClassListFrame('../../../all-classes.html')" href="../../../class-summary.html">All&nbsp;Classes</a>&nbsp;|&nbsp;<a onclick="loadClassListFrame('../../../index-list.html')" href="../../../all-index-A.html">Index</a>&nbsp;|&nbsp;<a href="../../../index.html?andromeda/ioc/evaluators/ReferenceEvaluator.html&amp;andromeda/ioc/evaluators/class-list.html" id="framesLink1">Frames</a><a onclick="parent.location=document.location" href="" style="display:none" id="noFramesLink1">No&nbsp;Frames</a></td><td rowspan="3" align="right" class="titleTableLogo"><img alt="Adobe Logo" title="Adobe Logo" class="logoImage" src="../../../images/logo.jpg"></td>
+</tr>
+<tr class="titleTableRow2">
+<td align="left" id="subTitle" class="titleTableSubTitle">Class&nbsp;ReferenceEvaluator</td><td align="right" id="subNav" class="titleTableSubNav"><a href="#propertySummary">Properties</a>&nbsp;| <a href="#methodSummary">Methods</a></td>
+</tr>
+<tr class="titleTableRow3">
+<td colspan="2">&nbsp;</td>
+</tr>
+</table>
+<script type="text/javascript" language="javascript">
+<!--
+if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Class ReferenceEvaluator"); titleBar_setSubNav(false,true,false,false,false,false,true,false,false,false,false,false,false,false);}
+--></script>
+<div class="MainContent">
+<table cellspacing="0" cellpadding="0" class="classHeaderTable">
+<tr>
+<td class="classHeaderTableLabel">Package</td><td><a onclick="javascript:loadClassListFrame('class-list.html')" href="package-detail.html">andromeda.ioc.evaluators</a></td>
+</tr>
+<tr>
+<td class="classHeaderTableLabel">Class</td><td class="classSignature">public class ReferenceEvaluator</td>
+</tr>
+<tr>
+<td class="classHeaderTableLabel">Implements</td><td><a href="../../../system/evaluators/Evaluable.html">Evaluable</a></td>
+</tr>
+</table>
+<p></p>
+     Evaluates a reference string expression and return the property value who corresponding in the target object specified in this evaluator.
+     <p><b>Example :</b></p>
+     <pre class="prettyprint">
+  import andromeda.ioc.evaluators.ReferenceEvaluator ;
+  import andromeda.ioc.factory.ECMAObjectFactory ;
+  
+  import andromeda.vo.FilterVO ;
+  
+  var linkages:Array = [ FilterVO ] ;
+  
+  var objects:Array =
+  [
+      {
+          id         : "VIDEO" ,
+          type       : "andromeda.vo.FilterVO" ,
+          properties : [ { name:"filter" , value:1 } ]
+      }
+      ,
+      {
+           id         : "MP3" ,
+           type       : "andromeda.vo.FilterVO" ,
+           properties : [ { name:"filter" , value:2 } ]
+      }
+      ,
+      {
+           id         : "my_filter" ,
+           type       : "andromeda.vo.FilterVO" ,
+           methods    :
+           [
+                { name:"toggleFilter" , arguments:[ { ref : "VIDEO.filter" } , { value : true } ] } ,
+                { name:"toggleFilter" , arguments:[ { ref : "MP3.filter"   } , { value : true } ] }
+           ]
+      }
+  ];
+  
+  var factory:ECMAObjectFactory = ECMAObjectFactory.getInstance() ;
+  
+  factory.create( objects ) ;
+  
+  var evaluator:ReferenceEvaluator = new ReferenceEvaluator( factory ) ;
+  
+  // test evaluator
+  
+  trace( evaluator.eval( "DISK" ) ) ; // null
+  trace( evaluator.eval( "VIDEO" ) ) ; // [FilterVO:1]
+  trace( evaluator.eval( "VIDEO.filter" ) ) ; // 1
+  
+  // test in the factory
+  
+  trace( factory.getObject( "my_filter" ) ) ; // [FilterVO:3]
+     </pre>
+     <p></p>
+<br>
+<hr>
+</div>
+<a name="propertySummary"></a>
+<div class="summarySection">
+<div class="summaryTableTitle">Public Properties</div>
+<table id="summaryTableProperty" class="summaryTable " cellpadding="3" cellspacing="0">
+<tr>
+<th>&nbsp;</th><th colspan="2">Property</th><th class="summaryTableOwnerCol">Defined&nbsp;by</th>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#factory">factory</a> : <a href="../factory/IObjectFactory.html">IObjectFactory</a>
+<div class="summaryTableDescription">
+         The IObjectFactory use in the evaluator.</div>
+</td><td class="summaryTableOwnerCol">ReferenceEvaluator</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#rootPattern">rootPattern</a> : String = "#root"<div class="summaryTableDescription">
+         The reference pattern who represents the current root reference of the application defines in the config object in the factory.</div>
+</td><td class="summaryTableOwnerCol">ReferenceEvaluator</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#separator">separator</a> : String = "."<div class="summaryTableDescription">
+         The separator of the expression evaluator.</div>
+</td><td class="summaryTableOwnerCol">ReferenceEvaluator</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#stagePattern">stagePattern</a> : String = "#stage"<div class="summaryTableDescription">
+         The reference pattern who represents the current stage reference of the application defines in the config object in the factory.</div>
+</td><td class="summaryTableOwnerCol">ReferenceEvaluator</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#thisPattern">thisPattern</a> : String = "#this"<div class="summaryTableDescription">
+         The reference pattern who represents the current factory.</div>
+</td><td class="summaryTableOwnerCol">ReferenceEvaluator</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#throwError">throwError</a> : Boolean<div class="summaryTableDescription">
+         Indicates if the class throws errors or return null when an error is throwing.</div>
+</td><td class="summaryTableOwnerCol">ReferenceEvaluator</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#undefineable">undefineable</a> : * = null<div class="summaryTableDescription">
+         The undefineable value returns in the eval method if the expression can't be evaluate.</div>
+</td><td class="summaryTableOwnerCol">ReferenceEvaluator</td>
+</tr>
+</table>
+</div>
+<a name="methodSummary"></a>
+<div class="summarySection">
+<div class="summaryTableTitle">Public Methods</div>
+<table id="summaryTableMethod" class="summaryTable " cellpadding="3" cellspacing="0">
+<tr>
+<th>&nbsp;</th><th colspan="2">Method</th><th class="summaryTableOwnerCol">Defined&nbsp;by</th>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#ReferenceEvaluator()">ReferenceEvaluator</a>(factory:<a href="../factory/IObjectFactory.html">IObjectFactory</a> = null)</div>
+<div class="summaryTableDescription">
+         Creates a new ReferenceEvaluator instance.</div>
+</td><td class="summaryTableOwnerCol">ReferenceEvaluator</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#eval()">eval</a>(o:*):*</div>
+<div class="summaryTableDescription">
+         Evaluates the specified object.</div>
+</td><td class="summaryTableOwnerCol">ReferenceEvaluator</td>
+</tr>
+</table>
+</div>
+<script type="text/javascript" language="javascript">
+<!--
+showHideInherited();
+--></script>
+<div class="MainContent">
+<a name="propertyDetail"></a>
+<div class="detailSectionHeader">Property detail</div>
+<a name="factory"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">factory</td><td class="detailHeaderType">property</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>factory:<a href="../factory/IObjectFactory.html">IObjectFactory</a></code>&nbsp;&nbsp;[read-write]<p>
+         The IObjectFactory use in the evaluator.
+         </p><span class="label">Implementation</span>
+<br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function get factory():<a href="../factory/IObjectFactory.html">IObjectFactory</a></code>
+<br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function set factory(value:<a href="../factory/IObjectFactory.html">IObjectFactory</a>):void</code>
+<br>
+</div>
+<a name="rootPattern"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">rootPattern</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public var rootPattern:String = "#root"</code><p>
+         The reference pattern who represents the current root reference of the application defines in the config object in the factory.
+         </p></div>
+<a name="separator"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">separator</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public var separator:String = "."</code><p>
+         The separator of the expression evaluator.
+         </p></div>
+<a name="stagePattern"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">stagePattern</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public var stagePattern:String = "#stage"</code><p>
+         The reference pattern who represents the current stage reference of the application defines in the config object in the factory.
+         </p></div>
+<a name="thisPattern"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">thisPattern</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public var thisPattern:String = "#this"</code><p>
+         The reference pattern who represents the current factory.
+         </p></div>
+<a name="throwError"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">throwError</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>throwError:Boolean</code>&nbsp;&nbsp;[read-write]<p>
+         Indicates if the class throws errors or return null when an error is throwing.
+         </p><span class="label">Implementation</span>
+<br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function get throwError():Boolean</code>
+<br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function set throwError(value:Boolean):void</code>
+<br>
+</div>
+<a name="undefineable"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">undefineable</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public var undefineable:* = null</code><p>
+         The undefineable value returns in the eval method if the expression can't be evaluate.
+         </p></div>
+<a name="constructorDetail"></a>
+<div class="detailSectionHeader">Constructor detail</div>
+<a name="ReferenceEvaluator()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">ReferenceEvaluator</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">constructor</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public function ReferenceEvaluator(factory:<a href="../factory/IObjectFactory.html">IObjectFactory</a> = null)</code><p>
+         Creates a new ReferenceEvaluator instance.
+         </p><span class="label">Parameters</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td><code><span class="label">factory</span>:<a href="../factory/IObjectFactory.html">IObjectFactory</a></code> (default = <code>null</code>)<code></code> &mdash; The IObjectFactory use in the evaluator.
+         </td>
+</tr>
+</table>
+</div>
+<a name="methodDetail"></a>
+<div class="detailSectionHeader">Method detail</div>
+<a name="eval()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">eval</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public function eval(o:*):*</code><p>
+         Evaluates the specified object.
+         </p><span class="label">Parameters</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td><code><span class="label">o</span>:*</code></td>
+</tr>
+</table>
+<p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><code>*</code></td>
+</tr>
+</table>
+</div>
+<br>
+<br>
+<hr>
+<br>
+<p></p>
+<center class="copyright"> 
+</center>
+</div>
+</body>
+</html>
+<!-- -->

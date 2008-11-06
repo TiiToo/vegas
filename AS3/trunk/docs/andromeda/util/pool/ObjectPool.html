@@ -1,0 +1,496 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" href="../../../style.css" type="text/css" media="screen">
+<link rel="stylesheet" href="../../../print.css" type="text/css" media="print">
+<link rel="stylesheet" href="../../../prettify.css" type="text/css">
+<meta content="ObjectPool,andromeda.util.pool.ObjectPool,builder,grow,parameters,object,size,usageCount,wasteCount,allocate,destroy,flush,initialize" name="keywords">
+<title>andromeda.util.pool.ObjectPool</title>
+</head>
+<body>
+<script type="text/javascript" language="javascript" src="../../../prettify.js"></script><script type="text/javascript" language="javascript" src="../../../asdoc.js"></script><script type="text/javascript" language="javascript" src="../../../cookies.js"></script><script type="text/javascript" language="javascript">
+<!--
+				asdocTitle = 'ObjectPool - VEGAS AS3 Reference';
+				var baseRef = '../../../';
+				window.onload = configPage;
+			--></script>
+<table style="display:none" id="titleTable" cellspacing="0" cellpadding="0" class="titleTable">
+<tr>
+<td align="left" class="titleTableTitle">VEGAS AS3 Reference</td><td align="right" class="titleTableTopNav"><a onclick="loadClassListFrame('../../../all-classes.html')" href="../../../package-summary.html">All&nbsp;Packages</a>&nbsp;|&nbsp;<a onclick="loadClassListFrame('../../../all-classes.html')" href="../../../class-summary.html">All&nbsp;Classes</a>&nbsp;|&nbsp;<a onclick="loadClassListFrame('../../../index-list.html')" href="../../../all-index-A.html">Index</a>&nbsp;|&nbsp;<a href="../../../index.html?andromeda/util/pool/ObjectPool.html&amp;andromeda/util/pool/class-list.html" id="framesLink1">Frames</a><a onclick="parent.location=document.location" href="" style="display:none" id="noFramesLink1">No&nbsp;Frames</a></td><td rowspan="3" align="right" class="titleTableLogo"><img alt="Adobe Logo" title="Adobe Logo" class="logoImage" src="../../../images/logo.jpg"></td>
+</tr>
+<tr class="titleTableRow2">
+<td align="left" id="subTitle" class="titleTableSubTitle">Class&nbsp;ObjectPool</td><td align="right" id="subNav" class="titleTableSubNav"><a href="#propertySummary">Properties</a>&nbsp;| <a href="#methodSummary">Methods</a></td>
+</tr>
+<tr class="titleTableRow3">
+<td colspan="2">&nbsp;</td>
+</tr>
+</table>
+<script type="text/javascript" language="javascript">
+<!--
+if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Class ObjectPool"); titleBar_setSubNav(false,true,false,false,false,false,true,false,false,false,false,false,false,false);}
+--></script>
+<div class="MainContent">
+<table cellspacing="0" cellpadding="0" class="classHeaderTable">
+<tr>
+<td class="classHeaderTableLabel">Package</td><td><a onclick="javascript:loadClassListFrame('class-list.html')" href="package-detail.html">andromeda.util.pool</a></td>
+</tr>
+<tr>
+<td class="classHeaderTableLabel">Class</td><td class="classSignature">public class ObjectPool</td>
+</tr>
+<tr>
+<td class="classHeaderTableLabel">Inheritance</td><td class="inheritanceList">ObjectPool <img class="inheritArrow" alt="Inheritance" title="Inheritance" src="../../../images/inherit-arrow.gif"> <a href="../../../vegas/core/CoreObject.html">CoreObject</a></td>
+</tr>
+</table>
+<p></p>
+     This class implements the object pool design pattern implementation.
+     <pre class="prettyprint">
+     import andromeda.util.pool.;
+     
+     import test.pool.;
+     
+     var i:int;
+     
+     var pool:ObjectPool = new ObjectPool() ;
+     
+     pool.allocate( 10 , MyClass , ["hello label"] ) ;
+     
+     pool.initialize("init", ["arg1", "arg2"]) ;
+     
+     var activeObjects:Array = [] ;
+     
+     //read the first object
+     
+     activeObjects[0] = pool.object;
+     
+     var k:int = pool.wasteCount ;
+     
+     trace("pool.wasteCount : " + pool.wasteCount) ; // 9
+     
+     for ( i = 0 ; i < k ; i++ )
+     {
+         activeObjects.push( pool.object ) ; // read the remaining 9 objects
+     }
+     
+     // wasteCount is now zero, but usageCount reports 10.
+     
+     trace("pool.usageCount : " + pool.usageCount) ;
+     
+     try
+     {
+         //this will fail because the pool is now empty
+         activeObjects.push( pool.object );
+     }
+     catch (e:Error)
+     {
+         trace(e);
+     }
+     
+     k = pool.size ;
+     
+     // give all objects back to the pool
+     
+     for (i = 0; i < k; i++)
+     {
+         pool.object = activeObjects.shift();
+     }
+     
+     // usage count is zero
+     
+     trace( pool.usageCount ) ;
+     
+     trace( "======= use grow property" ) ;
+     
+     pool.grow = true ;
+     
+     pool.object ; // create a new object and the pool is growing witn 10 new objects inside the buffer.
+     
+     trace("pool.usageCount : " + pool.usageCount) ; // 1
+     
+     trace("pool.wasteCount : " + pool.wasteCount) ; // 9
+     
+     trace( "======= use destroy method" ) ;
+     
+     pool.destroy() ;
+     
+     trace("pool.usageCount : " + pool.usageCount) ; // 0
+     trace("pool.wasteCount : " + pool.wasteCount) ; // 0
+     
+     trace( "======= Assign a custom object factory, see the test.pool.MyBuilder class") ;
+     
+     pool.builder = new MyBuilder();
+     
+     pool.allocate( 20 ) ;
+     
+     trace( pool.object ) ;
+     
+     trace("pool.usageCount : " + pool.usageCount) ; // 1
+     trace("pool.wasteCount : " + pool.wasteCount) ; // 19   
+     </pre>
+     <p></p>
+<br>
+<hr>
+</div>
+<a name="propertySummary"></a>
+<div class="summarySection">
+<div class="summaryTableTitle">Public Properties</div>
+<table id="summaryTableProperty" class="summaryTable " cellpadding="3" cellspacing="0">
+<tr>
+<th>&nbsp;</th><th colspan="2">Property</th><th class="summaryTableOwnerCol">Defined&nbsp;by</th>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#builder">builder</a> : <a href="../pool/ObjectPoolBuilder.html">ObjectPoolBuilder</a>
+<div class="summaryTableDescription">
+         Defines the builder responsible for creating all pool objects.</div>
+</td><td class="summaryTableOwnerCol">ObjectPool</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#grow">grow</a> : Boolean<div class="summaryTableDescription">
+         Indicates if the pool of objects is auto growing when a new user is called with the "object" property.</div>
+</td><td class="summaryTableOwnerCol">ObjectPool</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#object">object</a> : *<div class="summaryTableDescription">
+         Get the next available object from the pool or put it back for the
+         next use.</div>
+</td><td class="summaryTableOwnerCol">ObjectPool</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#parameters">parameters</a> : Array<div class="summaryTableDescription">
+         The optional Array representation of parameters to send in the ObjectPoolBuilder.build() method use in the pool to create all objects.</div>
+</td><td class="summaryTableOwnerCol">ObjectPool</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#size">size</a> : int<div class="summaryTableDescription">[read-only]
+         Indicates the pool size.</div>
+</td><td class="summaryTableOwnerCol">ObjectPool</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#usageCount">usageCount</a> : int<div class="summaryTableDescription">[read-only]
+         Indicates the total number of 'checked out' objects currently in use.</div>
+</td><td class="summaryTableOwnerCol">ObjectPool</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#wasteCount">wasteCount</a> : int<div class="summaryTableDescription">[read-only]
+         The total number of unused thus wasted objects.</div>
+</td><td class="summaryTableOwnerCol">ObjectPool</td>
+</tr>
+</table>
+</div>
+<a name="methodSummary"></a>
+<div class="summarySection">
+<div class="summaryTableTitle">Public Methods</div>
+<div class="showHideLinks">
+<div class="hideInheritedMethod" id="hideInheritedMethod">
+<a onclick="javascript:setInheritedVisible(false,'Method');" href="#methodSummary" class="showHideLink"><img src="../../../images/expanded.gif" class="showHideLinkImage"> Hide Inherited Public Methods</a>
+</div>
+<div class="showInheritedMethod" id="showInheritedMethod">
+<a onclick="javascript:setInheritedVisible(true,'Method');" href="#methodSummary" class="showHideLink"><img src="../../../images/collapsed.gif" class="showHideLinkImage"> Show Inherited Public Methods</a>
+</div>
+</div>
+<table id="summaryTableMethod" class="summaryTable " cellpadding="3" cellspacing="0">
+<tr>
+<th>&nbsp;</th><th colspan="2">Method</th><th class="summaryTableOwnerCol">Defined&nbsp;by</th>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#ObjectPool()">ObjectPool</a>(grow:Boolean = false)</div>
+<div class="summaryTableDescription">
+         Creates a new ObjectPool instance.</div>
+</td><td class="summaryTableOwnerCol">ObjectPool</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#allocate()">allocate</a>(size:uint = 1, clazz:Class = null, parameters:Array = null):void</div>
+<div class="summaryTableDescription">
+         Allocates the pool by creating all objects from the builder.</div>
+</td><td class="summaryTableOwnerCol">ObjectPool</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#destroy()">destroy</a>():void</div>
+<div class="summaryTableDescription">
+         Destroy and unlock all ressources for the garbage collector.</div>
+</td><td class="summaryTableOwnerCol">ObjectPool</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#flush()">flush</a>():void</div>
+<div class="summaryTableDescription">
+         Removes all unused objects from the pool.</div>
+</td><td class="summaryTableOwnerCol">ObjectPool</td>
+</tr>
+<tr class="hideInheritedMethod">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="../../../vegas/core/CoreObject.html#getLogger()">getLogger</a>():<a href="../../../vegas/logging/ILogger.html">ILogger</a>
+</div>
+<div class="summaryTableDescription">
+   Returns the internal <code class="prettyprint">ILogger</code> reference of this <code class="prettyprint">ILogable</code> object.</div>
+</td><td class="summaryTableOwnerCol"><a href="../../../vegas/core/CoreObject.html">CoreObject</a></td>
+</tr>
+<tr class="hideInheritedMethod">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="../../../vegas/core/CoreObject.html#hashCode()">hashCode</a>():uint</div>
+<div class="summaryTableDescription">
+   Returns a hashcode value for the object.</div>
+</td><td class="summaryTableOwnerCol"><a href="../../../vegas/core/CoreObject.html">CoreObject</a></td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#initialize()">initialize</a>(name:String, args:Array):void</div>
+<div class="summaryTableDescription">
+         Helper method for applying a function to all objects in the pool.</div>
+</td><td class="summaryTableOwnerCol">ObjectPool</td>
+</tr>
+<tr class="hideInheritedMethod">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="../../../vegas/core/CoreObject.html#setLogger()">setLogger</a>(log:<a href="../../../vegas/logging/ILogger.html">ILogger</a> = null):void</div>
+<div class="summaryTableDescription">
+   Sets the internal <code class="prettyprint">ILogger</code> reference of this <code class="prettyprint">ILogable</code> object.</div>
+</td><td class="summaryTableOwnerCol"><a href="../../../vegas/core/CoreObject.html">CoreObject</a></td>
+</tr>
+<tr class="hideInheritedMethod">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="../../../vegas/core/CoreObject.html#toSource()">toSource</a>(indent:int = 0):String</div>
+<div class="summaryTableDescription">
+   Returns the string representation the source code of the object.</div>
+</td><td class="summaryTableOwnerCol"><a href="../../../vegas/core/CoreObject.html">CoreObject</a></td>
+</tr>
+<tr class="hideInheritedMethod">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="../../../vegas/core/CoreObject.html#toString()">toString</a>():String</div>
+<div class="summaryTableDescription">
+   Returns the string representation of this instance.</div>
+</td><td class="summaryTableOwnerCol"><a href="../../../vegas/core/CoreObject.html">CoreObject</a></td>
+</tr>
+</table>
+</div>
+<script type="text/javascript" language="javascript">
+<!--
+showHideInherited();
+--></script>
+<div class="MainContent">
+<a name="propertyDetail"></a>
+<div class="detailSectionHeader">Property detail</div>
+<a name="builder"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">builder</td><td class="detailHeaderType">property</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public var builder:<a href="../pool/ObjectPoolBuilder.html">ObjectPoolBuilder</a></code><p>
+         Defines the builder responsible for creating all pool objects. 
+         If you don't want to use a factory, you must provide a class to the allocate method instead.
+         </p><p>
+<span class="label">See also</span>
+</p>
+<div class="seeAlso">
+<a href="../pool/ObjectPool.html#allocate" target="">allocate</a>
+</div>
+</div>
+<a name="grow"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">grow</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public var grow:Boolean</code><p>
+         Indicates if the pool of objects is auto growing when a new user is called with the "object" property.
+         </p></div>
+<a name="object"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">object</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>object:*</code>&nbsp;&nbsp;[read-write]<p>
+         Get the next available object from the pool or put it back for the
+         next use. If the pool is empty and resizable, an error is thrown.
+         </p><span class="label">Implementation</span>
+<br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function get object():*</code>
+<br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function set object(value:*):void</code>
+<br>
+</div>
+<a name="parameters"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">parameters</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public var parameters:Array</code><p>
+         The optional Array representation of parameters to send in the ObjectPoolBuilder.build() method use in the pool to create all objects. 
+         </p></div>
+<a name="size"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">size</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>size:int</code>&nbsp;&nbsp;[read-only]<p>
+         Indicates the pool size.
+         </p><span class="label">Implementation</span>
+<br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function get size():int</code>
+<br>
+</div>
+<a name="usageCount"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">usageCount</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>usageCount:int</code>&nbsp;&nbsp;[read-only]<p>
+         Indicates the total number of 'checked out' objects currently in use.
+         </p><span class="label">Implementation</span>
+<br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function get usageCount():int</code>
+<br>
+</div>
+<a name="wasteCount"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">wasteCount</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>wasteCount:int</code>&nbsp;&nbsp;[read-only]<p>
+         The total number of unused thus wasted objects. Use the purge() method to compact the pool.
+         </p><span class="label">Implementation</span>
+<br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function get wasteCount():int</code>
+<br>
+<p>
+<span class="label">See also</span>
+</p>
+<div class="seeAlso">
+<a href="../pool/ObjectPool.html#purge" target="">purge</a>
+</div>
+</div>
+<a name="constructorDetail"></a>
+<div class="detailSectionHeader">Constructor detail</div>
+<a name="ObjectPool()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">ObjectPool</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">constructor</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public function ObjectPool(grow:Boolean = false)</code><p>
+         Creates a new ObjectPool instance.
+         </p><span class="label">Parameters</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td><code><span class="label">grow</span>:Boolean</code> (default = <code>false</code>)<code></code> &mdash; Indicates if the pool of objects is auto growing when a new user is called with the "object" property.
+         </td>
+</tr>
+</table>
+</div>
+<a name="methodDetail"></a>
+<div class="detailSectionHeader">Method detail</div>
+<a name="allocate()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">allocate</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public function allocate(size:uint = 1, clazz:Class = null, parameters:Array = null):void</code><p>
+         Allocates the pool by creating all objects from the builder. 
+         </p><span class="label">Parameters</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td><code><span class="label">size</span>:uint</code> (default = <code>1</code>)<code></code> &mdash; The class to create for each object node in the pool.
+         </td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><code><span class="label">clazz</span>:Class</code> (default = <code>null</code>)<code></code> &mdash; The number of objects to create.
+         </td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><code><span class="label">parameters</span>:Array</code> (default = <code>null</code>)<code></code> &mdash; The optional Array representation of parameters to send in the ObjectPoolBuilder.build() method use in this method to create all pooling objects. 
+         This overwrites the current factory.
+         </td>
+</tr>
+</table>
+</div>
+<a name="destroy()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">destroy</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public function destroy():void</code><p>
+         Destroy and unlock all ressources for the garbage collector.
+         </p></div>
+<a name="flush()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">flush</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public function flush():void</code><p>
+         Removes all unused objects from the pool. 
+         If the number of remaining used objects is smaller than the initial capacity defined by the 
+         allocate() method, new objects are created to refill the pool. 
+         </p></div>
+<a name="initialize()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">initialize</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public function initialize(name:String, args:Array):void</code><p>
+         Helper method for applying a function to all objects in the pool.
+         </p><span class="label">Parameters</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td><code><span class="label">name</span>:String</code> &mdash; The name of the method invoked to initialize all objects in the pool.
+         </td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><code><span class="label">args</span>:Array</code> &mdash; The Array representation of all arguments of the init method.
+         </td>
+</tr>
+</table>
+</div>
+<br>
+<br>
+<hr>
+<br>
+<p></p>
+<center class="copyright"> 
+</center>
+</div>
+</body>
+</html>
+<!-- -->
