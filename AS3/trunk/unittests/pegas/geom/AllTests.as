@@ -22,10 +22,10 @@
 */
 package pegas.geom  
 {
-	import buRRRn.ASTUce.framework.ITest;
-	import buRRRn.ASTUce.framework.TestSuite;	
+    import buRRRn.ASTUce.framework.ITest;
+    import buRRRn.ASTUce.framework.TestSuite;	
 
-	/**
+    /**
 	 * This class launch all tests.
 	 * @author eKameleon
 	 */
@@ -40,6 +40,7 @@ package pegas.geom
             
             var suite:TestSuite = new TestSuite( "pegas.geom" );
             
+            suite.addTestSuite( AspectRatioTest ) ;
             suite.addTestSuite( DimensionTest ) ;
             suite.addTestSuite( Matrix4Test ) ;
             suite.addTestSuite( PlaneTest ) ;
