@@ -24,7 +24,9 @@
 package pegas.geom 
 {
     import system.Reflection;
-    import system.numeric.Mathematics;        
+    import system.numeric.Mathematics;
+    
+    import vegas.core.ILockable;    
 
     /**
      * The <code class="prettyprint">AspectRatio</code> class encapsulates the width and height of an object and indicates this aspect ratio.
@@ -39,36 +41,59 @@ package pegas.geom
      * trace("------ AspectRatio(320,240)") ;
      * 
      * ar = new AspectRatio(320,240) ;
-     * 
-     * trace(ar) ; // [4:3]
+     * trace(ar) ; // 4:3
      * 
      * ar.verbose = true ;
-     * 
      * trace(ar) ; // [AspectRatio width:320, height:240, ratio:{4:3}]
+     * 
+     * ar.lock() ;
+     * 
+     * ar.width = 640 ;
+     * trace(ar) ; // [AspectRatio width:640, height:480, ratio:{4:3}]
+     * 
+     * ar.height = 120 ;
+     * trace(ar) ; // [AspectRatio width:160, height:120, ratio:{4:3}]
+     * 
+     * ar.unlock() ;
+     * 
+     * ar.width = 320 ;
+     * trace(ar) ; // [AspectRatio width:320, height:120, ratio:{8:3}]
      * 
      * trace("------ AspectRatio(1680,1050)") ;
      * 
      * ar = new AspectRatio(1680,1050) ;
      * 
-     * trace(ar) ; // [8:5]
+     * trace(ar) ; // 8:5
      * 
      * ar.verbose = true ;
      * 
      * trace(ar) ; // [AspectRatio width:1680, height:1050, ratio:{8:5}]
+     * 
+     * trace("------ AspectRatio(0,0)") ;
+     * 
+     * ar = new AspectRatio(0) ;
+     * 
+     * trace(ar) ; // 0:0
+     * 
+     * ar.verbose = true ;
+     * 
+     * trace(ar) ; // [AspectRatio width:0, height:0, ratio:{0:0}]
      * </pre>
      * @author eKameleon
      */
-    public class AspectRatio extends Dimension implements IGeometry
+    public class AspectRatio extends Dimension implements IGeometry, ILockable
     {
 
         /**
          * Creates a new <code class="prettyprint">AspectRatio</code> instance.
-         * @param w The width int value use to defines the aspect ratio value.
-         * @param h The height int value use to defines the aspect ratio value. 
+         * @param width The width int value use to defines the aspect ratio value.
+         * @param height The height int value use to defines the aspect ratio value. 
+         * @param lock This boolean flag indicates if the aspect ratio must be keeped when the width or height values changes.
          */
-        public function AspectRatio( width:int=0 , height:int=0 )
+        public function AspectRatio( width:int=0 , height:int=0 , lock:Boolean=false )
         {
             super( width , height ) ;
+            _lock = lock ;
         }
         
         /**
@@ -78,8 +103,40 @@ package pegas.geom
          */
         public function get gcd():int
         {
-        	return Mathematics.gcd( int(width) , int(height) ) ;
+        	return _gcd ;
         }
+        
+        /**
+         * @private
+         */
+        public override function set height( n:Number ):void
+        {
+            _h   = int(n) ;
+            if ( _lock )
+            {
+                _w = int(_h * _aspW / _aspH ) ;
+            }
+            else
+            {
+                _GCD() ;
+            }
+        }       
+        
+        /**
+         * @private
+         */
+        public override function set width( n:Number ):void
+        {
+            _w   = int(n) ;
+            if ( _lock )
+            {
+                _h = int(_w * _aspH / _aspW ) ;
+            }
+            else
+            {
+                _GCD() ;
+            }      
+        }          
         
         /**
          * Indicates the verbose mode used in the toString() method.
@@ -113,15 +170,39 @@ package pegas.geom
         {
         	return (o is AspectRatio) && ((o as AspectRatio).gcd == gcd) ;
         }
-                
+        
+        /**
+         * Returns <code class="prettyprint">true</code> if the object is locked.
+         * @return <code class="prettyprint">true</code> if the object is locked.
+         */        
+        public function isLocked():Boolean
+        {
+        	return _lock ;
+        }        
+        
+        /**
+         * Locks the object.
+         */        
+        public function lock():void
+        {
+        	_lock = true ;
+        }
+        
+        /**
+         * Unlocks the object.
+         */        
+        public function unlock():void
+        {
+        	_lock = false ;
+        }        
+        
         /**
          * Returns the string representation of this instance.
          * @return the string representation of this instance.
          */
         public override function toString():String 
         {
-        	var d:int = gcd ;
-        	var s:String = (int(width) / d) + ":" + (int(height) / d ) ;  
+        	var s:String = _aspW + ":" + _aspH ;  
         	if ( verbose )
         	{
                 return "[" + Reflection.getClassName(this) + " width:" + width + ", height:" + height + ", ratio:{" + s + "}]" ;
@@ -131,6 +212,37 @@ package pegas.geom
         		return s ;
         	}
         }        
+        
+        /**
+         * @private
+         */
+        private var _aspW:int ;
+        
+        /**
+         * @private
+         */
+        private var _aspH:int ;
+        
+        /**
+         * @private
+         */
+        private var _gcd:int ;
+        
+        /**
+         * @private
+         */
+        private var _lock:Boolean ;
+        
+        /**
+         * @private
+         */
+        private function _GCD():void
+        {
+            _gcd  = Mathematics.gcd( int(_w) , int(_h) ) ;
+            _aspW = int(int(_w) / _gcd) ;
+            _aspH = int(int(_h) / _gcd) ;
+        } 
+        
         
     }
 }

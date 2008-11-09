@@ -22,12 +22,12 @@
 */
 package pegas.geom
 {
-	import system.Reflection;
-	
-	import vegas.core.CoreObject;
-	import vegas.util.Serializer;	
+    import system.Reflection;
+    
+    import vegas.core.CoreObject;
+    import vegas.util.Serializer;	
 
-	/**
+    /**
      * The <code class="prettyprint">Dimension</code> class encapsulates the width and height of an object.
      * @author eKameleon
      */
@@ -39,26 +39,25 @@ package pegas.geom
     	 */
         public function Dimension( ...arguments:Array )
         {
-			width  = 0 ;
-			height = 0 ;
-			var size:Number = arguments.length ;
+			this.width  = 0 ;
+			this.height = 0 ;
+			var size:int = arguments.length ;
             if ( size > 0 )
     		{
     			if ( ( size == 1 ) && ( arguments[0] is Dimension ) )
     			{
     			    var d:Dimension = arguments[0] as Dimension ;
-    				width  = d.width  ;
-    				height = d.height ;
+    				this.width  = d.width  ;
+    				this.height = d.height ;
     			}
-    			else if ( ( size == 2 ) && (arguments[0] is Number) && (arguments[1] is Number) )
+    			else if ( ( size > 0 ) && (arguments[0] is Number) && (arguments[1] is Number) )
     			{
-    				width  = arguments[0] ;
-    				height = arguments[1] ;
+    				this.width  = arguments[0] ;
+    				this.height = arguments[1] ;
     			}
     		}
         }
-
-
+        
 		/**
 		 * Defines the Dimension object with the width and height properties set to zero.
 		 */
@@ -67,13 +66,35 @@ package pegas.geom
     	/**
     	 * Determinates the height value of this instance.
     	 */
-    	public var height:Number ;
+    	public function get height():Number
+    	{
+    		return _h ;
+    	}
+    	
+        /**
+         * @private
+         */
+        public function set height( n:Number ):void
+        {
+            _h = n ;
+        }    	
     	
     	/**
 	     * Determinates the width value of this instance.
     	 */
-    	public var width:Number ;
-
+        public function get width():Number
+        {
+            return _w ;
+        }
+        
+        /**
+         * @private
+         */
+        public function set width( n:Number ):void
+        {
+            _w = n ;
+        }        	 
+        
     	/**
     	 * Returns a shallow copy of this instance.
     	 * @return a shallow copy of this instance.
@@ -89,7 +110,7 @@ package pegas.geom
     	 */
     	public function copy():*
     	{
-    		return new Dimension(width, height) ;	
+    		return new Dimension(width, height) ;
     	}
     
     	/**
@@ -138,7 +159,7 @@ package pegas.geom
     	 */
     	public function increaseSize( s:Dimension ):Dimension
     	{
-    		width  += s.width ;
+    		width  += s.width  ;
     		height += s.height ;
     		return this ;	
     	}
@@ -178,7 +199,17 @@ package pegas.geom
     	{
     		return "[" + Reflection.getClassName(this) + " width:" + width + ",height:" + height + "]" ;
     	}
-    
+        
+        /**
+         * @private
+         */
+        protected var _h:Number ;
+        
+        /**
+         * @private
+         */
+        protected var _w:Number ;
+        
     }
 
 }
