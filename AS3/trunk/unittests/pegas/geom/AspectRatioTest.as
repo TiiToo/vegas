@@ -47,16 +47,20 @@ package pegas.geom
         public function testConstructor():void
         {
             
-            assertNotNull( ar, "DIM_00_01 - constructor is null") ;
-            assertTrue( ar is Dimension, "DIM_00_02 - constructor is an instance of Dimension.") ;
+            assertNotNull( ar, "01 - constructor is null") ;
+            
+            assertTrue( ar is Dimension   , "02 - constructor is an instance of Dimension." ) ;
+            assertTrue( ar is AspectRatio , "03 - constructor is an instance of AspectRatio." ) ;
             
             var ar1:AspectRatio = new AspectRatio() ;
-            ar1.verbose = true ;
-            assertEquals( ar1.width  , 0 , "DIM_00_03_01 - constructor failed with 0 argument : " + ar1) ;
-            assertEquals( ar1.height , 0 , "DIM_00_03_02 - constructor failed with 0 argument : " + ar1) ;
             
-            assertEquals( ar.width  , 320, "DIM_00_03_03 - constructor failed with a Dimension argument : " + ar) ;
-            assertEquals( ar.height , 240, "DIM_00_03_04 - constructor failed with a Dimension argument : " + ar) ;
+            ar1.verbose = true ;
+            
+            assertEquals( ar1.width  , 0 , "04_01 - constructor failed with 0 argument : " + ar1) ;
+            assertEquals( ar1.height , 0 , "04_02 - constructor failed with 0 argument : " + ar1) ;
+            
+            assertEquals( ar.width  , 320, "05_01 - constructor failed : " + ar) ;
+            assertEquals( ar.height , 240, "06_01 - constructor failed : " + ar) ;
             
             
         }
