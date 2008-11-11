@@ -45,7 +45,7 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <td class="classHeaderTableLabel">Implements</td><td><a href="IGeometry.html">IGeometry</a></td>
 </tr>
 <tr>
-<td class="classHeaderTableLabel">Subclasses</td><td><a href="../geom/Rectangle.html">Rectangle</a></td>
+<td class="classHeaderTableLabel">Subclasses</td><td><a href="../geom/AspectRatio.html">AspectRatio</a>, <a href="../geom/Rectangle.html">Rectangle</a></td>
 </tr>
 </table>
 <p></p>
@@ -226,9 +226,15 @@ showHideInherited();
 </tr>
 </table>
 <div class="detailBody">
-<code>public var height:Number</code><p>
+<code>height:Number</code>&nbsp;&nbsp;[read-write]<p>
       Determinates the height value of this instance.
-      </p></div>
+      </p><span class="label">Implementation</span>
+<br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function get height():Number</code>
+<br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function set height(value:Number):void</code>
+<br>
+</div>
 <a name="width"></a>
 <table cellspacing="0" cellpadding="0" class="detailHeader">
 <tr>
@@ -236,9 +242,15 @@ showHideInherited();
 </tr>
 </table>
 <div class="detailBody">
-<code>public var width:Number</code><p>
+<code>width:Number</code>&nbsp;&nbsp;[read-write]<p>
       Determinates the width value of this instance.
-      </p></div>
+      </p><span class="label">Implementation</span>
+<br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function get width():Number</code>
+<br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function set width(value:Number):void</code>
+<br>
+</div>
 <a name="ZERO"></a>
 <table cellspacing="0" cellpadding="0" class="detailHeader">
 <tr>

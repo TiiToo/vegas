@@ -46,19 +46,21 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
      The IconButton component with a label and a basic icon display representation.
      <p><b>Example :</b></p>
      <pre class="prettyprint">
-     import flash.display.;
-     import flash.net.URLRequest;
      import lunas.display.button.IconButton ;
+     
+     import flash.display.StageScaleMode ;
+     import flash.net.URLRequest;  
+     import flash.events.KeyboardEent ;
      
      stage.scaleMode = StageScaleMode.NO_SCALE ;
      
      var bt:IconButton = new IconButton() ;
      
-     bt.x              = 25 ;
-     bt.y              = 25 ;
-     bt.icon           = new URLRequest("library/icons/none.png") ;
-     bt.label          = "Hello world" ;
-     bt.toggle         = true ;
+     bt.x      = 25 ;
+     bt.y      = 25 ;
+     bt.icon   = new URLRequest("library/icons/none.png") ;
+     bt.label  = "Hello world" ;
+     bt.toggle = true ;
      
      addChild( bt ) ;
      

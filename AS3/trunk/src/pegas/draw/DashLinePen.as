@@ -28,7 +28,7 @@ package pegas.draw
      * This pen is the basic tool to draw a dash line.
      * <p><b>Example :</b></p>
      * <pre class="prettyprint">
-     * import flash.display.* ;
+     * import flash.display.StageScaleMode ;
      * 
      * import pegas.draw.DashLinePen ;
      * import pegas.draw.LineStyle ;

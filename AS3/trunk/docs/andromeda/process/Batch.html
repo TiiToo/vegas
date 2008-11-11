@@ -56,7 +56,9 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
      import andromeda.events.ActionEvent ;
      import andromeda.process.Batch ;
      
-     import pegas.transitions.easing.;
+     import pegas.transitions.easing.Back ;
+     import pegas.transitions.easing.Bounce ;
+     import pegas.transitions.easing.Elastic ;
      import pegas.transitions.Tween ;
      
      Stage.align     = StageAlign.TOP_LEFT ;
@@ -74,8 +76,8 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
          }
      }
      
-     var max:uint = 50 ;
-     for ( var i:uint = 0; i < max ; i++ )
+     var max:int = 50 ;
+     for ( var i:int = 0; i < max ; i++ )
      {
          var rec:Shape = addChild( new Shape() ) ;
          rec.x = Math.random()40 ;

@@ -34,17 +34,17 @@ package vegas.logging.targets
 	import vegas.logging.LogEventLevel;	
 
 	/**
-	 * Provides a logger target that uses the SOS console to output log messages. 
-	 * Thanks <b>PowerFlasher</b> and the <a href='http://sos.powerflasher.de/english/english.html'>SOS Console</a>
-	 * @example
+	 * Provides a logger target that uses the SOS Max console to output log messages. 
+	 * Thanks <b>PowerFlasher</b> and the <a href='http://sos.powerflasher.de/'>SOS Max Console</a>
+	 * <p><b>Example :</b></p>
 	 * <pre class="prettyprint">
-	 * import vegas.logging.* ;
+	 * import vegas.logging.ILogger ;
+	 * import vegas.logging.Log ;
 	 * import vegas.logging.targets.SOSTarget ;
 	 *  
-	 * import vegas.errors.* ;
-	 * 
 	 * // setup target
 	 * var target:SOSTarget = new SOSTarget("myApplication", 0xD8F394) ;
+	 * 
 	 * target.filters = [ "myApplication" ] ; // use a empty array to receive all logs.
 	 * target.includeLines = true ;
 	 * target.includeCategory = true ;

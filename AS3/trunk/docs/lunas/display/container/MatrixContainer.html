@@ -47,12 +47,13 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
      <p><b>Example :</b></p>
      <pre class="prettyprint">
      import flash.display.StageScaleMode ;
-     import flash.filters.;
+     import flash.filters.DropShadowFilter ;
      
-     import lunas.core.Direction;
      import lunas.display.container.MatrixContainer ;
      
-     import pegas.colors.Color ;
+     import pegas.draw.Direction;
+     import pegas.draw.FillStyle ;
+     import pegas.draw.RectanglePen ;
      
      stage.scaleMode = StageScaleMode.NO_SCALE ;
      
@@ -69,14 +70,19 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
      
      var createNewSquare:Function = function()
      {
+         var square:Shape            = new Shape() ;
          var shadow:DropShadowFilter = new DropShadowFilter( 2, 90, 0x000000, 0.7, 10, 10, 1, 2) ;
-         var s:Square = container.addChild( new Square() )  ;
-         var c:Color  = new Color( s.background ) ;
-         c.rgb = Math.random() 0xFFFFFF ;
-         s.filters = [ shadow ] ;
+         var pen:RectanglePen        = new RectanglePen( square ) ;
+         
+         pen.fill = new FillStyle( Math.random() 0xFFFFFF ) ;
+         pen.draw(0,0,10,10) ;
+         
+         square.filters = [ shadow ] ;
+         
+         container.addChild( square  )  ;
      }
      
-     for (var i:uint = 0 ; i<12 ; i++ )
+     for (var i:int = 0 ; i<12 ; i++ )
      {
          createNewSquare() ;
      }

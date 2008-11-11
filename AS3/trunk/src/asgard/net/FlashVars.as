@@ -107,7 +107,8 @@ package asgard.net
     	 * <p><b>Example :</b></p>
     	 * <pre class="prettyprint">
     	 * import asgard.net.FlashVars ;
-    	 * import system.evaluators.* ;
+    	 * import system.evaluators.DateEvaluator ;
+    	 * import system.evaluators.EdenEvaluator ;
     	 *  
     	 * var value:String = flashVars.getValue("date", new EdenEvaluator(false), new DateEvaluator()) ;
     	 * trace( "result : " + value ) ; // result : "12.06.2006 16:12:24" with the original "date" flashvars value : "new Date(2006,5,12,16,12,24)"

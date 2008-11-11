@@ -305,6 +305,11 @@ package asgard.display
         /**
          * @private
          */
+        // TODO private var _asVersion:uint ;        
+        
+        /**
+         * @private
+         */
         private var _bytes:ByteArray ;        
         
         /**
@@ -336,6 +341,11 @@ package asgard.display
          * @private
          */
         private var _symbolClassNames:Array ;  
+        
+        /**
+         * @private
+         */
+    	// TODO private var _totalFrames:uint ;
     	
         /**
          * @private

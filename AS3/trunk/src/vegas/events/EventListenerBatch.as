@@ -34,8 +34,12 @@ package vegas.events
  	 * It handles several <code class="prettyprint">EventListener</code> as one <code class="prettyprint">EventListener</code>.
 	 * <p><b>Example : </b></p>
 	 * <code class="prettyprint">
-	 * 	
-	 * import vegas.events.* ;
+	 * import flash.events.Event ;
+	 * 
+	 * import vegas.events.Delegate ;
+	 * import vegas.events.EventDispatcher ;
+	 * import vegas.events.EventListener ;
+	 * import vegas.events.EventListenerBatch ;
 	 * 
 	 * var EVENT_TYPE:String = "onTest" ;
 	 * 
