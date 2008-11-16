@@ -31,6 +31,11 @@ package asgard.media
      */
     public class AudioCodec 
     {
+
+        /**
+         * The AAC audio codec value.
+         */
+        public static const AAC:Number = 10 ;
         
         /**
          * The ADPCM audio codec value.
@@ -43,14 +48,24 @@ package asgard.media
         public static const MP3:Number = 2 ;
         
         /**
-         * The first NellyMoser audio codec value.
+         * The NellyMoser audio codec value.
          */
-        public static const NELLY_MOSER_1:Number = 5 ;
+        public static const NELLY_MOSER:Number = 6 ;        
         
         /**
-         * The second NellyMoser audio codec value.
+         * The Nellymoser, 8kHz mono audio codec value.
          */
-        public static const NELLY_MOSER_2:Number = 6 ;
+        public static const NELLY_MOSER_8:Number = 5 ;
+                
+        /**
+         * The Nellymoser @ 16 kHz mono audio codec value.
+         */
+        public static const NELLY_MOSER_16:Number = 4 ;        
+
+        /**
+         * The Speex audio codec value.
+         */
+        public static const SPEEX:Number = 11 ;         
         
         /**
          * The Uncompressed audio codec value.
@@ -63,7 +78,17 @@ package asgard.media
          */
         public static function validate( id:Number ):Boolean
         {
-            var ar:Array = [ ADPCM, MP3, UNCOMPRESSED, NELLY_MOSER_1 , NELLY_MOSER_2] ;
+            var ar:Array = 
+            [ 
+                AAC            ,
+                ADPCM          , 
+                MP3            ,
+                NELLY_MOSER    , 
+                NELLY_MOSER_8  , 
+                NELLY_MOSER_16 ,
+                SPEEX          ,
+                UNCOMPRESSED 
+            ] ;
             return ar.indexOf( id ) > -1 ;
         }
             

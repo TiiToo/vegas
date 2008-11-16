@@ -85,15 +85,27 @@ package asgard.net
             // getLogger().info( this + " cuepoint: time=" + info.time + " name=" + info.name + " type=" + info.type);
         }         
           
-          /**
-           * Dispatched when Flash Player receives image data as a byte array embedded in a media file that is playing. 
-           * The image data can produce either JPEG, PNG or GIF content. 
-           * Use the flash.display.Loader.loadBytes() method to load the byte array into a display object.
-           */
-          public function onImageData( imageData:Object ):void
-          {
-              // overrides
-          }
+        /**
+         * Dispatched when Flash Player receives image data as a byte array embedded in a media file that is playing. 
+         * The image data can produce either JPEG, PNG or GIF content. 
+         * Use the flash.display.Loader.loadBytes() method to load the byte array into a display object.
+         * <p><b>Example :</b></p>
+         * <pre class="prettyprint">
+         * public function onImageData(imageData:Object):void 
+         * {
+         *     // display track number
+         *     trace(imageData.trackid);
+         *     var loader:Loader = new Loader();
+         *     //imageData.data is a ByteArray object
+         *     loader.loadBytes(imageData.data);
+         *     addChild(loader);
+         * } 
+         * </pre>
+         */
+        public function onImageData( imageData:Object ):void
+        {
+            //    
+        }
           
         /**
          * Dispatched when the application receives descriptive information embedded in the video being played. 
@@ -120,17 +132,38 @@ package asgard.net
         }
         
         /**
-         * Dispatched when Flash Player receives text data embedded in a media file that is playing. 
-         * The text data is in UTF-8 format and can contain information about formatting based on the 3GP timed text specification. 
-         * This special event is intended for use with Flash Media Server; 
-         * for more information, see the class description. You cannot use the addEventListener() method, or any other EventDispatcher methods, to listen for, or process, this event. 
-         * Rather, you must define a single callback function and attach it directly to the textData object.
+         * The onTextData event sends text data through an AMF0 data channel. This callback method is invoked when Flash Player receives text data embedded in a media file that is playing. 
+         * <p>The text data is in UTF-8 format and can contain information about formatting based on the 3GP timed text specification.</p>
+         * <p>This specification defines a standardized subtitle format.
+         * Define an onTextData() callback method to process this information, in the same way that you would define callback methods for onCuePoint or onMetaData. In the following example, the onTextData() method displays the track ID number and corresponding track text.</p>
+         * <p>This special event is intended for use with Flash Media Server; for more information, see the class description. You cannot use the addEventListener() method, or any other EventDispatcher methods, to listen for, or process, this event. 
+         * Rather, you must define a single callback function and attach it directly to the textData object.</p>
          * <p>This event is triggered after a call to the NetStream.play() method, but before the video playhead has advanced.</p>
          * <p>The onTextData event object contains one property for each piece of text data.</p>
-          */
+         * <p><b>Example :</b></p>
+         * <pre class="prettyprint">
+         * public function onTextData(textData:Object):void
+         * {
+         *     // display the track number
+         *     trace( textData.trackid ) ;
+         *     // displays the text, which can be a null string, indicating old text that should be erased
+         *     trace( textData.text ) ;
+         * }
+         * </pre>
+         */
         public function onTextData(textData:Object):void 
         {
-            // 
+            //
+        }
+        
+        /**
+         * The onXMPData() callback function receives information specific to Adobe Extensible Metadata Platform (XMP) 
+         * that is embedded in the Adobe F4V or FLV video file. 
+         * <p>The XMP metadata includes cue points as well as other video metadata. XMP metadata support is introduced with Flash Player 10 and Adobe AIR 1.5 and supported by subsequent versions of Flash Player and AIR.</p>
+         */
+        public function onXMPData( info:Object ):void
+        {
+        	//
         }
         
         /**

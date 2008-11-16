@@ -33,17 +33,17 @@ package asgard.media
     {
         
         /**
-         * The first value of the On2 VP6 video codec.
+         * The first value of the On2 VP6 video codec. (SWF version 8 and later only)
          */
         public static const ON2_VP6_1:Number = 4 ; 
     
         /**
-         * The second value of the On2 VP6 video codec.
+         * The second value of the On2 VP6 video codec. VP6 video with alpha channel (SWF version 8 and later only)
          */
         public static const ON2_VP6_2:Number = 5 ; 
         
         /**
-         * The 'Screen Video' video id value.
+         * Screen video (SWF version 7 and later only)
          */
         public static const SCREEN_VIDEO:Number = 3 ;
         

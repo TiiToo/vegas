@@ -42,10 +42,25 @@ package asgard.media
         }
         
         /**
+         * The AAC audio object type; 0, 1, or 2 are supported.
+         */
+        public var aacaot:int ;
+        
+        /**
+         * AVC IDC level number such as 10, 11, 20, 21, and so on.
+         */
+        public var avclevel:Number ;
+        
+        /**
+         * AVC profile number such as 55, 77, 100, and so on.
+         */
+        public var avcprofile:Number ;
+        
+        /**
          * Audio codec ID number used in the FLV. (Uncompressed = 0, ADPCM = 1, MP3 = 2, NellyMoser = 5 and 6).
          * @see asgard.media.AudioCodec
           */
-        public var audiocodecid:Number ;
+        public var audiocodecid:* ;
             
         /**
          * A number that indicates the rate at which audio was encoded, in kilobytes per second. (Defaults to 0).
@@ -53,10 +68,11 @@ package asgard.media
         public var audiodatarate:Number ;
             
         /**
-         * Audio delay in seconds. Flash 8 encoder delays the video for better synch with audio 
+         * A number that indicates what time in the FLV file "time 0" of the original FLV file exists. The video content needs to be delayed by a small amount to properly synchronize the audio.
+         * <p>Audio delay in seconds. Flash 8 encoder delays the video for better synch with audio.</p> 
          * (Audio and video does not start both at time 0, Video starts a bit later). 
-         * This value is also important for Flash 8 Video Encoder injected Cue Points, because logical time of the cue points does not correspond to physical time they are inserted in the FLV. 
-         * (Cue points are injected before encoding, when the video is shifted by 'audio delay' seconds, cue points are also shifted and their physical time in the FLV changes).
+         * <p>This value is also important for Flash 8 Video Encoder injected Cue Points, because logical time of the cue points does not correspond to physical time they are inserted in the FLV.  
+         * (Cue points are injected before encoding, when the video is shifted by 'audio delay' seconds, cue points are also shifted and their physical time in the FLV changes).</p>
          */
         public var audiodelay:Number ;
     
@@ -66,7 +82,9 @@ package asgard.media
         public var audiosize:Number ;
         
         /**
-         * Is <code class="prettyprint">true</code> if the last video tag is a key frame and hence can be 'seek'ed.
+         * A Boolean value that is true if the FLV file is encoded with a keyframe on the last frame, which allows seeking to the end of a progressive -download video file.
+         * <p>It is <code class="prettyprint">false</code> if the FLV file is not encoded with a keyframe on the last frame.</p>
+         * <p>It is <code class="prettyprint">true</code> if the last video tag is a key frame and hence can be 'seek'ed.</p>
          */
         public var canSeekToEnd:Boolean ;
         
@@ -143,9 +161,25 @@ package asgard.media
         public var metadatadate:Date ;
         
         /**
-         * Video codec ID number used in the FLV. (Sorenson H.263 =2, Screen Video =3, On2 VP6 = 4 and 5, Screen Video V2 = 6).
+         * An array that lists the available keyframes as timestamps in milliseconds. Optional.
          */
-        public var videocodecid:Number ;
+        public var seekPoints:Array ;
+        
+        /**
+         * An array of key-value pairs that represent the information in the “ilst” atom, which is the equivalent of ID3 tags for MP4 files. iTunes uses these tags. Can be used to display artwork, if available.
+         */
+        public var tags:Array ;
+        
+        /**
+         * Object that provides information on all the tracks in the MP4 file, including their sample description ID.
+         */
+        public var trackinfo:* ;
+        
+        /**
+         * A string that is the codec version that was used to encode the video. - for example, “avc1” or “VP6F”.
+         * <p>In the old version, is a Video codec ID number used in the FLV. (Sorenson H.263 =2, Screen Video =3, On2 VP6 = 4 and 5, Screen Video V2 = 6).</p>
+         */
+        public var videocodecid:* ;
         
         /**
          * The video data rate (Defaults to 0).
@@ -153,12 +187,17 @@ package asgard.media
         public var videodatarate:Number ;
         
         /**
+         * Framerate of the MP4 video.
+         */
+        public var videoframerate:Number ;        
+        
+        /**
          * The video data size.
          */
         public var videosize:Number ;
         
         /**
-         * Width of the video in pixels. (Flash exporter 1.1 sets this to 0).
+         * A number that is the width of the FLV file, in pixels. (Flash exporter 1.1 sets this to 0).
          */
         public var width:Number ;
         
