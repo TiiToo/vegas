@@ -197,7 +197,7 @@ package vegas.data.list
         /**
          * Creates a new LinkedList instance.
          * <p><b>Usage :</b></p>
-         * <pre class="prettyprint>
+         * <pre class="prettyprint">
          * var list:LinkedList = new LinkedList() ;
          * </pre>
          * @param c The optional Collection used to fill and initialize this LinkedList instance.
