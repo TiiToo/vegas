@@ -22,13 +22,13 @@
 */
 package asgard.display 
 {
-    import flash.display.MovieClip;
-    
+    import system.data.OrderedIterator;
     import system.numeric.Mathematics;
     
     import vegas.core.CoreObject;
-    import vegas.data.iterator.OrderedIterator;
-    import vegas.errors.UnsupportedOperation;    
+    import vegas.errors.UnsupportedOperation;
+    
+    import flash.display.MovieClip;    
 
     /**
      * This iterator control the timeline in a MovieClip target.

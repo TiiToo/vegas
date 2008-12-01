@@ -23,14 +23,13 @@
 
 package vegas.data.bag
 {
+    import system.data.Iterator;
+    
+    import vegas.core.CoreObject;
+    import vegas.core.IFormat;
+    import vegas.data.Bag;	
 
-	import vegas.core.CoreObject;
-	import vegas.core.IFormat;
-
-	import vegas.data.Bag;
-	import vegas.data.iterator.Iterator;
-
-	/**
+    /**
   	 * Converts a Bag to a custom string representation.
 	 * @author eKameleon
 	 */

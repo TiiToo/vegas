@@ -23,8 +23,9 @@
 
 package vegas.data.collections
 {
-    import vegas.data.Collection;
-    import vegas.data.iterator.Iterator;
+    import system.data.Collection;
+    import system.data.Iterator;
+    
     import vegas.util.AbstractTypeable;
     import vegas.util.Serializer;    
 
@@ -56,6 +57,14 @@ package vegas.data.collections
 			}
 			_co = co ;
 		}
+		
+        /**
+         * Inserts an elements into the Collection.
+         */
+        public function add(o:*):Boolean
+        {
+            return _co.add(o) ;
+        }		
 		
 		/**
 		 * Removes all of the elements from this collection (optional operation).
@@ -109,15 +118,7 @@ package vegas.data.collections
 		{
 			return _co.indexOf(o, fromIndex) ;
 		}
-
-		/**
-		 * Inserts an elements into the Collection.
-		 */
-		public function insert(o:*):Boolean
-		{
-			return _co.insert(o) ;
-		}
-	
+        	
 		/**
 		 * Returns <code class="prettyprint">true</code> if this collection contains no elements.
 		 * @return <code class="prettyprint">true</code> if the collection is empty else <code class="prettyprint">false</code>.

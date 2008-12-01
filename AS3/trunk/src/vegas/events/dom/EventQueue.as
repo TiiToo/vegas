@@ -23,11 +23,12 @@
 
 package vegas.events.dom
 {
-    import vegas.core.CoreObject;
-    import vegas.data.Queue;
-    import vegas.data.iterator.Iterator;
-    import vegas.data.queue.LinearQueue;
+    import system.data.Iterator;
+    import system.data.Queue;
+    import system.data.queues.LinearQueue;
     
+    import vegas.core.CoreObject;    
+
     [ExcludeClass]
     
     /**

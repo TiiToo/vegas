@@ -23,10 +23,9 @@
 
 package vegas.data.map
 {
-	
-	import vegas.data.Map;
-	
-	/**
+    import system.data.Map;	
+
+    /**
 	 * The MapUtil utility class is an all-static class with methods for working with map.
 	 * @author eKameleon
 	 */

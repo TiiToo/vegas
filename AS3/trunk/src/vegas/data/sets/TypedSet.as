@@ -22,8 +22,9 @@
 */
 package vegas.data.sets
 {
-    import vegas.data.Set;
-    import vegas.data.iterator.Iterator;
+    import system.data.Iterator;
+    import system.data.Set;
+    
     import vegas.util.AbstractTypeable;
     import vegas.util.Serializer;    
 
@@ -54,6 +55,16 @@ package vegas.data.sets
 			}
 			_set = s ;
 		}
+        
+        /**
+         * Adds the specified element to this set if it is not already present.
+         * @param o the object to insert in the Set.
+         */
+        public function add(o:*):Boolean 
+        {
+            validate(o) ;
+            return _set.add(o) ;
+        }
 
 	    /**
 	     * Removes all of the elements from this Set (optional operation).
@@ -80,16 +91,7 @@ package vegas.data.sets
 		{
 			return _set.contains(o) ;
 	    }
-
-    	/**
-    	 * Returns a deep copy of this Set (optional operation).
-    	 * @return a deep copy of this Set (optional operation).
-    	 */
-		public function copy():* 
-		{
-			return new TypedSet(getType(), _set.copy()) ;
-		}
-
+        
 	    /**
 	     * Returns an element in the set at the specified position.
 	     * @param key the position of the element in the Set.
@@ -110,17 +112,7 @@ package vegas.data.sets
 		{
 			return _set.indexOf(o) ;
 		}
-
-    	/**
-    	 * Adds the specified element to this set if it is not already present.
-    	 * @param o the object to insert in the Set.
-    	 */
-  		public function insert(o:*):Boolean 
-  		{
-			validate(o) ;
-			return _set.insert(o) ;
-	    }
-
+        
     	/**
 	     * Returns <code class="prettyprint">true</code> if this set contains no elements.
     	 * @return <code class="prettyprint">true</code> if this set contains no elements.

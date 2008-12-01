@@ -23,10 +23,12 @@
 
 package vegas.events
 {
-    import vegas.core.CoreObject;
-    import vegas.data.iterator.Iterator;
-    import vegas.data.map.ArrayMap;
-    import vegas.data.map.HashMap;    
+    import system.data.Iterator;
+    import system.data.maps.ArrayMap;
+    import system.data.maps.HashMap;
+    import system.data.maps.MapEntry;
+    
+    import vegas.core.CoreObject;    
 
     /**
      * The Front Controller pattern defines a single EventDispatcher that is responsible for processing application requests.
@@ -178,14 +180,14 @@ package vegas.events
             {
                 if ( _map.get( eventName ) is EventListenerBatch && listener != null )
                 {
-                    ( _map.get( eventName ) as EventListenerBatch ).insert( listener ) ;
+                    ( _map.get( eventName ) as EventListenerBatch ).add( listener ) ;
                     return ;                
                 }
             }
             var batch:EventListenerBatch = new EventListenerBatch() ;
             if ( listener != null )
             {
-                batch.insert( listener ) ;
+                batch.add( listener ) ;
             }
             insert( eventName , batch ) ;
         }
@@ -212,8 +214,13 @@ package vegas.events
          */
         public function remove(eventName:String):void
         {
-            var listener:* = _map.remove( eventName ) ;
-            if (listener) 
+        	var listener:* ;
+            var e:MapEntry = _map.remove( eventName ) as MapEntry ;
+            if ( e != null )
+            { 
+                 listener = e.value ;
+            }        	
+            if ( listener ) 
             {
                 _dispatcher.unregisterEventListener(eventName, listener);
             }

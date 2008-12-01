@@ -44,10 +44,10 @@ package andromeda.process
         public function setUp():void
         {
             batch = new Batch() ;
-            batch.insert( new MockCommand() ) ;
-            batch.insert( new MockCommand() ) ;
-            batch.insert( new MockCommand() ) ;
-            batch.insert( new MockCommand() ) ;
+            batch.add( new MockCommand() ) ;
+            batch.add( new MockCommand() ) ;
+            batch.add( new MockCommand() ) ;
+            batch.add( new MockCommand() ) ;
         }
         
         public function tearDown():void

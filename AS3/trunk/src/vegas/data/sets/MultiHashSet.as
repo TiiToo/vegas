@@ -1,15 +1,15 @@
 ﻿package vegas.data.sets
 {
-	import vegas.data.Collection;
-	import vegas.data.Map;
-	import vegas.data.Set;
-	import vegas.data.iterator.Iterator;
-	import vegas.data.map.MultiHashMap;
-	import vegas.data.sets.HashSet;
-	import vegas.errors.UnsupportedOperation;
-	import vegas.util.Copier;
+    import system.data.Collection;
+    import system.data.Iterator;
+    import system.data.Map;
+    import system.data.Set;
+    import system.data.maps.MultiValueMap;
+    import system.data.sets.HashSet;
+    
+    import flash.errors.IllegalOperationError;    
 
-	/**
+    /**
 	 * The MultiHashSet is a MutliHashMap that contains no duplicate elements in a specified key.
 	 * <p><b>Example :</b></p>
 	 * <pre class="prettyprint">
@@ -62,7 +62,7 @@
 	 * @author eKameleon
 	 * @see MultiMap
 	 */
-	public class MultiHashSet extends MultiHashMap implements Set
+	public class MultiHashSet extends MultiValueMap implements Set
 	{
 		
 		/**
@@ -73,6 +73,18 @@
 			super(m) ;
 			_internalSet = new HashSet() ;
 		}
+		
+        /**
+         * This method always throws an <code class="prettyprint">UnsupportedOperation</code> because this method is not supported by this Set.
+         * @param o an object to insert in the MultiHashSet.
+         * @return nothing (null)
+         * @throw IllegalOperationError the MultiHashSet instance does not support the insert() method.
+         */     
+        public function add( o:* ):Boolean
+        {
+            throw new IllegalOperationError("This MultiHashSet does not support the insert() method.") ;
+            return null ;
+        }		
 		
 		/**
 	 	 * This clears each collection in the map, and so may be slow.
@@ -110,7 +122,7 @@
 			
 			var value:* = o ;
 			
-			var it:Iterator = __map.iterator() ;
+			var it:Iterator = _map.iterator() ;
 			
 			while (it.hasNext()) 
 			{
@@ -142,21 +154,7 @@
 				return s.contains( value ) ;
 			}
 		}
-
-		public override function copy():*
-		{
-			var m:MultiHashSet = new MultiHashSet() ;
-			var vItr:Iterator = valueIterator() ;
-			var kItr:Iterator = keyIterator() ;
-			while (kItr.hasNext()) 
-			{
-				var key:*   = Copier.copy(kItr.next()) ;
-				var value:* = Copier.copy(vItr.next()) ;
-				m.putCollection(key, value) ;
-			}
-			return m ;
-		}
-
+        
 		/**
 		 * Creates a new instance of the map value Collection(Set) container.
 		 * This method can be overridden to use your own collection type.
@@ -189,25 +187,15 @@
 
 		/**
 		 * This method always throws an <code class="prettyprint">UnsupportedOperation</code> because this method is not supported by this Set.
-		 * @throw UnsupportedOperation the MultiHashSet instance does not support the indexOf() method.
+		 * @throw IllegalOperationError the MultiHashSet instance does not support the indexOf() method.
 		 */		
 		public function indexOf(o:*, fromIndex:uint=0):int
 		{
-			throw new UnsupportedOperation("This MultiHashSet does not support the indexOf() method.") ;
+			throw new IllegalOperationError("This MultiHashSet does not support the indexOf() method.") ;
 			return 0;
 		}
 		
-		/**
-		 * This method always throws an <code class="prettyprint">UnsupportedOperation</code> because this method is not supported by this Set.
-		 * @param o an object to insert in the MultiHashSet.
-		 * @return nothing (null)
-		 * @throw UnsupportedOperation the MultiHashSet instance does not support the insert() method.
-		 */		
-		public function insert( o:* ):Boolean
-		{
-			throw new UnsupportedOperation("This MultiHashSet does not support the insert() method.") ;
-			return null ;
-		}
+
 
 		/**
 		 * Adds the value to the Set associated with the specified key.
@@ -221,10 +209,10 @@
 			}
 			if (!containsKey(key)) 
 			{
-				__map.put(key , createCollection()) ;
+				_map.put(key , createCollection()) ;
 			}
-			__map.get(key).insert(value) ;
-			return _internalSet.insert(value) ;
+			_map.get(key).insert(value) ;
+			return _internalSet.add(value) ;
 		}
 
 		/**
@@ -234,17 +222,17 @@
 		{
 			if (!containsKey(key)) 
 			{
-				__map.put(key , createCollection()) ;
+				_map.put(key , createCollection()) ;
 			}
-			var s:HashSet = __map.get(key) ;
+			var s:HashSet = _map.get(key) ;
 			var it:Iterator = c.iterator() ;
 			var value:* ;
 			while(it.hasNext()) 
 			{
 				value = it.next() ;
-				if (_internalSet.insert(value)) 
+				if (_internalSet.add(value)) 
 				{
-					s.insert(value) ;
+					s.add(value) ;
 				}	
 			}
 		}
@@ -254,7 +242,7 @@
 		 */
 		public override function remove(o:*):*
 		{
-			var s:Set = __map.get(o) ;
+			var s:Set = _map.get(o) ;
 			if (s != null) 
 			{
 				var it:Iterator = s.iterator() ;
@@ -262,7 +250,7 @@
 				{
 					_internalSet.remove(it.next()) ;
 				}
-				__map.remove(o) ;
+				_map.remove(o) ;
 				return true ;
 			}
 			else 
@@ -277,8 +265,7 @@
 		 */
 		public override function removeByKey( key:*, value:* ):*
 		{
-			
-			var c:Collection = __map.get(key) ;
+			var c:Collection = _map.get(key) ;
 			if (c == null) return null ;
 			if (c.remove(value))
 			{
@@ -288,7 +275,6 @@
 			{
 				return null ;
 			}
-			
 		}
 
 		/**
@@ -299,7 +285,10 @@
 		{
 			return getValues() ;
 		}
-
+        
+        /**
+         * @private
+         */
 		private var _internalSet:HashSet ;
 
 	}

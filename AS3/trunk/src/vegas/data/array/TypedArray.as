@@ -24,6 +24,7 @@
 package vegas.data.array
 {
     import system.Reflection;
+    import system.data.arrays.ProxyArray;
     import system.serializers.eden.BuiltinSerializer;
     
     import vegas.core.ITypeable;
@@ -77,15 +78,7 @@ package vegas.data.array
         {
             return new TypedArray(_type, _ar.slice()) ;
         }
-
-        /**
-         * Creates and returns a deep copy of the object.
-         */    
-        public override function copy():*
-        {
-            return new TypedArray(_type, _ar.slice()) ;
-        }
-
+        
         /**
          * Concatenates the elements specified in the parameter list with the elements of this array and returns a new array containing these element.
          * @return a new array that contains the elements of this array as well as the passed-in elements.

@@ -4,11 +4,10 @@
     
     import observer.event.PictureModelEvent;
     
-    import system.process.Runnable;
-    
-    import vegas.data.Set;
-    import vegas.data.iterator.Iterator;
-    import vegas.data.sets.HashSet;    
+    import system.data.Iterator;
+    import system.data.Set;
+    import system.data.sets.HashSet;
+    import system.process.Runnable;    
 
     /**
      * The model to change the Picture with differents external files.
@@ -58,7 +57,7 @@
     	 */
     	public function insertUrl( sUrl:String ):Boolean
     	{
-    		var b:Boolean = _set.insert( sUrl ) ;
+    		var b:Boolean = _set.add( sUrl ) ;
     		trace(this + " insert : " + sUrl + " :: " + b) ;
     		return b ;
     	}

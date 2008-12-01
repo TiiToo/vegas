@@ -23,14 +23,15 @@
 
 package vegas.events
 {
-	import flash.events.Event;
-	
-	import vegas.data.collections.SimpleCollection;
-	import vegas.data.collections.TypedCollection;
-	import vegas.data.iterator.Iterator;
-	import vegas.util.Copier;
-	
-	/**
+    import system.data.Iterator;
+    import system.data.collections.ArrayCollection;
+    
+    import vegas.data.collections.TypedCollection;
+    import vegas.util.Copier;
+    
+    import flash.events.Event;	
+
+    /**
  	 * It handles several <code class="prettyprint">EventListener</code> as one <code class="prettyprint">EventListener</code>.
 	 * <p><b>Example : </b></p>
 	 * <code class="prettyprint">
@@ -74,7 +75,7 @@ package vegas.events
 	 	 */
 		public function EventListenerBatch()
 		{
-			super(EventListener, new SimpleCollection());
+			super(EventListener, new ArrayCollection());
 		}
 
 		/**
@@ -87,7 +88,7 @@ package vegas.events
 			var it:Iterator = iterator() ;
 			while (it.hasNext()) 
 			{
-				b.insert(it.next()) ;
+				b.add(it.next()) ;
 			}
 			return b ;
 		}
@@ -102,7 +103,7 @@ package vegas.events
 			var it:Iterator = iterator() ;
 			while (it.hasNext()) 
 			{
-				b.insert( Copier.copy(it.next())) ;
+				b.add( Copier.copy(it.next())) ;
 			}
 			return b ;
 		}

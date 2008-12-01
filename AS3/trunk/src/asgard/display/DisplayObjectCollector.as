@@ -1,4 +1,4 @@
-/*
+﻿/*
 
   The contents of this file are subject to the Mozilla Public License Version
   1.1 (the "License"); you may not use this file except in compliance with
@@ -22,10 +22,11 @@
 */
 package asgard.display
 {
-    import flash.display.DisplayObject;
+    import system.data.maps.HashMap;
     
-    import vegas.data.map.HashMap;
-    import vegas.errors.Warning;	
+    import vegas.errors.Warning;
+    
+    import flash.display.DisplayObject;    
 
     /**
      * This collector use a Map to register all Displays in the application.

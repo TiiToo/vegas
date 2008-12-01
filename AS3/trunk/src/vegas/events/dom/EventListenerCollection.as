@@ -23,16 +23,16 @@
 
 package vegas.events.dom
 {
-	import flash.events.Event;
-	
-	import system.Reflection;
-	
-	import vegas.core.CoreObject;
-	import vegas.data.iterator.Iterable;
-	import vegas.data.iterator.Iterator;
-	import vegas.data.list.SortedArrayList;
-	import vegas.events.EventListener;    
+    import system.Reflection;
+    import system.data.Iterable;
+    import system.data.Iterator;
+    import system.data.lists.SortedArrayList;
     
+    import vegas.core.CoreObject;
+    import vegas.events.EventListener;
+    
+    import flash.events.Event;	
+
     [ExcludeClass]
     
 	/**
@@ -64,7 +64,7 @@ package vegas.events.dom
 			var container:EventListenerContainer = new EventListenerContainer(listener) ;
 			container.enableAutoRemove(autoRemove) ;
 			container.setPriority(priority) ;
-			_list.insert(container) ;
+			_list.add(container) ;
 			return _list.size() ;
 		}
 

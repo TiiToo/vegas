@@ -24,9 +24,9 @@ package andromeda.ioc.core
 {
     import buRRRn.ASTUce.framework.TestCase;
     
-    import vegas.data.Map;
-    import vegas.data.iterator.Iterator;
-    import vegas.data.map.HashMap;    
+    import system.data.Iterator;
+    import system.data.Map;
+    import system.data.maps.HashMap;    
 
     /**
      * The TypeAliases type instance.

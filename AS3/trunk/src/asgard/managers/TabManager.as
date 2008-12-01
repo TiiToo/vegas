@@ -22,16 +22,17 @@
 */
 package asgard.managers 
 {
+    import andromeda.model.AbstractModel;
+    
+    import system.data.Iterator;
+    import system.data.maps.HashMap;
+    
+    import vegas.data.sets.MultiHashSet;
+    
     import flash.display.DisplayObject;
     import flash.display.InteractiveObject;
     import flash.display.Stage;
-    import flash.events.FocusEvent;
-    
-    import andromeda.model.AbstractModel;
-    
-    import vegas.data.iterator.Iterator;
-    import vegas.data.map.HashMap;
-    import vegas.data.sets.MultiHashSet;    
+    import flash.events.FocusEvent;    
 
     /**
      * The TabManager manage visual tab process in the applications.

@@ -23,21 +23,22 @@
 
 package vegas.data.bag
 {
+    import system.data.Collection;
+    import system.data.Iterator;
+    import system.data.List;
+    import system.data.Map;
+    import system.data.Set;
+    import system.data.lists.ArrayList;
+    import system.data.sets.HashSet;
+    
     import vegas.core.CoreObject;
     import vegas.data.Bag;
-    import vegas.data.Collection;
-    import vegas.data.List;
-    import vegas.data.Map;
-    import vegas.data.Set;
     import vegas.data.bag.BagFormat;
     import vegas.data.bag.HashBag;
     import vegas.data.iterator.BagIterator;
-    import vegas.data.iterator.Iterator;
-    import vegas.data.list.ArrayList;
     import vegas.data.map.MapUtil;
-    import vegas.data.sets.HashSet;
     import vegas.errors.UnsupportedOperation;
-    import vegas.util.Serializer;	
+    import vegas.util.Serializer;    
 
     /**
 	 * This class provides a skeletal implementation of the <code class="prettyprint">Bag</code> interface, to minimize the effort required to implement this interface.
@@ -58,6 +59,15 @@ package vegas.data.bag
 				_setMap(m) ;
 			}
 		}
+		
+        /**
+         * Add 1 copy of the given object to the bag and keep a count. 
+         */ 
+        public function add(o:*):Boolean 
+        {
+        
+            return insertCopies(o, 1) ;
+        }		
 		
 		/**
 		 * Removes all of the elements from this bag.
@@ -163,14 +173,6 @@ package vegas.data.bag
 			throw new UnsupportedOperation(this + " 'indexOf' method is unsupported.") ;
 		}
 
-		/**
-		 * Add 1 copy of the given object to the bag and keep a count. 
-		 */	
-		public function insert(o:*):Boolean 
-		{
-		
-			return insertCopies(o, 1) ;
-		}
 
 		/**
 		 * Insert all elements represented in the given collection.
@@ -180,8 +182,9 @@ package vegas.data.bag
     		var changed:Boolean = false;
 	        var i:Iterator = c.iterator() ;
 			var added:Boolean ;
-	        while (i.hasNext()) {
-				added = insert(i.next());
+	        while (i.hasNext()) 
+	        {
+				added = add(i.next());
 	            changed = changed || added ;
 	        }
 	        return changed;
@@ -303,7 +306,7 @@ package vegas.data.bag
 	                excess.insertCopies(cur, count1) ;
 	            }
 	        }
-	        if (!excess.isEmpty()) 
+	        if (!excess.isEmpty() ) 
 	        {
 	        	result = removeAll(excess) ;
 	        }
@@ -377,7 +380,7 @@ package vegas.data.bag
 				var l:uint = getCount(current) ;
 	            while (--l > -1) 
 	            {
-	            	result.insert(current);
+	            	result.add(current);
 	            }
 	        }
 	        return result ;

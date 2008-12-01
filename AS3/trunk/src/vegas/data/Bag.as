@@ -23,8 +23,10 @@
 
 package vegas.data
 {
-	
-	/**
+    import system.data.Collection;
+    import system.data.Set;	
+
+    /**
 	 * Defines a collection that counts the number of times an object appears in the collection.
 	 * @author eKameleon
 	 */

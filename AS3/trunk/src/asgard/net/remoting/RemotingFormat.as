@@ -23,15 +23,15 @@
 
 package asgard.net.remoting
 {
-	import system.Reflection;
-	
-	import vegas.core.CoreObject;
-	import vegas.core.IFormat;
-	import vegas.data.iterator.Iterable;
-	import vegas.data.iterator.Iterator;
-	import vegas.util.TypeUtil;    
+    import system.Reflection;
+    import system.data.Iterable;
+    import system.data.Iterator;
+    
+    import vegas.core.CoreObject;
+    import vegas.core.IFormat;
+    import vegas.util.TypeUtil;	
 
-	/**
+    /**
 	 * The instances of this class can converts an object to a custom string representation.
      * @author eKameleon
      */

@@ -5,7 +5,7 @@ package mvc.model
     
     import mvc.vo.PictureVO;
     
-    import vegas.data.iterator.Iterator;    
+    import system.data.Iterator;    
 
     /**
      * The model of the picture gallery.

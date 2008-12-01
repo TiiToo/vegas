@@ -27,10 +27,11 @@ package pegas.transitions
     
     import pegas.events.TweenEntryEvent;
     
-    import vegas.data.Map;
-    import vegas.data.iterator.Iterable;
-    import vegas.data.iterator.Iterator;
-    import vegas.data.map.HashMap;	
+    import system.data.Iterable;
+    import system.data.Iterator;
+    import system.data.Map;
+    import system.data.maps.HashMap;
+    import system.data.maps.MapEntry;    
 
     /**
  	 * The model of the Tween class.
@@ -199,9 +200,10 @@ package pegas.transitions
 			} 
 			if ( contains(p) ) 
 			{
-				var t:TweenEntry = _map.remove( p ) ;
-				if (t != null) 
+				var e:MapEntry   = _map.remove( p ) ;
+				if ( e.value as TweenEntry != null) 
 				{
+					var t:TweenEntry = e as TweenEntry ;
 					dispatchEvent( new TweenEntryEvent( getEventTypeREMOVE() , this, t ) ) ;
 					return true ;
 				}

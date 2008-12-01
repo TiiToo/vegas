@@ -23,8 +23,9 @@
 
 package vegas.data
 {
-	
-	/**
+    import system.data.Map;	
+
+    /**
 	 * Defines a map that allows bidirectional lookup between key and values.
 	 * @author eKameleon
 	 */

@@ -22,18 +22,17 @@
 */
 package asgard.text 
 {
-    import flash.events.Event;
-    import flash.system.ApplicationDomain;
-    import flash.text.Font;
-    
     import asgard.display.CoreLoader;
     import asgard.display.SWFInfo;
     import asgard.events.FontEvent;
     
     import system.Reflection;
+    import system.data.Iterator;
+    import system.data.sets.HashSet;
     
-    import vegas.data.iterator.Iterator;
-    import vegas.data.sets.HashSet;    
+    import flash.events.Event;
+    import flash.system.ApplicationDomain;
+    import flash.text.Font;    
 
     /**
      * This loader load an external swf who contains embed fonts.
@@ -127,7 +126,7 @@ package asgard.text
          */
         public function registerFontClassName( name:String ):Boolean
         {
-            return _fontClassNames.insert( name ) ;
+            return _fontClassNames.add( name ) ;
         }
         
         /**

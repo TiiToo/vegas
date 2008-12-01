@@ -24,7 +24,8 @@ package asgard.net.remoting
 {
     import asgard.net.remoting.RemotingConnection;
     
-    import vegas.data.map.HashMap;
+    import system.data.maps.HashMap;
+    
     import vegas.errors.Warning;    
 
     /**

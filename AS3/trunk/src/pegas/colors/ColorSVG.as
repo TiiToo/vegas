@@ -23,7 +23,7 @@
 
 package pegas.colors 
 {
-    import vegas.data.map.HashMap;		
+    import system.data.maps.HashMap;    		
 
     /**
 	 * All SVG W3C standard colors. 

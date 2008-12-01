@@ -23,8 +23,9 @@
 
 package vegas.data.queue
 {
-    import vegas.data.Queue;
-    import vegas.data.iterator.Iterator;
+    import system.data.Iterator;
+    import system.data.Queue;
+    
     import vegas.util.AbstractTypeable;
     import vegas.util.Serializer;    
 
@@ -57,6 +58,14 @@ package vegas.data.queue
             }
             _queue = queue ;
         }
+        
+        /**
+         * Ensures that this collection contains the specified element (optional operation).
+         */        
+        public function add(o:*):Boolean
+        {
+        	return enqueue( o ) ;
+        }        
 
         /**
          * Removes all elements in this typed queue.
@@ -85,15 +94,6 @@ package vegas.data.queue
         }
 
         /**
-         * Returns the deep copy of this object.
-         * @return the deep copy of this object.
-         */
-        public function copy():*
-        {
-            return new TypedQueue(getType(), _queue.clone()) ;
-        }
-
-        /**
          * Removes the head of this queue and return true if removes.
          * @return <code class="prettyprint">true</code> if the Queue is dequeue.
          */
@@ -119,6 +119,26 @@ package vegas.data.queue
             return _queue.enqueue(o) ;  
         }
 
+        /**
+         * Returns the element from this collection at the passed index.
+         * @return the element from this collection at the passed index.
+         */
+        public function get(key:*):*
+        {
+            return _queue.get( key ) ;
+        }
+        
+        /**
+         * Returns the position of the passed object in the collection.
+         * @param o the object to search in the collection.
+         * @param fromIndex the index to begin the search in the collection.
+         * @return the index of the object or -1 if the object isn't find in the collection.
+         */        
+        public function indexOf(o:*, fromIndex:uint = 0):int
+        {
+        	return _queue.indexOf( o , fromIndex ) ;
+        }
+        
         /**
          * Returns <code class="prettyprint">true</code> if this queue is empty.
          * @return <code class="prettyprint">true</code> if this queue is empty.
@@ -152,7 +172,15 @@ package vegas.data.queue
         {
             return _queue.poll() ;
         }
-
+        
+        /**
+         * Removes a single instance of the specified element from this collection, if it is present (optional operation).
+         */        
+        public function remove(o:*):*
+        {
+        	return _queue.remove( o ) ;
+        }        
+        
 	    /**
 	     * Sets the type of this ITypeable object.
 	     */
@@ -202,6 +230,13 @@ package vegas.data.queue
          * @private
          */
         private var _queue:Queue ;
-	}
+        
+
+        
+
+        
+
+
+    }
 }
 

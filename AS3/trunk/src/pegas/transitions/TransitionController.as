@@ -23,10 +23,11 @@
 
 package pegas.transitions 
 {
-    import vegas.data.Map;
-    import vegas.data.map.HashMap;
-    import vegas.events.CoreEventDispatcher;
-    import vegas.util.TypeUtil;    
+    import system.data.Map;
+    import system.data.maps.HashMap;
+    import system.data.maps.MapEntry;
+    
+    import vegas.events.CoreEventDispatcher;    
 
     /**
 	 * The TransitionController register all the ITransition of the application.
@@ -122,13 +123,16 @@ package pegas.transitions
 		 */
 		public function remove( transition:* ):*
 		{
+			var e:MapEntry ;
 			if (transition is ITransition)
 			{
-				return _map.remove( ITransition(transition).id ) ;
+				e = _map.remove( (transition as ITransition).id ) as MapEntry ;
+                return ( e != null ) ? e.value : null ;   
 			}
-			else if ( TypeUtil.typesMatch( transition, String ) )
+			else if ( transition is String )
 			{
-				return _map.remove( transition ) ;
+                e = _map.remove( transition as String ) as MapEntry ;
+                return ( e != null ) ? e.value : null ;				
 			}
 			else
 			{

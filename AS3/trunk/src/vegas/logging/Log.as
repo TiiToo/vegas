@@ -23,9 +23,9 @@
 package vegas.logging
 {
     import system.Strings;
+    import system.data.Iterator;
+    import system.data.maps.HashMap;
     
-    import vegas.data.iterator.Iterator;
-    import vegas.data.map.HashMap;
     import vegas.logging.errors.InvalidCategoryError;    
 
     /**

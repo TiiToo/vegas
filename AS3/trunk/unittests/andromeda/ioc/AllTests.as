@@ -22,14 +22,14 @@
 */
 package andromeda.ioc  
 {
-    import andromeda.ioc.core.AllTests;
-    import andromeda.ioc.evaluators.AllTests;    
-    import andromeda.ioc.factory.AllTests;
-    import andromeda.ioc.io.AllTests;
-    import andromeda.ioc.net.AllTests;
+    import andromeda.ioc.core.*;
+    import andromeda.ioc.evaluators.*;
+    import andromeda.ioc.factory.*;
+    import andromeda.ioc.io.*;
+    import andromeda.ioc.net.*;
     
     import buRRRn.ASTUce.framework.ITest;
-    import buRRRn.ASTUce.framework.TestSuite;	
+    import buRRRn.ASTUce.framework.TestSuite;    
 
     /**
 	 * This class launch all tests.

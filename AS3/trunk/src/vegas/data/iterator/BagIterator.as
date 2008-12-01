@@ -23,6 +23,8 @@
 
 package vegas.data.iterator
 {
+    import system.data.Iterator;
+    
     import vegas.core.CoreObject;
     import vegas.data.bag.AbstractBag;
     import vegas.errors.ConcurrentModificationError;
@@ -122,10 +124,25 @@ package vegas.data.iterator
         {
             return Serializer.getSourceOf(this, [_parent, _support] ) ;
         }
-
+        
+        /**
+         * @private
+         */
         private var _parent:AbstractBag = null ;
+        
+        /**
+         * @private
+         */
         private var _support:Iterator = null ;
+        
+        /**
+         * @private
+         */
         private var _current:* = null ;
+        
+        /**
+         * @private
+         */
         private var _mods:uint = 0;
 
     }

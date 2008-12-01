@@ -23,7 +23,8 @@
 
 package vegas.data
 {
-    import system.Sortable;    	
+    import system.Sortable;
+    import system.data.Map;        	
 
     /**
 	 * Map that further guarantees that it will be in ascending key order, sorted according to the natural ordering of its keys.

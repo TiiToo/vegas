@@ -22,7 +22,8 @@
 */
 package asgard.media
 {
-    import vegas.data.map.HashMap;
+    import system.data.maps.HashMap;
+    
     import vegas.errors.Warning;    
 
     /**

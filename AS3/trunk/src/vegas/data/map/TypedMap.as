@@ -22,8 +22,9 @@
 */
 package vegas.data.map
 {
-    import vegas.data.Map;
-    import vegas.data.iterator.Iterator;
+    import system.data.Iterator;
+    import system.data.Map;
+    
     import vegas.util.AbstractTypeable;
     import vegas.util.Serializer;    
 
@@ -92,16 +93,7 @@ package vegas.data.map
 			return _map.containsValue(value) ;
 			return false;
 		}
-
-		/**
-		 * Returns a deep copy of the map.
-	 	 * @return a deep copy of the map.
-		 */
-		public function copy():*
-		{
-			return new TypedMap(getType(), _map.copy()) ;
-		}
-		
+        
 		/**
 		 * Returns the value to which this map maps the specified key.
 		 * @return the value to which this map maps the specified key.
@@ -171,10 +163,11 @@ package vegas.data.map
 		public function putAll(m:Map):void
 		{
 			var it:Iterator = m.iterator() ;
-			while(it.hasNext()) {
+			while(it.hasNext()) 
+			{
 				validate(it.next()) ;
 			}
-			_map.putAll(m) ;
+			_map.putAll( m ) ;
 		}
 
 		/**
@@ -220,7 +213,10 @@ package vegas.data.map
 		{
 			return (_map as TypedMap).toString() ;
 		}
-
+        
+        /**
+         * @private
+         */
 		private var _map:Map ;
 	}
 }

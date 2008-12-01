@@ -23,17 +23,18 @@
 
 package vegas.logging.targets
 {
-	import flash.events.Event;
-	import flash.events.IOErrorEvent;
-	import flash.events.SecurityErrorEvent;
-	import flash.net.XMLSocket;
-	
-	import vegas.data.iterator.Iterator;
-	import vegas.data.queue.LinearQueue;
-	import vegas.logging.LogEvent;
-	import vegas.logging.LogEventLevel;	
+    import system.data.Iterator;
+    import system.data.queues.LinearQueue;
+    
+    import vegas.logging.LogEvent;
+    import vegas.logging.LogEventLevel;
+    
+    import flash.events.Event;
+    import flash.events.IOErrorEvent;
+    import flash.events.SecurityErrorEvent;
+    import flash.net.XMLSocket;	
 
-	/**
+    /**
 	 * Provides a logger target that uses the SOS Max console to output log messages. 
 	 * Thanks <b>PowerFlasher</b> and the <a href='http://sos.powerflasher.de/'>SOS Max Console</a>
 	 * <p><b>Example :</b></p>

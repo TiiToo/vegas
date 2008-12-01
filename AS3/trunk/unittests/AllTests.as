@@ -27,11 +27,11 @@ package
     import buRRRn.ASTUce.framework.ITest;
     import buRRRn.ASTUce.framework.TestSuite;
     
-    import calista.AllTests;
+    import calista.* ;
     
-    import pegas.AllTests;
+    import pegas.* ;
     
-    import vegas.AllTests;    
+    import vegas.* ;    
 
     /**
 	 * This class launch all tests.

@@ -23,8 +23,9 @@
 
 package vegas.data.stack
 {
-    import vegas.data.Stack;
-    import vegas.data.iterator.Iterator;
+    import system.data.Iterator;
+    import system.data.Stack;
+    
     import vegas.util.AbstractTypeable;
     import vegas.util.Serializer;    
 
@@ -32,11 +33,12 @@ package vegas.data.stack
      * TypedQueue is a wrapper for Stack instances that ensures that only values of a specific type can be added to the wrapped stack.
      * <p><b>Example :</b></p>
      * <pre class="prettyprint">
-     * import vegas.data.Stack ;
-     * import vegas.data.stack.SimpleStack ;
+     * import system.data.Stack ;
+     * import system.data.stacks.ArrayStack ;
+     * 
      * import vegas.data.stack.TypedStack ;
      * 
-     * var s:Stack = new SimpleStack() ;
+     * var s:Stack = new ArrayStack() ;
      * s.push("item1") ;
      * s.push("item2") ;
      * s.push("item3") ;
@@ -95,16 +97,7 @@ package vegas.data.stack
 		{
 			return _stack.clone() ;
 		}
-
-    	/**
-    	 * Returns a deep copy of this Stack (optional operation).
-    	 * @return a deep copy of this Stack (optional operation).
-    	 */
-		public function copy():*
-		{
-			return _stack.copy() ;
-		}
-
+        
     	/**
     	 * Returns <code class="prettyprint">true</code> if this Stack contains no elements.
     	 * @return <code class="prettyprint">true</code> if this Stack contains no elements.
@@ -151,7 +144,7 @@ package vegas.data.stack
 	    /**
 	     * Returns the 1-based position where an object is on this stack.
 	     */
-		public function search(o:*):uint
+		public function search(o:*):int
 		{
 			return _stack.search(o) ;
 		}
@@ -173,16 +166,7 @@ package vegas.data.stack
 		{
 			return _stack.size() ;
 		}
-
-        /**
-	     * Returns the array representation of all the elements of this Stack.
-	     * @return the array representation of all the elements of this Stack.
-	     */
-		public function toArray():Array
-		{
-			return _stack.toArray() ;
-		}
-
+        
     	/**
     	 * Returns a eden representation of the object.
     	 * @return a string representation the source code of the object.

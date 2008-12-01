@@ -23,12 +23,13 @@
 
 package vegas.data.bag
 {
-	import vegas.data.Collection;
-	import vegas.data.map.HashMap;
-	import vegas.util.Copier;
-	import vegas.util.Serializer;	
+    import system.data.Collection;
+    import system.data.maps.HashMap;
+    
+    import vegas.util.Copier;
+    import vegas.util.Serializer;	
 
-	/**
+    /**
 	 * Implements Bag, using a HashMap to provide the data storage. This is the standard implementation of a bag.
 	 * <p><b>Example : </b></p>
 	 * <pre class="prettyprint">

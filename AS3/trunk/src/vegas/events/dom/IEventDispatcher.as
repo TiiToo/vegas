@@ -23,10 +23,11 @@
 
 package vegas.events.dom
 {
-	import vegas.data.Set;
-	import vegas.events.EventListener;
-	
-	[ExcludeClass]
+    import system.data.Set;
+    
+    import vegas.events.EventListener;	
+
+    [ExcludeClass]
 	
 	/**
      * This interface implement class who stores the listeners object an notifies them.

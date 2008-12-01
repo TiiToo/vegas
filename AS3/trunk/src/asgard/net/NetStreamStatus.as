@@ -22,8 +22,9 @@
 */
 package asgard.net 
 {
-    import vegas.core.CoreObject;
-    import vegas.data.map.HashMap;            
+    import system.data.maps.HashMap;
+    
+    import vegas.core.CoreObject;    
 
     /**
      * The NetStream status object who contains the level and the status value of all NetStreams in the application.

@@ -23,8 +23,8 @@
 
 package pegas.transitions 
 {
-    import vegas.data.Map;
-    import vegas.data.map.HashMap;	
+    import system.data.Map;
+    import system.data.maps.HashMap;    
 
     /**
 	 * The EasingController register easing methods. 
