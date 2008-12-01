@@ -12,16 +12,12 @@
 	
     <component id="vegas.core:CoreObject"   class="vegas.core.CoreObject"   />
 	<component id="vegas.core:HashCode"     class="vegas.core.HashCode"     />
-	<component id="vegas.core:IComparable"  class="vegas.core.IComparable"  /> 
-	<component id="vegas.core:IComparator"  class="vegas.core.IComparator"  />
-	<component id="vegas.core:IComparer"    class="vegas.core.IComparer"    />
 	<component id="vegas.core:IConvertible" class="vegas.core.IConvertible" /> 
 	<component id="vegas.core:Identifiable" class="vegas.core.Identifiable" />
 	<component id="vegas.core:IFactory"     class="vegas.core.IFactory"     />
 	<component id="vegas.core:IFormat"      class="vegas.core.IFormat"      />
 	<component id="vegas.core:IHashable"    class="vegas.core.IHashable"    />
 	<component id="vegas.core:ILockable"    class="vegas.core.ILockable"    />
-	<component id="vegas.core:IRunnable"    class="vegas.core.IRunnable"    />
 	<component id="vegas.core:ITypeable"    class="vegas.core.ITypeable"    />
 	<component id="vegas.core:IValidator"   class="vegas.core.IValidator"   />
     
@@ -213,15 +209,4 @@
     <component id="vegas.util:StringUtil"       class="vegas.util.StringUtil" />
     <component id="vegas.util:TypeUtil"         class="vegas.util.TypeUtil" />
 
-    <!-- vegas.comparators -->
-    
-    <component id="vegas.util.comparators:BooleanComparator"    class="vegas.util.comparators.BooleanComparator" />  
-    <component id="vegas.util.comparators:ComparableComparator" class="vegas.util.comparators.ComparableComparator" />
-    <component id="vegas.util.comparators:DateComparator"       class="vegas.util.comparators.DateComparator" />
-    <component id="vegas.util.comparators:GenericComparator"    class="vegas.util.comparators.GenericComparator" />
-    <component id="vegas.util.comparators:NullComparator"       class="vegas.util.comparators.NullComparator" />
-    <component id="vegas.util.comparators:NumberComparator"     class="vegas.util.comparators.NumberComparator" />
-    <component id="vegas.util.comparators:ReverseComparator"    class="vegas.util.comparators.ReverseComparator" />
-    <component id="vegas.util.comparators:StringComparator"     class="vegas.util.comparators.StringComparator" />
-    
 </componentPackage>

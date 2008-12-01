@@ -23,8 +23,9 @@
 
 package vegas.events.dom
 {
-    import vegas.core.CoreObject;
-    import vegas.core.IComparator;	
+    import system.Comparator;
+    
+    import vegas.core.CoreObject;    
 
     [ExcludeClass]
 
@@ -32,7 +33,7 @@ package vegas.events.dom
      * This comparator is used in the <code class="prettyprint">EventDispatcher</code> class to ordered all <code class="prettyprint">EventLister</code> with a priority value.
      * @author eKameleon
      */
-	internal class EventListenerComparator extends CoreObject implements IComparator
+	internal class EventListenerComparator extends CoreObject implements Comparator
 	{
 
 	    /**
@@ -65,7 +66,7 @@ package vegas.events.dom
 	     * Compares its two arguments for order.
 	     * @return -1 if o1 is "lower" than o2, 1 if o1 is "higher" than o2 and 0 if o1 and o2 are equal.
 	     */
-		public function compare(o1:*, o2:*):int
+		public function compare(o1:*, o2:*, options:* = null ):int
 		{
 			if ( o1 is EventListenerContainer && o2 is EventListenerContainer ) 
 			{

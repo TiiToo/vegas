@@ -27,26 +27,32 @@
             
         </namespaces>
 
+        <strict>true</strict>
+        <optimize>true</optimize>
+
     </compiler>
     
     <include-namespaces>
 
         <uri>http://code.google.com/p/maashaack/2009</uri>
         <uri>http://code.google.com/p/vegas/2009</uri>
+        
+        <!--
         <uri>http://code.google.com/p/andromed-as/2009</uri>
+        -->
         
     </include-namespaces>
     
     <directory>false</directory>
 
     <output>deploy/vegas.swc</output>
-
+    
     <metadata>
         
         <title>The AS3 VEGAS framework - version 1</title>
         <description>All class of VEGAS and this extensions</description>
         <publisher>http://www.ekameleon.net</publisher>
-        <creator>eKameleon</creator>
+        <creator>Marc ALCARAZ (aka eKameleon)</creator>
         <language>EN</language>
     
     </metadata>

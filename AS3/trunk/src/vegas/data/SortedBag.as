@@ -1,4 +1,4 @@
-/*
+﻿/*
 
   The contents of this file are subject to the Mozilla Public License Version
   1.1 (the "License"); you may not use this file except in compliance with
@@ -24,14 +24,13 @@
 
 package vegas.data
 {
-	
-	import vegas.core.IComparer ;
+    import system.Sortable;	
 
-	/**
+    /**
 	 * Defines a type of Bag that maintains a sorted order among its unique representative members.
 	 * @author eKameleon
 	 */	
-	public interface SortedBag extends Bag, IComparer
+	public interface SortedBag extends Bag, Sortable
 	{
 	
 		/**

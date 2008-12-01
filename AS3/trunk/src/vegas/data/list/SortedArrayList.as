@@ -23,23 +23,24 @@
 
 package vegas.data.list
 {
-	import vegas.core.IComparator;
-	import vegas.core.IComparer;
-	import vegas.data.Collection;
-	import vegas.util.Copier;
-	import vegas.util.Serializer;    
+    import system.Comparator;
+    import system.Sortable;
+    
+    import vegas.data.Collection;
+    import vegas.util.Copier;
+    import vegas.util.Serializer;    
 
-	/**
+    /**
      * A SortedArrayList stores is elements in order with a IComparator object.
      * @author eKameleon
      */
-	public class SortedArrayList extends ArrayList implements IComparer
+	public class SortedArrayList extends ArrayList implements Sortable
 	{
 
     	/**
     	 * Creates a new SortedArrayList instance. 
     	 */
-		public function SortedArrayList(init:* = null , comp:IComparator=null, opt:uint=0)
+		public function SortedArrayList(init:* = null , comp:Comparator=null, opt:uint=0)
 		{
 			super(init);
 			comparator = comp ;
@@ -49,7 +50,7 @@ package vegas.data.list
     	/**
     	 * (read-only) The IComparator instance of this object.
     	 */
-		public function get comparator():IComparator 
+		public function get comparator():Comparator 
 		{
 			return _comparator ;
 		}
@@ -57,7 +58,7 @@ package vegas.data.list
 		/**
     	 * (read-only) The IComparator instance of this object.
     	 */
-		public function set comparator(comp:IComparator):void 
+		public function set comparator(comp:Comparator):void 
 		{
 			_comparator = comp ;
 			_sort() ;
@@ -152,9 +153,9 @@ package vegas.data.list
 		{
 			if ( compare == null) return null ;
 			var f:Function ;
-			if (compare is IComparator) 
+			if (compare is Comparator) 
 			{
-				f = (compare as IComparator).compare ;
+				f = (compare as Comparator).compare ;
 			}
 			else if (compare is Function)
 			{
@@ -191,7 +192,7 @@ package vegas.data.list
 		/**
 		 * @private
 		 */
-		private var _comparator:IComparator ;
+		private var _comparator:Comparator ;
 		
 		/**
 		 * @private

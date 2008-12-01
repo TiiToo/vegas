@@ -23,15 +23,14 @@
 
 package vegas.data.map
 {
+    import system.Comparator;
+    import system.Sortable;    
 
-	import vegas.core.IComparator;
-	import vegas.core.IComparer;
-    
-	/**
+    /**
 	 * This ArrayMap can be sorted with an IComparator object.
 	 * @author eKameleon
 	 */
-    public class SortedArrayMap extends ArrayMap implements IComparer
+    public class SortedArrayMap extends ArrayMap implements Sortable
     {
         
 		/**
@@ -114,7 +113,7 @@ package vegas.data.map
   		/**
 		 * (read-write) Returns the IComparator instance.
 		 */
-		public function get comparator():IComparator 
+		public function get comparator():Comparator 
 		{
 			return getComparator() ;
 		}
@@ -122,7 +121,7 @@ package vegas.data.map
 		/**
 		 * (read-write) Sets the IComparator instance.
 		 */
-		public function set comparator(comp:IComparator):void 
+		public function set comparator(comp:Comparator):void 
 		{
 			setComparator(comp) ;
 		}
@@ -164,7 +163,7 @@ package vegas.data.map
 	 	 * Returns the IComparator instance.
 	 	 * @return the IComparator instance.
 		 */
-		public function getComparator():IComparator 
+		public function getComparator():Comparator 
 		{
 			return _comparator ;
 		}
@@ -181,7 +180,7 @@ package vegas.data.map
 		/**
 	 	 * Sets the IComparator instance.
 		 */
-		public function setComparator(comp:IComparator):void 
+		public function setComparator(comp:Comparator):void 
 		{
 			_comparator = comp ;
 		}
@@ -376,7 +375,7 @@ package vegas.data.map
 			}
 		}
 
-		protected var _comparator:IComparator ;
+		protected var _comparator:Comparator ;
 
 		protected var _options:uint = 0 ;
 	

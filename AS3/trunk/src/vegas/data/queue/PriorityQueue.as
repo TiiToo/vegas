@@ -23,16 +23,17 @@
 
 package vegas.data.queue
 {
-    import vegas.core.IComparator;
-    import vegas.core.IComparer;
-    import vegas.util.Copier;
+    import system.Comparator;
+    import system.Sortable;
     
+    import vegas.util.Copier;    
+
     /**
      * This queue orders elements according to an order specified at construction time, which is specified either according to their natural order or according to a IComparator object.
      * @author eKameleon
      * @see IComparator
      */
-    public class PriorityQueue extends LinearQueue implements IComparer
+    public class PriorityQueue extends LinearQueue implements Sortable
     {
         
         /**
@@ -81,7 +82,7 @@ package vegas.data.queue
          * @param ar An optional Array with values to fill the queue.
          * @see IComparator
          */
-        public function PriorityQueue(comp:IComparator=null, options:uint=0, ar:Array=null )
+        public function PriorityQueue(comp:Comparator=null, options:uint=0, ar:Array=null )
         {
             super(ar) ;
             this.comparator = comp ;
@@ -137,7 +138,7 @@ package vegas.data.queue
          * Returns the internal IComparator reference of this object.
          * @return the internal IComparator reference of this object.
          */
-        public function get comparator():IComparator 
+        public function get comparator():Comparator 
         {
             return _comparator ;
         }
@@ -145,7 +146,7 @@ package vegas.data.queue
         /**
          * Sets the internal IComparator reference of this object.
          */
-        public function set comparator(comp:IComparator):void 
+        public function set comparator(comp:Comparator):void 
         {
             _comparator = comp ;
             _sort() ;
@@ -199,7 +200,7 @@ package vegas.data.queue
             return isEnqueue ;
         }
         
-        protected var _comparator:IComparator ;
+        protected var _comparator:Comparator ;
 
         protected var _options:uint = 0 ;
     

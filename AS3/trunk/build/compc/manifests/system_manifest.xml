@@ -7,6 +7,8 @@
     <component id="system:about"              class="system.about"              />
     <component id="system:Arrays"             class="system.Arrays"             />
     <component id="system:Cloneable"          class="system.Cloneable"          />
+    <component id="system:Comparable"         class="system.Comparable"         />
+    <component id="system:Comparator"         class="system.Comparator"         />
     <component id="system:config"             class="system.config"             />
     <component id="system:Configurator"       class="system.Configurator"       />
     <component id="system:console"            class="system.console"            />
@@ -15,6 +17,8 @@
     <component id="system:Environment"        class="system.Environment"        />
     <component id="system:Equatable"          class="system.Equatable"          />
     <component id="system:info"               class="system.info"               />
+    <component id="system:Library"            class="system.Library"            />
+    <component id="system:metadata"           class="system.metadata"           />
     <component id="system:Reflection"         class="system.Reflection"         />
     <component id="system:Serializable"       class="system.Serializable"       />
     <component id="system:Serializer"         class="system.Serializer"         />
@@ -27,10 +31,28 @@
     <component id="system.cli:ArgumentsParser" class="system.cli.ArgumentsParser" />
     <component id="system.cli:SwitchStatus"    class="system.cli.SwitchStatus"    />
     
+    <!-- system.comparators -->
+    
+    <component id="system.comparators:AlphaComparator"      class="system.comparators.AlphaComparator"      />
+    <component id="system.comparators:BooleanComparator"    class="system.comparators.BooleanComparator"    />
+    <component id="system.comparators:CharComparator"       class="system.comparators.CharComparator"       />
+    <component id="system.comparators:ComparableComparator" class="system.comparators.ComparableComparator" />
+    <component id="system.comparators:DateComparator"       class="system.comparators.DateComparator"       />
+    <component id="system.comparators:GenericComparator"    class="system.comparators.GenericComparator"    />
+    <component id="system.comparators:NullComparator"       class="system.comparators.NullComparator"       />
+    <component id="system.comparators:NumberComparator"     class="system.comparators.NumberComparator"     />
+    <component id="system.comparators:ReverseComparator"    class="system.comparators.ReverseComparator"    />
+    <component id="system.comparators:StringComparator"     class="system.comparators.StringComparator"     />
+        
     <!-- system.diagnostics -->
     
     <component id="system.diagnostics:TraceConsole"   class="system.diagnostics.TraceConsole"   />
     <component id="system.diagnostics:VirtualMachine" class="system.diagnostics.VirtualMachine" />
+
+    <!-- system.errors -->
+
+    <component id="system.errors:ConcurrencyError"   class="system.errors.ConcurrencyError"   />
+    <component id="system.errors:NoSuchElementError" class="system.errors.NoSuchElementError" />
 
     <!-- system.evaluators -->
 
@@ -64,6 +86,10 @@
     
     <component id="system.numeric:Mathematics" class="system.numeric.Mathematics" />
     <component id="system.numeric:Range"       class="system.numeric.Range"       />
+
+    <!-- system.process -->    
+    
+    <component id="system.process:Runnable"             class="system.process.Runnable"             />
     
     <!-- system.reflection -->    
     
@@ -122,5 +148,9 @@
     <component id="system.text.prettifier:Keywords"      class="system.text.prettifier.Keywords"      />    
     <component id="system.text.prettifier:Prettify"      class="system.text.prettifier.Prettify"      />
     <component id="system.text.prettifier:PrettifyToken" class="system.text.prettifier.PrettifyToken" />
+
+    <!-- system.text.ui -->
+    
+    <component id="system.ui.TextFieldConsole"           class="system.ui.TextFieldConsole"           />
     
 </componentPackage>
