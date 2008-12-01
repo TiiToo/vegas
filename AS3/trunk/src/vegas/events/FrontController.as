@@ -26,7 +26,6 @@ package vegas.events
     import system.data.Iterator;
     import system.data.maps.ArrayMap;
     import system.data.maps.HashMap;
-    import system.data.maps.MapEntry;
     
     import vegas.core.CoreObject;    
 
@@ -214,15 +213,10 @@ package vegas.events
          */
         public function remove(eventName:String):void
         {
-        	var listener:* ;
-            var e:MapEntry = _map.remove( eventName ) as MapEntry ;
-            if ( e != null )
-            { 
-                 listener = e.value ;
-            }        	
+        	var listener:* = _map.remove( eventName ) ;
             if ( listener ) 
             {
-                _dispatcher.unregisterEventListener(eventName, listener);
+                _dispatcher.unregisterEventListener( eventName , listener ) ;
             }
         }
         

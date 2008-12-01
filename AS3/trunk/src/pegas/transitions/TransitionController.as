@@ -25,7 +25,6 @@ package pegas.transitions
 {
     import system.data.Map;
     import system.data.maps.HashMap;
-    import system.data.maps.MapEntry;
     
     import vegas.events.CoreEventDispatcher;    
 
@@ -123,16 +122,13 @@ package pegas.transitions
 		 */
 		public function remove( transition:* ):*
 		{
-			var e:MapEntry ;
 			if (transition is ITransition)
 			{
-				e = _map.remove( (transition as ITransition).id ) as MapEntry ;
-                return ( e != null ) ? e.value : null ;   
+                return _map.remove( (transition as ITransition).id ) ;   
 			}
 			else if ( transition is String )
 			{
-                e = _map.remove( transition as String ) as MapEntry ;
-                return ( e != null ) ? e.value : null ;				
+                return _map.remove( transition as String ) ;				
 			}
 			else
 			{

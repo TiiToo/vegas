@@ -22,8 +22,7 @@
 */
 package vegas.events
 {
-    import system.data.maps.ArrayMap;
-    import system.data.maps.MapEntry;    
+    import system.data.maps.ArrayMap;    
 
     /**
     * Stores the listeners object an notifies them with the DOM Events level 2/3 of the W3C.
@@ -122,14 +121,13 @@ package vegas.events
          */
         public static function removeInstance(name:String=null):Boolean 
         {
-            if (name == null) name = vegas.events.EventDispatcher.DEFAULT_SINGLETON_NAME ;
+            if( name == null ) 
+            {
+            	name = vegas.events.EventDispatcher.DEFAULT_SINGLETON_NAME ;
+            }
             if ( instances.containsKey( name ) ) 
             {
-            	var e:MapEntry = instances.remove(name) ;
-            	if ( e != null )
-            	{ 
-                    return e.value != null ;
-            	}
+                return instances.remove( name ) != null ;
             }
             return false ;
         }
