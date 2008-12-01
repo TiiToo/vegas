@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<componentPackage>
+        
+    <!-- lunas.core -->
+
+    <component id="lunas.core:AbstractBuilder"       class="lunas.core.AbstractBuilder"  />
+    <component id="lunas.core:AbstractButton"        class="lunas.core.AbstractButton"  />
+    <component id="lunas.core:AbstractButtonBuilder" class="lunas.core.AbstractButtonBuilder"  />
+    <component id="lunas.core:AbstractComponent"     class="lunas.core.AbstractComponent"  />
+    <component id="lunas.core:AbstractProgress"      class="lunas.core.AbstractProgress"  />
+    <component id="lunas.core:AbstractProgressbar"   class="lunas.core.AbstractProgressbar"  />
+    <component id="lunas.core:AbstractScrollbar"     class="lunas.core.AbstractScrollbar"  />
+    <component id="lunas.core:AbstractStyle"         class="lunas.core.AbstractStyle"  />
+    <component id="lunas.core:AbstractTextInput"     class="lunas.core.AbstractTextInput"  />
+    <component id="lunas.core:EdgeMetrics"           class="lunas.core.EdgeMetrics"  />
+    <component id="lunas.core:IBar"                  class="lunas.core.IBar"  />
+    <component id="lunas.core:IBorder"               class="lunas.core.IBorder"  />
+    <component id="lunas.core:IBuilder"              class="lunas.core.IBuilder"  />
+    <component id="lunas.core:IButton"               class="lunas.core.IButton"  />
+    <component id="lunas.core:IComponent"            class="lunas.core.IComponent"  />
+    <component id="lunas.core:Iconifiable"           class="lunas.core.Iconifiable"  />
+    <component id="lunas.core:IContainer"            class="lunas.core.IContainer"  />
+    <component id="lunas.core:IData"                 class="lunas.core.IData"  />
+    <component id="lunas.core:IFocusable"            class="lunas.core.IFocusable"  />
+    <component id="lunas.core:IGroupable"            class="lunas.core.IGroupable"  />
+    <component id="lunas.core:IIMEModeSupport"       class="lunas.core.IIMEModeSupport"  />
+    <component id="lunas.core:ILabel"                class="lunas.core.ILabel"  />
+    <component id="lunas.core:IProgress"             class="lunas.core.IProgress"  />
+    <component id="lunas.core:IProgressbar"          class="lunas.core.IProgressbar"  />
+    <component id="lunas.core:IScrollbar"            class="lunas.core.IScrollbar"  />
+    <component id="lunas.core:IStyle"                class="lunas.core.IStyle"  />
+    <component id="lunas.core:ITextInput"            class="lunas.core.ITextInput"  />
+    <component id="lunas.core:ScrollPolicy"          class="lunas.core.ScrollPolicy"  />
+    <component id="lunas.core:StyleCollector"        class="lunas.core.StyleCollector"  />
+    
+    <!-- lunas.display.bar -->
+    
+    <component id="lunas.display.bar:SimpleProgressbar"    class="lunas.display.bar.SimpleProgressbar"    />
+    <component id="lunas.display.bar:SimpleScrollbar"      class="lunas.display.bar.SimpleScrollbar"      />
+    <component id="lunas.display.bar:SimpleScrollbarStyle" class="lunas.display.bar.SimpleScrollbarStyle" />  
+    
+    <!-- lunas.display.button -->
+    
+    <component id="lunas.display.button:BackgroundButton"        class="lunas.display.button.BackgroundButton"        />
+    <component id="lunas.display.button:BackgroundButtonBuilder" class="lunas.display.button.BackgroundButtonBuilder" />
+    <component id="lunas.display.button:BackgroundButtonStyle"   class="lunas.display.button.BackgroundButtonStyle"   />
+    
+    <component id="lunas.display.button:FrameLabelButton"        class="lunas.display.button.FrameLabelButton"        />
+    <component id="lunas.display.button:FrameLabelButtonBuilder" class="lunas.display.button.FrameLabelButtonBuilder" />
+
+    <component id="lunas.display.button:IconButton"        class="lunas.display.button.IconButton"        />
+    <component id="lunas.display.button:IconButtonBuilder" class="lunas.display.button.IconButtonBuilder" />
+    <component id="lunas.display.button:IconButtonStyle"   class="lunas.display.button.IconButtonStyle"   />
+
+    <component id="lunas.display.button:LabelButton"        class="lunas.display.button.LabelButton"        />
+    <component id="lunas.display.button:LabelButtonBuilder" class="lunas.display.button.LabelButtonBuilder" />
+    <component id="lunas.display.button:LabelButtonStyle"   class="lunas.display.button.LabelButtonStyle"   />
+
+    <component id="lunas.display.button:LightButton"        class="lunas.display.button.LightButton"        />
+    <component id="lunas.display.button:LightButtonBuilder" class="lunas.display.button.LightButtonBuilder" />
+    <component id="lunas.display.button:LightButtonStyle"   class="lunas.display.button.LightButtonStyle"   />    
+    
+    <component id="lunas.display.button:LightFrameLabelButton"        class="lunas.display.button.LightFrameLabelButton"        />
+    <component id="lunas.display.button:LightFrameLabelButtonBuilder" class="lunas.display.button.LightFrameLabelButtonBuilder" />
+    <component id="lunas.display.button:LightFrameLabelButtonStyle"   class="lunas.display.button.LightFrameLabelButtonStyle"   />       
+    
+    <!-- lunas.display.container -->
+
+    <component id="lunas.display.container:AutoScrollContainer" class="lunas.display.container.AutoScrollContainer"  />
+    <component id="lunas.display.container:CircleContainer"     class="lunas.display.container.CircleContainer"  />
+    <component id="lunas.display.container:Container"           class="lunas.display.container.Container"  />
+    <component id="lunas.display.container:ListContainer"       class="lunas.display.container.ListContainer"  />
+    <component id="lunas.display.container:MatrixContainer"     class="lunas.display.container.MatrixContainer"  />
+    <component id="lunas.display.container:ScrollContainer"     class="lunas.display.container.ScrollContainer"  />
+
+    <!-- lunas.display.text -->    
+
+    <component id="lunas.display.text:SimpleTextInput"      class="lunas.display.text.SimpleTextInput" />
+    <component id="lunas.display.text:SimpleTextInputStyle" class="lunas.display.text.SimpleTextInputStyle" />
+    <component id="lunas.display.text:VisualTextInput"      class="lunas.display.text.VisualTextInput" />
+    <component id="lunas.display.text:VisualTextInputStyle" class="lunas.display.text.VisualTextInputStyle" />
+
+    <!-- lunas.display.events -->
+    
+    <component id="lunas.events:ButtonEvent"    class="lunas.events.ButtonEvent"  />
+    <component id="lunas.events:ComponentEvent" class="lunas.events.ComponentEvent"  />
+    <component id="lunas.events:StyleEvent"     class="lunas.events.StyleEvent"  />            
+    
+    <!-- lunas.display.groups -->
+    
+    <component id="lunas.groups:AbstractGroup"    class="lunas.groups.AbstractGroup"  />
+    <component id="lunas.groups:RadioButtonGroup" class="lunas.groups.RadioButtonGroup"  />    
+    
+</componentPackage>
