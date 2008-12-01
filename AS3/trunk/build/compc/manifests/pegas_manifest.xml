@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<componentPackage>
+        
+    <!-- pegas.colors -->
+
+    <component id="pegas.colors:Color"          class="pegas.colors.Color" />
+    <component id="pegas.colors:ColorHSV"       class="pegas.colors.ColorHSV" />
+    <component id="pegas.colors:ColorHTML"      class="pegas.colors.ColorHTML" />
+    <component id="pegas.colors:ColorSVG"       class="pegas.colors.ColorSVG" />
+    <component id="pegas.colors:LightColor"     class="pegas.colors.LightColor" />
+    <component id="pegas.colors:RGB"            class="pegas.colors.RGB" />
+    <component id="pegas.colors:RGBA"           class="pegas.colors.RGBA" />
+    <component id="pegas.colors:SolidColor"     class="pegas.colors.SolidColor" />
+    <component id="pegas.colors:TintColor"      class="pegas.colors.TintColor" />
+    <component id="pegas.colors:TransformColor" class="pegas.colors.TransformColor" />
+    
+    <!-- pegas.draw -->
+    
+    <component id="pegas.draw:Align"                      class="pegas.draw.Align" />    
+    <component id="pegas.draw:ArcPen"                     class="pegas.draw.ArcPen" />
+    <component id="pegas.draw:ArcType"                    class="pegas.draw.ArcType" />
+    <component id="pegas.draw:ArrowPen"                   class="pegas.draw.ArrowPen" />
+    <component id="pegas.draw:BevelRectanglePen"          class="pegas.draw.BevelRectanglePen" />
+    <component id="pegas.draw:BezierPen"                  class="pegas.draw.BezierPen" />
+    <component id="pegas.draw:Canvas"                     class="pegas.draw.Canvas" />
+    <component id="pegas.draw:CanvasTransform"            class="pegas.draw.CanvasTransform" />
+    <component id="pegas.draw:CirclePen"                  class="pegas.draw.CirclePen" />
+    <component id="pegas.draw:Corner"                     class="pegas.draw.Corner" />
+    <component id="pegas.draw:CornerRectanglePen"         class="pegas.draw.CornerRectanglePen" />
+    <component id="pegas.draw:DashLinePen"                class="pegas.draw.DashLinePen" />
+    <component id="pegas.draw:Direction"                  class="pegas.draw.Direction" />
+    <component id="pegas.draw:EllipsePen"                 class="pegas.draw.EllipsePen" />
+    <component id="pegas.draw:FillBitmapStyle"            class="pegas.draw.FillBitmapStyle" />
+    <component id="pegas.draw:FillGradientStyle"          class="pegas.draw.FillGradientStyle" />
+    <component id="pegas.draw:FillStyle"                  class="pegas.draw.FillStyle" />
+    <component id="pegas.draw:FreePolygonPen"             class="pegas.draw.FreePolygonPen" />
+    <component id="pegas.draw:GearPen"                    class="pegas.draw.GearPen" />
+    <component id="pegas.draw:IDirectionable"             class="pegas.draw.IDirectionable" />
+    <component id="pegas.draw:IFillStyle"                 class="pegas.draw.IFillStyle" />
+    <component id="pegas.draw:ILineStyle"                 class="pegas.draw.ILineStyle" />
+    <component id="pegas.draw:IPen"                       class="pegas.draw.IPen" />
+    <component id="pegas.draw:IShape"                     class="pegas.draw.IShape" />
+    <component id="pegas.draw:LineGradientStyle"          class="pegas.draw.LineGradientStyle" />
+    <component id="pegas.draw:LinePen"                    class="pegas.draw.LinePen" />
+    <component id="pegas.draw:LineStyle"                  class="pegas.draw.LineStyle" />
+    <component id="pegas.draw:Pen"                        class="pegas.draw.Pen" />
+    <component id="pegas.draw:PolygonPen"                 class="pegas.draw.PolygonPen" />
+    <component id="pegas.draw:RectanglePen"               class="pegas.draw.RectanglePen" />
+    <component id="pegas.draw:RoundedComplexRectanglePen" class="pegas.draw.RoundedComplexRectanglePen" />
+    <component id="pegas.draw:RoundedRectanglePen"        class="pegas.draw.RoundedRectanglePen" />
+    <component id="pegas.draw:StarPen"                    class="pegas.draw.StarPen" />
+    
+    <!-- pegas.events -->
+    
+    <component id="pegas.events:TransitionEvent" class="pegas.events.TransitionEvent" />    
+    <component id="pegas.events:TweenEntryEvent" class="pegas.events.TweenEntryEvent" />
+    
+    <!-- pegas.geom -->
+    
+    <component id="pegas.geom:AspectRatio"  class="pegas.geom.AspectRatio" />
+    <component id="pegas.geom:Dimension"    class="pegas.geom.Dimension" />
+    <component id="pegas.geom:IGeometry"    class="pegas.geom.IGeometry" />
+    <component id="pegas.geom:Line"         class="pegas.geom.Line" />
+    <component id="pegas.geom:Matrix"       class="pegas.geom.Matrix" />
+    <component id="pegas.geom:Matrix4"      class="pegas.geom.Matrix4" />
+    <component id="pegas.geom:Plane"        class="pegas.geom.Plane" />
+    <component id="pegas.geom:Point"        class="pegas.geom.Point" />
+    <component id="pegas.geom:Quaternion"   class="pegas.geom.Quaternion" />
+    <component id="pegas.geom:Ray"          class="pegas.geom.Ray" />
+    <component id="pegas.geom:Rectangle"    class="pegas.geom.Rectangle" />
+    <component id="pegas.geom:UVCoordinate" class="pegas.geom.UVCoordinate" />
+    <component id="pegas.geom:Vector2"      class="pegas.geom.Vector2" />
+    <component id="pegas.geom:Vector3"      class="pegas.geom.Vector3" />
+    <component id="pegas.geom:Vector4"      class="pegas.geom.Vector4" />
+    <component id="pegas.geom:Vertex"       class="pegas.geom.Vertex" />
+    
+    <!-- pegas.maths -->
+    
+    <component id="pegas.maths:Factor" class="pegas.maths.Factor" />    
+    <component id="pegas.maths:Prime" class="pegas.maths.Prime" />    
+    
+    <!-- pegas.transitions -->
+
+    <component id="pegas.transitions:AbstractTransition"   class="pegas.transitions.AbstractTransition" />   
+    <component id="pegas.transitions:Ease"                 class="pegas.transitions.Ease" />
+    <component id="pegas.transitions:EasingController"     class="pegas.transitions.EasingController" />
+    <component id="pegas.transitions:EasingPolicy"         class="pegas.transitions.EasingPolicy" />
+    <component id="pegas.transitions:FrameEngine"          class="pegas.transitions.FrameEngine" />
+    <component id="pegas.transitions:FrameTimer"           class="pegas.transitions.FrameTimer" />
+    <component id="pegas.transitions:ITimer"               class="pegas.transitions.ITimer" />
+    <component id="pegas.transitions:ITransition"          class="pegas.transitions.ITransition" />
+    <component id="pegas.transitions:Motion"               class="pegas.transitions.Motion" />
+    <component id="pegas.transitions:Timer"                class="pegas.transitions.Timer" />
+    <component id="pegas.transitions:TransitionController" class="pegas.transitions.TransitionController" />
+    <component id="pegas.transitions:Tween"                class="pegas.transitions.Tween" />
+    <component id="pegas.transitions:TweenEntry"           class="pegas.transitions.TweenEntry" />
+    <component id="pegas.transitions:TweenLite"            class="pegas.transitions.TweenLite" />
+    <component id="pegas.transitions:TweenModel"           class="pegas.transitions.TweenModel" />
+    
+    <!-- pegas.transitions.easing -->
+    
+    <component id="pegas.transitions.easing:Back"     class="pegas.transitions.easing.Back" />      
+    <component id="pegas.transitions.easing:Bounce"   class="pegas.transitions.easing.Bounce" />
+    <component id="pegas.transitions.easing:Circ"     class="pegas.transitions.easing.Circ" />
+    <component id="pegas.transitions.easing:Cubic"    class="pegas.transitions.easing.Cubic" />
+    <component id="pegas.transitions.easing:Elastic"  class="pegas.transitions.easing.Elastic" />
+    <component id="pegas.transitions.easing:Expo"     class="pegas.transitions.easing.Expo" />
+    <component id="pegas.transitions.easing:Linear"   class="pegas.transitions.easing.Linear" />
+    <component id="pegas.transitions.easing:Quad"     class="pegas.transitions.easing.Quad" />
+    <component id="pegas.transitions.easing:Quint"    class="pegas.transitions.easing.Quint" />
+    <component id="pegas.transitions.easing:Sine"     class="pegas.transitions.easing.Sine" />
+    <component id="pegas.transitions.easing:Strong"   class="pegas.transitions.easing.Strong" />
+    
+    <!-- pegas.util -->    
+  
+    <component id="pegas.util:BezierUtil"     class="pegas.util.BezierUtil" />    
+    <component id="pegas.util:LineUtil"       class="pegas.util.LineUtil" />
+    <component id="pegas.util:Matrix4Util"    class="pegas.util.Matrix4Util" />
+    <component id="pegas.util:MatrixUtil"     class="pegas.util.MatrixUtil" />
+    <component id="pegas.util:PlaneUtil"      class="pegas.util.PlaneUtil" />
+    <component id="pegas.util:QuaternionUtil" class="pegas.util.QuaternionUtil" />
+    <component id="pegas.util:Trigo"          class="pegas.util.Trigo" />
+    <component id="pegas.util:Vector2Util"    class="pegas.util.Vector2Util" />
+    <component id="pegas.util:Vector3Util"    class="pegas.util.Vector3Util" />
+    <component id="pegas.util:Vector4Util"    class="pegas.util.Vector4Util" />
+    
+</componentPackage>

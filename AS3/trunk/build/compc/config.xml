@@ -24,6 +24,11 @@
                 <uri>http://code.google.com/p/andromed-as/2009</uri>
                 <manifest>./manifests/andromeda_manifest.xml</manifest>
             </namespace>            
+
+            <namespace>
+                <uri>http://code.google.com/p/pegas/2009</uri>
+                <manifest>./manifests/pegas_manifest.xml</manifest>
+            </namespace>         
             
             <namespace>
                 <uri>http://code.google.com/p/calista/2009</uri>
@@ -49,6 +54,7 @@
         <uri>http://code.google.com/p/andromed-as/2009</uri>
         <uri>http://code.google.com/p/calista/2009</uri>
         <uri>http://code.google.com/p/kron-os/2009</uri>
+        <uri>http://code.google.com/p/pegas/2009</uri>
                 
     </include-namespaces>
     
