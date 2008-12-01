@@ -1,5 +1,5 @@
  
-   VEGAS AS3 - version 1.0.0.1070 Release Candidate 4
+   VEGAS AS3 - version 1.0.0.1231
  
 
    The "vegas.swc" library contains all the AS3 source code of the VEGAS project with all this extensions.
@@ -11,26 +11,23 @@
    PROJECT PAGES
 
 	- http://code.google.com/p/vegas/
-	- http://osflash.org/asgard
-	- http://vegas.riaforge.org/
 
    DOCUMENTATION & CO
 
     - http://code.google.com/p/vegas/ (tutorials and install)
     - http://code.google.com/p/vegas/issues/list (issues)
-    - http://www.ekameleon.net/blog/ (french blog)
     - http://vegas.ekameleon.net/docs (AS2 reference)
+
+    - http://www.ekameleon.net/blog/ (french blog)
 
    ABOUT
 
     * Author : eKameleon
-    * Version : 1.0.0.1070 Release Candidate 4 AS3
-    * Link : http://www.ekameleon.net/blog
-    * Mail : vegas@ekameleon.net 
+    * Version : 1.0.0.1231
+    * Link : http://www.ekameleon.net/
+    * Mail : ekameleon@gmail.com
 
    THANKS
 
     * Zwetan : ECMAScript Concepts and hosting | http://www.zwetan.com/
-    * Stephan Schmid : Event model framework inspiration | http://schst.net/
-    * OSFlash - Second SVN Hosting : http://www.osflash.org
     * PowerFlasher - FDT OpenSource Licence : http://powerflasher.com/ 
