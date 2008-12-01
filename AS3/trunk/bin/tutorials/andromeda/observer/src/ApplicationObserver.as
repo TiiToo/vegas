@@ -1,26 +1,26 @@
 ﻿package 
 {
-	import flash.display.Sprite;
-	import flash.display.StageAlign;
-	import flash.display.StageScaleMode;
-	import flash.events.Event;
-	import flash.events.KeyboardEvent;
-	import flash.events.MouseEvent;
-	
-	import observer.controller.PictureObserver;
-	import observer.display.PictureDisplay;
-	import observer.model.PictureModel;	
+    import observer.controller.PictureObserver;
+    import observer.display.PictureDisplay;
+    import observer.model.PictureModel;
+    
+    import flash.display.Sprite;
+    import flash.display.StageAlign;
+    import flash.display.StageScaleMode;
+    import flash.events.Event;
+    import flash.events.KeyboardEvent;
+    import flash.events.MouseEvent;    
 
-	/**
+    /**
 	 * The main Observer tutorial class.
 	 */
-	public class Observer extends Sprite
+	public class ApplicationObserver extends Sprite
     {
     	
     	/**
     	 * Creates a new Observer main class.
     	 */
-        public function Observer()
+        public function ApplicationObserver()
         {
 
             // stage

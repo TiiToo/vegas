@@ -36,11 +36,8 @@
 
         <uri>http://code.google.com/p/maashaack/2009</uri>
         <uri>http://code.google.com/p/vegas/2009</uri>
-        
-        <!--
         <uri>http://code.google.com/p/andromed-as/2009</uri>
-        -->
-        
+                
     </include-namespaces>
     
     <directory>false</directory>

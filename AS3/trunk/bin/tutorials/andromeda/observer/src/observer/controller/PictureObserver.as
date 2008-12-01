@@ -1,8 +1,8 @@
 ﻿
 package observer.controller
 {
-    import andromeda.util.observer.IObserver;
     import andromeda.util.observer.Observable;
+    import andromeda.util.observer.Observer;
     
     import observer.display.PictureDisplay;
     import observer.event.PictureModelEvent;
@@ -12,7 +12,7 @@ package observer.controller
      * This observer of the picture display.
      * @author eKameleon
      */
-    public class PictureObserver implements IObserver
+    public class PictureObserver implements Observer
     {
     
     	/**

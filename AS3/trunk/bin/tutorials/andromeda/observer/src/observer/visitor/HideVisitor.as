@@ -4,7 +4,7 @@ package observer.visitor
     import andromeda.util.visitor.IVisitable;
     import andromeda.util.visitor.IVisitor;
     
-    import visitor.display.PictureDisplay;    
+    import observer.display.PictureDisplay;    
 
     /**
      * This visitor hide the PictureDisplay reference of the application.
