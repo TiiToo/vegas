@@ -85,27 +85,6 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("IÂ
   This interface defines all methods to implement in a button display components.</td>
 </tr>
 <tr>
-<td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('vegas/core/class-list.html');" href="vegas/core/IComparable.html"><i>IComparable</i></a> &mdash; Interface in package <a onclick="javascript:loadClassListFrame('vegas/core/class-list.html');" href="vegas/core/package-detail.html">vegas.core</a></td>
-</tr>
-<tr>
-<td width="20"></td><td>
-  This interface imposes a total ordering on the objects of each class that implements it.</td>
-</tr>
-<tr>
-<td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('vegas/core/class-list.html');" href="vegas/core/IComparator.html"><i>IComparator</i></a> &mdash; Interface in package <a onclick="javascript:loadClassListFrame('vegas/core/class-list.html');" href="vegas/core/package-detail.html">vegas.core</a></td>
-</tr>
-<tr>
-<td width="20"></td><td>
-  A comparison function, which imposes a total ordering on some collection of objects.</td>
-</tr>
-<tr>
-<td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('vegas/core/class-list.html');" href="vegas/core/IComparer.html"><i>IComparer</i></a> &mdash; Interface in package <a onclick="javascript:loadClassListFrame('vegas/core/class-list.html');" href="vegas/core/package-detail.html">vegas.core</a></td>
-</tr>
-<tr>
-<td width="20"></td><td>
-  This interface defined an object who contains an IComparator instance.</td>
-</tr>
-<tr>
 <td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('lunas/core/class-list.html');" href="lunas/core/IComponent.html"><i>IComponent</i></a> &mdash; Interface in package <a onclick="javascript:loadClassListFrame('lunas/core/class-list.html');" href="lunas/core/package-detail.html">lunas.core</a></td>
 </tr>
 <tr>
@@ -528,11 +507,18 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("IÂ
   This interface provides the methods in all the geometric objects of PEGAS.</td>
 </tr>
 <tr>
-<td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('vegas/util/comparators/class-list.html');" href="vegas/util/comparators/StringComparator.html#ignoreCase">ignoreCase</a> &mdash; Property in class vegas.util.comparators.<a onclick="javascript:loadClassListFrame('vegas/util/comparators/class-list.html');" href="vegas/util/comparators/StringComparator.html">StringComparator</a></td>
+<td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('system/comparators/class-list.html');" href="system/comparators/AlphaComparator.html#ignoreCase">ignoreCase</a> &mdash; Property in class system.comparators.<a onclick="javascript:loadClassListFrame('system/comparators/class-list.html');" href="system/comparators/AlphaComparator.html">AlphaComparator</a></td>
 </tr>
 <tr>
 <td width="20"></td><td>
    Allow to take into account the case for comparison.</td>
+</tr>
+<tr>
+<td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('system/comparators/class-list.html');" href="system/comparators/StringComparator.html#ignoreCase">ignoreCase</a> &mdash; Property in class system.comparators.<a onclick="javascript:loadClassListFrame('system/comparators/class-list.html');" href="system/comparators/StringComparator.html">StringComparator</a></td>
+</tr>
+<tr>
+<td width="20"></td><td>
+         Allow to take into account the case for comparison.</td>
 </tr>
 <tr>
 <td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('lunas/core/class-list.html');" href="lunas/core/IGroupable.html"><i>IGroupable</i></a> &mdash; Interface in package <a onclick="javascript:loadClassListFrame('lunas/core/class-list.html');" href="lunas/core/package-detail.html">lunas.core</a></td>
@@ -1935,13 +1921,6 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("IÂ
      This interface defines factory strategies to replace the natural strategy to create an object in the factory.</td>
 </tr>
 <tr>
-<td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('andromeda/util/observer/class-list.html');" href="andromeda/util/observer/IObserver.html"><i>IObserver</i></a> &mdash; Interface in package <a onclick="javascript:loadClassListFrame('andromeda/util/observer/class-list.html');" href="andromeda/util/observer/package-detail.html">andromeda.util.observer</a></td>
-</tr>
-<tr>
-<td width="20"></td><td>
-     A class can implement the IObserver interface when it wants to be informed of changes in observable objects.</td>
-</tr>
-<tr>
 <td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('andromeda/process/class-list.html');" href="andromeda/process/CoreActionLoader.html#ioError()">ioError</a>(e) &mdash; Method in class andromeda.process.<a onclick="javascript:loadClassListFrame('andromeda/process/class-list.html');" href="andromeda/process/CoreActionLoader.html">CoreActionLoader</a></td>
 </tr>
 <tr>
@@ -2780,6 +2759,13 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("IÂ
 <tr>
 <td width="20"></td><td>
       Checks if the passed-in object is a primitive type.</td>
+</tr>
+<tr>
+<td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('lunas/core/class-list.html');" href="lunas/core/AbstractButton.html#isReleaseOutside">isReleaseOutside</a> &mdash; Property in class lunas.core.<a onclick="javascript:loadClassListFrame('lunas/core/class-list.html');" href="lunas/core/AbstractButton.html">AbstractButton</a></td>
+</tr>
+<tr>
+<td width="20"></td><td>
+         Indicates if the button notify a releaseOutside event.</td>
 </tr>
 <tr>
 <td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('vegas/logging/targets/class-list.html');" href="vegas/logging/targets/AirLoggerTarget.html#isRequesting()">isRequesting</a>() &mdash; Method in class vegas.logging.targets.<a onclick="javascript:loadClassListFrame('vegas/logging/targets/class-list.html');" href="vegas/logging/targets/AirLoggerTarget.html">AirLoggerTarget</a></td>

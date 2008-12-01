@@ -1,0 +1,508 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" href="../../style.css" type="text/css" media="screen">
+<link rel="stylesheet" href="../../print.css" type="text/css" media="print">
+<link rel="stylesheet" href="../../prettify.css" type="text/css">
+<meta content="LightColor,pegas.colors.LightColor,brightOffset,brightness,contrast,negative,getBrightOffset,getBrightness,getContrast,getNegative,setBrightOffset,setBrightness,setContrast,setNegative" name="keywords">
+<title>pegas.colors.LightColor</title>
+</head>
+<body>
+<script type="text/javascript" language="javascript" src="../../prettify.js"></script><script type="text/javascript" language="javascript" src="../../asdoc.js"></script><script type="text/javascript" language="javascript" src="../../cookies.js"></script><script type="text/javascript" language="javascript">
+<!--
+				asdocTitle = 'LightColor - VEGAS AS3 Reference';
+				var baseRef = '../../';
+				window.onload = configPage;
+			--></script>
+<table style="display:none" id="titleTable" cellspacing="0" cellpadding="0" class="titleTable">
+<tr>
+<td align="left" class="titleTableTitle">VEGAS AS3 Reference</td><td align="right" class="titleTableTopNav"><a onclick="loadClassListFrame('../../all-classes.html')" href="../../package-summary.html">All&nbsp;Packages</a>&nbsp;|&nbsp;<a onclick="loadClassListFrame('../../all-classes.html')" href="../../class-summary.html">All&nbsp;Classes</a>&nbsp;|&nbsp;<a onclick="loadClassListFrame('../../index-list.html')" href="../../all-index-A.html">Index</a>&nbsp;|&nbsp;<a href="../../index.html?pegas/colors/LightColor.html&amp;pegas/colors/class-list.html" id="framesLink1">Frames</a><a onclick="parent.location=document.location" href="" style="display:none" id="noFramesLink1">No&nbsp;Frames</a></td><td rowspan="3" align="right" class="titleTableLogo"><img alt="Adobe Logo" title="Adobe Logo" class="logoImage" src="../../images/logo.jpg"></td>
+</tr>
+<tr class="titleTableRow2">
+<td align="left" id="subTitle" class="titleTableSubTitle">Class&nbsp;LightColor</td><td align="right" id="subNav" class="titleTableSubNav"><a href="#propertySummary">Properties</a>&nbsp;| <a href="#methodSummary">Methods</a></td>
+</tr>
+<tr class="titleTableRow3">
+<td colspan="2">&nbsp;</td>
+</tr>
+</table>
+<script type="text/javascript" language="javascript">
+<!--
+if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Class LightColor"); titleBar_setSubNav(false,true,false,false,false,false,true,false,false,false,false,false,false,false);}
+--></script>
+<div class="MainContent">
+<table cellspacing="0" cellpadding="0" class="classHeaderTable">
+<tr>
+<td class="classHeaderTableLabel">Package</td><td><a onclick="javascript:loadClassListFrame('class-list.html')" href="package-detail.html">pegas.colors</a></td>
+</tr>
+<tr>
+<td class="classHeaderTableLabel">Class</td><td class="classSignature">public class LightColor</td>
+</tr>
+<tr>
+<td class="classHeaderTableLabel">Inheritance</td><td class="inheritanceList">LightColor <img class="inheritArrow" alt="Inheritance" title="Inheritance" src="../../images/inherit-arrow.gif"> <a href="Color.html">Color</a></td>
+</tr>
+</table>
+<p></p>
+  This class is the basic extension of the actionscript Color class to changed light and contrast over a MovieClip. 
+  <p>Thanks 2003 Robert Penner - Use freely, giving credit where possible.</p>
+   <p>This code is based on the book : Robert Penner's Programming Macromedia Flash MX. More informations in :
+  <ul>
+   <li>http://www.robertpenner.com/profmx
+   <li>http://www.amazon.com/exec/obidos/ASIN/0072223561/robertpennerc-20
+   </ul>
+   </p>
+   <p><b>Example :</b></p>
+   <pre class="prettyprint">
+   import asgard.colors.BasicColor;
+   var c:LightColor = new LightColor( display ); 
+   c.setBrightness(55);
+   </pre>
+   <p></p>
+<br>
+<hr>
+</div>
+<a name="propertySummary"></a>
+<div class="summarySection">
+<div class="summaryTableTitle">Public Properties</div>
+<div class="showHideLinks">
+<div class="hideInheritedProperty" id="hideInheritedProperty">
+<a onclick="javascript:setInheritedVisible(false,'Property');" href="#propertySummary" class="showHideLink"><img src="../../images/expanded.gif" class="showHideLinkImage"> Hide Inherited Public Properties</a>
+</div>
+<div class="showInheritedProperty" id="showInheritedProperty">
+<a onclick="javascript:setInheritedVisible(true,'Property');" href="#propertySummary" class="showHideLink"><img src="../../images/collapsed.gif" class="showHideLinkImage"> Show Inherited Public Properties</a>
+</div>
+</div>
+<table id="summaryTableProperty" class="summaryTable " cellpadding="3" cellspacing="0">
+<tr>
+<th>&nbsp;</th><th colspan="2">Property</th><th class="summaryTableOwnerCol">Defined&nbsp;by</th>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#brightness">brightness</a> : Number<div class="summaryTableDescription">
+   Returns the bright between 0 and 100 of an movieclip.</div>
+</td><td class="summaryTableOwnerCol">LightColor</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#brightOffset">brightOffset</a> : Number<div class="summaryTableDescription">
+    Returns the bright between -255 and 255 of an movieclip.</div>
+</td><td class="summaryTableOwnerCol">LightColor</td>
+</tr>
+<tr class="hideInheritedProperty">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol"><a class="signatureLink" href="Color.html#colorTransform">colorTransform</a> : ColorTransform<div class="summaryTableDescription">
+   A ColorTransform object containing values that universally adjust the colors in the display object.</div>
+</td><td class="summaryTableOwnerCol"><a href="Color.html">Color</a></td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#contrast">contrast</a> : Number<div class="summaryTableDescription">
+    Returns the contrast value (percent) of the movieclip.</div>
+</td><td class="summaryTableOwnerCol">LightColor</td>
+</tr>
+<tr class="hideInheritedProperty">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol"><a class="signatureLink" href="Color.html#display">display</a> : DisplayObject<div class="summaryTableDescription">
+   The DisplayObject reference of this object.</div>
+</td><td class="summaryTableOwnerCol"><a href="Color.html">Color</a></td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#negative">negative</a> : Number<div class="summaryTableDescription">
+    Returns the negative value of the movieclip.</div>
+</td><td class="summaryTableOwnerCol">LightColor</td>
+</tr>
+<tr class="hideInheritedProperty">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol"><a class="signatureLink" href="Color.html#rgb">rgb</a> : Number<div class="summaryTableDescription">
+   (read-write) Indicates the R+G+B combination currently in use by the color object
+   </div>
+</td><td class="summaryTableOwnerCol"><a href="Color.html">Color</a></td>
+</tr>
+</table>
+</div>
+<a name="methodSummary"></a>
+<div class="summarySection">
+<div class="summaryTableTitle">Public Methods</div>
+<div class="showHideLinks">
+<div class="hideInheritedMethod" id="hideInheritedMethod">
+<a onclick="javascript:setInheritedVisible(false,'Method');" href="#methodSummary" class="showHideLink"><img src="../../images/expanded.gif" class="showHideLinkImage"> Hide Inherited Public Methods</a>
+</div>
+<div class="showInheritedMethod" id="showInheritedMethod">
+<a onclick="javascript:setInheritedVisible(true,'Method');" href="#methodSummary" class="showHideLink"><img src="../../images/collapsed.gif" class="showHideLinkImage"> Show Inherited Public Methods</a>
+</div>
+</div>
+<table id="summaryTableMethod" class="summaryTable " cellpadding="3" cellspacing="0">
+<tr>
+<th>&nbsp;</th><th colspan="2">Method</th><th class="summaryTableOwnerCol">Defined&nbsp;by</th>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#LightColor()">LightColor</a>(display:DisplayObject)</div>
+<div class="summaryTableDescription">
+   Creates a new LightColor instance.</div>
+</td><td class="summaryTableOwnerCol">LightColor</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#getBrightness()">getBrightness</a>():Number</div>
+<div class="summaryTableDescription">
+   Returns the bright between 0 and 100 of an movieclip.</div>
+</td><td class="summaryTableOwnerCol">LightColor</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#getBrightOffset()">getBrightOffset</a>():Number</div>
+<div class="summaryTableDescription">
+    Returns the bright between 0 and 100 of an movieclip.</div>
+</td><td class="summaryTableOwnerCol">LightColor</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#getContrast()">getContrast</a>():Number</div>
+<div class="summaryTableDescription">
+    Returns the contrast value (percent) of the movieclip.</div>
+</td><td class="summaryTableOwnerCol">LightColor</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#getNegative()">getNegative</a>():Number</div>
+<div class="summaryTableDescription">
+    Returns the negative color value of the movieclip.</div>
+</td><td class="summaryTableOwnerCol">LightColor</td>
+</tr>
+<tr class="hideInheritedMethod">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="Color.html#getRGB()">getRGB</a>():Number</div>
+<div class="summaryTableDescription">
+   Returns the R+G+B combination currently in use by the color object
+   </div>
+</td><td class="summaryTableOwnerCol"><a href="Color.html">Color</a></td>
+</tr>
+<tr class="hideInheritedMethod">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="Color.html#getRGBStr()">getRGBStr</a>(c:<a href="../colors/Color.html">Color</a>):String</div>
+<div class="summaryTableDescription">[static]
+         Returns the string representation of the passed color with ECMAScript formatting (0xrrggbb).</div>
+</td><td class="summaryTableOwnerCol"><a href="Color.html">Color</a></td>
+</tr>
+<tr class="hideInheritedMethod">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="Color.html#getTransform()">getTransform</a>():Object</div>
+<div class="summaryTableDescription">
+   Returns the transform value set by the last setTransform() call.</div>
+</td><td class="summaryTableOwnerCol"><a href="Color.html">Color</a></td>
+</tr>
+<tr class="hideInheritedMethod">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="Color.html#invert()">invert</a>():void</div>
+<div class="summaryTableDescription">
+    Inverts the color of the specified Color reference in argument.</div>
+</td><td class="summaryTableOwnerCol"><a href="Color.html">Color</a></td>
+</tr>
+<tr class="hideInheritedMethod">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="Color.html#reset()">reset</a>():void</div>
+<div class="summaryTableDescription">
+   Resets the color of the specified Color reference in argument, the MovieClip display the original view since Color transformation.</div>
+</td><td class="summaryTableOwnerCol"><a href="Color.html">Color</a></td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#setBrightness()">setBrightness</a>(percent:Number):void</div>
+<div class="summaryTableDescription">
+    Sets the bright between 0 and 100 of an movieclip.</div>
+</td><td class="summaryTableOwnerCol">LightColor</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#setBrightOffset()">setBrightOffset</a>(offset:Number):void</div>
+<div class="summaryTableDescription">
+    Sets the brightness of a movieclip between -255 and 255.</div>
+</td><td class="summaryTableOwnerCol">LightColor</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#setContrast()">setContrast</a>(percent:Number):void</div>
+<div class="summaryTableDescription">
+   Sets the contrast value (percent) of the movieclip.</div>
+</td><td class="summaryTableOwnerCol">LightColor</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#setNegative()">setNegative</a>(percent:Number):void</div>
+<div class="summaryTableDescription">
+    Sets the negative value of the movieclip.</div>
+</td><td class="summaryTableOwnerCol">LightColor</td>
+</tr>
+<tr class="hideInheritedMethod">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="Color.html#setRGB()">setRGB</a>(offset:Number):void</div>
+<div class="summaryTableDescription">
+   Specifies an RGB color for a Color object.</div>
+</td><td class="summaryTableOwnerCol"><a href="Color.html">Color</a></td>
+</tr>
+<tr class="hideInheritedMethod">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="Color.html#setRGBStr()">setRGBStr</a>(c:<a href="../colors/Color.html">Color</a>, str:String):void</div>
+<div class="summaryTableDescription">[static]
+         Sets the color of the passed Color instance with the specified string expression of the color.</div>
+</td><td class="summaryTableOwnerCol"><a href="Color.html">Color</a></td>
+</tr>
+<tr class="hideInheritedMethod">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="Color.html#setTransform()">setTransform</a>(transformObject:Object):void</div>
+<div class="summaryTableDescription">
+   Sets color transform information for a Color object.</div>
+</td><td class="summaryTableOwnerCol"><a href="Color.html">Color</a></td>
+</tr>
+</table>
+</div>
+<script type="text/javascript" language="javascript">
+<!--
+showHideInherited();
+--></script>
+<div class="MainContent">
+<a name="propertyDetail"></a>
+<div class="detailSectionHeader">Property detail</div>
+<a name="brightness"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">brightness</td><td class="detailHeaderType">property</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>brightness:Number</code>&nbsp;&nbsp;[read-write]<p>
+   Returns the bright between 0 and 100 of an movieclip.
+   </p><span class="label">Implementation</span>
+<br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function get brightness():Number</code>
+<br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function set brightness(value:Number):void</code>
+<br>
+</div>
+<a name="brightOffset"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">brightOffset</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>brightOffset:Number</code>&nbsp;&nbsp;[read-write]<p>
+    Returns the bright between -255 and 255 of an movieclip.
+    </p><span class="label">Implementation</span>
+<br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function get brightOffset():Number</code>
+<br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function set brightOffset(value:Number):void</code>
+<br>
+</div>
+<a name="contrast"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">contrast</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>contrast:Number</code>&nbsp;&nbsp;[read-write]<p>
+    Returns the contrast value (percent) of the movieclip.
+    </p><span class="label">Implementation</span>
+<br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function get contrast():Number</code>
+<br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function set contrast(value:Number):void</code>
+<br>
+</div>
+<a name="negative"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">negative</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>negative:Number</code>&nbsp;&nbsp;[read-write]<p>
+    Returns the negative value of the movieclip.
+   </p><span class="label">Implementation</span>
+<br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function get negative():Number</code>
+<br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function set negative(value:Number):void</code>
+<br>
+</div>
+<a name="constructorDetail"></a>
+<div class="detailSectionHeader">Constructor detail</div>
+<a name="LightColor()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">LightColor</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">constructor</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public function LightColor(display:DisplayObject)</code><p>
+   Creates a new LightColor instance.
+   </p><span class="label">Parameters</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td><code><span class="label">display</span>:DisplayObject</code> &mdash; a DisplayObject reference.
+   </td>
+</tr>
+</table>
+</div>
+<a name="methodDetail"></a>
+<div class="detailSectionHeader">Method detail</div>
+<a name="getBrightness()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">getBrightness</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public function getBrightness():Number</code><p>
+   Returns the bright between 0 and 100 of an movieclip.
+   </p><p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><code>Number</code> &mdash; the bright between 0 and 100 of an movieclip.
+   </td>
+</tr>
+</table>
+</div>
+<a name="getBrightOffset()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">getBrightOffset</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public function getBrightOffset():Number</code><p>
+    Returns the bright between 0 and 100 of an movieclip.
+    </p><p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><code>Number</code> &mdash; the bright between 0 and 100 of an movieclip.
+    </td>
+</tr>
+</table>
+</div>
+<a name="getContrast()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">getContrast</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public function getContrast():Number</code><p>
+    Returns the contrast value (percent) of the movieclip.
+    </p><p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><code>Number</code> &mdash; the contrast value (percent) of the movieclip.
+    </td>
+</tr>
+</table>
+</div>
+<a name="getNegative()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">getNegative</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public function getNegative():Number</code><p>
+    Returns the negative color value of the movieclip.
+    </p><p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><code>Number</code></td>
+</tr>
+</table>
+</div>
+<a name="setBrightness()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">setBrightness</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public function setBrightness(percent:Number):void</code><p>
+    Sets the bright between 0 and 100 of an movieclip.
+    </p><span class="label">Parameters</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td><code><span class="label">percent</span>:Number</code></td>
+</tr>
+</table>
+</div>
+<a name="setBrightOffset()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">setBrightOffset</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public function setBrightOffset(offset:Number):void</code><p>
+    Sets the brightness of a movieclip between -255 and 255.
+   </p><span class="label">Parameters</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td><code><span class="label">offset</span>:Number</code></td>
+</tr>
+</table>
+</div>
+<a name="setContrast()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">setContrast</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public function setContrast(percent:Number):void</code><p>
+   Sets the contrast value (percent) of the movieclip.
+   </p><span class="label">Parameters</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td><code><span class="label">percent</span>:Number</code></td>
+</tr>
+</table>
+</div>
+<a name="setNegative()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">setNegative</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public function setNegative(percent:Number):void</code><p>
+    Sets the negative value of the movieclip.
+   </p><span class="label">Parameters</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td><code><span class="label">percent</span>:Number</code></td>
+</tr>
+</table>
+</div>
+<br>
+<br>
+<hr>
+<br>
+<p></p>
+<center class="copyright"> 
+</center>
+</div>
+</body>
+</html>
+<!-- -->
