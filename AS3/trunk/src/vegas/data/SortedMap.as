@@ -28,7 +28,6 @@ package vegas.data
 
     /**
 	 * Map that further guarantees that it will be in ascending key order, sorted according to the natural ordering of its keys.
-	 * @author eKameleon
 	 */
 	public interface SortedMap extends Map, Sortable 
 	{

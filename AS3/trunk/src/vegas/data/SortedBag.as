@@ -28,7 +28,6 @@ package vegas.data
 
     /**
 	 * Defines a type of Bag that maintains a sorted order among its unique representative members.
-	 * @author eKameleon
 	 */	
 	public interface SortedBag extends Bag, Sortable
 	{

@@ -22,6 +22,7 @@
 */
 package vegas.events
 {
+	import vegas.VEGAS;
     import system.data.maps.ArrayMap;    
 
     /**

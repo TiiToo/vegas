@@ -21,10 +21,10 @@
   
 */
 
-package
+package vegas
 {
     
-    public namespace VEGAS = "http://www.ekameleon.net/vegas/2009" ;
+    public namespace VEGAS = "http://code.google.com/p/vegas/2009" ;
     
 }
 

@@ -27,7 +27,6 @@ package vegas.data
 
     /**
 	 * Defines a map that allows bidirectional lookup between key and values.
-	 * @author eKameleon
 	 */
 	public interface BidiMap extends Map
 	{
