@@ -34,7 +34,6 @@ package pegas.colors
 	 * <li>http://www.amazon.com/exec/obidos/ASIN/0072223561/robertpennerc-20
 	 * </ul>
 	 * </p>
-	 * @author eKameleon
 	 */
 	public class SolidColor extends Color 
 	{

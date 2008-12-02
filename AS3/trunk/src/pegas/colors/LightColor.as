@@ -40,7 +40,6 @@ package pegas.colors
  	 * var c:LightColor = new LightColor( display ); 
  	 * c.setBrightness(55);
  	 * </pre>
- 	 * @author eKameleon
  	 */
 	public class LightColor extends Color 
 	{

@@ -57,7 +57,7 @@ package pegas.draw
      * </pre>
      * @author eKameleon
      */
-    dynamic public class Canvas extends Pen 
+    public dynamic class Canvas extends Pen 
     {
     
         /**
@@ -303,7 +303,7 @@ package pegas.draw
             if ( len > 0 ) 
             {
                 var c:Array ;
-                var i:Number = 0 ;
+                var i:int = 0 ;
                 while (i < len) 
                 {
                     c = d[i++] ;

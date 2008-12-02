@@ -34,7 +34,6 @@ package pegas.colors
 	 * <li>http://www.amazon.com/exec/obidos/ASIN/0072223561/robertpennerc-20
 	 * </ul>
 	 * </p>
-	 * @author eKameleon
 	 */
 	public class TintColor extends Color 
 	{
@@ -141,10 +140,15 @@ package pegas.colors
 		 */
 		public function setTint2(hex:Number, percent:Number):void 
 		{	
-			var c:Object = RGB.numberToRGB( hex ) ;
+			var c:RGB = RGB.numberToRGB( hex ) ;
 			var ratio:Number = percent / 100 ;
-			var t:Object = {rb:c.r*ratio, gb:c.g*ratio, bb:c.b*ratio};
-			t.ra = t.ga = t.ba = 100-percent;
+			var t:Object = 
+			{
+                rb : c.red   * ratio , 
+                gb : c.green * ratio , 
+                bb : c.blue * ratio 
+            };
+			t.ra = t.ga = t.ba = 100 - percent ;
 			setTransform (t);
 		}
 		

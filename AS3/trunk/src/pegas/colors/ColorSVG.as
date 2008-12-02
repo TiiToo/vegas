@@ -60,7 +60,6 @@ package pegas.colors
 	 * trace( "ColorSVG.ELEMENTS size : " + ColorSVG.ELEMENTS.size() ) ;
 	 * trace( "ColorSVG.ELEMENTS      : "      + ColorSVG.ELEMENTS ) ;
 	 * </pre>
-	 * @author eKameleon
  	 */
 	public class ColorSVG extends ColorHTML 
 	{

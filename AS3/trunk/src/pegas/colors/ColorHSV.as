@@ -43,7 +43,6 @@ package pegas.colors
 	 * 	   trace( prop + " : " + o2[prop] ) ;
 	 * }
 	 * </pre>
-	 * @author eKameleon
 	 */
 	public class ColorHSV 
 	{

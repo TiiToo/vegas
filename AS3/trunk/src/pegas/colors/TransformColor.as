@@ -27,7 +27,6 @@ package pegas.colors
     
     /**
 	 * Transformation class to modify the filters on a Color object with Photoshop filters.
-	 * @author eKameleon
 	 */
 	public class TransformColor extends Color 
 	{
@@ -46,8 +45,8 @@ package pegas.colors
 		 */
 		public function addition(n:Number):void 
 		{
-			var o:Object = RGB.numberToRGB(n) ;
-			setTransform ( { rb:o.r , gb:o.g , bb:o.b });
+			var o:RGB = RGB.numberToRGB(n) ;
+			setTransform ( { rb:o.red , gb:o.green , bb:o.blue });
 		}
 		
 		/**
@@ -55,8 +54,8 @@ package pegas.colors
 		 */
 		public function colorDodge(n:Number):void 
 		{
-			var o:Object = RGB.numberToRGB(n) ;
-			setTransform ({ ra:_dodge(o.r) , ga:_dodge(o.g) , ba:_dodge(o.b) } );
+			var o:RGB = RGB.numberToRGB(n) ;
+			setTransform ({ ra:_dodge(o.red) , ga:_dodge(o.green) , ba:_dodge(o.blue) } );
 		}
 		
 		/**
@@ -64,8 +63,8 @@ package pegas.colors
 		 */
 		public function difference (n:Number):void 
 		{
-			var o:Object = RGB.numberToRGB(n) ;
-			setTransform ( { rb:-o.r , gb:-o.g , bb:-o.b });
+			var o:RGB = RGB.numberToRGB(n) ;
+			setTransform ( { rb:-o.red , gb:-o.green , bb:-o.blue });
 		}
 		
 		/**
@@ -73,8 +72,8 @@ package pegas.colors
 		 */
 		public function divide(n:Number):void 
 		{
-			var o:Object = RGB.numberToRGB(n) ;
-			setTransform ({ ra:_div(o.r) , ga:_div(o.g) , ba:_div(o.b) } );
+			var o:RGB = RGB.numberToRGB(n) ;
+			setTransform ({ ra:_div(o.red) , ga:_div(o.green) , ba:_div(o.blue) } );
 		}
 			
 		/**
@@ -82,8 +81,8 @@ package pegas.colors
 	 	 */
 		public function linearBurn (n:Number):void 
 		{
-			var o:Object = RGB.numberToRGB(n) ;
-			setTransform ({ rb:o.r-255 , gb:o.g-255, bb:o.b-255 });
+			var o:RGB = RGB.numberToRGB(n) ;
+			setTransform ({ rb:o.red - 255 , gb:o.green-255, bb:o.blue-255 });
 		}
 		
 		/**
@@ -91,8 +90,8 @@ package pegas.colors
 	 	 */
 		public function linearDodge (n:Number):void 
 		{
-			var o:Object = RGB.numberToRGB(n) ;
-			setTransform ({ rb:o.r , gb:o.g, bb:o.b });
+			var o:RGB = RGB.numberToRGB(n) ;
+			setTransform ({ rb:o.red , gb:o.green, bb:o.blue });
 		}
 			
 		/**
@@ -100,8 +99,8 @@ package pegas.colors
 		 */
 		public function multiply(n:Number):void 
 		{
-			var o:Object = RGB.numberToRGB(n) ;
-			setTransform ({ ra:o.r/2.55 , ga:o.g/2.55 , ba:o.b/2.55 });
+			var o:RGB = RGB.numberToRGB(n) ;
+			setTransform ({ ra:o.red/2.55 , ga:o.green/2.55 , ba:o.blue/2.55 });
 		}
 		
 		/**
@@ -117,8 +116,8 @@ package pegas.colors
 	 	 */
 		public function screen (n:Number):void 
 		{
-			var o:Object = RGB.numberToRGB(n) ;
-			setTransform ({ ra:_scr(o.r), ga:_scr(o.g), ba:_scr(o.b), rb:o.r, gb:o.g, bb:o.b } );
+			var o:RGB = RGB.numberToRGB(n) ;
+			setTransform ({ ra:_scr(o.red), ga:_scr(o.green), ba:_scr(o.blue), rb:o.red, gb:o.green, bb:o.blue } );
 		}
 		
 		/**
@@ -126,8 +125,8 @@ package pegas.colors
 		 */
 		public function substraction (n:Number):void 
 		{
-			var o:Object = RGB.numberToRGB(n) ;
-			setTransform ({ ra:-100, ga:-100, ba:-100, rb:o.r, gb:o.g, bb:o.b } );
+			var o:RGB = RGB.numberToRGB(n) ;
+			setTransform ({ ra:-100, ga:-100, ba:-100, rb:o.red, gb:o.green, bb:o.blue } );
 		}
 		
 		/**

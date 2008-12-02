@@ -35,7 +35,6 @@ package pegas.colors
  	 * var c : BasicColor = new BasicColor ( display ); // assuming 'display' is a DisplayObject
 	 * c.setRGB(0xFF9900);
 	 * </pre>
-	 * @author eKameleon
 	 */	
 	public class Color
 	{
