@@ -13,8 +13,9 @@
 	 * The MultiHashSet is a MutliHashMap that contains no duplicate elements in a specified key.
 	 * <p><b>Example :</b></p>
 	 * <pre class="prettyprint">
-	 * import vegas.data.Collection ;
-	 * import vegas.data.collections.SimpleCollection ;
+	 * import system.data.Collection ;
+	 * import system.data.collections.ArrayCollection ;
+	 * 
 	 * import vegas.data.sets.MultiHashSet ;
 	 * 
 	 * var s:MultiHashSet = new MultiHashSet() ;
@@ -55,8 +56,11 @@
 	 * trace("size : " + s.size()) ;
 	 * 
 	 * trace("---- Test putCollection(key, co:Collection)") ;
-	 * var co:Collection = new SimpleCollection(["valueA1", "valueA4", "valueA1"]) ;
+	 * 
+	 * var co:Collection = new ArrayCollection(["valueA1", "valueA4", "valueA1"]) ;
+	 * 
 	 * s.putCollection("key1", co) ;
+	 * 
 	 * trace("s.toString : " + s) ;
 	 * </pre>
 	 * @author eKameleon
@@ -82,7 +86,7 @@
          */     
         public function add( o:* ):Boolean
         {
-            throw new IllegalOperationError("This MultiHashSet does not support the insert() method.") ;
+            throw new IllegalOperationError("This MultiHashSet does not support the add() method.") ;
             return null ;
         }		
 		
@@ -194,9 +198,7 @@
 			throw new IllegalOperationError("This MultiHashSet does not support the indexOf() method.") ;
 			return 0;
 		}
-		
-
-
+        
 		/**
 		 * Adds the value to the Set associated with the specified key.
 		 * @return <code class="prettyprint">true</code> if the value is inserted in the object.
@@ -211,7 +213,7 @@
 			{
 				_map.put(key , createCollection()) ;
 			}
-			_map.get(key).insert(value) ;
+			_map.get(key).add(value) ; // TODO fix the null value 
 			return _internalSet.add(value) ;
 		}
 

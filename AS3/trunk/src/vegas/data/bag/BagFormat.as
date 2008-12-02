@@ -31,7 +31,6 @@ package vegas.data.bag
 
     /**
   	 * Converts a Bag to a custom string representation.
-	 * @author eKameleon
 	 */
 	public class BagFormat extends CoreObject implements IFormat
 	{

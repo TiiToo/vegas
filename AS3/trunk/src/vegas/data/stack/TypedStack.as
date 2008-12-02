@@ -51,7 +51,6 @@ package vegas.data.stack
      * 
      * ts.push(2) ;
      * </pre>
-     * @author eKameleon
      */
 	public class TypedStack extends AbstractTypeable implements Stack
 	{
@@ -182,7 +181,7 @@ package vegas.data.stack
     	 */
 		public override function toString():String
 		{
-			return (_stack as TypedStack).toString() ;
+			return (_stack as Object).toString() ;
 		}
 
         /**

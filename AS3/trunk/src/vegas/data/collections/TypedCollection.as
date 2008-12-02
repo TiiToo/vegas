@@ -31,7 +31,6 @@ package vegas.data.collections
 
     /**
 	 * TypedCollection is a wrapper for Collection instances that ensures that only values of a specific type can be added to the wrapped collection.
-	 * @author eKameleon
 	 */	
 	public class TypedCollection extends AbstractTypeable implements Collection
 	{

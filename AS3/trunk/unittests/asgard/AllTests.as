@@ -22,16 +22,16 @@
 */
 package asgard  
 {
-    import asgard.display.AllTests;
-    import asgard.events.AllTests;
-    import asgard.managers.AllTests;
-    import asgard.media.AllTests;
-    import asgard.net.AllTests;
-    import asgard.process.AllTests;
-    import asgard.text.AllTests;
+    import asgard.display.*;
+    import asgard.events.*;
+    import asgard.managers.*;
+    import asgard.media.*;
+    import asgard.net.*;
+    import asgard.process.*;
+    import asgard.text.*;
     
     import buRRRn.ASTUce.framework.ITest;
-    import buRRRn.ASTUce.framework.TestSuite;	
+    import buRRRn.ASTUce.framework.TestSuite;    
 
     /**
 	 * This class launch all tests.

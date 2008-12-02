@@ -33,7 +33,7 @@ package vegas.data.array
 
     /**
      * <code class="prettyprint">TypedArray</code> acts like a normal array but assures that only objects of a specific type are added to the array.
-     * <p>Example :
+     * <p><b>Example :</b></p>
      * <pre class="prettyprint">
      * import vegas.data.array.TypedArray ;
      * 
@@ -41,7 +41,6 @@ package vegas.data.array
      * trace ("ta : " + ta) ; // output : ta : item1,item2,item3
      * ta.push(2) ; // [TypeMismatchError] TypedArray.validate('value':2) is mismatch
      * </pre>
-     * @author eKameleon 
      */
     public class TypedArray extends ProxyArray implements ITypeable, IValidator
     {
@@ -199,7 +198,7 @@ package vegas.data.array
   
         /**
          * Evaluates the condition it checks and updates the IsValid property.
-         * @throws TypeMismatchError 
+         * @throws TypeMismatchError if the value isn't valid.
          */
         public function validate(value:*):void
         {

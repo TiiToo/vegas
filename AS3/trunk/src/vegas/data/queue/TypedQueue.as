@@ -30,8 +30,8 @@ package vegas.data.queue
     import vegas.util.Serializer;    
 
     /**
-     * TypedQueue is a wrapper for Queue instances that ensures that only values of a specific type can be added to the wrapped queue.
-     * @author eKameleon
+     * TypedQueue is a wrapper for Queue instances that ensures that only values of a 
+     * specific type can be added to the wrapped queue.
      */
     public class TypedQueue extends AbstractTypeable implements Queue
     {
@@ -223,20 +223,15 @@ package vegas.data.queue
     	 */
         public override function toString():String
         {
-            return (_queue as TypedQueue).toString() ;
+            return (_queue as Object).toString() ;
         }
    
         /**
          * @private
          */
         private var _queue:Queue ;
-        
-
-        
-
-        
-
 
     }
+
 }
 

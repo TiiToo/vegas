@@ -32,22 +32,22 @@ package vegas.data
 	 */
     public interface Bag extends Collection
     {
-    	
-    	/**
+
+        /**
+         * Add n copies of the given object to the bag and keep a count. 
+         */
+        function addCopies(o:*, nCopies:uint):Boolean ;
+            	
+        /**
+         * Insert all elements represented in the given collection.
+         */
+        function addAll(c:Collection):Boolean ;
+        
+        /**
 		 * (Violation) Returns true if the bag contains all elements in the given collection, respecting cardinality.
 		 */
 	    function containsAll(c:Collection):Boolean ;
-	
-		/**
-		 * Insert all elements represented in the given collection.
-		 */
-    	function insertAll(c:Collection):Boolean ;
-    	
-   		/**
-		 * Add n copies of the given object to the bag and keep a count. 
-		 */
-    	function insertCopies(o:*, nCopies:uint):Boolean ;
-
+	    
 		/**
 		 * Returns the number of occurrences (cardinality) of the given object currently in the bag.
 		 */

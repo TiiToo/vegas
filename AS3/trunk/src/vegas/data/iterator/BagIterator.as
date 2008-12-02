@@ -33,7 +33,6 @@ package vegas.data.iterator
 
     /**
      * Converts an Bag to an iterator.
-     * @author eKameleon
      */
     public class BagIterator extends CoreObject implements Iterator
     {

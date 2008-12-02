@@ -65,9 +65,43 @@ package vegas.data.bag
          */ 
         public function add(o:*):Boolean 
         {
-        
-            return insertCopies(o, 1) ;
+            return addCopies(o, 1) ;
         }		
+		
+        /**
+         * Insert all elements represented in the given collection.
+         */         
+        public function addAll(c:Collection):Boolean 
+        {
+            var changed:Boolean = false;
+            var i:Iterator = c.iterator() ;
+            var added:Boolean ;
+            while (i.hasNext()) 
+            {
+                added = add(i.next());
+                changed = changed || added ;
+            }
+            return changed;
+        }
+        
+        /**
+         * Add n copies of the given object to the bag and keep a count. 
+         */
+        public function addCopies(o:*, nCopies:uint):Boolean 
+        {
+            _mods++ ;
+            if (nCopies > 0) 
+            {
+                var count:uint = nCopies + getCount(o) ;
+                _map.put(o, count);
+                _total += nCopies;
+                return count == nCopies ;
+            }
+            else 
+            {
+                return false;
+            }
+        }        
 		
 		/**
 		 * Removes all of the elements from this bag.
@@ -155,7 +189,7 @@ package vegas.data.bag
 	        }
 	        return result;
 		}
-
+        
 		/**
 		 * This method is used in the BagIterator class.
 		 */
@@ -163,7 +197,7 @@ package vegas.data.bag
 		{
 			return _mods ;
 		}
-
+        
 		/**
 		 * Unsupported by bag objects.
 		 * @throws UnsupportedOperation the 'indexOf' method is unsupported with a bag object.
@@ -172,43 +206,7 @@ package vegas.data.bag
 		{
 			throw new UnsupportedOperation(this + " 'indexOf' method is unsupported.") ;
 		}
-
-
-		/**
-		 * Insert all elements represented in the given collection.
-		 */			
-    	public function insertAll(c:Collection):Boolean 
-    	{
-    		var changed:Boolean = false;
-	        var i:Iterator = c.iterator() ;
-			var added:Boolean ;
-	        while (i.hasNext()) 
-	        {
-				added = add(i.next());
-	            changed = changed || added ;
-	        }
-	        return changed;
-    	}
-
-		/**
-		 * Add n copies of the given object to the bag and keep a count. 
-		 */
-    	public function insertCopies(o:*, nCopies:uint):Boolean 
-    	{
-    		_mods++ ;
-	        if (nCopies > 0) 
-	        {
-    	        var count:uint = nCopies + getCount(o) ;
-	            _map.put(o, count);
-	            _total += nCopies;
-	            return count == nCopies ;
-	        }
-	        else 
-	        {
-	            return false;
-	        }
-    	}
-
+        
 		/**
 		 * Returns <code class="prettyprint">true</code> if the bag is empty.
 		 * @return <code class="prettyprint">true</code> if the bag is empty.
@@ -217,7 +215,7 @@ package vegas.data.bag
 		{
 			return _map.isEmpty() ;
     	}
-
+        
 		/**
 	 	 * Returns the bag iterator.
 		 * @return the bag iterator.
@@ -252,7 +250,7 @@ package vegas.data.bag
 	        }
     	    return result ;
     	}
-
+        
 		/**
 		 * Removes the given number of occurrences from the bag.
 		 */
@@ -299,11 +297,11 @@ package vegas.data.bag
 	            var count2:uint = b.getCount(cur) ;
 	            if ( 1 <= count2 && count2 <= count1) 
 	            {
-	                excess.insertCopies(cur, count1 - count2) ;
+	                excess.addCopies(cur, count1 - count2) ;
 	            }
 	            else 
 	            {
-	                excess.insertCopies(cur, count1) ;
+	                excess.addCopies(cur, count1) ;
 	            }
 	        }
 	        if (!excess.isEmpty() ) 
@@ -420,6 +418,6 @@ package vegas.data.bag
 		 * @private
 		 */		
 		private var _total:uint = 0 ;
-
+        
 	}
 }

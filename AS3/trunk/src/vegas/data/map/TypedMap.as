@@ -30,7 +30,6 @@ package vegas.data.map
 
     /**
 	 * TypedMap is a wrapper for Map instances that ensures that only values of a specific type can be added to the wrapped Map.
-	 * @author eKameleon
 	 */
 	public class TypedMap extends AbstractTypeable implements Map
 	{
@@ -48,7 +47,8 @@ package vegas.data.map
 			{
 				throw new ArgumentError(this + " constructor, argument 'map' must not be 'null' or 'undefined'.") ;
 			}
-			if (map.size() > 0) {
+			if (map.size() > 0) 
+			{
 				var it:Iterator = map.iterator() ;
 				while ( it.hasNext() ) 
 				{
@@ -211,7 +211,7 @@ package vegas.data.map
 		 */
 		public override function toString():String
 		{
-			return (_map as TypedMap).toString() ;
+			return (_map as Object).toString() ;
 		}
         
         /**

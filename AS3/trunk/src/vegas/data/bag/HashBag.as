@@ -35,51 +35,53 @@ package vegas.data.bag
 	 * <pre class="prettyprint">
 	 * import vegas.data.Bag ;
 	 * import vegas.data.bag.HashBag ;
-	 * import vegas.data.Collection ;
- 	 * import vegas.data.collections.SimpleCollection ;
-	 * import vegas.data.Set ;
-	 *	
-	 * var c1:Collection = new SimpleCollection( ["item1", "item1", "item3"] ) ;
-	 * var c2:Collection = new SimpleCollection( ["item1", "item2", "item3", "item4", "item5"] ) ;
-	 *	
+	 * 
+	 * import system.data.Collection ;
+	 * import system.data.collections.ArrayCollection ;
+	 * import system.data.Set ;
+	 * 
+	 * var c1:Collection = new ArrayCollection( ["item1", "item1", "item3"] ) ;
+	 * var c2:Collection = new ArrayCollection( ["item1", "item2", "item3", "item4", "item5"] ) ;
+	 * 
 	 * trace ("c1 collection : " + c1) ;
 	 * trace ("c2 collection : " + c2) ;
-	 *	
+	 * 
 	 * trace ("---- create a new HashBag") ;
-	 * var bag:Bag = new HashBag ;
-	 *		
-	 * trace ("---- insert") ;
- 	 * trace (" + bag insertAll c1 : " + bag.insertAll(c1)) ;
-	 * trace (" + bag insertAll c2 : " + bag.insertAll(c2)) ;
+	 * 
+	 * var bag:Bag = new HashBag() ;
+	 * 
+	 * trace ("---- add") ;
+	 * trace (" + bag addAll c1 : " + bag.addAll(c1)) ;
+	 * trace (" + bag addAll c2 : " + bag.addAll(c2)) ;
 	 * trace (" > bag : " + bag) ;
 	 * trace (" > bag.toSource : " + bag.toSource()) ;
-	 *	
+	 * 
 	 * trace ("---- contains") ;
 	 * trace (" > bag containsAll c2 : " + bag.containsAll(c2)) ;
-	 *	
-	 * trace ("---- insert") ;
-	 * trace (" + bag insert item2 : " + bag.insert("item2")) ;
+	 * 
+	 * trace ("---- add") ;
+	 * trace (" + bag add item2 : " + bag.add("item2") ) ;
+	 * trace (" > bag : " + bag ) ;
+	 * trace (" + bag addCopies 2xitem2 : " + bag.addCopies("item2", 2)) ;
 	 * trace (" > bag : " + bag) ;
-	 * trace (" + bag insertCopies 2xitem2 : " + bag.insertCopies("item2", 2)) ;
-	 * trace (" > bag : " + bag) ;
-	 *	
+	 *
 	 * trace ("---- remove") ;
 	 * trace (" > bag removeCopies 1 x item2 : " + bag.removeCopies("item2", 1)) ;
-	 *	
- 	 * trace ("---- size") ;
- 	 * trace (" - bag getCount item2 : " + bag.getCount("item2")) ;
+	 * 
+	 * trace ("---- size") ;
+	 * trace (" - bag getCount item2 : " + bag.getCount("item2")) ;
 	 * trace (" > bag size : " + bag.size()) ;
-	 *	
+	 * 
 	 * trace ("---- retain") ;
 	 * trace (" > bag : " + bag) ;
 	 * trace (" > bag retainAll c1 : " + bag.retainAll(c1)) ;
- 	 * trace (" > bag : " + bag) ;
- 	 *		
- 	 * trace ("----") ;
+	 * trace (" > bag : " + bag) ;
+	 * 
+	 * trace ("----") ;
+	 * 
 	 * var s:Set = bag.uniqueSet() ;
 	 * trace("bag uniqueSet : " + s) ;
 	 * </pre>
-	 * @author eKameleon
  	 */
 	public class HashBag extends AbstractBag
 	{
@@ -93,7 +95,7 @@ package vegas.data.bag
 			super(new HashMap());
 			if (c != null) 
 			{
-				insertAll(c) ;
+				addAll(c) ;
 			}
 		}
 	
