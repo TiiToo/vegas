@@ -20,18 +20,11 @@
   Contributor(s) :
   
 */
-
-
-
-package
-vegas{
+package vegas
+{
 
 	public var global:* = _global ;
 	
 }
 
 var _global:* = this  ;
-
-
-
-
