@@ -24,7 +24,7 @@
 
 
 package
-{
+vegas{
 
 	public var global:* = _global ;
 	
