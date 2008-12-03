@@ -26,17 +26,19 @@ package vegas.errors
 	
 	/**
 	 * Thrown to indicate that the code has attempted to cast an object to a subclass of which it is not an instance.
-	 * @author eKameleon
  	 */	
-    public class ClassCastError extends AbstractError
+    public class ClassCastError extends Error
     {
     
 		/**
 	 	 * Creates a new ClassCastError instance.
-	 	 */
+         * @param message A string associated with the ClassCastError object ; this parameter is optional.
+         * @param id A reference number to associate with the specific error message.
+         */
         public function ClassCastError(message:String="", id:int=0)
         {
             super(message, id);
+            name = "ClassCastError" ;
         }
         
     }

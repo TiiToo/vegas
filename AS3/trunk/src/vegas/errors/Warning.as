@@ -23,31 +23,23 @@
 
 package vegas.errors
 {
-	
-	import vegas.logging.LogEventLevel;
-   
+    
    	/**
 	 * Thrown to indicate a warning message in an application or in the source code.
-	 * @author eKameleon
  	 */ 
-    public class Warning extends AbstractError
+    public class Warning extends Error
     {
 	
 		/**
 		 * Creates a new Warning instance.
-		 */
+         * @param message A string associated with the Warning object ; this parameter is optional.
+         * @param id A reference number to associate with the specific error message.
+         */
         public function Warning(message:String="", id:int=0)
         {
             super(message, id);
+            name = "Warning" ;
         }
-        
-		/**
-		 * Returns the internal LogEventLevel used in the constructor of this instance.
-		 */
-		public override function getLevel():LogEventLevel
-		{
-			return LogEventLevel.WARN ;	
-		}
         
     }
 }

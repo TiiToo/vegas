@@ -23,33 +23,24 @@
 
 package vegas.errors
 {
-	
-	import vegas.logging.LogEventLevel ;
-	
+
     /**
 	 * The error throws when a fatal method or action is detected in the code.
-	 * This error notify a fatal level message in the vegas.errors.* logging category.
-	 * @author eKameleon
  	 */
-    public class FatalError extends AbstractError
+    public class FatalError extends Error
     {
  
  		/**
 	 	 * Creates a new FatalError instance.
-	 	 */
-        function FatalError(message:String="", id:int=0)
+         * @param message A string associated with the FatalError object ; this parameter is optional.
+         * @param id A reference number to associate with the specific error message.
+         */
+        public function FatalError(message:String="", id:int=0)
         {
            super(message, id);
+           name = "FatalError" ;           
         }
         
- 		/**
-	 	 * Returns the internal LogEventLevel used in the constructor of this instance.
-	 	 * @return the internal LogEventLevel used in the constructor of this instance.
-	 	 */
-		public override function getLevel():LogEventLevel
-		{
-			return LogEventLevel.FATAL ;	
-		}
         
     }
     

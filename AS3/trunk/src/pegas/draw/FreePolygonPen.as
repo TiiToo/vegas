@@ -22,19 +22,17 @@
 */
 package pegas.draw 
 {
-    import flash.display.Graphics;
-    import flash.geom.Point;
-    
     import pegas.draw.Pen;
     import pegas.geom.Vector2;
     
-    import vegas.errors.UnsupportedOperation;    
+    import flash.display.Graphics;
+    import flash.errors.IllegalOperationError;
+    import flash.geom.Point;        
 
     /**
      * This pen is the tool to draw a free polygon vector shape. This class don't use the 'align' property.
-     * @author eKameleon
      */
-    dynamic public class FreePolygonPen extends Pen 
+    public dynamic class FreePolygonPen extends Pen 
     {
         
         /**
@@ -57,7 +55,7 @@ package pegas.draw
           */
         public override function set align( align:uint ):void 
         {
-            throw new UnsupportedOperation( this + " align property can't be use to align this free shape.") ;
+            throw new IllegalOperationError( this + " align property can't be use to align this free shape.") ;
         }
 
         /**

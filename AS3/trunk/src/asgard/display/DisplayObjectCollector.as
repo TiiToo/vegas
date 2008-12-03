@@ -58,18 +58,10 @@ package asgard.display
 		 */	
 		public static function get( id:* ):DisplayObject 
 		{
-			try 
+    		if ( !contains( id ) ) 
 			{
-				if ( !contains( id ) ) 
-				{
-					throw new Warning("[DisplayObjectCollector].get('" + id + "'). Can't find DisplayObject instance." ) ;
-				} ;
-			}
-			catch (e:Warning) 
-			{
-				e.toString() ;
-			}
-		
+				throw new Warning("[DisplayObjectCollector].get('" + id + "'). Can't find DisplayObject instance." ) ;
+			} ;
 			return _map.get( id ) as DisplayObject ;	
 		}
 	
@@ -80,17 +72,10 @@ package asgard.display
 		 */
 		public static function insert( id:*, dObject:DisplayObject ):Boolean 
 		{
-			try 
+			if ( contains(id) ) 
 			{
-				if ( contains(id) ) 
-				{
-					throw new Warning("[DisplayObjectCollector] insert method failed. A DisplayObject instance is already registered with '" + id + "' name." ) ;
-				} ;
-			}
-			catch (e:Warning) 
-			{
-				e.toString() ;
-			}
+				throw new Warning("[DisplayObjectCollector] insert method failed. A DisplayObject instance is already registered with '" + id + "' name." ) ;
+			} ;
 			return _map.put(id, dObject) == null  ;	
 		}
 	

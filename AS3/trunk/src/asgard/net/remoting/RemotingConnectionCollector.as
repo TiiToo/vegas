@@ -72,19 +72,11 @@ package asgard.net.remoting
 		 */
 		public static function insert( name:String, rc:RemotingConnection ):Boolean 
 		{
-			try 
+			if ( contains(name) ) 
 			{
-				if ( contains(name) ) 
-				{
-					throw new Warning("[RemotingConnectionCollector].insert(). A RemotingConnection instance is already registered with '" + name + "' name." ) ;
-				}
-			}
-			catch (e:Warning) 
-			{
-				e.toString() ;
+				throw new Warning("[RemotingConnectionCollector].insert(). A RemotingConnection instance is already registered with '" + name + "' name." ) ;
 			}
 			return Boolean( _map.put(name, rc) )   ;	
-			
 		}
 	
 		/**

@@ -1,4 +1,4 @@
-/*
+﻿/*
 
   The contents of this file are subject to the Mozilla Public License Version
   1.1 (the "License"); you may not use this file except in compliance with
@@ -26,17 +26,19 @@ package vegas.errors
 
 	/**
 	 * Signals that a method has been invoked at an illegal or inappropriate time.
-	 * @author eKameleon
 	 */
-	public class IllegalStateError extends FatalError
+	public class IllegalStateError extends Error
 	{
 
 		/**
 	 	 * Creates a new IllegalStateError instance.
-		 */
+         * @param message A string associated with the IllegalStateError object ; this parameter is optional.
+         * @param id A reference number to associate with the specific error message.
+         */
 		public function IllegalStateError(message:String="", id:int=0)
 		{
 			super(message, id);
+            name = "IllegalStateError" ;     
 		}
 		
 	}

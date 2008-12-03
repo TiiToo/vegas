@@ -27,17 +27,19 @@ package vegas.errors
 
 	/**
 	 * Exception thrown on a type mismatch when trying to set a bean property.
-	 * @author eKameleon
  	 */
-    public class TypeMismatchError extends FatalError
+    public class TypeMismatchError extends Error
     {
 
 		/**
 		 * Creates a new TypeMismatchError instance.
-		 */
+         * @param message A string associated with the TypeMismatchError object ; this parameter is optional.
+         * @param id A reference number to associate with the specific error message.
+         */
         public function TypeMismatchError(message:String="", id:int=0)
         {
             super(message, id);
+            name = "TypeMismatchError" ;
         }
         
     }

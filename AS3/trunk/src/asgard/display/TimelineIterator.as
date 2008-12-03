@@ -26,9 +26,9 @@ package asgard.display
     import system.numeric.Mathematics;
     
     import vegas.core.CoreObject;
-    import vegas.errors.UnsupportedOperation;
     
-    import flash.display.MovieClip;    
+    import flash.display.MovieClip;
+    import flash.errors.IllegalOperationError;        
 
     /**
      * This iterator control the timeline in a MovieClip target.
@@ -216,11 +216,11 @@ package asgard.display
         
         /**
          * Unsupported operation in this iterator.
-         * @throws UnsupportedOperation the method remove() in this iterator is unsupported. 
+         * @throws flash.errors.IllegalOperationError the method remove() in this iterator is unsupported. 
          */
         public function remove():*
         {
-            throw new UnsupportedOperation(this + " remove method is unsupported by this instance.") ;
+            throw new IllegalOperationError( this + " remove method is unsupported by this instance.") ;
         }
 
         /**

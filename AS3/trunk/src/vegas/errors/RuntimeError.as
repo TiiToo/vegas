@@ -26,17 +26,19 @@ package vegas.errors
 	
 	/**
 	 * Thrown when an error is invoked at runtime.
- 	 * @author eKameleon
  	 */
-    public class RuntimeError extends AbstractError
+    public class RuntimeError extends Error
     {
     
 		/**
 		 * Creates a new RuntimeError instance.
-		 */
+         * @param message A string associated with the RuntimeError object ; this parameter is optional.
+         * @param id A reference number to associate with the specific error message.
+         */
         public function RuntimeError(message:String="", id:int=0)
         {
             super(message, id);
+            name = "RuntimeError" ;              
         }
         
     }

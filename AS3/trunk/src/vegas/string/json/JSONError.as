@@ -23,21 +23,20 @@
 
 package vegas.string.json
 {
-	import vegas.errors.FatalError;
 
     /**
      * This JSONError is throw in the JSON static methods.
-     * @author eKameleon
      */
-	public class JSONError extends FatalError
+	public class JSONError extends Error
 	{
 
     	/**
     	 * Creates a new JSONError instance.
     	 */
-		public function JSONError(message:String, at:uint, source:String)
+		public function JSONError( message:String, at:uint, source:String , id:int=0 )
 		{
-			super(message);
+			super( message , id );
+            name = "JSONError" ;			
 			this.at = at ;
 			this.source = source ;
 		}
@@ -56,14 +55,12 @@ package vegas.string.json
          * Returns a String representation of the object.
          * @return a String representation of the object.
          */
-        public override function toString():String 
+        public function toString():String 
         {
             var msg:String = "## " + name + " : " + message + " ##" ;
             if (!isNaN(at)) msg += ", at:" + at ;
 			if (source) msg += " in \"" + source + "\"";
-		    log(msg) ;
 		    return msg ;
-            
         }
 
 	}
