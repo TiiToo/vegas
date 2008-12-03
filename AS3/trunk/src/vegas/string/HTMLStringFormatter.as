@@ -27,7 +27,6 @@ package vegas.string
      * This static tool class defined each of the following methods returns a copy of the string wrapped inside an HTML tag.
      * For example, <code class="prettyprint">HTMLStringFormatter.bold("test")</code> returns <code class="prettyprint"><b>test</b></code>.
      * Compatibility with Javascript String HTML wrappers, this methods are native in the Javascript String class. 
-     * @author eKameleon
      */
     public class HTMLStringFormatter
     {

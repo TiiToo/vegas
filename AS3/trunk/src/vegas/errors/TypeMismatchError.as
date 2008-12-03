@@ -21,7 +21,6 @@
   
 */
 
-
 package vegas.errors
 {
 

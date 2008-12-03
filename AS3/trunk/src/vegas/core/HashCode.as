@@ -20,12 +20,12 @@
   Contributor(s) :
   
 */
+
 package vegas.core
 {
 
 	/**
 	 * Collected methods which allow easy implementation of <code class="prettyprint">hashCode</code>.
-	 * @author eKameleon
 	 */
 	public class HashCode
 	{

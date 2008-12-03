@@ -23,15 +23,14 @@
 
 package pegas.transitions 
 {
-	import andromeda.process.Action;
-	
-	import pegas.transitions.ITransition;
-	
-	import vegas.core.Identifiable;	
+    import andromeda.process.Action;
+    
+    import pegas.transitions.ITransition;
+    
+    import system.data.Identifiable;	
 
-	/**
+    /**
  	 * This abstract class defines the skeletal implementation of the ITransition interface.
- 	 * @author eKameleon
  	 */
 	public class AbstractTransition extends Action implements ITransition 
 	{

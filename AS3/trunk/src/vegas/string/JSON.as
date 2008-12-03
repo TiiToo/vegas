@@ -85,7 +85,6 @@ package vegas.string
      *     trace( e.toString() ) ;
      * }
      * </pre>
-     * @author eKameleon
      */
     public var JSON:JSONSerializer = new JSONSerializer() ;
     

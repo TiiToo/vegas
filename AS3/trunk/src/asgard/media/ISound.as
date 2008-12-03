@@ -24,9 +24,10 @@ package asgard.media
 {
     import andromeda.config.IConfigurable;
     
+    import system.data.Identifiable;
+    
     import vegas.core.IHashable;
     import vegas.core.ILockable;
-    import vegas.core.Identifiable;
     import vegas.logging.ILogable;    
 
     /**

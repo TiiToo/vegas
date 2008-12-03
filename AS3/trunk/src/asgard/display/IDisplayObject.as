@@ -22,14 +22,15 @@
 */
 package asgard.display 
 {
-    import flash.events.IEventDispatcher;
-    
     import andromeda.config.IConfigurable;
+    
+    import system.data.Identifiable;
     
     import vegas.core.IHashable;
     import vegas.core.ILockable;
-    import vegas.core.Identifiable;
-    import vegas.logging.ILogable;    
+    import vegas.logging.ILogable;
+    
+    import flash.events.IEventDispatcher;    
 
     /**
 	 * This interface defines all interfaces who implements the core displays in ASGard.

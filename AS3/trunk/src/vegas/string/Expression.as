@@ -35,29 +35,28 @@ package vegas.string
      * 
      * var exp:Expression      = new Expression() ;
      * 
-     * exp["root"]             = "c:" ;
-     * exp["vegas"]            = "{root}/project/vegas" ;
-     * exp["data.map"]         = "{vegas}/data/map" ;
-     * exp["data.map.HashMap"] = "{data.map}/HashMap.as" ;
+     * exp["root"]              = "c:" ;
+     * exp["system"]            = "{root}/project/system" ;
+     * exp["data.maps"]         = "{system}/data/maps" ;
+     * exp["data.maps.HashMap"] = "{data.maps}/HashMap.as" ;
      * 
-     * source = "the root : {root} - the class : {data.map.HashMap}" ;
+     * source = "the root : {root} - the class : {data.maps.HashMap}" ;
      * 
      * trace( exp.format( source ) ) ;
      * 
      * trace( "----" ) ;
      * 
-     * exp["vegas"]            = "%root%/project/vegas" ;
-     * exp["data.map"]         = "%vegas%/data/map" ;
-     * exp["data.map.HashMap"] = "%data.map%/HashMap.as" ;
+     * exp["system"]            = "%root%/project/system" ;
+     * exp["data.maps"]         = "%system%/data/map" ;
+     * exp["data.maps.HashMap"] = "%data.map%/HashMap.as" ;
      * 
      * exp.beginSeparator = "%" ;
      * exp.endSeparator   = "%" ;
      * 
-     * source = "the root : %root% - the class : %data.map.HashMap%" ;
+     * source = "the root : %root% - the class : %data.maps.HashMap%" ;
      * 
      * trace( exp.format( source ) ) ;
      * </pre>
-     * @author eKameleon
      */
     public dynamic class Expression extends Dictionary
     {
@@ -149,12 +148,12 @@ package vegas.string
         	{
         		return str ;
         	} 
-            var m:Array  = str.match( _reg ) ;
-            var l:uint   = m.length ;
+            var m:Array = str.match( _reg ) ;
+            var l:int   = m.length ;
             if ( l > 0 )
             {
                 var key:String ;
-                for ( var i:uint = 0 ; i<l ; i++ )
+                for ( var i:int ; i<l ; i++ )
                 {
                     key   = m[i].substr(1) ;
                     key   = key.substr( 0 , key.length-1 ) ;

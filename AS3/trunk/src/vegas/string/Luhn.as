@@ -35,7 +35,6 @@ package vegas.string
      * var code:String = "456565654" ;
      * trace (code + " isValid : " + Luhn.isValid(code)) ;
      * </pre>
-     * @author eKameleon
      */
 	public class Luhn
 	{

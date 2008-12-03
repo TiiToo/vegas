@@ -34,14 +34,11 @@ package vegas.core
 	 * <p><b>Example :</b></p>
 	 * <pre class="prettyprint">
 	 * import vegas.core.CoreObject ;
-	 *  
 	 * var core:CoreObject = new CoreObject() ;
 	 * trace("core     : " + core) ;
 	 * trace("hashcode : " + core.hashCode()) ;
 	 * trace("toSource : " + core.toSource()) ;
 	 * </pre>
-	 * </p>
-	 * @author eKameleon
 	 */
 	public class CoreObject extends Object implements IHashable, ILogable, Serializable
 	{

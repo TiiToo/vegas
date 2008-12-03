@@ -22,11 +22,10 @@
 */
 package asgard.text 
 {
-    import flash.text.StyleSheet;
-    
     import system.Reflection;
+    import system.data.Identifiable;
     
-    import vegas.core.Identifiable;    
+    import flash.text.StyleSheet;    
 
     /**
      * The CoreStyleSheet class extends the flash.text.StyleSheet.
