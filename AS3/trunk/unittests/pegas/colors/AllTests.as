@@ -22,12 +22,11 @@
 */
 package pegas.colors  
 {
-	import buRRRn.ASTUce.framework.ITest;
-	import buRRRn.ASTUce.framework.TestSuite;	
+    import buRRRn.ASTUce.framework.ITest;
+    import buRRRn.ASTUce.framework.TestSuite;	
 
-	/**
+    /**
 	 * This class launch all tests.
-	 * @author eKameleon
 	 */
 	public class AllTests
 	{
@@ -39,6 +38,8 @@ package pegas.colors
         {
             
             var suite:TestSuite = new TestSuite( "pegas.colors" );
+
+            suite.addTestSuite( ColorTest ) ;
 
             return suite;
             

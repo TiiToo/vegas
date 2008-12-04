@@ -25,14 +25,14 @@ package pegas.colors
 {
     import flash.display.DisplayObject;
     import flash.geom.ColorTransform;
-    import flash.geom.Transform;	
+    import flash.geom.Transform;    
 
     /**
 	 * <code class="prettyprint">BasicColor</code> extends the Color Object.
 	 * <p><b>Example :</b></p>
 	 * <pre class="prettyprint">
-	 * import pegas.colors.BasicColor;
- 	 * var c : BasicColor = new BasicColor ( display ); // assuming 'display' is a DisplayObject
+	 * import pegas.colors.Color;
+ 	 * var c:Color = new Color ( display ); // assuming 'display' is a DisplayObject
 	 * c.setRGB(0xFF9900);
 	 * </pre>
 	 */	
@@ -40,13 +40,18 @@ package pegas.colors
 	{
 
 		/**
-		 * Creates an instance of a BasicColor.
+		 * Creates a new Color instance.
 		 * <p><code class="prettyprint"> new BasicColor(mc);</code></p>
 		 * @param display a DisplayObject reference.
+		 * @throws ArgumentError if the display argument is null or undefined.
 	 	 */
 		public function Color( display:DisplayObject )
 		{
-			this.display = display ;
+			if ( display == null )
+			{
+				throw new ArgumentError( this + " constructor failed, the passed-in DisplayObject must not be null or undefined.") ;
+            }
+			_display = display ;
 		}
 
 		/**
@@ -54,7 +59,7 @@ package pegas.colors
 		 */
 		public function get colorTransform():ColorTransform 
 		{
-			return display.transform.colorTransform ;
+			return _display.transform.colorTransform ;
 		}
 		
 		/**
@@ -62,16 +67,19 @@ package pegas.colors
 		 */
 		public function set colorTransform( transform:ColorTransform ):void 
 		{
-			display.transform.colorTransform = transform ;
+			_display.transform.colorTransform = transform ;
 		}
 		
 		/**
 		 * The DisplayObject reference of this object.
 		 */
-		public var display:DisplayObject ;
+		public function get display():DisplayObject
+		{
+			return _display ;
+		}
 
 		/**
-		 * (read-write) Indicates the R+G+B combination currently in use by the color object
+		 * Indicates the R+G+B combination currently in use by the color object
 		 */
 		public function get rgb():Number 
 		{
@@ -92,7 +100,7 @@ package pegas.colors
 		 */
 		public function getRGB():Number 
 		{
-			return display.transform.colorTransform.color ;
+			return _display.transform.colorTransform.color ;
 		}
 		
         /**
@@ -116,7 +124,7 @@ package pegas.colors
 		 */
 		public function getTransform():Object 
 		{
-			var ct:ColorTransform = display.transform.colorTransform ;
+			var ct:ColorTransform = _display.transform.colorTransform ;
 			return {ra: ct.redMultiplier*100, rb: ct.redOffset, ga: ct.greenMultiplier*100, gb: ct.greenOffset, ba: ct.blueMultiplier*100, bb: ct.blueOffset, aa:ct.alphaMultiplier*100, ab: ct.alphaOffset};
 		}
 
@@ -151,7 +159,7 @@ package pegas.colors
 		{
 			var ct:ColorTransform = new ColorTransform();
 			ct.color = offset ;
-			display.transform.colorTransform = ct;
+			_display.transform.colorTransform = ct;
 		}
 		
         /**
@@ -175,8 +183,13 @@ package pegas.colors
 				t[p] = transformObject[p];
 			}
 			var ct:ColorTransform = new ColorTransform( t.ra/100 , t.ga/100 , t.ba/100 , t.aa/100 , t.rb , t.gb, t.bb, t.ab );
-			display.transform.colorTransform = ct;
-		 }
+			_display.transform.colorTransform = ct;
+		}
+		
+		/**
+         * @private
+         */
+        protected var _display:DisplayObject ;
 		
 	}
 

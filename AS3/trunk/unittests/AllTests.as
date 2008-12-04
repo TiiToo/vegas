@@ -33,7 +33,6 @@ package
 
     /**
 	 * This class launch all tests.
-	 * @author eKameleon
 	 */
 	public class AllTests
 	{
@@ -43,12 +42,11 @@ package
          */		
         public static function suite():ITest
         {
-            var suite:TestSuite = new TestSuite( "VEGAS v1RC4 unit tests" );
+            var suite:TestSuite = new TestSuite( "VEGAS 1.0 unit tests" );
             
             suite.addTest( andromeda.AllTests.suite() ) ;
             suite.addTest( calista.AllTests.suite()   ) ;
             suite.addTest( pegas.AllTests.suite()     ) ;
-            // suite.addTest( system.AllTests.suite()    ) ; // use an external repository to target this suite
             suite.addTest( vegas.AllTests.suite()     ) ;
             
             return suite;
