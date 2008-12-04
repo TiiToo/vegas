@@ -1,9 +1,0 @@
-objects =
-[
-    {
-        id        : "user" ,
-        type      : "User" ,            
-        singleton : true   ,
-        arguments : [ { config : "pseudo" } ]
-    }
-] ;
