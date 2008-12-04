@@ -43,6 +43,94 @@
     <component id="system.comparators:NumberComparator"     class="system.comparators.NumberComparator"     />
     <component id="system.comparators:ReverseComparator"    class="system.comparators.ReverseComparator"    />
     <component id="system.comparators:StringComparator"     class="system.comparators.StringComparator"     />
+
+    <!-- system.data -->
+    
+    <component id="system.data:Bag"             class="system.data.Bag" />
+    <component id="system.data:Boundable"       class="system.data.Boundable" />
+    <component id="system.data:Collection"      class="system.data.Collection" />
+    <component id="system.data:Entry"           class="system.data.Entry" />
+    <component id="system.data:Identifiable"    class="system.data.Identifiable" />
+    <component id="system.data:Iterable"        class="system.data.Iterable" />
+    <component id="system.data:Iterator"        class="system.data.Iterator" />
+    <component id="system.data:List"            class="system.data.List" />
+    <component id="system.data:ListIterable"    class="system.data.ListIterable" />
+    <component id="system.data:ListIterator"    class="system.data.ListIterator" />
+    <component id="system.data:Map"             class="system.data.Map" />
+    <component id="system.data:MultiMap"        class="system.data.MultiMap" />
+    <component id="system.data:OrderedIterator" class="system.data.OrderedIterator" />
+    <component id="system.data:Queue"           class="system.data.Queue" />
+    <component id="system.data:Set"             class="system.data.Set" />
+    <component id="system.data:Stack"           class="system.data.Stack" />
+
+    <!-- system.data.arrays -->
+
+    <component id="system.data:arrays:ArrayFilter" class="system.data.arrays.ArrayFilter" /> 
+    <component id="system.data:arrays:ProxyArray"  class="system.data.arrays.ProxyArray"  />
+    
+    <!-- system.data.bags -->
+    
+    <component id="system.data.bags:ArrayBag"     class="system.data.bags.ArrayBag"     />
+    <component id="system.data.bags:BagFormatter" class="system.data.bags.BagFormatter" />
+    <component id="system.data.bags:CoreBag"      class="system.data.bags.CoreBag"      />
+    <component id="system.data.bags:formatter"    class="system.data.bags.formatter"    />
+    <component id="system.data.bags:HashBag"      class="system.data.bags.HashBag"      />
+    
+    <!-- system.data.collections -->    
+    
+    <component id="system.data.collections:ArrayCollection"     class="system.data.collections.ArrayCollection"     />    
+    <component id="system.data.collections:CollectionFormatter" class="system.data.collections.CollectionFormatter" />
+    <component id="system.data.collections:formatter"           class="system.data.collections.formatter"           />
+
+    <!-- system.data.iterators -->
+    
+    <component id="system.data.iterators:ArrayFieldIterator"  class="system.data.iterators.ArrayFieldIterator" />    
+    <component id="system.data.iterators:ArrayIterator"       class="system.data.iterators.ArrayIterator"      />
+    <component id="system.data.iterators:ArrayListIterator"   class="system.data.iterators.ArrayListIterator"  />
+    <component id="system.data.iterators:BagIterator"         class="system.data.iterators.BagIterator"        />
+    <component id="system.data.iterators:IterableFormatter"   class="system.data.iterators.IterableFormatter"  />
+    <component id="system.data.iterators:LinkedListIterator"  class="system.data.iterators.LinkedListIterator" />
+    <component id="system.data.iterators:MapIterator"         class="system.data.iterators.MapIterator"        />
+    <component id="system.data.iterators:ObjectIterator"      class="system.data.iterators.ObjectIterator"     />
+    <component id="system.data.iterators:PageByPageIterator"  class="system.data.iterators.PageByPageIterator" />
+    <component id="system.data.iterators:ProtectedIterator"   class="system.data.iterators.ProtectedIterator"  />
+    <component id="system.data.iterators:StringIterator"      class="system.data.iterators.StringIterator"     />
+    
+    <!-- system.data.lists -->    
+    
+    <component id="system.data.lists:ArrayList"       class="system.data.lists.ArrayList"       />         
+    <component id="system.data.lists:LinkedList"      class="system.data.lists.LinkedList"      />
+    <component id="system.data.lists:LinkedListEntry" class="system.data.lists.LinkedListEntry" />
+    <component id="system.data.lists:SortedArrayList" class="system.data.lists.SortedArrayList" />
+    
+    <!-- system.data.maps -->
+    
+    <component id="system.data.maps:ArrayMap"          class="system.data.maps.ArrayMap"          />          
+    <component id="system.data.maps:formatter"         class="system.data.maps.formatter"         />
+    <component id="system.data.maps:HashMap"           class="system.data.maps.HashMap"           />
+    <component id="system.data.maps:MapEntry"          class="system.data.maps.MapEntry"          />         
+    <component id="system.data.maps:MapFormatter"      class="system.data.maps.MapFormatter"      />
+    <component id="system.data.maps:MapUtils"          class="system.data.maps.MapUtils"          />
+    <component id="system.data.maps:MultiMapFormatter" class="system.data.maps.MultiMapFormatter" />
+    <component id="system.data.maps:MultiValueMap"     class="system.data.maps.MultiValueMap"     />
+    <component id="system.data.maps:SortedArrayMap"    class="system.data.maps.SortedArrayMap"    />
+
+    <!-- system.data.queues -->
+    
+    <component id="system.data.queues:CircularQueue"  class="system.data.queues.CircularQueue" />     
+    <component id="system.data.queues:formatter"      class="system.data.queues.formatter"     />
+    <component id="system.data.queues:LinearQueue"    class="system.data.queues.LinearQueue"   />
+    <component id="system.data.queues:PriorityQueue"  class="system.data.queues.PriorityQueue" />
+    
+    <!-- system.data.sets -->
+    
+    <component id="system.data.sets:ArraySet" class="system.data.sets.ArraySet" />     
+    <component id="system.data.sets:CoreSet"  class="system.data.sets.CoreSet"  />
+    <component id="system.data.sets:HashSet"  class="system.data.sets.HashSet"  />
+    
+    <!-- system.data.stacks -->
+    
+    <component id="system.data.stacks:ArrayStack" class="system.data.stacks.ArrayStack" />   
         
     <!-- system.diagnostics -->
     
@@ -80,8 +168,6 @@
     <component id="system.io:Readable"  class="system.io.Readable"  />
     <component id="system.io:Writeable" class="system.io.Writeable" />
     
-    <!-- system.network -->  
-        
     <!-- system.numeric -->
     
     <component id="system.numeric:Mathematics" class="system.numeric.Mathematics" />
@@ -89,7 +175,7 @@
 
     <!-- system.process -->    
     
-    <component id="system.process:Runnable"             class="system.process.Runnable"             />
+    <component id="system.process:Runnable" class="system.process.Runnable" />
     
     <!-- system.reflection -->    
     

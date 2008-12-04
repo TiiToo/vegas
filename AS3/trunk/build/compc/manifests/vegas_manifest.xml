@@ -3,12 +3,9 @@
 <componentPackage>
     
     
-    <!-- top level -->
+    <!-- vegas - top level -->
         
-    <component id="vegas:global" class="global"   />
-    
-    <!-- vegas -->
-
+    <component id="vegas:global" class="vegas.global"   />
     <component id="vegas:VEGAS"  class="vegas.VEGAS"   />
     
     <!-- vegas.core -->
@@ -16,7 +13,6 @@
     <component id="vegas.core:CoreObject"   class="vegas.core.CoreObject"   />
 	<component id="vegas.core:HashCode"     class="vegas.core.HashCode"     />
 	<component id="vegas.core:IConvertible" class="vegas.core.IConvertible" /> 
-	<component id="vegas.core:Identifiable" class="vegas.core.Identifiable" />
 	<component id="vegas.core:IFactory"     class="vegas.core.IFactory"     />
 	<component id="vegas.core:IFormat"      class="vegas.core.IFormat"      />
 	<component id="vegas.core:IHashable"    class="vegas.core.IHashable"    />
@@ -28,39 +24,21 @@
     
     <component id="vegas.core.types:Char" class="vegas.core.types.Char"  />
 
-    <!-- vegas.data -->
-    
-    <component id="vegas.data:Bag"               class="vegas.data.Bag"               />
-    <component id="vegas.data:BidiMap"           class="vegas.data.BidiMap"           />
-    <component id="vegas.data:SortedBag"         class="vegas.data.SortedBag"         />
-    <component id="vegas.data:SortedMap"         class="vegas.data.SortedMap"         />
-    
     <!-- vegas.data.array -->
 
     <component id="vegas.data.array:TypedArray"  class="vegas.data.array.TypedArray"  />
     
-    <!-- vegas.data.bag -->
-    
-    <component id="vegas.data.bag:AbstractBag" class="vegas.data.bag.AbstractBag" />
-    <component id="vegas.data.bag:BagFormat"   class="vegas.data.bag.BagFormat"   />
-    <component id="vegas.data.bag:HashBag"     class="vegas.data.bag.HashBag"     />
-    
     <!-- vegas.data.collections -->
     
-    <component id="vegas.data.collections:TypedCollection"    class="vegas.data.collections.TypedCollection"    />
-    
-    <!-- vegas.data.iterator -->
-    
-    <component id="vegas.data.iterator:BagIterator"        class="vegas.data.iterator.BagIterator"         />
+    <component id="vegas.data.collections:TypedCollection" class="vegas.data.collections.TypedCollection"    />
     
     <!-- vegas.data.map -->
     
-    <component id="vegas.data.map:MapUtil"        class="vegas.data.map.MapUtil"        />    
-    <component id="vegas.data.map:TypedMap"       class="vegas.data.map.TypedMap"       />    
+    <component id="vegas.data.map:TypedMap" class="vegas.data.map.TypedMap"       />    
     
     <!-- vegas.data.queue -->
     
-    <component id="vegas.data.queue:TypedQueue"    class="vegas.data.queue.TypedQueue"    />      
+    <component id="vegas.data.queue:TypedQueue" class="vegas.data.queue.TypedQueue"    />      
     
     <!-- vegas.data.sets -->
     
@@ -73,16 +51,12 @@
     
     <!-- vegas.errors -->
     
-    <component id="vegas.errors:AbstractError"               class="vegas.errors.AbstractError" />       
     <component id="vegas.errors:ClassCastError"              class="vegas.errors.ClassCastError" />
-    <component id="vegas.errors:ConcurrentModificationError" class="vegas.errors.ConcurrentModificationError" />
     <component id="vegas.errors:FatalError"                  class="vegas.errors.FatalError" />
     <component id="vegas.errors:IllegalStateError"           class="vegas.errors.IllegalStateError" />
-    <component id="vegas.errors:NoSuchElementError"          class="vegas.errors.NoSuchElementError" />
     <component id="vegas.errors:NullPointerError"            class="vegas.errors.NullPointerError" />
     <component id="vegas.errors:RuntimeError"                class="vegas.errors.RuntimeError" />
     <component id="vegas.errors:TypeMismatchError"           class="vegas.errors.TypeMismatchError" />
-    <component id="vegas.errors:UnsupportedOperation"        class="vegas.errors.UnsupportedOperation" />
     <component id="vegas.errors:Warning"                     class="vegas.errors.Warning" />
     
     <!-- vegas.events -->
