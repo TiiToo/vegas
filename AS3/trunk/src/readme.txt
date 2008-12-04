@@ -7,8 +7,12 @@
 
    PROJECT
 
-   In this directory you can find all sources of the project if you checkout this path with a SVN client. 
-   The extensions of VEGAs are externals, you can't see it in the "browse source" page of Google Code.
+     In this directory you can find all sources of the project if you checkout this path with a SVN client. 
+     The extensions of VEGAs are externals, you can't see it in the "browse source" page of Google Code.
+   
+   SOURCES (all read-only)
+
+       - http://vegas.googlecode.com/svn/AS3/trunk/src/
 
    REAL SOURCES REPOSITORY URL :
 
