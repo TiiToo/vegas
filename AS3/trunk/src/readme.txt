@@ -10,15 +10,20 @@
    In this directory you can find all sources of the project if you checkout this path with a SVN client. 
    The extensions of VEGAs are externals, you can't see it in the "browse source" page of Google Code.
 
-   PROJECT PAGES
+   REAL SOURCES REPOSITORY URL :
 
-	- http://code.google.com/p/vegas/
-	- http://code.google.com/p/vegas/
-	- http://code.google.com/p/vegas/
-	- http://code.google.com/p/vegas/
-	- http://code.google.com/p/vegas/
-	- http://code.google.com/p/vegas/
-	- http://code.google.com/p/vegas/
+       - Maashaack  : http://maashaack.googlecode.com/svn/trunk/AS3/src/system
+
+       - VEGAS      : http://vegas.googlecode.com/svn/trunk/AS3/sources/vegas
+       - AndromedAS : http://andromed-as.googlecode.com/svn/trunk/AS3/trunk/src/andromeda/
+
+       - PEGAS      : http://pegas.googlecode.com/svn/trunk/AS3/trunk/src/pegas
+       - ASGard     : http://as-gard.googlecode.com/svn/trunk/AS3/trunk/src/asgard/
+
+       - LunAS      : http://lun-as.googlecode.com/svn/trunk/AS3/trunk/src/lunas
+
+       - KronOS     : http://kron-os.googlecode.com/svn/trunk/AS3/trunk/src/kronos
+       - Calista    : http://calista.googlecode.com/svn/trunk/AS3/src/calista
 
    ABOUT
 
