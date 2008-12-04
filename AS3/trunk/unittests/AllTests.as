@@ -26,9 +26,9 @@ package
     
     import buRRRn.ASTUce.framework.ITest;
     import buRRRn.ASTUce.framework.TestSuite;
-    
+
+    import andromeda.*;    
     import calista.*;
-    import pegas.*;
     import vegas.*;    
 
     /**
@@ -46,7 +46,6 @@ package
             
             suite.addTest( andromeda.AllTests.suite() ) ;
             suite.addTest( calista.AllTests.suite()   ) ;
-            suite.addTest( pegas.AllTests.suite()     ) ;
             suite.addTest( vegas.AllTests.suite()     ) ;
             
             return suite;
