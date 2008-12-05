@@ -117,8 +117,8 @@ package vegas.util
 	        	return false ;
 	        }
     
-    		var len:uint = ar1.length ;
-    		for( var i:uint = 0 ; i < len ; i++ )
+    		var len:int = ar1.length ;
+    		for( var i:int = 0 ; i < len ; i++ )
         	{
         		if( ar1[i] == null )
 	            {
