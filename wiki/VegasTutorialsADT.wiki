@@ -7,7 +7,7 @@ The collections framework is a unified architecture for representing and manipul
 
 The *VEGAS* collection framework is based on the [http://java.sun.com/j2se/1.4.2/docs/guide/collections/ JAVA Collections Framework] and the [http://commons.apache.org/collections/ Jakarta Collections Framework].
 
-This framework is based on interfaces to defines the differents types of collections.
+This framework is inspired on interfaces to defines the differents types of collections.
 
  * [VegasTutorials_collection_map The system.data.Map interface and this implementations]
 
