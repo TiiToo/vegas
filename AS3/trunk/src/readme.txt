@@ -18,7 +18,7 @@
 
        - Maashaack  : http://maashaack.googlecode.com/svn/trunk/AS3/src/system
 
-       - VEGAS      : http://vegas.googlecode.com/svn/trunk/AS3/sources/vegas
+       - VEGAS      : http://vegas.googlecode.com/svn/AS3/trunk/sources/vegas/
        - AndromedAS : http://andromed-as.googlecode.com/svn/trunk/AS3/trunk/src/andromeda/
 
        - PEGAS      : http://pegas.googlecode.com/svn/trunk/AS3/trunk/src/pegas
