@@ -72,7 +72,7 @@
     
     <component id="system.data.bags:ArrayBag"     class="system.data.bags.ArrayBag"     />
     <component id="system.data.bags:BagFormatter" class="system.data.bags.BagFormatter" />
-    <component id="system.data.bags:CoreBag"      class="system.data.bags.CoreBag"      />
+    <component id="system.data.bags:CoreMapBag"   class="system.data.bags.CoreMapBag"   />
     <component id="system.data.bags:formatter"    class="system.data.bags.formatter"    />
     <component id="system.data.bags:HashBag"      class="system.data.bags.HashBag"      />
     
@@ -174,8 +174,11 @@
     <component id="system.numeric:Range"       class="system.numeric.Range"       />
 
     <!-- system.process -->    
-    
-    <component id="system.process:Runnable" class="system.process.Runnable" />
+
+    <component id="system.process:Lockable"  class="system.process.Lockable"  />
+    <component id="system.process:Resetable" class="system.process.Resetable" />
+    <component id="system.process:Runnable"  class="system.process.Runnable"  />
+    <component id="system.process:Stoppable" class="system.process.Stoppable" />
     
     <!-- system.reflection -->    
     

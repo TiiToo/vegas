@@ -60,7 +60,7 @@
     
     <component id="pegas.geom:AspectRatio"  class="pegas.geom.AspectRatio" />
     <component id="pegas.geom:Dimension"    class="pegas.geom.Dimension" />
-    <component id="pegas.geom:IGeometry"    class="pegas.geom.IGeometry" />
+    <component id="pegas.geom:Geometry"     class="pegas.geom.Geometry" />
     <component id="pegas.geom:Line"         class="pegas.geom.Line" />
     <component id="pegas.geom:Matrix"       class="pegas.geom.Matrix" />
     <component id="pegas.geom:Matrix4"      class="pegas.geom.Matrix4" />

@@ -32,7 +32,7 @@
    ABOUT
 
     * Author : eKameleon
-    * Version : 1.0.0.1231
+    * Version : 1.0.0.1265
     * Link : http://www.ekameleon.net/blog
     * Mail : vegas@ekameleon.net 
 

@@ -1,5 +1,5 @@
  
-   VEGAS AS3 - version 1.0.0.1231
+   VEGAS AS3 - version 1.0.0.1265
  
 
    The "vegas.swc" library contains all the AS3 source code of the VEGAS project with all this extensions.
@@ -23,7 +23,7 @@
    ABOUT
 
     * Author : eKameleon
-    * Version : 1.0.0.1231
+    * Version : 1.0.0.1265
     * Link : http://www.ekameleon.net/
     * Mail : ekameleon@gmail.com
 
