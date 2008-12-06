@@ -9,7 +9,7 @@ The *VEGAS* collection framework is based on the [http://java.sun.com/j2se/1.4.2
 
 This framework is based on interfaces to defines the differents types of collections.
 
- * [VegasTutorials_collection_map The vegas.data.Map interface and this implementations]
+ * [VegasTutorials_collection_map The system.data.Map interface and this implementations]
 
  * [VegasTutorials_collection_intro Introduction]
  * [VegasTutorials_collection_bag Bag]
