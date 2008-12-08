@@ -1,0 +1,1043 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" href="../../style.css" type="text/css" media="screen">
+<link rel="stylesheet" href="../../print.css" type="text/css" media="print">
+<link rel="stylesheet" href="../../prettify.css" type="text/css">
+<meta content="CoreSound,asgard.media.CoreSound,DEFAULT_DELAY,looping,channel,id,isConfigurable,leftPeak,pan,pausing,position,rightPeak,running,soundTransform,volume,clone,getLogger,hashCode,isLocked,load,lock,notifyFinished,notifyLooped,notifyPaused,notifyProgress,notifyResumed,notifyStarted,notifyStopped,pause,play,resume,run,setLogger,setup,stop,toSource,toString,togglePause,unlock,update" name="keywords">
+<title>asgard.media.CoreSound</title>
+</head>
+<body>
+<script type="text/javascript" language="javascript" src="../../prettify.js"></script><script type="text/javascript" language="javascript" src="../../asdoc.js"></script><script type="text/javascript" language="javascript" src="../../cookies.js"></script><script type="text/javascript" language="javascript">
+<!--
+				asdocTitle = 'CoreSound - VEGAS AS3 Reference';
+				var baseRef = '../../';
+				window.onload = configPage;
+			--></script>
+<table style="display:none" id="titleTable" cellspacing="0" cellpadding="0" class="titleTable">
+<tr>
+<td align="left" class="titleTableTitle">VEGAS AS3 Reference</td><td align="right" class="titleTableTopNav"><a onclick="loadClassListFrame('../../all-classes.html')" href="../../package-summary.html">All&nbsp;Packages</a>&nbsp;|&nbsp;<a onclick="loadClassListFrame('../../all-classes.html')" href="../../class-summary.html">All&nbsp;Classes</a>&nbsp;|&nbsp;<a onclick="loadClassListFrame('../../index-list.html')" href="../../all-index-A.html">Index</a>&nbsp;|&nbsp;<a href="../../index.html?asgard/media/CoreSound.html&amp;asgard/media/class-list.html" id="framesLink1">Frames</a><a onclick="parent.location=document.location" href="" style="display:none" id="noFramesLink1">No&nbsp;Frames</a></td><td rowspan="3" align="right" class="titleTableLogo"><img alt="Adobe Logo" title="Adobe Logo" class="logoImage" src="../../images/logo.jpg"></td>
+</tr>
+<tr class="titleTableRow2">
+<td align="left" id="subTitle" class="titleTableSubTitle">Class&nbsp;CoreSound</td><td align="right" id="subNav" class="titleTableSubNav"><a href="#propertySummary">Properties</a>&nbsp;| <a href="#methodSummary">Methods</a></td>
+</tr>
+<tr class="titleTableRow3">
+<td colspan="2">&nbsp;</td>
+</tr>
+</table>
+<script type="text/javascript" language="javascript">
+<!--
+if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Class CoreSound"); titleBar_setSubNav(false,true,false,false,false,false,true,false,false,false,false,false,false,false);}
+--></script>
+<div class="MainContent">
+<table cellspacing="0" cellpadding="0" class="classHeaderTable">
+<tr>
+<td class="classHeaderTableLabel">Package</td><td><a onclick="javascript:loadClassListFrame('class-list.html')" href="package-detail.html">asgard.media</a></td>
+</tr>
+<tr>
+<td class="classHeaderTableLabel">Class</td><td class="classSignature">public class CoreSound</td>
+</tr>
+<tr>
+<td class="classHeaderTableLabel">Inheritance</td><td class="inheritanceList">CoreSound <img class="inheritArrow" alt="Inheritance" title="Inheritance" src="../../images/inherit-arrow.gif"> flash.media.Sound</td>
+</tr>
+<tr>
+<td class="classHeaderTableLabel">Implements</td><td><a href="../../andromeda/process/IAction.html">IAction</a>, <a href="ISound.html">ISound</a>, <a href="../../andromeda/process/IStoppable.html">IStoppable</a></td>
+</tr>
+</table>
+<p></p>
+  The CoreSound class extends the flash.media.Sound class and implements the IConfigurable, Identifiable, Lockable and ILogable interfaces.
+     <p><b>Example :</b></p>
+  <pre class="prettyprint">
+  // See in the library of this fla file the BipSound Sound symbol and this linkage class id.
+  
+  import andromeda.events.ActionEvent ;
+  
+  import asgard.date.Time ;
+  import asgard.events.SoundEvent ;
+  import asgard.media.CoreSound   ;
+  
+  import flash.media.SoundChannel ;
+  
+  var debug:Function = function( e:ActionEvent ):void
+  {
+      trace(e) ;
+  }
+  
+  var soundComplete:Function = function( e:Event ):void
+  {
+      var time:Time = new Time( (e.target as CoreSound).length ) ;
+      trace( e.type + " duration " + time.getMilliseconds(2) + " ms" ) ;
+  }
+  
+  var soundUpdate:Function = function( e:SoundEvent ):void
+  {
+      trace( e.type + " volume:" + e.soundTransform.volume ) ;
+  }
+  
+  var sound:CoreSound = new BipSound() ;
+  
+  sound.addEventListener( Event.SOUND_COMPLETE    , soundComplete ) ;
+  sound.addEventListener( SoundEvent.SOUND_UPDATE , soundUpdate   ) ;
+  
+  sound.addEventListener( ActionEvent.FINISH , debug ) ;
+  sound.addEventListener( ActionEvent.LOOP   , debug ) ;
+  sound.addEventListener( ActionEvent.STOP   , debug ) ;
+  sound.addEventListener( ActionEvent.START  , debug ) ;
+  
+  sound.volume = 0.6 ;
+  
+  // sound.looping = true ;
+  
+  sound.play() ;
+  </pre>
+  <p></p>
+<br>
+<hr>
+</div>
+<a name="propertySummary"></a>
+<div class="summarySection">
+<div class="summaryTableTitle">Public Properties</div>
+<table id="summaryTableProperty" class="summaryTable " cellpadding="3" cellspacing="0">
+<tr>
+<th>&nbsp;</th><th colspan="2">Property</th><th class="summaryTableOwnerCol">Defined&nbsp;by</th>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#channel">channel</a> : SoundChannel<div class="summaryTableDescription">[read-only]
+   The SoundChannel object of this CoreSound object.</div>
+</td><td class="summaryTableOwnerCol">CoreSound</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#DEFAULT_DELAY">DEFAULT_DELAY</a> : uint = 150<div class="summaryTableDescription">[static]
+   The default delay value of the internal timer of the CoreSound objects in milliseconds.</div>
+</td><td class="summaryTableOwnerCol">CoreSound</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#id">id</a> : *<div class="summaryTableDescription">
+   Returns the id of this object.</div>
+</td><td class="summaryTableOwnerCol">CoreSound</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#isConfigurable">isConfigurable</a> : Boolean<div class="summaryTableDescription">
+   Indicates if the display is configurable.</div>
+</td><td class="summaryTableOwnerCol">CoreSound</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#leftPeak">leftPeak</a> : Number<div class="summaryTableDescription">[read-only]
+   The current amplitude (volume) of the left channel, from 0 (silent) to 1 (full amplitude).</div>
+</td><td class="summaryTableOwnerCol">CoreSound</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#looping">looping</a> : Boolean = false<div class="summaryTableDescription">
+      The flag to determinate if the Action object is looped.</div>
+</td><td class="summaryTableOwnerCol">CoreSound</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#pan">pan</a> : Number<div class="summaryTableDescription">
+   The left-to-right panning of the sound, ranging from -1 (full pan left) to 1 (full pan right).</div>
+</td><td class="summaryTableOwnerCol">CoreSound</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#pausing">pausing</a> : Boolean<div class="summaryTableDescription">[read-only]
+      (read-only) Returns <code class="prettyprint">true</code> if the process is in pause.</div>
+</td><td class="summaryTableOwnerCol">CoreSound</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#position">position</a> : Number<div class="summaryTableDescription">[read-only]
+   The current position of the playhead within the sound.</div>
+</td><td class="summaryTableOwnerCol">CoreSound</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#rightPeak">rightPeak</a> : Number<div class="summaryTableDescription">[read-only]
+   The current amplitude (volume) of the right channel, from 0 (silent) to 1 (full amplitude).</div>
+</td><td class="summaryTableOwnerCol">CoreSound</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#running">running</a> : Boolean<div class="summaryTableDescription">[read-only]
+      (read-only) Returns <code class="prettyprint">true</code> if the process is in progress.</div>
+</td><td class="summaryTableOwnerCol">CoreSound</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#soundTransform">soundTransform</a> : SoundTransform<div class="summaryTableDescription">
+   The SoundTransform object assigned to the sound channel.</div>
+</td><td class="summaryTableOwnerCol">CoreSound</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#volume">volume</a> : Number<div class="summaryTableDescription">
+   The volume, ranging from 0 (silent) to 1 (full volume).</div>
+</td><td class="summaryTableOwnerCol">CoreSound</td>
+</tr>
+</table>
+</div>
+<a name="methodSummary"></a>
+<div class="summarySection">
+<div class="summaryTableTitle">Public Methods</div>
+<table id="summaryTableMethod" class="summaryTable " cellpadding="3" cellspacing="0">
+<tr>
+<th>&nbsp;</th><th colspan="2">Method</th><th class="summaryTableOwnerCol">Defined&nbsp;by</th>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#CoreSound()">CoreSound</a>(id:* = null, stream:URLRequest = null, context:SoundLoaderContext = null, isConfigurable:Boolean = false)</div>
+<div class="summaryTableDescription">
+   Creates a new CoreSound instance.</div>
+</td><td class="summaryTableOwnerCol">CoreSound</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#clone()">clone</a>():*</div>
+<div class="summaryTableDescription">
+   Returns the shallow copy of the object.</div>
+</td><td class="summaryTableOwnerCol">CoreSound</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#getLogger()">getLogger</a>():<a href="../../vegas/logging/ILogger.html">ILogger</a>
+</div>
+<div class="summaryTableDescription">
+   Returns the internal <code class="prettyprint">ILogger</code> reference of this <code class="prettyprint">ILogable</code> object.</div>
+</td><td class="summaryTableOwnerCol">CoreSound</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#hashCode()">hashCode</a>():uint</div>
+<div class="summaryTableDescription">
+   Returns a hashcode value for the object.</div>
+</td><td class="summaryTableOwnerCol">CoreSound</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#isLocked()">isLocked</a>():Boolean</div>
+<div class="summaryTableDescription">
+      Returns <code class="prettyprint">true</code> if the object is locked.</div>
+</td><td class="summaryTableOwnerCol">CoreSound</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#load()">load</a>(stream:URLRequest, context:SoundLoaderContext = null):void</div>
+<div class="summaryTableDescription">
+      Initiates loading of an external MP3 file from the specified URL.</div>
+</td><td class="summaryTableOwnerCol">CoreSound</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#lock()">lock</a>():void</div>
+<div class="summaryTableDescription">
+      Locks the object.</div>
+</td><td class="summaryTableOwnerCol">CoreSound</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#notifyFinished()">notifyFinished</a>():void</div>
+<div class="summaryTableDescription">
+      Notify an ActionEvent when the process is finished.</div>
+</td><td class="summaryTableOwnerCol">CoreSound</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#notifyStarted()">notifyStarted</a>():void</div>
+<div class="summaryTableDescription">
+      Notify an ActionEvent when the process is started.</div>
+</td><td class="summaryTableOwnerCol">CoreSound</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#pause()">pause</a>():Boolean</div>
+<div class="summaryTableDescription">
+   Pauses playback of the Sound.</div>
+</td><td class="summaryTableOwnerCol">CoreSound</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#play()">play</a>(startTime:Number = 0, loops:int = 0, sndTransform:SoundTransform = null):SoundChannel</div>
+<div class="summaryTableDescription">
+      Generates a new SoundChannel object to play back the sound.</div>
+</td><td class="summaryTableOwnerCol">CoreSound</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#resume()">resume</a>():Boolean</div>
+<div class="summaryTableDescription">
+   Resumes playback of the sound that is paused (if the <code class="prettyprint">pausing</code> property is <code class="prettyprint">true</code>).</div>
+</td><td class="summaryTableOwnerCol">CoreSound</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#run()">run</a>(... arguments):void</div>
+<div class="summaryTableDescription">
+      Run the process.</div>
+</td><td class="summaryTableOwnerCol">CoreSound</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#setLogger()">setLogger</a>(log:<a href="../../vegas/logging/ILogger.html">ILogger</a> = null):void</div>
+<div class="summaryTableDescription">
+   Sets the internal <code class="prettyprint">ILogger</code> reference of this <code class="prettyprint">ILogable</code> object.</div>
+</td><td class="summaryTableOwnerCol">CoreSound</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#setup()">setup</a>():void</div>
+<div class="summaryTableDescription">
+         Setup the IConfigurable object.</div>
+</td><td class="summaryTableOwnerCol">CoreSound</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#stop()">stop</a>(... args):*</div>
+<div class="summaryTableDescription">
+   Stops the sound playing in the channel.</div>
+</td><td class="summaryTableOwnerCol">CoreSound</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#togglePause()">togglePause</a>():void</div>
+<div class="summaryTableDescription">
+   Pauses or resumes playback of the sound.</div>
+</td><td class="summaryTableOwnerCol">CoreSound</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#toSource()">toSource</a>(indent:int = 0):String</div>
+<div class="summaryTableDescription">
+    Returns the <code class="prettyprint">String</code> source representation of this object.</div>
+</td><td class="summaryTableOwnerCol">CoreSound</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#toString()">toString</a>():String</div>
+<div class="summaryTableDescription">
+    Returns the <code class="prettyprint">String</code> representation of this object.</div>
+</td><td class="summaryTableOwnerCol">CoreSound</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#unlock()">unlock</a>():void</div>
+<div class="summaryTableDescription">
+      Unlocks the display.</div>
+</td><td class="summaryTableOwnerCol">CoreSound</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#update()">update</a>():void</div>
+<div class="summaryTableDescription">
+   Update the Sound object.</div>
+</td><td class="summaryTableOwnerCol">CoreSound</td>
+</tr>
+</table>
+</div>
+<a name="protectedMethodSummary"></a>
+<div class="summarySection">
+<div class="summaryTableTitle">Protected Methods</div>
+<table id="summaryTableProtectedMethod" class="summaryTable " cellpadding="3" cellspacing="0">
+<tr>
+<th>&nbsp;</th><th colspan="2">Method</th><th class="summaryTableOwnerCol">Defined&nbsp;by</th>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#notifyLooped()">notifyLooped</a>():void</div>
+<div class="summaryTableDescription">
+      Notify an ActionEvent when the process is looped.</div>
+</td><td class="summaryTableOwnerCol">CoreSound</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#notifyPaused()">notifyPaused</a>():void</div>
+<div class="summaryTableDescription">
+      Notify an ActionEvent when the process is stopped.</div>
+</td><td class="summaryTableOwnerCol">CoreSound</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#notifyProgress()">notifyProgress</a>():void</div>
+<div class="summaryTableDescription">
+      Notify an ActionEvent when the process of the sound is in progress.</div>
+</td><td class="summaryTableOwnerCol">CoreSound</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#notifyResumed()">notifyResumed</a>():void</div>
+<div class="summaryTableDescription">
+      Notify an ActionEvent when the process is resumed.</div>
+</td><td class="summaryTableOwnerCol">CoreSound</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#notifyStopped()">notifyStopped</a>():void</div>
+<div class="summaryTableDescription">
+      Notify an ActionEvent when the process is stopped.</div>
+</td><td class="summaryTableOwnerCol">CoreSound</td>
+</tr>
+</table>
+</div>
+<script type="text/javascript" language="javascript">
+<!--
+showHideInherited();
+--></script>
+<div class="MainContent">
+<a name="propertyDetail"></a>
+<div class="detailSectionHeader">Property detail</div>
+<a name="channel"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">channel</td><td class="detailHeaderType">property</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>channel:SoundChannel</code>&nbsp;&nbsp;[read-only]<p>
+   The SoundChannel object of this CoreSound object.
+   </p><span class="label">Implementation</span>
+<br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function get channel():SoundChannel</code>
+<br>
+</div>
+<a name="DEFAULT_DELAY"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">DEFAULT_DELAY</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public static var DEFAULT_DELAY:uint = 150</code><p>
+   The default delay value of the internal timer of the CoreSound objects in milliseconds.
+   </p></div>
+<a name="id"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">id</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>id:*</code>&nbsp;&nbsp;[read-write]<p>
+   Returns the id of this object.
+   </p><span class="label">Implementation</span>
+<br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function get id():*</code>
+<br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function set id(value:*):void</code>
+<br>
+</div>
+<a name="isConfigurable"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">isConfigurable</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>isConfigurable:Boolean</code>&nbsp;&nbsp;[read-write]<p>
+   Indicates if the display is configurable.
+   </p><span class="label">Implementation</span>
+<br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function get isConfigurable():Boolean</code>
+<br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function set isConfigurable(value:Boolean):void</code>
+<br>
+</div>
+<a name="leftPeak"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">leftPeak</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>leftPeak:Number</code>&nbsp;&nbsp;[read-only]<p>
+   The current amplitude (volume) of the left channel, from 0 (silent) to 1 (full amplitude). 
+   If the value is NaN, the internal SoundChannel is 'null'.
+   </p><span class="label">Implementation</span>
+<br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function get leftPeak():Number</code>
+<br>
+</div>
+<a name="looping"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">looping</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public var looping:Boolean = false</code><p>
+      The flag to determinate if the Action object is looped.
+      </p></div>
+<a name="pan"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">pan</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>pan:Number</code>&nbsp;&nbsp;[read-write]<p>
+   The left-to-right panning of the sound, ranging from -1 (full pan left) to 1 (full pan right). 
+   A value of 0 represents no panning (balanced center between right and left). 
+   </p><span class="label">Implementation</span>
+<br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function get pan():Number</code>
+<br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function set pan(value:Number):void</code>
+<br>
+</div>
+<a name="pausing"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">pausing</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>pausing:Boolean</code>&nbsp;&nbsp;[read-only]<p>
+      (read-only) Returns <code class="prettyprint">true</code> if the process is in pause.
+      </p><span class="label">Implementation</span>
+<br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function get pausing():Boolean</code>
+<br>
+</div>
+<a name="position"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">position</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>position:Number</code>&nbsp;&nbsp;[read-only]<p>
+   The current position of the playhead within the sound. 
+   If the value is NaN, the internal SoundChannel is 'null'.
+   </p><span class="label">Implementation</span>
+<br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function get position():Number</code>
+<br>
+</div>
+<a name="rightPeak"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">rightPeak</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>rightPeak:Number</code>&nbsp;&nbsp;[read-only]<p>
+   The current amplitude (volume) of the right channel, from 0 (silent) to 1 (full amplitude). 
+   If the value is NaN, the internal SoundChannel is 'null'.
+   </p><span class="label">Implementation</span>
+<br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function get rightPeak():Number</code>
+<br>
+</div>
+<a name="running"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">running</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>running:Boolean</code>&nbsp;&nbsp;[read-only]<p>
+      (read-only) Returns <code class="prettyprint">true</code> if the process is in progress.
+      </p><span class="label">Implementation</span>
+<br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function get running():Boolean</code>
+<br>
+</div>
+<a name="soundTransform"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">soundTransform</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>soundTransform:SoundTransform</code>&nbsp;&nbsp;[read-write]<p>
+   The SoundTransform object assigned to the sound channel. 
+   A SoundTransform object includes properties for setting volume, panning, left speaker assignment, and right speaker assignment. 
+   </p><span class="label">Implementation</span>
+<br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function get soundTransform():SoundTransform</code>
+<br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function set soundTransform(value:SoundTransform):void</code>
+<br>
+</div>
+<a name="volume"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">volume</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>volume:Number</code>&nbsp;&nbsp;[read-write]<p>
+   The volume, ranging from 0 (silent) to 1 (full volume). 
+   </p><span class="label">Implementation</span>
+<br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function get volume():Number</code>
+<br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function set volume(value:Number):void</code>
+<br>
+</div>
+<a name="constructorDetail"></a>
+<div class="detailSectionHeader">Constructor detail</div>
+<a name="CoreSound()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">CoreSound</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">constructor</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public function CoreSound(id:* = null, stream:URLRequest = null, context:SoundLoaderContext = null, isConfigurable:Boolean = false)</code><p>
+   Creates a new CoreSound instance.
+   </p><span class="label">Parameters</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td><code><span class="label">id</span>:*</code> (default = <code>null</code>)<code></code> &mdash; The URL that points to an external MP3 file.
+   </td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><code><span class="label">stream</span>:URLRequest</code> (default = <code>null</code>)<code></code> &mdash; The SoundLoaderContext Minimum number of milliseconds of MP3 data to hold in the Sound object's buffer. The Sound object waits until it has at least this much data before beginning playback and before resuming playback after a network stall. The default value is 1000 (one second). 
+   </td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><code><span class="label">context</span>:SoundLoaderContext</code> (default = <code>null</code>)<code></code> &mdash; Indicates the id of the object.
+   </td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><code><span class="label">isConfigurable</span>:Boolean</code> (default = <code>false</code>)<code></code> &mdash; This flag indicates if the IConfigurable object is register in the ConfigCollector.
+   </td>
+</tr>
+</table>
+</div>
+<a name="methodDetail"></a>
+<div class="detailSectionHeader">Method detail</div>
+<a name="clone()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">clone</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public function clone():*</code><p>
+   Returns the shallow copy of the object.
+   </p><p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><code>*</code> &mdash; the shallow copy of the object.
+   </td>
+</tr>
+</table>
+</div>
+<a name="getLogger()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">getLogger</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public function getLogger():<a href="../../vegas/logging/ILogger.html">ILogger</a></code><p>
+   Returns the internal <code class="prettyprint">ILogger</code> reference of this <code class="prettyprint">ILogable</code> object.
+   </p><p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><code><a href="../../vegas/logging/ILogger.html">ILogger</a></code> &mdash; 
+                        the internal <code class="prettyprint">ILogger</code> reference of this <code class="prettyprint">ILogable</code> object.
+   
+                        
+                     </td>
+</tr>
+</table>
+</div>
+<a name="hashCode()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">hashCode</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public function hashCode():uint</code><p>
+   Returns a hashcode value for the object.
+   </p><p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><code>uint</code> &mdash; a hashcode value for the object.
+   </td>
+</tr>
+</table>
+</div>
+<a name="isLocked()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">isLocked</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public function isLocked():Boolean</code><p>
+      Returns <code class="prettyprint">true</code> if the object is locked.
+      </p><p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><code>Boolean</code> &mdash; <code class="prettyprint">true</code> if the object is locked.
+      </td>
+</tr>
+</table>
+</div>
+<a name="load()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">load</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public override function load(stream:URLRequest, context:SoundLoaderContext = null):void</code><p>
+      Initiates loading of an external MP3 file from the specified URL. 
+      If you provide a valid URLRequest object to the Sound constructor, the constructor calls Sound.load() for you. 
+      You only need to call Sound.load() yourself if you don't pass a valid URLRequest object to the Sound constructor or you pass a null value. 
+      </p><span class="label">Parameters</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td><code><span class="label">stream</span>:URLRequest</code></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><code><span class="label">context</span>:SoundLoaderContext</code> (default = <code>null</code>)<code></code></td>
+</tr>
+</table>
+</div>
+<a name="lock()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">lock</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public function lock():void</code><p>
+      Locks the object.
+      </p></div>
+<a name="notifyFinished()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">notifyFinished</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public function notifyFinished():void</code><p>
+      Notify an ActionEvent when the process is finished.
+      </p></div>
+<a name="notifyLooped()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">notifyLooped</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>protected function notifyLooped():void</code><p>
+      Notify an ActionEvent when the process is looped.
+      </p></div>
+<a name="notifyPaused()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">notifyPaused</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>protected function notifyPaused():void</code><p>
+      Notify an ActionEvent when the process is stopped.
+      </p></div>
+<a name="notifyProgress()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">notifyProgress</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>protected function notifyProgress():void</code><p>
+      Notify an ActionEvent when the process of the sound is in progress.
+      </p></div>
+<a name="notifyResumed()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">notifyResumed</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>protected function notifyResumed():void</code><p>
+      Notify an ActionEvent when the process is resumed.
+      </p></div>
+<a name="notifyStarted()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">notifyStarted</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public function notifyStarted():void</code><p>
+      Notify an ActionEvent when the process is started.
+      </p></div>
+<a name="notifyStopped()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">notifyStopped</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>protected function notifyStopped():void</code><p>
+      Notify an ActionEvent when the process is stopped.
+      </p></div>
+<a name="pause()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">pause</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public function pause():Boolean</code><p>
+   Pauses playback of the Sound.
+   </p><p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><code>Boolean</code> &mdash; <code class="prettyprint">true</code> if the pause method can be use (the internal SoundChannel of this Sound object is not null and not is "pausing").
+   </td>
+</tr>
+</table>
+</div>
+<a name="play()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">play</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public override function play(startTime:Number = 0, loops:int = 0, sndTransform:SoundTransform = null):SoundChannel</code><p>
+      Generates a new SoundChannel object to play back the sound.
+      </p><span class="label">Parameters</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td><code><span class="label">startTime</span>:Number</code> (default = <code>0</code>)<code></code> &mdash; The initial position in milliseconds at which playback should start. 
+      </td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><code><span class="label">loops</span>:int</code> (default = <code>0</code>)<code></code> &mdash; Defines the number of times a sound loops back to the startTime value before the sound channel stops playback. 
+      </td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><code><span class="label">sndTransform</span>:SoundTransform</code> (default = <code>null</code>)<code></code> &mdash; Defines the number of times a sound loops back to the startTime value before the sound channel stops playback. 
+      </td>
+</tr>
+</table>
+<p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><code>SoundChannel</code> &mdash; A SoundChannel object, which you use to control the sound. 
+      This method returns null if you have no sound card or if you run out of available sound channels. 
+      The maximum number of sound channels available at once is 32. 
+      </td>
+</tr>
+</table>
+</div>
+<a name="resume()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">resume</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public function resume():Boolean</code><p>
+   Resumes playback of the sound that is paused (if the <code class="prettyprint">pausing</code> property is <code class="prettyprint">true</code>).
+   </p><p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><code>Boolean</code> &mdash; <code class="prettyprint">true</code> if the resume method is success.
+   </td>
+</tr>
+</table>
+</div>
+<a name="run()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">run</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public function run(... arguments):void</code><p>
+      Run the process.
+      </p><span class="label">Parameters</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td><code>... <span class="label">arguments</span></code></td>
+</tr>
+</table>
+</div>
+<a name="setLogger()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">setLogger</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public function setLogger(log:<a href="../../vegas/logging/ILogger.html">ILogger</a> = null):void</code><p>
+   Sets the internal <code class="prettyprint">ILogger</code> reference of this <code class="prettyprint">ILogable</code> object.
+   </p><span class="label">Parameters</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td><code><span class="label">log</span>:<a href="../../vegas/logging/ILogger.html">ILogger</a></code> (default = <code>null</code>)<code></code></td>
+</tr>
+</table>
+</div>
+<a name="setup()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">setup</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public function setup():void</code><p>
+         Setup the IConfigurable object.
+         </p></div>
+<a name="stop()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">stop</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public function stop(... args):*</code><p>
+   Stops the sound playing in the channel.
+   </p><span class="label">Parameters</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td><code>... <span class="label">args</span></code></td>
+</tr>
+</table>
+<p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><code>*</code> &mdash; <code class="prettyprint">true</code> if the stop method can be use (the internal SoundChannel of this Sound object is not null).
+   </td>
+</tr>
+</table>
+</div>
+<a name="togglePause()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">togglePause</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public function togglePause():void</code><p>
+   Pauses or resumes playback of the sound.
+   You could use this method to let users pause or resume playback by pressing a single button. 
+   </p></div>
+<a name="toSource()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">toSource</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public function toSource(indent:int = 0):String</code><p>
+    Returns the <code class="prettyprint">String</code> source representation of this object.
+    </p><span class="label">Parameters</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td><code><span class="label">indent</span>:int</code> (default = <code>0</code>)<code></code></td>
+</tr>
+</table>
+<p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><code>String</code> &mdash; the <code class="prettyprint">String</code> source representation of this object.
+    </td>
+</tr>
+</table>
+</div>
+<a name="toString()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">toString</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public override function toString():String</code><p>
+    Returns the <code class="prettyprint">String</code> representation of this object.
+    </p><p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><code>String</code> &mdash; the <code class="prettyprint">String</code> representation of this object.
+    </td>
+</tr>
+</table>
+</div>
+<a name="unlock()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">unlock</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public function unlock():void</code><p>
+      Unlocks the display.
+      </p></div>
+<a name="update()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">update</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public function update():void</code><p>
+   Update the Sound object.
+   You must override this method. This method is launch by the setup() method when the Config is checked.
+   </p></div>
+<br>
+<br>
+<hr>
+<br>
+<p></p>
+<center class="copyright"> 
+</center>
+</div>
+</body>
+</html>
+<!-- -->
