@@ -40,7 +40,6 @@ package vegas.logging.targets
     /**
 	 * Provides a logger target that uses the FlashInspector console to output log messages. 
 	 * Thanks Pablo Costantini and LuminicBox <a href='http://www.luminicbox.com/blog/default.aspx?page=post&id=2'>FlashInspector</a>.
-	 * @author eKameleon
 	 */
     public class LuminicTarget extends LineFormattedTarget
     {

@@ -72,7 +72,6 @@ package vegas.logging.targets
 	 * logger.warn("WARNING !!") ;
 	 * logger.warn([3, 2, 4]) ;
 	 * </pre>
-	 * @author eKameleon
 	 */
     public class SOSTarget extends LineFormattedTarget
     {

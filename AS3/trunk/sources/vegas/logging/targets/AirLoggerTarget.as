@@ -36,7 +36,6 @@ package vegas.logging.targets
     /**
 	 * Provides a logger target that uses the AirLogger console to output log messages. 
 	 * See the AirLogger page project : <a href="http://code.google.com/p/airlogger/">http://code.google.com/p/airlogger/</a>
-	 * @author eKameleon
 	 */
 	public class AirLoggerTarget extends LineFormattedTarget 
 	{

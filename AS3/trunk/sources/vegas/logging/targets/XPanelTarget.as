@@ -35,7 +35,6 @@ package vegas.logging.targets
 	/**
 	 * Provides a logger target that uses the XPanel console to output log messages. 
 	 * Thanks Farata System and <a href='http://www.faratasystems.com/xpanel/readme.pdf'>XPanel</a> console.
-	 * @author eKameleon
 	 */
     public class XPanelTarget extends LineFormattedTarget
     {

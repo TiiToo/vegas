@@ -63,7 +63,6 @@ package vegas.logging.targets
 	  * traceTarget.includeCategory = false ;
 	  * logger.info("[{0}, {1}, {2}]", 2, 4, 6) ; 
 	  * </pre>
-	  * @author eKameleon
 	  */
     public class TraceTarget extends LineFormattedTarget
     {
