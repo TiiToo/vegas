@@ -25,11 +25,9 @@ package vegas.events
 {
     import system.data.Iterator;
     import system.data.collections.ArrayCollection;
+    import system.data.collections.TypedCollection;
     
-    import vegas.data.collections.TypedCollection;
-    import vegas.util.Copier;
-    
-    import flash.events.Event;	
+    import flash.events.Event;    
 
     /**
  	 * It handles several <code class="prettyprint">EventListener</code> as one <code class="prettyprint">EventListener</code>.
@@ -92,22 +90,7 @@ package vegas.events
 			}
 			return b ;
 		}
-
-		/**
-	 	 * Returns a deep copy of this instance.
-	 	 * @return a deep copy of this instance.
-	 	 */	
-		public override function copy():* 
-		{
-			var b:EventListenerBatch = new EventListenerBatch() ;
-			var it:Iterator = iterator() ;
-			while (it.hasNext()) 
-			{
-				b.add( Copier.copy(it.next())) ;
-			}
-			return b ;
-		}
-		
+        
 		/**
 		 * Handles the event.
 	 	 */
