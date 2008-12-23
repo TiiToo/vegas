@@ -144,7 +144,6 @@
     <component id="andromeda.process:EventDispatcherProcess" class="andromeda.process.EventDispatcherProcess" />
     <component id="andromeda.process:IAction"                class="andromeda.process.IAction"                />
     <component id="andromeda.process:InitProcess"            class="andromeda.process.InitProcess"            />
-    <component id="andromeda.process:IStoppable"             class="andromeda.process.IStoppable"             />
     <component id="andromeda.process:Message"                class="andromeda.process.Message"                />
     <component id="andromeda.process:Pause"                  class="andromeda.process.Pause"                  />
     <component id="andromeda.process:Sequencer"              class="andromeda.process.Sequencer"              />

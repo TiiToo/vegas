@@ -46,6 +46,7 @@
     <component id="pegas.draw:LineStyle"                  class="pegas.draw.LineStyle" />
     <component id="pegas.draw:Pen"                        class="pegas.draw.Pen" />
     <component id="pegas.draw:PolygonPen"                 class="pegas.draw.PolygonPen" />
+    <component id="pegas.draw:PolyLine"                   class="pegas.draw.PolyLine" />
     <component id="pegas.draw:RectanglePen"               class="pegas.draw.RectanglePen" />
     <component id="pegas.draw:RoundedComplexRectanglePen" class="pegas.draw.RoundedComplexRectanglePen" />
     <component id="pegas.draw:RoundedRectanglePen"        class="pegas.draw.RoundedRectanglePen" />

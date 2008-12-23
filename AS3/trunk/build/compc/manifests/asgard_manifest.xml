@@ -15,6 +15,8 @@
     <component id="asgard.display:CoreSprite"             class="asgard.display.CoreSprite"  />
     <component id="asgard.display:DisplayObjectCollector" class="asgard.display.DisplayObjectCollector"  />
     <component id="asgard.display:IDisplayObject"         class="asgard.display.IDisplayObject"  />
+    <component id="asgard.display:PolyLineBackground"     class="asgard.display.PolyLineBackground" />
+    <component id="asgard.display:Protector"              class="asgard.display.Protector"  />
     <component id="asgard.display:SWFInfo"                class="asgard.display.SWFInfo"  />
     <component id="asgard.display:TimelineIterator"       class="asgard.display.TimelineIterator"  />
     <component id="asgard.display:TimelineScript"         class="asgard.display.TimelineScript"  />
@@ -29,7 +31,8 @@
     
     <!-- asgard.managers -->  
     
-    <component id="asgard.managers:TabManager" class="asgard.managers.TabManager"  />
+    <component id="asgard.managers:ProtectorManager" class="asgard.managers.ProtectorManager" />
+    <component id="asgard.managers:TabManager"       class="asgard.managers.TabManager"  />
     
     <!-- asgard.media -->
     

@@ -13,50 +13,23 @@
     <component id="vegas.core:CoreObject"   class="vegas.core.CoreObject"   />
 	<component id="vegas.core:HashCode"     class="vegas.core.HashCode"     />
 	<component id="vegas.core:IConvertible" class="vegas.core.IConvertible" /> 
+	<component id="vegas.core:ICopyable"    class="vegas.core.ICopyable" />
 	<component id="vegas.core:IFactory"     class="vegas.core.IFactory"     />
 	<component id="vegas.core:IFormat"      class="vegas.core.IFormat"      />
 	<component id="vegas.core:IHashable"    class="vegas.core.IHashable"    />
-	<component id="vegas.core:ITypeable"    class="vegas.core.ITypeable"    />
-	<component id="vegas.core:IValidator"   class="vegas.core.IValidator"   />
-    
+            
     <!-- vegas.core.char -->
     
     <component id="vegas.core.types:Char" class="vegas.core.types.Char"  />
-
-    <!-- vegas.data.array -->
-
-    <component id="vegas.data.array:TypedArray"  class="vegas.data.array.TypedArray"  />
-    
-    <!-- vegas.data.collections -->
-    
-    <component id="vegas.data.collections:TypedCollection" class="vegas.data.collections.TypedCollection"    />
-    
-    <!-- vegas.data.map -->
-    
-    <component id="vegas.data.map:TypedMap" class="vegas.data.map.TypedMap"       />    
-    
-    <!-- vegas.data.queue -->
-    
-    <component id="vegas.data.queue:TypedQueue" class="vegas.data.queue.TypedQueue"    />      
-    
-    <!-- vegas.data.sets -->
-    
-    <component id="vegas.data.sets:MultiHashSet" class="vegas.data.sets.MultiHashSet" /> 
-    <component id="vegas.data.sets:TypedSet"     class="vegas.data.sets.TypedSet"     /> 
-    
-    <!-- vegas.data.stack -->
-
-    <component id="vegas.data.stack:TypedStack"  class="vegas.data.stack.TypedStack"  />   
-    
+        
     <!-- vegas.errors -->
     
-    <component id="vegas.errors:ClassCastError"              class="vegas.errors.ClassCastError" />
-    <component id="vegas.errors:FatalError"                  class="vegas.errors.FatalError" />
-    <component id="vegas.errors:IllegalStateError"           class="vegas.errors.IllegalStateError" />
-    <component id="vegas.errors:NullPointerError"            class="vegas.errors.NullPointerError" />
-    <component id="vegas.errors:RuntimeError"                class="vegas.errors.RuntimeError" />
-    <component id="vegas.errors:TypeMismatchError"           class="vegas.errors.TypeMismatchError" />
-    <component id="vegas.errors:Warning"                     class="vegas.errors.Warning" />
+    <component id="vegas.errors:ClassCastError"     class="vegas.errors.ClassCastError" />
+    <component id="vegas.errors:FatalError"         class="vegas.errors.FatalError" />
+    <component id="vegas.errors:IllegalStateError"  class="vegas.errors.IllegalStateError" />
+    <component id="vegas.errors:NullPointerError"   class="vegas.errors.NullPointerError" />
+    <component id="vegas.errors:RuntimeError"       class="vegas.errors.RuntimeError" />
+    <component id="vegas.errors:Warning"            class="vegas.errors.Warning" />
     
     <!-- vegas.events -->
 
@@ -118,7 +91,6 @@
     
     <!-- vegas.util -->
 
-    <component id="vegas.util:AbstractTypeable" class="vegas.util.AbstractTypeable" />   
     <component id="vegas.util:ArrayUtil"        class="vegas.util.ArrayUtil" />
     <component id="vegas.util:BooleanUtil"      class="vegas.util.BooleanUtil" />
     <component id="vegas.util:ClassUtil"        class="vegas.util.ClassUtil" />

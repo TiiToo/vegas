@@ -22,6 +22,7 @@
     <component id="system:Reflection"         class="system.Reflection"         />
     <component id="system:Serializable"       class="system.Serializable"       />
     <component id="system:Serializer"         class="system.Serializer"         />
+    <component id="system:Sortable"           class="system.Sortable"           />
     <component id="system:Strings"            class="system.Strings"            />
     <component id="system:SystemConfigurator" class="system.SystemConfigurator" />
     <component id="system:Version"            class="system.Version"            />
@@ -41,6 +42,7 @@
     <component id="system.comparators:GenericComparator"    class="system.comparators.GenericComparator"    />
     <component id="system.comparators:NullComparator"       class="system.comparators.NullComparator"       />
     <component id="system.comparators:NumberComparator"     class="system.comparators.NumberComparator"     />
+    <component id="system.comparators:PriorityComparator"   class="system.comparators.PriorityComparator"    />
     <component id="system.comparators:ReverseComparator"    class="system.comparators.ReverseComparator"    />
     <component id="system.comparators:StringComparator"     class="system.comparators.StringComparator"     />
 
@@ -62,12 +64,15 @@
     <component id="system.data:Queue"           class="system.data.Queue" />
     <component id="system.data:Set"             class="system.data.Set" />
     <component id="system.data:Stack"           class="system.data.Stack" />
-
+    <component id="system.data:Typeable"        class="system.data.Typeable" />
+    <component id="system.data:Validator"       class="system.data.Validator" />
+        
     <!-- system.data.arrays -->
 
     <component id="system.data:arrays:ArrayFilter" class="system.data.arrays.ArrayFilter" /> 
     <component id="system.data:arrays:ProxyArray"  class="system.data.arrays.ProxyArray"  />
-    
+    <component id="system.data.arrays:TypedArray"  class="system.data.arrays.TypedArray"  />
+  
     <!-- system.data.bags -->
     
     <component id="system.data.bags:ArrayBag"     class="system.data.bags.ArrayBag"     />
@@ -81,7 +86,8 @@
     <component id="system.data.collections:ArrayCollection"     class="system.data.collections.ArrayCollection"     />    
     <component id="system.data.collections:CollectionFormatter" class="system.data.collections.CollectionFormatter" />
     <component id="system.data.collections:formatter"           class="system.data.collections.formatter"           />
-
+    <component id="system.data.collections:TypedCollection"     class="system.data.collections.TypedCollection"     />
+       
     <!-- system.data.iterators -->
     
     <component id="system.data.iterators:ArrayFieldIterator"  class="system.data.iterators.ArrayFieldIterator" />    
@@ -114,24 +120,29 @@
     <component id="system.data.maps:MultiMapFormatter" class="system.data.maps.MultiMapFormatter" />
     <component id="system.data.maps:MultiValueMap"     class="system.data.maps.MultiValueMap"     />
     <component id="system.data.maps:SortedArrayMap"    class="system.data.maps.SortedArrayMap"    />
-
+    <component id="system.data.maps:TypedMap"          class="system.data.maps.TypedMap"       />    
+    
     <!-- system.data.queues -->
     
     <component id="system.data.queues:CircularQueue"  class="system.data.queues.CircularQueue" />     
     <component id="system.data.queues:formatter"      class="system.data.queues.formatter"     />
     <component id="system.data.queues:LinearQueue"    class="system.data.queues.LinearQueue"   />
     <component id="system.data.queues:PriorityQueue"  class="system.data.queues.PriorityQueue" />
-    
+    <component id="system.data.queues:TypedQueue"     class="system.data.queues.TypedQueue"    />      
+        
     <!-- system.data.sets -->
     
-    <component id="system.data.sets:ArraySet" class="system.data.sets.ArraySet" />     
-    <component id="system.data.sets:CoreSet"  class="system.data.sets.CoreSet"  />
-    <component id="system.data.sets:HashSet"  class="system.data.sets.HashSet"  />
+    <component id="system.data.sets:ArraySet"     class="system.data.sets.ArraySet" />     
+    <component id="system.data.sets:CoreSet"      class="system.data.sets.CoreSet"  />
+    <component id="system.data.sets:HashSet"      class="system.data.sets.HashSet"  />
+    <component id="system.data.sets:MultiHashSet" class="system.data.sets.MultiHashSet" /> 
+    <component id="system.data.sets:TypedSet"     class="system.data.sets.TypedSet"     /> 
     
     <!-- system.data.stacks -->
     
     <component id="system.data.stacks:ArrayStack" class="system.data.stacks.ArrayStack" />   
-        
+    <component id="system.data.stacks:TypedStack" class="system.data.stacks.TypedStack"  />  
+    
     <!-- system.diagnostics -->
     
     <component id="system.diagnostics:TraceConsole"   class="system.diagnostics.TraceConsole"   />
@@ -150,6 +161,7 @@
     <component id="system.evaluators:MathEvaluator"     class="system.evaluators.MathEvaluator"     />
     <component id="system.evaluators:MultiEvaluator"    class="system.evaluators.MultiEvaluator"    />
     <component id="system.evaluators:PropertyEvaluator" class="system.evaluators.PropertyEvaluator" />
+    <component id="system.evaluators:RomanEvaluator"    class="system.evaluators.RomanEvaluator" />
     
     <!-- system.formatters -->    
     
@@ -172,10 +184,12 @@
     
     <component id="system.numeric:Mathematics" class="system.numeric.Mathematics" />
     <component id="system.numeric:Range"       class="system.numeric.Range"       />
+    <component id="system.numeric:RomanNumber" class="system.numeric.RomanNumber" />
 
     <!-- system.process -->    
 
     <component id="system.process:Lockable"  class="system.process.Lockable"  />
+    <component id="system.process:Priority"  class="system.process.Priority"  />
     <component id="system.process:Resetable" class="system.process.Resetable" />
     <component id="system.process:Runnable"  class="system.process.Runnable"  />
     <component id="system.process:Stoppable" class="system.process.Stoppable" />
