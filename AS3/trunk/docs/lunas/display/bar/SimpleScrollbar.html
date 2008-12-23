@@ -1,0 +1,1087 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" href="../../../style.css" type="text/css" media="screen">
+<link rel="stylesheet" href="../../../print.css" type="text/css" media="print">
+<link rel="stylesheet" href="../../../prettify.css" type="text/css">
+<meta content="SimpleScrollbar,lunas.display.bar.SimpleScrollbar,container,barFillStyle,barLineStyle,bottomButton,leftButton,rightButton,thumbFillStyle,thumbLineStyle,topButton,draw,getStyleRenderer,setScrollProperties,viewEnabled,viewStyleChanged" name="keywords">
+<title>lunas.display.bar.SimpleScrollbar</title>
+</head>
+<body>
+<script type="text/javascript" language="javascript" src="../../../prettify.js"></script><script type="text/javascript" language="javascript" src="../../../asdoc.js"></script><script type="text/javascript" language="javascript" src="../../../cookies.js"></script><script type="text/javascript" language="javascript">
+<!--
+				asdocTitle = 'SimpleScrollbar - VEGAS AS3 Reference';
+				var baseRef = '../../../';
+				window.onload = configPage;
+			--></script>
+<table style="display:none" id="titleTable" cellspacing="0" cellpadding="0" class="titleTable">
+<tr>
+<td align="left" class="titleTableTitle">VEGAS AS3 Reference</td><td align="right" class="titleTableTopNav"><a onclick="loadClassListFrame('../../../all-classes.html')" href="../../../package-summary.html">All&nbsp;Packages</a>&nbsp;|&nbsp;<a onclick="loadClassListFrame('../../../all-classes.html')" href="../../../class-summary.html">All&nbsp;Classes</a>&nbsp;|&nbsp;<a onclick="loadClassListFrame('../../../index-list.html')" href="../../../all-index-A.html">Index</a>&nbsp;|&nbsp;<a href="../../../index.html?lunas/display/bar/SimpleScrollbar.html&amp;lunas/display/bar/class-list.html" id="framesLink1">Frames</a><a onclick="parent.location=document.location" href="" style="display:none" id="noFramesLink1">No&nbsp;Frames</a></td><td rowspan="3" align="right" class="titleTableLogo"><img alt="Adobe Logo" title="Adobe Logo" class="logoImage" src="../../../images/logo.jpg"></td>
+</tr>
+<tr class="titleTableRow2">
+<td align="left" id="subTitle" class="titleTableSubTitle">Class&nbsp;SimpleScrollbar</td><td align="right" id="subNav" class="titleTableSubNav"><a href="#propertySummary">Properties</a>&nbsp;| <a href="#methodSummary">Methods</a></td>
+</tr>
+<tr class="titleTableRow3">
+<td colspan="2">&nbsp;</td>
+</tr>
+</table>
+<script type="text/javascript" language="javascript">
+<!--
+if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Class SimpleScrollbar"); titleBar_setSubNav(false,true,false,false,false,false,true,false,false,false,false,false,false,false);}
+--></script>
+<div class="MainContent">
+<table cellspacing="0" cellpadding="0" class="classHeaderTable">
+<tr>
+<td class="classHeaderTableLabel">Package</td><td><a onclick="javascript:loadClassListFrame('class-list.html')" href="package-detail.html">lunas.display.bar</a></td>
+</tr>
+<tr>
+<td class="classHeaderTableLabel">Class</td><td class="classSignature">public class SimpleScrollbar</td>
+</tr>
+<tr>
+<td class="classHeaderTableLabel">Inheritance</td><td class="inheritanceList">SimpleScrollbar <img class="inheritArrow" alt="Inheritance" title="Inheritance" src="../../../images/inherit-arrow.gif"> <a href="../../core/AbstractScrollbar.html">AbstractScrollbar</a> <img class="inheritArrow" alt="Inheritance" title="Inheritance" src="../../../images/inherit-arrow.gif"> <a href="../../core/AbstractProgressbar.html">AbstractProgressbar</a> <img class="inheritArrow" alt="Inheritance" title="Inheritance" src="../../../images/inherit-arrow.gif"> <a href="../../core/AbstractProgress.html">AbstractProgress</a> <img class="inheritArrow" alt="Inheritance" title="Inheritance" src="../../../images/inherit-arrow.gif"> <a href="../../core/AbstractComponent.html">AbstractComponent</a> <img class="inheritArrow" alt="Inheritance" title="Inheritance" src="../../../images/inherit-arrow.gif"> <a href="../../../asgard/display/CoreSprite.html">CoreSprite</a> <img class="inheritArrow" alt="Inheritance" title="Inheritance" src="../../../images/inherit-arrow.gif"> flash.display.Sprite</td>
+</tr>
+</table>
+<p></p>
+  The SimpleScrollbar component.
+  <p><b>Example :</b></p>
+  <pre class="prettyprint">
+  import flash.display.StageScaleMode ;
+  
+  import pegas.draw.FillStyle ;
+  import pegas.draw.LineStyle ;
+  
+  import lunas.core.Direction ;
+  import lunas.core.EdgeMetrics ;
+  import lunas.display.bar.SimpleScrollbar ;
+  import lunas.events.ButtonEvent ;
+  import lunas.events.ComponentEvent ;
+  
+  stage.scaleMode = StageScaleMode.NO_SCALE ;
+  
+  var change:Function = function( e:ComponentEvent ):void
+  {
+      trace( e.type + " : " + bar.position ) ;
+  }
+  
+  var bar:SimpleScrollbar = new SimpleScrollbar() ;
+  
+  addChild(bar) ;
+  
+  // behaviours of the scrollbar
+  
+  bar.addEventListener( ComponentEvent.CHANGE , change ) ;
+  bar.thumbSize = 30 ;
+  bar.position  = 50 ;
+  bar.x         = 50 ;
+  bar.y         = 50 ;
+  
+  // initialize style of the scrollbar
+  
+  bar.barFillStyle    = new FillStyle( 0x921085 , 1 ) ;
+  bar.barLineStyle    = new LineStyle( 1 , 0x6A9195, 1 ) ;
+  bar.thumbFillStyle  = new FillStyle( 0xB5C7CA , 1 ) ;
+  bar.thumbLineStyle  = new LineStyle( 2 , 0xFFFFFF , 1 ) ;
+  
+  var shadow:DropShadowFilter = new DropShadowFilter( 1, 45, 0x000000, 0.6, 6, 6, 1, 6) ;
+  bar.filters = [ shadow  ] ;
+  bar.thumb.filters = [ shadow ] ;
+  
+  var keyDown:Function = function( e:KeyboardEvent ):void
+  {
+      var code:uint = e.keyCode ;
+      switch( code )
+      {
+          case Keyboard.LEFT :
+          {
+              bar.position -= 10 ;
+              break ;
+          }
+          case Keyboard.RIGHT :
+          {
+              bar.position += 10 ;
+              break ;
+          }
+          case Keyboard.UP :
+          {
+              bar.position = bar.minimum ;
+              break ;
+          }
+          case Keyboard.DOWN :
+          {
+              bar.position = bar.maximum ;
+              break ;
+           }
+           case Keyboard.SPACE :
+           {
+               bar.direction = ( bar.direction == Direction.VERTICAL ) ? Direction.HORIZONTAL : Direction.VERTICAL ;
+               if ( bar.direction == Direction.VERTICAL )
+               {
+                   bar.setSize( 8, 200 ) ;
+               }
+               else
+               {
+                   bar.setSize( 200, 8 ) ;
+               }
+           }
+           default :
+           {
+               bar.minimum = 20 ; // change the minimum value of the bar
+               bar.maximum = 80 ; // change the maximum value of the bar
+               bar.invert = !bar.invert ; // invert the positive direction of the bar scroll.
+           }
+      }
+  }
+  
+  stage.addEventListener( KeyboardEvent.KEY_DOWN , keyDown ) ;
+  </pre>
+  <p></p>
+<br>
+<hr>
+</div>
+<a name="propertySummary"></a>
+<div class="summarySection">
+<div class="summaryTableTitle">Public Properties</div>
+<div class="showHideLinks">
+<div class="hideInheritedProperty" id="hideInheritedProperty">
+<a onclick="javascript:setInheritedVisible(false,'Property');" href="#propertySummary" class="showHideLink"><img src="../../../images/expanded.gif" class="showHideLinkImage"> Hide Inherited Public Properties</a>
+</div>
+<div class="showInheritedProperty" id="showInheritedProperty">
+<a onclick="javascript:setInheritedVisible(true,'Property');" href="#propertySummary" class="showHideLink"><img src="../../../images/collapsed.gif" class="showHideLinkImage"> Show Inherited Public Properties</a>
+</div>
+</div>
+<table id="summaryTableProperty" class="summaryTable " cellpadding="3" cellspacing="0">
+<tr>
+<th>&nbsp;</th><th colspan="2">Property</th><th class="summaryTableOwnerCol">Defined&nbsp;by</th>
+</tr>
+<tr class="hideInheritedProperty">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol"><a class="signatureLink" href="../../core/AbstractProgress.html#autoResetPosition">autoResetPosition</a> : Boolean = false<div class="summaryTableDescription">
+         This flag indicates of the position is auto reset.</div>
+</td><td class="summaryTableOwnerCol"><a href="../../core/AbstractProgress.html">AbstractProgress</a></td>
+</tr>
+<tr class="hideInheritedProperty">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol"><a class="signatureLink" href="../../core/AbstractScrollbar.html#bar">bar</a> : Sprite<div class="summaryTableDescription">
+   The bar display of the scrollbar.</div>
+</td><td class="summaryTableOwnerCol"><a href="../../core/AbstractScrollbar.html">AbstractScrollbar</a></td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#barFillStyle">barFillStyle</a> : <a href="../../../pegas/draw/IFillStyle.html">IFillStyle</a>
+<div class="summaryTableDescription">
+         Determinates the fill style object of the bar.</div>
+</td><td class="summaryTableOwnerCol">SimpleScrollbar</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#barLineStyle">barLineStyle</a> : <a href="../../../pegas/draw/ILineStyle.html">ILineStyle</a>
+<div class="summaryTableDescription">
+         Determinates the line style object of the bar.</div>
+</td><td class="summaryTableOwnerCol">SimpleScrollbar</td>
+</tr>
+<tr class="hideInheritedProperty">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol"><a class="signatureLink" href="../../core/AbstractComponent.html#border">border</a> : <a href="../../core/EdgeMetrics.html">EdgeMetrics</a>
+<div class="summaryTableDescription">
+         Indicates the thickness, in pixels, of the four edge regions around a visual component.</div>
+</td><td class="summaryTableOwnerCol"><a href="../../core/AbstractComponent.html">AbstractComponent</a></td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#bottomButton">bottomButton</a> : <a href="../button/FrameLabelButton.html">FrameLabelButton</a>
+<div class="summaryTableDescription">
+   (read-write) Indicates the bottom button used when the bar direction is Direction.VERTICAL.</div>
+</td><td class="summaryTableOwnerCol">SimpleScrollbar</td>
+</tr>
+<tr class="hideInheritedProperty">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol"><a class="signatureLink" href="../../core/AbstractComponent.html#bubbles">bubbles</a> : Boolean = true<div class="summaryTableDescription">
+   Indicates if the events use bubbling when are dispatched.</div>
+</td><td class="summaryTableOwnerCol"><a href="../../core/AbstractComponent.html">AbstractComponent</a></td>
+</tr>
+<tr class="hideInheritedProperty">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol"><a class="signatureLink" href="../../core/AbstractComponent.html#builder">builder</a> : <a href="../../core/IBuilder.html">IBuilder</a>
+<div class="summaryTableDescription">
+   Indicates the IBuilder reference of this instance.</div>
+</td><td class="summaryTableOwnerCol"><a href="../../core/AbstractComponent.html">AbstractComponent</a></td>
+</tr>
+<tr class="hideInheritedProperty">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol"><a class="signatureLink" href="../../core/AbstractComponent.html#componentInspectorSetting">componentInspectorSetting</a> : Boolean<div class="summaryTableDescription">
+         Initialize when the Flash component settings are initialized (only in Flash with a compiled component).</div>
+</td><td class="summaryTableOwnerCol"><a href="../../core/AbstractComponent.html">AbstractComponent</a></td>
+</tr>
+<tr class="hideInheritedProperty">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol"><a class="signatureLink" href="../../core/AbstractProgressbar.html#direction">direction</a> : String<div class="summaryTableDescription">
+         Indicates the direction value of this object (default value is Direction.HORIZONTAL).</div>
+</td><td class="summaryTableOwnerCol"><a href="../../core/AbstractProgressbar.html">AbstractProgressbar</a></td>
+</tr>
+<tr class="hideInheritedProperty">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol"><a class="signatureLink" href="../../core/AbstractComponent.html#enabled">enabled</a> : Boolean<div class="summaryTableDescription">
+   Indicates the enabled state of the component.</div>
+</td><td class="summaryTableOwnerCol"><a href="../../core/AbstractComponent.html">AbstractComponent</a></td>
+</tr>
+<tr class="hideInheritedProperty">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol"><a class="signatureLink" href="../../core/AbstractComponent.html#group">group</a> : Boolean<div class="summaryTableDescription">
+   Indicates with a boolean if this object is grouped.</div>
+</td><td class="summaryTableOwnerCol"><a href="../../core/AbstractComponent.html">AbstractComponent</a></td>
+</tr>
+<tr class="hideInheritedProperty">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol"><a class="signatureLink" href="../../core/AbstractComponent.html#groupName">groupName</a> : String<div class="summaryTableDescription">
+    Indicates the name of the group of this object.</div>
+</td><td class="summaryTableOwnerCol"><a href="../../core/AbstractComponent.html">AbstractComponent</a></td>
+</tr>
+<tr class="hideInheritedProperty">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol"><a class="signatureLink" href="../../core/AbstractComponent.html#h">h</a> : Number<div class="summaryTableDescription">
+   (read-only) Indicates the virtual height value of this component.</div>
+</td><td class="summaryTableOwnerCol"><a href="../../core/AbstractComponent.html">AbstractComponent</a></td>
+</tr>
+<tr class="hideInheritedProperty">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol"><a class="signatureLink" href="../../../asgard/display/CoreSprite.html#id">id</a> : *<div class="summaryTableDescription">
+   Returns the id of this object.</div>
+</td><td class="summaryTableOwnerCol"><a href="../../../asgard/display/CoreSprite.html">CoreSprite</a></td>
+</tr>
+<tr class="hideInheritedProperty">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol"><a class="signatureLink" href="../../core/AbstractScrollbar.html#invert">invert</a> : Boolean<div class="summaryTableDescription">
+   Indicates if the layout direction of the thumb is invert.</div>
+</td><td class="summaryTableOwnerCol"><a href="../../core/AbstractScrollbar.html">AbstractScrollbar</a></td>
+</tr>
+<tr class="hideInheritedProperty">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol"><a class="signatureLink" href="../../../asgard/display/CoreSprite.html#isConfigurable">isConfigurable</a> : Boolean<div class="summaryTableDescription">
+   Indicates if the display is configurable.</div>
+</td><td class="summaryTableOwnerCol"><a href="../../../asgard/display/CoreSprite.html">CoreSprite</a></td>
+</tr>
+<tr class="hideInheritedProperty">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol"><a class="signatureLink" href="../../core/AbstractScrollbar.html#isDragging">isDragging</a> : Boolean<div class="summaryTableDescription">
+   (read-only) Indicates if the bar is dragging.</div>
+</td><td class="summaryTableOwnerCol"><a href="../../core/AbstractScrollbar.html">AbstractScrollbar</a></td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#leftButton">leftButton</a> : <a href="../button/FrameLabelButton.html">FrameLabelButton</a>
+<div class="summaryTableDescription">
+   (read-write) Indicates the left button used when the bar direction is Direction.HORIZONTAL.</div>
+</td><td class="summaryTableOwnerCol">SimpleScrollbar</td>
+</tr>
+<tr class="hideInheritedProperty">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol"><a class="signatureLink" href="../../core/AbstractScrollbar.html#lineScrollSize">lineScrollSize</a> : Number<div class="summaryTableDescription">
+   Determines how much the scrollbar's value will change when one of the arrow buttons is clicked.</div>
+</td><td class="summaryTableOwnerCol"><a href="../../core/AbstractScrollbar.html">AbstractScrollbar</a></td>
+</tr>
+<tr class="hideInheritedProperty">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol"><a class="signatureLink" href="../../core/AbstractComponent.html#maxHeight">maxHeight</a> : Number<div class="summaryTableDescription">
+   This property defined the maximum height of this component.</div>
+</td><td class="summaryTableOwnerCol"><a href="../../core/AbstractComponent.html">AbstractComponent</a></td>
+</tr>
+<tr class="hideInheritedProperty">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol"><a class="signatureLink" href="../../core/AbstractProgress.html#maximum">maximum</a> : Number<div class="summaryTableDescription">
+         (Read-write) The maximum value of this scrollbar.</div>
+</td><td class="summaryTableOwnerCol"><a href="../../core/AbstractProgress.html">AbstractProgress</a></td>
+</tr>
+<tr class="hideInheritedProperty">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol"><a class="signatureLink" href="../../core/AbstractComponent.html#maxWidth">maxWidth</a> : Number<div class="summaryTableDescription">
+   This property defined the maximum width of this component.</div>
+</td><td class="summaryTableOwnerCol"><a href="../../core/AbstractComponent.html">AbstractComponent</a></td>
+</tr>
+<tr class="hideInheritedProperty">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol"><a class="signatureLink" href="../../core/AbstractComponent.html#minHeight">minHeight</a> : Number<div class="summaryTableDescription">
+   This property defined the mimimun height of this component.</div>
+</td><td class="summaryTableOwnerCol"><a href="../../core/AbstractComponent.html">AbstractComponent</a></td>
+</tr>
+<tr class="hideInheritedProperty">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol"><a class="signatureLink" href="../../core/AbstractProgress.html#minimum">minimum</a> : Number<div class="summaryTableDescription">
+         (Read-write) The minimum value of this scrollbar.</div>
+</td><td class="summaryTableOwnerCol"><a href="../../core/AbstractProgress.html">AbstractProgress</a></td>
+</tr>
+<tr class="hideInheritedProperty">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol"><a class="signatureLink" href="../../core/AbstractComponent.html#minWidth">minWidth</a> : Number<div class="summaryTableDescription">
+   This property defined the mimimun width of this component.</div>
+</td><td class="summaryTableOwnerCol"><a href="../../core/AbstractComponent.html">AbstractComponent</a></td>
+</tr>
+<tr class="hideInheritedProperty">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol"><a class="signatureLink" href="../../core/AbstractScrollbar.html#pageSize">pageSize</a> : Number<div class="summaryTableDescription">
+   Determines the amount the value will change if the user clicks above or below the thumb.</div>
+</td><td class="summaryTableOwnerCol"><a href="../../core/AbstractScrollbar.html">AbstractScrollbar</a></td>
+</tr>
+<tr class="hideInheritedProperty">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol"><a class="signatureLink" href="../../core/AbstractProgress.html#position">position</a> : Number<div class="summaryTableDescription">
+         Indicates the position of the progress bar.</div>
+</td><td class="summaryTableOwnerCol"><a href="../../core/AbstractProgress.html">AbstractProgress</a></td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#rightButton">rightButton</a> : <a href="../button/FrameLabelButton.html">FrameLabelButton</a>
+<div class="summaryTableDescription">
+   (read-write) Indicates the right button used when the bar direction is Direction.HORIZONTAL.</div>
+</td><td class="summaryTableOwnerCol">SimpleScrollbar</td>
+</tr>
+<tr class="hideInheritedProperty">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol"><a class="signatureLink" href="../../core/AbstractComponent.html#style">style</a> : <a href="../../core/IStyle.html">IStyle</a>
+<div class="summaryTableDescription">
+   Returns the style of this component.</div>
+</td><td class="summaryTableOwnerCol"><a href="../../core/AbstractComponent.html">AbstractComponent</a></td>
+</tr>
+<tr class="hideInheritedProperty">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol"><a class="signatureLink" href="../../core/AbstractScrollbar.html#thumb">thumb</a> : Sprite<div class="summaryTableDescription">
+   The thumb display of the scrollbar.</div>
+</td><td class="summaryTableOwnerCol"><a href="../../core/AbstractScrollbar.html">AbstractScrollbar</a></td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#thumbFillStyle">thumbFillStyle</a> : <a href="../../../pegas/draw/IFillStyle.html">IFillStyle</a>
+<div class="summaryTableDescription">
+         Determinates the fill style object of the thumb.</div>
+</td><td class="summaryTableOwnerCol">SimpleScrollbar</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#thumbLineStyle">thumbLineStyle</a> : <a href="../../../pegas/draw/ILineStyle.html">ILineStyle</a>
+<div class="summaryTableDescription">
+         Determinates the line style object of the thumb.</div>
+</td><td class="summaryTableOwnerCol">SimpleScrollbar</td>
+</tr>
+<tr class="hideInheritedProperty">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol"><a class="signatureLink" href="../../core/AbstractScrollbar.html#thumbSize">thumbSize</a> : Number<div class="summaryTableDescription">
+         Determinates the size of the thumb.</div>
+</td><td class="summaryTableOwnerCol"><a href="../../core/AbstractScrollbar.html">AbstractScrollbar</a></td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#topButton">topButton</a> : <a href="../button/FrameLabelButton.html">FrameLabelButton</a>
+<div class="summaryTableDescription">
+         (read-write) Indicates the top button used when the bar direction is Direction.VERTICAL.</div>
+</td><td class="summaryTableOwnerCol">SimpleScrollbar</td>
+</tr>
+<tr class="hideInheritedProperty">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol"><a class="signatureLink" href="../../core/AbstractComponent.html#w">w</a> : Number<div class="summaryTableDescription">
+   (read-only) Indicates the virtual width value of this component.</div>
+</td><td class="summaryTableOwnerCol"><a href="../../core/AbstractComponent.html">AbstractComponent</a></td>
+</tr>
+</table>
+</div>
+<a name="protectedPropertySummary"></a>
+<div class="summarySection">
+<div class="summaryTableTitle">Protected Properties</div>
+<div class="showHideLinks">
+<div class="hideInheritedProtectedProperty" id="hideInheritedProtectedProperty">
+<a onclick="javascript:setInheritedVisible(false,'ProtectedProperty');" href="#protectedPropertySummary" class="showHideLink"><img src="../../../images/expanded.gif" class="showHideLinkImage"> Hide Inherited Protected Properties</a>
+</div>
+<div class="showInheritedProtectedProperty" id="showInheritedProtectedProperty">
+<a onclick="javascript:setInheritedVisible(true,'ProtectedProperty');" href="#protectedPropertySummary" class="showHideLink"><img src="../../../images/collapsed.gif" class="showHideLinkImage"> Show Inherited Protected Properties</a>
+</div>
+</div>
+<table id="summaryTableProtectedProperty" class="summaryTable " cellpadding="3" cellspacing="0">
+<tr>
+<th>&nbsp;</th><th colspan="2">Property</th><th class="summaryTableOwnerCol">Defined&nbsp;by</th>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#container">container</a> : Sprite<div class="summaryTableDescription">
+   The internal container display of the bar and the thumb.</div>
+</td><td class="summaryTableOwnerCol">SimpleScrollbar</td>
+</tr>
+<tr class="hideInheritedProtectedProperty">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol"><a class="signatureLink" href="../../core/AbstractComponent.html#_h">_h</a> : Number = 0<div class="summaryTableDescription">
+   The protected virtual height value of the component.</div>
+</td><td class="summaryTableOwnerCol"><a href="../../core/AbstractComponent.html">AbstractComponent</a></td>
+</tr>
+<tr class="hideInheritedProtectedProperty">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol"><a class="signatureLink" href="../../core/AbstractProgress.html#_max">_max</a> : Number = 100<div class="summaryTableDescription">
+         The max value of the progress.</div>
+</td><td class="summaryTableOwnerCol"><a href="../../core/AbstractProgress.html">AbstractProgress</a></td>
+</tr>
+<tr class="hideInheritedProtectedProperty">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol"><a class="signatureLink" href="../../core/AbstractProgress.html#_min">_min</a> : Number = 0<div class="summaryTableDescription">
+         The min value of the progress.</div>
+</td><td class="summaryTableOwnerCol"><a href="../../core/AbstractProgress.html">AbstractProgress</a></td>
+</tr>
+<tr class="hideInheritedProtectedProperty">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol"><a class="signatureLink" href="../../core/AbstractProgress.html#_position">_position</a> : Number = 0<div class="summaryTableDescription">
+         The position value of the bar.</div>
+</td><td class="summaryTableOwnerCol"><a href="../../core/AbstractProgress.html">AbstractProgress</a></td>
+</tr>
+<tr class="hideInheritedProtectedProperty">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol"><a class="signatureLink" href="../../core/AbstractComponent.html#_w">_w</a> : Number = 0<div class="summaryTableDescription">
+   The protected virtual width value of the component.</div>
+</td><td class="summaryTableOwnerCol"><a href="../../core/AbstractComponent.html">AbstractComponent</a></td>
+</tr>
+</table>
+</div>
+<a name="methodSummary"></a>
+<div class="summarySection">
+<div class="summaryTableTitle">Public Methods</div>
+<div class="showHideLinks">
+<div class="hideInheritedMethod" id="hideInheritedMethod">
+<a onclick="javascript:setInheritedVisible(false,'Method');" href="#methodSummary" class="showHideLink"><img src="../../../images/expanded.gif" class="showHideLinkImage"> Hide Inherited Public Methods</a>
+</div>
+<div class="showInheritedMethod" id="showInheritedMethod">
+<a onclick="javascript:setInheritedVisible(true,'Method');" href="#methodSummary" class="showHideLink"><img src="../../../images/collapsed.gif" class="showHideLinkImage"> Show Inherited Public Methods</a>
+</div>
+</div>
+<table id="summaryTableMethod" class="summaryTable " cellpadding="3" cellspacing="0">
+<tr>
+<th>&nbsp;</th><th colspan="2">Method</th><th class="summaryTableOwnerCol">Defined&nbsp;by</th>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#SimpleScrollbar()">SimpleScrollbar</a>(direction:String = null, id:Boolean = null, isConfigurable:String = "false", name:* = null)</div>
+<div class="summaryTableDescription">
+   Creates a new SimpleScrollbar instance.</div>
+</td><td class="summaryTableOwnerCol">SimpleScrollbar</td>
+</tr>
+<tr class="hideInheritedMethod">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="../../core/AbstractComponent.html#doLater()">doLater</a>():void</div>
+<div class="summaryTableDescription">
+   Launch an event with a delayed interval.</div>
+</td><td class="summaryTableOwnerCol"><a href="../../core/AbstractComponent.html">AbstractComponent</a></td>
+</tr>
+<tr class="hideInheritedMethod">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="../../core/AbstractScrollbar.html#dragging()">dragging</a>(... args):void</div>
+<div class="summaryTableDescription">
+   Invoked when the bar is dragging.</div>
+</td><td class="summaryTableOwnerCol"><a href="../../core/AbstractScrollbar.html">AbstractScrollbar</a></td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#draw()">draw</a>(... arguments):void</div>
+<div class="summaryTableDescription">
+   Draw the view of the component.</div>
+</td><td class="summaryTableOwnerCol">SimpleScrollbar</td>
+</tr>
+<tr class="hideInheritedMethod">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="../../core/AbstractComponent.html#getBuilderRenderer()">getBuilderRenderer</a>():Class</div>
+<div class="summaryTableDescription">
+         Returns the <code class="prettyprint">IBuilder</code> constructor use to initialize this component.</div>
+</td><td class="summaryTableOwnerCol"><a href="../../core/AbstractComponent.html">AbstractComponent</a></td>
+</tr>
+<tr class="hideInheritedMethod">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="../../../asgard/display/CoreSprite.html#getLogger()">getLogger</a>():<a href="../../../vegas/logging/ILogger.html">ILogger</a>
+</div>
+<div class="summaryTableDescription">
+   Returns the internal <code class="prettyprint">ILogger</code> reference of this <code class="prettyprint">ILogable</code> object.</div>
+</td><td class="summaryTableOwnerCol"><a href="../../../asgard/display/CoreSprite.html">CoreSprite</a></td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#getStyleRenderer()">getStyleRenderer</a>():Class</div>
+<div class="summaryTableDescription">
+   Returns the IStyle Class of this instance.</div>
+</td><td class="summaryTableOwnerCol">SimpleScrollbar</td>
+</tr>
+<tr class="hideInheritedMethod">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="../../core/AbstractComponent.html#groupPolicyChanged()">groupPolicyChanged</a>():void</div>
+<div class="summaryTableDescription">
+   Invoked when the group property or the groupName property changed.</div>
+</td><td class="summaryTableOwnerCol"><a href="../../core/AbstractComponent.html">AbstractComponent</a></td>
+</tr>
+<tr class="hideInheritedMethod">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="../../../asgard/display/CoreSprite.html#hashCode()">hashCode</a>():uint</div>
+<div class="summaryTableDescription">
+   Returns a hashcode value for the object.</div>
+</td><td class="summaryTableOwnerCol"><a href="../../../asgard/display/CoreSprite.html">CoreSprite</a></td>
+</tr>
+<tr class="hideInheritedMethod">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="../../core/AbstractComponent.html#hide()">hide</a>():void</div>
+<div class="summaryTableDescription">
+   Hides the component.</div>
+</td><td class="summaryTableOwnerCol"><a href="../../core/AbstractComponent.html">AbstractComponent</a></td>
+</tr>
+<tr class="hideInheritedMethod">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="../../core/AbstractComponent.html#initialize()">initialize</a>():void</div>
+<div class="summaryTableDescription">
+   Initialize the component.</div>
+</td><td class="summaryTableOwnerCol"><a href="../../core/AbstractComponent.html">AbstractComponent</a></td>
+</tr>
+<tr class="hideInheritedMethod">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="../../../asgard/display/CoreSprite.html#isLocked()">isLocked</a>():Boolean</div>
+<div class="summaryTableDescription">
+      Returns <code class="prettyprint">true</code> if the object is locked.</div>
+</td><td class="summaryTableOwnerCol"><a href="../../../asgard/display/CoreSprite.html">CoreSprite</a></td>
+</tr>
+<tr class="hideInheritedMethod">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="../../core/AbstractComponent.html#isVisible()">isVisible</a>():Boolean</div>
+<div class="summaryTableDescription">
+   Returns <code class="prettyprint">true</code> if the component is visible.</div>
+</td><td class="summaryTableOwnerCol"><a href="../../core/AbstractComponent.html">AbstractComponent</a></td>
+</tr>
+<tr class="hideInheritedMethod">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="../../../asgard/display/CoreSprite.html#lock()">lock</a>():void</div>
+<div class="summaryTableDescription">
+      Locks the object.</div>
+</td><td class="summaryTableOwnerCol"><a href="../../../asgard/display/CoreSprite.html">CoreSprite</a></td>
+</tr>
+<tr class="hideInheritedMethod">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="../../core/AbstractComponent.html#move()">move</a>(x:Number, y:Number):void</div>
+<div class="summaryTableDescription">
+   Moves the component.</div>
+</td><td class="summaryTableOwnerCol"><a href="../../core/AbstractComponent.html">AbstractComponent</a></td>
+</tr>
+<tr class="hideInheritedMethod">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="../../core/AbstractComponent.html#notifyChanged()">notifyChanged</a>():void</div>
+<div class="summaryTableDescription">
+   Notify a change in this component.</div>
+</td><td class="summaryTableOwnerCol"><a href="../../core/AbstractComponent.html">AbstractComponent</a></td>
+</tr>
+<tr class="hideInheritedMethod">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="../../core/AbstractScrollbar.html#notifyDrag()">notifyDrag</a>():void</div>
+<div class="summaryTableDescription">
+   Dispatchs an event when the user drag the bar.</div>
+</td><td class="summaryTableOwnerCol"><a href="../../core/AbstractScrollbar.html">AbstractScrollbar</a></td>
+</tr>
+<tr class="hideInheritedMethod">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="../../core/AbstractComponent.html#notifyEnabled()">notifyEnabled</a>():void</div>
+<div class="summaryTableDescription">
+   Notify an event when the enabled property is changed.</div>
+</td><td class="summaryTableOwnerCol"><a href="../../core/AbstractComponent.html">AbstractComponent</a></td>
+</tr>
+<tr class="hideInheritedMethod">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="../../core/AbstractComponent.html#notifyResized()">notifyResized</a>():void</div>
+<div class="summaryTableDescription">
+   Notify an event when you resize the component.</div>
+</td><td class="summaryTableOwnerCol"><a href="../../core/AbstractComponent.html">AbstractComponent</a></td>
+</tr>
+<tr class="hideInheritedMethod">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="../../core/AbstractScrollbar.html#notifyStartDrag()">notifyStartDrag</a>():void</div>
+<div class="summaryTableDescription">
+   Dispatchs an event when the user start to drag the bar.</div>
+</td><td class="summaryTableOwnerCol"><a href="../../core/AbstractScrollbar.html">AbstractScrollbar</a></td>
+</tr>
+<tr class="hideInheritedMethod">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="../../core/AbstractScrollbar.html#notifyStopDrag()">notifyStopDrag</a>():void</div>
+<div class="summaryTableDescription">
+   Dispatchs an event when the user stop to drag the bar.</div>
+</td><td class="summaryTableOwnerCol"><a href="../../core/AbstractScrollbar.html">AbstractScrollbar</a></td>
+</tr>
+<tr class="hideInheritedMethod">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="../../core/AbstractComponent.html#refresh()">refresh</a>(init:*):void</div>
+<div class="summaryTableDescription">
+   Refresh the component with an object of initialization.</div>
+</td><td class="summaryTableOwnerCol"><a href="../../core/AbstractComponent.html">AbstractComponent</a></td>
+</tr>
+<tr class="hideInheritedMethod">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="../../../asgard/display/CoreSprite.html#resetLock()">resetLock</a>():void</div>
+<div class="summaryTableDescription">
+      Reset the lock security of the display.</div>
+</td><td class="summaryTableOwnerCol"><a href="../../../asgard/display/CoreSprite.html">CoreSprite</a></td>
+</tr>
+<tr class="hideInheritedMethod">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="../../../asgard/display/CoreSprite.html#setLogger()">setLogger</a>(log:<a href="../../../vegas/logging/ILogger.html">ILogger</a> = null):void</div>
+<div class="summaryTableDescription">
+   Sets the internal <code class="prettyprint">ILogger</code> reference of this <code class="prettyprint">ILogable</code> object.</div>
+</td><td class="summaryTableOwnerCol"><a href="../../../asgard/display/CoreSprite.html">CoreSprite</a></td>
+</tr>
+<tr class="hideInheritedMethod">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="../../core/AbstractProgress.html#setPosition()">setPosition</a>(value:Number, noEvent:Boolean = false, flag:Boolean = false):void</div>
+<div class="summaryTableDescription">
+         Sets the position of the progress bar.</div>
+</td><td class="summaryTableOwnerCol"><a href="../../core/AbstractProgress.html">AbstractProgress</a></td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#setScrollProperties()">setScrollProperties</a>(minimum:Number = 0, maximum:Number = 100, lineScrollSize:Number = 1, pageSize:Number = 0):void</div>
+<div class="summaryTableDescription">
+   Sets with this methods the pageSize, minimum, maximum and lineScrollSize values.</div>
+</td><td class="summaryTableOwnerCol">SimpleScrollbar</td>
+</tr>
+<tr class="hideInheritedMethod">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="../../core/AbstractComponent.html#setSize()">setSize</a>(w:Number, h:Number):void</div>
+<div class="summaryTableDescription">
+   Sets the virtuals width and height of the component.</div>
+</td><td class="summaryTableOwnerCol"><a href="../../core/AbstractComponent.html">AbstractComponent</a></td>
+</tr>
+<tr class="hideInheritedMethod">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="../../core/AbstractComponent.html#setStyle()">setStyle</a>(... args):void</div>
+<div class="summaryTableDescription">
+   Sets the style property on the style declaration or object.</div>
+</td><td class="summaryTableOwnerCol"><a href="../../core/AbstractComponent.html">AbstractComponent</a></td>
+</tr>
+<tr class="hideInheritedMethod">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="../../../asgard/display/CoreSprite.html#setup()">setup</a>():void</div>
+<div class="summaryTableDescription">
+         Setup the IConfigurable object.</div>
+</td><td class="summaryTableOwnerCol"><a href="../../../asgard/display/CoreSprite.html">CoreSprite</a></td>
+</tr>
+<tr class="hideInheritedMethod">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="../../core/AbstractComponent.html#show()">show</a>():void</div>
+<div class="summaryTableDescription">
+   Shows the component.</div>
+</td><td class="summaryTableOwnerCol"><a href="../../core/AbstractComponent.html">AbstractComponent</a></td>
+</tr>
+<tr class="hideInheritedMethod">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="../../core/AbstractScrollbar.html#startDragging()">startDragging</a>(e:Event = null):void</div>
+<div class="summaryTableDescription">
+   Invoked when the user start to drag the bar.</div>
+</td><td class="summaryTableOwnerCol"><a href="../../core/AbstractScrollbar.html">AbstractScrollbar</a></td>
+</tr>
+<tr class="hideInheritedMethod">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="../../core/AbstractScrollbar.html#stopDragging()">stopDragging</a>(e:Event = null):void</div>
+<div class="summaryTableDescription">
+   Invoked when the user stop to drag the bar.</div>
+</td><td class="summaryTableOwnerCol"><a href="../../core/AbstractScrollbar.html">AbstractScrollbar</a></td>
+</tr>
+<tr class="hideInheritedMethod">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="../../../asgard/display/CoreSprite.html#toString()">toString</a>():String</div>
+<div class="summaryTableDescription">
+    Returns the <code class="prettyprint">String</code> representation of this object.</div>
+</td><td class="summaryTableOwnerCol"><a href="../../../asgard/display/CoreSprite.html">CoreSprite</a></td>
+</tr>
+<tr class="hideInheritedMethod">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="../../../asgard/display/CoreSprite.html#unlock()">unlock</a>():void</div>
+<div class="summaryTableDescription">
+      Unlocks the display.</div>
+</td><td class="summaryTableOwnerCol"><a href="../../../asgard/display/CoreSprite.html">CoreSprite</a></td>
+</tr>
+<tr class="hideInheritedMethod">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="../../core/AbstractComponent.html#update()">update</a>():void</div>
+<div class="summaryTableDescription">
+   Updates the component.</div>
+</td><td class="summaryTableOwnerCol"><a href="../../core/AbstractComponent.html">AbstractComponent</a></td>
+</tr>
+<tr class="hideInheritedMethod">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="../../core/AbstractProgress.html#viewChanged()">viewChanged</a>():void</div>
+<div class="summaryTableDescription">
+         Invoked when the view of the display is changed.</div>
+</td><td class="summaryTableOwnerCol"><a href="../../core/AbstractProgress.html">AbstractProgress</a></td>
+</tr>
+<tr class="hideInheritedMethod">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="../../core/AbstractComponent.html#viewDestroyed()">viewDestroyed</a>(e:Event = null):void</div>
+<div class="summaryTableDescription">
+   Invoked when the component is destroyed with a removeMovieClip.</div>
+</td><td class="summaryTableOwnerCol"><a href="../../core/AbstractComponent.html">AbstractComponent</a></td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#viewEnabled()">viewEnabled</a>():void</div>
+<div class="summaryTableDescription">
+   Invoked when the enabled property of the component change.</div>
+</td><td class="summaryTableOwnerCol">SimpleScrollbar</td>
+</tr>
+<tr class="hideInheritedMethod">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="../../core/AbstractScrollbar.html#viewPositionChanged()">viewPositionChanged</a>(flag:Boolean = false):void</div>
+<div class="summaryTableDescription">
+   Invoked when the position value of the bar is changed.</div>
+</td><td class="summaryTableOwnerCol"><a href="../../core/AbstractScrollbar.html">AbstractScrollbar</a></td>
+</tr>
+<tr class="hideInheritedMethod">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="../../core/AbstractComponent.html#viewResize()">viewResize</a>():void</div>
+<div class="summaryTableDescription">
+   Invoked when the component is resized.</div>
+</td><td class="summaryTableOwnerCol"><a href="../../core/AbstractComponent.html">AbstractComponent</a></td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#viewStyleChanged()">viewStyleChanged</a>(e:Event = null):void</div>
+<div class="summaryTableDescription">
+   Invoked when the component IStyle changed.</div>
+</td><td class="summaryTableOwnerCol">SimpleScrollbar</td>
+</tr>
+</table>
+</div>
+<a name="protectedMethodSummary"></a>
+<div class="summarySection">
+<div class="summaryTableTitle">Protected Methods</div>
+<div class="showHideLinks">
+<div class="hideInheritedProtectedMethod" id="hideInheritedProtectedMethod">
+<a onclick="javascript:setInheritedVisible(false,'ProtectedMethod');" href="#protectedMethodSummary" class="showHideLink"><img src="../../../images/expanded.gif" class="showHideLinkImage"> Hide Inherited Protected Methods</a>
+</div>
+<div class="showInheritedProtectedMethod" id="showInheritedProtectedMethod">
+<a onclick="javascript:setInheritedVisible(true,'ProtectedMethod');" href="#protectedMethodSummary" class="showHideLink"><img src="../../../images/collapsed.gif" class="showHideLinkImage"> Show Inherited Protected Methods</a>
+</div>
+</div>
+<table id="summaryTableProtectedMethod" class="summaryTable hideInheritedProtectedMethod" cellpadding="3" cellspacing="0">
+<tr>
+<th>&nbsp;</th><th colspan="2">Method</th><th class="summaryTableOwnerCol">Defined&nbsp;by</th>
+</tr>
+<tr class="hideInheritedProtectedMethod">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="../../core/AbstractScrollbar.html#_fireButtonEvent()">_fireButtonEvent</a>(type:String):void</div>
+<div class="summaryTableDescription">
+   Dispatchs a ButtonEvent with the specified type.</div>
+</td><td class="summaryTableOwnerCol"><a href="../../core/AbstractScrollbar.html">AbstractScrollbar</a></td>
+</tr>
+<tr class="hideInheritedProtectedMethod">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="../../../asgard/display/CoreSprite.html#addedToStage()">addedToStage</a>(e:Event = null):void</div>
+<div class="summaryTableDescription">
+         Invoked when the display is added to the stage.</div>
+</td><td class="summaryTableOwnerCol"><a href="../../../asgard/display/CoreSprite.html">CoreSprite</a></td>
+</tr>
+<tr class="hideInheritedProtectedMethod">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="../../core/AbstractComponent.html#fireComponentEvent()">fireComponentEvent</a>(type:String):void</div>
+<div class="summaryTableDescription">
+   Dispatchs a ComponentEvent with the specified type.</div>
+</td><td class="summaryTableOwnerCol"><a href="../../core/AbstractComponent.html">AbstractComponent</a></td>
+</tr>
+<tr class="hideInheritedProtectedMethod">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="../../../asgard/display/CoreSprite.html#removedFromStage()">removedFromStage</a>(e:Event = null):void</div>
+<div class="summaryTableDescription">
+         Invoked when the display is removed from the stage.</div>
+</td><td class="summaryTableOwnerCol"><a href="../../../asgard/display/CoreSprite.html">CoreSprite</a></td>
+</tr>
+</table>
+</div>
+<script type="text/javascript" language="javascript">
+<!--
+showHideInherited();
+--></script>
+<div class="MainContent">
+<a name="propertyDetail"></a>
+<div class="detailSectionHeader">Property detail</div>
+<a name="barFillStyle"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">barFillStyle</td><td class="detailHeaderType">property</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>barFillStyle:<a href="../../../pegas/draw/IFillStyle.html">IFillStyle</a></code>&nbsp;&nbsp;[read-write]<p>
+         Determinates the fill style object of the bar.
+         </p><span class="label">Implementation</span>
+<br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function get barFillStyle():<a href="../../../pegas/draw/IFillStyle.html">IFillStyle</a></code>
+<br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function set barFillStyle(value:<a href="../../../pegas/draw/IFillStyle.html">IFillStyle</a>):void</code>
+<br>
+</div>
+<a name="barLineStyle"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">barLineStyle</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>barLineStyle:<a href="../../../pegas/draw/ILineStyle.html">ILineStyle</a></code>&nbsp;&nbsp;[read-write]<p>
+         Determinates the line style object of the bar.
+         </p><span class="label">Implementation</span>
+<br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function get barLineStyle():<a href="../../../pegas/draw/ILineStyle.html">ILineStyle</a></code>
+<br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function set barLineStyle(value:<a href="../../../pegas/draw/ILineStyle.html">ILineStyle</a>):void</code>
+<br>
+</div>
+<a name="bottomButton"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">bottomButton</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>bottomButton:<a href="../button/FrameLabelButton.html">FrameLabelButton</a></code>&nbsp;&nbsp;[read-write]<p>
+   (read-write) Indicates the bottom button used when the bar direction is Direction.VERTICAL.
+   </p><span class="label">Implementation</span>
+<br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function get bottomButton():<a href="../button/FrameLabelButton.html">FrameLabelButton</a></code>
+<br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function set bottomButton(value:<a href="../button/FrameLabelButton.html">FrameLabelButton</a>):void</code>
+<br>
+</div>
+<a name="container"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">container</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>protected var container:Sprite</code><p>
+   The internal container display of the bar and the thumb.
+   </p></div>
+<a name="leftButton"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">leftButton</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>leftButton:<a href="../button/FrameLabelButton.html">FrameLabelButton</a></code>&nbsp;&nbsp;[read-write]<p>
+   (read-write) Indicates the left button used when the bar direction is Direction.HORIZONTAL.
+   </p><span class="label">Implementation</span>
+<br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function get leftButton():<a href="../button/FrameLabelButton.html">FrameLabelButton</a></code>
+<br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function set leftButton(value:<a href="../button/FrameLabelButton.html">FrameLabelButton</a>):void</code>
+<br>
+</div>
+<a name="rightButton"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">rightButton</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>rightButton:<a href="../button/FrameLabelButton.html">FrameLabelButton</a></code>&nbsp;&nbsp;[read-write]<p>
+   (read-write) Indicates the right button used when the bar direction is Direction.HORIZONTAL.
+   </p><span class="label">Implementation</span>
+<br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function get rightButton():<a href="../button/FrameLabelButton.html">FrameLabelButton</a></code>
+<br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function set rightButton(value:<a href="../button/FrameLabelButton.html">FrameLabelButton</a>):void</code>
+<br>
+</div>
+<a name="thumbFillStyle"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">thumbFillStyle</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>thumbFillStyle:<a href="../../../pegas/draw/IFillStyle.html">IFillStyle</a></code>&nbsp;&nbsp;[read-write]<p>
+         Determinates the fill style object of the thumb.
+         </p><span class="label">Implementation</span>
+<br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function get thumbFillStyle():<a href="../../../pegas/draw/IFillStyle.html">IFillStyle</a></code>
+<br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function set thumbFillStyle(value:<a href="../../../pegas/draw/IFillStyle.html">IFillStyle</a>):void</code>
+<br>
+</div>
+<a name="thumbLineStyle"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">thumbLineStyle</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>thumbLineStyle:<a href="../../../pegas/draw/ILineStyle.html">ILineStyle</a></code>&nbsp;&nbsp;[read-write]<p>
+         Determinates the line style object of the thumb.
+         </p><span class="label">Implementation</span>
+<br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function get thumbLineStyle():<a href="../../../pegas/draw/ILineStyle.html">ILineStyle</a></code>
+<br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function set thumbLineStyle(value:<a href="../../../pegas/draw/ILineStyle.html">ILineStyle</a>):void</code>
+<br>
+</div>
+<a name="topButton"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">topButton</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>topButton:<a href="../button/FrameLabelButton.html">FrameLabelButton</a></code>&nbsp;&nbsp;[read-write]<p>
+         (read-write) Indicates the top button used when the bar direction is Direction.VERTICAL.
+         </p><span class="label">Implementation</span>
+<br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function get topButton():<a href="../button/FrameLabelButton.html">FrameLabelButton</a></code>
+<br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function set topButton(value:<a href="../button/FrameLabelButton.html">FrameLabelButton</a>):void</code>
+<br>
+</div>
+<a name="constructorDetail"></a>
+<div class="detailSectionHeader">Constructor detail</div>
+<a name="SimpleScrollbar()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">SimpleScrollbar</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">constructor</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public function SimpleScrollbar(direction:String = null, id:Boolean = null, isConfigurable:String = "false", name:* = null)</code><p>
+   Creates a new SimpleScrollbar instance.
+   </p><span class="label">Parameters</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td><code><span class="label">direction</span>:String</code> (default = <code>null</code>)<code></code> &mdash; The direction value of the bar (see <code class="prettyprint">Direction</code>).
+   </td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><code><span class="label">id</span>:Boolean</code> (default = <code>null</code>)<code></code> &mdash; Indicates the id of the object.
+   </td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><code><span class="label">isConfigurable</span>:String</code> (default = "<code>false</code>")<code></code> &mdash; This flag indicates if the IConfigurable object is register in the ConfigCollector.
+   </td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><code><span class="label">name</span>:*</code> (default = <code>null</code>)<code></code> &mdash; Indicates the instance name of the object.
+   </td>
+</tr>
+</table>
+</div>
+<a name="methodDetail"></a>
+<div class="detailSectionHeader">Method detail</div>
+<a name="draw()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">draw</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public override function draw(... arguments):void</code><p>
+   Draw the view of the component.
+   </p><span class="label">Parameters</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td><code>... <span class="label">arguments</span></code></td>
+</tr>
+</table>
+</div>
+<a name="getStyleRenderer()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">getStyleRenderer</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public override function getStyleRenderer():Class</code><p>
+   Returns the IStyle Class of this instance.
+   </p><p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><code>Class</code> &mdash; the IStyle Class of this instance.
+    </td>
+</tr>
+</table>
+</div>
+<a name="setScrollProperties()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">setScrollProperties</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public function setScrollProperties(minimum:Number = 0, maximum:Number = 100, lineScrollSize:Number = 1, pageSize:Number = 0):void</code><p>
+   Sets with this methods the pageSize, minimum, maximum and lineScrollSize values.
+   </p><span class="label">Parameters</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td><code><span class="label">minimum</span>:Number</code> (default = <code>0</code>)<code></code> &mdash; Number which represetns the top of the scrolling range.
+   </td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><code><span class="label">maximum</span>:Number</code> (default = <code>100</code>)<code></code> &mdash; Number which represents the bottom of the scrolling range.
+   </td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><code><span class="label">lineScrollSize</span>:Number</code> (default = <code>1</code>)<code></code> &mdash; Number which represents the increment to move when the scroll track is pressed.
+   </td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><code><span class="label">pageSize</span>:Number</code> (default = <code>0</code>)<code></code> &mdash; Number which represents the size of one page.
+   </td>
+</tr>
+</table>
+</div>
+<a name="viewEnabled()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">viewEnabled</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public override function viewEnabled():void</code><p>
+   Invoked when the enabled property of the component change.
+   </p></div>
+<a name="viewStyleChanged()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">viewStyleChanged</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public override function viewStyleChanged(e:Event = null):void</code><p>
+   Invoked when the component IStyle changed.
+   </p><span class="label">Parameters</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td><code><span class="label">e</span>:Event</code> (default = <code>null</code>)<code></code></td>
+</tr>
+</table>
+</div>
+<br>
+<br>
+<hr>
+<br>
+<p></p>
+<center class="copyright"> 
+</center>
+</div>
+</body>
+</html>
+<!-- -->
