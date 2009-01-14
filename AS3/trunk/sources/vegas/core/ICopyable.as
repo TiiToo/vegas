@@ -14,7 +14,7 @@
   
   The Initial Developer of the Original Code is
   ALCARAZ Marc (aka eKameleon)  <ekameleon@gmail.com>.
-  Portions created by the Initial Developer are Copyright (C) 2004-2008
+  Portions created by the Initial Developer are Copyright (C) 2004-2009
   the Initial Developer. All Rights Reserved.
   
   Contributor(s) :
@@ -26,8 +26,6 @@ package vegas.core
 	
 	/**
 	 * Interface implemented by classes that can produce "deep" copies of their objects.
-	 * @author eKameleon
-	 * @version 1.0.0.0
 	 */
 	public interface ICopyable
 	{

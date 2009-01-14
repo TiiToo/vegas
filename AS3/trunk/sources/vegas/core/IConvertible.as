@@ -14,7 +14,7 @@
   
   The Initial Developer of the Original Code is
   ALCARAZ Marc (aka eKameleon)  <ekameleon@gmail.com>.
-  Portions created by the Initial Developer are Copyright (C) 2004-2008
+  Portions created by the Initial Developer are Copyright (C) 2004-2009
   the Initial Developer. All Rights Reserved.
   
   Contributor(s) :
@@ -27,7 +27,6 @@ package vegas.core
 	/**
 	 * Allows an object to be converted to an equivalent type.
 	 * <p>See <a href="http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf">Standard ECMAScript-262 3rd Edition CHAP 9 : 'Type Conversion'</a></p>
-	 * @author eKameleon
 	 */
 	public interface IConvertible
 	{
