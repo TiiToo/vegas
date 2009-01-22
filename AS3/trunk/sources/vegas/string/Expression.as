@@ -22,9 +22,10 @@
 */
 package vegas.string 
 {
-    import flash.utils.Dictionary;
+    import system.Strings;
+    import system.formatters.Formattable;
     
-    import system.Strings;    
+    import flash.utils.Dictionary;        
 
     /**
      * This dictionary register formattable expression and format a String with all expression in the dictionnary. 
@@ -58,7 +59,7 @@ package vegas.string
      * trace( exp.format( source ) ) ;
      * </pre>
      */
-    public dynamic class Expression extends Dictionary
+    public dynamic class Expression extends Dictionary implements Formattable
     {
         
         /**
@@ -112,8 +113,9 @@ package vegas.string
         
         /**
          * Formats the specified value.
+         * @param value The object to format.
          * @return the string representation of the formatted value. 
-         */        
+         */      
         public function format( value:* = null ):String
         {
         	return _format( value.toString() ) ;
@@ -155,8 +157,8 @@ package vegas.string
                 var key:String ;
                 for ( var i:int ; i<l ; i++ )
                 {
-                    key   = m[i].substr(1) ;
-                    key   = key.substr( 0 , key.length-1 ) ;
+                    key = m[i].substr(1) ;
+                    key = key.substr( 0 , key.length-1 ) ;
                     if ( this[key] != null && (this[key] is String) )
                     {
                         this[key] = _format( this[key] as String , depth + 1 ) ;
