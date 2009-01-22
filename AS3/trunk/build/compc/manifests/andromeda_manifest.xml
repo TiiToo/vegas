@@ -172,8 +172,8 @@
 
     <component id="andromeda.vo:AbstractValueObject" class="andromeda.vo.AbstractValueObject" />
     <component id="andromeda.vo:FilterVO"            class="andromeda.vo.FilterVO"            />
-    <component id="andromeda.vo:IValueObject"        class="andromeda.vo.IValueObject"        />
     <component id="andromeda.vo:NetServerInfoVO"     class="andromeda.vo.NetServerInfoVO"     />
     <component id="andromeda.vo:SimpleValueObject"   class="andromeda.vo.SimpleValueObject"   />
+    <component id="andromeda.vo:ValueObject"         class="andromeda.vo.ValueObject"         />
     
 </componentPackage>

@@ -4,22 +4,23 @@
         
     <!-- asgard.display -->
 
-    <component id="asgard.display:ApplicationDisplay"     class="asgard.display.ApplicationDisplay"  />
-    <component id="asgard.display:AVM2Loader"             class="asgard.display.AVM2Loader"  />
-    <component id="asgard.display:Background"             class="asgard.display.Background"  />
-    <component id="asgard.display:CoreBitmap"             class="asgard.display.CoreBitmap"  />
-    <component id="asgard.display:CoreLoader"             class="asgard.display.CoreLoader"  />
-    <component id="asgard.display:CoreMovieClip"          class="asgard.display.CoreMovieClip"  />
-    <component id="asgard.display:CoreShape"              class="asgard.display.CoreShape"  />
-    <component id="asgard.display:CoreSimpleButton"       class="asgard.display.CoreSimpleButton"  />
-    <component id="asgard.display:CoreSprite"             class="asgard.display.CoreSprite"  />
-    <component id="asgard.display:DisplayObjectCollector" class="asgard.display.DisplayObjectCollector"  />
-    <component id="asgard.display:IDisplayObject"         class="asgard.display.IDisplayObject"  />
-    <component id="asgard.display:PolyLineBackground"     class="asgard.display.PolyLineBackground" />
-    <component id="asgard.display:Protector"              class="asgard.display.Protector"  />
-    <component id="asgard.display:SWFInfo"                class="asgard.display.SWFInfo"  />
-    <component id="asgard.display:TimelineIterator"       class="asgard.display.TimelineIterator"  />
-    <component id="asgard.display:TimelineScript"         class="asgard.display.TimelineScript"  />
+    <component id="asgard.display:ApplicationDisplay"      class="asgard.display.ApplicationDisplay"  />
+    <component id="asgard.display:AVM2Loader"              class="asgard.display.AVM2Loader"  />
+    <component id="asgard.display:Background"              class="asgard.display.Background"  />
+    <component id="asgard.display:CoreBitmap"              class="asgard.display.CoreBitmap"  />
+    <component id="asgard.display:CoreLoader"              class="asgard.display.CoreLoader"  />
+    <component id="asgard.display:CoreMovieClip"           class="asgard.display.CoreMovieClip"  />
+    <component id="asgard.display:CoreShape"               class="asgard.display.CoreShape"  />
+    <component id="asgard.display:CoreSimpleButton"        class="asgard.display.CoreSimpleButton"  />
+    <component id="asgard.display:CoreSprite"              class="asgard.display.CoreSprite" />
+    <component id="asgard.display:DisplayObjectCollector"  class="asgard.display.DisplayObjectCollector" />
+    <component id="asgard.display:DisplayObjectContainers" class="asgard.display.DisplayObjectContainers" />
+    <component id="asgard.display:IDisplayObject"          class="asgard.display.IDisplayObject"  />
+    <component id="asgard.display:PolyLineBackground"      class="asgard.display.PolyLineBackground" />
+    <component id="asgard.display:Protector"               class="asgard.display.Protector"  />
+    <component id="asgard.display:SWFInfo"                 class="asgard.display.SWFInfo"  />
+    <component id="asgard.display:TimelineIterator"        class="asgard.display.TimelineIterator"  />
+    <component id="asgard.display:TimelineScript"          class="asgard.display.TimelineScript"  />
         
     <!-- asgard.events -->
     
@@ -55,30 +56,29 @@
     
     <!-- asgard.net -->
 
-    <component id="asgard.net.ECMAObjectLoader"       class="asgard.net.ECMAObjectLoader"  /> 
-    <component id="asgard.net.FlashVars"              class="asgard.net.FlashVars"  />
-    <component id="asgard.net.HTMLEntities"           class="asgard.net.HTMLEntities"  />
-    <component id="asgard.net.HTTPHost"               class="asgard.net.HTTPHost"  />
-    <component id="asgard.net.INetServerStreamClient" class="asgard.net.INetServerStreamClient"  />
-    <component id="asgard.net.NetServerConnection"    class="asgard.net.NetServerConnection"  />
-    <component id="asgard.net.NetServerGateway"       class="asgard.net.NetServerGateway"  />
-    <component id="asgard.net.NetServerInfo"          class="asgard.net.NetServerInfo"  />
-    <component id="asgard.net.NetServerLevel"         class="asgard.net.NetServerLevel"  />
-    <component id="asgard.net.NetServerStatus"        class="asgard.net.NetServerStatus"  />
-    <component id="asgard.net.NetServerStream"        class="asgard.net.NetServerStream"  />
-    <component id="asgard.net.NetServerStreamClient"  class="asgard.net.NetServerStreamClient"  />
-    <component id="asgard.net.NetStreamStatus"        class="asgard.net.NetStreamStatus"  />
+    <component id="asgard.net.ECMAObjectLoader"    class="asgard.net.ECMAObjectLoader"    /> 
+    <component id="asgard.net.FlashVars"           class="asgard.net.FlashVars"           />
+    <component id="asgard.net.HTMLEntities"        class="asgard.net.HTMLEntities"        />
+    <component id="asgard.net.HTTPHost"            class="asgard.net.HTTPHost"            />
+    <component id="asgard.net.INetStreamClient"    class="asgard.net.INetStreamClient"    />
+    <component id="asgard.net.NetServerConnection" class="asgard.net.NetServerConnection" />
+    <component id="asgard.net.NetServerGateway"    class="asgard.net.NetServerGateway"    />
+    <component id="asgard.net.NetServerInfo"       class="asgard.net.NetServerInfo"       />
+    <component id="asgard.net.NetServerLevel"      class="asgard.net.NetServerLevel"      />
+    <component id="asgard.net.NetServerStatus"     class="asgard.net.NetServerStatus"     />
+    <component id="asgard.net.NetStreamClient"     class="asgard.net.NetStreamClient"     />
+    <component id="asgard.net.NetStreamStatus"     class="asgard.net.NetStreamStatus"     />
     
     <!-- asgard.net.remoting -->    
     
-    <component id="asgard.net.remoting:IRemotingServiceListener"    class="asgard.net.remoting.IRemotingServiceListener"  />    
-    <component id="asgard.net.remoting:RemotingAuthentification"    class="asgard.net.remoting.RemotingAuthentification"  />
-    <component id="asgard.net.remoting:RemotingConnection"          class="asgard.net.remoting.RemotingConnection"  />
-    <component id="asgard.net.remoting:RemotingConnectionCollector" class="asgard.net.remoting.RemotingConnectionCollector"  />
-    <component id="asgard.net.remoting:RemotingFormat"              class="asgard.net.remoting.RemotingFormat"  />
-    <component id="asgard.net.remoting:RemotingGatewayUrl"          class="asgard.net.remoting.RemotingGatewayUrl"  />
-    <component id="asgard.net.remoting:RemotingService"             class="asgard.net.remoting.RemotingService"  />
-    <component id="asgard.net.remoting:RemotingServiceListener"     class="asgard.net.remoting.RemotingServiceListener"  />
+    <component id="asgard.net.remoting:IRemotingServiceListener"    class="asgard.net.remoting.IRemotingServiceListener"    />    
+    <component id="asgard.net.remoting:RemotingAuthentification"    class="asgard.net.remoting.RemotingAuthentification"    />
+    <component id="asgard.net.remoting:RemotingConnection"          class="asgard.net.remoting.RemotingConnection"          />
+    <component id="asgard.net.remoting:RemotingConnectionCollector" class="asgard.net.remoting.RemotingConnectionCollector" />
+    <component id="asgard.net.remoting:RemotingGatewayUrl"          class="asgard.net.remoting.RemotingGatewayUrl"          />
+    <component id="asgard.net.remoting:RemotingService"             class="asgard.net.remoting.RemotingService"             />
+    <component id="asgard.net.remoting:RemotingServiceFormatter"    class="asgard.net.remoting.RemotingServiceFormatter"    />
+    <component id="asgard.net.remoting:RemotingServiceListener"     class="asgard.net.remoting.RemotingServiceListener"     />
     
     <!-- asgard.text -->
     

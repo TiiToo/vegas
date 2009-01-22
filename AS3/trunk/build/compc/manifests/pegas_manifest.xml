@@ -30,23 +30,24 @@
     <component id="pegas.draw:CornerRectanglePen"         class="pegas.draw.CornerRectanglePen" />
     <component id="pegas.draw:DashLinePen"                class="pegas.draw.DashLinePen" />
     <component id="pegas.draw:Direction"                  class="pegas.draw.Direction" />
+    <component id="pegas.draw:Directionable"              class="pegas.draw.Directionable" />
+    <component id="pegas.draw:Drawable"                   class="pegas.draw.Drawable" />
     <component id="pegas.draw:EllipsePen"                 class="pegas.draw.EllipsePen" />
     <component id="pegas.draw:FillBitmapStyle"            class="pegas.draw.FillBitmapStyle" />
     <component id="pegas.draw:FillGradientStyle"          class="pegas.draw.FillGradientStyle" />
     <component id="pegas.draw:FillStyle"                  class="pegas.draw.FillStyle" />
     <component id="pegas.draw:FreePolygonPen"             class="pegas.draw.FreePolygonPen" />
     <component id="pegas.draw:GearPen"                    class="pegas.draw.GearPen" />
-    <component id="pegas.draw:IDirectionable"             class="pegas.draw.IDirectionable" />
     <component id="pegas.draw:IFillStyle"                 class="pegas.draw.IFillStyle" />
     <component id="pegas.draw:ILineStyle"                 class="pegas.draw.ILineStyle" />
     <component id="pegas.draw:IPen"                       class="pegas.draw.IPen" />
-    <component id="pegas.draw:IShape"                     class="pegas.draw.IShape" />
     <component id="pegas.draw:LineGradientStyle"          class="pegas.draw.LineGradientStyle" />
     <component id="pegas.draw:LinePen"                    class="pegas.draw.LinePen" />
     <component id="pegas.draw:LineStyle"                  class="pegas.draw.LineStyle" />
+    <component id="pegas.draw:PageFlipPen"                class="pegas.draw.PageFlipPen" />
     <component id="pegas.draw:Pen"                        class="pegas.draw.Pen" />
     <component id="pegas.draw:PolygonPen"                 class="pegas.draw.PolygonPen" />
-    <component id="pegas.draw:PolyLine"                   class="pegas.draw.PolyLine" />
+    <component id="pegas.draw:PolyLinePen"                class="pegas.draw.PolyLinePen" />
     <component id="pegas.draw:RectanglePen"               class="pegas.draw.RectanglePen" />
     <component id="pegas.draw:RoundedComplexRectanglePen" class="pegas.draw.RoundedComplexRectanglePen" />
     <component id="pegas.draw:RoundedRectanglePen"        class="pegas.draw.RoundedRectanglePen" />
@@ -61,6 +62,7 @@
     
     <component id="pegas.geom:AspectRatio"  class="pegas.geom.AspectRatio" />
     <component id="pegas.geom:Dimension"    class="pegas.geom.Dimension" />
+    <component id="pegas.geom:EdgeMetrics"  class="pegas.geom.EdgeMetrics" />
     <component id="pegas.geom:Geometry"     class="pegas.geom.Geometry" />
     <component id="pegas.geom:Line"         class="pegas.geom.Line" />
     <component id="pegas.geom:Matrix"       class="pegas.geom.Matrix" />

@@ -13,7 +13,6 @@
     <component id="lunas.core:AbstractScrollbar"     class="lunas.core.AbstractScrollbar"  />
     <component id="lunas.core:AbstractStyle"         class="lunas.core.AbstractStyle"  />
     <component id="lunas.core:AbstractTextInput"     class="lunas.core.AbstractTextInput"  />
-    <component id="lunas.core:EdgeMetrics"           class="lunas.core.EdgeMetrics"  />
     <component id="lunas.core:IBar"                  class="lunas.core.IBar"  />
     <component id="lunas.core:IBorder"               class="lunas.core.IBorder"  />
     <component id="lunas.core:IBuilder"              class="lunas.core.IBuilder"  />

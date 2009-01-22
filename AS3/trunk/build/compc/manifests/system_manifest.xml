@@ -254,6 +254,6 @@
 
     <!-- system.text.ui -->
     
-    <component id="system.ui.TextFieldConsole"           class="system.ui.TextFieldConsole"           />
+    <component id="system.ui.TextFieldConsole"  class="system.ui.TextFieldConsole" />
     
 </componentPackage>
