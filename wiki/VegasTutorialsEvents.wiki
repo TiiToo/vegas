@@ -3,8 +3,6 @@
 
 = AS2 and SSAS Event Model =
 
-Modèle événementiel basé sur le DOM2/3 du modèle événementiel du W3C
-
 The event model of *VEGAS* is based on the [http://www.w3.org/TR/DOM-Level-2-Events/events.html DOM2/3 W3C model events].
 
 The *AS2* and *SSAS* versions of this event model are full compatible. The AS3 is compatible but based on the *AS3 event model*.
