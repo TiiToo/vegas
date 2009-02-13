@@ -24,8 +24,7 @@
 package vegas.events.dom
 {
     import system.data.Set;
-    
-    import vegas.events.EventListener;	
+    import system.events.EventListener;        
 
     [ExcludeClass]
 	

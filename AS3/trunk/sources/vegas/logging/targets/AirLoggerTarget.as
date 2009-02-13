@@ -22,16 +22,16 @@
 */
 package vegas.logging.targets 
 {
+    import system.Reflection;
+    
+    import vegas.logging.LogEventLevel;
+    import vegas.logging.targets.LineFormattedTarget;
+    
     import flash.events.SecurityErrorEvent;
     import flash.events.StatusEvent;
     import flash.net.LocalConnection;
     import flash.utils.clearInterval;
-    import flash.utils.setInterval;
-    
-    import system.Reflection;
-    
-    import vegas.logging.LogEventLevel;
-    import vegas.logging.targets.LineFormattedTarget;    
+    import flash.utils.setInterval;    
 
     /**
 	 * Provides a logger target that uses the AirLogger console to output log messages. 

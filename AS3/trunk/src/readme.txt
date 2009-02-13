@@ -1,5 +1,5 @@
  
-   VEGAS AS3 - version 1
+   VEGAS AS3 - version 1,2,0,1286
 
    LICENCE 
 
@@ -32,7 +32,7 @@
    ABOUT
 
     * Author : eKameleon
-    * Version : 1.0.0.1265
+    * Version : 1.2.0.1286
     * Link : http://www.ekameleon.net/blog
     * Mail : vegas@ekameleon.net 
 

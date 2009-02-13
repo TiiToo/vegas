@@ -27,11 +27,11 @@ package vegas.events.dom
     import system.data.Iterable;
     import system.data.Iterator;
     import system.data.lists.SortedArrayList;
+    import system.events.EventListener;
     
     import vegas.core.CoreObject;
-    import vegas.events.EventListener;
     
-    import flash.events.Event;	
+    import flash.events.Event;    
 
     [ExcludeClass]
     

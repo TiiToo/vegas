@@ -22,16 +22,8 @@
 */
 package vegas.events.dom
 {
-    import flash.events.Event;
-    
-    import system.Reflection;
-    import system.Serializable;
-    
-    import vegas.core.ICopyable;
-    import vegas.core.IHashable;
-    import vegas.events.BasicEvent;    
-
-    [ExcludeClass]
+    import system.Reflection;    import system.Serializable;    import system.events.BasicEvent;        import vegas.core.ICopyable;    import vegas.core.IHashable;        import flash.events.Event;    
+    [ExcludeClass]
 	public class DomEvent extends BasicEvent implements ICopyable, IHashable, Serializable
 	{
 		
@@ -63,7 +55,7 @@ package vegas.events.dom
 		 */
 		public override function clone():Event
 		{
-			return new DomEvent(getType(), getTarget(), getContext()) ;
+			return new DomEvent( type , target , context ) ;
 		}
 
 		public function cancel():void 
@@ -77,7 +69,7 @@ package vegas.events.dom
 		 */
 		public function copy():*
 		{
-			return new DomEvent(getType(), getTarget(), getContext(), bubbles, getTimeStamp(), eventPhase, stop) ;
+			return new DomEvent( type, target, context, bubbles, timeStamp, eventPhase, stop) ;
 		}
 		
 		public override function get bubbles():Boolean
@@ -158,7 +150,7 @@ package vegas.events.dom
 			var phase:uint = eventPhase ;
 			var	name:String = Reflection.getClassName(this);
 			var txt:String = "[" + name ;
-			if (getType()) txt += " " + getType() ;
+			if ( type ) txt += " " + type ;
 			switch (phase) 
 			{
 				case EventPhase.CAPTURING_PHASE :

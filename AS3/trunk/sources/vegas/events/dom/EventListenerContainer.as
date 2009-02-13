@@ -23,10 +23,11 @@
 
 package vegas.events.dom
 {
-	import vegas.core.CoreObject;
-	import vegas.events.EventListener;
-	
-	[ExcludeClass]
+    import system.events.EventListener;
+    
+    import vegas.core.CoreObject;	
+
+    [ExcludeClass]
 	
 	/**
      * Internal class in the <code class="prettyprint">EventDispatcher</code> class to register in an <code class="prettyprint">EventCollection</code> an <code class="prettyprint">EventListener</code>.

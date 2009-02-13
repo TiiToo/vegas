@@ -23,8 +23,8 @@
 
 package vegas.events.dom
 {
-    import vegas.events.EventListener;
-    
+    import system.events.EventListener;    
+
     [ExcludeClass]
     
 	/**

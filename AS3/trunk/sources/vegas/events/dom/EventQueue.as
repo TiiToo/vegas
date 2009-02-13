@@ -69,7 +69,7 @@ package vegas.events.dom
 				while (it.hasNext()) 
 				{
 					var e:DomEvent = it.next() ;
-					if (e.getType() == eventType) 
+					if (e.type == eventType) 
 					{
 						q.enqueue(e) ;
 					}

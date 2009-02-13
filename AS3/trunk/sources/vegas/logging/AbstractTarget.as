@@ -23,8 +23,8 @@
 package vegas.logging
 {
     import system.Strings;
+    import system.events.CoreEventDispatcher;
     
-    import vegas.events.CoreEventDispatcher;
     import vegas.logging.errors.InvalidFilterError;    
 
     /**
