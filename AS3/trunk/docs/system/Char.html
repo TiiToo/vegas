@@ -1,0 +1,1830 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" href="../style.css" type="text/css" media="screen">
+<link rel="stylesheet" href="../print.css" type="text/css" media="print">
+<link rel="stylesheet" href="../prettify.css" type="text/css">
+<meta content="Char,system.Char,ACK,BEL,BS,CAN,CR,DC1,DC2,DC3,DC4,DEL,DLE,EM,ENQ,EOT,ESC,ETB,ETX,FF,FS,GS,LF,NAK,NUL,RS,SI,SO,SOH,STX,SUB,SYN,TAB,US,VT,ampersand,apostrophe,asterisk,backslash,circumflex,closingBrace,closingBracket,closingParenthesis,colon,comma,commercialAt,controls,dollarSign,equals,exclamationPoint,graveAccent,greaterThen,lessThan,minus,numberSign,openingBrace,openingBracket,openingParenthesis,percent,period,pipe,plus,questionMark,quotationMarks,semiColon,slash,space,symbols,tilde,underline,code,value,fromNumber,isASCII,isControl,isDigit,isHexDigit,isLetter,isLetterOrDigit,isLower,isSymbol,isUnicode,isUpper,isWhiteSpace,toHexadecimal,toNumber,toOctal,toString,valueOf" name="keywords">
+<title>system.Char</title>
+</head>
+<body>
+<script type="text/javascript" language="javascript" src="../prettify.js"></script><script type="text/javascript" language="javascript" src="../asdoc.js"></script><script type="text/javascript" language="javascript" src="../cookies.js"></script><script type="text/javascript" language="javascript">
+<!--
+				asdocTitle = 'Char - VEGAS AS3 Reference';
+				var baseRef = '../';
+				window.onload = configPage;
+			--></script>
+<table style="display:none" id="titleTable" cellspacing="0" cellpadding="0" class="titleTable">
+<tr>
+<td align="left" class="titleTableTitle">VEGAS AS3 Reference</td><td align="right" class="titleTableTopNav"><a onclick="loadClassListFrame('../all-classes.html')" href="../package-summary.html">All&nbsp;Packages</a>&nbsp;|&nbsp;<a onclick="loadClassListFrame('../all-classes.html')" href="../class-summary.html">All&nbsp;Classes</a>&nbsp;|&nbsp;<a onclick="loadClassListFrame('../index-list.html')" href="../all-index-A.html">Index</a>&nbsp;|&nbsp;<a href="../index.html?system/Char.html&amp;system/class-list.html" id="framesLink1">Frames</a><a onclick="parent.location=document.location" href="" style="display:none" id="noFramesLink1">No&nbsp;Frames</a></td><td rowspan="3" align="right" class="titleTableLogo"><img alt="Adobe Logo" title="Adobe Logo" class="logoImage" src="../images/logo.jpg"></td>
+</tr>
+<tr class="titleTableRow2">
+<td align="left" id="subTitle" class="titleTableSubTitle">Class&nbsp;Char</td><td align="right" id="subNav" class="titleTableSubNav"><a href="#propertySummary">Properties</a>&nbsp;| <a href="#methodSummary">Methods</a>&nbsp;| <a href="#constantSummary">Constants</a></td>
+</tr>
+<tr class="titleTableRow3">
+<td colspan="2">&nbsp;</td>
+</tr>
+</table>
+<script type="text/javascript" language="javascript">
+<!--
+if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Class Char"); titleBar_setSubNav(true,true,false,false,false,false,true,false,false,false,false,false,false,false);}
+--></script>
+<div class="MainContent">
+<table cellspacing="0" cellpadding="0" class="classHeaderTable">
+<tr>
+<td class="classHeaderTableLabel">Package</td><td><a onclick="javascript:loadClassListFrame('class-list.html')" href="package-detail.html">system</a></td>
+</tr>
+<tr>
+<td class="classHeaderTableLabel">Class</td><td class="classSignature">public class Char</td>
+</tr>
+</table>
+<p></p>
+     The Char class.
+     <p><b>Note:</b> Very basic implementation for now based on ASCII and so <a href='http://www.ietf.org/rfc/rfc20.txt'>http://www.ietf.org/rfc/rfc20.txt</a>
+     later we should connect it to <code>Unicode</code> class and Unicode cateogories or maybe do another CharUTF class.</p>
+     <p></p>
+<br>
+<hr>
+</div>
+<a name="propertySummary"></a>
+<div class="summarySection">
+<div class="summaryTableTitle">Public Properties</div>
+<table id="summaryTableProperty" class="summaryTable " cellpadding="3" cellspacing="0">
+<tr>
+<th>&nbsp;</th><th colspan="2">Property</th><th class="summaryTableOwnerCol">Defined&nbsp;by</th>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#code">code</a> : Number<div class="summaryTableDescription">
+         Determinates the code of the character.</div>
+</td><td class="summaryTableOwnerCol">Char</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#controls">controls</a> : Array<div class="summaryTableDescription">[static]
+         The Array representation of all UTF8 controls characters.</div>
+</td><td class="summaryTableOwnerCol">Char</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#symbols">symbols</a> : Array<div class="summaryTableDescription">[static]
+         The Array representation of all UTF8 symbols characters.</div>
+</td><td class="summaryTableOwnerCol">Char</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#value">value</a> : String<div class="summaryTableDescription">
+         Determinates the value of the character.</div>
+</td><td class="summaryTableOwnerCol">Char</td>
+</tr>
+</table>
+</div>
+<a name="methodSummary"></a>
+<div class="summarySection">
+<div class="summaryTableTitle">Public Methods</div>
+<table id="summaryTableMethod" class="summaryTable " cellpadding="3" cellspacing="0">
+<tr>
+<th>&nbsp;</th><th colspan="2">Method</th><th class="summaryTableOwnerCol">Defined&nbsp;by</th>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#Char()">Char</a>(str:String = "", index:uint = 0)</div>
+<div class="summaryTableDescription">
+         Creates a new Char instance.</div>
+</td><td class="summaryTableOwnerCol">Char</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#fromNumber()">fromNumber</a>(num:Number):<a href="system/Char.html">Char</a>
+</div>
+<div class="summaryTableDescription">[static]
+         Returns the Char representation of the specified Number value.</div>
+</td><td class="summaryTableOwnerCol">Char</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#isASCII()">isASCII</a>(c:String, index:uint = 0, extended:Boolean = false):Boolean</div>
+<div class="summaryTableDescription">[static]</div>
+</td><td class="summaryTableOwnerCol">Char</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#isControl()">isControl</a>(c:String, index:uint = 0):Boolean</div>
+<div class="summaryTableDescription">[static]</div>
+</td><td class="summaryTableOwnerCol">Char</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#isDigit()">isDigit</a>(c:String, index:uint = 0):Boolean</div>
+<div class="summaryTableDescription">[static]
+         Indicates if the specified character is a digit character.</div>
+</td><td class="summaryTableOwnerCol">Char</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#isHexDigit()">isHexDigit</a>(c:String, index:uint = 0):Boolean</div>
+<div class="summaryTableDescription">[static]
+         Indicates if the specified character is an hexadecimal digit character.</div>
+</td><td class="summaryTableOwnerCol">Char</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#isLetter()">isLetter</a>(c:String, index:uint = 0):Boolean</div>
+<div class="summaryTableDescription">[static]
+         Indicates if the specified character is a letter.</div>
+</td><td class="summaryTableOwnerCol">Char</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#isLetterOrDigit()">isLetterOrDigit</a>(c:String, index:uint = 0):Boolean</div>
+<div class="summaryTableDescription">[static]
+         Indicates if the specified character is a letter or a digit.</div>
+</td><td class="summaryTableOwnerCol">Char</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#isLower()">isLower</a>(c:String, index:uint = 0):Boolean</div>
+<div class="summaryTableDescription">[static]
+         Indicates if the specified character is a lower case.</div>
+</td><td class="summaryTableOwnerCol">Char</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#isSymbol()">isSymbol</a>(c:String, index:uint = 0):Boolean</div>
+<div class="summaryTableDescription">[static]
+         Indicates if the specified character is a symbol.</div>
+</td><td class="summaryTableOwnerCol">Char</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#isUnicode()">isUnicode</a>(c:String, index:uint = 0):Boolean</div>
+<div class="summaryTableDescription">[static]
+         Indicates if the specified character is a unicode char.</div>
+</td><td class="summaryTableOwnerCol">Char</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#isUpper()">isUpper</a>(c:String, index:uint = 0):Boolean</div>
+<div class="summaryTableDescription">[static]
+         Indicates if the specified character is a upper char.</div>
+</td><td class="summaryTableOwnerCol">Char</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#isWhiteSpace()">isWhiteSpace</a>(c:String, index:uint = 0):Boolean</div>
+<div class="summaryTableDescription">[static]
+         Indicates if the specified character is a whitespace char.</div>
+</td><td class="summaryTableOwnerCol">Char</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#toHexadecimal()">toHexadecimal</a>():String</div>
+<div class="summaryTableDescription">
+         Converts the character in this hexadecimal code number representation.</div>
+</td><td class="summaryTableOwnerCol">Char</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#toNumber()">toNumber</a>():Number</div>
+<div class="summaryTableDescription">
+         Converts the character in this code number representation.</div>
+</td><td class="summaryTableOwnerCol">Char</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#toOctal()">toOctal</a>():String</div>
+<div class="summaryTableDescription">
+         Converts the character in this octal code number representation.</div>
+</td><td class="summaryTableOwnerCol">Char</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#toString()">toString</a>():String</div>
+<div class="summaryTableDescription">
+         Returns the String representation of the object.</div>
+</td><td class="summaryTableOwnerCol">Char</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#valueOf()">valueOf</a>():String</div>
+<div class="summaryTableDescription">
+         Returns the String representation of the object.</div>
+</td><td class="summaryTableOwnerCol">Char</td>
+</tr>
+</table>
+</div>
+<a name="constantSummary"></a>
+<div class="summarySection">
+<div class="summaryTableTitle">Public Constants</div>
+<table id="summaryTableConstant" class="summaryTable " cellpadding="3" cellspacing="0">
+<tr>
+<th>&nbsp;</th><th colspan="2">Constant</th><th class="summaryTableOwnerCol">Defined&nbsp;by</th>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#ACK">ACK</a> : <a href="system/Char.html">Char</a>
+<div class="summaryTableDescription">[static]
+         The "acknowledge" unicode character.</div>
+</td><td class="summaryTableOwnerCol">Char</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#ampersand">ampersand</a> : <a href="system/Char.html">Char</a>
+<div class="summaryTableDescription">[static]
+         The ampersand unicode character.</div>
+</td><td class="summaryTableOwnerCol">Char</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#apostrophe">apostrophe</a> : <a href="system/Char.html">Char</a>
+<div class="summaryTableDescription">[static]
+         The apostrophe unicode character.</div>
+</td><td class="summaryTableOwnerCol">Char</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#asterisk">asterisk</a> : <a href="system/Char.html">Char</a>
+<div class="summaryTableDescription">[static]
+         The asterisk closing single quotation mark, acute accent unicode character.</div>
+</td><td class="summaryTableOwnerCol">Char</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#backslash">backslash</a> : <a href="system/Char.html">Char</a>
+<div class="summaryTableDescription">[static]
+         The reverse slant "\\" unicode character.</div>
+</td><td class="summaryTableOwnerCol">Char</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#BEL">BEL</a> : <a href="system/Char.html">Char</a>
+<div class="summaryTableDescription">[static]
+         The "bell" unicode character.</div>
+</td><td class="summaryTableOwnerCol">Char</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#BS">BS</a> : <a href="system/Char.html">Char</a>
+<div class="summaryTableDescription">[static]
+         The "backspace" unicode character.</div>
+</td><td class="summaryTableOwnerCol">Char</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#CAN">CAN</a> : <a href="system/Char.html">Char</a>
+<div class="summaryTableDescription">[static]
+         The "cancel" unicode character.</div>
+</td><td class="summaryTableOwnerCol">Char</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#circumflex">circumflex</a> : <a href="system/Char.html">Char</a>
+<div class="summaryTableDescription">[static]
+         The "" unicode character.</div>
+</td><td class="summaryTableOwnerCol">Char</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#closingBrace">closingBrace</a> : <a href="system/Char.html">Char</a>
+<div class="summaryTableDescription">[static]
+         The closingBrace "}" unicode character.</div>
+</td><td class="summaryTableOwnerCol">Char</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#closingBracket">closingBracket</a> : <a href="system/Char.html">Char</a>
+<div class="summaryTableDescription">[static]
+         The "" unicode character.</div>
+</td><td class="summaryTableOwnerCol">Char</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#closingParenthesis">closingParenthesis</a> : <a href="system/Char.html">Char</a>
+<div class="summaryTableDescription">[static]
+         The ")" unicode character.</div>
+</td><td class="summaryTableOwnerCol">Char</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#colon">colon</a> : <a href="system/Char.html">Char</a>
+<div class="summaryTableDescription">[static]
+         The colon ":" unicode character.</div>
+</td><td class="summaryTableOwnerCol">Char</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#comma">comma</a> : <a href="system/Char.html">Char</a>
+<div class="summaryTableDescription">[static]
+         The comma unicode character.</div>
+</td><td class="summaryTableOwnerCol">Char</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#commercialAt">commercialAt</a> : <a href="system/Char.html">Char</a>
+<div class="summaryTableDescription">[static]
+         The "" unicode character.</div>
+</td><td class="summaryTableOwnerCol">Char</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#CR">CR</a> : <a href="system/Char.html">Char</a>
+<div class="summaryTableDescription">[static]
+         The "carriage return" unicode character.</div>
+</td><td class="summaryTableOwnerCol">Char</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#DC1">DC1</a> : <a href="system/Char.html">Char</a>
+<div class="summaryTableDescription">[static]
+         The "device control 1" unicode character.</div>
+</td><td class="summaryTableOwnerCol">Char</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#DC2">DC2</a> : <a href="system/Char.html">Char</a>
+<div class="summaryTableDescription">[static]
+         The "device control 2" unicode character.</div>
+</td><td class="summaryTableOwnerCol">Char</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#DC3">DC3</a> : <a href="system/Char.html">Char</a>
+<div class="summaryTableDescription">[static]
+         The "device control 3" unicode character.</div>
+</td><td class="summaryTableOwnerCol">Char</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#DC4">DC4</a> : <a href="system/Char.html">Char</a>
+<div class="summaryTableDescription">[static]
+         The "device control 4" unicode character.</div>
+</td><td class="summaryTableOwnerCol">Char</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#DEL">DEL</a> : <a href="system/Char.html">Char</a>
+<div class="summaryTableDescription">[static]
+         The "DEL" unicode character.</div>
+</td><td class="summaryTableOwnerCol">Char</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#DLE">DLE</a> : <a href="system/Char.html">Char</a>
+<div class="summaryTableDescription">[static]
+         The "data link escape" unicode character.</div>
+</td><td class="summaryTableOwnerCol">Char</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#dollarSign">dollarSign</a> : <a href="system/Char.html">Char</a>
+<div class="summaryTableDescription">[static]
+         The "$" unicode character.</div>
+</td><td class="summaryTableOwnerCol">Char</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#EM">EM</a> : <a href="system/Char.html">Char</a>
+<div class="summaryTableDescription">[static]
+         The "end of medium" unicode character.</div>
+</td><td class="summaryTableOwnerCol">Char</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#ENQ">ENQ</a> : <a href="system/Char.html">Char</a>
+<div class="summaryTableDescription">[static]
+         The "enquiry" unicode character.</div>
+</td><td class="summaryTableOwnerCol">Char</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#EOT">EOT</a> : <a href="system/Char.html">Char</a>
+<div class="summaryTableDescription">[static]
+         The "end of transmission" unicode character.</div>
+</td><td class="summaryTableOwnerCol">Char</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#equals">equals</a> : <a href="system/Char.html">Char</a>
+<div class="summaryTableDescription">[static]
+         The equals unicode character.</div>
+</td><td class="summaryTableOwnerCol">Char</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#ESC">ESC</a> : <a href="system/Char.html">Char</a>
+<div class="summaryTableDescription">[static]
+         The "escape" unicode character.</div>
+</td><td class="summaryTableOwnerCol">Char</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#ETB">ETB</a> : <a href="system/Char.html">Char</a>
+<div class="summaryTableDescription">[static]
+         The "end of transmission block" unicode character.</div>
+</td><td class="summaryTableOwnerCol">Char</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#ETX">ETX</a> : <a href="system/Char.html">Char</a>
+<div class="summaryTableDescription">[static]
+         The "end of test" unicode character.</div>
+</td><td class="summaryTableOwnerCol">Char</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#exclamationPoint">exclamationPoint</a> : <a href="system/Char.html">Char</a>
+<div class="summaryTableDescription">[static]
+         The "!" unicode character.</div>
+</td><td class="summaryTableOwnerCol">Char</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#FF">FF</a> : <a href="system/Char.html">Char</a>
+<div class="summaryTableDescription">[static]
+         The "NP form feed, new page" unicode character.</div>
+</td><td class="summaryTableOwnerCol">Char</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#FS">FS</a> : <a href="system/Char.html">Char</a>
+<div class="summaryTableDescription">[static]
+         The "file separator" unicode character.</div>
+</td><td class="summaryTableOwnerCol">Char</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#graveAccent">graveAccent</a> : <a href="system/Char.html">Char</a>
+<div class="summaryTableDescription">[static]
+         The graveAccent "`" unicode character.</div>
+</td><td class="summaryTableOwnerCol">Char</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#greaterThen">greaterThen</a> : <a href="system/Char.html">Char</a>
+<div class="summaryTableDescription">[static]
+         The greaterThen ">" unicode character.</div>
+</td><td class="summaryTableOwnerCol">Char</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#GS">GS</a> : <a href="system/Char.html">Char</a>
+<div class="summaryTableDescription">[static]
+         The "group separator" unicode character.</div>
+</td><td class="summaryTableOwnerCol">Char</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#lessThan">lessThan</a> : <a href="system/Char.html">Char</a>
+<div class="summaryTableDescription">[static]
+         The lessThan "<" unicode character.</div>
+</td><td class="summaryTableOwnerCol">Char</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#LF">LF</a> : <a href="system/Char.html">Char</a>
+<div class="summaryTableDescription">[static]
+         The "NL line feed, new line" unicode character.</div>
+</td><td class="summaryTableOwnerCol">Char</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#minus">minus</a> : <a href="system/Char.html">Char</a>
+<div class="summaryTableDescription">[static]
+         The minus (hyphen) unicode character.</div>
+</td><td class="summaryTableOwnerCol">Char</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#NAK">NAK</a> : <a href="system/Char.html">Char</a>
+<div class="summaryTableDescription">[static]
+         The "negative acknowledge" unicode character.</div>
+</td><td class="summaryTableOwnerCol">Char</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#NUL">NUL</a> : <a href="system/Char.html">Char</a>
+<div class="summaryTableDescription">[static]
+         The "null" unicode character.</div>
+</td><td class="summaryTableOwnerCol">Char</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#numberSign">numberSign</a> : <a href="system/Char.html">Char</a>
+<div class="summaryTableDescription">[static]
+         The "#" unicode character.</div>
+</td><td class="summaryTableOwnerCol">Char</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#openingBrace">openingBrace</a> : <a href="system/Char.html">Char</a>
+<div class="summaryTableDescription">[static]
+         The openingBrace "{" unicode character.</div>
+</td><td class="summaryTableOwnerCol">Char</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#openingBracket">openingBracket</a> : <a href="system/Char.html">Char</a>
+<div class="summaryTableDescription">[static]
+         The "" unicode character.</div>
+</td><td class="summaryTableOwnerCol">Char</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#openingParenthesis">openingParenthesis</a> : <a href="system/Char.html">Char</a>
+<div class="summaryTableDescription">[static]
+         The "" unicode character.</div>
+</td><td class="summaryTableOwnerCol">Char</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#percent">percent</a> : <a href="system/Char.html">Char</a>
+<div class="summaryTableDescription">[static]
+         The percent unicode character.</div>
+</td><td class="summaryTableOwnerCol">Char</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#period">period</a> : <a href="system/Char.html">Char</a>
+<div class="summaryTableDescription">[static]
+         The decimal point (period) unicode character.</div>
+</td><td class="summaryTableOwnerCol">Char</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#pipe">pipe</a> : <a href="system/Char.html">Char</a>
+<div class="summaryTableDescription">[static]
+         The vertical line "|" unicode character.</div>
+</td><td class="summaryTableOwnerCol">Char</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#plus">plus</a> : <a href="system/Char.html">Char</a>
+<div class="summaryTableDescription">[static]
+         The plus unicode character.</div>
+</td><td class="summaryTableOwnerCol">Char</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#questionMark">questionMark</a> : <a href="system/Char.html">Char</a>
+<div class="summaryTableDescription">[static]
+         The questionMark "?" unicode character.</div>
+</td><td class="summaryTableOwnerCol">Char</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#quotationMarks">quotationMarks</a> : <a href="system/Char.html">Char</a>
+<div class="summaryTableDescription">[static]
+         The "\" unicode character.</div>
+</td><td class="summaryTableOwnerCol">Char</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#RS">RS</a> : <a href="system/Char.html">Char</a>
+<div class="summaryTableDescription">[static]
+         The "record separator" unicode character.</div>
+</td><td class="summaryTableOwnerCol">Char</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#semiColon">semiColon</a> : <a href="system/Char.html">Char</a>
+<div class="summaryTableDescription">[static]
+         The semiColon ";" unicode character.</div>
+</td><td class="summaryTableOwnerCol">Char</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#SI">SI</a> : <a href="system/Char.html">Char</a>
+<div class="summaryTableDescription">[static]
+         The "shift in" unicode character.</div>
+</td><td class="summaryTableOwnerCol">Char</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#slash">slash</a> : <a href="system/Char.html">Char</a>
+<div class="summaryTableDescription">[static]
+         The slash (slant) unicode character.</div>
+</td><td class="summaryTableOwnerCol">Char</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#SO">SO</a> : <a href="system/Char.html">Char</a>
+<div class="summaryTableDescription">[static]
+         The "shift out" unicode character.</div>
+</td><td class="summaryTableOwnerCol">Char</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#SOH">SOH</a> : <a href="system/Char.html">Char</a>
+<div class="summaryTableDescription">[static]
+         The "start of heading" unicode character.</div>
+</td><td class="summaryTableOwnerCol">Char</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#space">space</a> : <a href="system/Char.html">Char</a>
+<div class="summaryTableDescription">[static]
+         The "space" unicode character.</div>
+</td><td class="summaryTableOwnerCol">Char</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#STX">STX</a> : <a href="system/Char.html">Char</a>
+<div class="summaryTableDescription">[static]
+         The "start of text" unicode character.</div>
+</td><td class="summaryTableOwnerCol">Char</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#SUB">SUB</a> : <a href="system/Char.html">Char</a>
+<div class="summaryTableDescription">[static]
+         The "substitute" unicode character.</div>
+</td><td class="summaryTableOwnerCol">Char</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#SYN">SYN</a> : <a href="system/Char.html">Char</a>
+<div class="summaryTableDescription">[static]
+         The "synchronous idle" unicode character.</div>
+</td><td class="summaryTableOwnerCol">Char</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#TAB">TAB</a> : <a href="system/Char.html">Char</a>
+<div class="summaryTableDescription">[static]
+         The "horizontal tab" unicode character.</div>
+</td><td class="summaryTableOwnerCol">Char</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#tilde">tilde</a> : <a href="system/Char.html">Char</a>
+<div class="summaryTableDescription">[static]
+         The "-" overline, general accent character.</div>
+</td><td class="summaryTableOwnerCol">Char</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#underline">underline</a> : <a href="system/Char.html">Char</a>
+<div class="summaryTableDescription">[static]
+         The underline "_" unicode character.</div>
+</td><td class="summaryTableOwnerCol">Char</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#US">US</a> : <a href="system/Char.html">Char</a>
+<div class="summaryTableDescription">[static]
+         The "unit separator" unicode character.</div>
+</td><td class="summaryTableOwnerCol">Char</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#VT">VT</a> : <a href="system/Char.html">Char</a>
+<div class="summaryTableDescription">[static]
+         The "vertical tab" unicode character.</div>
+</td><td class="summaryTableOwnerCol">Char</td>
+</tr>
+</table>
+</div>
+<script type="text/javascript" language="javascript">
+<!--
+showHideInherited();
+--></script>
+<div class="MainContent">
+<a name="propertyDetail"></a>
+<div class="detailSectionHeader">Property detail</div>
+<a name="code"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">code</td><td class="detailHeaderType">property</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>code:Number</code>&nbsp;&nbsp;[read-write]<p>
+         Determinates the code of the character.
+         </p><span class="label">Implementation</span>
+<br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function get code():Number</code>
+<br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function set code(value:Number):void</code>
+<br>
+</div>
+<a name="controls"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">controls</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public static var controls:Array</code><p>
+         The Array representation of all UTF8 controls characters.
+         </p></div>
+<a name="symbols"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">symbols</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public static var symbols:Array</code><p>
+         The Array representation of all UTF8 symbols characters.
+         </p></div>
+<a name="value"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">value</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>value:String</code>&nbsp;&nbsp;[read-write]<p>
+         Determinates the value of the character.
+         </p><span class="label">Implementation</span>
+<br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function get value():String</code>
+<br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function set value(value:String):void</code>
+<br>
+</div>
+<a name="constructorDetail"></a>
+<div class="detailSectionHeader">Constructor detail</div>
+<a name="Char()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">Char</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">constructor</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public function Char(str:String = "", index:uint = 0)</code><p>
+         Creates a new Char instance.
+         </p><span class="label">Parameters</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td><code><span class="label">str</span>:String</code> (default = "<code></code>")<code></code> &mdash; String expression use to get a char.
+         </td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><code><span class="label">index</span>:uint</code> (default = <code>0</code>)<code></code> &mdash; index of the character to get in the String (default 0).
+         </td>
+</tr>
+</table>
+</div>
+<a name="methodDetail"></a>
+<div class="detailSectionHeader">Method detail</div>
+<a name="fromNumber()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">fromNumber</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public static function fromNumber(num:Number):<a href="system/Char.html">Char</a></code><p>
+         Returns the Char representation of the specified Number value.
+         </p><span class="label">Parameters</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td><code><span class="label">num</span>:Number</code></td>
+</tr>
+</table>
+<p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><code><a href="system/Char.html">Char</a></code> &mdash; 
+                        the Char representation of the specified Number value.
+         
+                        
+                     </td>
+</tr>
+</table>
+</div>
+<a name="isASCII()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">isASCII</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public static function isASCII(c:String, index:uint = 0, extended:Boolean = false):Boolean</code><span class="label">Parameters</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td><code><span class="label">c</span>:String</code></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><code><span class="label">index</span>:uint</code> (default = <code>0</code>)<code></code></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><code><span class="label">extended</span>:Boolean</code> (default = <code>false</code>)<code></code></td>
+</tr>
+</table>
+<p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><code>Boolean</code></td>
+</tr>
+</table>
+</div>
+<a name="isControl()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">isControl</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public static function isControl(c:String, index:uint = 0):Boolean</code><span class="label">Parameters</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td><code><span class="label">c</span>:String</code></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><code><span class="label">index</span>:uint</code> (default = <code>0</code>)<code></code></td>
+</tr>
+</table>
+<p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><code>Boolean</code></td>
+</tr>
+</table>
+</div>
+<a name="isDigit()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">isDigit</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public static function isDigit(c:String, index:uint = 0):Boolean</code><p>
+         Indicates if the specified character is a digit character.
+         </p><span class="label">Parameters</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td><code><span class="label">c</span>:String</code></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><code><span class="label">index</span>:uint</code> (default = <code>0</code>)<code></code></td>
+</tr>
+</table>
+<p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><code>Boolean</code></td>
+</tr>
+</table>
+</div>
+<a name="isHexDigit()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">isHexDigit</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public static function isHexDigit(c:String, index:uint = 0):Boolean</code><p>
+         Indicates if the specified character is an hexadecimal digit character.
+         </p><span class="label">Parameters</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td><code><span class="label">c</span>:String</code></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><code><span class="label">index</span>:uint</code> (default = <code>0</code>)<code></code></td>
+</tr>
+</table>
+<p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><code>Boolean</code></td>
+</tr>
+</table>
+</div>
+<a name="isLetter()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">isLetter</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public static function isLetter(c:String, index:uint = 0):Boolean</code><p>
+         Indicates if the specified character is a letter.
+         </p><span class="label">Parameters</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td><code><span class="label">c</span>:String</code></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><code><span class="label">index</span>:uint</code> (default = <code>0</code>)<code></code></td>
+</tr>
+</table>
+<p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><code>Boolean</code></td>
+</tr>
+</table>
+</div>
+<a name="isLetterOrDigit()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">isLetterOrDigit</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public static function isLetterOrDigit(c:String, index:uint = 0):Boolean</code><p>
+         Indicates if the specified character is a letter or a digit.
+         </p><span class="label">Parameters</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td><code><span class="label">c</span>:String</code></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><code><span class="label">index</span>:uint</code> (default = <code>0</code>)<code></code></td>
+</tr>
+</table>
+<p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><code>Boolean</code></td>
+</tr>
+</table>
+</div>
+<a name="isLower()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">isLower</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public static function isLower(c:String, index:uint = 0):Boolean</code><p>
+         Indicates if the specified character is a lower case.
+         </p><span class="label">Parameters</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td><code><span class="label">c</span>:String</code></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><code><span class="label">index</span>:uint</code> (default = <code>0</code>)<code></code></td>
+</tr>
+</table>
+<p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><code>Boolean</code></td>
+</tr>
+</table>
+</div>
+<a name="isSymbol()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">isSymbol</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public static function isSymbol(c:String, index:uint = 0):Boolean</code><p>
+         Indicates if the specified character is a symbol.
+         </p><span class="label">Parameters</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td><code><span class="label">c</span>:String</code></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><code><span class="label">index</span>:uint</code> (default = <code>0</code>)<code></code></td>
+</tr>
+</table>
+<p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><code>Boolean</code></td>
+</tr>
+</table>
+</div>
+<a name="isUnicode()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">isUnicode</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public static function isUnicode(c:String, index:uint = 0):Boolean</code><p>
+         Indicates if the specified character is a unicode char.
+         </p><span class="label">Parameters</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td><code><span class="label">c</span>:String</code></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><code><span class="label">index</span>:uint</code> (default = <code>0</code>)<code></code></td>
+</tr>
+</table>
+<p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><code>Boolean</code></td>
+</tr>
+</table>
+</div>
+<a name="isUpper()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">isUpper</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public static function isUpper(c:String, index:uint = 0):Boolean</code><p>
+         Indicates if the specified character is a upper char.
+         </p><span class="label">Parameters</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td><code><span class="label">c</span>:String</code></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><code><span class="label">index</span>:uint</code> (default = <code>0</code>)<code></code></td>
+</tr>
+</table>
+<p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><code>Boolean</code></td>
+</tr>
+</table>
+</div>
+<a name="isWhiteSpace()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">isWhiteSpace</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public static function isWhiteSpace(c:String, index:uint = 0):Boolean</code><p>
+         Indicates if the specified character is a whitespace char.
+         </p><span class="label">Parameters</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td><code><span class="label">c</span>:String</code></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><code><span class="label">index</span>:uint</code> (default = <code>0</code>)<code></code></td>
+</tr>
+</table>
+<p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><code>Boolean</code></td>
+</tr>
+</table>
+</div>
+<a name="toHexadecimal()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">toHexadecimal</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public function toHexadecimal():String</code><p>
+         Converts the character in this hexadecimal code number representation.
+         </p><p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><code>String</code></td>
+</tr>
+</table>
+</div>
+<a name="toNumber()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">toNumber</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public function toNumber():Number</code><p>
+         Converts the character in this code number representation.
+         </p><p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><code>Number</code></td>
+</tr>
+</table>
+</div>
+<a name="toOctal()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">toOctal</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public function toOctal():String</code><p>
+         Converts the character in this octal code number representation.
+         </p><p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><code>String</code></td>
+</tr>
+</table>
+</div>
+<a name="toString()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">toString</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public function toString():String</code><p>
+         Returns the String representation of the object.
+         </p><p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><code>String</code> &mdash; the String representation of the object.
+         </td>
+</tr>
+</table>
+</div>
+<a name="valueOf()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">valueOf</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public function valueOf():String</code><p>
+         Returns the String representation of the object.
+         </p><p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><code>String</code> &mdash; the String representation of the object.
+         </td>
+</tr>
+</table>
+</div>
+<a name="constantDetail"></a>
+<div class="detailSectionHeader">Constant detail</div>
+<a name="ACK"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">ACK</td><td class="detailHeaderType">constant</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public static const ACK:<a href="system/Char.html">Char</a></code><p>
+         The "acknowledge" unicode character.
+         </p></div>
+<a name="ampersand"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">ampersand</td><td class="detailHeaderType">constant</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public static const ampersand:<a href="system/Char.html">Char</a></code><p>
+         The ampersand unicode character.
+         </p></div>
+<a name="apostrophe"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">apostrophe</td><td class="detailHeaderType">constant</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public static const apostrophe:<a href="system/Char.html">Char</a></code><p>
+         The apostrophe unicode character.
+         </p></div>
+<a name="asterisk"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">asterisk</td><td class="detailHeaderType">constant</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public static const asterisk:<a href="system/Char.html">Char</a></code><p>
+         The asterisk closing single quotation mark, acute accent unicode character.
+         </p></div>
+<a name="backslash"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">backslash</td><td class="detailHeaderType">constant</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public static const backslash:<a href="system/Char.html">Char</a></code><p>
+         The reverse slant "\\" unicode character.
+         </p></div>
+<a name="BEL"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">BEL</td><td class="detailHeaderType">constant</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public static const BEL:<a href="system/Char.html">Char</a></code><p>
+         The "bell" unicode character.
+         </p></div>
+<a name="BS"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">BS</td><td class="detailHeaderType">constant</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public static const BS:<a href="system/Char.html">Char</a></code><p>
+         The "backspace" unicode character.
+         </p></div>
+<a name="CAN"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">CAN</td><td class="detailHeaderType">constant</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public static const CAN:<a href="system/Char.html">Char</a></code><p>
+         The "cancel" unicode character.
+         </p></div>
+<a name="circumflex"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">circumflex</td><td class="detailHeaderType">constant</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public static const circumflex:<a href="system/Char.html">Char</a></code><p>
+         The "" unicode character.
+         </p></div>
+<a name="closingBrace"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">closingBrace</td><td class="detailHeaderType">constant</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public static const closingBrace:<a href="system/Char.html">Char</a></code><p>
+         The closingBrace "}" unicode character.
+         </p></div>
+<a name="closingBracket"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">closingBracket</td><td class="detailHeaderType">constant</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public static const closingBracket:<a href="system/Char.html">Char</a></code><p>
+         The "" unicode character.
+         </p></div>
+<a name="closingParenthesis"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">closingParenthesis</td><td class="detailHeaderType">constant</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public static const closingParenthesis:<a href="system/Char.html">Char</a></code><p>
+         The ")" unicode character.
+         </p></div>
+<a name="colon"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">colon</td><td class="detailHeaderType">constant</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public static const colon:<a href="system/Char.html">Char</a></code><p>
+         The colon ":" unicode character.
+         </p></div>
+<a name="comma"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">comma</td><td class="detailHeaderType">constant</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public static const comma:<a href="system/Char.html">Char</a></code><p>
+         The comma unicode character.
+         </p></div>
+<a name="commercialAt"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">commercialAt</td><td class="detailHeaderType">constant</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public static const commercialAt:<a href="system/Char.html">Char</a></code><p>
+         The "" unicode character.
+         </p></div>
+<a name="CR"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">CR</td><td class="detailHeaderType">constant</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public static const CR:<a href="system/Char.html">Char</a></code><p>
+         The "carriage return" unicode character.
+         </p></div>
+<a name="DC1"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">DC1</td><td class="detailHeaderType">constant</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public static const DC1:<a href="system/Char.html">Char</a></code><p>
+         The "device control 1" unicode character.
+         </p></div>
+<a name="DC2"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">DC2</td><td class="detailHeaderType">constant</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public static const DC2:<a href="system/Char.html">Char</a></code><p>
+         The "device control 2" unicode character.
+         </p></div>
+<a name="DC3"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">DC3</td><td class="detailHeaderType">constant</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public static const DC3:<a href="system/Char.html">Char</a></code><p>
+         The "device control 3" unicode character.
+         </p></div>
+<a name="DC4"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">DC4</td><td class="detailHeaderType">constant</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public static const DC4:<a href="system/Char.html">Char</a></code><p>
+         The "device control 4" unicode character.
+         </p></div>
+<a name="DEL"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">DEL</td><td class="detailHeaderType">constant</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public static const DEL:<a href="system/Char.html">Char</a></code><p>
+         The "DEL" unicode character.
+         </p></div>
+<a name="DLE"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">DLE</td><td class="detailHeaderType">constant</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public static const DLE:<a href="system/Char.html">Char</a></code><p>
+         The "data link escape" unicode character.
+         </p></div>
+<a name="dollarSign"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">dollarSign</td><td class="detailHeaderType">constant</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public static const dollarSign:<a href="system/Char.html">Char</a></code><p>
+         The "$" unicode character.
+         </p></div>
+<a name="EM"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">EM</td><td class="detailHeaderType">constant</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public static const EM:<a href="system/Char.html">Char</a></code><p>
+         The "end of medium" unicode character.
+         </p></div>
+<a name="ENQ"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">ENQ</td><td class="detailHeaderType">constant</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public static const ENQ:<a href="system/Char.html">Char</a></code><p>
+         The "enquiry" unicode character.
+         </p></div>
+<a name="EOT"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">EOT</td><td class="detailHeaderType">constant</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public static const EOT:<a href="system/Char.html">Char</a></code><p>
+         The "end of transmission" unicode character.
+         </p></div>
+<a name="equals"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">equals</td><td class="detailHeaderType">constant</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public static const equals:<a href="system/Char.html">Char</a></code><p>
+         The equals unicode character.
+         </p></div>
+<a name="ESC"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">ESC</td><td class="detailHeaderType">constant</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public static const ESC:<a href="system/Char.html">Char</a></code><p>
+         The "escape" unicode character.
+         </p></div>
+<a name="ETB"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">ETB</td><td class="detailHeaderType">constant</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public static const ETB:<a href="system/Char.html">Char</a></code><p>
+         The "end of transmission block" unicode character.
+         </p></div>
+<a name="ETX"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">ETX</td><td class="detailHeaderType">constant</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public static const ETX:<a href="system/Char.html">Char</a></code><p>
+         The "end of test" unicode character.
+         </p></div>
+<a name="exclamationPoint"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">exclamationPoint</td><td class="detailHeaderType">constant</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public static const exclamationPoint:<a href="system/Char.html">Char</a></code><p>
+         The "!" unicode character.
+         </p></div>
+<a name="FF"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">FF</td><td class="detailHeaderType">constant</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public static const FF:<a href="system/Char.html">Char</a></code><p>
+         The "NP form feed, new page" unicode character.
+         </p></div>
+<a name="FS"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">FS</td><td class="detailHeaderType">constant</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public static const FS:<a href="system/Char.html">Char</a></code><p>
+         The "file separator" unicode character.
+         </p></div>
+<a name="graveAccent"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">graveAccent</td><td class="detailHeaderType">constant</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public static const graveAccent:<a href="system/Char.html">Char</a></code><p>
+         The graveAccent "`" unicode character.
+         </p></div>
+<a name="greaterThen"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">greaterThen</td><td class="detailHeaderType">constant</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public static const greaterThen:<a href="system/Char.html">Char</a></code><p>
+         The greaterThen ">" unicode character.
+         </p></div>
+<a name="GS"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">GS</td><td class="detailHeaderType">constant</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public static const GS:<a href="system/Char.html">Char</a></code><p>
+         The "group separator" unicode character.
+         </p></div>
+<a name="lessThan"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">lessThan</td><td class="detailHeaderType">constant</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public static const lessThan:<a href="system/Char.html">Char</a></code><p>
+         The lessThan "<" unicode character.
+         </p></div>
+<a name="LF"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">LF</td><td class="detailHeaderType">constant</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public static const LF:<a href="system/Char.html">Char</a></code><p>
+         The "NL line feed, new line" unicode character.
+         </p></div>
+<a name="minus"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">minus</td><td class="detailHeaderType">constant</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public static const minus:<a href="system/Char.html">Char</a></code><p>
+         The minus (hyphen) unicode character.
+         </p></div>
+<a name="NAK"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">NAK</td><td class="detailHeaderType">constant</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public static const NAK:<a href="system/Char.html">Char</a></code><p>
+         The "negative acknowledge" unicode character.
+         </p></div>
+<a name="NUL"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">NUL</td><td class="detailHeaderType">constant</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public static const NUL:<a href="system/Char.html">Char</a></code><p>
+         The "null" unicode character.
+         </p></div>
+<a name="numberSign"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">numberSign</td><td class="detailHeaderType">constant</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public static const numberSign:<a href="system/Char.html">Char</a></code><p>
+         The "#" unicode character.
+         </p></div>
+<a name="openingBrace"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">openingBrace</td><td class="detailHeaderType">constant</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public static const openingBrace:<a href="system/Char.html">Char</a></code><p>
+         The openingBrace "{" unicode character.
+         </p></div>
+<a name="openingBracket"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">openingBracket</td><td class="detailHeaderType">constant</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public static const openingBracket:<a href="system/Char.html">Char</a></code><p>
+         The "" unicode character.
+         </p></div>
+<a name="openingParenthesis"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">openingParenthesis</td><td class="detailHeaderType">constant</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public static const openingParenthesis:<a href="system/Char.html">Char</a></code><p>
+         The "" unicode character.
+         </p></div>
+<a name="percent"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">percent</td><td class="detailHeaderType">constant</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public static const percent:<a href="system/Char.html">Char</a></code><p>
+         The percent unicode character.
+         </p></div>
+<a name="period"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">period</td><td class="detailHeaderType">constant</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public static const period:<a href="system/Char.html">Char</a></code><p>
+         The decimal point (period) unicode character.
+         </p></div>
+<a name="pipe"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">pipe</td><td class="detailHeaderType">constant</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public static const pipe:<a href="system/Char.html">Char</a></code><p>
+         The vertical line "|" unicode character.
+         </p></div>
+<a name="plus"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">plus</td><td class="detailHeaderType">constant</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public static const plus:<a href="system/Char.html">Char</a></code><p>
+         The plus unicode character.
+         </p></div>
+<a name="questionMark"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">questionMark</td><td class="detailHeaderType">constant</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public static const questionMark:<a href="system/Char.html">Char</a></code><p>
+         The questionMark "?" unicode character.
+         </p></div>
+<a name="quotationMarks"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">quotationMarks</td><td class="detailHeaderType">constant</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public static const quotationMarks:<a href="system/Char.html">Char</a></code><p>
+         The "\" unicode character.
+         </p></div>
+<a name="RS"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">RS</td><td class="detailHeaderType">constant</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public static const RS:<a href="system/Char.html">Char</a></code><p>
+         The "record separator" unicode character.
+         </p></div>
+<a name="semiColon"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">semiColon</td><td class="detailHeaderType">constant</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public static const semiColon:<a href="system/Char.html">Char</a></code><p>
+         The semiColon ";" unicode character.
+         </p></div>
+<a name="SI"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">SI</td><td class="detailHeaderType">constant</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public static const SI:<a href="system/Char.html">Char</a></code><p>
+         The "shift in" unicode character.
+         </p></div>
+<a name="slash"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">slash</td><td class="detailHeaderType">constant</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public static const slash:<a href="system/Char.html">Char</a></code><p>
+         The slash (slant) unicode character.
+         </p></div>
+<a name="SO"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">SO</td><td class="detailHeaderType">constant</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public static const SO:<a href="system/Char.html">Char</a></code><p>
+         The "shift out" unicode character.
+         </p></div>
+<a name="SOH"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">SOH</td><td class="detailHeaderType">constant</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public static const SOH:<a href="system/Char.html">Char</a></code><p>
+         The "start of heading" unicode character.
+         </p></div>
+<a name="space"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">space</td><td class="detailHeaderType">constant</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public static const space:<a href="system/Char.html">Char</a></code><p>
+         The "space" unicode character.
+         </p></div>
+<a name="STX"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">STX</td><td class="detailHeaderType">constant</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public static const STX:<a href="system/Char.html">Char</a></code><p>
+         The "start of text" unicode character.
+         </p></div>
+<a name="SUB"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">SUB</td><td class="detailHeaderType">constant</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public static const SUB:<a href="system/Char.html">Char</a></code><p>
+         The "substitute" unicode character.
+         </p></div>
+<a name="SYN"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">SYN</td><td class="detailHeaderType">constant</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public static const SYN:<a href="system/Char.html">Char</a></code><p>
+         The "synchronous idle" unicode character.
+         </p></div>
+<a name="TAB"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">TAB</td><td class="detailHeaderType">constant</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public static const TAB:<a href="system/Char.html">Char</a></code><p>
+         The "horizontal tab" unicode character.
+         </p></div>
+<a name="tilde"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">tilde</td><td class="detailHeaderType">constant</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public static const tilde:<a href="system/Char.html">Char</a></code><p>
+         The "-" overline, general accent character.
+         </p></div>
+<a name="underline"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">underline</td><td class="detailHeaderType">constant</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public static const underline:<a href="system/Char.html">Char</a></code><p>
+         The underline "_" unicode character.
+         </p></div>
+<a name="US"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">US</td><td class="detailHeaderType">constant</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public static const US:<a href="system/Char.html">Char</a></code><p>
+         The "unit separator" unicode character.
+         </p></div>
+<a name="VT"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">VT</td><td class="detailHeaderType">constant</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public static const VT:<a href="system/Char.html">Char</a></code><p>
+         The "vertical tab" unicode character.
+         </p></div>
+<br>
+<br>
+<hr>
+<br>
+<p></p>
+<center class="copyright"> 
+</center>
+</div>
+</body>
+</html>
+<!-- -->
