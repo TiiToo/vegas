@@ -24,123 +24,63 @@
 /**
  * Allows an object to control its own serialization with the eden representation.
  * Thanks : Zwetan Core2 framework inspired by Mozilla SpiderMonkey.
+ * @deprecated
  * @author eKameleon
  */
 package vegas.util
 {
     import system.Reflection;
-    import system.Serializable;    	
+    import system.eden;    
 
     /**
-	 * The eden serializer of the VEGAS implementation.
+	 * The eden serializer of the VEGAS implementation. 
+	 * @deprecated
 	 */
 	public class Serializer
     {
         
- 	    /**
-	     * Returns the string source representation of the specified object and serialize the array of arguments to pass in the constructor of the class.
-	     * @return the string source representation of the specified object and serialize the array of arguments to pass in the constructor of the class.
-	     */
-		public static function getSourceOf(o:*=null, params:Array=null):String 
-		{
-			if ( o == null )
-			{
-				return "null" ;
-			}
-		    var path:String   = Reflection.getClassPath(o) ;
-    		var source:String = "new " + path + "(" ;
-    		if ( params != null )
-    		{
-    			var l:uint = params.length ;
-    			if (l > 0) 
-	    		{
-    				var i:uint = 0 ;
-    				while (i < l) 
-    				{
-	    				source += Serializer.toSource( params[i] ) ;
-    					i++ ;
-    					if (i<l) 
-    					{
-	    					source += "," ;
-    					}
-    				}
-    			}
-    		}
-    		source += ")" ;
-    		return source ;
-	    }
-	
-		/**
-		 * Returns the eden string representation of the specified object.
-		 * @return the eden string representation of the specified object.
-		 */
-	    public static function toSource( ...arguments ):String 
-	    {
-		    
-		    var o:* = arguments[0] ;
-		    
-		    if (o === undefined)
-		    {
-		        return "undefined" ;
-		    }
-    		if (o === null) 
-    		{
-    			return "null" ;
-    		}
-    		if (o is Serializable) 
-    		{
-    		    return o.toSource.apply(o, arguments.slice(1)) ;
-    		}
-    		else if (o is Class)
-    		{
-    			return Reflection.getClassPath(o) ;	
-    		}
-    		else if (o is Array) 
-    		{
-    		    return ArrayUtil.toSource.apply(o, arguments.slice()) ;
-    		}
-    		else if (o is Boolean) 
-    		{
-    		    return BooleanUtil.toSource.apply(o, arguments.slice()) ;
-    		}
-    		else if (o is Date)
-    		{
-    		    return DateUtil.toSource(o) ;
-    		}
-    		else if (o is Error) 
-    		{
-    			return ErrorUtil.toSource.apply(o, arguments.slice()) ;
-    		}
-    		else if (o is Function) 
-    		{
-    			return FunctionUtil.toSource.apply(o, arguments.slice()) ;
-    		}
-    		//else if (o as uint) 
-    		//{
-    		//	return ("new uint(" + o + ")") ;
-    		//}
-    		//else if (o as int) 
-    		//{
-    		//	return ("new int(" + o + ")") ;
-    		//}
-    		else if (o is Number) 
-    		{
-    			return NumberUtil.toSource.apply(o, arguments.slice()) ;
-    		}
-    		else if (o is String) 
-    		{
-    			return StringUtil.toSource.apply(o, arguments.slice()) ;
-    		}
-    		else if (o is Object) 
-    		{
-    			return ObjectUtil.toSource.apply(o, arguments.slice()) ;
-    		}
-	    	else 
-	    	{
-	    		return "undefined" ;
-	    	}
-	    	
-	    }    
+       /**
+         * Returns the string source representation of the specified object and serialize the array of arguments to pass in the constructor of the class.
+         * @return the string source representation of the specified object and serialize the array of arguments to pass in the constructor of the class.
+         */
+        public static function getSourceOf(o:*=null, params:Array=null):String 
+        {
+            if ( o == null )
+            {
+                return "null" ;
+            }
+            var path:String   = Reflection.getClassPath(o) ;
+            var source:String = "new " + path + "(" ;
+            if ( params != null )
+            {
+                var l:uint = params.length ;
+                if (l > 0) 
+                {
+                    var i:uint = 0 ;
+                    while (i < l) 
+                    {
+                        source += Serializer.toSource( params[i] ) ;
+                        i++ ;
+                        if (i<l) 
+                        {
+                            source += "," ;
+                        }
+                    }
+                }
+            }
+            source += ")" ;
+            return source ;
+        }
+    
+        /**
+         * Returns the eden string representation of the specified object.
+         * @return the eden string representation of the specified object.
+         */
+        public static function toSource( ...arguments ):String 
+        {
+            var o:* = arguments[0] ;
+            return eden.serialize(o);
+        }    
   
     }
 }

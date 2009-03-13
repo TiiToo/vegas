@@ -22,26 +22,26 @@
 */
 package vegas  
 {
-	import buRRRn.ASTUce.framework.ITest;
-	import buRRRn.ASTUce.framework.TestSuite;
-	
-	import vegas.core.AllTests;
-	import vegas.data.AllTests;
-	import vegas.errors.AllTests;
-	import vegas.events.AllTests;
-	import vegas.logging.AllTests;
-	import vegas.string.AllTests;
-	import vegas.util.AllTests;	
+    import buRRRn.ASTUce.framework.ITest;
+    import buRRRn.ASTUce.framework.TestSuite;
+    
+    import vegas.core.AllTests;
+    import vegas.data.AllTests;
+    import vegas.errors.AllTests;
+    import vegas.events.AllTests;
+    import vegas.logging.AllTests;
+    import vegas.string.AllTests;
+    import vegas.util.AllTests;    
 
-	/**
-	 * This class launch all tests.
-	 */
-	public class AllTests
-	{
-		
+    /**
+     * This class launch all tests.
+     */
+    public class AllTests
+    {
+        
         /**
          * Creates the Test list.
-         */		
+         */        
         public static function suite():ITest
         {
             var suite:TestSuite = new TestSuite( "vegas tests" );
@@ -56,6 +56,6 @@ package vegas
             
             return suite;
         }
-	}
+    }
 }
 
