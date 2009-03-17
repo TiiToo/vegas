@@ -27,29 +27,29 @@ package vegas.string.json
     /**
      * This JSONError is throw in the JSON static methods.
      */
-	public class JSONError extends Error
-	{
+    public class JSONError extends Error
+    {
 
-    	/**
-    	 * Creates a new JSONError instance.
-    	 */
-		public function JSONError( message:String, at:uint, source:String , id:int=0 )
-		{
-			super( message , id );
-            name = "JSONError" ;			
-			this.at = at ;
-			this.source = source ;
-		}
-		
-		/**
-		 * The position of char with an error parsing in the JSON String representation.
-		 */
-		public var at:uint ;
-		
-		/**
-		 * The String source representation with a bad parsing.
-		 */
-		public var source:String ;
+        /**
+         * Creates a new JSONError instance.
+         */
+        public function JSONError( message:String, at:uint, source:String , id:int=0 )
+        {
+            super( message , id );
+            name        = "JSONError" ;            
+            this.at     = at ;
+            this.source = source ;
+        }
+        
+        /**
+         * The position of char with an error parsing in the JSON String representation.
+         */
+        public var at:uint ;
+        
+        /**
+         * The source ot the bad parsing.
+         */
+        public var source:String ;
         
         /**
          * Returns a String representation of the object.
@@ -59,9 +59,9 @@ package vegas.string.json
         {
             var msg:String = "## " + name + " : " + message + " ##" ;
             if (!isNaN(at)) msg += ", at:" + at ;
-			if (source) msg += " in \"" + source + "\"";
-		    return msg ;
+            if (source) msg += " in \"" + source + "\"";
+            return msg ;
         }
 
-	}
+    }
 }

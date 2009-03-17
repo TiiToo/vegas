@@ -1,51 +1,28 @@
 ﻿/*
-    Licence
-    
-        Copyright (c) 2005 JSON.org
 
-        Permission is hereby granted, free of charge, to any person obtaining a copy
-        of this software and associated documentation files (the "Software"), to deal
-        in the Software without restriction, including without limitation the rights
-        to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-        copies of the Software, and to permit persons to whom the Software is
-        furnished to do so, subject to the following conditions:
-    
-        The Software shall be used for Good, not Evil.
-
-        THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-        IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-        FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-        AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-        LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-        OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-        SOFTWARE.
-    
-    Contributor(s) :
-    
-        - Ported to Actionscript May 2005 by Trannie Carter <tranniec@designvox.com>, wwww.designvox.com
-        
-        - Alcaraz Marc (aka eKameleon) <ekameleon@gmail.com> 
-        
-        2006-01-24 
-            - Refactoring AS2 and MTASC Compatibilty 
-            - AS3 version
-            - SSAS version (for 'Flash Communication Server' and 'Flash Media Server')
-            - Add Hexa Digits in 'deserialize' method
-            - Supports in the objects deserialization the key property with quote, double quote or not surrounded by quotes.
-            - Supports in string simple or double quotes.    
-            
-            More informations in the VEGAS page project : http://code.google.com/p/vegas/
-            
-            NOTE : eden Hexa digits code inspiration -> http://code.google.com/p/edenrr/
-        
-        2006-01-24 
-            
-            - Optimisation use private namespace to implement the parsing method. The parser is fast x2.
-
+  The contents of this file are subject to the Mozilla Public License Version
+  1.1 (the "License"); you may not use this file except in compliance with
+  the License. You may obtain a copy of the License at 
+  
+           http://www.mozilla.org/MPL/ 
+  
+  Software distributed under the License is distributed on an "AS IS" basis,
+  WITHOUT WARRANTY OF ANY KIND, either express or implied. See the License
+  for the specific language governing rights and limitations under the License. 
+  
+  The Original Code is Vegas Framework.
+  
+  The Initial Developer of the Original Code is
+  ALCARAZ Marc (aka eKameleon)  <ekameleon@gmail.com>.
+  Portions created by the Initial Developer are Copyright (C) 2004-2009
+  the Initial Developer. All Rights Reserved.
+  
+  Contributor(s) :
+  
 */
 package vegas.string.json 
 {
-    import system.Serializer;        
+    import system.Serializer;            
 
     /**
      * This class is the concrete class of the JSON singleton.
@@ -55,7 +32,7 @@ package vegas.string.json
      * @example
      * <pre class="prettyprint">
      * import vegas.string.JSON;
-     * import vegas.string.errors.JSONError;
+     * import vegas.string.JSONError;
      * 
      * import system.Reflection ;
      * 
@@ -112,15 +89,13 @@ package vegas.string.json
      */
     public class JSONSerializer implements Serializer 
     {
-
-        use namespace jsonparser;
         
         /**
          * Creates a new JSONSerializer instance.
          */
         public function JSONSerializer()
         {
-            super() ;
+            //
         }
                 
         /**
@@ -200,25 +175,20 @@ package vegas.string.json
         public function serialize( value:* ):String
         {
             var c:String ; // char
-            var i:Number ;
-            var l:Number ;
+            var i:int ;
+            var l:int ;
             var s:String = '' ;
             var v:* ;
-            
             var tof:String = typeof(value) ;
-            
             switch (tof) 
             {
-            
                 case 'object' :
                 {
                     if (value)
                     {
                         if (value is Array) 
                         {
-                        
                             l = (value as Array).length ;
-                        
                             for (i = 0 ; i < l ; ++i) 
                             {
                                 v = serialize(value[i]);
@@ -226,11 +196,9 @@ package vegas.string.json
                                 s += v ;
                             }
                             return '[' + s + ']';
-                        
                         }
                         else if ( typeof( value.toString ) != 'undefined') 
                         {
-                            
                             for (var prop:String in value) 
                             {
                                 v = value[prop];
@@ -249,15 +217,12 @@ package vegas.string.json
                     }
                     return 'null';
                 }
-            
                 case 'number':
                 {
                     return isFinite(value) ? String(value) : 'null' ;
                 }
-                
                 case 'string' :
                 {
-                
                     l = (value as String).length ;
                     s = '"' ;
                     for (i = 0 ; i < l ; i += 1) 
@@ -275,7 +240,6 @@ package vegas.string.json
                         {
                             switch (c) 
                             {
-                                
                                 case '\b':
                                 {
                                     s += '\\b';
@@ -309,55 +273,34 @@ package vegas.string.json
                             }
                         }
                     }
-                    return s + '"';
+                    return s + '"' ;
                 }
-                
                 case 'boolean' :
                 {
                     return String(value);
                 }
-
                 default :
                 {
                     return 'null';
                 }
             }
         }
-                
-        /**
-         * @private
-         */
-        private var _prettyIndent:int = 0 ;
-        
-        /**
-         * @private
-         */
-        private var _prettyPrinting:Boolean = false ;
-        
-        /**
-         * @private
-         */
-        private var _indentor:String = "    " ;
-       
-        /**
-         * @private
-         */
-        private namespace jsonparser ;
+
                
         /**
          * The current position of the iterator in the source.
          */
-        jsonparser var at:Number = 0 ;
+        protected var at:Number = 0 ;
 
         /**
          * The current character of the iterator in the source.
          */
-        jsonparser var ch:String = ' ' ;
+        protected var ch:String = ' ' ;
         
         /**
          * Check the Array objects in the source expression.
          */
-        jsonparser function array():Array 
+        protected function array():Array 
         {
             var a:Array = [];
             if ( ch == '[' ) 
@@ -386,14 +329,14 @@ package vegas.string.json
                     white();
                 }
             }
-            error( strings.badArray );
+            error( JSONStrings.badArray );
             return null ;
         }        
         
         /**
          * Throws a JSONError with the passed-in message.
          */
-        jsonparser function error( m:String ):void 
+        protected function error( m:String ):void 
         {
             throw new JSONError( m, at - 1 , source) ;
         }        
@@ -401,7 +344,7 @@ package vegas.string.json
         /**
          * Indicates if the passed-in character is a digit.
          */
-        jsonparser function isDigit( c:String ):Boolean
+        protected function isDigit( c:String ):Boolean
         {
             return( ("0" <= c) && (c <= "9") );
         }
@@ -409,7 +352,7 @@ package vegas.string.json
         /**
          * Indicates if the passed-in character is a hexadecimal digit.
          */
-        jsonparser function isHexDigit( c:String ):Boolean 
+        protected function isHexDigit( c:String ):Boolean 
         {
             return( isDigit( c ) || (("A" <= c) && (c <= "F")) || (("a" <= c) && (c <= "f")) );
         }
@@ -417,12 +360,12 @@ package vegas.string.json
         /**
          * Indicates if the current character is a key.
          */
-        jsonparser function key():*
+        protected function key():*
         {
-            var s:String = ch;
-            var semiColon:Number   = source.indexOf(':', at);
-            var quoteIndex:Number  = source.indexOf('"', at) ;
-            var squoteIndex:Number = source.indexOf("'", at) ;
+            var s:String        = ch ;
+            var semiColon:int   = source.indexOf( ':' , at ) ;
+            var quoteIndex:int  = source.indexOf( '"' , at ) ;
+            var squoteIndex:int = source.indexOf( "'" , at ) ;
             if( (quoteIndex <= semiColon && quoteIndex > -1) || (squoteIndex <= semiColon && squoteIndex > -1))
             {
                 s = string() ;
@@ -433,35 +376,32 @@ package vegas.string.json
                 }
                 else
                 {
-                    error(strings.badKey);
+                    error(JSONStrings.badKey);
                 }
             }
-    
-                while ( next() ) // Use key handling 
-                   {
-                    if (ch == ':') 
-                    {
-                        return s;
-                    } 
-                    if(ch <= ' ')
-                    {
-                        //
-                    }
-                    else
-                    {
-                        s += ch;
-                    }
+            while ( next() ) // Use key handling 
+            {
+                if (ch == ':') 
+                {
+                    return s;
+                } 
+                if(ch <= ' ')
+                {
+                    //
                 }
-                
-                error("Bad key") ;
-            
+                else
+                {
+                    s += ch;
+                }
+            }
+            error( JSONStrings.badKey ) ;
         }
         
         /**
          * Returns the next character in the source String representation.
          * @return the next character in the source String representation.
          */
-        jsonparser function next():String
+        protected function next():String
         {
            ch = source.charAt(at);
            at += 1;
@@ -471,21 +411,19 @@ package vegas.string.json
         /**
          * Check the Number values in the source expression.
          */    
-        jsonparser function number():* 
+        protected function number():* 
         {
             
             var n:* = '' ;
             var v:* ;
             var hex:String = '' ;
             var sign:String = '' ;
-            
             if (ch == '-') 
             {
                 n = '-';
                 sign = n ;
                 next();
             }
-            
             if( ch == "0" ) 
             {
                 next() ;
@@ -499,7 +437,7 @@ package vegas.string.json
                     }
                     if( hex == "" ) 
                     {
-                        error(strings.malFormedHexadecimal) ;
+                        error(JSONStrings.malFormedHexadecimal) ;
                     }
                     else 
                     {
@@ -511,13 +449,11 @@ package vegas.string.json
                     n += "0" ;
                 }
             }
-                
             while ( isDigit(ch) ) 
             {
                 n += ch ;
                 next() ;
             }
-    
             if (ch == '.') 
             {
                 n += '.';
@@ -526,59 +462,45 @@ package vegas.string.json
                     n += ch ;
                 }
             }
-    
             v = 1 * n ;
-        
             if (!isFinite(v)) 
             {
-                error(strings.badNumber);
+                error( JSONStrings.badNumber );
             }
             else 
             {
                 return v ;
             }
-        
             return NaN ;
-         
         }        
         
         /**
          * Check the Object values in the source expression.
          */       
-        jsonparser function object():* 
+        protected function object():* 
         {
             var k:* = {} ;
             var o:* = {} ;
             if (ch == '{') 
             {
-                
                 next();
                 white();
-                
                 if (ch == '}') 
                 {
                     next() ;
                     return o ;
                 }
-                
                 while (ch) 
                 {
-                       
                     k = key() ;
-                       
                     white();
-                        
                     if (ch != ':') 
                     {
                         break;
                     }
-                        
                     next();
-                        
                     o[k] = value() ;
-    
                     white();
-    
                     if (ch == '}') 
                     {
                         next();
@@ -592,22 +514,19 @@ package vegas.string.json
                     white();
                 }
             }
-            error( strings.badObject ) ;
+            error( JSONStrings.badObject ) ;
         }        
         
         /**
          * Check the string objects in the source expression.
          */
-        jsonparser function string():* 
+        protected function string():* 
         {
-            
            var i:* = '' ;
            var s:* = '' ; 
            var t:* ;
            var u:* ;
-                
-           var outer:Boolean = false;
-            
+           var outer:Boolean ;
            if (ch == '"' || ch == "'" ) 
            {
                var outerChar:String = ch ;
@@ -635,94 +554,87 @@ package vegas.string.json
                             case 'n':
                             {
                                 s += '\n';
-                                    break ;
-                                }
-                                case 'r' :
+                                break ;
+                            }
+                            case 'r' :
+                            {
+                                s += '\r';
+                                break ;
+                            }
+                            case 't' :
+                            {
+                                s += '\t' ;
+                                break ;
+                            }
+                            case 'u' :
+                            {
+                                u = 0;
+                                for (i = 0; i < 4; i += 1) 
                                 {
-                                    s += '\r';
-                                    break ;
-                                }
-                                case 't' :
-                                {
-                                    s += '\t' ;
-                                    break ;
-                                }
-                                case 'u' :
-                                {
-                                    u = 0;
-                                    for (i = 0; i < 4; i += 1) 
+                                    t = parseInt( next() , 16 ) ;
+                                    if (!isFinite(t)) 
                                     {
-                                        t = parseInt( next() , 16 ) ;
-                                        if (!isFinite(t)) 
-                                        {
-                                            outer = true;
-                                            break;
-                                        }
-                                        u = u * 16 + t;
-                                    }
-                                    if(outer) 
-                                    {
-                                        outer = false;
+                                        outer = true;
                                         break;
                                     }
-                                    s += String.fromCharCode(u);
+                                    u = u * 16 + t;
+                                }
+                                if(outer) 
+                                {
+                                    outer = false;
                                     break;
                                 }
-                                default :
-                                {
-                                    s += ch;
-                                }
+                                s += String.fromCharCode(u);
+                                break;
                             }
-                        } 
-                        else 
-                        {
-                            s += ch;
+                            default :
+                            {
+                                s += ch;
+                            }
                         }
+                    } 
+                    else 
+                    {
+                        s += ch;
                     }
                 }
-            
-                error( strings.badString );
-    
-                return null ;
-    
+            }
+            error( JSONStrings.badString );
+            return null ;
         }
         
         /**
          * Evaluates the values in the source expression.
          */
-        jsonparser function value():* 
+        protected function value():* 
         {
             white() ;
-            switch (ch) 
+            if (ch == '{' ) 
             {
-                case '{' :
-                {
-                    return object();
-                }
-                case '[' : 
-                {
-                    return array();
-                }
-                case '"' : 
-                case "'" :
-                {
-                    return string();
-                }
-                case '-' : 
-                {
-                    return number();
-                }
-                default  : 
-                {
-                    return ( ch >= '0' && ch <= '9' ) ? number() : word() ;
-                }
+                return object();
+            }
+            else if ( ch == '[' )
+            {
+                return array();
+            }
+            else if ( ch == '"' || ch == "'" )
+            {
+                return string();
+            }
+            else if ( ch == '-' ) 
+            {
+                return number();
+            }
+            else 
+            {
+                return ( ch >= '0' && ch <= '9' ) ? number() : word() ;
             }
         }        
         
         /**
          * Check all white spaces.
          */
-        jsonparser function white():void 
+        protected function white():void 
         {
             while (ch) 
             {
@@ -763,14 +675,14 @@ package vegas.string.json
                                 }
                                 else 
                                 {
-                                    error( strings.unterminatedComment );
+                                    error( JSONStrings.unterminatedComment );
                                 }
                             }
                             break ;
                         }
                         default :
                         {
-                            error( strings.syntaxError );
+                            error( JSONStrings.syntaxError );
                         }
                     }
                 } 
@@ -784,47 +696,51 @@ package vegas.string.json
         /**
          * Check all special words in the source to evaluate.
          */
-        jsonparser function word():* 
+        protected function word():* 
         {
-                
-            switch (ch) 
+            if (ch == 't') 
             {
-                    
-                case 't' :
+                if (next() == 'r' && next() == 'u' && next() == 'e') 
                 {
-                    if (next() == 'r' && next() == 'u' && next() == 'e') 
-                    {
-                        next() ;
-                        return true ;
-                    }
-                    break;
-                }
-                case 'f' :
-                {
-                    if (next() == 'a' && next() == 'l' && next() == 's' && next() == 'e') 
-                    {
-                        next() ;
-                        return false ;
-                    }
-                    break;
-                 }
-                 case 'n':
-                 {
-                    if (next() == 'u' && next() == 'l' && next() == 'l') 
-                    {
-                        next() ;
-                        return null ;
-                    }
-                    break;
+                    next() ;
+                    return true ;
                 }
             }
-            
-            error( strings.syntaxError );
-              
+            else if ( ch == 'f' )
+            {
+                if (next() == 'a' && next() == 'l' && next() == 's' && next() == 'e') 
+                {
+                    next() ;
+                    return false ;
+                }
+            }
+            else if ( ch == 'n' )
+            {
+                if (next() == 'u' && next() == 'l' && next() == 'l') 
+                {
+                    next() ;
+                    return null ;
+                }
+            }
+            error( JSONStrings.syntaxError );
             return null ;
-            
         }
-    
+                        
+        /**
+         * @private
+         */
+        private var _prettyIndent:int = 0 ;
+        
+        /**
+         * @private
+         */
+        private var _prettyPrinting:Boolean ;
+        
+        /**
+         * @private
+         */
+        private var _indentor:String = "    " ;
+
     }
 
 }

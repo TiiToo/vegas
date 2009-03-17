@@ -26,7 +26,7 @@ package vegas.string.json
     /**
 	 * The string messages used in the eden class.
 	 */
-	public class strings
+	public class JSONStrings
 	{
 
         /**
@@ -57,7 +57,7 @@ package vegas.string.json
         /**
          * The mal formed Hexadecimal error message.
          */        
-        public static var malFormedHexadecimal:String = "mal formed Hexadecimal" ;
+        public static var malFormedHexadecimal:String = "Mal formed Hexadecimal" ;
         
 		/**
 		 * The syntax error message.
