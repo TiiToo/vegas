@@ -31,6 +31,7 @@
     <component id="pegas.draw:DashLinePen"                class="pegas.draw.DashLinePen" />
     <component id="pegas.draw:Direction"                  class="pegas.draw.Direction" />
     <component id="pegas.draw:Directionable"              class="pegas.draw.Directionable" />
+    <component id="pegas.draw:DistortPen"                 class="pegas.draw.DistortPen" />
     <component id="pegas.draw:Drawable"                   class="pegas.draw.Drawable" />
     <component id="pegas.draw:EllipsePen"                 class="pegas.draw.EllipsePen" />
     <component id="pegas.draw:FillBitmapStyle"            class="pegas.draw.FillBitmapStyle" />
@@ -66,6 +67,7 @@
     <component id="pegas.geom:Geometry"     class="pegas.geom.Geometry" />
     <component id="pegas.geom:Line"         class="pegas.geom.Line" />
     <component id="pegas.geom:Matrix"       class="pegas.geom.Matrix" />
+    <component id="pegas.geom:Matrix2"      class="pegas.geom.Matrix2" />
     <component id="pegas.geom:Matrix4"      class="pegas.geom.Matrix4" />
     <component id="pegas.geom:Plane"        class="pegas.geom.Plane" />
     <component id="pegas.geom:Point"        class="pegas.geom.Point" />
@@ -119,6 +121,7 @@
   
     <component id="pegas.util:BezierUtil"     class="pegas.util.BezierUtil" />    
     <component id="pegas.util:LineUtil"       class="pegas.util.LineUtil" />
+    <component id="pegas.util:Matrix2Util"    class="pegas.util.Matrix2Util" />
     <component id="pegas.util:Matrix4Util"    class="pegas.util.Matrix4Util" />
     <component id="pegas.util:MatrixUtil"     class="pegas.util.MatrixUtil" />
     <component id="pegas.util:PlaneUtil"      class="pegas.util.PlaneUtil" />

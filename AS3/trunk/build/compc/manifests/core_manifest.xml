@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<componentPackage>
+    
+    <!-- core -->
+    
+    <component id="core.uri"     class="core.uri"     />
+    <component id="core.version" class="core.version" />
+    
+</componentPackage>

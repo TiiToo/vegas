@@ -86,11 +86,35 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("MÂ
          Indicates the magnetic state value of the cursor.</td>
 </tr>
 <tr>
+<td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('system/network/class-list.html');" href="system/network/URIScheme.html#MAILTO">MAILTO</a> &mdash; Constant static property in class system.network.<a onclick="javascript:loadClassListFrame('system/network/class-list.html');" href="system/network/URIScheme.html">URIScheme</a></td>
+</tr>
+<tr>
+<td width="20"></td><td>
+         Mail to
+         <p><b>Syntax:</b></p>
+         <pre>
+         mailto:<address>[?<header1>=<value1>[&<header2>=<value2>]]
+         </pre>
+         <p><b>Example:</b></p>
+         <pre>
+         mailto:John.Doe&64;example.com
+         mailto:jsmith&64;example.com?subject=A%20Test&body=My%20idea%20is%3A%20%0A
+         </pre>
+         </td>
+</tr>
+<tr>
 <td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('vegas/logging/targets/class-list.html');" href="vegas/logging/targets/AirLoggerTarget.html#MAIN_CONNECTION_ALREADY_USED">MAIN_CONNECTION_ALREADY_USED</a> &mdash; Constant static property in class vegas.logging.targets.<a onclick="javascript:loadClassListFrame('vegas/logging/targets/class-list.html');" href="vegas/logging/targets/AirLoggerTarget.html">AirLoggerTarget</a></td>
 </tr>
 <tr>
 <td width="20"></td><td>
    The 'mainConnectionAlreadyUsed' string representation.</td>
+</tr>
+<tr>
+<td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('core/class-list.html');" href="core/version.html#major">major</a> &mdash; Property in class core.<a onclick="javascript:loadClassListFrame('core/class-list.html');" href="core/version.html">version</a></td>
+</tr>
+<tr>
+<td width="20"></td><td>
+         Indicates the major value of this version.</td>
 </tr>
 <tr>
 <td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('system/class-list.html');" href="system/Version.html#major">major</a> &mdash; Property in class system.<a onclick="javascript:loadClassListFrame('system/class-list.html');" href="system/Version.html">Version</a></td>
@@ -108,7 +132,7 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("MÂ
          </td>
 </tr>
 <tr>
-<td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('vegas/string/json/class-list.html');" href="vegas/string/json/strings.html#malFormedHexadecimal">malFormedHexadecimal</a> &mdash; Static property in class vegas.string.json.<a onclick="javascript:loadClassListFrame('vegas/string/json/class-list.html');" href="vegas/string/json/strings.html">strings</a></td>
+<td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('vegas/string/json/class-list.html');" href="vegas/string/json/JSONStrings.html#malFormedHexadecimal">malFormedHexadecimal</a> &mdash; Static property in class vegas.string.json.<a onclick="javascript:loadClassListFrame('vegas/string/json/class-list.html');" href="vegas/string/json/JSONStrings.html">JSONStrings</a></td>
 </tr>
 <tr>
 <td width="20"></td><td>
@@ -448,7 +472,7 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("MÂ
 </tr>
 <tr>
 <td width="20"></td><td>
-         This property defined the maximum height of this component.</td>
+         This property defined the maximum height of this display.</td>
 </tr>
 <tr>
 <td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('lunas/core/class-list.html');" href="lunas/core/AbstractComponent.html#maxHeight">maxHeight</a> &mdash; Property in class lunas.core.<a onclick="javascript:loadClassListFrame('lunas/core/class-list.html');" href="lunas/core/AbstractComponent.html">AbstractComponent</a></td>
@@ -532,7 +556,7 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("MÂ
 </tr>
 <tr>
 <td width="20"></td><td>
-         This property defined the maximum width of this component.</td>
+         This property defined the maximum width of this display.</td>
 </tr>
 <tr>
 <td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('lunas/core/class-list.html');" href="lunas/core/AbstractComponent.html#maxWidth">maxWidth</a> &mdash; Property in class lunas.core.<a onclick="javascript:loadClassListFrame('lunas/core/class-list.html');" href="lunas/core/AbstractComponent.html">AbstractComponent</a></td>
@@ -686,7 +710,7 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("MÂ
 </tr>
 <tr>
 <td width="20"></td><td>
-      Creates a shallow copy of the current Object.</td>
+         Creates a shallow copy of the current Object.</td>
 </tr>
 <tr>
 <td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('andromeda/process/class-list.html');" href="andromeda/process/Message.html#message">message</a> &mdash; Property in class andromeda.process.<a onclick="javascript:loadClassListFrame('andromeda/process/class-list.html');" href="andromeda/process/Message.html">Message</a></td>
@@ -932,7 +956,7 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("MÂ
 </tr>
 <tr>
 <td width="20"></td><td>
-         This property defined the mimimun height of this component.</td>
+         This property defined the mimimun height of this display (This value is >= 0).</td>
 </tr>
 <tr>
 <td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('lunas/core/class-list.html');" href="lunas/core/AbstractComponent.html#minHeight">minHeight</a> &mdash; Property in class lunas.core.<a onclick="javascript:loadClassListFrame('lunas/core/class-list.html');" href="lunas/core/AbstractComponent.html">AbstractComponent</a></td>
@@ -954,6 +978,13 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("MÂ
 <tr>
 <td width="20"></td><td>
          The minimum value of the progress.</td>
+</tr>
+<tr>
+<td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('core/class-list.html');" href="core/version.html#minor">minor</a> &mdash; Property in class core.<a onclick="javascript:loadClassListFrame('core/class-list.html');" href="core/version.html">version</a></td>
+</tr>
+<tr>
+<td width="20"></td><td>
+         Indicates the minor value of this version.</td>
 </tr>
 <tr>
 <td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('system/class-list.html');" href="system/Version.html#minor">minor</a> &mdash; Property in class system.<a onclick="javascript:loadClassListFrame('system/class-list.html');" href="system/Version.html">Version</a></td>
@@ -1023,7 +1054,7 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("MÂ
 </tr>
 <tr>
 <td width="20"></td><td>
-         This property defined the mimimun width of this component.</td>
+         This property defined the mimimun width of this display (This value is >= 0).</td>
 </tr>
 <tr>
 <td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('lunas/core/class-list.html');" href="lunas/core/AbstractComponent.html#minWidth">minWidth</a> &mdash; Property in class lunas.core.<a onclick="javascript:loadClassListFrame('lunas/core/class-list.html');" href="lunas/core/AbstractComponent.html">AbstractComponent</a></td>

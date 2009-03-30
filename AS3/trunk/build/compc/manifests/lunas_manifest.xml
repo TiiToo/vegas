@@ -3,7 +3,7 @@
 <componentPackage>
         
     <!-- lunas.core -->
-
+    
     <component id="lunas.core:AbstractBuilder"       class="lunas.core.AbstractBuilder"  />
     <component id="lunas.core:AbstractButton"        class="lunas.core.AbstractButton"  />
     <component id="lunas.core:AbstractButtonBuilder" class="lunas.core.AbstractButtonBuilder"  />
@@ -62,7 +62,7 @@
     
     <component id="lunas.display.button:LightFrameLabelButton"        class="lunas.display.button.LightFrameLabelButton"        />
     <component id="lunas.display.button:LightFrameLabelButtonBuilder" class="lunas.display.button.LightFrameLabelButtonBuilder" />
-    <component id="lunas.display.button:LightFrameLabelButtonStyle"   class="lunas.display.button.LightFrameLabelButtonStyle"   />       
+    <component id="lunas.display.button:LightFrameLabelButtonStyle"   class="lunas.display.button.LightFrameLabelButtonStyle"   />
     
     <!-- lunas.display.container -->
 
@@ -82,13 +82,17 @@
 
     <!-- lunas.display.events -->
     
-    <component id="lunas.events:ButtonEvent"    class="lunas.events.ButtonEvent"  />
+    <component id="lunas.events:ButtonEvent"    class="lunas.events.ButtonEvent"     />
     <component id="lunas.events:ComponentEvent" class="lunas.events.ComponentEvent"  />
-    <component id="lunas.events:StyleEvent"     class="lunas.events.StyleEvent"  />            
+    <component id="lunas.events:StyleEvent"     class="lunas.events.StyleEvent"      />
     
     <!-- lunas.display.groups -->
     
-    <component id="lunas.groups:AbstractGroup"    class="lunas.groups.AbstractGroup"  />
-    <component id="lunas.groups:RadioButtonGroup" class="lunas.groups.RadioButtonGroup"  />    
+    <component id="lunas.groups:AbstractGroup"    class="lunas.groups.AbstractGroup"    />
+    <component id="lunas.groups:RadioButtonGroup" class="lunas.groups.RadioButtonGroup" />
+    
+    <!-- lunas.display.logging -->
+    
+    <component id="lunas.logging:logger" class="lunas.logging.logger" />
     
 </componentPackage>

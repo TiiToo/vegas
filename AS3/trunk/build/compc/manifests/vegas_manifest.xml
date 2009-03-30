@@ -17,7 +17,7 @@
 	<component id="vegas.core:IFactory"     class="vegas.core.IFactory"     />
 	<component id="vegas.core:IHashable"    class="vegas.core.IHashable"    />
             
-    <!-- vegas.core.char -->
+    <!-- vegas.core.types -->
     
     <component id="vegas.core.types:Char" class="vegas.core.types.Char"  />
         
@@ -30,29 +30,9 @@
     <component id="vegas.errors:RuntimeError"      class="vegas.errors.RuntimeError" />
     <component id="vegas.errors:Warning"           class="vegas.errors.Warning" />
     
-    <!-- vegas.events -->
-
-    <component id="vegas.events:AbstractEventDispatcher" class="vegas.events.AbstractEventDispatcher" />  
-    <component id="vegas.events:ArrayEvent"              class="vegas.events.ArrayEvent" />
-    <component id="vegas.events:BasicEvent"              class="vegas.events.BasicEvent" />
-    <component id="vegas.events:BooleanEvent"            class="vegas.events.BooleanEvent" />
-    <component id="vegas.events:Command"                 class="vegas.events.Command" />
-    <component id="vegas.events:CommandEvent"            class="vegas.events.CommandEvent" />
-    <component id="vegas.events:CoreEventDispatcher"     class="vegas.events.CoreEventDispatcher" />
-    <component id="vegas.events:DateEvent"               class="vegas.events.DateEvent" />
-    <component id="vegas.events:Delegate"                class="vegas.events.Delegate" />
-    <component id="vegas.events:DynamicEvent"            class="vegas.events.DynamicEvent" />
-    <component id="vegas.events:EventDispatcher"         class="vegas.events.EventDispatcher" />
-    <component id="vegas.events:EventListener"           class="vegas.events.EventListener" />
-    <component id="vegas.events:EventListenerBatch"      class="vegas.events.EventListenerBatch" />
-    <component id="vegas.events:FrontController"         class="vegas.events.FrontController" />
-    <component id="vegas.events:IEventDispatcher"        class="vegas.events.IEventDispatcher" />
-    <component id="vegas.events:NumberEvent"             class="vegas.events.NumberEvent" />
-    <component id="vegas.events:StringEvent"             class="vegas.events.StringEvent" />
-    
     <!-- vegas.logging -->
     
-    <component id="vegas.logging:AbstractTarget"  class="vegas.logging.AbstractTarget" />          
+    <component id="vegas.logging:AbstractTarget"  class="vegas.logging.AbstractTarget" />
     <component id="vegas.logging:ILogable"        class="vegas.logging.ILogable" />
     <component id="vegas.logging:ILogger"         class="vegas.logging.ILogger" />
     <component id="vegas.logging:ITarger"         class="vegas.logging.ITarget" />
@@ -66,18 +46,19 @@
     <component id="vegas.logging.errors:InvalidCategoryError" class="vegas.logging.errors.InvalidCategoryError" />
     <component id="vegas.logging.errors:InvalidFilterError"   class="vegas.logging.errors.InvalidFilterError" />
     
-    <!-- vegas.logging.targets -->    
+    <!-- vegas.logging.targets -->
 
     <component id="vegas.logging.targets:AirLoggerTarget"     class="vegas.logging.targets.AirLoggerTarget" />
+    <component id="vegas.logging.targets:FireBugTarget"       class="vegas.logging.targets.FireBugTarget" />
     <component id="vegas.logging.targets:LineFormattedTarget" class="vegas.logging.targets.LineFormattedTarget" />
     <component id="vegas.logging.targets:LuminicTarget"       class="vegas.logging.targets.LuminicTarget" />
     <component id="vegas.logging.targets:SOSTarget"           class="vegas.logging.targets.SOSTarget" />
+    <component id="vegas.logging.targets:TextFieldTarget"     class="vegas.logging.targets.TextFieldTarget" />
     <component id="vegas.logging.targets:TraceTarget"         class="vegas.logging.targets.TraceTarget" />
     <component id="vegas.logging.targets:XPanelTarget"        class="vegas.logging.targets.XPanelTarget" />
     
     <!-- vegas.string -->
     
-    <component id="vegas.string:Expression"          class="vegas.string.Expression" />
     <component id="vegas.string:HTMLStringFormatter" class="vegas.string.HTMLStringFormatter" />
     <component id="vegas.string:JSON"                class="vegas.string.JSON" />
     <component id="vegas.string:Luhn"                class="vegas.string.Luhn" />
@@ -85,9 +66,10 @@
     
     <!-- vegas.string.json -->    
     
-    <component id="vegas.string.json:JSONError"       class="vegas.string.json.JSONError" />    
+    <component id="vegas.string.json:JSONError"       class="vegas.string.json.JSONError"      />
     <component id="vegas.string.json:JSONSerializer"  class="vegas.string.json.JSONSerializer" />
-    
+    <component id="vegas.string.json:JSONStrings"     class="vegas.string.json.JSONStrings"    />
+        
     <!-- vegas.util -->
 
     <component id="vegas.util:ArrayUtil"     class="vegas.util.ArrayUtil" />
