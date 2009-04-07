@@ -23,11 +23,8 @@ Contributor(s) :
  */
 package vegas.util
 {
-    import vegas.util.Copier;
-    
-    import flash.utils.ByteArray;    
-
-    /**
+    import vegas.util.Copier;    
+    /**
      * The <code class="prettyprint">ObjectUtil</code> utility class is an all-static class with methods for working with object.
      * @author eKameleon
      */
@@ -71,18 +68,7 @@ package vegas.util
             }
             return obj ;
         }
-
-        /**
-         * Copy the primitive object passed-in argument.
-         */
-        public static function copyPrimitive(o:Object):Object
-        {
-            var buffer:ByteArray = new ByteArray();
-            buffer.writeObject(o);
-            buffer.position = 0;
-            return buffer.readObject();
-        }
-        
+                
         /**
          * Returns <code class="prettyprint">true</code> if the specified object is a simple object.
          * @return <code class="prettyprint">true</code> if the specified object is a simple object.
@@ -118,7 +104,7 @@ package vegas.util
             var obj:Object = {} ;
             for( var prop:String in o ) 
             {
-                   obj[prop] = o[prop];
+                obj[prop] = o[prop];
             }
             return obj;
         }
