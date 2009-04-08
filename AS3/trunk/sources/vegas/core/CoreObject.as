@@ -55,7 +55,7 @@ package vegas.core
         /**
          * @private
          */
-        public function set logger( log:ILogger=null ):void 
+        public function set logger( log:ILogger ):void 
         {
             _logger = (log == null ) ? Log.getLogger( Reflection.getClassPath(this) ) : log ;
         }

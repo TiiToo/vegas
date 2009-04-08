@@ -38,7 +38,7 @@ package vegas.logging
         /**
          * @private
          */
-        function set logger( log:ILogger=null ):void ;
+        function set logger( log:ILogger ):void ;
         
     }
 }
