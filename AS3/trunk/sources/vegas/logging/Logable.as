@@ -26,21 +26,19 @@ package vegas.logging
 
     /**
      * Implementing this interface allows an object who contains an <code class="prettyprint">ILogger</code> reference.
-     * @author eKameleon
      */
-    public interface ILogable 
+    public interface Logable 
     {
 
         /**
-         * Returns the internal <code class="prettyprint">ILogger</code> reference of this <code class="prettyprint">ILogable</code> object.
-         * @return the internal <code class="prettyprint">ILogger</code> reference of this <code class="prettyprint">ILogable</code> object.
+         * Determinates the internal <code class="prettyprint">ILogger</code> reference of this <code class="prettyprint">Logable</code> object.
          */
-        function getLogger():ILogger ;
+        function get logger():ILogger ;
         
         /**
-         * Sets the internal <code class="prettyprint">ILogger</code> reference of this <code class="prettyprint">ILogable</code> object.
+         * @private
          */
-        function setLogger( log:ILogger=null ):void ;
+        function set logger( log:ILogger=null ):void ;
         
     }
 }

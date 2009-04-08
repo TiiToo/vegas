@@ -22,93 +22,67 @@
 */
 package vegas.core
 {
-    import system.Reflection;
-    import system.Serializable;
+    import system.Reflection;    import system.Serializable;        import vegas.logging.ILogger;    import vegas.logging.Log;    import vegas.logging.Logable;    
+    /**
+     * CoreObject offers a default implementation of the IFormattable, IHashable and ISerializable interfaces.
+     * <p><b>Example :</b></p>
+     * <pre class="prettyprint">
+     * import vegas.core.CoreObject ;
+     * var core:CoreObject = new CoreObject() ;
+     * trace("core     : " + core) ;
+     * trace("toSource : " + core.toSource()) ;
+     * </pre>
+     */
+    public class CoreObject extends Object implements Logable, Serializable
+    {
+        
+        /**
+         * Creates a new CoreObject instance.
+         */
+        function CoreObject() 
+        {
+            _logger = Log.getLogger( Reflection.getClassPath(this) ) ;
+        }
+
+        /**
+         * Determinates the internal <code class="prettyprint">ILogger</code> reference of this <code class="prettyprint">Logable</code> object.
+         */
+        public function get logger():ILogger
+        {
+            return _logger ;     
+        }
+        
+        /**
+         * @private
+         */
+        public function set logger( log:ILogger=null ):void 
+        {
+            _logger = (log == null ) ? Log.getLogger( Reflection.getClassPath(this) ) : log ;
+        }
+        
+        /**
+         * Returns the string representation the source code of the object.
+         * @return the string representation the source code of the object.
+         */
+        public function toSource( indent:int = 0 ):String 
+        {
+            return "new " + Reflection.getClassPath(this) + "()" ;
+        }
+
+        /**
+         * Returns the string representation of this instance.
+         * @return the string representation of this instance.
+         */
+        public function toString():String 
+        {
+            return "[" + Reflection.getClassName(this) + "]" ;
+        }
+        
+        /**
+         * The internal ILogger reference of this object.
+         */
+        private var _logger:ILogger ;
+
+    }
     
-    import vegas.logging.ILogable;
-    import vegas.logging.ILogger;
-    import vegas.logging.Log;    
-
-    /**
-	 * CoreObject offers a default implementation of the IFormattable, IHashable and ISerializable interfaces.
-	 * <p><b>Example :</b></p>
-	 * <pre class="prettyprint">
-	 * import vegas.core.CoreObject ;
-	 * var core:CoreObject = new CoreObject() ;
-	 * trace("core     : " + core) ;
-	 * trace("hashcode : " + core.hashCode()) ;
-	 * trace("toSource : " + core.toSource()) ;
-	 * </pre>
-	 */
-	public class CoreObject extends Object implements IHashable, ILogable, Serializable
-	{
-		
-		/**
-		 * Creates a new CoreObject instance.
-		 */
-		function CoreObject() 
-		{
-		    _logger = Log.getLogger( Reflection.getClassPath(this) ) ;
-		}
-
-		/**
-		 * Returns the internal <code class="prettyprint">ILogger</code> reference of this <code class="prettyprint">ILogable</code> object.
-		 * @return the internal <code class="prettyprint">ILogger</code> reference of this <code class="prettyprint">ILogable</code> object.
-		 */
-		public function getLogger():ILogger
-		{
-			return _logger ; 	
-		}
-		
-		/**
-		 * Returns a hashcode value for the object.
-		 * @return a hashcode value for the object.
-		 */
-		public function hashCode():uint 
-		{
-			if ( isNaN( __hashcode__ ) ) 
-			{
-				__hashcode__ = HashCode.next() ;
-			}
-			return __hashcode__ ;
-		}
-	
-		/**
-		 * Sets the internal <code class="prettyprint">ILogger</code> reference of this <code class="prettyprint">ILogable</code> object.
-		 */
-		public function setLogger( log:ILogger=null ):void 
-		{
-			_logger = (log == null ) ? Log.getLogger( Reflection.getClassPath(this) ) : log ;
-		}
-
-		/**
-		 * Returns the string representation the source code of the object.
-		 * @return the string representation the source code of the object.
-		 */
-		public function toSource( indent:int = 0 ):String 
-		{
-			return "new " + Reflection.getClassPath(this) + "()" ;
-		}
-
-		/**
-		 * Returns the string representation of this instance.
-		 * @return the string representation of this instance.
-		 */
-		public function toString():String 
-		{
-			return "[" + Reflection.getClassName(this) + "]" ;
-		}
-		
-		/**
-		 * @private
-		 */
-		private var __hashcode__:Number ;
-		
-		/**
-		 * The internal ILogger reference of this object.
-		 */
-		private var _logger:ILogger ;
-
-	}
-	
 }

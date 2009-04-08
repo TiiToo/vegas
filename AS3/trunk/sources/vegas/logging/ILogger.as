@@ -28,14 +28,12 @@ package vegas.logging
 
 	/**
 	 * All loggers within the logging framework must implement this interface.
-	 * @author eKameleon
 	 */
     public interface ILogger extends IEventDispatcher
     {
      
         /**
 	     * The category value for the logger.
-    	 *
 	     * @return String containing the category for this logger.
          */
     	function get category():String ;
