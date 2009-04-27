@@ -50,13 +50,6 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("IÂ
          The "i18n" resource type.</td>
 </tr>
 <tr>
-<td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('andromeda/process/class-list.html');" href="andromeda/process/IAction.html"><i>IAction</i></a> &mdash; Interface in package <a onclick="javascript:loadClassListFrame('andromeda/process/class-list.html');" href="andromeda/process/package-detail.html">andromeda.process</a></td>
-</tr>
-<tr>
-<td width="20"></td><td>
-     This interface represents a process object.</td>
-</tr>
-<tr>
 <td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('lunas/core/class-list.html');" href="lunas/core/IBar.html"><i>IBar</i></a> &mdash; Interface in package <a onclick="javascript:loadClassListFrame('lunas/core/class-list.html');" href="lunas/core/package-detail.html">lunas.core</a></td>
 </tr>
 <tr>
@@ -444,6 +437,13 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("IÂ
          Transforms the specified Matrix4 in argument in the identity Matrix4.</td>
 </tr>
 <tr>
+<td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('pegas/geom/class-list.html');" href="pegas/geom/Quaternion.html#identity()">identity</a>() &mdash; Method in class pegas.geom.<a onclick="javascript:loadClassListFrame('pegas/geom/class-list.html');" href="pegas/geom/Quaternion.html">Quaternion</a></td>
+</tr>
+<tr>
+<td width="20"></td><td>
+         Sets the Quaternion to be identity {0,0,0,1}.</td>
+</tr>
+<tr>
 <td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('asgard/display/class-list.html');" href="asgard/display/IDisplayObject.html"><i>IDisplayObject</i></a> &mdash; Interface in package <a onclick="javascript:loadClassListFrame('asgard/display/class-list.html');" href="asgard/display/package-detail.html">asgard.display</a></td>
 </tr>
 <tr>
@@ -554,13 +554,6 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("IÂ
 <tr>
 <td width="20"></td><td>
      This interface provides a config loader object.</td>
-</tr>
-<tr>
-<td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('vegas/logging/class-list.html');" href="vegas/logging/ILogable.html"><i>ILogable</i></a> &mdash; Interface in package <a onclick="javascript:loadClassListFrame('vegas/logging/class-list.html');" href="vegas/logging/package-detail.html">vegas.logging</a></td>
-</tr>
-<tr>
-<td width="20"></td><td>
-     Implementing this interface allows an object who contains an <code class="prettyprint">ILogger</code> reference.</td>
 </tr>
 <tr>
 <td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('vegas/logging/class-list.html');" href="vegas/logging/ILogger.html"><i>ILogger</i></a> &mdash; Interface in package <a onclick="javascript:loadClassListFrame('vegas/logging/class-list.html');" href="vegas/logging/package-detail.html">vegas.logging</a></td>
@@ -756,7 +749,7 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("IÂ
 </tr>
 <tr>
 <td width="20"></td><td>
-   This method always throws an <code class="prettyprint">UnsupportedOperation</code> because this method is not supported by this Set.</td>
+         This method always throws an <code class="prettyprint">UnsupportedOperation</code> because this method is not supported by this Set.</td>
 </tr>
 <tr>
 <td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('system/class-list.html');" href="system/Strings.html#indexOfAny()">indexOfAny</a>(str, anyOf, startIndex, count) &mdash; Static method in class system.<a onclick="javascript:loadClassListFrame('system/class-list.html');" href="system/Strings.html">Strings</a></td>
@@ -801,11 +794,11 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("IÂ
      This interface provides all callback methods invoked in a NetStream object.</td>
 </tr>
 <tr>
-<td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('andromeda/process/class-list.html');" href="andromeda/process/TimeoutPolicy.html#INFINITY">INFINITY</a> &mdash; Constant static property in class andromeda.process.<a onclick="javascript:loadClassListFrame('andromeda/process/class-list.html');" href="andromeda/process/TimeoutPolicy.html">TimeoutPolicy</a></td>
+<td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('system/process/class-list.html');" href="system/process/TimeoutPolicy.html#INFINITY">INFINITY</a> &mdash; Constant static property in class system.process.<a onclick="javascript:loadClassListFrame('system/process/class-list.html');" href="system/process/TimeoutPolicy.html">TimeoutPolicy</a></td>
 </tr>
 <tr>
 <td width="20"></td><td>
-      This constant defines the 'infinity' timeout policy value(0).</td>
+         This constant defines the 'infinity' timeout policy value(0).</td>
 </tr>
 <tr>
 <td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('pegas/geom/class-list.html');" href="pegas/geom/Rectangle.html#inflate()">inflate</a>(dx, dy) &mdash; Method in class pegas.geom.<a onclick="javascript:loadClassListFrame('pegas/geom/class-list.html');" href="pegas/geom/Rectangle.html">Rectangle</a></td>
@@ -822,18 +815,25 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("IÂ
          Increases the size of the Rectangle object.</td>
 </tr>
 <tr>
-<td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('andromeda/events/class-list.html');" href="andromeda/events/ActionEvent.html#info">info</a> &mdash; Property in class andromeda.events.<a onclick="javascript:loadClassListFrame('andromeda/events/class-list.html');" href="andromeda/events/ActionEvent.html">ActionEvent</a></td>
-</tr>
-<tr>
-<td width="20"></td><td>
-         (read-only) Returns the info object of this event.</td>
-</tr>
-<tr>
 <td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('asgard/events/class-list.html');" href="asgard/events/NetServerEvent.html#info">info</a> &mdash; Property in class asgard.events.<a onclick="javascript:loadClassListFrame('asgard/events/class-list.html');" href="asgard/events/NetServerEvent.html">NetServerEvent</a></td>
 </tr>
 <tr>
 <td width="20"></td><td>
          Indicates the NetServerInfo reference of this event.</td>
+</tr>
+<tr>
+<td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('system/events/class-list.html');" href="system/events/ActionEvent.html#info">info</a> &mdash; Property in class system.events.<a onclick="javascript:loadClassListFrame('system/events/class-list.html');" href="system/events/ActionEvent.html">ActionEvent</a></td>
+</tr>
+<tr>
+<td width="20"></td><td>
+         Indicates the info object of this event.</td>
+</tr>
+<tr>
+<td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('system/process/class-list.html');" href="system/process/CoreAction.html#event:info">info</a> &mdash; Event in class system.process.<a onclick="javascript:loadClassListFrame('system/process/class-list.html');" href="system/process/CoreAction.html">CoreAction</a></td>
+</tr>
+<tr>
+<td width="20"></td><td>
+     Dispatched when an info process is running.</td>
 </tr>
 <tr>
 <td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('vegas/logging/class-list.html');" href="vegas/logging/ILogger.html#info()">info</a>(context, ... rest) &mdash; Method in interface vegas.logging.<a onclick="javascript:loadClassListFrame('vegas/logging/class-list.html');" href="vegas/logging/ILogger.html">ILogger</a></td>
@@ -850,18 +850,18 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("IÂ
          Logs the specified data using the LogEvent.INFO level.</td>
 </tr>
 <tr>
-<td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('andromeda/events/class-list.html');" href="andromeda/events/ActionEvent.html#INFO">INFO</a> &mdash; Constant static property in class andromeda.events.<a onclick="javascript:loadClassListFrame('andromeda/events/class-list.html');" href="andromeda/events/ActionEvent.html">ActionEvent</a></td>
-</tr>
-<tr>
-<td width="20"></td><td>
-         The name of the event when the process info is changed.</td>
-</tr>
-<tr>
 <td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('asgard/net/class-list.html');" href="asgard/net/NetServerLevel.html#INFO">INFO</a> &mdash; Constant static property in class asgard.net.<a onclick="javascript:loadClassListFrame('asgard/net/class-list.html');" href="asgard/net/NetServerLevel.html">NetServerLevel</a></td>
 </tr>
 <tr>
 <td width="20"></td><td>
          The 'info' level code.</td>
+</tr>
+<tr>
+<td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('system/events/class-list.html');" href="system/events/ActionEvent.html#INFO">INFO</a> &mdash; Constant static property in class system.events.<a onclick="javascript:loadClassListFrame('system/events/class-list.html');" href="system/events/ActionEvent.html">ActionEvent</a></td>
+</tr>
+<tr>
+<td width="20"></td><td>
+         The name of the event when the process info is changed.</td>
 </tr>
 <tr>
 <td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('vegas/logging/class-list.html');" href="vegas/logging/LogEventLevel.html#INFO">INFO</a> &mdash; Constant static property in class vegas.logging.<a onclick="javascript:loadClassListFrame('vegas/logging/class-list.html');" href="vegas/logging/LogEventLevel.html">LogEventLevel</a></td>
@@ -928,20 +928,6 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("IÂ
          Fill and initialize the model with an Array of ValueObject.</td>
 </tr>
 <tr>
-<td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('andromeda/process/class-list.html');" href="andromeda/process/ActionLoader.html#_init()">_init</a>(e) &mdash; Method in class andromeda.process.<a onclick="javascript:loadClassListFrame('andromeda/process/class-list.html');" href="andromeda/process/ActionLoader.html">ActionLoader</a></td>
-</tr>
-<tr>
-<td width="20"></td><td>
-   Invoked when the Event.INIT event is fired.</td>
-</tr>
-<tr>
-<td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('andromeda/process/class-list.html');" href="andromeda/process/InitProcess.html#init()">init</a>() &mdash; Method in class andromeda.process.<a onclick="javascript:loadClassListFrame('andromeda/process/class-list.html');" href="andromeda/process/InitProcess.html">InitProcess</a></td>
-</tr>
-<tr>
-<td width="20"></td><td>
-         Invoked when the process is run.</td>
-</tr>
-<tr>
 <td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('pegas/draw/class-list.html');" href="pegas/draw/DistortPen.html#init()">init</a>() &mdash; Method in class pegas.draw.<a onclick="javascript:loadClassListFrame('pegas/draw/class-list.html');" href="pegas/draw/DistortPen.html">DistortPen</a></td>
 </tr>
 <tr>
@@ -996,6 +982,13 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("IÂ
 <tr>
 <td width="20"></td><td>
          Initialize and launch the lineStyle method of the specified Graphics reference.</td>
+</tr>
+<tr>
+<td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('system/process/class-list.html');" href="system/process/ActionLoader.html#_init()">_init</a>(e) &mdash; Method in class system.process.<a onclick="javascript:loadClassListFrame('system/process/class-list.html');" href="system/process/ActionLoader.html">ActionLoader</a></td>
+</tr>
+<tr>
+<td width="20"></td><td>
+         Invoked when the Event.INIT event is fired.</td>
 </tr>
 <tr>
 <td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('asgard/display/class-list.html');" href="asgard/display/Background.html#initBackgroundPen()">initBackgroundPen</a>() &mdash; Method in class asgard.display.<a onclick="javascript:loadClassListFrame('asgard/display/class-list.html');" href="asgard/display/Background.html">Background</a></td>
@@ -1068,20 +1061,6 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("IÂ
          This method is invoked in the constructor of the class to initialize all events.</td>
 </tr>
 <tr>
-<td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('andromeda/process/class-list.html');" href="andromeda/process/Action.html#initEventType()">initEventType</a>() &mdash; Method in class andromeda.process.<a onclick="javascript:loadClassListFrame('andromeda/process/class-list.html');" href="andromeda/process/Action.html">Action</a></td>
-</tr>
-<tr>
-<td width="20"></td><td>
-         Initialize the internal event's types of this process.</td>
-</tr>
-<tr>
-<td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('andromeda/process/class-list.html');" href="andromeda/process/BatchProcess.html#initEventType()">initEventType</a>() &mdash; Method in class andromeda.process.<a onclick="javascript:loadClassListFrame('andromeda/process/class-list.html');" href="andromeda/process/BatchProcess.html">BatchProcess</a></td>
-</tr>
-<tr>
-<td width="20"></td><td>
-         Initialize the internal events of this process.</td>
-</tr>
-<tr>
 <td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('asgard/managers/class-list.html');" href="asgard/managers/BitmapFilterManager.html#initEventType()">initEventType</a>() &mdash; Method in class asgard.managers.<a onclick="javascript:loadClassListFrame('asgard/managers/class-list.html');" href="asgard/managers/BitmapFilterManager.html">BitmapFilterManager</a></td>
 </tr>
 <tr>
@@ -1103,11 +1082,11 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("IÂ
          Initialize the internal events of this process.</td>
 </tr>
 <tr>
-<td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('pegas/transitions/class-list.html');" href="pegas/transitions/TweenModel.html#initEventType()">initEventType</a>() &mdash; Method in class pegas.transitions.<a onclick="javascript:loadClassListFrame('pegas/transitions/class-list.html');" href="pegas/transitions/TweenModel.html">TweenModel</a></td>
+<td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('system/process/class-list.html');" href="system/process/CoreAction.html#initEventType()">initEventType</a>() &mdash; Method in class system.process.<a onclick="javascript:loadClassListFrame('system/process/class-list.html');" href="system/process/CoreAction.html">CoreAction</a></td>
 </tr>
 <tr>
 <td width="20"></td><td>
-   Initialize the event types of this model.</td>
+         Initialize the internal event's types of this process.</td>
 </tr>
 <tr>
 <td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('andromeda/ioc/factory/class-list.html');" href="andromeda/ioc/factory/ObjectConfig.html#initialize()">initialize</a>(init) &mdash; Method in class andromeda.ioc.factory.<a onclick="javascript:loadClassListFrame('andromeda/ioc/factory/class-list.html');" href="andromeda/ioc/factory/ObjectConfig.html">ObjectConfig</a></td>
@@ -1145,13 +1124,6 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("IÂ
          The optional method invoked when the resource is loading.</td>
 </tr>
 <tr>
-<td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('andromeda/process/class-list.html');" href="andromeda/process/BatchProcess.html#initialize()">initialize</a>() &mdash; Method in class andromeda.process.<a onclick="javascript:loadClassListFrame('andromeda/process/class-list.html');" href="andromeda/process/BatchProcess.html">BatchProcess</a></td>
-</tr>
-<tr>
-<td width="20"></td><td>
-         Initialize the layout.</td>
-</tr>
-<tr>
 <td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('andromeda/util/pool/class-list.html');" href="andromeda/util/pool/ObjectPool.html#initialize()">initialize</a>(name, args) &mdash; Method in class andromeda.util.pool.<a onclick="javascript:loadClassListFrame('andromeda/util/pool/class-list.html');" href="andromeda/util/pool/ObjectPool.html">ObjectPool</a></td>
 </tr>
 <tr>
@@ -1170,7 +1142,7 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("IÂ
 </tr>
 <tr>
 <td width="20"></td><td>
-   Initialize the component.</td>
+         Initialize the component.</td>
 </tr>
 <tr>
 <td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('lunas/core/class-list.html');" href="lunas/core/AbstractStyle.html#initialize()">initialize</a>() &mdash; Method in class lunas.core.<a onclick="javascript:loadClassListFrame('lunas/core/class-list.html');" href="lunas/core/AbstractStyle.html">AbstractStyle</a></td>
@@ -1251,6 +1223,20 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("IÂ
          Initialize the internal Queue instance in the constructor of the class.</td>
 </tr>
 <tr>
+<td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('system/process/class-list.html');" href="system/process/Initializer.html">Initializer</a> &mdash; Dynamic class in package <a onclick="javascript:loadClassListFrame('system/process/class-list.html');" href="system/process/package-detail.html">system.process</a></td>
+</tr>
+<tr>
+<td width="20"></td><td>
+     This Action launch the initialize method of the object but notify an event before (ActionEvent.START) and after(ActionEvent.FINISH) the process.</td>
+</tr>
+<tr>
+<td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('system/process/class-list.html');" href="system/process/Initializer.html#Initializer()">Initializer</a>(global, channel) &mdash; Constructor in class system.process.<a onclick="javascript:loadClassListFrame('system/process/class-list.html');" href="system/process/Initializer.html">Initializer</a></td>
+</tr>
+<tr>
+<td width="20"></td><td>
+         Creates a new InitProcess instance.</td>
+</tr>
+<tr>
 <td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('andromeda/model/stack/class-list.html');" href="andromeda/model/stack/StackModel.html#initializeStack()">initializeStack</a>() &mdash; Method in class andromeda.model.stack.<a onclick="javascript:loadClassListFrame('andromeda/model/stack/class-list.html');" href="andromeda/model/stack/StackModel.html">StackModel</a></td>
 </tr>
 <tr>
@@ -1263,20 +1249,6 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("IÂ
 <tr>
 <td width="20"></td><td>
    Initialize the internal map of this group manager.</td>
-</tr>
-<tr>
-<td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('andromeda/process/class-list.html');" href="andromeda/process/InitProcess.html">InitProcess</a> &mdash; Class in package <a onclick="javascript:loadClassListFrame('andromeda/process/class-list.html');" href="andromeda/process/package-detail.html">andromeda.process</a></td>
-</tr>
-<tr>
-<td width="20"></td><td>
-     This Action launch the init method of ths process but notify an event before (ActionEvent.START) and after(ActionEvent.FINISH) the process.</td>
-</tr>
-<tr>
-<td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('andromeda/process/class-list.html');" href="andromeda/process/InitProcess.html#InitProcess()">InitProcess</a>(bGlobal, sChannel) &mdash; Constructor in class andromeda.process.<a onclick="javascript:loadClassListFrame('andromeda/process/class-list.html');" href="andromeda/process/InitProcess.html">InitProcess</a></td>
-</tr>
-<tr>
-<td width="20"></td><td>
-         Creates a new InitProcess instance.</td>
 </tr>
 <tr>
 <td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('lunas/display/text/class-list.html');" href="lunas/display/text/VisualTextInput.html#initSkin()">initSkin</a>() &mdash; Method in class lunas.display.text.<a onclick="javascript:loadClassListFrame('lunas/display/text/class-list.html');" href="lunas/display/text/VisualTextInput.html">VisualTextInput</a></td>
@@ -1424,28 +1396,28 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("IÂ
 </tr>
 <tr>
 <td width="20"></td><td>
-    Adds a new entry into the EasingController.</td>
+          Adds a new entry into the EasingController.</td>
 </tr>
 <tr>
 <td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('pegas/transitions/class-list.html');" href="pegas/transitions/TransitionController.html#insert()">insert</a>(transition:<a href="pegas/transitions/ITransition.html" onclick="javascript:loadClassListFrame('pegas/transitions./class-list.html');">pegas.transitions:ITransition</a>) &mdash; Method in class pegas.transitions.<a onclick="javascript:loadClassListFrame('pegas/transitions/class-list.html');" href="pegas/transitions/TransitionController.html">TransitionController</a></td>
 </tr>
 <tr>
 <td width="20"></td><td>
-   Adds a new entry into the TransitionController.</td>
+         Adds a new entry into the TransitionController.</td>
 </tr>
 <tr>
 <td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('pegas/transitions/class-list.html');" href="pegas/transitions/Tween.html#insert()">insert</a>(entry:<a href="pegas/transitions/TweenEntry.html" onclick="javascript:loadClassListFrame('pegas/transitions./class-list.html');">pegas.transitions:TweenEntry</a>) &mdash; Method in class pegas.transitions.<a onclick="javascript:loadClassListFrame('pegas/transitions/class-list.html');" href="pegas/transitions/Tween.html">Tween</a></td>
 </tr>
 <tr>
 <td width="20"></td><td>
-   Inserts a TweenEnry in the model of the Tween object.</td>
+         Inserts a TweenEnry in the model of the Tween object.</td>
 </tr>
 <tr>
 <td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('pegas/transitions/class-list.html');" href="pegas/transitions/TweenModel.html#insert()">insert</a>(entry:<a href="pegas/transitions/TweenEntry.html" onclick="javascript:loadClassListFrame('pegas/transitions./class-list.html');">pegas.transitions:TweenEntry</a>) &mdash; Method in class pegas.transitions.<a onclick="javascript:loadClassListFrame('pegas/transitions/class-list.html');" href="pegas/transitions/TweenModel.html">TweenModel</a></td>
 </tr>
 <tr>
 <td width="20"></td><td>
-   Inserts a new TweenEntry in the model.</td>
+         Inserts a new TweenEntry in the model.</td>
 </tr>
 <tr>
 <td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('system/class-list.html');" href="system/Strings.html#insert()">insert</a>(str, startIndex, value) &mdash; Static method in class system.<a onclick="javascript:loadClassListFrame('system/class-list.html');" href="system/Strings.html">Strings</a></td>
@@ -1459,7 +1431,7 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("IÂ
 </tr>
 <tr>
 <td width="20"></td><td>
-   Inserts a new property in the Tween object.</td>
+         Inserts a new property in the Tween object.</td>
 </tr>
 <tr>
 <td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('system/data/maps/class-list.html');" href="system/data/maps/MultiMapFormatter.html#instance">instance</a> &mdash; Constant static property in class system.data.maps.<a onclick="javascript:loadClassListFrame('system/data/maps/class-list.html');" href="system/data/maps/MultiMapFormatter.html">MultiMapFormatter</a></td>
@@ -1767,18 +1739,18 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("IÂ
      This interface defines factory strategies to replace the natural strategy to create an object in the factory.</td>
 </tr>
 <tr>
-<td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('andromeda/process/class-list.html');" href="andromeda/process/CoreActionLoader.html#ioError()">ioError</a>(e) &mdash; Method in class andromeda.process.<a onclick="javascript:loadClassListFrame('andromeda/process/class-list.html');" href="andromeda/process/CoreActionLoader.html">CoreActionLoader</a></td>
-</tr>
-<tr>
-<td width="20"></td><td>
-         Dispatch IOErrorEvent if a call to load() results in a fatal error that terminates the download.</td>
-</tr>
-<tr>
 <td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('asgard/net/class-list.html');" href="asgard/net/NetStreamClient.html#ioError()">ioError</a>(e) &mdash; Method in class asgard.net.<a onclick="javascript:loadClassListFrame('asgard/net/class-list.html');" href="asgard/net/NetStreamClient.html">NetStreamClient</a></td>
 </tr>
 <tr>
 <td width="20"></td><td>
          Invoked when the NetStream invoked an IOErrorEvent.</td>
+</tr>
+<tr>
+<td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('system/process/class-list.html');" href="system/process/CoreActionLoader.html#ioError()">ioError</a>(e) &mdash; Method in class system.process.<a onclick="javascript:loadClassListFrame('system/process/class-list.html');" href="system/process/CoreActionLoader.html">CoreActionLoader</a></td>
+</tr>
+<tr>
+<td width="20"></td><td>
+         Dispatch IOErrorEvent if a call to load() results in a fatal error that terminates the download.</td>
 </tr>
 <tr>
 <td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('pegas/draw/class-list.html');" href="pegas/draw/IPen.html"><i>IPen</i></a> &mdash; Interface in package <a onclick="javascript:loadClassListFrame('pegas/draw/class-list.html');" href="pegas/draw/package-detail.html">pegas.draw</a></td>
@@ -1857,11 +1829,11 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("IÂ
          Returns <code class="prettyprint">true</code> if the CASEINSENSITIVE option value exist in the current filter.</td>
 </tr>
 <tr>
-<td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('andromeda/process/class-list.html');" href="andromeda/process/ActionURLLoader.html#isCollapse">isCollapse</a> &mdash; Property in class andromeda.process.<a onclick="javascript:loadClassListFrame('andromeda/process/class-list.html');" href="andromeda/process/ActionURLLoader.html">ActionURLLoader</a></td>
+<td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('system/process/class-list.html');" href="system/process/ActionURLLoader.html#isCollapse">isCollapse</a> &mdash; Property in class system.process.<a onclick="javascript:loadClassListFrame('system/process/class-list.html');" href="system/process/ActionURLLoader.html">ActionURLLoader</a></td>
 </tr>
 <tr>
 <td width="20"></td><td>
-   Indicated if the console use collapse property or not.</td>
+         Indicated if the console use collapse property or not.</td>
 </tr>
 <tr>
 <td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('vegas/logging/targets/class-list.html');" href="vegas/logging/targets/LuminicTarget.html#isCollapse">isCollapse</a> &mdash; Property in class vegas.logging.targets.<a onclick="javascript:loadClassListFrame('vegas/logging/targets/class-list.html');" href="vegas/logging/targets/LuminicTarget.html">LuminicTarget</a></td>
@@ -2187,6 +2159,13 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("IÂ
          Returns <code class="prettyprint">true</code> if this stack contains no elements.</td>
 </tr>
 <tr>
+<td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('system/process/class-list.html');" href="system/process/Cache.html#isEmpty()">isEmpty</a>() &mdash; Method in class system.process.<a onclick="javascript:loadClassListFrame('system/process/class-list.html');" href="system/process/Cache.html">Cache</a></td>
+</tr>
+<tr>
+<td width="20"></td><td>
+         Indicates if the tracker cache is empty.</td>
+</tr>
+<tr>
 <td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('vegas/util/class-list.html');" href="vegas/util/StringUtil.html#isEmpty()">isEmpty</a>(str) &mdash; Static method in class vegas.util.<a onclick="javascript:loadClassListFrame('vegas/util/class-list.html');" href="vegas/util/StringUtil.html">StringUtil</a></td>
 </tr>
 <tr>
@@ -2325,6 +2304,13 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("IÂ
 <tr>
 <td width="20"></td><td>
          Indicates if the specified expression is a start identifier.</td>
+</tr>
+<tr>
+<td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('pegas/geom/class-list.html');" href="pegas/geom/Quaternion.html#isIdentity()">isIdentity</a>() &mdash; Method in class pegas.geom.<a onclick="javascript:loadClassListFrame('pegas/geom/class-list.html');" href="pegas/geom/Quaternion.html">Quaternion</a></td>
+</tr>
+<tr>
+<td width="20"></td><td>
+         Returns <code class="prettyprint">true</code> if the Quaternion is {0,0,0,1}.</td>
 </tr>
 <tr>
 <td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('pegas/util/class-list.html');" href="pegas/util/Matrix2Util.html#isIdentity()">isIdentity</a>(m:<a href="pegas/geom/Matrix4.html" onclick="javascript:loadClassListFrame('pegas/geom./class-list.html');">pegas.geom:Matrix4</a>) &mdash; Static method in class pegas.util.<a onclick="javascript:loadClassListFrame('pegas/util/class-list.html');" href="pegas/util/Matrix2Util.html">Matrix2Util</a></td>
@@ -2809,7 +2795,7 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("IÂ
 </tr>
 <tr>
 <td width="20"></td><td>
-   Returns <code class="prettyprint">true</code> if the component is visible.</td>
+         Returns <code class="prettyprint">true</code> if the component is visible.</td>
 </tr>
 <tr>
 <td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('system/reflection/class-list.html');" href="system/reflection/MethodInfo.html#isVoid()">isVoid</a>() &mdash; Method in interface system.reflection.<a onclick="javascript:loadClassListFrame('system/reflection/class-list.html');" href="system/reflection/MethodInfo.html">MethodInfo</a></td>
@@ -2931,18 +2917,11 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("IÂ
          Returns the iterator of this model.</td>
 </tr>
 <tr>
-<td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('andromeda/process/class-list.html');" href="andromeda/process/BatchProcess.html#iterator()">iterator</a>() &mdash; Method in class andromeda.process.<a onclick="javascript:loadClassListFrame('andromeda/process/class-list.html');" href="andromeda/process/BatchProcess.html">BatchProcess</a></td>
-</tr>
-<tr>
-<td width="20"></td><td>
-         Returns an iterator over the elements in this collection.</td>
-</tr>
-<tr>
 <td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('pegas/transitions/class-list.html');" href="pegas/transitions/TweenModel.html#iterator()">iterator</a>() &mdash; Method in class pegas.transitions.<a onclick="javascript:loadClassListFrame('pegas/transitions/class-list.html');" href="pegas/transitions/TweenModel.html">TweenModel</a></td>
 </tr>
 <tr>
 <td width="20"></td><td>
-   Returns an iterator of this model.</td>
+         Returns an iterator of this model.</td>
 </tr>
 <tr>
 <td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('system/data/class-list.html');" href="system/data/Iterable.html#iterator()">iterator</a>() &mdash; Method in interface system.data.<a onclick="javascript:loadClassListFrame('system/data/class-list.html');" href="system/data/Iterable.html">Iterable</a></td>
@@ -3043,6 +3022,13 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("IÂ
          Returns the iterator reference of the object.</td>
 </tr>
 <tr>
+<td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('system/process/class-list.html');" href="system/process/BatchProcess.html#iterator()">iterator</a>() &mdash; Method in class system.process.<a onclick="javascript:loadClassListFrame('system/process/class-list.html');" href="system/process/BatchProcess.html">BatchProcess</a></td>
+</tr>
+<tr>
+<td width="20"></td><td>
+         Returns an iterator over the elements in this collection.</td>
+</tr>
+<tr>
 <td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('system/data/class-list.html');" href="system/data/Iterator.html"><i>Iterator</i></a> &mdash; Interface in package <a onclick="javascript:loadClassListFrame('system/data/class-list.html');" href="system/data/package-detail.html">system.data</a></td>
 </tr>
 <tr>
@@ -3068,14 +3054,14 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("IÂ
 </tr>
 <tr>
 <td width="20"></td><td>
-  This interface defines the methods to implement timer object create tile interval process.</td>
+     This interface defines the methods to implement timer object create tile interval process.</td>
 </tr>
 <tr>
 <td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('pegas/transitions/class-list.html');" href="pegas/transitions/ITransition.html"><i>ITransition</i></a> &mdash; Interface in package <a onclick="javascript:loadClassListFrame('pegas/transitions/class-list.html');" href="pegas/transitions/package-detail.html">pegas.transitions</a></td>
 </tr>
 <tr>
 <td width="20"></td><td>
-  The ITransition interface define all process in the application who creates transition effects.</td>
+     The ITransition interface define all process in the application who creates transition effects.</td>
 </tr>
 <tr>
 <td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('andromeda/util/visitor/class-list.html');" href="andromeda/util/visitor/IVisitable.html"><i>IVisitable</i></a> &mdash; Interface in package <a onclick="javascript:loadClassListFrame('andromeda/util/visitor/class-list.html');" href="andromeda/util/visitor/package-detail.html">andromeda.util.visitor</a></td>

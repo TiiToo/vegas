@@ -1,0 +1,491 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" href="../../style.css" type="text/css" media="screen">
+<link rel="stylesheet" href="../../print.css" type="text/css" media="print">
+<link rel="stylesheet" href="../../prettify.css" type="text/css">
+<meta content="QuaternionUtil,pegas.util.QuaternionUtil,add,dot,getConjugate,getMultiply,getMultiplyVector3,rotationAxis,rotationMatrix,setByMatrix,slerp,substract" name="keywords">
+<title>pegas.util.QuaternionUtil</title>
+</head>
+<body>
+<script type="text/javascript" language="javascript" src="../../prettify.js"></script><script type="text/javascript" language="javascript" src="../../asdoc.js"></script><script type="text/javascript" language="javascript" src="../../cookies.js"></script><script type="text/javascript" language="javascript">
+<!--
+				asdocTitle = 'QuaternionUtil - VEGAS AS3 Reference';
+				var baseRef = '../../';
+				window.onload = configPage;
+			--></script>
+<table style="display:none" id="titleTable" cellspacing="0" cellpadding="0" class="titleTable">
+<tr>
+<td align="left" class="titleTableTitle">VEGAS AS3 Reference</td><td align="right" class="titleTableTopNav"><a onclick="loadClassListFrame('../../all-classes.html')" href="../../package-summary.html">All&nbsp;Packages</a>&nbsp;|&nbsp;<a onclick="loadClassListFrame('../../all-classes.html')" href="../../class-summary.html">All&nbsp;Classes</a>&nbsp;|&nbsp;<a onclick="loadClassListFrame('../../index-list.html')" href="../../all-index-A.html">Index</a>&nbsp;|&nbsp;<a href="../../index.html?pegas/util/QuaternionUtil.html&amp;pegas/util/class-list.html" id="framesLink1">Frames</a><a onclick="parent.location=document.location" href="" style="display:none" id="noFramesLink1">No&nbsp;Frames</a></td><td rowspan="3" align="right" class="titleTableLogo"><img alt="Adobe Logo" title="Adobe Logo" class="logoImage" src="../../images/logo.jpg"></td>
+</tr>
+<tr class="titleTableRow2">
+<td align="left" id="subTitle" class="titleTableSubTitle">Class&nbsp;QuaternionUtil</td><td align="right" id="subNav" class="titleTableSubNav"><a href="#methodSummary">Methods</a></td>
+</tr>
+<tr class="titleTableRow3">
+<td colspan="2">&nbsp;</td>
+</tr>
+</table>
+<script type="text/javascript" language="javascript">
+<!--
+if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Class QuaternionUtil"); titleBar_setSubNav(false,false,false,false,false,false,true,false,false,false,false,false,false,false);}
+--></script>
+<div class="MainContent">
+<table cellspacing="0" cellpadding="0" class="classHeaderTable">
+<tr>
+<td class="classHeaderTableLabel">Package</td><td><a onclick="javascript:loadClassListFrame('class-list.html')" href="package-detail.html">pegas.util</a></td>
+</tr>
+<tr>
+<td class="classHeaderTableLabel">Class</td><td class="classSignature">public class QuaternionUtil</td>
+</tr>
+</table>
+<p></p>
+     Static tool class to manipulate and transform <code class="prettyprint">Quaternion</code> references.
+     <p></p>
+<br>
+<hr>
+</div>
+<a name="methodSummary"></a>
+<div class="summarySection">
+<div class="summaryTableTitle">Public Methods</div>
+<table id="summaryTableMethod" class="summaryTable " cellpadding="3" cellspacing="0">
+<tr>
+<th>&nbsp;</th><th colspan="2">Method</th><th class="summaryTableOwnerCol">Defined&nbsp;by</th>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#add()">add</a>(q1:<a href="../geom/Quaternion.html">Quaternion</a>, q2:<a href="../geom/Quaternion.html">Quaternion</a>):<a href="../geom/Quaternion.html">Quaternion</a>
+</div>
+<div class="summaryTableDescription">[static]
+         Adds the values of the two specified Quaternion.</div>
+</td><td class="summaryTableOwnerCol">QuaternionUtil</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#dot()">dot</a>(q1:<a href="../geom/Quaternion.html">Quaternion</a>, q2:<a href="../geom/Quaternion.html">Quaternion</a>):Number</div>
+<div class="summaryTableDescription">[static]
+         Returns the dot product of two quaternions.</div>
+</td><td class="summaryTableOwnerCol">QuaternionUtil</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#getConjugate()">getConjugate</a>(q:<a href="../geom/Quaternion.html">Quaternion</a>):<a href="../geom/Quaternion.html">Quaternion</a>
+</div>
+<div class="summaryTableDescription">[static]
+         Returns a new Quaternion conjugate of the specified Quaternion.</div>
+</td><td class="summaryTableOwnerCol">QuaternionUtil</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#getMultiply()">getMultiply</a>(q1:<a href="../geom/Quaternion.html">Quaternion</a>, q2:<a href="../geom/Quaternion.html">Quaternion</a>):<a href="../geom/Quaternion.html">Quaternion</a>
+</div>
+<div class="summaryTableDescription">[static]
+         Returns the multiplication of two Quaternions.</div>
+</td><td class="summaryTableOwnerCol">QuaternionUtil</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#getMultiplyVector3()">getMultiplyVector3</a>(q:<a href="../geom/Quaternion.html">Quaternion</a>, v:<a href="../geom/Vector3.html">Vector3</a>):<a href="../geom/Quaternion.html">Quaternion</a>
+</div>
+<div class="summaryTableDescription">[static]
+         Returns the multiplication of one Quaternions with a Vector3.</div>
+</td><td class="summaryTableOwnerCol">QuaternionUtil</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#rotationAxis()">rotationAxis</a>(q:<a href="../geom/Quaternion.html">Quaternion</a>, theta:Number, axis:<a href="../geom/Vector3.html">Vector3</a>):void</div>
+<div class="summaryTableDescription">[static]
+         Sets the elements of a Quaternion to represent the rotation around an arbitary axis.</div>
+</td><td class="summaryTableOwnerCol">QuaternionUtil</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#rotationMatrix()">rotationMatrix</a>(q:<a href="../geom/Quaternion.html">Quaternion</a>):<a href="../geom/Matrix4.html">Matrix4</a>
+</div>
+<div class="summaryTableDescription">
+         Transform a Quaternion to a Matrix4 object.</div>
+</td><td class="summaryTableOwnerCol">QuaternionUtil</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#setByMatrix()">setByMatrix</a>(matrix:<a href="../geom/Matrix4.html">Matrix4</a>, quaternion:<a href="../geom/Quaternion.html">Quaternion</a> = null):<a href="../geom/Quaternion.html">Quaternion</a>
+</div>
+<div class="summaryTableDescription">[static]
+         Sets the specified Quaternion with the Matrix4 reference passed in argument.</div>
+</td><td class="summaryTableOwnerCol">QuaternionUtil</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#slerp()">slerp</a>(q1:<a href="../geom/Quaternion.html">Quaternion</a>, q2:<a href="../geom/Quaternion.html">Quaternion</a>, t:Number = 0):<a href="../geom/Quaternion.html">Quaternion</a>
+</div>
+<div class="summaryTableDescription">[static]
+         Interpolates between two quaternions, using spherical linear interpolation (SLERP).</div>
+</td><td class="summaryTableOwnerCol">QuaternionUtil</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#substract()">substract</a>(q1:<a href="../geom/Quaternion.html">Quaternion</a>, q2:<a href="../geom/Quaternion.html">Quaternion</a>):<a href="../geom/Quaternion.html">Quaternion</a>
+</div>
+<div class="summaryTableDescription">[static]
+         Substracts the values of the two specified Quaternion.</div>
+</td><td class="summaryTableOwnerCol">QuaternionUtil</td>
+</tr>
+</table>
+</div>
+<script type="text/javascript" language="javascript">
+<!--
+showHideInherited();
+--></script>
+<div class="MainContent">
+<a name="methodDetail"></a>
+<div class="detailSectionHeader">Method detail</div>
+<a name="add()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">add</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public static function add(q1:<a href="../geom/Quaternion.html">Quaternion</a>, q2:<a href="../geom/Quaternion.html">Quaternion</a>):<a href="../geom/Quaternion.html">Quaternion</a></code><p>
+         Adds the values of the two specified Quaternion.
+         </p><span class="label">Parameters</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td><code><span class="label">q1</span>:<a href="../geom/Quaternion.html">Quaternion</a></code> &mdash; The first quaternion.
+         </td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><code><span class="label">q2</span>:<a href="../geom/Quaternion.html">Quaternion</a></code> &mdash; The second quaternion.
+         </td>
+</tr>
+</table>
+<p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><code><a href="../geom/Quaternion.html">Quaternion</a></code> &mdash; 
+                        The new Quaternion.
+         
+                        
+                     </td>
+</tr>
+</table>
+</div>
+<a name="dot()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">dot</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public static function dot(q1:<a href="../geom/Quaternion.html">Quaternion</a>, q2:<a href="../geom/Quaternion.html">Quaternion</a>):Number</code><p>
+         Returns the dot product of two quaternions.
+         </p><span class="label">Parameters</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td><code><span class="label">q1</span>:<a href="../geom/Quaternion.html">Quaternion</a></code> &mdash; The first quaternion.
+         </td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><code><span class="label">q2</span>:<a href="../geom/Quaternion.html">Quaternion</a></code> &mdash; The second quaternion.
+         </td>
+</tr>
+</table>
+<p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><code>Number</code> &mdash; The dot product of the two quaternions.
+         </td>
+</tr>
+</table>
+</div>
+<a name="getConjugate()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">getConjugate</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public static function getConjugate(q:<a href="../geom/Quaternion.html">Quaternion</a>):<a href="../geom/Quaternion.html">Quaternion</a></code><p>
+         Returns a new Quaternion conjugate of the specified Quaternion.
+         </p><span class="label">Parameters</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td><code><span class="label">q</span>:<a href="../geom/Quaternion.html">Quaternion</a></code></td>
+</tr>
+</table>
+<p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><code><a href="../geom/Quaternion.html">Quaternion</a></code> &mdash; 
+                        a new Quaternion conjugate of the specified Quaternion.
+         
+                        
+                     </td>
+</tr>
+</table>
+</div>
+<a name="getMultiply()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">getMultiply</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public static function getMultiply(q1:<a href="../geom/Quaternion.html">Quaternion</a>, q2:<a href="../geom/Quaternion.html">Quaternion</a>):<a href="../geom/Quaternion.html">Quaternion</a></code><p>
+         Returns the multiplication of two Quaternions.
+         </p><span class="label">Parameters</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td><code><span class="label">q1</span>:<a href="../geom/Quaternion.html">Quaternion</a></code></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><code><span class="label">q2</span>:<a href="../geom/Quaternion.html">Quaternion</a></code></td>
+</tr>
+</table>
+<p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><code><a href="../geom/Quaternion.html">Quaternion</a></code> &mdash; 
+                        the multiplication of two Quaternions.
+         
+                        
+                     </td>
+</tr>
+</table>
+</div>
+<a name="getMultiplyVector3()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">getMultiplyVector3</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public static function getMultiplyVector3(q:<a href="../geom/Quaternion.html">Quaternion</a>, v:<a href="../geom/Vector3.html">Vector3</a>):<a href="../geom/Quaternion.html">Quaternion</a></code><p>
+         Returns the multiplication of one Quaternions with a Vector3.
+         </p><span class="label">Parameters</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td><code><span class="label">q</span>:<a href="../geom/Quaternion.html">Quaternion</a></code></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><code><span class="label">v</span>:<a href="../geom/Vector3.html">Vector3</a></code></td>
+</tr>
+</table>
+<p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><code><a href="../geom/Quaternion.html">Quaternion</a></code> &mdash; 
+                        the multiplication of one Quaternions with a Vector3.
+         
+                        
+                     </td>
+</tr>
+</table>
+</div>
+<a name="rotationAxis()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">rotationAxis</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public static function rotationAxis(q:<a href="../geom/Quaternion.html">Quaternion</a>, theta:Number, axis:<a href="../geom/Vector3.html">Vector3</a>):void</code><p>
+         Sets the elements of a Quaternion to represent the rotation around an arbitary axis.
+         </p><span class="label">Parameters</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td><code><span class="label">q</span>:<a href="../geom/Quaternion.html">Quaternion</a></code> &mdash; the Quaternion to set.
+         </td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><code><span class="label">theta</span>:Number</code> &mdash; a real number representing angle input.
+         </td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><code><span class="label">axis</span>:<a href="../geom/Vector3.html">Vector3</a></code> &mdash; the <code class="prettyprint">Vector3</code> direction instance.
+         </td>
+</tr>
+</table>
+</div>
+<a name="rotationMatrix()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">rotationMatrix</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public function rotationMatrix(q:<a href="../geom/Quaternion.html">Quaternion</a>):<a href="../geom/Matrix4.html">Matrix4</a></code><p>
+         Transform a Quaternion to a Matrix4 object. 
+         Calculates the rotation matrix of the quaternion.
+         </p><span class="label">Parameters</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td><code><span class="label">q</span>:<a href="../geom/Quaternion.html">Quaternion</a></code> &mdash; The Quaternion to transform.
+         </td>
+</tr>
+</table>
+<p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><code><a href="../geom/Matrix4.html">Matrix4</a></code> &mdash; 
+                        The rotation matrix of the specified Quaternion.
+         
+                        
+                     </td>
+</tr>
+</table>
+</div>
+<a name="setByMatrix()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">setByMatrix</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public static function setByMatrix(matrix:<a href="../geom/Matrix4.html">Matrix4</a>, quaternion:<a href="../geom/Quaternion.html">Quaternion</a> = null):<a href="../geom/Quaternion.html">Quaternion</a></code><p>
+         Sets the specified Quaternion with the Matrix4 reference passed in argument.
+         </p><span class="label">Parameters</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td><code><span class="label">matrix</span>:<a href="../geom/Matrix4.html">Matrix4</a></code> &mdash; the Matrix4 reference used to fill the Quaternion.
+         </td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><code><span class="label">quaternion</span>:<a href="../geom/Quaternion.html">Quaternion</a></code> (default = <code>null</code>)<code></code> &mdash; the option Quaternion reference to set. If parameter value is null a new Quaternion is created. 
+         </td>
+</tr>
+</table>
+<p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><code><a href="../geom/Quaternion.html">Quaternion</a></code></td>
+</tr>
+</table>
+</div>
+<a name="slerp()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">slerp</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public static function slerp(q1:<a href="../geom/Quaternion.html">Quaternion</a>, q2:<a href="../geom/Quaternion.html">Quaternion</a>, t:Number = 0):<a href="../geom/Quaternion.html">Quaternion</a></code><p>
+         Interpolates between two quaternions, using spherical linear interpolation (SLERP).
+         </p><p><b>See the wikipedia page about</b> : <a href="http://en.wikipedia.org/wiki/Slerp"> SLERP</a>.</p>
+         <span class="label">Parameters</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td><code><span class="label">q1</span>:<a href="../geom/Quaternion.html">Quaternion</a></code> &mdash; The first quaternion.
+         </td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><code><span class="label">q2</span>:<a href="../geom/Quaternion.html">Quaternion</a></code> &mdash; The second quaternion.
+         </td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><code><span class="label">t</span>:Number</code> (default = <code>0</code>)<code></code> &mdash; A scalar value between 0 and 1 that indicates how far to interpolate between the quaternions. 
+         </td>
+</tr>
+</table>
+<p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><code><a href="../geom/Quaternion.html">Quaternion</a></code> &mdash; 
+                        The interpolated quaternion with the spherical linera interpolation.
+         
+                        
+                     </td>
+</tr>
+</table>
+</div>
+<a name="substract()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">substract</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public static function substract(q1:<a href="../geom/Quaternion.html">Quaternion</a>, q2:<a href="../geom/Quaternion.html">Quaternion</a>):<a href="../geom/Quaternion.html">Quaternion</a></code><p>
+         Substracts the values of the two specified Quaternion.
+         </p><span class="label">Parameters</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td><code><span class="label">q1</span>:<a href="../geom/Quaternion.html">Quaternion</a></code> &mdash; The first quaternion.
+         </td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><code><span class="label">q2</span>:<a href="../geom/Quaternion.html">Quaternion</a></code> &mdash; The second quaternion.
+         </td>
+</tr>
+</table>
+<p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><code><a href="../geom/Quaternion.html">Quaternion</a></code> &mdash; 
+                        The new Quaternion.
+         
+                        
+                     </td>
+</tr>
+</table>
+</div>
+<br>
+<br>
+<hr>
+<br>
+<p></p>
+<center class="copyright"> 
+</center>
+</div>
+</body>
+</html>
+<!-- -->
