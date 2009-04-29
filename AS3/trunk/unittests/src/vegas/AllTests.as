@@ -26,7 +26,6 @@ package vegas
     import buRRRn.ASTUce.framework.TestSuite;
     
     import vegas.core.AllTests;
-    import vegas.data.AllTests;
     import vegas.errors.AllTests;
     import vegas.events.AllTests;
     import vegas.logging.AllTests;
@@ -47,7 +46,6 @@ package vegas
             var suite:TestSuite = new TestSuite( "vegas tests" );
 
             suite.addTest( vegas.core.AllTests.suite() ) ;
-            suite.addTest( vegas.data.AllTests.suite() ) ;
             suite.addTest( vegas.errors.AllTests.suite() ) ;
             suite.addTest( vegas.events.AllTests.suite() ) ;
             suite.addTest( vegas.logging.AllTests.suite() ) ;
