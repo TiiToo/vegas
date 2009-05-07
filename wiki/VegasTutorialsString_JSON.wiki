@@ -19,6 +19,10 @@ In VEGAS, i have implement a new version of the JSON class with an AS2, AS3 and 
  * Supports in string deserialization simple or double quotes.		
  * Supports with the AS2 version of the *vegas.string.JSON* class compile with MTASC.
 
+In VEGAS the JSON singleton is an instance of the JSONSerializer class :
+
+ * [http://code.google.com/p/vegas/source/browse/AS3/trunk/sources/vegas/string/json/JSONSerializer.as view source]
+
 == Serialize example ==
 
 {{{
