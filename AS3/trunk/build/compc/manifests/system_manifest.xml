@@ -17,13 +17,17 @@
     <component id="system:Enum"               class="system.Enum"               />
     <component id="system:Environment"        class="system.Environment"        />
     <component id="system:Equatable"          class="system.Equatable"          />
+    <component id="system:experimental"       class="system.experimental"       />
+    <component id="system:hack"               class="system.hack"               />
     <component id="system:info"               class="system.info"               />
     <component id="system:Library"            class="system.Library"            />
     <component id="system:metadata"           class="system.metadata"           />
+    <component id="system:optimized"          class="system.optimized"          />
     <component id="system:Reflection"         class="system.Reflection"         />
     <component id="system:Serializable"       class="system.Serializable"       />
     <component id="system:Serializer"         class="system.Serializer"         />
     <component id="system:Sortable"           class="system.Sortable"           />
+    <component id="system:standard"           class="system.standard"           />
     <component id="system:Strings"            class="system.Strings"            />
     <component id="system:SystemConfigurator" class="system.SystemConfigurator" />
     <component id="system:URI"                class="system.URI"                />
@@ -120,6 +124,7 @@
     <component id="system.data.maps:MapFormatter"      class="system.data.maps.MapFormatter"      />
     <component id="system.data.maps:MapUtils"          class="system.data.maps.MapUtils"          />
     <component id="system.data.maps:MultiMapFormatter" class="system.data.maps.MultiMapFormatter" />
+    <component id="system.data.maps:MultiSetMap"       class="system.data.maps.MultiSetMap"       />
     <component id="system.data.maps:MultiValueMap"     class="system.data.maps.MultiValueMap"     />
     <component id="system.data.maps:SortedArrayMap"    class="system.data.maps.SortedArrayMap"    />
     <component id="system.data.maps:TypedMap"          class="system.data.maps.TypedMap"          />
@@ -137,7 +142,6 @@
     <component id="system.data.sets:ArraySet"     class="system.data.sets.ArraySet" />     
     <component id="system.data.sets:CoreSet"      class="system.data.sets.CoreSet"  />
     <component id="system.data.sets:HashSet"      class="system.data.sets.HashSet"  />
-    <component id="system.data.sets:MultiHashSet" class="system.data.sets.MultiHashSet" /> 
     <component id="system.data.sets:TypedSet"     class="system.data.sets.TypedSet"     /> 
     
     <!-- system.data.stacks -->
@@ -167,6 +171,7 @@
     
     <!-- system.events -->
     
+    <component id="system.events:ActionEvent"         class="system.events.ActionEvent" />
     <component id="system.events:ArrayEvent"          class="system.events.ArrayEvent" />
     <component id="system.events:BasicEvent"          class="system.events.BasicEvent" />
     <component id="system.events:BooleanEvent"        class="system.events.BooleanEvent" />
@@ -215,11 +220,31 @@
     
     <!-- system.process -->
     
-    <component id="system.process:Lockable"  class="system.process.Lockable"  />
-    <component id="system.process:Priority"  class="system.process.Priority"  />
-    <component id="system.process:Resetable" class="system.process.Resetable" />
-    <component id="system.process:Runnable"  class="system.process.Runnable"  />
-    <component id="system.process:Stoppable" class="system.process.Stoppable" />
+    <component id="system.process.caches:Attribute" class="system.process.caches.Attribute" />
+    <component id="system.process.caches:Method"    class="system.process.caches.Method"    />
+    
+    <!-- system.process -->
+    
+    <component id="system.process:Action"                 class="system.process.Action"                 />
+    <component id="system.process:ActionEventDispatcher"  class="system.process.ActionEventDispatcher"  />
+    <component id="system.process:ActionLoader"           class="system.process.ActionLoader"           />
+    <component id="system.process:ActionProxy"            class="system.process.ActionProxy"            />
+    <component id="system.process:ActionURLLoader"        class="system.process.ActionURLLoader"        />
+    <component id="system.process:Batch"                  class="system.process.Batch"                  />
+    <component id="system.process:BatchProcess"           class="system.process.BatchProcess"           />
+    <component id="system.process:Cache"                  class="system.process.Cache"                  />
+    <component id="system.process:CoreAction"             class="system.process.CoreAction"             />
+    <component id="system.process:CoreActionLoader"       class="system.process.CoreActionLoader"       />
+    <component id="system.process:Initializer"            class="system.process.Initializer"            />
+    <component id="system.process:Lockable"               class="system.process.Lockable"               />
+    <component id="system.process:Pause"                  class="system.process.Pause"                  />
+    <component id="system.process:Priority"               class="system.process.Priority"               />
+    <component id="system.process:Resetable"              class="system.process.Resetable"              />
+    <component id="system.process:Runnable"               class="system.process.Runnable"               />
+    <component id="system.process:Sequencer"              class="system.process.Sequencer"              />
+    <component id="system.process:Stoppable"              class="system.process.Stoppable"              />
+    <component id="system.process:Task"                   class="system.process.Task"                   />
+    <component id="system.process:TimeoutPolicy"          class="system.process.TimeoutPolicy"          />
     
     <!-- system.reflection -->
     

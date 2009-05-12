@@ -17,6 +17,7 @@
     <component id="asgard.display:DisplayObjectCollector"  class="asgard.display.DisplayObjectCollector" />
     <component id="asgard.display:DisplayObjectContainers" class="asgard.display.DisplayObjectContainers" />
     <component id="asgard.display:IDisplayObject"          class="asgard.display.IDisplayObject"  />
+    <component id="asgard.display:PerlinNoise"             class="asgard.display.PerlinNoise" />
     <component id="asgard.display:PolyLineBackground"      class="asgard.display.PolyLineBackground" />
     <component id="asgard.display:Protector"               class="asgard.display.Protector"  />
     <component id="asgard.display:SWFInfo"                 class="asgard.display.SWFInfo"  />

@@ -21,7 +21,6 @@
     
     <!-- andromeda.events -->
     
-    <component id="andromeda.events:ActionEvent"       class="andromeda.events.ActionEvent"       />    
     <component id="andromeda.events:LocalizationEvent" class="andromeda.events.LocalizationEvent" />
     <component id="andromeda.events:ModelObjectEvent"  class="andromeda.events.ModelObjectEvent"  />
         
@@ -138,24 +137,6 @@
     <component id="andromeda.net:ParserLoader" class="andromeda.net.ParserLoader" />
     <component id="andromeda.net:XMLLoader"    class="andromeda.net.XMLLoader"    />
     
-    <!-- andromeda.process -->
-    
-    <component id="andromeda.process:Action"                 class="andromeda.process.Action"                 />      
-    <component id="andromeda.process:ActionLoader"           class="andromeda.process.ActionLoader"           />
-    <component id="andromeda.process:ActionProxy"            class="andromeda.process.ActionProxy"            />
-    <component id="andromeda.process:ActionURLLoader"        class="andromeda.process.ActionURLLoader"        />
-    <component id="andromeda.process:Batch"                  class="andromeda.process.Batch"                  />
-    <component id="andromeda.process:BatchProcess"           class="andromeda.process.BatchProcess"           />
-    <component id="andromeda.process:CoreActionLoader"       class="andromeda.process.CoreActionLoader"       />
-    <component id="andromeda.process:EventDispatcherProcess" class="andromeda.process.EventDispatcherProcess" />
-    <component id="andromeda.process:IAction"                class="andromeda.process.IAction"                />
-    <component id="andromeda.process:InitProcess"            class="andromeda.process.InitProcess"            />
-    <component id="andromeda.process:Message"                class="andromeda.process.Message"                />
-    <component id="andromeda.process:Pause"                  class="andromeda.process.Pause"                  />
-    <component id="andromeda.process:Sequencer"              class="andromeda.process.Sequencer"              />
-    <component id="andromeda.process:SimpleAction"           class="andromeda.process.SimpleAction"           />
-    <component id="andromeda.process:TimeoutPolicy"          class="andromeda.process.TimeoutPolicy"          />
-    
     <!-- andromeda.util.observer -->
     
     <component id="andromeda.util.observer:Observer"   class="andromeda.util.observer.Observer"   />
@@ -176,7 +157,6 @@
         
     <!-- andromeda.vo -->
 
-    <component id="andromeda.vo:AbstractValueObject" class="andromeda.vo.AbstractValueObject" />
     <component id="andromeda.vo:FilterVO"            class="andromeda.vo.FilterVO"            />
     <component id="andromeda.vo:NetServerInfoVO"     class="andromeda.vo.NetServerInfoVO"     />
     <component id="andromeda.vo:SimpleValueObject"   class="andromeda.vo.SimpleValueObject"   />
