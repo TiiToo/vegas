@@ -1,5 +1,5 @@
  
-   VEGAS AS3 - version 1,2,0,1286
+   VEGAS AS3 - version 1,4,0,1303
 
    LICENCE 
 
@@ -31,13 +31,12 @@
 
    ABOUT
 
-    * Author : eKameleon
-    * Version : 1.2.0.1286
-    * Link : http://www.ekameleon.net/blog
-    * Mail : vegas@ekameleon.net 
+    * Author  : eKameleon
+    * Version : 1,4,0,1303
+    * Link    : http://www.ekameleon.net/blog
+    * Mail    : ekameleon@gmail.com 
 
    THANKS
 
     * Zwetan : ECMAScript Concepts and hosting | http://www.zwetan.com/
-    * Stephan Schmid : Event model framework inspiration | http://schst.net/
     * PowerFlasher - FDT OpenSource Licence : http://powerflasher.com/ 

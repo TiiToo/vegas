@@ -1,0 +1,652 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" href="../../style.css" type="text/css" media="screen">
+<link rel="stylesheet" href="../../print.css" type="text/css" media="print">
+<link rel="stylesheet" href="../../prettify.css" type="text/css">
+<meta content="TabManager,asgard.managers.TabManager,auto,clear,contains,getCurrent,getInstance,insert,remove,select,unSelect" name="keywords">
+<title>asgard.managers.TabManager</title>
+</head>
+<body>
+<script type="text/javascript" language="javascript" src="../../prettify.js"></script><script type="text/javascript" language="javascript" src="../../asdoc.js"></script><script type="text/javascript" language="javascript" src="../../cookies.js"></script><script type="text/javascript" language="javascript">
+<!--
+				asdocTitle = 'TabManager - VEGAS AS3 Reference';
+				var baseRef = '../../';
+				window.onload = configPage;
+			--></script>
+<table style="display:none" id="titleTable" cellspacing="0" cellpadding="0" class="titleTable">
+<tr>
+<td align="left" class="titleTableTitle">VEGAS AS3 Reference</td><td align="right" class="titleTableTopNav"><a onclick="loadClassListFrame('../../all-classes.html')" href="../../package-summary.html">All&nbsp;Packages</a>&nbsp;|&nbsp;<a onclick="loadClassListFrame('../../all-classes.html')" href="../../class-summary.html">All&nbsp;Classes</a>&nbsp;|&nbsp;<a onclick="loadClassListFrame('../../index-list.html')" href="../../all-index-A.html">Index</a>&nbsp;|&nbsp;<a href="../../index.html?asgard/managers/TabManager.html&amp;asgard/managers/class-list.html" id="framesLink1">Frames</a><a onclick="parent.location=document.location" href="" style="display:none" id="noFramesLink1">No&nbsp;Frames</a></td><td rowspan="3" align="right" class="titleTableLogo"><img alt="Adobe Logo" title="Adobe Logo" class="logoImage" src="../../images/logo.jpg"></td>
+</tr>
+<tr class="titleTableRow2">
+<td align="left" id="subTitle" class="titleTableSubTitle">Class&nbsp;TabManager</td><td align="right" id="subNav" class="titleTableSubNav"><a href="#propertySummary">Properties</a>&nbsp;| <a href="#methodSummary">Methods</a></td>
+</tr>
+<tr class="titleTableRow3">
+<td colspan="2">&nbsp;</td>
+</tr>
+</table>
+<script type="text/javascript" language="javascript">
+<!--
+if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Class TabManager"); titleBar_setSubNav(false,true,false,false,false,false,true,false,false,false,false,false,false,false);}
+--></script>
+<div class="MainContent">
+<table cellspacing="0" cellpadding="0" class="classHeaderTable">
+<tr>
+<td class="classHeaderTableLabel">Package</td><td><a onclick="javascript:loadClassListFrame('class-list.html')" href="package-detail.html">asgard.managers</a></td>
+</tr>
+<tr>
+<td class="classHeaderTableLabel">Class</td><td class="classSignature">public class TabManager</td>
+</tr>
+<tr>
+<td class="classHeaderTableLabel">Inheritance</td><td class="inheritanceList">TabManager <img class="inheritArrow" alt="Inheritance" title="Inheritance" src="../../images/inherit-arrow.gif"> <a href="../../andromeda/model/AbstractModel.html">AbstractModel</a> <img class="inheritArrow" alt="Inheritance" title="Inheritance" src="../../images/inherit-arrow.gif"> <a href="../../system/events/CoreEventDispatcher.html">CoreEventDispatcher</a></td>
+</tr>
+</table>
+<p></p>
+     The TabManager manage visual tab process in the applications.
+     <p><b>Example :</b></p>
+     <pre class="prettyprint">
+     import asgard.managers.TabManager ;
+     
+     var manager:TabManager = new TabManager() ;
+     
+     manager.auto = true ;
+     
+     container1.field1.tabIndex = 10 ;
+     container1.field2.tabIndex = 20 ;
+     container1.field3.tabIndex = 30 ;
+     container1.field4.tabIndex = 40 ;
+     
+     container2.field1.tabIndex = 2 ;
+     container2.field2.tabIndex = 1 ;
+     container2.field3.tabIndex = 4 ;
+     container2.field4.tabIndex = 3 ;
+     
+     manager.insert("group1", container1.field1 ) ;
+     manager.insert("group1", container1.field2 ) ;
+     manager.insert("group1", container1.field3 ) ;
+     manager.insert("group1", container1.field4 ) ;
+     
+     manager.insert("group2", container2.field1 ) ;
+     manager.insert("group2", container2.field2 ) ;
+     manager.insert("group2", container2.field3 ) ;
+     manager.insert("group2", container2.field4 ) ;
+     
+     manager.select("group1") ; // default 
+     
+     var keyDown:Function = function( e:KeyboardEvent ):void
+     {
+         var code:Number = e.keyCode ;
+         switch( code )
+         {
+             case Keyboard.UP :
+             {
+                 manager.select("group1") ;
+                 break ;
+             }
+             case Keyboard.DOWN :
+             {
+                     manager.select("group1" , container1.field3 ) ;
+                     break ;
+             }
+             case Keyboard.LEFT :
+             {
+                     manager.select("group2") ;
+                    break ;
+                }
+                case Keyboard.RIGHT :
+                {
+                        manager.select("group2" , container2.field2 ) ;
+                        break ;
+                }
+         }
+     }
+     
+     stage.addEventListener( KeyboardEvent.KEY_DOWN , keyDown ) ;
+     </pre>
+     <p></p>
+<br>
+<hr>
+</div>
+<a name="propertySummary"></a>
+<div class="summarySection">
+<div class="summaryTableTitle">Public Properties</div>
+<div class="showHideLinks">
+<div class="hideInheritedProperty" id="hideInheritedProperty">
+<a onclick="javascript:setInheritedVisible(false,'Property');" href="#propertySummary" class="showHideLink"><img src="../../images/expanded.gif" class="showHideLinkImage"> Hide Inherited Public Properties</a>
+</div>
+<div class="showInheritedProperty" id="showInheritedProperty">
+<a onclick="javascript:setInheritedVisible(true,'Property');" href="#propertySummary" class="showHideLink"><img src="../../images/collapsed.gif" class="showHideLinkImage"> Show Inherited Public Properties</a>
+</div>
+</div>
+<table id="summaryTableProperty" class="summaryTable " cellpadding="3" cellspacing="0">
+<tr>
+<th>&nbsp;</th><th colspan="2">Property</th><th class="summaryTableOwnerCol">Defined&nbsp;by</th>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#auto">auto</a> : Boolean = false<div class="summaryTableDescription">
+         Indicates if the tab manager use a auto group focus over the interactive objects when there are focused.</div>
+</td><td class="summaryTableOwnerCol">TabManager</td>
+</tr>
+<tr class="hideInheritedProperty">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol"><a class="signatureLink" href="../../system/events/CoreEventDispatcher.html#channel">channel</a> : String<div class="summaryTableDescription">
+         Indicates the channel of this dispatcher if this instance is global.</div>
+</td><td class="summaryTableOwnerCol"><a href="../../system/events/CoreEventDispatcher.html">CoreEventDispatcher</a></td>
+</tr>
+<tr class="hideInheritedProperty">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol"><a class="signatureLink" href="../../andromeda/model/AbstractModel.html#id">id</a> : *<div class="summaryTableDescription">
+         Returns the <code class="prettyprint">id</code> of this IModelObject.</div>
+</td><td class="summaryTableOwnerCol"><a href="../../andromeda/model/AbstractModel.html">AbstractModel</a></td>
+</tr>
+</table>
+</div>
+<a name="methodSummary"></a>
+<div class="summarySection">
+<div class="summaryTableTitle">Public Methods</div>
+<div class="showHideLinks">
+<div class="hideInheritedMethod" id="hideInheritedMethod">
+<a onclick="javascript:setInheritedVisible(false,'Method');" href="#methodSummary" class="showHideLink"><img src="../../images/expanded.gif" class="showHideLinkImage"> Hide Inherited Public Methods</a>
+</div>
+<div class="showInheritedMethod" id="showInheritedMethod">
+<a onclick="javascript:setInheritedVisible(true,'Method');" href="#methodSummary" class="showHideLink"><img src="../../images/collapsed.gif" class="showHideLinkImage"> Show Inherited Public Methods</a>
+</div>
+</div>
+<table id="summaryTableMethod" class="summaryTable " cellpadding="3" cellspacing="0">
+<tr>
+<th>&nbsp;</th><th colspan="2">Method</th><th class="summaryTableOwnerCol">Defined&nbsp;by</th>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#TabManager()">TabManager</a>(id:* = null, global:Boolean = false, channel:String = null)</div>
+<div class="summaryTableDescription">
+         Creates a new TabManager instance.</div>
+</td><td class="summaryTableOwnerCol">TabManager</td>
+</tr>
+<tr class="hideInheritedMethod">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="../../system/events/CoreEventDispatcher.html#addEventListener()">addEventListener</a>(type:String, listener:Function, useCapture:Boolean = false, priority:int = 0.0, useWeakReference:Boolean = false):void</div>
+<div class="summaryTableDescription">
+   Allows the registration of event listeners on the event target.</div>
+</td><td class="summaryTableOwnerCol"><a href="../../system/events/CoreEventDispatcher.html">CoreEventDispatcher</a></td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#clear()">clear</a>():void</div>
+<div class="summaryTableDescription">
+         Removes all elements in this manager.</div>
+</td><td class="summaryTableOwnerCol">TabManager</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#contains()">contains</a>(id:*):Boolean</div>
+<div class="summaryTableDescription">
+         Checks whether the map contains the specified group id.</div>
+</td><td class="summaryTableOwnerCol">TabManager</td>
+</tr>
+<tr class="hideInheritedMethod">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="../../system/events/CoreEventDispatcher.html#dispatchEvent()">dispatchEvent</a>(event:Event):Boolean</div>
+<div class="summaryTableDescription">
+   Dispatches an event into the event flow.</div>
+</td><td class="summaryTableOwnerCol"><a href="../../system/events/CoreEventDispatcher.html">CoreEventDispatcher</a></td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#getCurrent()">getCurrent</a>():*</div>
+<div class="summaryTableDescription">
+         Returns the current group id selected in the manager.</div>
+</td><td class="summaryTableOwnerCol">TabManager</td>
+</tr>
+<tr class="hideInheritedMethod">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="../../system/events/CoreEventDispatcher.html#getEventDispatcher()">getEventDispatcher</a>():<a href="../../system/events/EventDispatcher.html">EventDispatcher</a>
+</div>
+<div class="summaryTableDescription">
+   Returns the internal <code class="prettyprint">system.events.EventDispatcher</code> reference.</div>
+</td><td class="summaryTableOwnerCol"><a href="../../system/events/CoreEventDispatcher.html">CoreEventDispatcher</a></td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#getInstance()">getInstance</a>():<a href="../managers/TabManager.html">TabManager</a>
+</div>
+<div class="summaryTableDescription">[static]
+         Returns the singleton reference of the TabManager class.</div>
+</td><td class="summaryTableOwnerCol">TabManager</td>
+</tr>
+<tr class="hideInheritedMethod">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="../../system/events/CoreEventDispatcher.html#hasEventListener()">hasEventListener</a>(type:String):Boolean</div>
+<div class="summaryTableDescription">
+   Checks whether the EventDispatcher object has any listeners registered for a specific type of event.</div>
+</td><td class="summaryTableOwnerCol"><a href="../../system/events/CoreEventDispatcher.html">CoreEventDispatcher</a></td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#insert()">insert</a>(id:*, child:InteractiveObject):Boolean</div>
+<div class="summaryTableDescription">
+         Insert a new child object in the manager with the specified id.</div>
+</td><td class="summaryTableOwnerCol">TabManager</td>
+</tr>
+<tr class="hideInheritedMethod">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="../../system/events/CoreEventDispatcher.html#isGlobal()">isGlobal</a>():Boolean</div>
+<div class="summaryTableDescription">
+         Indicates if the dispatcher use a global event flow.</div>
+</td><td class="summaryTableOwnerCol"><a href="../../system/events/CoreEventDispatcher.html">CoreEventDispatcher</a></td>
+</tr>
+<tr class="hideInheritedMethod">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="../../system/events/CoreEventDispatcher.html#isLocked()">isLocked</a>():Boolean</div>
+<div class="summaryTableDescription">
+      Returns <code class="prettyprint">true</code> if the object is locked.</div>
+</td><td class="summaryTableOwnerCol"><a href="../../system/events/CoreEventDispatcher.html">CoreEventDispatcher</a></td>
+</tr>
+<tr class="hideInheritedMethod">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="../../system/events/CoreEventDispatcher.html#lock()">lock</a>():void</div>
+<div class="summaryTableDescription">
+      Locks the object.</div>
+</td><td class="summaryTableOwnerCol"><a href="../../system/events/CoreEventDispatcher.html">CoreEventDispatcher</a></td>
+</tr>
+<tr class="hideInheritedMethod">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="../../system/events/CoreEventDispatcher.html#registerEventListener()">registerEventListener</a>(type:String, listener:Boolean, useCapture:int = false, priority:Boolean = 0, useWeakReference:* = false):void</div>
+<div class="summaryTableDescription">
+   Allows the registration of event listeners on the event target (Function or EventListener).</div>
+</td><td class="summaryTableOwnerCol"><a href="../../system/events/CoreEventDispatcher.html">CoreEventDispatcher</a></td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#remove()">remove</a>(id:*, child:InteractiveObject):Boolean</div>
+<div class="summaryTableDescription">
+         Removes a child object in the manager with the specified id.</div>
+</td><td class="summaryTableOwnerCol">TabManager</td>
+</tr>
+<tr class="hideInheritedMethod">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="../../system/events/CoreEventDispatcher.html#removeEventListener()">removeEventListener</a>(type:String, listener:Function, useCapture:Boolean = false):void</div>
+<div class="summaryTableDescription"> 
+   Removes a listener from the EventDispatcher object.</div>
+</td><td class="summaryTableOwnerCol"><a href="../../system/events/CoreEventDispatcher.html">CoreEventDispatcher</a></td>
+</tr>
+<tr class="hideInheritedMethod">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="../../andromeda/model/AbstractModel.html#run()">run</a>(... arguments):void</div>
+<div class="summaryTableDescription">
+         Run the first process with this model.</div>
+</td><td class="summaryTableOwnerCol"><a href="../../andromeda/model/AbstractModel.html">AbstractModel</a></td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#select()">select</a>(id:*, defaultChild:InteractiveObject = null):Boolean</div>
+<div class="summaryTableDescription">
+         Select the specified group and returns <code class="prettyprint">true</code> if the group exist.</div>
+</td><td class="summaryTableOwnerCol">TabManager</td>
+</tr>
+<tr class="hideInheritedMethod">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="../../system/events/CoreEventDispatcher.html#setEventDispatcher()">setEventDispatcher</a>(dispatcher:<a href="../../system/events/EventDispatcher.html">EventDispatcher</a>):void</div>
+<div class="summaryTableDescription">
+   Sets the internal <code class="prettyprint">EventDispatcher</code> reference.</div>
+</td><td class="summaryTableOwnerCol"><a href="../../system/events/CoreEventDispatcher.html">CoreEventDispatcher</a></td>
+</tr>
+<tr class="hideInheritedMethod">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="../../system/events/CoreEventDispatcher.html#setGlobal()">setGlobal</a>(flag:Boolean = false, channel:String = null):void</div>
+<div class="summaryTableDescription">
+   Sets if the instance use a global <code class="prettyprint">system.events.EventDispatcher</code> to dispatch this events, if the <code class="prettyprint">flag</code> value is <code class="prettyprint">false</code> the instance use a local EventDispatcher.</div>
+</td><td class="summaryTableOwnerCol"><a href="../../system/events/CoreEventDispatcher.html">CoreEventDispatcher</a></td>
+</tr>
+<tr class="hideInheritedMethod">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="../../system/events/CoreEventDispatcher.html#unlock()">unlock</a>():void</div>
+<div class="summaryTableDescription">
+      Unlocks the display.</div>
+</td><td class="summaryTableOwnerCol"><a href="../../system/events/CoreEventDispatcher.html">CoreEventDispatcher</a></td>
+</tr>
+<tr class="hideInheritedMethod">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="../../system/events/CoreEventDispatcher.html#unregisterEventListener()">unregisterEventListener</a>(type:String, listener:Boolean, useCapture:* = false):void</div>
+<div class="summaryTableDescription"> 
+   Removes a listener (Function or EventListener object) from the EventDispatcher object.</div>
+</td><td class="summaryTableOwnerCol"><a href="../../system/events/CoreEventDispatcher.html">CoreEventDispatcher</a></td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#unSelect()">unSelect</a>():Boolean</div>
+<div class="summaryTableDescription">
+         Unselect the specified group and returns <code class="prettyprint">true</code> if the group exist.</div>
+</td><td class="summaryTableOwnerCol">TabManager</td>
+</tr>
+<tr class="hideInheritedMethod">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="../../system/events/CoreEventDispatcher.html#willTrigger()">willTrigger</a>(type:String):Boolean</div>
+<div class="summaryTableDescription">
+   Checks whether an event listener is registered with this EventDispatcher object or any of its ancestors for the specified event type.</div>
+</td><td class="summaryTableOwnerCol"><a href="../../system/events/CoreEventDispatcher.html">CoreEventDispatcher</a></td>
+</tr>
+</table>
+</div>
+<a name="protectedMethodSummary"></a>
+<div class="summarySection">
+<div class="summaryTableTitle">Protected Methods</div>
+<div class="showHideLinks">
+<div class="hideInheritedProtectedMethod" id="hideInheritedProtectedMethod">
+<a onclick="javascript:setInheritedVisible(false,'ProtectedMethod');" href="#protectedMethodSummary" class="showHideLink"><img src="../../images/expanded.gif" class="showHideLinkImage"> Hide Inherited Protected Methods</a>
+</div>
+<div class="showInheritedProtectedMethod" id="showInheritedProtectedMethod">
+<a onclick="javascript:setInheritedVisible(true,'ProtectedMethod');" href="#protectedMethodSummary" class="showHideLink"><img src="../../images/collapsed.gif" class="showHideLinkImage"> Show Inherited Protected Methods</a>
+</div>
+</div>
+<table id="summaryTableProtectedMethod" class="summaryTable hideInheritedProtectedMethod" cellpadding="3" cellspacing="0">
+<tr>
+<th>&nbsp;</th><th colspan="2">Method</th><th class="summaryTableOwnerCol">Defined&nbsp;by</th>
+</tr>
+<tr class="hideInheritedProtectedMethod">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="../../system/events/CoreEventDispatcher.html#initEventDispatcher()">initEventDispatcher</a>():<a href="../../system/events/EventDispatcher.html">EventDispatcher</a>
+</div>
+<div class="summaryTableDescription">
+         Creates and returns the internal <code class="prettyprint">EventDispatcher</code> reference (this method is invoked in the constructor).</div>
+</td><td class="summaryTableOwnerCol"><a href="../../system/events/CoreEventDispatcher.html">CoreEventDispatcher</a></td>
+</tr>
+</table>
+</div>
+<script type="text/javascript" language="javascript">
+<!--
+showHideInherited();
+--></script>
+<div class="MainContent">
+<a name="propertyDetail"></a>
+<div class="detailSectionHeader">Property detail</div>
+<a name="auto"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">auto</td><td class="detailHeaderType">property</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public var auto:Boolean = false</code><p>
+         Indicates if the tab manager use a auto group focus over the interactive objects when there are focused.
+         </p></div>
+<a name="constructorDetail"></a>
+<div class="detailSectionHeader">Constructor detail</div>
+<a name="TabManager()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">TabManager</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">constructor</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public function TabManager(id:* = null, global:Boolean = false, channel:String = null)</code><p>
+         Creates a new TabManager instance.
+         </p><span class="label">Parameters</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td><code><span class="label">id</span>:*</code> (default = <code>null</code>)<code></code> &mdash; the id of the model.
+         </td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><code><span class="label">global</span>:Boolean</code> (default = <code>false</code>)<code></code> &mdash; the flag to use a global event flow or a local event flow.
+         </td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><code><span class="label">channel</span>:String</code> (default = <code>null</code>)<code></code> &mdash; the name of the global event flow if the <code class="prettyprint">bGlobal</code> argument is <code class="prettyprint">true</code>.
+         </td>
+</tr>
+</table>
+</div>
+<a name="methodDetail"></a>
+<div class="detailSectionHeader">Method detail</div>
+<a name="clear()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">clear</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public function clear():void</code><p>
+         Removes all elements in this manager.
+         </p></div>
+<a name="contains()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">contains</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public function contains(id:*):Boolean</code><p>
+         Checks whether the map contains the specified group id.
+         </p><span class="label">Parameters</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td><code><span class="label">id</span>:*</code></td>
+</tr>
+</table>
+<p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><code>Boolean</code></td>
+</tr>
+</table>
+</div>
+<a name="getCurrent()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">getCurrent</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public function getCurrent():*</code><p>
+         Returns the current group id selected in the manager.
+         </p><p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><code>*</code> &mdash; the current group id selected in the manager.
+         </td>
+</tr>
+</table>
+</div>
+<a name="getInstance()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">getInstance</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public static function getInstance():<a href="../managers/TabManager.html">TabManager</a></code><p>
+         Returns the singleton reference of the TabManager class.
+         </p><p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><code><a href="../managers/TabManager.html">TabManager</a></code> &mdash; 
+                        the singleton reference of the TabManager class.
+         
+                        
+                     </td>
+</tr>
+</table>
+</div>
+<a name="insert()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">insert</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public function insert(id:*, child:InteractiveObject):Boolean</code><p>
+         Insert a new child object in the manager with the specified id.
+         </p><span class="label">Parameters</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td><code><span class="label">id</span>:*</code> &mdash; The key of the group to collect the specified interactive object.
+         </td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><code><span class="label">child</span>:InteractiveObject</code> &mdash; The interactive object to collect in the manager.
+         </td>
+</tr>
+</table>
+<p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><code>Boolean</code> &mdash; <code class="prettyprint">true</code> if the interactive object is inserted in the manager.
+         </td>
+</tr>
+</table>
+<br>
+<span class="label">Throws</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><code></code> &mdash; the id argument not must be 'null' or 'undefined'.
+         </td>
+</tr>
+</table>
+</div>
+<a name="remove()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">remove</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public function remove(id:*, child:InteractiveObject):Boolean</code><p>
+         Removes a child object in the manager with the specified id.
+         </p><span class="label">Parameters</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td><code><span class="label">id</span>:*</code> &mdash; The key of the group to collect the specified interactive object.
+         </td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><code><span class="label">child</span>:InteractiveObject</code> &mdash; The interactive object to collect in the manager.
+         </td>
+</tr>
+</table>
+<p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><code>Boolean</code> &mdash; <code class="prettyprint">true</code> if the interactive object is removed in the manager.
+         </td>
+</tr>
+</table>
+<br>
+<span class="label">Throws</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><code></code> &mdash; the id argument not must be 'null' or 'undefined'.
+         </td>
+</tr>
+</table>
+</div>
+<a name="select()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">select</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public function select(id:*, defaultChild:InteractiveObject = null):Boolean</code><p>
+         Select the specified group and returns <code class="prettyprint">true</code> if the group exist.
+         </p><span class="label">Parameters</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td><code><span class="label">id</span>:*</code> &mdash; The key of the tab group of interactive objects.
+         </td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><code><span class="label">defaultChild</span>:InteractiveObject</code> (default = <code>null</code>)<code></code> &mdash; (optional) The default interactive object to select by default when the group is selected.
+         </td>
+</tr>
+</table>
+<p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><code>Boolean</code> &mdash; <code class="prettyprint">true</code> if the specified group of interactive objects is selected.
+         </td>
+</tr>
+</table>
+<br>
+<span class="label">Throws</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><code></code> &mdash; the id argument not must be 'null' or 'undefined'.
+         </td>
+</tr>
+</table>
+</div>
+<a name="unSelect()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">unSelect</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public function unSelect():Boolean</code><p>
+         Unselect the specified group and returns <code class="prettyprint">true</code> if the group exist.
+         </p><p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><code>Boolean</code> &mdash; <code class="prettyprint">true</code> if the unselected group exist and the process is success.
+         </td>
+</tr>
+</table>
+</div>
+<br>
+<br>
+<hr>
+<br>
+<p></p>
+<center class="copyright"> 
+</center>
+</div>
+</body>
+</html>
+<!-- -->

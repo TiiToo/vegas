@@ -73,7 +73,7 @@
     <!-- pegas.geom -->
     
     <component id="pegas.geom:AspectRatio"  class="pegas.geom.AspectRatio" />
-    <component id="pegas.geom:Beziers"      class="pegas.geom.BezierUtil" />    
+    <component id="pegas.geom:Beziers"      class="pegas.geom.Beziers" />    
     <component id="pegas.geom:Dimension"    class="pegas.geom.Dimension" />
     <component id="pegas.geom:EdgeMetrics"  class="pegas.geom.EdgeMetrics" />
     <component id="pegas.geom:Geometry"     class="pegas.geom.Geometry" />
@@ -142,4 +142,4 @@
     <component id="pegas.transitions.easing:Sine"     class="pegas.transitions.easing.Sine" />
     <component id="pegas.transitions.easing:Strong"   class="pegas.transitions.easing.Strong" />
     
- /componentPackage>
+</componentPackage>

@@ -1,0 +1,1194 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" href="../../style.css" type="text/css" media="screen">
+<link rel="stylesheet" href="../../print.css" type="text/css" media="print">
+<link rel="stylesheet" href="../../prettify.css" type="text/css">
+<meta content="NetServerConnection,asgard.net.NetServerConnection,DEFAULT_DELAY,client,connected,connectedProxyType,connection,defaultObjectEncoding,farID,farNonce,maxPeerConnections,nearID,nearNonce,objectEncoding,parent,protocol,proxyType,running,unconnectedPeerStreams,uri,usingTLS,addHeader,call,clone,close,connect,getDelay,getTimeoutPolicy,notifyFinished,notifyNetServerEvent,notifyStarted,notifyTimeOut,run,setDelay,setLimitPolicy,setRunning,sharedEvent" name="keywords">
+<title>asgard.net.NetServerConnection</title>
+</head>
+<body>
+<script type="text/javascript" language="javascript" src="../../prettify.js"></script><script type="text/javascript" language="javascript" src="../../asdoc.js"></script><script type="text/javascript" language="javascript" src="../../cookies.js"></script><script type="text/javascript" language="javascript">
+<!--
+				asdocTitle = 'NetServerConnection - VEGAS AS3 Reference';
+				var baseRef = '../../';
+				window.onload = configPage;
+			--></script>
+<table style="display:none" id="titleTable" cellspacing="0" cellpadding="0" class="titleTable">
+<tr>
+<td align="left" class="titleTableTitle">VEGAS AS3 Reference</td><td align="right" class="titleTableTopNav"><a onclick="loadClassListFrame('../../all-classes.html')" href="../../package-summary.html">All&nbsp;Packages</a>&nbsp;|&nbsp;<a onclick="loadClassListFrame('../../all-classes.html')" href="../../class-summary.html">All&nbsp;Classes</a>&nbsp;|&nbsp;<a onclick="loadClassListFrame('../../index-list.html')" href="../../all-index-A.html">Index</a>&nbsp;|&nbsp;<a href="../../index.html?asgard/net/NetServerConnection.html&amp;asgard/net/class-list.html" id="framesLink1">Frames</a><a onclick="parent.location=document.location" href="" style="display:none" id="noFramesLink1">No&nbsp;Frames</a></td><td rowspan="3" align="right" class="titleTableLogo"><img alt="Adobe Logo" title="Adobe Logo" class="logoImage" src="../../images/logo.jpg"></td>
+</tr>
+<tr class="titleTableRow2">
+<td align="left" id="subTitle" class="titleTableSubTitle">Class&nbsp;NetServerConnection</td><td align="right" id="subNav" class="titleTableSubNav"><a href="#propertySummary">Properties</a>&nbsp;| <a href="#methodSummary">Methods</a>&nbsp;| <a href="#constantSummary">Constants</a></td>
+</tr>
+<tr class="titleTableRow3">
+<td colspan="2">&nbsp;</td>
+</tr>
+</table>
+<script type="text/javascript" language="javascript">
+<!--
+if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Class NetServerConnection"); titleBar_setSubNav(true,true,false,false,false,false,true,false,false,false,false,false,false,false);}
+--></script>
+<div class="MainContent">
+<table cellspacing="0" cellpadding="0" class="classHeaderTable">
+<tr>
+<td class="classHeaderTableLabel">Package</td><td><a onclick="javascript:loadClassListFrame('class-list.html')" href="package-detail.html">asgard.net</a></td>
+</tr>
+<tr>
+<td class="classHeaderTableLabel">Class</td><td class="classSignature">public dynamic  class NetServerConnection</td>
+</tr>
+<tr>
+<td class="classHeaderTableLabel">Inheritance</td><td class="inheritanceList">NetServerConnection <img class="inheritArrow" alt="Inheritance" title="Inheritance" src="../../images/inherit-arrow.gif"> <a href="../../system/events/CoreEventDispatcher.html">CoreEventDispatcher</a></td>
+</tr>
+<tr>
+<td class="classHeaderTableLabel">Implements</td><td><a href="../../system/process/Action.html">Action</a>, <a href="../../system/Cloneable.html">Cloneable</a></td>
+</tr>
+<tr>
+<td class="classHeaderTableLabel">Subclasses</td><td><a href="remoting/RemotingConnection.html">RemotingConnection</a></td>
+</tr>
+</table>
+<p></p>
+      This class extends the NetConnection class and defined an implementation based on VEGAS to used Flash Remoting or Flash MediaServer (with AMF protocol).
+      <p><b>Example :</b></p>
+      <pre class="prettyprint">
+      import system.events.ActionEvent ;
+            import asgard.events.NetServerEvent ;
+      import asgard.net.NetServerConnection ;
+      
+      import flash.events.Event ;
+      
+      var status:Function = function( e:NetStatusEvent ):void
+      {
+          trace("status " + e ) ;
+          var info:Object = e.info ;
+          for (var prop:String in info)
+          {
+              trace(prop + " : " + info[prop]) ;
+          }
+          trace("----") ;
+      }
+      
+      var accept:Function = function( e:NetServerEvent ):void
+      {
+          trace("accept " + e.info ) ;
+          trace("----") ;
+      }
+      
+      var reject:Function = function( e:NetServerEvent ):void
+      {
+          trace("reject " + e.info ) ;
+          trace("----") ;
+      }
+      
+      var debug:Function = function( e:Event ):void
+      {
+          trace("debug " + e) ;
+      }
+      
+      var nc:NetServerConnection = new NetServerConnection() ;
+      
+      nc.addEventListener(ActionEvent.FINISH        , debug  ) ;
+      nc.addEventListener(ActionEvent.START         , debug  ) ;
+      nc.addEventListener(NetServerEvent.ACCEPT     , accept ) ;
+      nc.addEventListener(NetServerEvent.REJECT     , reject ) ;
+      nc.addEventListener(NetStatusEvent.NET_STATUS , status ) ;
+      
+      nc.objectEncoding = ObjectEncoding.AMF0 ;
+      
+      nc.connect("rtmp://localhost/yourapplication") ; // The RTMP application server
+      </pre>
+     <p></p>
+<br>
+<hr>
+</div>
+<a name="propertySummary"></a>
+<div class="summarySection">
+<div class="summaryTableTitle">Public Properties</div>
+<div class="showHideLinks">
+<div class="hideInheritedProperty" id="hideInheritedProperty">
+<a onclick="javascript:setInheritedVisible(false,'Property');" href="#propertySummary" class="showHideLink"><img src="../../images/expanded.gif" class="showHideLinkImage"> Hide Inherited Public Properties</a>
+</div>
+<div class="showInheritedProperty" id="showInheritedProperty">
+<a onclick="javascript:setInheritedVisible(true,'Property');" href="#propertySummary" class="showHideLink"><img src="../../images/collapsed.gif" class="showHideLinkImage"> Show Inherited Public Properties</a>
+</div>
+</div>
+<table id="summaryTableProperty" class="summaryTable " cellpadding="3" cellspacing="0">
+<tr>
+<th>&nbsp;</th><th colspan="2">Property</th><th class="summaryTableOwnerCol">Defined&nbsp;by</th>
+</tr>
+<tr class="hideInheritedProperty">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol"><a class="signatureLink" href="../../system/events/CoreEventDispatcher.html#channel">channel</a> : String<div class="summaryTableDescription">
+         Indicates the channel of this dispatcher if this instance is global.</div>
+</td><td class="summaryTableOwnerCol"><a href="../../system/events/CoreEventDispatcher.html">CoreEventDispatcher</a></td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#client">client</a> : Object<div class="summaryTableDescription">
+         The default object encoding (AMF version) for NetConnection objects created in the SWF file.</div>
+</td><td class="summaryTableOwnerCol">NetServerConnection</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#connected">connected</a> : Boolean<div class="summaryTableDescription">[read-only]
+         [read-only] Indicates whether Flash Player has connected to a server through a persistent RTMP connection (true) or not (false).</div>
+</td><td class="summaryTableOwnerCol">NetServerConnection</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#connectedProxyType">connectedProxyType</a> : String<div class="summaryTableDescription">[read-only]
+         [read-only] Indicates whether Flash Player has connected to a server through a persistent RTMP connection (true) or not (false).</div>
+</td><td class="summaryTableOwnerCol">NetServerConnection</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#connection">connection</a> : NetConnection<div class="summaryTableDescription">[read-only]
+         Returns the internal NetConnection reference of this object.</div>
+</td><td class="summaryTableOwnerCol">NetServerConnection</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#defaultObjectEncoding">defaultObjectEncoding</a> : uint<div class="summaryTableDescription">[static]
+         The default object encoding (AMF version) for NetConnection objects created in the SWF file.</div>
+</td><td class="summaryTableOwnerCol">NetServerConnection</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#farID">farID</a> : String<div class="summaryTableDescription">[read-only]
+         The identifier of the Flash Media Server instance to which this Flash Player or Adobe AIR instance is connected.</div>
+</td><td class="summaryTableOwnerCol">NetServerConnection</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#farNonce">farNonce</a> : String<div class="summaryTableDescription">[read-only]
+         A value chosen substantially by Flash Media Server, unique to this connection.</div>
+</td><td class="summaryTableOwnerCol">NetServerConnection</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#maxPeerConnections">maxPeerConnections</a> : uint<div class="summaryTableDescription">
+         The total number of inbound and outbound peer connections that this instance of Flash Player or Adobe AIR allows.</div>
+</td><td class="summaryTableOwnerCol">NetServerConnection</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#nearID">nearID</a> : String<div class="summaryTableDescription">[read-only]
+         The identifier of this Flash Player or Adobe AIR instance for this NetConnection instance.</div>
+</td><td class="summaryTableOwnerCol">NetServerConnection</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#nearNonce">nearNonce</a> : String<div class="summaryTableDescription">[read-only]
+         A value chosen substantially by this Flash Player or Adobe AIR instance, unique to this connection.</div>
+</td><td class="summaryTableOwnerCol">NetServerConnection</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#objectEncoding">objectEncoding</a> : uint<div class="summaryTableDescription">
+         (read write) The ObjectEncoding class allows classes that serialize objects (such as FileStream, NetStream, NetConnection, SharedObject, and ByteArray) to work with prior versions of ActionScript.</div>
+</td><td class="summaryTableOwnerCol">NetServerConnection</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#parent">parent</a> : <a href="../../system/process/Action.html">Action</a>
+<div class="summaryTableDescription">
+         Determinates the parent Action reference of the current Action.</div>
+</td><td class="summaryTableOwnerCol">NetServerConnection</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#protocol">protocol</a> : String<div class="summaryTableDescription">[read-only]
+         The protocol used to establish the connection.</div>
+</td><td class="summaryTableOwnerCol">NetServerConnection</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#proxyType">proxyType</a> : String<div class="summaryTableDescription">
+         (read write) Determines whether native SSL is used for RTMPS instead of HTTPS, and whether the CONNECT method of tunneling is used to connect through a proxy server.</div>
+</td><td class="summaryTableOwnerCol">NetServerConnection</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#running">running</a> : Boolean<div class="summaryTableDescription">[read-only]
+         Indicates <code class="prettyprint">true</code> if the process is in progress.</div>
+</td><td class="summaryTableOwnerCol">NetServerConnection</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#unconnectedPeerStreams">unconnectedPeerStreams</a> : Array<div class="summaryTableDescription">[read-only]
+         An object that holds all of the peer subscriber NetStream objects that are not associated with publishing NetStream objects.</div>
+</td><td class="summaryTableOwnerCol">NetServerConnection</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#uri">uri</a> : String<div class="summaryTableDescription">
+         The URI of the application server that was passed to NetConnection.connect(), if connect was used to connect to a server.</div>
+</td><td class="summaryTableOwnerCol">NetServerConnection</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#usingTLS">usingTLS</a> : Boolean<div class="summaryTableDescription">[read-only]
+         [read-only] Indicates whether a secure connection was made using native Transport Layer Security (TLS) rather than HTTPS.</div>
+</td><td class="summaryTableOwnerCol">NetServerConnection</td>
+</tr>
+</table>
+</div>
+<a name="methodSummary"></a>
+<div class="summarySection">
+<div class="summaryTableTitle">Public Methods</div>
+<div class="showHideLinks">
+<div class="hideInheritedMethod" id="hideInheritedMethod">
+<a onclick="javascript:setInheritedVisible(false,'Method');" href="#methodSummary" class="showHideLink"><img src="../../images/expanded.gif" class="showHideLinkImage"> Hide Inherited Public Methods</a>
+</div>
+<div class="showInheritedMethod" id="showInheritedMethod">
+<a onclick="javascript:setInheritedVisible(true,'Method');" href="#methodSummary" class="showHideLink"><img src="../../images/collapsed.gif" class="showHideLinkImage"> Show Inherited Public Methods</a>
+</div>
+</div>
+<table id="summaryTableMethod" class="summaryTable " cellpadding="3" cellspacing="0">
+<tr>
+<th>&nbsp;</th><th colspan="2">Method</th><th class="summaryTableOwnerCol">Defined&nbsp;by</th>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#NetServerConnection()">NetServerConnection</a>(bGlobal:Boolean = false, sChannel:String = null)</div>
+<div class="summaryTableDescription">
+         Creates a new NetServerConnection instance.</div>
+</td><td class="summaryTableOwnerCol">NetServerConnection</td>
+</tr>
+<tr class="hideInheritedMethod">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="../../system/events/CoreEventDispatcher.html#addEventListener()">addEventListener</a>(type:String, listener:Function, useCapture:Boolean = false, priority:int = 0.0, useWeakReference:Boolean = false):void</div>
+<div class="summaryTableDescription">
+   Allows the registration of event listeners on the event target.</div>
+</td><td class="summaryTableOwnerCol"><a href="../../system/events/CoreEventDispatcher.html">CoreEventDispatcher</a></td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#addHeader()">addHeader</a>(operation:String, mustUnderstand:Boolean = false, param:Object = null):void</div>
+<div class="summaryTableDescription">
+         Adds a context header to the AMF packet structure.</div>
+</td><td class="summaryTableOwnerCol">NetServerConnection</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#call()">call</a>(command:String, responder:Responder, ... rest):Boolean</div>
+<div class="summaryTableDescription">
+         Invokes a command or method on the server running Flash Media Server, or on an application server, to which the application instance is connected.</div>
+</td><td class="summaryTableOwnerCol">NetServerConnection</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#clone()">clone</a>():*</div>
+<div class="summaryTableDescription">
+         Returns the shallow copy of this object.</div>
+</td><td class="summaryTableOwnerCol">NetServerConnection</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#close()">close</a>(noEvent:Boolean = false):Boolean</div>
+<div class="summaryTableDescription">
+         Closes the connection that was opened locally or with the server and dispatches the netStatus event with a code property of NetConnection.Connect.Closed.</div>
+</td><td class="summaryTableOwnerCol">NetServerConnection</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#connect()">connect</a>(command:String, ... arguments):void</div>
+<div class="summaryTableDescription">
+         Connect the client with this method.</div>
+</td><td class="summaryTableOwnerCol">NetServerConnection</td>
+</tr>
+<tr class="hideInheritedMethod">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="../../system/events/CoreEventDispatcher.html#dispatchEvent()">dispatchEvent</a>(event:Event):Boolean</div>
+<div class="summaryTableDescription">
+   Dispatches an event into the event flow.</div>
+</td><td class="summaryTableOwnerCol"><a href="../../system/events/CoreEventDispatcher.html">CoreEventDispatcher</a></td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#getDelay()">getDelay</a>():uint</div>
+<div class="summaryTableDescription">
+         Returns timeout interval duration.</div>
+</td><td class="summaryTableOwnerCol">NetServerConnection</td>
+</tr>
+<tr class="hideInheritedMethod">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="../../system/events/CoreEventDispatcher.html#getEventDispatcher()">getEventDispatcher</a>():<a href="../../system/events/EventDispatcher.html">EventDispatcher</a>
+</div>
+<div class="summaryTableDescription">
+   Returns the internal <code class="prettyprint">system.events.EventDispatcher</code> reference.</div>
+</td><td class="summaryTableOwnerCol"><a href="../../system/events/CoreEventDispatcher.html">CoreEventDispatcher</a></td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#getTimeoutPolicy()">getTimeoutPolicy</a>():<a href="../../system/process/TimeoutPolicy.html">TimeoutPolicy</a>
+</div>
+<div class="summaryTableDescription">
+         Returns the TimeoutPolicy value of this object.</div>
+</td><td class="summaryTableOwnerCol">NetServerConnection</td>
+</tr>
+<tr class="hideInheritedMethod">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="../../system/events/CoreEventDispatcher.html#hasEventListener()">hasEventListener</a>(type:String):Boolean</div>
+<div class="summaryTableDescription">
+   Checks whether the EventDispatcher object has any listeners registered for a specific type of event.</div>
+</td><td class="summaryTableOwnerCol"><a href="../../system/events/CoreEventDispatcher.html">CoreEventDispatcher</a></td>
+</tr>
+<tr class="hideInheritedMethod">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="../../system/events/CoreEventDispatcher.html#isGlobal()">isGlobal</a>():Boolean</div>
+<div class="summaryTableDescription">
+         Indicates if the dispatcher use a global event flow.</div>
+</td><td class="summaryTableOwnerCol"><a href="../../system/events/CoreEventDispatcher.html">CoreEventDispatcher</a></td>
+</tr>
+<tr class="hideInheritedMethod">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="../../system/events/CoreEventDispatcher.html#isLocked()">isLocked</a>():Boolean</div>
+<div class="summaryTableDescription">
+      Returns <code class="prettyprint">true</code> if the object is locked.</div>
+</td><td class="summaryTableOwnerCol"><a href="../../system/events/CoreEventDispatcher.html">CoreEventDispatcher</a></td>
+</tr>
+<tr class="hideInheritedMethod">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="../../system/events/CoreEventDispatcher.html#lock()">lock</a>():void</div>
+<div class="summaryTableDescription">
+      Locks the object.</div>
+</td><td class="summaryTableOwnerCol"><a href="../../system/events/CoreEventDispatcher.html">CoreEventDispatcher</a></td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#notifyFinished()">notifyFinished</a>():void</div>
+<div class="summaryTableDescription">
+         Invoked when the connection is finished.</div>
+</td><td class="summaryTableOwnerCol">NetServerConnection</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#notifyStarted()">notifyStarted</a>():void</div>
+<div class="summaryTableDescription">
+         Invoked when the connection is started.</div>
+</td><td class="summaryTableOwnerCol">NetServerConnection</td>
+</tr>
+<tr class="hideInheritedMethod">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="../../system/events/CoreEventDispatcher.html#registerEventListener()">registerEventListener</a>(type:String, listener:Boolean, useCapture:int = false, priority:Boolean = 0, useWeakReference:* = false):void</div>
+<div class="summaryTableDescription">
+   Allows the registration of event listeners on the event target (Function or EventListener).</div>
+</td><td class="summaryTableOwnerCol"><a href="../../system/events/CoreEventDispatcher.html">CoreEventDispatcher</a></td>
+</tr>
+<tr class="hideInheritedMethod">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="../../system/events/CoreEventDispatcher.html#removeEventListener()">removeEventListener</a>(type:String, listener:Function, useCapture:Boolean = false):void</div>
+<div class="summaryTableDescription"> 
+   Removes a listener from the EventDispatcher object.</div>
+</td><td class="summaryTableOwnerCol"><a href="../../system/events/CoreEventDispatcher.html">CoreEventDispatcher</a></td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#run()">run</a>(... arguments):void</div>
+<div class="summaryTableDescription">
+         Runs the process of this NetServerConnection.</div>
+</td><td class="summaryTableOwnerCol">NetServerConnection</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#setDelay()">setDelay</a>(n:Number, useSeconds:Boolean):void</div>
+<div class="summaryTableDescription">
+         Set timeout interval duration.</div>
+</td><td class="summaryTableOwnerCol">NetServerConnection</td>
+</tr>
+<tr class="hideInheritedMethod">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="../../system/events/CoreEventDispatcher.html#setEventDispatcher()">setEventDispatcher</a>(dispatcher:<a href="../../system/events/EventDispatcher.html">EventDispatcher</a>):void</div>
+<div class="summaryTableDescription">
+   Sets the internal <code class="prettyprint">EventDispatcher</code> reference.</div>
+</td><td class="summaryTableOwnerCol"><a href="../../system/events/CoreEventDispatcher.html">CoreEventDispatcher</a></td>
+</tr>
+<tr class="hideInheritedMethod">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="../../system/events/CoreEventDispatcher.html#setGlobal()">setGlobal</a>(flag:Boolean = false, channel:String = null):void</div>
+<div class="summaryTableDescription">
+   Sets if the instance use a global <code class="prettyprint">system.events.EventDispatcher</code> to dispatch this events, if the <code class="prettyprint">flag</code> value is <code class="prettyprint">false</code> the instance use a local EventDispatcher.</div>
+</td><td class="summaryTableOwnerCol"><a href="../../system/events/CoreEventDispatcher.html">CoreEventDispatcher</a></td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#setLimitPolicy()">setLimitPolicy</a>(policy:<a href="../../system/process/TimeoutPolicy.html">TimeoutPolicy</a>):void</div>
+<div class="summaryTableDescription">
+         Use limit timeout interval.</div>
+</td><td class="summaryTableOwnerCol">NetServerConnection</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#sharedEvent()">sharedEvent</a>(event:* = null, context:* = null):void</div>
+<div class="summaryTableDescription">
+         Use this method to dispatch in FMS application an event.</div>
+</td><td class="summaryTableOwnerCol">NetServerConnection</td>
+</tr>
+<tr class="hideInheritedMethod">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="../../system/events/CoreEventDispatcher.html#unlock()">unlock</a>():void</div>
+<div class="summaryTableDescription">
+      Unlocks the display.</div>
+</td><td class="summaryTableOwnerCol"><a href="../../system/events/CoreEventDispatcher.html">CoreEventDispatcher</a></td>
+</tr>
+<tr class="hideInheritedMethod">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="../../system/events/CoreEventDispatcher.html#unregisterEventListener()">unregisterEventListener</a>(type:String, listener:Boolean, useCapture:* = false):void</div>
+<div class="summaryTableDescription"> 
+   Removes a listener (Function or EventListener object) from the EventDispatcher object.</div>
+</td><td class="summaryTableOwnerCol"><a href="../../system/events/CoreEventDispatcher.html">CoreEventDispatcher</a></td>
+</tr>
+<tr class="hideInheritedMethod">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="../../system/events/CoreEventDispatcher.html#willTrigger()">willTrigger</a>(type:String):Boolean</div>
+<div class="summaryTableDescription">
+   Checks whether an event listener is registered with this EventDispatcher object or any of its ancestors for the specified event type.</div>
+</td><td class="summaryTableOwnerCol"><a href="../../system/events/CoreEventDispatcher.html">CoreEventDispatcher</a></td>
+</tr>
+</table>
+</div>
+<a name="protectedMethodSummary"></a>
+<div class="summarySection">
+<div class="summaryTableTitle">Protected Methods</div>
+<div class="showHideLinks">
+<div class="hideInheritedProtectedMethod" id="hideInheritedProtectedMethod">
+<a onclick="javascript:setInheritedVisible(false,'ProtectedMethod');" href="#protectedMethodSummary" class="showHideLink"><img src="../../images/expanded.gif" class="showHideLinkImage"> Hide Inherited Protected Methods</a>
+</div>
+<div class="showInheritedProtectedMethod" id="showInheritedProtectedMethod">
+<a onclick="javascript:setInheritedVisible(true,'ProtectedMethod');" href="#protectedMethodSummary" class="showHideLink"><img src="../../images/collapsed.gif" class="showHideLinkImage"> Show Inherited Protected Methods</a>
+</div>
+</div>
+<table id="summaryTableProtectedMethod" class="summaryTable " cellpadding="3" cellspacing="0">
+<tr>
+<th>&nbsp;</th><th colspan="2">Method</th><th class="summaryTableOwnerCol">Defined&nbsp;by</th>
+</tr>
+<tr class="hideInheritedProtectedMethod">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="../../system/events/CoreEventDispatcher.html#initEventDispatcher()">initEventDispatcher</a>():<a href="../../system/events/EventDispatcher.html">EventDispatcher</a>
+</div>
+<div class="summaryTableDescription">
+         Creates and returns the internal <code class="prettyprint">EventDispatcher</code> reference (this method is invoked in the constructor).</div>
+</td><td class="summaryTableOwnerCol"><a href="../../system/events/CoreEventDispatcher.html">CoreEventDispatcher</a></td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#notifyNetServerEvent()">notifyNetServerEvent</a>(type:String, status:<a href="NetServerStatus.html">NetServerStatus</a> = null, info:* = null):void</div>
+<div class="summaryTableDescription">
+         Invoked when the connection is closed.</div>
+</td><td class="summaryTableOwnerCol">NetServerConnection</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#notifyTimeOut()">notifyTimeOut</a>():void</div>
+<div class="summaryTableDescription">
+         Invoked when the connection is timeout.</div>
+</td><td class="summaryTableOwnerCol">NetServerConnection</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#setRunning()">setRunning</a>(b:Boolean):void</div>
+<div class="summaryTableDescription">
+         Changes the running property value.</div>
+</td><td class="summaryTableOwnerCol">NetServerConnection</td>
+</tr>
+</table>
+</div>
+<a name="constantSummary"></a>
+<div class="summarySection">
+<div class="summaryTableTitle">Public Constants</div>
+<table id="summaryTableConstant" class="summaryTable " cellpadding="3" cellspacing="0">
+<tr>
+<th>&nbsp;</th><th colspan="2">Constant</th><th class="summaryTableOwnerCol">Defined&nbsp;by</th>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#DEFAULT_DELAY">DEFAULT_DELAY</a> : uint = 8000<div class="summaryTableDescription">[static]
+         The default internal timeout delay value in milliseconds.</div>
+</td><td class="summaryTableOwnerCol">NetServerConnection</td>
+</tr>
+</table>
+</div>
+<script type="text/javascript" language="javascript">
+<!--
+showHideInherited();
+--></script>
+<div class="MainContent">
+<a name="propertyDetail"></a>
+<div class="detailSectionHeader">Property detail</div>
+<a name="client"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">client</td><td class="detailHeaderType">property</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>client:Object</code>&nbsp;&nbsp;[read-write]<p>
+         The default object encoding (AMF version) for NetConnection objects created in the SWF file. 
+         When an object is written to or read from binary data, the defaultObjectEncoding property indicates which Action Message Format version should be used: the ActionScript 3.0 format or the ActionScript 1.0 and ActionScript 2.0 format. 
+         </p><span class="label">Implementation</span>
+<br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function get client():Object</code>
+<br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function set client(value:Object):void</code>
+<br>
+</div>
+<a name="connected"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">connected</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>connected:Boolean</code>&nbsp;&nbsp;[read-only]<p>
+         [read-only] Indicates whether Flash Player has connected to a server through a persistent RTMP connection (true) or not (false). 
+         When connected through HTTP, this property is always false. 
+         It is always true for AMF connections to application servers. 
+         </p><span class="label">Implementation</span>
+<br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function get connected():Boolean</code>
+<br>
+</div>
+<a name="connectedProxyType"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">connectedProxyType</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>connectedProxyType:String</code>&nbsp;&nbsp;[read-only]<p>
+         [read-only] Indicates whether Flash Player has connected to a server through a persistent RTMP connection (true) or not (false). 
+         When connected through HTTP, this property is always false. 
+         It is always true for AMF connections to application servers. 
+         </p><span class="label">Implementation</span>
+<br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function get connectedProxyType():String</code>
+<br>
+</div>
+<a name="connection"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">connection</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>connection:NetConnection</code>&nbsp;&nbsp;[read-only]<p>
+         Returns the internal NetConnection reference of this object.
+         </p><span class="label">Implementation</span>
+<br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function get connection():NetConnection</code>
+<br>
+</div>
+<a name="defaultObjectEncoding"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">defaultObjectEncoding</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>defaultObjectEncoding:uint</code>&nbsp;&nbsp;[read-write]<p>
+         The default object encoding (AMF version) for NetConnection objects created in the SWF file. 
+         When an object is written to or read from binary data, the defaultObjectEncoding property indicates which Action Message Format version should be used: the ActionScript 3.0 format or the ActionScript 1.0 and ActionScript 2.0 format. 
+         </p><span class="label">Implementation</span>
+<br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public static function get defaultObjectEncoding():uint</code>
+<br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function set defaultObjectEncoding(value:uint):void</code>
+<br>
+</div>
+<a name="farID"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">farID</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>farID:String</code>&nbsp;&nbsp;[read-only]<p>
+         The identifier of the Flash Media Server instance to which this Flash Player or Adobe AIR instance is connected.
+         </p><span class="label">Implementation</span>
+<br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function get farID():String</code>
+<br>
+</div>
+<a name="farNonce"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">farNonce</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>farNonce:String</code>&nbsp;&nbsp;[read-only]<p>
+         A value chosen substantially by Flash Media Server, unique to this connection.
+         </p><span class="label">Implementation</span>
+<br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function get farNonce():String</code>
+<br>
+</div>
+<a name="maxPeerConnections"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">maxPeerConnections</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>maxPeerConnections:uint</code>&nbsp;&nbsp;[read-write]<p>
+         The total number of inbound and outbound peer connections that this instance of Flash Player or Adobe AIR allows.
+         </p><span class="label">Implementation</span>
+<br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function get maxPeerConnections():uint</code>
+<br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function set maxPeerConnections(value:uint):void</code>
+<br>
+</div>
+<a name="nearID"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">nearID</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>nearID:String</code>&nbsp;&nbsp;[read-only]<p>
+         The identifier of this Flash Player or Adobe AIR instance for this NetConnection instance.
+         </p><span class="label">Implementation</span>
+<br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function get nearID():String</code>
+<br>
+</div>
+<a name="nearNonce"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">nearNonce</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>nearNonce:String</code>&nbsp;&nbsp;[read-only]<p>
+         A value chosen substantially by this Flash Player or Adobe AIR instance, unique to this connection.
+         </p><span class="label">Implementation</span>
+<br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function get nearNonce():String</code>
+<br>
+</div>
+<a name="objectEncoding"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">objectEncoding</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>objectEncoding:uint</code>&nbsp;&nbsp;[read-write]<p>
+         (read write) The ObjectEncoding class allows classes that serialize objects (such as FileStream, NetStream, NetConnection, SharedObject, and ByteArray) to work with prior versions of ActionScript.
+         </p><span class="label">Implementation</span>
+<br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function get objectEncoding():uint</code>
+<br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function set objectEncoding(value:uint):void</code>
+<br>
+</div>
+<a name="parent"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">parent</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>parent:<a href="../../system/process/Action.html">Action</a></code>&nbsp;&nbsp;[read-write]<p>
+         Determinates the parent Action reference of the current Action.
+         </p><span class="label">Implementation</span>
+<br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function get parent():<a href="../../system/process/Action.html">Action</a></code>
+<br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function set parent(value:<a href="../../system/process/Action.html">Action</a>):void</code>
+<br>
+</div>
+<a name="protocol"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">protocol</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>protocol:String</code>&nbsp;&nbsp;[read-only]<p>
+         The protocol used to establish the connection.
+         </p><span class="label">Implementation</span>
+<br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function get protocol():String</code>
+<br>
+</div>
+<a name="proxyType"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">proxyType</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>proxyType:String</code>&nbsp;&nbsp;[read-write]<p>
+         (read write) Determines whether native SSL is used for RTMPS instead of HTTPS, and whether the CONNECT method of tunneling is used to connect through a proxy server. 
+         Acceptable values are "none", "HTTP", "CONNECT", and "best". This property is used in Flex applications and Flash Media Server 2 applications. 
+         </p><span class="label">Implementation</span>
+<br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function get proxyType():String</code>
+<br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function set proxyType(value:String):void</code>
+<br>
+</div>
+<a name="running"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">running</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>running:Boolean</code>&nbsp;&nbsp;[read-only]<p>
+         Indicates <code class="prettyprint">true</code> if the process is in progress.
+         </p><span class="label">Implementation</span>
+<br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function get running():Boolean</code>
+<br>
+</div>
+<a name="unconnectedPeerStreams"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">unconnectedPeerStreams</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>unconnectedPeerStreams:Array</code>&nbsp;&nbsp;[read-only]<p>
+         An object that holds all of the peer subscriber NetStream objects that are not associated with publishing NetStream objects.
+         </p><span class="label">Implementation</span>
+<br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function get unconnectedPeerStreams():Array</code>
+<br>
+</div>
+<a name="uri"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">uri</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>uri:String</code>&nbsp;&nbsp;[read-write]<p>
+         The URI of the application server that was passed to NetConnection.connect(), if connect was used to connect to a server. 
+         If NetConnection.connect() hasn't yet been called or if no URI was passed, this property is undefined.
+         This property is a read-write property and we can use this property in to launch the connect process with the run method.
+         </p><span class="label">Implementation</span>
+<br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function get uri():String</code>
+<br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function set uri(value:String):void</code>
+<br>
+<p>
+<span class="label">See also</span>
+</p>
+<div class="seeAlso">Runnable</div>
+</div>
+<a name="usingTLS"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">usingTLS</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>usingTLS:Boolean</code>&nbsp;&nbsp;[read-only]<p>
+         [read-only] Indicates whether a secure connection was made using native Transport Layer Security (TLS) rather than HTTPS. 
+         This property is valid only when a NetConnection object is connected. 
+         </p><span class="label">Implementation</span>
+<br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function get usingTLS():Boolean</code>
+<br>
+</div>
+<a name="constructorDetail"></a>
+<div class="detailSectionHeader">Constructor detail</div>
+<a name="NetServerConnection()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">NetServerConnection</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">constructor</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public function NetServerConnection(bGlobal:Boolean = false, sChannel:String = null)</code><p>
+         Creates a new NetServerConnection instance.
+          </p><span class="label">Parameters</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td><code><span class="label">bGlobal</span>:Boolean</code> (default = <code>false</code>)<code></code> &mdash; the flag to use a global event flow or a local event flow.
+         </td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><code><span class="label">sChannel</span>:String</code> (default = <code>null</code>)<code></code> &mdash; the name of the global event flow if the <code class="prettyprint">bGlobal</code> argument is <code class="prettyprint">true</code>.
+         </td>
+</tr>
+</table>
+</div>
+<a name="methodDetail"></a>
+<div class="detailSectionHeader">Method detail</div>
+<a name="addHeader()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">addHeader</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public function addHeader(operation:String, mustUnderstand:Boolean = false, param:Object = null):void</code><p>
+         Adds a context header to the AMF packet structure. This header is sent with every future AMF packet.
+         </p><span class="label">Parameters</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td><code><span class="label">operation</span>:String</code> &mdash; A string; identifies the header and the ActionScript object data associated with it.
+         </td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><code><span class="label">mustUnderstand</span>:Boolean</code> (default = <code>false</code>)<code></code> &mdash; A Boolean value; true indicates that the server must understand and process this header before it handles any of the following headers or messages.
+         </td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><code><span class="label">param</span>:Object</code> (default = <code>null</code>)<code></code> &mdash; Any ActionScript object.
+         </td>
+</tr>
+</table>
+</div>
+<a name="call()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">call</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public function call(command:String, responder:Responder, ... rest):Boolean</code><p>
+         Invokes a command or method on the server running Flash Media Server, or on an application server, to which the application instance is connected. You must create a server-side function to pass to this method.
+         </p><span class="label">Parameters</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td><code><span class="label">command</span>:String</code> &mdash; A method specified in the form [objectPath/]method.
+         </td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><code><span class="label">responder</span>:Responder</code> &mdash; An optional object that is used to handle return values from the server. 
+         </td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><code>... <span class="label">rest</span></code> &mdash; arguments Optional arguments that can be of any ActionScript type, including a reference to another ActionScript object. 
+         These arguments are passed to the method specified in the command parameter when the method is executed on the remote application server.
+         </td>
+</tr>
+</table>
+<p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><code>Boolean</code> &mdash; For RTMP connections, returns a Boolean value of true if a call to methodName is sent to the client ; otherwise, false. 
+         For application server connections, it always returns true.
+         </td>
+</tr>
+</table>
+</div>
+<a name="clone()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">clone</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public function clone():*</code><p>
+         Returns the shallow copy of this object.
+          </p><p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><code>*</code> &mdash; the shallow copy of this object.
+         </td>
+</tr>
+</table>
+</div>
+<a name="close()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">close</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public function close(noEvent:Boolean = false):Boolean</code><p>
+         Closes the connection that was opened locally or with the server and dispatches the netStatus event with a code property of NetConnection.Connect.Closed. 
+         </p><span class="label">Parameters</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td><code><span class="label">noEvent</span>:Boolean</code> (default = <code>false</code>)<code></code></td>
+</tr>
+</table>
+<p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><code>Boolean</code> &mdash; A boolean to indicates if the connection is closed.
+         </td>
+</tr>
+</table>
+</div>
+<a name="connect()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">connect</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public function connect(command:String, ... arguments):void</code><p>
+         Connect the client with this method.
+         </p><span class="label">Parameters</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td><code><span class="label">command</span>:String</code></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><code>... <span class="label">arguments</span></code></td>
+</tr>
+</table>
+</div>
+<a name="getDelay()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">getDelay</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public function getDelay():uint</code><p>
+         Returns timeout interval duration.
+         </p><p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><code>uint</code></td>
+</tr>
+</table>
+</div>
+<a name="getTimeoutPolicy()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">getTimeoutPolicy</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public function getTimeoutPolicy():<a href="../../system/process/TimeoutPolicy.html">TimeoutPolicy</a></code><p>
+         Returns the TimeoutPolicy value of this object.
+         </p><p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><code><a href="../../system/process/TimeoutPolicy.html">TimeoutPolicy</a></code> &mdash; 
+                        the TimeoutPolicy value of this object.
+         
+                        
+                     </td>
+</tr>
+</table>
+<p>
+<span class="label">See also</span>
+</p>
+<div class="seeAlso">TimeoutPolicy</div>
+</div>
+<a name="notifyFinished()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">notifyFinished</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public function notifyFinished():void</code><p>
+         Invoked when the connection is finished.
+         </p></div>
+<a name="notifyNetServerEvent()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">notifyNetServerEvent</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>protected function notifyNetServerEvent(type:String, status:<a href="NetServerStatus.html">NetServerStatus</a> = null, info:* = null):void</code><p>
+         Invoked when the connection is closed.
+         </p><span class="label">Parameters</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td><code><span class="label">type</span>:String</code></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><code><span class="label">status</span>:<a href="NetServerStatus.html">NetServerStatus</a></code> (default = <code>null</code>)<code></code></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><code><span class="label">info</span>:*</code> (default = <code>null</code>)<code></code></td>
+</tr>
+</table>
+</div>
+<a name="notifyStarted()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">notifyStarted</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public function notifyStarted():void</code><p>
+         Invoked when the connection is started.
+         </p></div>
+<a name="notifyTimeOut()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">notifyTimeOut</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>protected function notifyTimeOut():void</code><p>
+         Invoked when the connection is timeout.
+         </p></div>
+<a name="run()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">run</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public function run(... arguments):void</code><p>
+         Runs the process of this NetServerConnection.
+         </p><span class="label">Parameters</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td><code>... <span class="label">arguments</span></code></td>
+</tr>
+</table>
+</div>
+<a name="setDelay()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">setDelay</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public function setDelay(n:Number, useSeconds:Boolean):void</code><p>
+         Set timeout interval duration.
+         </p><span class="label">Parameters</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td><code><span class="label">n</span>:Number</code></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><code><span class="label">useSeconds</span>:Boolean</code></td>
+</tr>
+</table>
+</div>
+<a name="setLimitPolicy()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">setLimitPolicy</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public function setLimitPolicy(policy:<a href="../../system/process/TimeoutPolicy.html">TimeoutPolicy</a>):void</code><p>
+         Use limit timeout interval.
+         </p><span class="label">Parameters</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td><code><span class="label">policy</span>:<a href="../../system/process/TimeoutPolicy.html">TimeoutPolicy</a></code></td>
+</tr>
+</table>
+<p>
+<span class="label">See also</span>
+</p>
+<div class="seeAlso">TimeoutPolicy</div>
+</div>
+<a name="setRunning()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">setRunning</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>protected function setRunning(b:Boolean):void</code><p>
+         Changes the running property value.
+         </p><span class="label">Parameters</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td><code><span class="label">b</span>:Boolean</code></td>
+</tr>
+</table>
+</div>
+<a name="sharedEvent()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">sharedEvent</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public function sharedEvent(event:* = null, context:* = null):void</code><p>
+         Use this method to dispatch in FMS application an event.
+         </p><span class="label">Parameters</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td><code><span class="label">event</span>:*</code> (default = <code>null</code>)<code></code></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><code><span class="label">context</span>:*</code> (default = <code>null</code>)<code></code></td>
+</tr>
+</table>
+</div>
+<a name="constantDetail"></a>
+<div class="detailSectionHeader">Constant detail</div>
+<a name="DEFAULT_DELAY"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">DEFAULT_DELAY</td><td class="detailHeaderType">constant</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public static const DEFAULT_DELAY:uint = 8000</code><p>
+         The default internal timeout delay value in milliseconds.
+         </p></div>
+<br>
+<br>
+<hr>
+<br>
+<p></p>
+<center class="copyright"> 
+</center>
+</div>
+</body>
+</html>
+<!-- -->

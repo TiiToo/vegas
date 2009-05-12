@@ -33,10 +33,10 @@
     <!-- vegas.logging -->
     
     <component id="vegas.logging:AbstractTarget"  class="vegas.logging.AbstractTarget" />
-    <component id="vegas.logging:ILogable"        class="vegas.logging.ILogable" />
     <component id="vegas.logging:ILogger"         class="vegas.logging.ILogger" />
     <component id="vegas.logging:ITarger"         class="vegas.logging.ITarget" />
     <component id="vegas.logging:Log"             class="vegas.logging.Log" />
+    <component id="vegas.logging:Logable"         class="vegas.logging.Logable" />
     <component id="vegas.logging:LogEvent"        class="vegas.logging.LogEvent" />
     <component id="vegas.logging:LogEventLevel"   class="vegas.logging.LogEventLevel" />
     <component id="vegas.logging:LogLogger"       class="vegas.logging.LogLogger" />

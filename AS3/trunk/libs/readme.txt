@@ -1,6 +1,5 @@
  
-   VEGAS AS3 - version 1.0.0.1282
- 
+   VEGAS AS3 - version 1,4,0,1303
 
    The "vegas.swc" library contains all the AS3 source code of the VEGAS project with all this extensions.
 
@@ -16,16 +15,17 @@
 
     - http://code.google.com/p/vegas/ (tutorials and install)
     - http://code.google.com/p/vegas/issues/list (issues)
-    - http://vegas.ekameleon.net/docs (AS2 reference)
+    - http://www.ekameleon.net/vegas/docs
 
     - http://www.ekameleon.net/blog/ (french blog)
 
    ABOUT
 
-    * Author : eKameleon
-    * Version : 1.0.0.1282
-    * Link : http://www.ekameleon.net/
-    * Mail : ekameleon@gmail.com
+    * Author  : eKameleon
+    * Version : 1,4,0,1303
+    * Link    : http://www.ekameleon.net/blog
+    * Mail    : ekameleon@gmail.com 
+
 
    THANKS
 
