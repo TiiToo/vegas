@@ -40,8 +40,8 @@ package vegas.string
         public static function anchor( str:String , name:String ):String
         {
             return '<a name="' + name + "'>" + str + "</a>" ; 
-        }        
-
+        }
+        
         /**
          * Use the big method to format and display a string in a document.
          * @param str the string to be formatted.
@@ -51,7 +51,7 @@ package vegas.string
         {
              return "<big>" + str + "</big>" ;
         }
-
+        
         /**
          * Use the blink method to format and display a string in a document.
          * @param str the string to be formatted.
@@ -61,7 +61,7 @@ package vegas.string
         {
             return "<blink>" + str + "</blink>" ;
         }
-
+        
         /**
          * Use the bold method to format and display a string in a document.
          * <pre class="prettyprint">
@@ -75,7 +75,7 @@ package vegas.string
         {
             return "<b>" + str + "</b>" ;
         }
-
+        
         /**
          * Use the fixed method to format and display a string in a document.
          * @param str the string to be formatted.
@@ -85,7 +85,7 @@ package vegas.string
         {
             return "<tt>" + str + "</tt>" ;
         }
-
+        
         /**
          * Use the fontColor method to format and display a string in a document.
          * @param str the string to be formatted.
@@ -107,7 +107,7 @@ package vegas.string
         {
             return "<font size='" + size + "'>" + str + "</font>" ;
         }
-
+        
         /**
          * Use the italics method to format and display a string in a document.
          * <pre class="prettyprint">
@@ -122,7 +122,7 @@ package vegas.string
         {
             return  "<i>" + str + "</i>" ;
         }
-
+        
         /**
          * Creates an HTML hypertext link that requests another URL.
          * <pre class="prettyprint">
@@ -144,8 +144,8 @@ package vegas.string
             }
             s += ">" + str + "</a>" ;
             return s ; 
-        }        
-
+        }
+        
         /**
          * Creates an HTML paragraph HTML string in a document.
          * <pre class="prettyprint">
@@ -172,7 +172,7 @@ package vegas.string
             s += str + '</p>' ;
             return s ;
         }
-
+        
         /**
          * Use the small method to format and display a string in a document.
          * @param str the string to be formatted.
@@ -182,7 +182,7 @@ package vegas.string
         {
             return "<small>" + str + "</small>" ;
         }
-
+        
         /**
          * Creates an HTML span string in a document.
          * <pre class="prettyprint">
@@ -209,7 +209,7 @@ package vegas.string
             s += str + '</span>' ;
             return s ;
         }
-
+        
         /**
          * Use the strike method to format and display a string in a document.
          * @param str the string to be formatted.
@@ -239,7 +239,7 @@ package vegas.string
         {
             return "<sup>" + str + "</sup>" ;
         }
-
+        
         /**
          * Use the underline method to format and display a string in a document.
          * <pre class="prettyprint">
@@ -254,7 +254,5 @@ package vegas.string
         {
             return "<u>" + str + "</u>" ;
         }
-        
-        
     }
 }

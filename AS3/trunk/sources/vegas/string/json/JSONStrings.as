@@ -47,12 +47,12 @@ package vegas.string.json
         /**
          * The bad Object error message.
          */
-        public static var badObject:String = "Bad Object" ;       
+        public static var badObject:String = "Bad Object" ;
         
         /**
          * The bad String error message.
          */
-        public static var badString:String = "Bad String" ;           
+        public static var badString:String = "Bad String" ;
         
         /**
          * The mal formed Hexadecimal error message.

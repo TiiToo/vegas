@@ -25,37 +25,31 @@ package vegas.logging
 
     /**
      * All logger target implementations within the logging framework must implement this interface.
-     * @author eKameleon
      */
     public interface ITarget
     {
-        
         /**
-         * (read-write) Returns the filters array of this target.
+         * Determinates the filters array of this target. 
          * <p>In addition to the level setting, filters are used to provide a psuedo-hierarchical mapping for processing only those events for a given category.</p>
-         * @return the filters array of this target.
          */
         function get filters():Array ;
-
+        
         /**
-         * (read-write) Sets the filters array of this target.
-         * <p>In addition to the level setting, filters are used to provide a psuedo-hierarchical mapping for processing only those events for a given category.</p>
+         * @private
          */
         function set filters( value:Array ):void ;
-    
+        
         /**
-         * (read-write) Returns the level of this target. 
+         * Determinates the level of this target. 
          * Provides access to the level this target is currently set at.
-         * @return the level of this target.
          */ 
         function get level():LogEventLevel ;
-
+        
         /**
-         * (read-write) Sets the level of this target. 
-         * Provides access to the level this target is currently set at.
+         * @private
          */ 
         function set level( value:LogEventLevel ):void ;
-    
+        
         /**
          * Sets up this target with the specified logger.
          * Note : this method is called by the framework and should not be called by the developer.
@@ -67,7 +61,5 @@ package vegas.logging
          * Note : this method is called by the framework and should not be called by the developer.
          */
         function removeLogger(logger:ILogger):void ;
-        
     }
-    
 }

@@ -60,102 +60,101 @@ package vegas.string
      * trace( u.u5c0f() + u.u98fc() + u.u5f3e() + u.u0040() ) ; // 小飼弾@
      * </pre>
      */
-    dynamic public class UnicodeChar extends Proxy
+    public dynamic class UnicodeChar extends Proxy
     {
+        /**
+         * Creates a new <code class="prettyprint">UnicodeChar</code> instance.
+         * @example
+         * <pre class="prettyprint">
+         * var u:UnicodeChar = new UnicodeChar() ;
+         * trace( u.u0040() ) ; // @
+         * </pre>
+         */
+        public function UnicodeChar()
+        {
+            // 
+        }
         
-       	/**
-    	 * Creates a new <code class="prettyprint">UnicodeChar</code> instance.
-	     * @example
-	     * <pre class="prettyprint">
-	     * var u:UnicodeChar = new UnicodeChar() ;
-	     * trace( u.u0040() ) ; // @
-	     * </pre>
-	     */
-	    public function UnicodeChar()
-	    {
-    		//	
-    	}
-
-    	/**
-    	 * Array with all whitespace characters. NB : USP no implement (Any other Unicode "space separator")
-    	 */
+        /**
+         * Array with all whitespace characters. NB : USP no implement (Any other Unicode "space separator")
+         */
         public static const SPECIAL_CHARS:Array = [ "\u005C" , "\u0008" , "\u0027" , "\u0022" ] ;
-
-	    /**
-    	 * Back Slash utf8 representation (special char).
-    	 */
-       	public static const BACK_SLASH:String = SPECIAL_CHARS[0] ;	
-
-	    /**
-    	 * Back Space utf8 representation (special char).
-    	 */
-	    public static const BACK_SPACE:String = SPECIAL_CHARS[1] ;
-
-	    /**
-    	 * Simple Quote utf8 representation (special char).
-    	 */
+        
+        /**
+         * Back Slash utf8 representation (special char).
+         */
+           public static const BACK_SLASH:String = SPECIAL_CHARS[0] ;    
+        
+        /**
+         * Back Space utf8 representation (special char).
+         */
+        public static const BACK_SPACE:String = SPECIAL_CHARS[1] ;
+        
+        /**
+         * Simple Quote utf8 representation (special char).
+         */
         public static const SIMPLE_QUOTE:String = SPECIAL_CHARS[2] ;
-
-	    /**
-    	 * Double Quote utf8 representation (special char).
-    	 */
+        
+        /**
+         * Double Quote utf8 representation (special char).
+         */
         public static const DOUBLE_QUOTE:String = SPECIAL_CHARS[3] ;
-	
-    	/**
-    	 * Array with all whitespace characters. NB : USP no implement (Any other Unicode "space separator")
-    	 */
-        public static const WHITE_SPACE_CHARS:Array = [ "\u0009", "\u000B", "\u000C", "\u0020", "\u00A0" ] ; // hack only with ASDoc :(		
-	
-    	/**
-    	 * Tab utf8 representation (whitespace).
-    	 */
+        
+        /**
+         * Array with all whitespace characters. NB : USP no implement (Any other Unicode "space separator")
+         */
+        public static const WHITE_SPACE_CHARS:Array = [ "\u0009", "\u000B", "\u000C", "\u0020", "\u00A0" ] ; // hack only with ASDoc :(        
+        
+        /**
+         * Tab utf8 representation (whitespace).
+         */
         public static const TAB:String = WHITE_SPACE_CHARS[0] ;
-
-	    /**
-    	 * Vertical Tab utf8 representation (whitespace).
-    	 */
+        
+        /**
+         * Vertical Tab utf8 representation (whitespace).
+         */
         public static const VT:String = WHITE_SPACE_CHARS[1] ;
         
-    	/**
-    	 * Form Feed utf8 representation (whitespace).
-    	 */
+        /**
+         * Form Feed utf8 representation (whitespace).
+         */
         public static const FF:String = WHITE_SPACE_CHARS[2] ;
-   
-   	   /**
-	    * Space utf8 representation (whitespace).
-	    */
+        
+          /**
+        * Space utf8 representation (whitespace).
+        */
         public static const SP:String = WHITE_SPACE_CHARS[3] ;
-
-    	/**
-    	 * No-break space utf8 representation (whitespace).
-    	 */
+        
+        /**
+         * No-break space utf8 representation (whitespace).
+         */
         public static const NBSP:String = WHITE_SPACE_CHARS[4] ;
         
-    	/**
-    	 * Array with all line terminators characters
-    	 */
-	    public static const LINE_TERMINATOR_CHARS:Array = [ "\u000A", "\u000D", "\u2028", "\u2029" ] ;  // hack only with ASDoc :(     
+        /**
+         * Array with all line terminators characters
+         */
+        public static const LINE_TERMINATOR_CHARS:Array = [ "\u000A", "\u000D", "\u2028", "\u2029" ] ;  // hack only with ASDoc :(     
         
-       	/**
-	     * Line Feed utf8 representation (line terminators).
-	     */
+        /**
+         * Line Feed utf8 representation (line terminators).
+         */
         public static const LF:String = LINE_TERMINATOR_CHARS[0] ;
         
-    	/**
-    	 * Carriage Return utf8 representation (line terminators).
-    	 */
+        /**
+         * Carriage Return utf8 representation (line terminators).
+         */
         public static const CR:String = LINE_TERMINATOR_CHARS[1] ;
-
-    	/**
-    	 * Line Separator utf8 representation (line terminators).
-	     */        
-        public static const LS:String = LINE_TERMINATOR_CHARS[2] ;	
-
-    	/**
-    	 * Paragraph Separator utf8 representation (line terminators).
-	     */   
-        public static const PS:String = LINE_TERMINATOR_CHARS[3] ;	
-
+        
+        /**
+         * Line Separator utf8 representation (line terminators).
+         */        
+        public static const LS:String = LINE_TERMINATOR_CHARS[2] ;    
+        
+        /**
+         * Paragraph Separator utf8 representation (line terminators).
+         */   
+        public static const PS:String = LINE_TERMINATOR_CHARS[3] ;    
+        
         /**
          * Overrides the behavior of an object property that can be called as a function. 
          * When a method of the object is invoked, this method is called. 
@@ -172,56 +171,54 @@ package vegas.string
                 return "" ;
             } 
         }
-
-    	/**
-    	 * Returns <code class="prettyprint">true</code> of the specified character is a whitespace.
-    	 * @return <code class="prettyprint">true</code> of the specified character is a whitespace.
-    	 */
-	    public static function isWhiteSpace( char:String ):Boolean 
-	    {
+        
+        /**
+         * Returns <code class="prettyprint">true</code> of the specified character is a whitespace.
+         * @return <code class="prettyprint">true</code> of the specified character is a whitespace.
+         */
+        public static function isWhiteSpace( char:String ):Boolean 
+        {
             var c:Char = new Char(char) ;
-		    return (WHITE_SPACE_CHARS.indexOf(c) != -1) ;
+            return (WHITE_SPACE_CHARS.indexOf(c) != -1) ;
         }
-
-    	/**
-    	 * Returns <code class="prettyprint">true</code> of the specified character is a line terminator.
-    	 * @return <code class="prettyprint">true</code> of the specified character is a line terminator.
-    	 */
+        
+        /**
+         * Returns <code class="prettyprint">true</code> of the specified character is a line terminator.
+         * @return <code class="prettyprint">true</code> of the specified character is a line terminator.
+         */
         public static function isLineTerminators( char:String ):Boolean 
         {
-		    var c:Char = new Char(char) ;
-        	return (LINE_TERMINATOR_CHARS.indexOf(c) != -1) ;
+            var c:Char = new Char(char) ;
+            return (LINE_TERMINATOR_CHARS.indexOf(c) != -1) ;
         }
-
-    	/**
-    	 * Converts a unicode representation and returns this char's string.
-    	 * @return The char of the unicode representation.
-    	 */
-	    public static function toChar( unicode:String ):Char
-	    {
+        
+        /**
+         * Converts a unicode representation and returns this char's string.
+         * @return The char of the unicode representation.
+         */
+        public static function toChar( unicode:String ):Char
+        {
             return new Char( toCharString( unicode ) ) ;
         }
         
-    	/**
-    	 * Converts a unicode representation and returns this char's string.
-    	 * @return The char of the unicode representation.
-    	 */
-	    public static function toCharString( unicode:String ):String
-	    {
+        /**
+         * Converts a unicode representation and returns this char's string.
+         * @return The char of the unicode representation.
+         */
+        public static function toCharString( unicode:String ):String
+        {
             return String.fromCharCode( parseInt( unicode , 16) ) ;
         }
-
-	    /**
-    	 * Converts an unicode number value and returns this string representation.
-	     * @return The string representation of a unicode number.
-    	 */
+        
+        /**
+         * Converts an unicode number value and returns this string representation.
+         * @return The string representation of a unicode number.
+         */
         public static function toUnicode(n:Number):String 
         {
-    	    var hex:String = n.toString(16) ;
-        	while( hex.length < 4 ) hex = "0" + hex ;
-        	return hex ;
+            var hex:String = n.toString(16) ;
+            while( hex.length < 4 ) hex = "0" + hex ;
+            return hex ;
         }
-    
     }
-
 }

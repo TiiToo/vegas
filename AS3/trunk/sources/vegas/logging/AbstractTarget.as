@@ -25,42 +25,42 @@ package vegas.logging
     import system.Strings;
     import system.events.CoreEventDispatcher;
     
-    import vegas.logging.errors.InvalidFilterError;    
-
+    import vegas.logging.errors.InvalidFilterError;
+    
     /**
-     * This class provides the basic functionality required by the logging framework for a target implementation. It handles the validation of filter expressions and provides a default level property. No implementation of the logEvent() method is provided.
-     * @author eKameleon
+     * This class provides the basic functionality required by the logging framework for a target implementation. 
+     * It handles the validation of filter expressions and provides a default level property. 
+     * No implementation of the logEvent() method is provided.
      */
     public class AbstractTarget extends CoreEventDispatcher implements ITarget
     {
-        
         /**
          * Creates a new AbstractTarget instance.
-         * @param bGlobal the flag to use a global event flow or a local event flow.
-         * @param sChannel the name of the global event flow if the <code class="prettyprint">bGlobal</code> argument is <code class="prettyprint">true</code>.
+         * @param global the flag to use a global event flow or a local event flow.
+         * @param channel The name of the global event flow if the <code class="prettyprint">global</code> argument is <code class="prettyprint">true</code>.
          */
-        public function AbstractTarget( bGlobal:Boolean = false , sChannel:String = null )
+        public function AbstractTarget( global:Boolean = false , channel:String = null )
         {
-            super( bGlobal , sChannel );
+            super( global , channel ) ;
         }
-
+        
         /**
          * The static field used when throws an Error when a character is invalid.
-         */        
+         */
         public static var charsInvalid:String = "The following characters are not valid\: []~$^&\/(){}<>+\=_-`!@#%?,\:;'\\" ;
-
-        /**
-         * The static field used when throws an Error when filter failed.
-         */        
-        public static var errorFilter:String = "Error for filter \''{0}'" ;
         
         /**
          * The static field used when throws an Error when the character placement failed.
-         */        
+         */
         public static var charPlacement:String = "'*' must be the right most character." ;
-
+        
         /**
-         * (read-write) Returns the filters array representation of this target.
+         * The static field used when throws an Error when filter failed.
+         */
+        public static var errorFilter:String = "Error for filter \''{0}'" ;
+        
+        /**
+         * Indicates the filters array representation of this target.
          */
         public function get filters():Array
         {
@@ -68,7 +68,7 @@ package vegas.logging
         }
         
         /**
-         * (read-write) Sets the filters array of this target.
+         * @private
          */
         public function set filters( value:Array ):void
         {
@@ -76,77 +76,68 @@ package vegas.logging
             {
                 var filter:String ;
                 var index:int ;
-                
-                var len:uint = value.length ;
-                for (var i:uint = 0; i<len; i++)
+                var len:int = value.length ;
+                for (var i:int ; i<len ; i++ )
                 {
                     filter = value[i] ;
                     // check for invalid characters
                     if ( Log.hasIllegalCharacters(filter) )
                     {
-                         throw new InvalidFilterError( Strings.format(errorFilter, filter ) + charsInvalid );
+                         throw new InvalidFilterError( Strings.format(errorFilter, filter ) + charsInvalid ) ;
                     }
-
                     index = filter.indexOf("*") ;
                     if ((index >= 0) && (index != (filter.length -1)))
-                    {                        
-                        throw new InvalidFilterError(Strings.format( errorFilter, filter) + charPlacement);
+                    {
+                        throw new InvalidFilterError( Strings.format( errorFilter, filter) + charPlacement ) ;
                     }
                 }
             }
             else
             {
-                // if null was specified then default to all
-                value = ["*"];
+                value = ["*"]; // if null was specified then default to all
             }
-
-            if (_loggerCount > 0)
+            if ( _count > 0 )
             {
-                Log.removeTarget(this);
+                Log.removeTarget( this ) ;
                 _filters = value;
-                Log.addTarget(this);
+                Log.addTarget( this ) ;
             }
             else
             {
                 _filters = value;
             }
-            
         }
         
         /**
-         * (read-write) Returns the level of this target.
+         * Indicates the level of this target.
          */
         public function get level():LogEventLevel
         {
             return _level ;
         }
-
+        
         /**
-         * (read-write) Sets the level of this target.
+         * @private
          */
         public function set level( value:LogEventLevel ):void
         {
-            Log.removeTarget(this);
-            _level = value;
-            Log.addTarget(this);     
+            Log.removeTarget(this) ;
+            _level = value ;
+            Log.addTarget(this) ;
         } 
-
+        
         /**
          * Insert a category in the fllters if this category don't exist.
          * Returns a boolean if the category is add in the list.
          */
         public function addCategory( category:String ):Boolean 
         {
-            
             if ( _filters.indexOf( category ) == -1 ) 
             {
                 return false ;
             }
-            
             _filters.push( category ) ;
-            
             return true ;
-            
         }
         
         /**
@@ -157,12 +148,11 @@ package vegas.logging
         {
             if ( logger != null )
             {
-                _loggerCount++;
-                
-                logger.addEventListener(LogEvent.LOG, _logHandler);
+                _count++ ;
+                logger.addEventListener(LogEvent.LOG, _handleEvent) ;
             }
         }
-
+        
         /**
          * Add a new namespace in the filters array.
          */
@@ -182,7 +172,7 @@ package vegas.logging
                 return true ;
             }
         }
-
+        
         /**
          *  This method handles a <code class="prettyprint">LogEvent</code> from an associated logger.
          *  A target uses this method to translate the event into the appropriate
@@ -196,15 +186,14 @@ package vegas.logging
         {
             // override please.
         }
-
+        
         /**
          * Remove a category in the fllters if this category exist.
          * Returns a boolean if the category is remove.
          */
         public function removeCategory( category:String ):Boolean
         {
-            
-            var pos:Number = _filters.indexOf( category ) ;
+            var pos:int = _filters.indexOf( category ) ;
             if ( pos > -1) 
             {
                 _filters.splice(pos, 1) ;
@@ -214,20 +203,18 @@ package vegas.logging
             {
                 return false ;
             }
-            
         }
-
+        
         /**
          * Stops this target from receiving events from the specified logger.
          */
-        public function removeLogger(logger:ILogger):void {
-            
-            if (logger != null)
+        public function removeLogger(logger:ILogger):void 
+        {
+            if ( logger != null )
             {
-                _loggerCount--;
-                logger.removeEventListener(LogEvent.LOG, _logHandler);
+                _count-- ;
+                logger.removeEventListener( LogEvent.LOG , _handleEvent ) ;
             }
-            
         }
         
         /**
@@ -235,7 +222,7 @@ package vegas.logging
          */
         public function removeNamespace( nameSpace:String ):Boolean 
         {
-            var pos:Number = filters.indexOf(nameSpace) ;
+            var pos:int = filters.indexOf(nameSpace) ;
             if ( pos > -1) 
             {
                 filters.splice(pos, 1) ;
@@ -251,29 +238,28 @@ package vegas.logging
          * Storage for the filters property.
          */
         private var _filters:Array = ["*"] ;
-
+        
         /**
          * Storage for the filters property.
          */
         private var _level:LogEventLevel = LogEventLevel.ALL ;
-
+        
         /**
          * Count of the number of loggers this target is listening to. 
          * When this value is zero changes to the filters property shouldn't do anything.
          */
-        private var _loggerCount:uint = 0 ;
+        private var _count:uint ;
         
         /**
          * This method will call the <code class="prettyprint">logEvent</code> method if the level of the
          * event is appropriate for the current level.
          */
-        private function _logHandler( event:LogEvent ):void
+        private function _handleEvent( event:LogEvent ):void
         {
             if ( event.level.valueOf() >= level.valueOf() )
             {
                 logEvent(event) ;
             }
         }
-        
     }
 }

@@ -26,47 +26,45 @@ package vegas.logging
     
     import flash.events.IEventDispatcher;
 
-	/**
-	 * All loggers within the logging framework must implement this interface.
-	 */
+    /**
+     * All loggers within the logging framework must implement this interface.
+     */
     public interface ILogger extends IEventDispatcher
     {
-     
         /**
-	     * The category value for the logger.
-	     * @return String containing the category for this logger.
+         * The category value for the logger.
+         * @return String containing the category for this logger.
          */
-    	function get category():String ;
-     
+        function get category():String ;
+        
         /**
-         * Logs the specified data using the LogEventLevel.DEBUG level. 
+         * Logs the specified data using the LogEventLevel.DEBUG level.
          */
-     	function debug( context:* , ...rest:Array ):void ;
-
+         function debug( context:* , ...rest:Array ):void ;
+        
         /**
-         * Logs the specified data using the LogEventLevel.ERROR level.. 
+         * Logs the specified data using the LogEventLevel.ERROR level.
          */
-    	function error( context:* , ...rest:Array ):void ;
-        	
+        function error( context:* , ...rest:Array ):void ;
+        
         /**
          * Logs the specified data using the LogEventLevel.FATAL level.
          */
-	    function fatal( context:* , ...rest:Array ):void ;
-
+        function fatal( context:* , ...rest:Array ):void ;
+        
         /**
          * Logs the specified data using the LogEvent.INFO level.
          */
         function info( context:* , ...rest:Array ):void ;
-
+        
         /**
          * Logs the specified data at the given level.
          */
         function log( level:LogEventLevel,  context:* , ...rest:Array ):void ;
-
+        
         /**
          * Logs the specified data using the LogEventLevel.WARN level.
          */
-    	function warn( context:* , ...rest:Array ):void ;
-        
+        function warn( context:* , ...rest:Array ):void ;
     }
 }

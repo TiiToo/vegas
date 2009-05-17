@@ -24,72 +24,71 @@
 package vegas.core
 {
 
-	/**
-	 * Collected methods which allow easy implementation of <code class="prettyprint">hashCode</code>.
-	 */
-	public class HashCode
-	{
-		
-		/**
-		 * Compare two IHashable objects.
-		 * <pre class="prettyprint">
-		 * var isEquals:Boolean = HashCode.equals(o1, o2) ;
-		 * </pre>
-		 * @param   o1 the first value to compare.
-		 * @param   o2 the second value to compare.
-		 * @return <code class="prettyprint">true</code> of the two object are equals.  
-		 */
-		public static function equals(o1:*, o2:*):Boolean 
-		{
-			return HashCode.identify(o1) == HashCode.identify(o2) ;
-		}
-	
-		/**
-		 * Indenfity the hashcode value of an object.
-		 */
-		public static function identify( o:* ):uint 
-		{
-			if ( o is IHashable )
-			{
-				return (o as IHashable).hashCode() ;
-			}
-			else
-			{
-				if ( (o as Object).hasOwnProperty( "hashCode" ) )
-				{
-					return o["hashCode"]() ;
-				}
-				else
-				{
-					return 0 ;
-				}
-			}
-		}
+    /**
+     * Collected methods which allow easy implementation of <code class="prettyprint">hashCode</code>.
+     */
+    public class HashCode
+    {
+        
+        /**
+         * Compare two IHashable objects.
+         * <pre class="prettyprint">
+         * var isEquals:Boolean = HashCode.equals(o1, o2) ;
+         * </pre>
+         * @param   o1 the first value to compare.
+         * @param   o2 the second value to compare.
+         * @return <code class="prettyprint">true</code> of the two object are equals.  
+         */
+        public static function equals(o1:*, o2:*):Boolean 
+        {
+            return HashCode.identify(o1) == HashCode.identify(o2) ;
+        }
+    
+        /**
+         * Indenfity the hashcode value of an object.
+         */
+        public static function identify( o:* ):uint 
+        {
+            if ( o is IHashable )
+            {
+                return (o as IHashable).hashCode() ;
+            }
+            else
+            {
+                if ( (o as Object).hasOwnProperty( "hashCode" ) )
+                {
+                    return o["hashCode"]() ;
+                }
+                else
+                {
+                    return 0 ;
+                }
+            }
+        }
 
-		/**
-		 * Returns the next hashcode value.
-		 * @return the next hashcode value.
-		 */
-		public static function next():uint 
-		{
-			return HashCode._nHash++ ;
-		}
+        /**
+         * Returns the next hashcode value.
+         * @return the next hashcode value.
+         */
+        public static function next():uint 
+        {
+            return _hash++ ;
+        }
 
-		/**
-		 * Returns the string representation of the next hashcode value.
-		 * @return the string representation of the next hashcode value.
-		 */
-		public static function nextName():String 
-		{
-			return String( HashCode._nHash + 1 ) ;
-		}
+        /**
+         * Returns the string representation of the next hashcode value.
+         * @return the string representation of the next hashcode value.
+         */
+        public static function nextName():String 
+        {
+            return String( _hash + 1 ) ;
+        }
 
-		/**
-		 * The internal hashcode counter.
-		 */
-		private static var _nHash:uint = 0 ;
-			
-	}
+        /**
+         * The internal hashcode counter.
+         */
+        private static var _hash:uint = 0 ;
+    }
 }
 
 

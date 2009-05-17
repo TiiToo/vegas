@@ -36,7 +36,7 @@ package vegas.string.json
         public function JSONError( message:String, at:uint, source:String , id:int=0 )
         {
             super( message , id );
-            name        = "JSONError" ;            
+            name        = "JSONError" ;
             this.at     = at ;
             this.source = source ;
         }
@@ -58,8 +58,14 @@ package vegas.string.json
         public function toString():String 
         {
             var msg:String = "## " + name + " : " + message + " ##" ;
-            if (!isNaN(at)) msg += ", at:" + at ;
-            if (source) msg += " in \"" + source + "\"";
+            if (!isNaN(at)) 
+            {
+                msg += ", at:" + at ;
+            }
+            if ( source != null ) 
+            {
+                msg += " in \"" + source + "\"";
+            }
             return msg ;
         }
 

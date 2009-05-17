@@ -22,7 +22,7 @@
 */
 package vegas.string.json 
 {
-    import system.Serializer;            
+    import system.Serializer;
 
     /**
      * This class is the concrete class of the JSON singleton.
@@ -117,22 +117,22 @@ package vegas.string.json
         public function set indentor(value:String):void
         {
             _indentor = value;
-        }        
-
+        }
+        
         /**
          * Indicates the pretty indent value.
          */   
         public function get prettyIndent():int
         {
             return _prettyIndent;
-        }        
+        }
         
         /**
          * @private
          */
         public function set prettyIndent(value:int):void
         {
-        	 _prettyIndent = value ;
+             _prettyIndent = value ;
         }
         
         /**
@@ -148,7 +148,7 @@ package vegas.string.json
          */        
         public function set prettyPrinting(value:Boolean):void
         {
-        	_prettyPrinting = value;
+            _prettyPrinting = value;
         }
         
         /**
@@ -163,7 +163,7 @@ package vegas.string.json
          */ 
         public function deserialize( source:String ):*
         {
-        	this.source = source ;
+            this.source = source ;
             at = 0 ;
             ch = ' ' ;
             return value() ;

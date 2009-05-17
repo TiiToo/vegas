@@ -23,8 +23,8 @@
 
 package vegas.string
 {
-	
-	/**
+    
+    /**
      * It is a simple checksum formula used to validate a variety of account numbers, such as credit card numbers, etc.
      * <p>The Luhn algorithm or Luhn formula, also known as the "modulus 10" or "mod 10" algorithm, was developed in the 1960s as a method of validating identification numbers.</p>
      * <p><b>example</b></p>
@@ -36,25 +36,25 @@ package vegas.string
      * trace (code + " isValid : " + Luhn.isValid(code)) ;
      * </pre>
      */
-	public class Luhn
-	{
+    public class Luhn
+    {
 
-	    /**
-    	 * Returns <code class="prettyprint">true</code> if the expression in argument is a valid Luhn value.
-    	 * @return <code class="prettyprint">true</code> if the expression in argument is a valid Luhn value.
-    	 */
-		public static function isValid(str:String):Boolean 
-		{	
-			var	n:Number ;
-			var sum:uint = 0 ;
-			var l:uint = str.length ;
-			for (var i:uint = 0 ; i<l ; i++)
-			{
-				n = Number(str.charAt(i)) * ( i%2 == 1 ? 2 : 1) ;
-				sum += n - ((n > 9) ? 9 : 0) ;
-			}
-			return sum%10 == 0 ;
-		}
-		
-	}
+        /**
+         * Returns <code class="prettyprint">true</code> if the expression in argument is a valid Luhn value.
+         * @return <code class="prettyprint">true</code> if the expression in argument is a valid Luhn value.
+         */
+        public static function isValid(str:String):Boolean 
+        {    
+            var n:Number ;
+            var sum:uint = 0 ;
+            var l:int = str.length ;
+            for ( var i:int ; i<l ; i++ )
+            {
+                n = Number(str.charAt(i)) * ( i%2 == 1 ? 2 : 1) ;
+                sum += n - ((n > 9) ? 9 : 0) ;
+            }
+            return sum%10 == 0 ;
+        }
+        
+    }
 }
