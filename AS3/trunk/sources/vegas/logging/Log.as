@@ -303,14 +303,16 @@ package vegas.logging
          */
         private static function resetTargetLevel():void
         {
-            var minLevel:int = NONE;
+            var min:int = NONE;
             var len:int = _targets.length ;
             for ( var i:int ; i < len ; i++ )
             {
-                if ( minLevel == NONE || _targets[i].level.valueOf() < minLevel ) ;
-                minLevel = _targets[i].level ;
+                if ( min == NONE || _targets[i].level.valueOf() < min )
+                {
+                    min = _targets[i].level ;	
+                }
             }
-            _targetLevel = minLevel ;
+            _targetLevel = min ;
         }
     }
 }
