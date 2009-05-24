@@ -24,14 +24,12 @@
 package vegas.logging
 {
     import flash.events.Event;
-
+    
 	/**
      * Represents the log information for a single logging event. The loging system dispatches a single event each time a process requests information be logged. This event can be captured by any object for storage or formatting.
-     * @author eKameleon 
      */
     public class LogEvent extends Event
     {
-        
         /**
          * Creates a new LogEvent.
          */
@@ -68,21 +66,19 @@ package vegas.logging
         }
 
         /**
-         * Returns a string value representing the level specified.
+         * Returns a String value representing the level specified.
+         * @return a String value representing the level specified.
          */
         public static function getLevelString( value:LogEventLevel ):String
         {
-           if (LogEventLevel.isValidLevel(value))
-           {
+            if (LogEventLevel.isValidLevel(value))
+            {
                 return value.toString() ;   
-           }
-           else
-           {
-                return "UNKNOWN" ;  
-           }
+            }
+            else
+            {
+                return "UNKNOWN" ;
+            }
         }
-
-        
     }
-        
 }

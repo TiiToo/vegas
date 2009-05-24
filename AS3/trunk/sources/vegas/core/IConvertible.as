@@ -23,27 +23,26 @@
 
 package vegas.core
 {
-	
-	/**
-	 * Allows an object to be converted to an equivalent type.
-	 * <p>See <a href="http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf">Standard ECMAScript-262 3rd Edition CHAP 9 : 'Type Conversion'</a></p>
-	 */
-	public interface IConvertible
-	{
-		
-		/**
-		 * Converts an object to an equivalent Boolean value.
-		 */
-		function toBoolean():Boolean ;
-
-		/**
-		 * Converts an object to an equivalent Number value.
-		 */
-		function toNumber():Number ;
-
-		/**
-		 * Converts an object to an equivalent Object value.
-		 */
-		function toObject():Object ;
-	}
+    
+    /**
+     * Allows an object to be converted to an equivalent type.
+     * <p>See <a href="http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf">Standard ECMAScript-262 3rd Edition CHAP 9 : 'Type Conversion'</a></p>
+     */
+    public interface IConvertible
+    {
+        /**
+         * Converts an object to an equivalent Boolean value.
+         */
+        function toBoolean():Boolean ;
+        
+        /**
+         * Converts an object to an equivalent Number value.
+         */
+        function toNumber():Number ;
+        
+        /**
+         * Converts an object to an equivalent Object value.
+         */
+        function toObject():Object ;
+    }
 }

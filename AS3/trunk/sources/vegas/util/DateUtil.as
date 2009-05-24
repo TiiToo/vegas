@@ -23,54 +23,49 @@
 
 package vegas.util
 {
-    
     /**
      * The <code class="prettyprint">DateUtil</code> utility class is an all-static class with methods for working with dates.
-     * @author eKameleon
      */
     public class DateUtil
     {
-
-    	/**
-	     * Returns a shallow copy of the date object passed in argument.
-    	 * @return a shallow copy of the date object passed in argument.
-    	 */
+        /**
+         * Returns a shallow copy of the date object passed in argument.
+         * @return a shallow copy of the date object passed in argument.
+         */
         public static function clone(d:Date):Date 
         {
-		    return new Date(d.valueOf()) ;
-    	}
-
-    	/**
-	     * Returns a deep copy of the date object passed in argument.
-    	 * @return a deep copy of the date object passed in argument.
-    	 */
-	    public static function copy(d:Date):Date 
-	    {
-    		return new Date(d.valueOf()) ;
-    	}
-
-    	/**
-    	 * Compares the twno specified Date objects for equality.
-	     * @return <code class="prettyprint">true</code> if the the two specified Date object are equals.
-    	 */
-	    public static function equals( d1:Date, d2:Date ):Boolean 
-	    {
-		    if (!d2) 
-		    {
-		        return false ;
-		    }
-    		return d1.valueOf() == d2.valueOf() ;
+            return new Date(d.valueOf()) ;
         }
- 
+        
+        /**
+         * Returns a deep copy of the date object passed in argument.
+         * @return a deep copy of the date object passed in argument.
+         */
+        public static function copy(d:Date):Date 
+        {
+            return new Date(d.valueOf()) ;
+        }
+        
+        /**
+         * Compares the twno specified Date objects for equality.
+         * @return <code class="prettyprint">true</code> if the the two specified Date object are equals.
+         */
+        public static function equals( d1:Date, d2:Date ):Boolean 
+        {
+            if (!d2) 
+            {
+                return false ;
+            }
+            return d1.valueOf() == d2.valueOf() ;
+        }
+        
         /**
          * Returns a string representation the source code of the Date.
          * @return a string representation the source code of the Date.
          */
         public static function toSource( date:Date , ...rest:Array ):String 
         {
-		    return "new Date(" + date.valueOf() + ")" ;
+            return "new Date(" + date.valueOf() + ")" ;
         }
-        
     }
-    
 }

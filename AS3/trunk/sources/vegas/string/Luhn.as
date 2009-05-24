@@ -23,7 +23,6 @@
 
 package vegas.string
 {
-    
     /**
      * It is a simple checksum formula used to validate a variety of account numbers, such as credit card numbers, etc.
      * <p>The Luhn algorithm or Luhn formula, also known as the "modulus 10" or "mod 10" algorithm, was developed in the 1960s as a method of validating identification numbers.</p>
@@ -38,7 +37,6 @@ package vegas.string
      */
     public class Luhn
     {
-
         /**
          * Returns <code class="prettyprint">true</code> if the expression in argument is a valid Luhn value.
          * @return <code class="prettyprint">true</code> if the expression in argument is a valid Luhn value.

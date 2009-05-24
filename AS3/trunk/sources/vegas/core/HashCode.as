@@ -23,7 +23,6 @@
 
 package vegas.core
 {
-
     /**
      * Collected methods which allow easy implementation of <code class="prettyprint">hashCode</code>.
      */
@@ -43,7 +42,7 @@ package vegas.core
         {
             return HashCode.identify(o1) == HashCode.identify(o2) ;
         }
-    
+        
         /**
          * Indenfity the hashcode value of an object.
          */
@@ -65,7 +64,7 @@ package vegas.core
                 }
             }
         }
-
+        
         /**
          * Returns the next hashcode value.
          * @return the next hashcode value.
@@ -74,7 +73,7 @@ package vegas.core
         {
             return _hash++ ;
         }
-
+        
         /**
          * Returns the string representation of the next hashcode value.
          * @return the string representation of the next hashcode value.
@@ -83,12 +82,10 @@ package vegas.core
         {
             return String( _hash + 1 ) ;
         }
-
+        
         /**
          * The internal hashcode counter.
          */
         private static var _hash:uint = 0 ;
     }
 }
-
-

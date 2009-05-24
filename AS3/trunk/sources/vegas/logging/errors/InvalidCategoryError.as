@@ -23,23 +23,18 @@
 
 package vegas.logging.errors
 {
-
-    import vegas.errors.FatalError;
-
-	/**
-	 * The error throws when an invalid category is find.
-	 * @author eKameleon
-	 */
-    public class InvalidCategoryError extends FatalError
+    /**
+     * The error throws when an invalid category is find.
+     */
+    public class InvalidCategoryError extends Error
     {
-
-		/**
-		 * Creates a new InvalidCategoryError instance.
-		 */
+        /**
+         * Creates a new InvalidCategoryError instance.
+         */
         public function InvalidCategoryError(message:String="", id:int=0)
         {
             super(message, id);
+            name = "InvalidCategoryError" ;
         }
-        
     }
 }

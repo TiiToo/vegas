@@ -21,25 +21,19 @@
   
 */
 
-/**
- * Allows an object to control its own serialization with the eden representation.
- * Thanks : Zwetan Core2 framework inspired by Mozilla SpiderMonkey.
- * @deprecated
- * @author eKameleon
- */
 package vegas.util
 {
     import system.Reflection;
     import system.eden;    
-
+    
     /**
-	 * The eden serializer of the VEGAS implementation. 
-	 * @deprecated
-	 */
-	public class Serializer
+     * Allows an object to control its own serialization with the eden representation.
+     * @deprecated
+     */
+    public class Serializer
     {
         
-       /**
+        /**
          * Returns the string source representation of the specified object and serialize the array of arguments to pass in the constructor of the class.
          * @return the string source representation of the specified object and serialize the array of arguments to pass in the constructor of the class.
          */
@@ -71,18 +65,14 @@ package vegas.util
             source += ")" ;
             return source ;
         }
-    
+        
         /**
          * Returns the eden string representation of the specified object.
          * @return the eden string representation of the specified object.
          */
         public static function toSource( ...arguments ):String 
         {
-            var o:* = arguments[0] ;
-            return eden.serialize(o);
-        }    
-  
+            return eden.serialize(arguments[0]);
+        }
     }
 }
-
-

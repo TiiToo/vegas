@@ -20,17 +20,18 @@
   Contributor(s) :
   
 */
-
 package vegas.logging
 {
-    import vegas.core.CoreObject;    
+    import system.Equatable;
+    import system.Serializable;
+    import system.hack;
 
     /**
      * Static class containing constants for use in the level  property.
-     * @author eKameleon
      */
-    public class LogEventLevel extends CoreObject
+    public class LogEventLevel implements Equatable, Serializable
     {
+        use namespace hack ;
         
         /**
          * Creates a new LogEventLevel instance.
@@ -70,43 +71,66 @@ package vegas.logging
          * Designates events that could be harmful to the application operation (6).
          */    
         public static const WARN:LogEventLevel = new LogEventLevel("WARN", 6) ;
-
+        
         /**
-         * Returns true if the number level passed in argument is valid.
+         * Compares the specified object with this object for equality.
+         * @return <code class="prettyprint">true</code> if the the specified object is equal with this object.
+         */
+        public function equals( o:* ):Boolean
+        {
+            if ( o == this )
+            {
+                return true ;
+            }
+            else if ( o is LogEventLevel )
+            {
+                return ( (o as LogEventLevel)._name == _name) && ( (o as LogEventLevel)._value == _value) ;
+            }
+            else
+            {
+                return false ;
+            }
+        }
+        
+        /**
+         * Returns <code class="prettyprint">true</code> if the number level passed in argument is valid.
+         * @return <code class="prettyprint">true</code> if the number level passed in argument is valid.
          */
         public static function isValidLevel( level:LogEventLevel ):Boolean 
         {
             var levels:Array = [ ALL, DEBUG, ERROR, FATAL, INFO, WARN ] ;
-            var l:uint = levels.length ;
+            var l:int = levels.length ;
             while (--l > -1)
             {
-                if (level.valueOf() == levels[l].valueOf() ) 
+                if ( level.equals( levels[l] ) ) 
                 {
-                    return true ;  
+                    return true ;
                 }
             }  
             return false ;
         }
-
+        
         /**
          * Returns the Eden string representation of the object.
          */    
-        public override function toSource( indent:int = 0 ):String  
+        public function toSource( indent:int = 0 ):String  
         { 
             return 'new vegas.logging.LogEventLevel("' + this._name + '",' + this._value + ')' ;
         }
 
         /**
-         * Returns the string representation of the object.
+         * Returns the String representation of the object.
+         * @return the String representation of the object.
          */    
-        public override function toString():String 
+        public function toString():String 
         { 
             return _name ; 
         }
-    
+        
         /**
-         * Returns the value of this object.
-         */    
+         * Returns the primitive value of this object.
+         * @return the primitive value of this object.
+         */
         public function valueOf():int
         {
             return _value ;
@@ -115,12 +139,11 @@ package vegas.logging
         /**
          * @private
          */
-        private var _name:String ;
+        hack var _name:String ;
         
         /**
          * @private
          */
-        private var _value:int ;
-
+        hack var _value:int ;
     }
 }

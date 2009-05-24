@@ -24,57 +24,53 @@
 
 package vegas.util
 {
-
-	/**
-	 * The <code class="prettyprint">ErrorUtil</code> utility class is an all-static class with methods for working with Error.
-	 * @author eKameleon
-	 */
+    /**
+     * The <code class="prettyprint">ErrorUtil</code> utility class is an all-static class with methods for working with Error.
+     */
     public class ErrorUtil
     {
-        
-		/**
-	 	 * Returns a shallow copy by reference of this specified error.
-	 	 * @return a shallow copy by reference of this specified error.
-	 	 */
-		public static function clone(e:Error):Error 
-		{
-			return new Error(e.message) ;
-		}
-
-		/**
-	 	 * Returns a deep copy by value of this specified error.
-	 	 * @return a deep copy by value of this specified error.
-	 	 */
-		public static function copy(e:Error):Error 
-		{
-			return new Error( (e.message).valueOf() ) ;
-		}        
-
-		/**
-		 * Compares if two Errors are equal by reference.
-		 * @return <code class="prettyprint">true</code> if the two Errors are equal by reference.
-	 	 */
-		public static function equals( e1:Error = null , e2:Error = null ):Boolean 
-		{
-    		if(e1 == null)
-        	{
-	        	return false ;
-        	}
-    		if(e2 == null)
-        	{
-	        	return false ;
-        	}
-			return e1.toString() == e2.toString() ;
-    	}
-
-		/**
-	 	 * Returns a string representing the source code of the object.
-	 	 * @return a string representing the source code of the object.
- 	 	 */
-	    public static function toSource( e:Error , ...rest:Array ):String 
-	    {
-		    return 'new Error(\"' + e.message + '")' ;
+        /**
+         * Returns a shallow copy by reference of this specified error.
+         * @return a shallow copy by reference of this specified error.
+         */
+        public static function clone(e:Error):Error 
+        {
+            return new Error(e.message) ;
         }
         
+        /**
+         * Returns a deep copy by value of this specified error.
+         * @return a deep copy by value of this specified error.
+         */
+        public static function copy(e:Error):Error 
+        {
+            return new Error( (e.message).valueOf() ) ;
+        }
+        
+        /**
+         * Compares if two Errors are equal by reference.
+         * @return <code class="prettyprint">true</code> if the two Errors are equal by reference.
+         */
+        public static function equals( e1:Error = null , e2:Error = null ):Boolean 
+        {
+            if(e1 == null)
+            {
+                return false ;
+            }
+            if(e2 == null)
+            {
+                return false ;
+            }
+            return e1.toString() == e2.toString() ;
+        }
+        
+        /**
+         * Returns a string representing the source code of the object.
+         * @return a string representing the source code of the object.
+         */
+        public static function toSource( e:Error , ...rest:Array ):String 
+        {
+            return 'new Error(\"' + e.message + '")' ;
+        }
     }
 }

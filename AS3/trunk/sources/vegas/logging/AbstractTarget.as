@@ -94,7 +94,7 @@ package vegas.logging
             }
             else
             {
-                value = ["*"]; // if null was specified then default to all
+                value = ["*"] ; // if null was specified then default to all
             }
             if ( _count > 0 )
             {

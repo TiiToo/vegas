@@ -28,7 +28,7 @@ package vegas.string
      * <code class="prettyprint">JSON</code> (JavaScript object Notation) is a lightweight data-interchange format.
      * <p>More information in the official site : <a href="http://www.JSON.org/">http://www.JSON.org</a></p>
      * <p>Add Hexa Digits tool in deserialize method - <a href="http://code.google.com/p/edenrr/">eden inspiration</a></p>
-     * @example
+     * <p><b>Example :</b></p>
      * <pre class="prettyprint">
      * import vegas.string.JSON;
      * import vegas.string.errors.JSONError;

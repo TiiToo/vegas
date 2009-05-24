@@ -23,66 +23,63 @@
 
 package vegas.util
 {
-
-	/**
-	 * Boolean tools class.
-	 * @author eKameleon
-	 */    
+    /**
+     * Boolean tools class.
+     */    
     public class BooleanUtil
     {
-        
         /**
          * Returns a copy by reference of this boolean.
          * @return a copy by reference of this boolean.
          */
         public static function clone(b:Boolean):Boolean 
         {
-		    return b ;
-    	}
-
+            return b ;
+        }
+        
         /**
          * Returns a copy by value of this object.
          * @return a copy by value of this object.
          */
-    	public static function copy(b:Boolean):Boolean 
-    	{
-	    	return b.valueOf() ;
-    	}
-
+        public static function copy(b:Boolean):Boolean 
+        {
+            return b.valueOf() ;
+        }
+        
         /**
          * Compares if two Booleans are equal by value.
          */
-	    public static function equals( b1:Boolean, b2:Boolean ):Boolean 
-	    {
-    		if ( !b2 ) 
-    		{
-	    		return false ;
-    		}
-    		return b1.valueOf() == b2.valueOf() ;
+        public static function equals( b1:Boolean, b2:Boolean ):Boolean 
+        {
+            if ( !b2 ) 
+            {
+                return false ;
+            }
+            return b1.valueOf() == b2.valueOf() ;
         }
-	    
-	    /**
-	     * Converts to an equivalent Boolean value.
-	     */
-    	public static function toBoolean(b:Boolean):Boolean 
-    	{
-    		return b.valueOf() ;
-    	}
-	
-	    /**
- 	     * Converts to an equivalent Number value.
- 	     */
-    	public static function toNumber(b:Boolean):Number 
-    	{
-    		return  b.valueOf() == true ? 1 : 0 ;
+        
+        /**
+         * Converts to an equivalent Boolean value.
+         */
+        public static function toBoolean(b:Boolean):Boolean 
+        {
+            return b.valueOf() ;
         }
-	
-	    /**
-	     * Converts to an equivalent Object value.
-	     */
-    	public static function toObject(b:Boolean):Object 
-    	{
-    		return new Boolean( b.valueOf() ) ;
+        
+        /**
+          * Converts to an equivalent Number value.
+          */
+        public static function toNumber(b:Boolean):Number 
+        {
+            return  b.valueOf() == true ? 1 : 0 ;
+        }
+        
+        /**
+         * Converts to an equivalent Object value.
+         */
+        public static function toObject(b:Boolean):Object 
+        {
+            return new Boolean( b.valueOf() ) ;
         }
         
         /**
@@ -91,8 +88,7 @@ package vegas.util
          */
         public static function toSource( b:Boolean , ...rest:Array ):String 
         {
-		    return BooleanUtil.equals( b , true ) ? "true" : "false" ;
+            return BooleanUtil.equals( b , true ) ? "true" : "false" ;
         }
-        
     }
 }

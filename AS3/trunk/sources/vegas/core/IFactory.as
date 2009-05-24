@@ -23,18 +23,14 @@
 
 package vegas.core
 {
-	
-	/**
-	 * Defines an interface implemented by classes that create objects.
-	 */
-	public interface IFactory
-	{
-
-		/**
-		 * Creates the objects.
-		 */
-		function create( ...arguments:Array ):void ;
-
-	}
-
+    /**
+     * Defines an interface implemented by classes that create objects.
+     */
+    public interface IFactory
+    {
+        /**
+         * Creates the objects.
+         */
+        function create( ...arguments:Array ):void ;
+    }
 }

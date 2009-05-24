@@ -22,14 +22,11 @@
 */
 package vegas.logging
 {
-    
-
     /**
      * Implementing this interface allows an object who contains an <code class="prettyprint">ILogger</code> reference.
      */
     public interface Logable 
     {
-
         /**
          * Determinates the internal <code class="prettyprint">ILogger</code> reference of this <code class="prettyprint">Logable</code> object.
          */
@@ -39,6 +36,5 @@ package vegas.logging
          * @private
          */
         function set logger( log:ILogger ):void ;
-        
     }
 }

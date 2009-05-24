@@ -22,11 +22,10 @@
 */
 package vegas.util
 {
-    import system.serializers.eden.BuiltinSerializer;                
-
+    import system.serializers.eden.BuiltinSerializer;
+    
     /**
      * Array static tool class.
-     * @author eKameleon
      */
     public class ArrayUtil 
     {
@@ -50,7 +49,7 @@ package vegas.util
         {
               return ar.slice() ;
         }
-    
+        
         /**
          * Creates the deep copy of the Array.
          * <p><b>Example :</b></p>
@@ -111,7 +110,7 @@ package vegas.util
             ar.splice(index, 1) ;
             return (flag) ? ar : item ;
         }
-    
+        
         /**
          * Shuffles an array.
          * <p><b>Example :</b></p>
@@ -131,7 +130,7 @@ package vegas.util
             var tmp:Array = [] ;
             var len:int   = ar.length;
             var index:int = len - 1 ;
-            for (var i:int = 0; i < len; i++) 
+            for (var i:int ; i < len; i++) 
             {
                 tmp.push( ArrayUtil.pierce( ar, Math.round(Math.random() * index), false) );
                 index-- ;
@@ -141,7 +140,7 @@ package vegas.util
                 ar[len] = tmp[len] ;
             }
             return ar ;
-        }        
+        }
         
         /**
          * Returns a string representing the source code of the array.

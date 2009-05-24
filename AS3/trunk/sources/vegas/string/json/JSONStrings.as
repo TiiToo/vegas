@@ -22,18 +22,16 @@
 */
 package vegas.string.json
 {
-
     /**
-	 * The string messages used in the eden class.
-	 */
-	public class JSONStrings
-	{
-
+     * The string messages used in the eden class.
+     */
+    public class JSONStrings
+    {
         /**
          * The bad Array error message.
          */
         public static var badArray:String = "Bad Array" ;
-
+        
         /**
          * The bad key error message.
          */
@@ -56,20 +54,17 @@ package vegas.string.json
         
         /**
          * The mal formed Hexadecimal error message.
-         */        
+         */
         public static var malFormedHexadecimal:String = "Mal formed Hexadecimal" ;
         
-		/**
-		 * The syntax error message.
-		 */
-		public static var syntaxError:String = "Syntax Error" ;
-
+        /**
+         * The syntax error message.
+         */
+        public static var syntaxError:String = "Syntax Error" ;
+        
         /**
          * The unterminated comment error message.
          */
         public static var unterminatedComment:String = "Unterminated Comment" ;
-	
-	}
-
+    }
 }
-

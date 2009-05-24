@@ -24,14 +24,13 @@
 package vegas.errors
 {
     
-   	/**
-	 * Thrown to indicate a warning message in an application or in the source code.
- 	 */ 
+    /**
+     * Thrown to indicate a warning message in an application or in the source code.
+     */ 
     public class Warning extends Error
     {
-	
-		/**
-		 * Creates a new Warning instance.
+        /**
+         * Creates a new Warning instance.
          * @param message A string associated with the Warning object ; this parameter is optional.
          * @param id A reference number to associate with the specific error message.
          */
@@ -40,6 +39,5 @@ package vegas.errors
             super(message, id);
             name = "Warning" ;
         }
-        
     }
 }

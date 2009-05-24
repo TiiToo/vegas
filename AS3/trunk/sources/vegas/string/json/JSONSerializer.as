@@ -23,13 +23,13 @@
 package vegas.string.json 
 {
     import system.Serializer;
-
+    
     /**
      * This class is the concrete class of the JSON singleton.
      * <code class="prettyprint">JSON</code> (JavaScript object Notation) is a lightweight data-interchange format.
      * <p>More information in the official site : <a href="http://www.JSON.org/">http://www.JSON.org</a></p>
      * <p>Add Hexa Digits tool in deserialize method - <a href="http://code.google.com/p/edenrr/">eden inspiration</a></p>
-     * @example
+     * <p><b>Example :</b></p>
      * <pre class="prettyprint">
      * import vegas.string.JSON;
      * import vegas.string.JSONError;
@@ -97,7 +97,7 @@ package vegas.string.json
         {
             //
         }
-                
+        
         /**
          * The source to evaluate.
          */
@@ -339,7 +339,7 @@ package vegas.string.json
         protected function error( m:String ):void 
         {
             throw new JSONError( m, at - 1 , source) ;
-        }        
+        }
         
         /**
          * Indicates if the passed-in character is a digit.
@@ -348,7 +348,7 @@ package vegas.string.json
         {
             return( ("0" <= c) && (c <= "9") );
         }
-
+        
         /**
          * Indicates if the passed-in character is a hexadecimal digit.
          */
@@ -356,7 +356,7 @@ package vegas.string.json
         {
             return( isDigit( c ) || (("A" <= c) && (c <= "F")) || (("a" <= c) && (c <= "f")) );
         }
-
+        
         /**
          * Indicates if the current character is a key.
          */

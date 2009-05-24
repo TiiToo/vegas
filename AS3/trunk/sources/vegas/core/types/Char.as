@@ -23,12 +23,12 @@
 
 package vegas.core.types
 {
-	import vegas.core.CoreObject;	
+    import vegas.core.CoreObject;    
 
-	/**
-	 * An object of type Char contains a single field whose type is String.
-	 * @author eKameleon
-	 */    
+    /**
+     * An object of type Char contains a single field whose type is String.
+     * @deprecated
+     */    
     public class Char extends CoreObject
     {
         
@@ -39,46 +39,45 @@ package vegas.core.types
         {
             _ch = value.substring(0, 1) ;
         }
-
-		/**
-		 * Returns the integer character code for the character.
-		 */
-    	public function getCode():Number 
-    	{
-	    	return _ch.charCodeAt(0) ;
-    	}
-
-		/**
-		 * Returns a Eden representation of the object.
-		 * @return a string representing the source code of the object.
-		 */
+        
+        /**
+         * Returns the integer character code for the character.
+         */
+        public function getCode():Number 
+        {
+            return _ch.charCodeAt(0) ;
+        }
+        
+        /**
+         * Returns a Eden representation of the object.
+         * @return a string representing the source code of the object.
+         */
         public override function toSource( indent:int = 0 ):String  
         {
             return 'new vegas.core.types.Char("' + _ch + '")' ;    
         }
-
-		/**
-		 * Returns the string representation of this instance.
-		 * @return the string representation of this instance
-		 */
+        
+        /**
+         * Returns the string representation of this instance.
+         * @return the string representation of this instance
+         */
         public override function toString():String
         {
             return _ch ;
         }  
-
-		/**
-		 * Returns the real value of the object.
-		 * @return the real value of the object.
-		 */
+        
+        /**
+         * Returns the real value of the object.
+         * @return the real value of the object.
+         */
         public function valueOf():Object
         {
             return _ch ;
         }
         
-		/**
-		 * Internal string object.
-		 */        
+        /**
+         * Internal string object.
+         */
         private var _ch:String ;
-        
     }
 }

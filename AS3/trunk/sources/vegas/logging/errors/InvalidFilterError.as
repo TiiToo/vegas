@@ -23,23 +23,19 @@
 
 package vegas.logging.errors
 {
-    
-    import vegas.errors.FatalError;
-
-	/**
-	 * The error throws when an invalid filter is find.
-	 * @author eKameleon
-	 */
-    public class InvalidFilterError extends FatalError
+    /**
+     * The error throws when an invalid filter is find.
+     * @author eKameleon
+     */
+    public class InvalidFilterError extends Error
     {
-        
        	/**
-		 * Creates a new InvalidFilterError instance.
-		 */
+         * Creates a new InvalidFilterError instance.
+         */
         public function InvalidFilterError(message:String="", id:int=0)
         {
             super(message, id);
+            name = "InvalidFilterError" ;
         }
-        
     }
 }

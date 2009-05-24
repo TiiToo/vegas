@@ -29,7 +29,6 @@ package vegas.string.json
      */
     public class JSONError extends Error
     {
-
         /**
          * Creates a new JSONError instance.
          */
@@ -68,6 +67,5 @@ package vegas.string.json
             }
             return msg ;
         }
-
     }
 }

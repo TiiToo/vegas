@@ -29,7 +29,7 @@ package vegas.logging.targets
     import flash.external.ExternalInterface;
     import flash.net.URLRequest;
     import flash.net.navigateToURL;    
-
+    
     /**
      * Provides a logger target that uses the FireBug console extension in Firefox to output log messages. 
      * You can download the FireBug and test this target : <a href="https://addons.mozilla.org/fr/firefox/addon/1843">https://addons.mozilla.org/fr/firefox/addon/1843</a>.
@@ -72,13 +72,12 @@ package vegas.logging.targets
      */
     public class FireBugTarget extends LineFormattedTarget 
     {
-
         /**
          * Creates a new FireBugTarget instance.
          */
-        public function FireBugTarget(bGlobal:Boolean = false, sChannel:String = null)
+        public function FireBugTarget()
         {
-            super( bGlobal, sChannel );
+            //
         }
         
         /**
@@ -89,10 +88,8 @@ package vegas.logging.targets
         public override function internalLog( message:* , level:LogEventLevel ):void
         {
             var methodName:String ;
-                    
             switch (level)
             {
-                
                 case LogEventLevel.ERROR :
                 {
                     methodName = "console.error" ;
@@ -117,10 +114,8 @@ package vegas.logging.targets
                 {
                     methodName = "console.debug" ;
                     break ; 
-                }       
-                   
+                }
             }
-            
             if ( ExternalInterface.available )
             {
                 ExternalInterface.call( methodName, [message] ) ;
@@ -129,7 +124,6 @@ package vegas.logging.targets
             {
                 navigateToURL( new URLRequest("javascript:" + methodName + "('"+ message +"');") );  
             }
-        }        
-        
+        }
     }
 }

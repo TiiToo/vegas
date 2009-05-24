@@ -24,15 +24,13 @@ package vegas.util
 {
     import flash.utils.Dictionary;
     
-    import system.Reflection;    
+    import system.Reflection;
 
     /**
      * The <code class="prettyprint">ClassUtil</code> utility class is an all-static class with methods for working with function the Class in AS3.
-     * @author eKameleon
      */
     public class ClassUtil
     {
-                
         /**
          * Returns the unique name of the specified instance in argument.
          * <p><b>Example :</b></p>
@@ -70,7 +68,5 @@ package vegas.util
          * @private
          */
         private static var _clazzBuffer:Dictionary = new Dictionary(true) ;
-         
-    }    
+     }
 }
-

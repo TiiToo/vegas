@@ -26,49 +26,46 @@ package vegas.util
     
     /**
      * The <code class="prettyprint">FunctionUtil</code> utility class is an all-static class with methods for working with function.
-     * @author eKameleon
      */
     public class FunctionUtil
     {
     
-	    /**
-    	 * Returns a copy by value of this function.
-    	 * Attention : we can not copy by reference a function , if you want to do that use apply or call method to make a kind of delegate.
-    	 */
-    	public static function clone(f:Function):Function 
-    	{
-    		return f ;
-    	}
-    
-    	/**
-    	 * Returns a copy by value of this object.
-    	 */
-    	public static function copy(f:Function):Function 
-    	{
-    		return f ;
-    	}
-    
-    	/**
-    	 * Compares if two Functions are equal by reference.
-     	 */
-    	public static function equals( f1:Function, f2:Function ):Boolean 
-    	{
-    		if ( f2 == null  ) 
-    		{
-    		    return false ;
-    		}
-    		return f1 == f2 ;
+        /**
+         * Returns a copy by value of this function.
+         * Attention : we can not copy by reference a function , if you want to do that use apply or call method to make a kind of delegate.
+         */
+        public static function clone(f:Function):Function 
+        {
+            return f ;
         }
-
+        
+        /**
+         * Returns a copy by value of this object.
+         */
+        public static function copy(f:Function):Function 
+        {
+            return f ;
+        }
+        
+        /**
+         * Compares if two Functions are equal by reference.
+          */
+        public static function equals( f1:Function, f2:Function ):Boolean 
+        {
+            if ( f2 == null  ) 
+            {
+                return false ;
+            }
+            return f1 == f2 ;
+        }
+        
         /**
          * Should returns a string representing the source code of the function, 
          * but instead the choice has been made to only return the string “(function)”.
          */
-    	public static function toSource( f:Function ):String 
-    	{
-	    	return '(function)' ;
+        public static function toSource( f:Function ):String 
+        {
+            return '(function)' ;
         }
-
     }
-    
 }

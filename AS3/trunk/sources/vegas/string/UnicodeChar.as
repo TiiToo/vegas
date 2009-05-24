@@ -31,7 +31,7 @@ package vegas.string
     /**
      * <b>ECMA 262</b> Unicode IFormat-Control Characters tools.
      * <p>See <a href='http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf'>ECMAScript 262 specifications</a></p>
-     * @example
+     * <p><b>Example :</b></p>
      * <pre class="prettyprint">
      * UnicodeChar = vegas.string.UnicodeChar ;
      * 

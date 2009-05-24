@@ -28,17 +28,14 @@ package vegas.logging
     
     /**
      * The logger that is used within the logging framework. This class dispatches events for each message logged using the log() method.
-     * @author eKameleon
      */
     public class LogLogger extends EventDispatcher implements ILogger
     {
-        
         /**
          * Creates a new LogLogger instance.
          */
         public function LogLogger( category:String )
         {
-            super() ;
             _category = category;
         }
         
@@ -56,21 +53,21 @@ package vegas.logging
          * @param context The information to log. This string can contain special marker characters of the form {x}, where x is a zero based index that will be replaced with the additional parameters found at that index if specified.
          * @param ... Additional parameters that can be subsituted in the str parameter at each "{x}" location, where x is an integer (zero based) index value into the Array of values specified.
          */
-        public function debug(context:*, ...rest):void
+        public function debug( context:* , ...rest ):void
         {
             _log.apply( this, [LogEventLevel.DEBUG, context].concat(rest) ) ;
         }
-
+        
         /**
          * Logs the specified data using the LogEventLevel.ERROR level.
          * @param context The information to log. This string can contain special marker characters of the form {x}, where x is a zero based index that will be replaced with the additional parameters found at that index if specified.
          * @param ... Additional parameters that can be subsituted in the str parameter at each "{x}" location, where x is an integer (zero based) index value into the Array of values specified.
          */
-        public function error(context:*, ...rest):void
+        public function error( context:* , ...rest ):void
         {
             _log.apply( this, [LogEventLevel.ERROR, context].concat(rest) ) ;
         }
-
+        
         /**
          * Logs the specified data using the LogEventLevel.FATAL level.
          * @param context The information to log. This string can contain special marker characters of the form {x}, where x is a zero based index that will be replaced with the additional parameters found at that index if specified.
@@ -79,9 +76,8 @@ package vegas.logging
         public function fatal(context:*, ...rest):void
         {
             _log.apply( this, [LogEventLevel.FATAL, context].concat(rest) ) ;
-
         }
-
+        
         /**
          * Logs the specified data using the LogEvent.INFO level.
          * @param context The information to log. This string can contain special marker characters of the form {x}, where x is a zero based index that will be replaced with the additional parameters found at that index if specified.
@@ -91,7 +87,7 @@ package vegas.logging
         {
             _log.apply( this, [LogEventLevel.INFO, context].concat(rest) ) ;
         }
-
+        
         /**
          * Logs the specified data at the given level.
          * @param level The level this information should be logged at. Valid values are:<p>
@@ -106,20 +102,16 @@ package vegas.logging
          */
         public function log(level:LogEventLevel, context:*, ...rest):void
         {
-            
-            if (level < LogEventLevel.DEBUG)
+            if ( level < LogEventLevel.DEBUG )
             {
                 throw new ArgumentError("Level must be less than LogEventLevel.ALL.");
             }
-            
            _log.apply( this, [level, context].concat(rest) ) ;
-           
         }
-
+        
         /**
          * Logs the specified data using the LogEventLevel.WARN level.
          * @param context The information to log. This string can contain special marker characters of the form {x}, where x is a zero based index that will be replaced with the additional parameters found at that index if specified.
-         * 
          * @param ... Additional parameters that can be subsituted in the str parameter at each "{x}" location, where x is an integer (zero based) index value into the Array of values specified.
          */
         public function warn(context:*, ...rest):void
@@ -137,25 +129,18 @@ package vegas.logging
          */
         private function _log( level:LogEventLevel, context:*, ...rest ):void
         {
-            
-            if(hasEventListener(LogEvent.LOG))
+            if( hasEventListener( LogEvent.LOG ) )
             {
-            
-                if (context is String)
+                if ( context is String )
                 {
-                    var len:uint = rest.length ;
-                    for(var i:uint = 0; i<len ; i++)
+                    var len:int = rest.length ;
+                    for( var i:int ; i<len ; i++ )
                     {
                        context = (context as String).replace(new RegExp("\\{"+i+"\\}", "g"), rest[i]);
                     }
                 }
-
                 dispatchEvent( new LogEvent( context, level ) ) ;
-                
             }
-            
         }
-        
     }
-
 }

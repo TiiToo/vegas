@@ -23,68 +23,65 @@
 
 package vegas.logging.targets
 {
-    
     import vegas.logging.LogEventLevel;
- 
-	 /**
-	  * Provides a logger target that uses the global trace() method to output log messages.
-	  * @example
- 	  * <pre class="prettyprint">
-	  * import vegas.logging.ILogger ;
-	  * import vegas.logging.ITarget ;
-	  * import vegas.logging.Log ;
-	  * import vegas.logging.LogEvent ;
-	  * import vegas.logging.LogEventLevel ;
-	  * import vegas.logging.targets.TraceTarget ;
-	  * 
-	  * // setup writer 
-	  * var traceTarget:TraceTarget = new TraceTarget() ;
-	  * 
-	  * traceTarget.filters = ["myApplication"] ;
-	  * traceTarget.includeDate = true ;
-	  * traceTarget.includeTime = true ;
-	  * traceTarget.includeLevel = true ;
-	  * traceTarget.includeCategory = true ;
-	  * traceTarget.includeLines = true ;
-	  * traceTarget.level = LogEventLevel.ALL ; // LogEventLevel.DEBUG (only the debug logs).
-	  * 
-	  * // start writing log data 
-	  * Log.addTarget(traceTarget); 
-	  * 
-	  * // get a logger for the 'myDebug' category 
-	  * // and send some data to it.
-	  * 
-	  * var logger:ILogger = Log.getLogger("myApplication") ;
-	  * logger.log(LogEventLevel.DEBUG, "here is some myDebug info : {0} and {1}", 2.25 , true) ; 
-	  * logger.fatal("Here is some fatal error...") ; 
-	  * 
-	  * traceTarget.includeDate = false ;
-	  * traceTarget.includeTime = false ;
-	  * traceTarget.includeCategory = false ;
-	  * logger.info("[{0}, {1}, {2}]", 2, 4, 6) ; 
-	  * </pre>
-	  */
+    
+     /**
+      * Provides a logger target that uses the global trace() method to output log messages.
+      * <p><b>Example :</b></p>
+      * <pre class="prettyprint">
+      * import vegas.logging.ILogger ;
+      * import vegas.logging.ITarget ;
+      * import vegas.logging.Log ;
+      * import vegas.logging.LogEvent ;
+      * import vegas.logging.LogEventLevel ;
+      * import vegas.logging.targets.TraceTarget ;
+      * 
+      * // setup writer 
+      * var traceTarget:TraceTarget = new TraceTarget() ;
+      * 
+      * traceTarget.filters = ["myApplication"] ;
+      * traceTarget.includeDate = true ;
+      * traceTarget.includeTime = true ;
+      * traceTarget.includeLevel = true ;
+      * traceTarget.includeCategory = true ;
+      * traceTarget.includeLines = true ;
+      * traceTarget.level = LogEventLevel.ALL ; // LogEventLevel.DEBUG (only the debug logs).
+      * 
+      * // start writing log data 
+      * Log.addTarget(traceTarget); 
+      * 
+      * // get a logger for the 'myDebug' category 
+      * // and send some data to it.
+      * 
+      * var logger:ILogger = Log.getLogger("myApplication") ;
+      * logger.log(LogEventLevel.DEBUG, "here is some myDebug info : {0} and {1}", 2.25 , true) ; 
+      * logger.fatal("Here is some fatal error...") ; 
+      * 
+      * traceTarget.includeDate = false ;
+      * traceTarget.includeTime = false ;
+      * traceTarget.includeCategory = false ;
+      * logger.info("[{0}, {1}, {2}]", 2, 4, 6) ; 
+      * </pre>
+      */
     public class TraceTarget extends LineFormattedTarget
     {
-        
-		/**
-		 * Creates a new TraceTarget instance.
-		 */
+        /**
+         * Creates a new TraceTarget instance.
+         */
         public function TraceTarget()
         {
-            super();
+            //
         }
-
-	   	/**
-    	 * Descendants of this class should override this method to direct the specified message to the desired output.
-    	 *
-    	 * @param message String containing preprocessed log message which may include time, date, category, etc. 
-    	 *        based on property settings, such as <code class="prettyprint">includeDate</code>, <code class="prettyprint">includeCategory</code>, etc.
-	     */
-	    public override function internalLog( message:* , level:LogEventLevel ):void
-	    {
-           trace(message) ;
-	    }
         
+        /**
+         * Descendants of this class should override this method to direct the specified message to the desired output.
+         *
+         * @param message String containing preprocessed log message which may include time, date, category, etc. 
+         *        based on property settings, such as <code class="prettyprint">includeDate</code>, <code class="prettyprint">includeCategory</code>, etc.
+         */
+        public override function internalLog( message:* , level:LogEventLevel ):void
+        {
+           trace(message) ;
+        }
     }
 }

@@ -23,25 +23,20 @@
 
 package vegas.errors
 {
-
     /**
-	 * The error throws when a fatal method or action is detected in the code.
- 	 */
+     * The error throws when a fatal method or action is detected in the code.
+     */
     public class FatalError extends Error
     {
- 
- 		/**
-	 	 * Creates a new FatalError instance.
+        /**
+         * Creates a new FatalError instance.
          * @param message A string associated with the FatalError object ; this parameter is optional.
          * @param id A reference number to associate with the specific error message.
          */
         public function FatalError(message:String="", id:int=0)
         {
            super(message, id);
-           name = "FatalError" ;           
+           name = "FatalError" ;
         }
-        
-        
     }
-    
 }

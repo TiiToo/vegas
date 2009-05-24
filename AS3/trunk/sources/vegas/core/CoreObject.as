@@ -22,7 +22,7 @@
 */
 package vegas.core
 {
-    import system.Reflection;    import system.Serializable;        import vegas.logging.ILogger;    import vegas.logging.Log;    import vegas.logging.Logable;    
+    import system.Reflection;    import system.Serializable;        import vegas.logging.ILogger;    import vegas.logging.Log;    import vegas.logging.Logable;
     /**
      * CoreObject offers a default implementation of the IFormattable, IHashable and ISerializable interfaces.
      * <p><b>Example :</b></p>
@@ -82,7 +82,5 @@ package vegas.core
          * The internal ILogger reference of this object.
          */
         private var _logger:ILogger ;
-
     }
-    
 }

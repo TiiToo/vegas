@@ -26,8 +26,8 @@ package vegas.logging.targets
     import vegas.logging.LogEventLevel;
     import vegas.logging.targets.LineFormattedTarget;
     
-    import flash.text.TextField;    
-
+    import flash.text.TextField;
+    
     /**
      * Provides a logger target that uses a TextField to output log messages.
      * <p><b>Example :</b></p>
@@ -82,29 +82,25 @@ package vegas.logging.targets
      */
     public class TextFieldTarget extends LineFormattedTarget 
     {
-
         /**
          * Creates a new TextFieldTarget instance.
          * @param field the TextField target.
-         * @param bGlobal the flag to use a global event flow or a local event flow.
-         * @param sChannel the name of the global event flow if the <code class="prettyprint">bGlobal</code> argument is <code class="prettyprint">true</code>.
          */
-        public function TextFieldTarget( field:TextField , bGlobal:Boolean = false, sChannel:String = null)
+        public function TextFieldTarget( field:TextField )
         {
-            super( bGlobal, sChannel );
             this.field = field ;
         }
         
-    
+        
         /**
          * The TextField reference of this target.
          */
-        public var field:TextField ;        
+        public var field:TextField ;
         
         /**
          * Descendants of this class should override this method to direct the specified message to the desired output.
          * @param message String containing preprocessed log message which may include time, date, category, etc. 
-         *        based on property settings, such as <code class="prettyprint">includeDate</code>, <code class="prettyprint">includeCategory</code>, etc.
+         * based on property settings, such as <code class="prettyprint">includeDate</code>, <code class="prettyprint">includeCategory</code>, etc.
          */
         public override function internalLog( message:* , level:LogEventLevel ):void
         {
@@ -112,7 +108,6 @@ package vegas.logging.targets
             txt += message + "\r" ;
             field.text     = txt ;
             field.scrollV  = field.maxScrollV ;
-        }        
-        
+        }
     }
 }

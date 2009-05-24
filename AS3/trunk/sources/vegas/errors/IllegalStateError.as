@@ -24,22 +24,20 @@
 package vegas.errors
 {
 
-	/**
-	 * Signals that a method has been invoked at an illegal or inappropriate time.
-	 */
-	public class IllegalStateError extends Error
-	{
-
-		/**
-	 	 * Creates a new IllegalStateError instance.
+    /**
+     * Signals that a method has been invoked at an illegal or inappropriate time.
+     */
+    public class IllegalStateError extends Error
+    {
+        /**
+         * Creates a new IllegalStateError instance.
          * @param message A string associated with the IllegalStateError object ; this parameter is optional.
          * @param id A reference number to associate with the specific error message.
          */
-		public function IllegalStateError(message:String="", id:int=0)
-		{
-			super(message, id);
-            name = "IllegalStateError" ;     
-		}
-		
-	}
+        public function IllegalStateError(message:String="", id:int=0)
+        {
+            super(message, id);
+            name = "IllegalStateError" ;
+        }
+    }
 }

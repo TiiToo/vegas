@@ -23,23 +23,21 @@ Contributor(s) :
  */
 package vegas.util
 {
-    import vegas.util.Copier;    
-    /**
+    import vegas.util.Copier;
+        /**
      * The <code class="prettyprint">ObjectUtil</code> utility class is an all-static class with methods for working with object.
-     * @author eKameleon
      */
     public class ObjectUtil
     {
-
         /**
          * Returns the shallow copy of the object.
          * @return the shallow copy of the object.
          */
         public static function clone(o:Object):Object 
         {
-            return o ;    
+            return o ;
         }
-
+        
         /**
          * Returns the deep copy of the object.
          * @return the deep copy of the object.
@@ -68,21 +66,20 @@ package vegas.util
             }
             return obj ;
         }
-                
+        
         /**
          * Returns <code class="prettyprint">true</code> if the specified object is a simple object.
          * @return <code class="prettyprint">true</code> if the specified object is a simple object.
          */ 
         public static function isSimple(value:Object):Boolean 
         {
-            
             var tof:String = typeof(value);
             switch (tof)
             {
                 case "number":
                 case "string":
                 case "boolean":
-                    {
+                {
                        return true;
                 }
                 case "object":
@@ -92,10 +89,10 @@ package vegas.util
                 default :
                 {
                     return false ; 
-                }                
+                }
             }
         }
-    
+        
         /**
          * Creates a shallow copy of the current Object.
          */
@@ -108,7 +105,7 @@ package vegas.util
             }
             return obj;
         }
-    
+        
         /**
          * Converts an object to an equivalent Boolean value.
          */
@@ -116,7 +113,7 @@ package vegas.util
         {
             return (new Boolean( o.valueOf() )).valueOf() ;
         }
-
+        
         /**
          * Converts an object to an equivalent Number value.
          */
@@ -124,7 +121,7 @@ package vegas.util
         {
             return (new Number( o.valueOf() )).valueOf() ;
         }
-
+        
         /**
          * Converts an object to an equivalent Object value.
          */

@@ -23,23 +23,20 @@
 
 package vegas.errors
 {
-	
-	/**
-	 * Thrown when an application attempts to use 'null' in a case where an object is required.
- 	 */
+    /**
+     * Thrown when an application attempts to use 'null' in a case where an object is required.
+     */
     public class NullPointerError extends Error
     {
-    
-		/**
-		 * Creates a new NullPointerError instance.
+        /**
+         * Creates a new NullPointerError instance.
          * @param message A string associated with the NullPointerError object ; this parameter is optional.
          * @param id A reference number to associate with the specific error message.
          */
         public function NullPointerError(message:String="", id:int=0)
         {
             super( message , id );
-            name = "NullPointerError" ;                
+            name = "NullPointerError" ;
         }
-        
     }
 }

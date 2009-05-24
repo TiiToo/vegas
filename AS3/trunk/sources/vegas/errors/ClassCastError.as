@@ -23,15 +23,14 @@
 
 package vegas.errors
 {
-	
-	/**
-	 * Thrown to indicate that the code has attempted to cast an object to a subclass of which it is not an instance.
- 	 */	
+    
+    /**
+     * Thrown to indicate that the code has attempted to cast an object to a subclass of which it is not an instance.
+     */
     public class ClassCastError extends Error
     {
-    
-		/**
-	 	 * Creates a new ClassCastError instance.
+        /**
+         * Creates a new ClassCastError instance.
          * @param message A string associated with the ClassCastError object ; this parameter is optional.
          * @param id A reference number to associate with the specific error message.
          */
@@ -40,6 +39,5 @@ package vegas.errors
             super(message, id);
             name = "ClassCastError" ;
         }
-        
     }
 }

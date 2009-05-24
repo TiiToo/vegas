@@ -182,7 +182,7 @@ package vegas.logging
          */    
         public static function isInfo():Boolean
         {
-            return _targetLevel <= LogEventLevel.INFO.valueOf() ;
+            return _targetLevel <= int( LogEventLevel.INFO ) ;
         }
             
         /**
