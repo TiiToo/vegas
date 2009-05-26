@@ -1,16 +1,42 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<project name="ASDocs VEGAS" default="main">
+<project name="ASDOC - Full Documentation VEGAS AS3" default="main">
 
+    <!-- Initialize the build -->
+    
     <property file="./build.properties"/>
-
+    
+    <!-- The build is intended to compile on Windows and Mac OS X -->
+    
+    <condition property="sdk" value="${flex_mac}">
+        <os family="mac"/>
+    </condition>
+    
+    <condition property="sdk" value="${flex_win}">
+        <os family="windows" />
+    </condition>
+    
+    <!-- defines the asdoc executable -->
+    
+    <condition property="asdoc" value="${sdk}/bin/asdoc">
+        <os family="mac" />
+    </condition>
+    
+    <condition property="asdoc" value="${sdk}/bin/asdoc.exe">
+        <os family="windows" />
+    </condition>
+    
+    <!-- Build process -->
+    
     <target name="main" depends="clean,doc" description="Clean documentation and create all VEGAS reference."/>
-
+    
     <target name="clean" description="Cleans all ASDocs">
+        
         <delete dir="${output}" />
         <mkdir  dir="${output}" />
+    
     </target>
-
+    
     <target name="doc" depends="clean">
         
         <exec executable="${asdoc}" failonerror="true" >
