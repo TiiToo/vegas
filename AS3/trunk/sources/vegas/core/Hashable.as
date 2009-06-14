@@ -27,7 +27,7 @@ package vegas.core
 	/**
 	 * Interface implemented by classes that can return a hash code value.
 	 */
-	public interface IHashable
+	public interface Hashable
 	{
 	
 		/**

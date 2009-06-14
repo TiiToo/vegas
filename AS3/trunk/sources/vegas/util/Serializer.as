@@ -50,7 +50,7 @@ package vegas.util
                 var l:uint = params.length ;
                 if (l > 0) 
                 {
-                    var i:uint = 0 ;
+                    var i:int = 0 ;
                     while (i < l) 
                     {
                         source += Serializer.toSource( params[i] ) ;

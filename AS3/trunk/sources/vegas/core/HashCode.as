@@ -48,9 +48,9 @@ package vegas.core
          */
         public static function identify( o:* ):uint 
         {
-            if ( o is IHashable )
+            if ( o is Hashable )
             {
-                return (o as IHashable).hashCode() ;
+                return (o as Hashable).hashCode() ;
             }
             else
             {

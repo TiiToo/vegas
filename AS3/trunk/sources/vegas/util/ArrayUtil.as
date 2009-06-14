@@ -22,8 +22,7 @@
 */
 package vegas.util
 {
-    import system.serializers.eden.BuiltinSerializer;
-    
+
     /**
      * Array static tool class.
      */
@@ -50,42 +49,7 @@ package vegas.util
               return ar.slice() ;
         }
         
-        /**
-         * Creates the deep copy of the Array.
-         * <p><b>Example :</b></p>
-         * <pre class="prettyprint">
-         * import vegas.util.ArrayUtil ;
-         * 
-         * var ar1:Array = [ [2, 3, 4] , [5, 6, 7] ] ;
-         * var ar2:Array = ArrayUtil.copy(ar1) ;
-         * 
-         * trace( 'copy : ' + ar1 + " : " + ar2 ) ; // 2,3,4,5,6,7
-         * trace( 'ar1 == ar2 : ' + ( ar1 == ar2 ) ) ; // false
-         * trace( 'ar1[0] == ar2[0] : ' + ( ar1[0] == ar2[0] ) ) ; // false
-         * </pre>
-         * @return the deep copy of the Array.
-         */
-        public static function copy(ar:Array):Array 
-        {
-            var a:Array = [] ;
-            var l:uint = ar.length ;
-            for (var i:uint = 0 ; i < l ; i++) 
-            {
-                if( ar[i] === undefined ) 
-                {
-                    a[i] = undefined ;
-                }
-                else if( ar[i] === null ) 
-                {
-                    a[i] = null ;
-                }
-                else 
-                {
-                    a[i] = Copier.copy(ar[i]) ;
-                }
-            }
-            return a ;
-        }
+
         
         /**
          * Splices an array (removes an element) and returns either the entire array or the removed element.
@@ -140,15 +104,6 @@ package vegas.util
                 ar[len] = tmp[len] ;
             }
             return ar ;
-        }
-        
-        /**
-         * Returns a string representing the source code of the array.
-         * @return a string representing the source code of the array.
-         */
-        public static function toSource( ar:Array , ...rest:Array ):String 
-        {
-            return BuiltinSerializer.emitArray(ar) ;
         }
 
     }    

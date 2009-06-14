@@ -153,13 +153,13 @@ package vegas.util
          * Compares if two Dates are equal by value.
          * @return <code class="prettyprint">true</code> if the 2 objects are equals.
          */
-        public static function dateCompare( d1:* , d2:* ):Boolean
+        public static function dateCompare( d1:Date , d2:Date ):Boolean
         {
-            if(d1 == null || !TypeUtil.typesMatch(d1, Date))
+            if(d1 == null )
             {
                 return false ;
             }
-            if(d2 == null || !TypeUtil.typesMatch(d2, Date))
+            if( d2 == null )
             {
                 return false ;
             }
@@ -238,7 +238,7 @@ package vegas.util
          */
         public static function objectCompare( o1:* , o2:* ):Boolean
         {
-            if ( TypeUtil.typesMatch(o2, Function ) )
+            if ( o2 is Function )
             {
                 return functionCompare( o2, o1 ) ;    
             }
@@ -246,7 +246,7 @@ package vegas.util
             {
                 return true ;
             }    
-            if (o2 == null || !TypeUtil.typesMatch(o2, Object))
+            if ( o2 == null )
             {
                 return false ;    
             }
@@ -285,9 +285,7 @@ package vegas.util
             {
                 return false ;
             }
-                
-               return  s1.toString() == s2.toString() ;
-        
+            return  s1.toString() == s2.toString() ;
         }
     }
 }

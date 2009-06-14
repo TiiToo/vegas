@@ -24,13 +24,15 @@
 package vegas.core
 {
     /**
-     * Defines an interface implemented by classes that create objects.
+     * Interface implemented by classes that can produce "deep" copies of their objects.
      */
-    public interface IFactory
+    public interface Copyable
     {
+    
         /**
-         * Creates the objects.
+         * Creates and returns a deep copy of the object.
+         * @return A new object that is a deep copy of this instance.
          */
-        function create( ...arguments:Array ):void ;
+        function copy():* ;
     }
 }

@@ -22,9 +22,9 @@
 */
 package vegas.events.dom
 {
-    import system.Reflection;    import system.Serializable;    import system.events.BasicEvent;        import vegas.core.ICopyable;    import vegas.core.IHashable;        import flash.events.Event;    
+    import system.Reflection;    import system.Serializable;    import system.events.BasicEvent;        import vegas.core.Copyable;    import vegas.core.Hashable;        import flash.events.Event;    
     [ExcludeClass]
-	public class DomEvent extends BasicEvent implements ICopyable, IHashable, Serializable
+	public class DomEvent extends BasicEvent implements Copyable, Hashable, Serializable
 	{
 		
 		public function DomEvent(type:String, target:Object = null , context:* =null, bubbles:Boolean=false, time:Number = 0 , ...rest:Array )

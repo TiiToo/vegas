@@ -23,11 +23,11 @@
 
 package vegas.util
 {
-    import vegas.core.ICopyable;
-    import vegas.util.ArrayUtil;
-    import vegas.util.DateUtil;
+    import system.Objects;
+
+    import vegas.core.Copyable;
     import vegas.util.ObjectUtil;
-    
+
     /**
      * The <code class="prettyprint">Copier</code> utility class is an all-static class with a method to returns a copy representation of an object.
      */
@@ -57,25 +57,13 @@ package vegas.util
             {
                 return null ;
             }
-            if (o is ICopyable) 
+            if (o is Copyable) 
             {
-                return (o as ICopyable).copy() ;
+                return (o as Copyable).copy() ;
             }
             else if (o as Array) 
             {
-                return ArrayUtil.copy( o ) ;
-            }
-            else if (o as Boolean)
-            {
-                return Boolean(o) ;
-            }
-            else if (o is Date) 
-            {
-                return DateUtil.copy( o as Date ) ;
-            }
-            else if ( o is Function ) 
-            {
-                return o ;
+                return copyArray( o ) ;
             }
             else if (o is Number) 
             {
@@ -85,14 +73,72 @@ package vegas.util
             {
                 return (o as String).valueOf() ;
             }
+            else if (o as Boolean)
+            {
+                return Boolean(o) ;
+            }
+            else if (o is Date) 
+            {
+                return copyDate( o as Date ) ;
+            }
+            else if ( o is Function ) 
+            {
+                return o ;
+            }
             else if (o is Object) 
             {
                 return ObjectUtil.copy( o ) ;
             }
             else 
             {
-                return null ;
+                return Objects.copyPrimitive( o ) ;
             }
+        }
+
+        /**
+         * Creates the deep copy of the specified Array.
+         * <p><b>Example :</b></p>
+         * <pre class="prettyprint">
+         * import vegas.util.Copier ;
+         * 
+         * var ar1:Array = [ [2, 3, 4] , [5, 6, 7] ] ;
+         * var ar2:Array = Copier.copyArray( ar1 ) ;
+         * 
+         * trace( 'copy : ' + ar1 + " : " + ar2 ) ; // 2,3,4,5,6,7
+         * trace( 'ar1 == ar2 : ' + ( ar1 == ar2 ) ) ; // false
+         * trace( 'ar1[0] == ar2[0] : ' + ( ar1[0] == ar2[0] ) ) ; // false
+         * </pre>
+         * @return the deep copy of the specified Array.
+         */
+        public static function copyArray( ar:Array ):Array 
+        {
+            var a:Array = [] ;
+            var l:int = ar.length ;
+            for (var i:int ; i < l ; i++) 
+            {
+                if( ar[i] === undefined ) 
+                {
+                    a[i] = undefined ;
+                }
+                else if( ar[i] === null ) 
+                {
+                    a[i] = null ;
+                }
+                else 
+                {
+                    a[i] = Copier.copy(ar[i]) ;
+                }
+            }
+            return a ;
+        }  
+          
+        /**
+         * Returns a deep copy of the date object passed in argument.
+         * @return a deep copy of the date object passed in argument.
+         */
+        public static function copyDate( d:Date ):Date 
+        {
+            return new Date( d.valueOf() ) ;
         }
     }
 }
