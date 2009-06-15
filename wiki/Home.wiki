@@ -169,3 +169,5 @@ You can use my library in your projects with :
 
  * [http://zwetan.com/ Zwetan] : ECMAScript Concepts, all discussions and hosting 
  * [http://powerflasher.com/ PowerFlasher] and [http://fdt.powerflasher.com FDT] OpenSource Licence.
+
+[http://fdt.powerflasher.com/ http://vegas.googlecode.com/svn/gfx/FDT_Supported.png]
