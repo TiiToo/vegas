@@ -21,10 +21,9 @@ the Initial Developer. All Rights Reserved.
 Contributor(s) :
   
  */
-package vegas.util
+package vegas.utils
 {
-    import vegas.util.Copier;
-        /**
+    /**
      * The <code class="prettyprint">ObjectUtil</code> utility class is an all-static class with methods for working with object.
      */
     public class ObjectUtil

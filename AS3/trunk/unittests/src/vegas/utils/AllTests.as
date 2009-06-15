@@ -10,21 +10,33 @@
   WITHOUT WARRANTY OF ANY KIND, either express or implied. See the License
   for the specific language governing rights and limitations under the License. 
   
-  The Original Code is Vegas Framework.
+  The Original Code is VEGAS Framework.
   
   The Initial Developer of the Original Code is
-  ALCARAZ Marc (aka eKameleon)  <ekameleon@gmail.com>.
-  Portions created by the Initial Developer are Copyright (C) 2004-2009
+  ALCARAZ Marc (aka eKameleon)  <vegas@ekameleon.net>.
+  Portions created by the Initial Developer are Copyright (C) 2004-2008
   the Initial Developer. All Rights Reserved.
   
   Contributor(s) :
   
 */
-package vegas
+package vegas.utils
 {
-
-	public var global:* = _global ;
-	
+    import buRRRn.ASTUce.framework.ITest;
+    import buRRRn.ASTUce.framework.TestSuite;
+    
+    /**
+     * This class launch all tests.
+     */
+    public class AllTests
+    {
+        /**
+         * Creates the Test list.
+         */
+        public static function suite():ITest
+        {
+            var suite:TestSuite = new TestSuite( "vegas.util" );
+            return suite;
+        }
+    }
 }
-
-var _global:* = this  ;

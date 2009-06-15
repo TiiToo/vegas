@@ -20,7 +20,7 @@
   Contributor(s) :
   
 */
-package vegas.util
+package vegas.utils
 {
 
     /**
@@ -48,8 +48,6 @@ package vegas.util
         {
               return ar.slice() ;
         }
-        
-
         
         /**
          * Splices an array (removes an element) and returns either the entire array or the removed element.
@@ -105,8 +103,5 @@ package vegas.util
             }
             return ar ;
         }
-
-    }    
-    
+    }
 }
-

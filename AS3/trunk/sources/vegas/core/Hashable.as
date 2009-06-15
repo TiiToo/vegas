@@ -23,18 +23,15 @@
 
 package vegas.core
 {
-	
-	/**
-	 * Interface implemented by classes that can return a hash code value.
-	 */
-	public interface Hashable
-	{
-	
-		/**
-		 * Returns a hash code value for the object.
-		 * @return a hash code value for the object.
-		 */
-		function hashCode():uint ;
-		
-	}
+    /**
+     * Interface implemented by classes that can return a hash code value.
+     */
+    public interface Hashable
+    {
+        /**
+         * Returns a hash code value for the object.
+         * @return a hash code value for the object.
+         */
+        function hashCode():uint ;
+    }
 }

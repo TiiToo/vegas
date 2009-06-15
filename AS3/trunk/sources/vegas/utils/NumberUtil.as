@@ -21,7 +21,7 @@
   
 */
 
-package vegas.util
+package vegas.utils
 {
     /**
      * The <code class="prettyPrint">NumberUtil</code> utility class is an all-static class with methods for working with number.
@@ -29,30 +29,12 @@ package vegas.util
     public class NumberUtil
     {
         /**
-         * Returns a copy by reference of this Number.
-         * @return a copy by reference of this Number.
-         */
-        public static function clone(n:Number=NaN):Number 
-        {
-            return n ;
-        }
-        
-        /**
-         * Returns a copy by value of this Number.
-         * @return a copy by value of this Number.
-         */
-        public static function copy(n:Number=NaN):Number 
-        {
-            return Number(n.valueOf()) ;
-        }
-        
-        /**
          * Compares if two Numbers are equal by value
          * @return <code class="prettyprint">true</code> if the two passed-in values are the sames.
          */
         public static function equals( n1:Number=NaN, n2:Number=NaN ):Boolean 
         {
-               if ( n1.toString() == n2.toString() )
+            if ( n1.toString() == n2.toString() )
             {
                 return true ;
             }
@@ -107,15 +89,5 @@ package vegas.util
             }
             return (prefix || "") + temp ;
         }
-        
-        /**
-         * Returns a string representation of the specified number.
-         * @return a string representation of the specified number.
-         */
-        public static function toSource( n:Number , ...rest:Array ):String 
-        {
-            return n.toString() ;
-        }
     }
-
 }

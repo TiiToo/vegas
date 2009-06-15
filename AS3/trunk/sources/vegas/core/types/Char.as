@@ -23,15 +23,14 @@
 
 package vegas.core.types
 {
-    import vegas.core.CoreObject;    
-
+    import vegas.core.CoreObject;
+    
     /**
      * An object of type Char contains a single field whose type is String.
      * @deprecated
      */    
     public class Char extends CoreObject
     {
-        
         /**
          * Creates a new Char instance.
          */  
@@ -54,7 +53,7 @@ package vegas.core.types
          */
         public override function toSource( indent:int = 0 ):String  
         {
-            return 'new vegas.core.types.Char("' + _ch + '")' ;    
+            return 'new vegas.core.types.Char("' + _ch + '")' ;
         }
         
         /**

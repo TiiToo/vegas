@@ -21,7 +21,7 @@
   
 */
 
-package vegas.util
+package vegas.utils
 {
     /**
      * Boolean tools class.

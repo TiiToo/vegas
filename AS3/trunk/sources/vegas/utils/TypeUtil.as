@@ -23,7 +23,7 @@
 
 // TODO need a full refactoring !!!!!
 
-package vegas.util
+package vegas.utils
 {
     /**
      * The <code class="prettyprint">TypeUtil</code> utility class is an all-static class with methods for checking and working with the type of the object in AS2.

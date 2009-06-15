@@ -22,7 +22,7 @@
 */
 package vegas.string
 {
-    import vegas.string.json.JSONSerializer;            
+    import vegas.string.json.JSONSerializer;
     
     /**
      * <code class="prettyprint">JSON</code> (JavaScript object Notation) is a lightweight data-interchange format.

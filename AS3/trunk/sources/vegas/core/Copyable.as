@@ -28,7 +28,6 @@ package vegas.core
      */
     public interface Copyable
     {
-    
         /**
          * Creates and returns a deep copy of the object.
          * @return A new object that is a deep copy of this instance.

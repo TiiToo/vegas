@@ -23,7 +23,6 @@
 
 package vegas.errors
 {
-
     /**
      * Signals that a method has been invoked at an illegal or inappropriate time.
      */

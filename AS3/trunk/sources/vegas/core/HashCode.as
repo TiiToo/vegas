@@ -28,9 +28,8 @@ package vegas.core
      */
     public class HashCode
     {
-        
         /**
-         * Compare two IHashable objects.
+         * Compares two Hashable objects.
          * <pre class="prettyprint">
          * var isEquals:Boolean = HashCode.equals(o1, o2) ;
          * </pre>

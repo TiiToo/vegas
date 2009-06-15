@@ -27,7 +27,6 @@ package vegas.string
 
 	/**
 	 * This class launch all tests.
-	 * @author eKameleon
 	 */
 	public class AllTests
 	{

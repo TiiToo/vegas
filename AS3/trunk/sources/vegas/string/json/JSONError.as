@@ -23,7 +23,6 @@
 
 package vegas.string.json
 {
-
     /**
      * This JSONError is throw in the JSON static methods.
      */

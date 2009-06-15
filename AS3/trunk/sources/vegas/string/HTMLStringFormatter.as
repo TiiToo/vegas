@@ -30,7 +30,6 @@ package vegas.string
      */
     public class HTMLStringFormatter
     {
-        
         /**
          * Creates an HTML anchor that is used as a hypertext target.
          * @param str the string to be formatted.

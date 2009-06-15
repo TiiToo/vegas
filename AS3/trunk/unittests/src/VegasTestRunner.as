@@ -36,16 +36,14 @@ package
     import flash.text.TextFormat; 
     
     import vegas.AllTests ;
-
+    
     /**
-	 * The main VEGAS TestRunner launcher.
-	 */
-	public class VegasTestRunner extends Sprite
-	{
-		
+     * The main VEGAS TestRunner launcher.
+     */
+    public class VegasTestRunner extends Sprite
+    {
         public function VegasTestRunner()
         {
-                
             // init
             
             stage.align     = StageAlign.TOP_LEFT;
@@ -56,32 +54,31 @@ package
             textfield.multiline         = true ;
             textfield.selectable        = true ;
             textfield.wordWrap          = true ;
-                
+            
             addChild( textfield ) ;
-                
+            
             stage.addEventListener( Event.RESIZE , resize ) ;
             resize() ;
             
             console = new TextFieldConsole( textfield ) ;            
             
             system.config.serializer.prettyPrinting = false;
-			            
+            
             // ASTUce
             
             buRRRn.ASTUce.config.allowStackTrace     = false ;
             buRRRn.ASTUce.config.maxColumn           = 62 ;
             buRRRn.ASTUce.config.showConstructorList = false ;
             
-            // run tests           
+            // run tests
            
-            Runner.main( vegas.AllTests );                
-            
+            Runner.main( vegas.AllTests );
         }
-            
+        
         /**
          * The debug textfield of this application.
          */
-        public var textfield:TextField ;            
+        public var textfield:TextField ;
         
         /**
          * Invoked to resize the application content.
@@ -90,7 +87,6 @@ package
         {
             textfield.width  = stage.stageWidth ;
             textfield.height = stage.stageHeight ;
-        }               
-        
-	}
+        }
+    }
 }

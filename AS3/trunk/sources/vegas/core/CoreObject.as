@@ -35,7 +35,6 @@ package vegas.core
      */
     public class CoreObject extends Object implements Logable, Serializable
     {
-        
         /**
          * Creates a new CoreObject instance.
          */

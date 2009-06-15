@@ -392,7 +392,7 @@ package vegas.logging.targets
             _isConnected = true ;
                flush() ;
         }
-
+        
         /**
          * Invoked when the socket notify an IO error.
          */

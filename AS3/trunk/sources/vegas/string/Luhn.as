@@ -53,6 +53,5 @@ package vegas.string
             }
             return sum%10 == 0 ;
         }
-        
     }
 }

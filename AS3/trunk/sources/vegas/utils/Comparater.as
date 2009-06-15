@@ -20,7 +20,7 @@
   Contributor(s) :
   
 */
-package vegas.util 
+package vegas.utils 
 {
     import system.Equatable;
     
@@ -34,7 +34,7 @@ package vegas.util
          * @param o1 the first object to compare.
          * @param o2 the second object to compare.
          * @return <code class="prettyprint">true</code> if the 2 objects are equals.
-         */    
+         */
         public static function compare( o1:*, o2:* ):Boolean 
         {
             if (o1 === undefined && o2 === undefined) 
@@ -248,7 +248,7 @@ package vegas.util
             }    
             if ( o2 == null )
             {
-                return false ;    
+                return false ;
             }
             if ( o1 == o2 )
             {
@@ -270,12 +270,11 @@ package vegas.util
         }
         
         /**
-          * Compares if two Strings are equal by value.
+         * Compares if two Strings are equal by value.
          * @return <code class="prettyprint">true</code> if the 2 objects are equals.
          */
         public static function stringCompare( s1:* , s2:* ):Boolean
         {
-        
             if( (s1 == null) || !( s1 is String ) )
             {
                 return false ;

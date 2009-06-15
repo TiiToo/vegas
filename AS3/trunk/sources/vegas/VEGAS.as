@@ -23,8 +23,5 @@
 
 package vegas
 {
-    
     public namespace VEGAS = "http://code.google.com/p/vegas/2009" ;
-    
 }
-

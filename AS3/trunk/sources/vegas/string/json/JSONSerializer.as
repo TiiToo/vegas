@@ -89,7 +89,6 @@ package vegas.string.json
      */
     public class JSONSerializer implements Serializer 
     {
-        
         /**
          * Creates a new JSONSerializer instance.
          */
@@ -171,7 +170,7 @@ package vegas.string.json
         
         /**
          * Serialize the specified value object passed-in argument.
-         */          
+         */
         public function serialize( value:* ):String
         {
             var c:String ; // char
@@ -515,7 +514,7 @@ package vegas.string.json
                 }
             }
             error( JSONStrings.badObject ) ;
-        }        
+        }
         
         /**
          * Check the string objects in the source expression.

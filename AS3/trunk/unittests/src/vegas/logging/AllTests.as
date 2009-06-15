@@ -22,27 +22,21 @@
 */
 package vegas.logging  
 {
-	import buRRRn.ASTUce.framework.ITest;
-	import buRRRn.ASTUce.framework.TestSuite;	
-
-	/**
-	 * This class launch all tests.
-	 * @author eKameleon
-	 */
-	public class AllTests
-	{
-		
+    import buRRRn.ASTUce.framework.ITest;
+    import buRRRn.ASTUce.framework.TestSuite;    
+    
+    /**
+     * This class launch all tests.
+     */
+    public class AllTests
+    {
         /**
          * Creates the Test list.
-         */		
+         */        
         public static function suite():ITest
         {
-            
             var suite:TestSuite = new TestSuite( "vegas.logging" );
-
             return suite;
-            
         }
-        
-	}
+    }
 }

@@ -23,7 +23,6 @@
 
 package vegas.errors
 {
-    
     /**
      * Thrown to indicate a warning message in an application or in the source code.
      */ 

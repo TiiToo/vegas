@@ -27,33 +27,29 @@ package vegas
     
     import vegas.core.AllTests;
     import vegas.errors.AllTests;
-    import vegas.events.AllTests;
     import vegas.logging.AllTests;
     import vegas.string.AllTests;
-    import vegas.util.AllTests;    
-
+    import vegas.utils.AllTests;
+    
     /**
      * This class launch all tests.
      */
     public class AllTests
     {
-        
         /**
          * Creates the Test list.
-         */        
+         */
         public static function suite():ITest
         {
             var suite:TestSuite = new TestSuite( "vegas tests" );
-
+            
             suite.addTest( vegas.core.AllTests.suite() ) ;
             suite.addTest( vegas.errors.AllTests.suite() ) ;
-            suite.addTest( vegas.events.AllTests.suite() ) ;
             suite.addTest( vegas.logging.AllTests.suite() ) ;
             suite.addTest( vegas.string.AllTests.suite() ) ;
-            suite.addTest( vegas.util.AllTests.suite() ) ;
+            suite.addTest( vegas.utils.AllTests.suite() ) ;
             
             return suite;
         }
     }
 }
-

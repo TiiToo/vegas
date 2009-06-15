@@ -20,12 +20,12 @@ the Initial Developer. All Rights Reserved.
 Contributor(s) :
   
 */
-package vegas.util
+package vegas.utils
 {
     import flash.utils.Dictionary;
     
     import system.Reflection;
-
+    
     /**
      * The <code class="prettyprint">ClassUtil</code> utility class is an all-static class with methods for working with function the Class in AS3.
      */

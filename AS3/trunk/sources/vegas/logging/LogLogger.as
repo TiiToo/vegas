@@ -23,7 +23,6 @@
 
 package vegas.logging
 {
-    
     import flash.events.EventDispatcher;
     
     /**

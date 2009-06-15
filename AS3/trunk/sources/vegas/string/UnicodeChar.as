@@ -64,7 +64,7 @@ package vegas.string
     {
         /**
          * Creates a new <code class="prettyprint">UnicodeChar</code> instance.
-         * @example
+         * <p><b>Example :</b></p>
          * <pre class="prettyprint">
          * var u:UnicodeChar = new UnicodeChar() ;
          * trace( u.u0040() ) ; // @
@@ -83,7 +83,7 @@ package vegas.string
         /**
          * Back Slash utf8 representation (special char).
          */
-           public static const BACK_SLASH:String = SPECIAL_CHARS[0] ;    
+        public static const BACK_SLASH:String = SPECIAL_CHARS[0] ;    
         
         /**
          * Back Space utf8 representation (special char).

@@ -23,7 +23,6 @@
 
 package vegas.core
 {
-    
     /**
      * Allows an object to be converted to an equivalent type.
      * <p>See <a href="http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf">Standard ECMAScript-262 3rd Edition CHAP 9 : 'Type Conversion'</a></p>

@@ -20,7 +20,7 @@
   Contributor(s) :
   
 */
-package vegas.util
+package vegas.utils
 {
     import system.serializers.eden.BuiltinSerializer;
     
