@@ -24,8 +24,9 @@
 package vegas.utils
 {
     import system.Objects;
+
     import vegas.core.Copyable;
-    
+
     /**
      * The <code class="prettyprint">Copier</code> utility class is an all-static class with a method to returns a copy representation of an object.
      */
@@ -33,16 +34,6 @@ package vegas.utils
     {
         /**
          * Returns a deep copy of the specified object passed in argument. You can use a <code class="prettyprint">ICopyable</code> instance or a native object.
-         * <p><b>Example :</b></p>
-         * <pre class="prettyprint">
-         * import vegas.data.list.LinkedList ;
-         * import vegas.util.Copier ;
-         * var list:LinkedList = new LinkedList() ;
-         * list.insert("item1") ;
-         * list.insert("item2") ;
-         * var copy:LinkedList = Copier.copy(list) as LinkedList ; // LinkedList is ICopyable !
-         * trace( copy.equals(list) ) ; // true
-         * </pre>
          * @return a deep copy of the specified object passed in argument.
          */    
         public static function copy( o:* ):* 
@@ -83,16 +74,12 @@ package vegas.utils
             {
                 return o ;
             }
-            else if (o is Object) 
-            {
-                return ObjectUtil.copy( o ) ;
-            }
             else 
             {
                 return Objects.copyPrimitive( o ) ;
             }
         }
-
+        
         /**
          * Creates the deep copy of the specified Array.
          * <p><b>Example :</b></p>
