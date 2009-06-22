@@ -23,11 +23,11 @@
 
 package vegas.string
 {
+    import system.Char;
+
     import flash.utils.Proxy;
     import flash.utils.flash_proxy;
-    
-    import vegas.core.types.Char;
-    
+
     /**
      * <b>ECMA 262</b> Unicode IFormat-Control Characters tools.
      * <p>See <a href='http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf'>ECMAScript 262 specifications</a></p>
@@ -178,8 +178,7 @@ package vegas.string
          */
         public static function isWhiteSpace( char:String ):Boolean 
         {
-            var c:Char = new Char(char) ;
-            return (WHITE_SPACE_CHARS.indexOf(c) != -1) ;
+            return (WHITE_SPACE_CHARS.indexOf(char.charAt(0)) != -1) ;
         }
         
         /**
@@ -188,8 +187,7 @@ package vegas.string
          */
         public static function isLineTerminators( char:String ):Boolean 
         {
-            var c:Char = new Char(char) ;
-            return (LINE_TERMINATOR_CHARS.indexOf(c) != -1) ;
+            return (LINE_TERMINATOR_CHARS.indexOf(char.charAt(0)) != -1) ;
         }
         
         /**
