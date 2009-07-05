@@ -1,0 +1,571 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" href="../../style.css" type="text/css" media="screen">
+<link rel="stylesheet" href="../../print.css" type="text/css" media="print">
+<link rel="stylesheet" href="../../prettify.css" type="text/css">
+<meta content="StarPen,pegas.draw.StarPen,angle,innerRadius,outerRadius,x,y,points,draw,drawShape,setPen" name="keywords">
+<title>pegas.draw.StarPen</title>
+</head>
+<body>
+<script type="text/javascript" language="javascript" src="../../prettify.js"></script><script type="text/javascript" language="javascript" src="../../asdoc.js"></script><script type="text/javascript" language="javascript" src="../../cookies.js"></script><script type="text/javascript" language="javascript">
+<!--
+				asdocTitle = 'StarPen - VEGAS AS3 Reference';
+				var baseRef = '../../';
+				window.onload = configPage;
+			--></script>
+<table style="display:none" id="titleTable" cellspacing="0" cellpadding="0" class="titleTable">
+<tr>
+<td align="left" class="titleTableTitle">VEGAS AS3 Reference</td><td align="right" class="titleTableTopNav"><a onclick="loadClassListFrame('../../all-classes.html')" href="../../package-summary.html">All&nbsp;Packages</a>&nbsp;|&nbsp;<a onclick="loadClassListFrame('../../all-classes.html')" href="../../class-summary.html">All&nbsp;Classes</a>&nbsp;|&nbsp;<a onclick="loadClassListFrame('../../index-list.html')" href="../../all-index-A.html">Index</a>&nbsp;|&nbsp;<a href="../../index.html?pegas/draw/StarPen.html&amp;pegas/draw/class-list.html" id="framesLink1">Frames</a><a onclick="parent.location=document.location" href="" style="display:none" id="noFramesLink1">No&nbsp;Frames</a></td><td rowspan="3" align="right" class="titleTableLogo"><img alt="Adobe Logo" title="Adobe Logo" class="logoImage" src="../../images/logo.jpg"></td>
+</tr>
+<tr class="titleTableRow2">
+<td align="left" id="subTitle" class="titleTableSubTitle">Class&nbsp;StarPen</td><td align="right" id="subNav" class="titleTableSubNav"><a href="#propertySummary">Properties</a>&nbsp;| <a href="#methodSummary">Methods</a></td>
+</tr>
+<tr class="titleTableRow3">
+<td colspan="2">&nbsp;</td>
+</tr>
+</table>
+<script type="text/javascript" language="javascript">
+<!--
+if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Class StarPen"); titleBar_setSubNav(false,true,false,false,false,false,true,false,false,false,false,false,false,false);}
+--></script>
+<div class="MainContent">
+<table cellspacing="0" cellpadding="0" class="classHeaderTable">
+<tr>
+<td class="classHeaderTableLabel">Package</td><td><a onclick="javascript:loadClassListFrame('class-list.html')" href="package-detail.html">pegas.draw</a></td>
+</tr>
+<tr>
+<td class="classHeaderTableLabel">Class</td><td class="classSignature">public dynamic  class StarPen</td>
+</tr>
+<tr>
+<td class="classHeaderTableLabel">Inheritance</td><td class="inheritanceList">StarPen <img class="inheritArrow" alt="Inheritance" title="Inheritance" src="../../images/inherit-arrow.gif"> <a href="Pen.html">Pen</a> <img class="inheritArrow" alt="Inheritance" title="Inheritance" src="../../images/inherit-arrow.gif"> flash.utils.Proxy</td>
+</tr>
+</table>
+<p></p>
+     This pen drawing a star shaped polygons. This pen draw stars in either direction for creating knockouts.
+     <p><b>Example :</b></p>
+     <pre class="prettyprint">
+     import pegas.draw.Align ;
+     import pegas.draw.StarPen ;
+     import pegas.draw.FillStyle ;
+     
+     stage.scaleMode = StageScaleMode.NO_SCALE ;
+     stage.align = "" ;
+     
+     var shape:Shape = new Shape() ;
+     shape.x = 740 / 2 ;
+     shape.y = 420 / 2 ;
+     
+     var pen:StarPen = new StarPen( shape.graphics ) ;
+     pen.align = Align.CENTER ;
+     pen.fill  = new FillStyle( 0xEBD936 , 0.6 ) ;
+     pen.draw() ;
+     
+     addChild( shape ) ;
+     
+     var keyDown:Function = function( e:KeyboardEvent ):void
+     {
+         var code:uint = e.keyCode ;
+         switch( code )
+         {
+             case Keyboard.LEFT :
+             {
+                 pen.draw( 0, 0, 5, 40, 60 , 0,  Align.LEFT ) ;
+                     break ;
+             }
+             case Keyboard.RIGHT :
+             {
+                 pen.draw( 0, 0, 5, 80, 40 , 0,  Align.RIGHT ) ;
+                 break ;
+             }
+             case Keyboard.UP :
+             {
+                 pen.draw( 0, 0, 20, 100, 40 , 0 , Align.TOP ) ;
+                 break ;
+             }
+             case Keyboard.DOWN :
+             {
+                 pen.draw( 0, 0, 10 , 100, 60 , 0, Align.BOTTOM ) ;
+                 break ;
+             }
+             case Keyboard.SPACE :
+             {
+                 pen.x = 10 ;
+                 pen.y = 40 ;
+                 pen.points  = 8  ;
+                 pen.innerRadius = 100 ;
+                 pen.outerRadius = 50 ;
+                 pen.angle  = 40 ;
+                 pen.align  = Align.TOP_RIGHT ;
+                 pen.draw() ;
+                 break ;
+             }
+        }
+     }
+     
+     var enterFrame:Function = function( e:Event ):void
+     {
+         pen.angle += 10 ;
+         pen.draw() ;
+     }
+     
+     var mouseDown:Function = function( e:MouseEvent ):void
+     {
+         stage.addEventListener( Event.ENTER_FRAME , enterFrame ) ;
+     }
+     
+     var mouseUp:Function = function( e:MouseEvent ):void
+     {
+         stage.removeEventListener( Event.ENTER_FRAME , enterFrame ) ;
+     }
+     
+     stage.addEventListener( MouseEvent.MOUSE_DOWN , mouseDown ) ;
+     stage.addEventListener( MouseEvent.MOUSE_UP , mouseUp ) ;
+     stage.addEventListener( KeyboardEvent.KEY_DOWN , keyDown ) ;
+     </pre>
+     <p></p>
+<br>
+<hr>
+</div>
+<a name="propertySummary"></a>
+<div class="summarySection">
+<div class="summaryTableTitle">Public Properties</div>
+<div class="showHideLinks">
+<div class="hideInheritedProperty" id="hideInheritedProperty">
+<a onclick="javascript:setInheritedVisible(false,'Property');" href="#propertySummary" class="showHideLink"><img src="../../images/expanded.gif" class="showHideLinkImage"> Hide Inherited Public Properties</a>
+</div>
+<div class="showInheritedProperty" id="showInheritedProperty">
+<a onclick="javascript:setInheritedVisible(true,'Property');" href="#propertySummary" class="showHideLink"><img src="../../images/collapsed.gif" class="showHideLinkImage"> Show Inherited Public Properties</a>
+</div>
+</div>
+<table id="summaryTableProperty" class="summaryTable " cellpadding="3" cellspacing="0">
+<tr>
+<th>&nbsp;</th><th colspan="2">Property</th><th class="summaryTableOwnerCol">Defined&nbsp;by</th>
+</tr>
+<tr class="hideInheritedProperty">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol"><a class="signatureLink" href="Pen.html#align">align</a> : uint<div class="summaryTableDescription">
+         Determinates the align value of the pen.</div>
+</td><td class="summaryTableOwnerCol"><a href="Pen.html">Pen</a></td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#angle">angle</a> : Number = 0<div class="summaryTableDescription">
+         Starting angle in degrees (default to 0).</div>
+</td><td class="summaryTableOwnerCol">StarPen</td>
+</tr>
+<tr class="hideInheritedProperty">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol"><a class="signatureLink" href="Pen.html#fill">fill</a> : <a href="../draw/IFillStyle.html">IFillStyle</a>
+<div class="summaryTableDescription">
+         Determinates the fill style object of the pen.</div>
+</td><td class="summaryTableOwnerCol"><a href="Pen.html">Pen</a></td>
+</tr>
+<tr class="hideInheritedProperty">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol"><a class="signatureLink" href="Pen.html#graphics">graphics</a> : Graphics<div class="summaryTableDescription">
+         Specifies the Graphics object belonging to this Shape object, where vector drawing commands can occur.</div>
+</td><td class="summaryTableOwnerCol"><a href="Pen.html">Pen</a></td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#innerRadius">innerRadius</a> : Number<div class="summaryTableDescription">
+         The radius of the indent of the points
+          </div>
+</td><td class="summaryTableOwnerCol">StarPen</td>
+</tr>
+<tr class="hideInheritedProperty">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol"><a class="signatureLink" href="Pen.html#line">line</a> : <a href="../draw/ILineStyle.html">ILineStyle</a>
+<div class="summaryTableDescription">
+         Determinates the line style object of the pen.</div>
+</td><td class="summaryTableOwnerCol"><a href="Pen.html">Pen</a></td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#outerRadius">outerRadius</a> : Number<div class="summaryTableDescription">
+         The radius of the tips of the points
+          </div>
+</td><td class="summaryTableOwnerCol">StarPen</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#points">points</a> : uint<div class="summaryTableDescription">
+         The number of points of the star.</div>
+</td><td class="summaryTableOwnerCol">StarPen</td>
+</tr>
+<tr class="hideInheritedProperty">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol"><a class="signatureLink" href="Pen.html#useClear">useClear</a> : Boolean = true<div class="summaryTableDescription">
+         Indicates if the clear() method is invoked at the end of the draw method.</div>
+</td><td class="summaryTableOwnerCol"><a href="Pen.html">Pen</a></td>
+</tr>
+<tr class="hideInheritedProperty">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol"><a class="signatureLink" href="Pen.html#useEndFill">useEndFill</a> : Boolean = true<div class="summaryTableDescription">
+         Indicates if the endFill() method is invoked at the end of the draw method.</div>
+</td><td class="summaryTableOwnerCol"><a href="Pen.html">Pen</a></td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#x">x</a> : Number<div class="summaryTableDescription">
+         The offset x value of the center of the circle.</div>
+</td><td class="summaryTableOwnerCol">StarPen</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#y">y</a> : Number<div class="summaryTableDescription">
+          The offset y value of the center of the circle.</div>
+</td><td class="summaryTableOwnerCol">StarPen</td>
+</tr>
+</table>
+</div>
+<a name="methodSummary"></a>
+<div class="summarySection">
+<div class="summaryTableTitle">Public Methods</div>
+<div class="showHideLinks">
+<div class="hideInheritedMethod" id="hideInheritedMethod">
+<a onclick="javascript:setInheritedVisible(false,'Method');" href="#methodSummary" class="showHideLink"><img src="../../images/expanded.gif" class="showHideLinkImage"> Hide Inherited Public Methods</a>
+</div>
+<div class="showInheritedMethod" id="showInheritedMethod">
+<a onclick="javascript:setInheritedVisible(true,'Method');" href="#methodSummary" class="showHideLink"><img src="../../images/collapsed.gif" class="showHideLinkImage"> Show Inherited Public Methods</a>
+</div>
+</div>
+<table id="summaryTableMethod" class="summaryTable " cellpadding="3" cellspacing="0">
+<tr>
+<th>&nbsp;</th><th colspan="2">Method</th><th class="summaryTableOwnerCol">Defined&nbsp;by</th>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#StarPen()">StarPen</a>(graphic:*, x:Number = 0, y:Number = 0, points:uint = 5, innerRadius:Number = 20, outerRadius:Number = 40, angle:Number = 20, align:uint = 10)</div>
+<div class="summaryTableDescription">
+         Creates a new StarPen instance.</div>
+</td><td class="summaryTableOwnerCol">StarPen</td>
+</tr>
+<tr class="hideInheritedMethod">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="Pen.html#BF()">BF</a>(... arguments):void</div>
+<div class="summaryTableDescription">
+         Defines a shortcut reference to used the <code class="prettyprint">beginBitmapFill</code> method.</div>
+</td><td class="summaryTableOwnerCol"><a href="Pen.html">Pen</a></td>
+</tr>
+<tr class="hideInheritedMethod">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="Pen.html#C()">C</a>(... arguments):void</div>
+<div class="summaryTableDescription">
+         Defines a shortcut reference to used the <code class="prettyprint">curveTo</code> method.</div>
+</td><td class="summaryTableOwnerCol"><a href="Pen.html">Pen</a></td>
+</tr>
+<tr class="hideInheritedMethod">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="Pen.html#CL()">CL</a>():void</div>
+<div class="summaryTableDescription">
+         Defines a shortcut reference to used the <code class="prettyprint">clear</code> method.</div>
+</td><td class="summaryTableOwnerCol"><a href="Pen.html">Pen</a></td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#draw()">draw</a>(... arguments):void</div>
+<div class="summaryTableDescription">
+         Draws the shape.</div>
+</td><td class="summaryTableOwnerCol">StarPen</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#drawShape()">drawShape</a>():void</div>
+<div class="summaryTableDescription">
+         This method contains the basic drawing shape algorithm.</div>
+</td><td class="summaryTableOwnerCol">StarPen</td>
+</tr>
+<tr class="hideInheritedMethod">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="Pen.html#EF()">EF</a>():void</div>
+<div class="summaryTableDescription">
+         Defines a shortcut reference to used the <code class="prettyprint">endFill</code> method.</div>
+</td><td class="summaryTableOwnerCol"><a href="Pen.html">Pen</a></td>
+</tr>
+<tr class="hideInheritedMethod">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="Pen.html#F()">F</a>(... arguments):void</div>
+<div class="summaryTableDescription">
+          Defines a shortcut reference to used the <code class="prettyprint">beginFill</code> method.</div>
+</td><td class="summaryTableOwnerCol"><a href="Pen.html">Pen</a></td>
+</tr>
+<tr class="hideInheritedMethod">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="Pen.html#GF()">GF</a>(... arguments):void</div>
+<div class="summaryTableDescription">
+         Defines a shortcut reference to used the <code class="prettyprint">beginGradientFill</code> method.</div>
+</td><td class="summaryTableOwnerCol"><a href="Pen.html">Pen</a></td>
+</tr>
+<tr class="hideInheritedMethod">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="Pen.html#GS()">GS</a>(... arguments):void</div>
+<div class="summaryTableDescription">
+          Defines a shortcut reference to used the <code class="prettyprint">lineGradientStyle</code> method.</div>
+</td><td class="summaryTableOwnerCol"><a href="Pen.html">Pen</a></td>
+</tr>
+<tr class="hideInheritedMethod">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="Pen.html#L()">L</a>(... arguments):void</div>
+<div class="summaryTableDescription">
+         Defines a shortcut reference to used the <code class="prettyprint">lineTo</code> method.</div>
+</td><td class="summaryTableOwnerCol"><a href="Pen.html">Pen</a></td>
+</tr>
+<tr class="hideInheritedMethod">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="Pen.html#M()">M</a>(... arguments):void</div>
+<div class="summaryTableDescription">
+         Defines a shortcut reference to used the <code class="prettyprint">moveTo</code> method.</div>
+</td><td class="summaryTableOwnerCol"><a href="Pen.html">Pen</a></td>
+</tr>
+<tr class="hideInheritedMethod">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="Pen.html#S()">S</a>(... arguments):void</div>
+<div class="summaryTableDescription">
+         Defines a shortcut reference to used the <code class="prettyprint">lineStyle</code> method.</div>
+</td><td class="summaryTableOwnerCol"><a href="Pen.html">Pen</a></td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#setPen()">setPen</a>(... arguments):void</div>
+<div class="summaryTableDescription">
+         Sets the shape options to defined all values to draw the shape.</div>
+</td><td class="summaryTableOwnerCol">StarPen</td>
+</tr>
+<tr class="hideInheritedMethod">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="Pen.html#toString()">toString</a>():String</div>
+<div class="summaryTableDescription">
+         Returns the string representation of this object.</div>
+</td><td class="summaryTableOwnerCol"><a href="Pen.html">Pen</a></td>
+</tr>
+</table>
+</div>
+<a name="protectedMethodSummary"></a>
+<div class="summarySection">
+<div class="summaryTableTitle">Protected Methods</div>
+<div class="showHideLinks">
+<div class="hideInheritedProtectedMethod" id="hideInheritedProtectedMethod">
+<a onclick="javascript:setInheritedVisible(false,'ProtectedMethod');" href="#protectedMethodSummary" class="showHideLink"><img src="../../images/expanded.gif" class="showHideLinkImage"> Hide Inherited Protected Methods</a>
+</div>
+<div class="showInheritedProtectedMethod" id="showInheritedProtectedMethod">
+<a onclick="javascript:setInheritedVisible(true,'ProtectedMethod');" href="#protectedMethodSummary" class="showHideLink"><img src="../../images/collapsed.gif" class="showHideLinkImage"> Show Inherited Protected Methods</a>
+</div>
+</div>
+<table id="summaryTableProtectedMethod" class="summaryTable hideInheritedProtectedMethod" cellpadding="3" cellspacing="0">
+<tr>
+<th>&nbsp;</th><th colspan="2">Method</th><th class="summaryTableOwnerCol">Defined&nbsp;by</th>
+</tr>
+<tr class="hideInheritedProtectedMethod">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="Pen.html#callProperty()">callProperty</a>(methodName:*, ... rest):*</div>
+<div class="summaryTableDescription">
+         Overrides the behavior of an object property that can be called as a function.</div>
+</td><td class="summaryTableOwnerCol"><a href="Pen.html">Pen</a></td>
+</tr>
+</table>
+</div>
+<script type="text/javascript" language="javascript">
+<!--
+showHideInherited();
+--></script>
+<div class="MainContent">
+<a name="propertyDetail"></a>
+<div class="detailSectionHeader">Property detail</div>
+<a name="angle"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">angle</td><td class="detailHeaderType">property</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public var angle:Number = 0</code><p>
+         Starting angle in degrees (default to 0).
+         </p></div>
+<a name="innerRadius"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">innerRadius</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public var innerRadius:Number</code><p>
+         The radius of the indent of the points
+          </p></div>
+<a name="outerRadius"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">outerRadius</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public var outerRadius:Number</code><p>
+         The radius of the tips of the points
+          </p></div>
+<a name="points"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">points</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>points:uint</code>&nbsp;&nbsp;[read-write]<p>
+         The number of points of the star. This value is always > 2.
+          </p><span class="label">Implementation</span>
+<br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function get points():uint</code>
+<br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function set points(value:uint):void</code>
+<br>
+</div>
+<a name="x"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">x</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public var x:Number</code><p>
+         The offset x value of the center of the circle.
+         </p></div>
+<a name="y"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">y</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public var y:Number</code><p>
+          The offset y value of the center of the circle.
+          </p></div>
+<a name="constructorDetail"></a>
+<div class="detailSectionHeader">Constructor detail</div>
+<a name="StarPen()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">StarPen</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">constructor</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public function StarPen(graphic:*, x:Number = 0, y:Number = 0, points:uint = 5, innerRadius:Number = 20, outerRadius:Number = 40, angle:Number = 20, align:uint = 10)</code><p>
+         Creates a new StarPen instance.
+         </p><span class="label">Parameters</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td><code><span class="label">graphic</span>:*</code> &mdash; The Graphics reference to control with this helper. You can passed-in a Shape or Sprite/MovieClip reference in argument.
+         </td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><code><span class="label">x</span>:Number</code> (default = <code>0</code>)<code></code> &mdash; (optional) The x location of the center of the circle relative to the registration point of the parent display object (in pixels).
+         </td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><code><span class="label">y</span>:Number</code> (default = <code>0</code>)<code></code> &mdash; (optional) The y location of the center of the circle relative to the registration point of the parent display object (in pixels).
+         </td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><code><span class="label">points</span>:uint</code> (default = <code>5</code>)<code></code> &mdash; (optional) The number of points (Math.abs(sides) must be > 2)
+         </td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><code><span class="label">innerRadius</span>:Number</code> (default = <code>20</code>)<code></code> &mdash; (optional) The radius of the indent of the points.
+         </td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><code><span class="label">outerRadius</span>:Number</code> (default = <code>40</code>)<code></code> &mdash; (optional) The radius of the tips of the points.
+         </td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><code><span class="label">angle</span>:Number</code> (default = <code>20</code>)<code></code> &mdash; (optional) The starting angle in degrees. (defaults to 0) 
+         </td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><code><span class="label">align</span>:uint</code> (default = <code>10</code>)<code></code> &mdash; (optional) The Align value to align the shape.
+         </td>
+</tr>
+</table>
+</div>
+<a name="methodDetail"></a>
+<div class="detailSectionHeader">Method detail</div>
+<a name="draw()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">draw</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public override function draw(... arguments):void</code><p>
+         Draws the shape.
+         </p><span class="label">Parameters</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td><code>... <span class="label">arguments</span></code> &mdash; (optional)The x location of the center of the circle relative to the registration point of the parent display object (in pixels).
+         </td>
+</tr>
+</table>
+</div>
+<a name="drawShape()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">drawShape</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public override function drawShape():void</code><p>
+         This method contains the basic drawing shape algorithm.
+         </p></div>
+<a name="setPen()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">setPen</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public function setPen(... arguments):void</code><p>
+         Sets the shape options to defined all values to draw the shape.
+         </p><span class="label">Parameters</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td><code>... <span class="label">arguments</span></code> &mdash; (optional) The x location of the center of the circle relative to the registration point of the parent display object (in pixels).
+         </td>
+</tr>
+</table>
+</div>
+<br>
+<br>
+<hr>
+<br>
+<p></p>
+<center class="copyright"> 
+</center>
+</div>
+</body>
+</html>
+<!-- -->

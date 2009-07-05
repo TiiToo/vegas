@@ -147,6 +147,13 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("MÂ
          The mal formed Hexadecimal error message.</td>
 </tr>
 <tr>
+<td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('pegas/display/patterns/class-list.html');" href="pegas/display/patterns/MangaPatterns.html">MangaPatterns</a> &mdash; Class in package <a onclick="javascript:loadClassListFrame('pegas/display/patterns/class-list.html');" href="pegas/display/patterns/package-detail.html">pegas.display.patterns</a></td>
+</tr>
+<tr>
+<td width="20"></td><td>
+     This static factory generates manga patterns.</td>
+</tr>
+<tr>
 <td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('andromeda/config/class-list.html');" href="andromeda/config/Config.html#map()">map</a>(config) &mdash; Method in class andromeda.config.<a onclick="javascript:loadClassListFrame('andromeda/config/class-list.html');" href="andromeda/config/Config.html">Config</a></td>
 </tr>
 <tr>
@@ -214,14 +221,28 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("MÂ
 </tr>
 <tr>
 <td width="20"></td><td>
-     This model use an internal <code class="prettyprint">Map</code> to register value objects with a specific key.</td>
+     This model use an internal <code class="prettyprint">Map</code> to register Entry objects with a specific key and this corresponding value.</td>
 </tr>
 <tr>
-<td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('andromeda/model/map/class-list.html');" href="andromeda/model/map/MapModel.html#MapModel()">MapModel</a>(id, bGlobal, sChannel) &mdash; Constructor in class andromeda.model.map.<a onclick="javascript:loadClassListFrame('andromeda/model/map/class-list.html');" href="andromeda/model/map/MapModel.html">MapModel</a></td>
+<td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('andromeda/model/map/class-list.html');" href="andromeda/model/map/MapModel.html#MapModel()">MapModel</a>(id, global, channel, factory:<a href="system/data/Map.html" onclick="javascript:loadClassListFrame('system/data./class-list.html');">system.data:Map</a>) &mdash; Constructor in class andromeda.model.map.<a onclick="javascript:loadClassListFrame('andromeda/model/map/class-list.html');" href="andromeda/model/map/MapModel.html">MapModel</a></td>
 </tr>
 <tr>
 <td width="20"></td><td>
          Creates a new MapModel instance.</td>
+</tr>
+<tr>
+<td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('andromeda/model/map/class-list.html');" href="andromeda/model/map/MapModelObject.html">MapModelObject</a> &mdash; Class in package <a onclick="javascript:loadClassListFrame('andromeda/model/map/class-list.html');" href="andromeda/model/map/package-detail.html">andromeda.model.map</a></td>
+</tr>
+<tr>
+<td width="20"></td><td>
+     This model use an internal <code class="prettyprint">Map</code> to register value objects with a specific key.</td>
+</tr>
+<tr>
+<td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('andromeda/model/map/class-list.html');" href="andromeda/model/map/MapModelObject.html#MapModelObject()">MapModelObject</a>(id, global, channel) &mdash; Constructor in class andromeda.model.map.<a onclick="javascript:loadClassListFrame('andromeda/model/map/class-list.html');" href="andromeda/model/map/MapModelObject.html">MapModelObject</a></td>
+</tr>
+<tr>
+<td width="20"></td><td>
+         Creates a new MapModelObject instance.</td>
 </tr>
 <tr>
 <td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('system/data/maps/class-list.html');" href="system/data/maps/MapUtils.html">MapUtils</a> &mdash; Class in package <a onclick="javascript:loadClassListFrame('system/data/maps/class-list.html');" href="system/data/maps/package-detail.html">system.data.maps</a></td>
@@ -501,7 +522,7 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("MÂ
 </tr>
 <tr>
 <td width="20"></td><td>
-         [read-only] Maximum value of horizontalScrollPosition.</td>
+         Maximum value of horizontalScrollPosition.</td>
 </tr>
 <tr>
 <td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('lunas/core/class-list.html');" href="lunas/core/AbstractProgress.html#maximum">maximum</a> &mdash; Property in class lunas.core.<a onclick="javascript:loadClassListFrame('lunas/core/class-list.html');" href="lunas/core/AbstractProgress.html">AbstractProgress</a></td>
@@ -602,7 +623,7 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("MÂ
      This core expert is a basic implementation to create the MicrophoneExpert and CameraExpert class.</td>
 </tr>
 <tr>
-<td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('asgard/media/class-list.html');" href="asgard/media/MediaExpert.html#MediaExpert()">MediaExpert</a>(id, bGlobal, sChannel) &mdash; Constructor in class asgard.media.<a onclick="javascript:loadClassListFrame('asgard/media/class-list.html');" href="asgard/media/MediaExpert.html">MediaExpert</a></td>
+<td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('asgard/media/class-list.html');" href="asgard/media/MediaExpert.html#MediaExpert()">MediaExpert</a>(id, global, channel) &mdash; Constructor in class asgard.media.<a onclick="javascript:loadClassListFrame('asgard/media/class-list.html');" href="asgard/media/MediaExpert.html">MediaExpert</a></td>
 </tr>
 <tr>
 <td width="20"></td><td>
@@ -714,7 +735,7 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("MÂ
          Creates a new MemberType instance.</td>
 </tr>
 <tr>
-<td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('vegas/util/class-list.html');" href="vegas/util/ObjectUtil.html#memberwiseClone()">memberwiseClone</a>(o) &mdash; Static method in class vegas.util.<a onclick="javascript:loadClassListFrame('vegas/util/class-list.html');" href="vegas/util/ObjectUtil.html">ObjectUtil</a></td>
+<td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('vegas/utils/class-list.html');" href="vegas/utils/ObjectUtil.html#memberwiseClone()">memberwiseClone</a>(o) &mdash; Static method in class vegas.utils.<a onclick="javascript:loadClassListFrame('vegas/utils/class-list.html');" href="vegas/utils/ObjectUtil.html">ObjectUtil</a></td>
 </tr>
 <tr>
 <td width="20"></td><td>
@@ -817,7 +838,7 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("MÂ
 </tr>
 <tr>
 <td width="20"></td><td>
-          The name of the method called.</td>
+         The name of the method called.</td>
 </tr>
 <tr>
 <td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('asgard/net/remoting/class-list.html');" href="asgard/net/remoting/RemotingService.html#methodName">methodName</a> &mdash; Property in class asgard.net.remoting.<a onclick="javascript:loadClassListFrame('asgard/net/remoting/class-list.html');" href="asgard/net/remoting/RemotingService.html">RemotingService</a></td>
@@ -873,7 +894,7 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("MÂ
 </tr>
 <tr>
 <td width="20"></td><td>
-   Creates a new MicrophoneVO instance.</td>
+         Creates a new MicrophoneVO instance.</td>
 </tr>
 <tr>
 <td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('pegas/colors/class-list.html');" href="pegas/colors/SVGColor.html#MIDNIGHT_BLUE">MIDNIGHT_BLUE</a> &mdash; Constant static property in class pegas.colors.<a onclick="javascript:loadClassListFrame('pegas/colors/class-list.html');" href="pegas/colors/SVGColor.html">SVGColor</a></td>
@@ -1121,6 +1142,13 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("MÂ
          Determinates the mode of the inspector.</td>
 </tr>
 <tr>
+<td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('andromeda/model/map/class-list.html');" href="andromeda/model/map/InitMapModelObject.html#model">model</a> &mdash; Property in class andromeda.model.map.<a onclick="javascript:loadClassListFrame('andromeda/model/map/class-list.html');" href="andromeda/model/map/InitMapModelObject.html">InitMapModelObject</a></td>
+</tr>
+<tr>
+<td width="20"></td><td>
+         The model reference.</td>
+</tr>
+<tr>
 <td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('pegas/transitions/class-list.html');" href="pegas/transitions/Tween.html#model">model</a> &mdash; Property in class pegas.transitions.<a onclick="javascript:loadClassListFrame('pegas/transitions/class-list.html');" href="pegas/transitions/Tween.html">Tween</a></td>
 </tr>
 <tr>
@@ -1128,11 +1156,25 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("MÂ
          Determinates the model of this Tween.</td>
 </tr>
 <tr>
+<td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('andromeda/model/class-list.html');" href="andromeda/model/Model.html"><i>Model</i></a> &mdash; Interface in package <a onclick="javascript:loadClassListFrame('andromeda/model/class-list.html');" href="andromeda/model/package-detail.html">andromeda.model</a></td>
+</tr>
+<tr>
+<td width="20"></td><td>
+     The IModel interface define all models in the application.</td>
+</tr>
+<tr>
 <td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('andromeda/model/class-list.html');" href="andromeda/model/ModelCollector.html">ModelCollector</a> &mdash; Class in package <a onclick="javascript:loadClassListFrame('andromeda/model/class-list.html');" href="andromeda/model/package-detail.html">andromeda.model</a></td>
 </tr>
 <tr>
 <td width="20"></td><td>
-     This collector use a Map to register all IModel in the application.</td>
+     This collector use a Map to register all Model in the application.</td>
+</tr>
+<tr>
+<td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('andromeda/model/class-list.html');" href="andromeda/model/ModelObject.html"><i>ModelObject</i></a> &mdash; Interface in package <a onclick="javascript:loadClassListFrame('andromeda/model/class-list.html');" href="andromeda/model/package-detail.html">andromeda.model</a></td>
+</tr>
+<tr>
+<td width="20"></td><td>
+     This interface define a model who register and manipulate ValueObject objects.</td>
 </tr>
 <tr>
 <td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('andromeda/events/class-list.html');" href="andromeda/events/ModelObjectEvent.html">ModelObjectEvent</a> &mdash; Class in package <a onclick="javascript:loadClassListFrame('andromeda/events/class-list.html');" href="andromeda/events/package-detail.html">andromeda.events</a></td>
@@ -1142,7 +1184,7 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("MÂ
      The ModelObjectEvent is the basic event use in a IModelObject to notify changed.</td>
 </tr>
 <tr>
-<td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('andromeda/events/class-list.html');" href="andromeda/events/ModelObjectEvent.html#ModelObjectEvent()">ModelObjectEvent</a>(type, model:<a href="andromeda/model/IModelObject.html" onclick="javascript:loadClassListFrame('andromeda/model./class-list.html');">andromeda.model:IModelObject</a>, vo:<a href="andromeda/vo/ValueObject.html" onclick="javascript:loadClassListFrame('andromeda/vo./class-list.html');">andromeda.vo:ValueObject</a>, target, context, bubbles, cancelable, time) &mdash; Constructor in class andromeda.events.<a onclick="javascript:loadClassListFrame('andromeda/events/class-list.html');" href="andromeda/events/ModelObjectEvent.html">ModelObjectEvent</a></td>
+<td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('andromeda/events/class-list.html');" href="andromeda/events/ModelObjectEvent.html#ModelObjectEvent()">ModelObjectEvent</a>(type, model:<a href="andromeda/model/ModelObject.html" onclick="javascript:loadClassListFrame('andromeda/model./class-list.html');">andromeda.model:ModelObject</a>, vo:<a href="andromeda/vo/ValueObject.html" onclick="javascript:loadClassListFrame('andromeda/vo./class-list.html');">andromeda.vo:ValueObject</a>, target, context, bubbles, cancelable, time) &mdash; Constructor in class andromeda.events.<a onclick="javascript:loadClassListFrame('andromeda/events/class-list.html');" href="andromeda/events/ModelObjectEvent.html">ModelObjectEvent</a></td>
 </tr>
 <tr>
 <td width="20"></td><td>
@@ -1216,49 +1258,42 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("MÂ
 </tr>
 <tr>
 <td width="20"></td><td>
-   Defines the value of the type property of a mouseDown event object.</td>
+         Defines the value of the type property of a mouseDown event object.</td>
 </tr>
 <tr>
 <td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('lunas/core/class-list.html');" href="lunas/core/AbstractButton.html#mouseEnabled">mouseEnabled</a> &mdash; Property in class lunas.core.<a onclick="javascript:loadClassListFrame('lunas/core/class-list.html');" href="lunas/core/AbstractButton.html">AbstractButton</a></td>
 </tr>
 <tr>
 <td width="20"></td><td>
-   Specifies whether this object receives mouse messages.</td>
+         Specifies whether this object receives mouse messages.</td>
 </tr>
 <tr>
 <td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('lunas/events/class-list.html');" href="lunas/events/ButtonEvent.html#MOUSE_MOVE">MOUSE_MOVE</a> &mdash; Static property in class lunas.events.<a onclick="javascript:loadClassListFrame('lunas/events/class-list.html');" href="lunas/events/ButtonEvent.html">ButtonEvent</a></td>
 </tr>
 <tr>
 <td width="20"></td><td>
-   Defines the value of the type property of a mouseMove event object.</td>
+         Defines the value of the type property of a mouseMove event object.</td>
 </tr>
 <tr>
 <td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('lunas/events/class-list.html');" href="lunas/events/ButtonEvent.html#MOUSE_OUT">MOUSE_OUT</a> &mdash; Static property in class lunas.events.<a onclick="javascript:loadClassListFrame('lunas/events/class-list.html');" href="lunas/events/ButtonEvent.html">ButtonEvent</a></td>
 </tr>
 <tr>
 <td width="20"></td><td>
-    Defines the value of the type property of a mouseOut event object.</td>
+         Defines the value of the type property of a mouseOut event object.</td>
 </tr>
 <tr>
 <td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('lunas/events/class-list.html');" href="lunas/events/ButtonEvent.html#MOUSE_OVER">MOUSE_OVER</a> &mdash; Static property in class lunas.events.<a onclick="javascript:loadClassListFrame('lunas/events/class-list.html');" href="lunas/events/ButtonEvent.html">ButtonEvent</a></td>
 </tr>
 <tr>
 <td width="20"></td><td>
-   Defines the value of the type property of a mouseOver event object.</td>
+         Defines the value of the type property of a mouseOver event object.</td>
 </tr>
 <tr>
 <td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('lunas/events/class-list.html');" href="lunas/events/ButtonEvent.html#MOUSE_UP">MOUSE_UP</a> &mdash; Static property in class lunas.events.<a onclick="javascript:loadClassListFrame('lunas/events/class-list.html');" href="lunas/events/ButtonEvent.html">ButtonEvent</a></td>
 </tr>
 <tr>
 <td width="20"></td><td>
-   Defines the value of the type property of a mouseUp event object.</td>
-</tr>
-<tr>
-<td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('asgard/display/class-list.html');" href="asgard/display/PerlinNoise.html#move()">move</a>(x, y, octave) &mdash; Method in class asgard.display.<a onclick="javascript:loadClassListFrame('asgard/display/class-list.html');" href="asgard/display/PerlinNoise.html">PerlinNoise</a></td>
-</tr>
-<tr>
-<td width="20"></td><td>
-         Move the frequency of all octaves.</td>
+         Defines the value of the type property of a mouseUp event object.</td>
 </tr>
 <tr>
 <td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('lunas/core/class-list.html');" href="lunas/core/AbstractComponent.html#move()">move</a>(x, y) &mdash; Method in class lunas.core.<a onclick="javascript:loadClassListFrame('lunas/core/class-list.html');" href="lunas/core/AbstractComponent.html">AbstractComponent</a></td>
@@ -1268,14 +1303,21 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("MÂ
          Moves the component.</td>
 </tr>
 <tr>
+<td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('pegas/display/class-list.html');" href="pegas/display/PerlinNoise.html#move()">move</a>(x, y, octave) &mdash; Method in class pegas.display.<a onclick="javascript:loadClassListFrame('pegas/display/class-list.html');" href="pegas/display/PerlinNoise.html">PerlinNoise</a></td>
+</tr>
+<tr>
+<td width="20"></td><td>
+         Move the frequency of all octaves.</td>
+</tr>
+<tr>
 <td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('lunas/events/class-list.html');" href="lunas/events/ComponentEvent.html#MOVE">MOVE</a> &mdash; Static property in class lunas.events.<a onclick="javascript:loadClassListFrame('lunas/events/class-list.html');" href="lunas/events/ComponentEvent.html">ComponentEvent</a></td>
 </tr>
 <tr>
 <td width="20"></td><td>
-   Defines the value of the type property of an 'move' component.</td>
+         Defines the value of the type property of an 'move' component.</td>
 </tr>
 <tr>
-<td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('asgard/display/class-list.html');" href="asgard/display/DisplayObjectContainers.html#moveChild()">moveChild</a>(child, container, index) &mdash; Static method in class asgard.display.<a onclick="javascript:loadClassListFrame('asgard/display/class-list.html');" href="asgard/display/DisplayObjectContainers.html">DisplayObjectContainers</a></td>
+<td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('pegas/display/class-list.html');" href="pegas/display/DisplayObjectContainers.html#moveChild()">moveChild</a>(child, container, index) &mdash; Static method in class pegas.display.<a onclick="javascript:loadClassListFrame('pegas/display/class-list.html');" href="pegas/display/DisplayObjectContainers.html">DisplayObjectContainers</a></td>
 </tr>
 <tr>
 <td width="20"></td><td>
@@ -1398,7 +1440,7 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("MÂ
 </tr>
 <tr>
 <td width="20"></td><td>
-   The name of the event when the Microphone is muted.</td>
+         The name of the event when the Microphone is muted.</td>
 </tr>
 <tr>
 <td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('asgard/media/class-list.html');" href="asgard/media/CameraStatus.html#MUTED">MUTED</a> &mdash; Constant static property in class asgard.media.<a onclick="javascript:loadClassListFrame('asgard/media/class-list.html');" href="asgard/media/CameraStatus.html">CameraStatus</a></td>
