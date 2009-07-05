@@ -22,6 +22,7 @@
     <component id="system:info"               class="system.info"               />
     <component id="system:Library"            class="system.Library"            />
     <component id="system:metadata"           class="system.metadata"           />
+    <component id="system:Objects"            class="system.Objects"            />
     <component id="system:optimized"          class="system.optimized"          />
     <component id="system:Reflection"         class="system.Reflection"         />
     <component id="system:Serializable"       class="system.Serializable"       />
@@ -72,6 +73,7 @@
     <component id="system.data:Stack"           class="system.data.Stack" />
     <component id="system.data:Typeable"        class="system.data.Typeable" />
     <component id="system.data:Validator"       class="system.data.Validator" />
+    <component id="system.data:WeakReference"   class="system.data.WeakReference" />
         
     <!-- system.data.arrays -->
 
@@ -218,7 +220,7 @@
     <component id="system.numeric:Range"       class="system.numeric.Range"       />
     <component id="system.numeric:RomanNumber" class="system.numeric.RomanNumber" />
     
-    <!-- system.process -->
+    <!-- system.process.caches -->
     
     <component id="system.process.caches:Attribute" class="system.process.caches.Attribute" />
     <component id="system.process.caches:Method"    class="system.process.caches.Method"    />
@@ -248,7 +250,7 @@
     
     <!-- system.reflection -->
     
-    <component id="system.reflection:_ClassInfo"             class="system.reflection._ClassInfo"             />      
+    <component id="system.reflection:_ClassInfo"             class="system.reflection._ClassInfo"             />
     <component id="system.reflection:_ConstructorInfo"       class="system.reflection._ConstructorInfo"       />
     <component id="system.reflection:_TypeInfo"              class="system.reflection._TypeInfo"              />
     <component id="system.reflection:AccessorInfo"           class="system.reflection.AccessorInfo"           />
@@ -267,12 +269,12 @@
     
     <!-- system.resources -->
     
-    <component id="system.resources:Resource"       class="system.resources.Resource"           />
-    <component id="system.resources:ResourceString" class="system.resources.ResourceString"     />    
+    <component id="system.resources:Resource"       class="system.resources.Resource"       />
+    <component id="system.resources:ResourceString" class="system.resources.ResourceString" />
     
     <!-- system.serializers.eden -->
     
-    <component id="system.serializers.eden:BuiltinSerializer" class="system.serializers.eden.BuiltinSerializer" />    
+    <component id="system.serializers.eden:BuiltinSerializer" class="system.serializers.eden.BuiltinSerializer" />
     <component id="system.serializers.eden:config"            class="system.serializers.eden.config"            />
     <component id="system.serializers.eden:debug"             class="system.serializers.eden.debug"             />
     <component id="system.serializers.eden:ECMAScript"        class="system.serializers.eden.ECMAScript"        />
@@ -280,7 +282,7 @@
     <component id="system.serializers.eden:EdenSerializer"    class="system.serializers.eden.EdenSerializer"    />
     <component id="system.serializers.eden:info"              class="system.serializers.eden.info"              />
     <component id="system.serializers.eden:release"           class="system.serializers.eden.release"           />
-    <component id="system.serializers.eden:strings"           class="system.serializers.eden.strings"           />    
+    <component id="system.serializers.eden:strings"           class="system.serializers.eden.strings"           />
     
     <!-- system.terminals -->
     
