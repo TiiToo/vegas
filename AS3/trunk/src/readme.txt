@@ -3,12 +3,12 @@
 
    LICENCE 
 
-	Mozilla Public License 1.1 (MPL 1.1) (read Licence.txt)
+   Mozilla Public License 1.1 (MPL 1.1) (read Licence.txt)
 
    PROJECT
 
      In this directory you can find all sources of the project if you checkout this path with a SVN client. 
-     The extensions of VEGAs are externals, you can't see it in the "browse source" page of Google Code.
+     The extensions of VEGAS are externals, you can't see it in the "browse source" page of Google Code.
    
    SOURCES (all read-only)
 
@@ -31,7 +31,7 @@
 
    ABOUT
 
-    * Author  : eKameleon
+    * Author  : ALCARAZ Marc (eKameleon)
     * Version : 1,4,0,1303
     * Link    : http://www.ekameleon.net/blog
     * Mail    : ekameleon@gmail.com 
