@@ -80,12 +80,12 @@
     </include-namespaces>
     
     <directory>false</directory>
-
+    
     <output>deploy/vegas.swc</output>
     
     <metadata>
         
-        <title>The AS3 VEGAS framework - version 1.4.0.1303</title>
+        <title>The AS3 VEGAS framework - version 1.4.2.1325</title>
         <description>All class of VEGAS and this extensions</description>
         <publisher>http://www.ekameleon.net</publisher>
         <creator>Marc ALCARAZ (aka eKameleon)</creator>

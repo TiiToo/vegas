@@ -144,21 +144,21 @@
     
     <!-- andromeda.utils.observer -->
     
-    <component id="andromeda.util.observer:Observable" class="andromeda.util.observer.Observable" />
-    <component id="andromeda.util.observer:Observer"   class="andromeda.util.observer.Observer"   />
+    <component id="andromeda.utils.observer:Observable" class="andromeda.utils.observer.Observable" />
+    <component id="andromeda.utils.observer:Observer"   class="andromeda.utils.observer.Observer"   />
     
     <!-- andromeda.utils.pool -->
     
-    <component id="andromeda.util.pool:InstanceBuilder"   class="andromeda.util.pool.InstanceBuilder"   />
-    <component id="andromeda.util.pool:Node"              class="andromeda.util.pool.Node"              />
-    <component id="andromeda.util.pool:ObjectPool"        class="andromeda.util.pool.ObjectPool"        />
-    <component id="andromeda.util.pool:ObjectPoolBuilder" class="andromeda.util.pool.ObjectPoolBuilder" />
+    <component id="andromeda.utils.pool:InstanceBuilder"   class="andromeda.utils.pool.InstanceBuilder"   />
+    <component id="andromeda.utils.pool:Node"              class="andromeda.utils.pool.Node"              />
+    <component id="andromeda.utils.pool:ObjectPool"        class="andromeda.utils.pool.ObjectPool"        />
+    <component id="andromeda.utils.pool:ObjectPoolBuilder" class="andromeda.utils.pool.ObjectPoolBuilder" />
     
     <!-- andromeda.utils.visitor -->
     
-    <component id="andromeda.util.visitor:CoreVisitable" class="andromeda.util.visitor.CoreVisitable" />
-    <component id="andromeda.util.visitor:Visitable"     class="andromeda.util.visitor.Visitable"     />
-    <component id="andromeda.util.visitor:Visitor"       class="andromeda.util.visitor.Visitor"       />
+    <component id="andromeda.utils.visitor:CoreVisitable" class="andromeda.utils.visitor.CoreVisitable" />
+    <component id="andromeda.utils.visitor:Visitable"     class="andromeda.utils.visitor.Visitable"     />
+    <component id="andromeda.utils.visitor:Visitor"       class="andromeda.utils.visitor.Visitor"       />
     
     <!-- andromeda.vo -->
     
