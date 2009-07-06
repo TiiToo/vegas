@@ -1,5 +1,5 @@
 #labels Documentation
-= VEGAS version 1.4 =
+= VEGAS version 1.4.2 =
 
 Vegas is an OpenSource Framework based on ECMASCript.
 
@@ -43,10 +43,32 @@ For the moment in the Subversion repository of VEGAS. (in progress)
 
 ==About==
 
- * Version : 1.4
+ * Version : 1.4.2.1325 (last stable)
  * Author  : ALCARAZ Marc (aka eKameleon)
  * Link : http://www.ekameleon.net/blog
  * Mail : ekameleon@gmail.com
+
+== Thanks ==
+
+ * [http://zwetan.com/ Zwetan] : ECMAScript Concepts, all discussions and hosting 
+ * [http://powerflasher.com/ PowerFlasher] and [http://fdt.powerflasher.com FDT] OpenSource Licence.
+
+[http://fdt.powerflasher.com/ http://vegas.googlecode.com/svn/gfx/FDT_Supported.png]
+
+==Requirements==
+
+You can use my library in your projects with :
+
+ * AS3 : [http://www.eclipse.org/ Eclipse] and [http://fdt.powerflasher.com/ FDT]
+ * AS3 : [http://www.adobe.com/products/flex/sdk/ Flex SDK].
+
+ * AS2 : Flash MX2004 or Flash8 or Flash CS3/CS4.
+ * AS2 : [http://www.mtasc.org/ MTASC]
+ * AS2 : [http://www.eclipse.org/ Eclipse] and [http://fdt.powerflasher.com/ FDT]
+
+ * SSAS : *FC 1.5* or *Flash Media Server 2* or *Flash Media Server 3*
+ * SSAS : [http://fczone.com/eclipse/ FMS Eclipse]
+ * SSAS : [http://labs.adobe.com/technologies/jseclipse/ JSEclipse]
 
 ==FEATURES LIST==
 
@@ -117,7 +139,6 @@ In the SSAS(Server Side ActionScript) version for Flash Media Server :
  * asgard.server.Application class to creates your FMS application based on VEGAS.
  * asgard.server.Gateway class to creates a Gateway based on the FrontController of Vegas (used AS2 Event in the client application and send this events with the NetConnection.call method directly in the server side FrontController.
 
-
 ===LunAS===
 
 This library based on ASGard and VEGAS to create components. It's not a component of framework but a framework to make components.
@@ -150,24 +171,3 @@ This extension is an opensource helper library based on *VEGAS* (only AS2 for th
 ActionScript Template application framework based on VEGAS. This opensource library contains a skeletal to implement rich application with VEGAS and this extensions. For the moment this library is an experimental laboratory to implements a concrete example with VEGAS.
 
  * Download the sources of this project in the Google Code page : http://code.google.com/p/astr/
-
-
-==Requirements==
-
-You can use my library in your projects with :
-
- * AS2 : Flash MX2004 or Flash8 or Flash CS3/CS4.
- * AS2 : [http://www.mtasc.org/ MTASC]
- * AS2 : [http://www.eclipse.org/ Eclipse] and [http://fdt.powerflasher.com/ FDT]
- * AS3 : [http://www.adobe.com/products/flex/sdk/ Flex SDK].
-
- * SSAS : *FC 1.5* or *Flash Media Server 2* or *Flash Media Server 3*
- * SSAS : [http://fczone.com/eclipse/ FMS Eclipse]
- * SSAS : [http://labs.adobe.com/technologies/jseclipse/ JSEclipse]
-
-== Thanks ==
-
- * [http://zwetan.com/ Zwetan] : ECMAScript Concepts, all discussions and hosting 
- * [http://powerflasher.com/ PowerFlasher] and [http://fdt.powerflasher.com FDT] OpenSource Licence.
-
-[http://fdt.powerflasher.com/ http://vegas.googlecode.com/svn/gfx/FDT_Supported.png]
