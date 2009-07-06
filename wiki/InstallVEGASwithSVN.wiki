@@ -32,7 +32,7 @@ or continue to read this tutorial.
 *Note :* If you want install only AS3 or AS2 sources in your disk you can target a specific branches in the top-level repository :
 
  * *AS3 version*  : http://vegas.googlecode.com/svn/AS3/trunk (The last stable nightly build)
- * *AS3 version*  : http://vegas.googlecode.com/svn/AS3/branches(The last stable versions)
+ * *AS3 version*  : http://vegas.googlecode.com/svn/AS3/branches (The last stable versions)
 
  * *AS2 version*  : http://vegas.googlecode.com/svn/AS2
  * *SSAS version* : http://vegas.googlecode.com/svn/SSAS
