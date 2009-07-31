@@ -27,7 +27,6 @@ package vegas
     
     import vegas.core.AllTests;
     import vegas.errors.AllTests;
-    import vegas.logging.AllTests;
     import vegas.string.AllTests;
     import vegas.utils.AllTests;
     
@@ -45,7 +44,6 @@ package vegas
             
             suite.addTest( vegas.core.AllTests.suite() ) ;
             suite.addTest( vegas.errors.AllTests.suite() ) ;
-            suite.addTest( vegas.logging.AllTests.suite() ) ;
             suite.addTest( vegas.string.AllTests.suite() ) ;
             suite.addTest( vegas.utils.AllTests.suite() ) ;
             
