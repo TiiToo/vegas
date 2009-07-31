@@ -22,8 +22,13 @@
 */
 package vegas.core
 {
-    import system.Reflection;    import system.Serializable;        import vegas.logging.ILogger;    import vegas.logging.Log;    import vegas.logging.Logable;
-    /**
+    import system.Reflection;
+    import system.Serializable;
+    import system.logging.Log;
+    import system.logging.Loggable;
+    import system.logging.Logger;
+
+    /**
      * CoreObject offers a default implementation of the IFormattable, IHashable and ISerializable interfaces.
      * <p><b>Example :</b></p>
      * <pre class="prettyprint">
@@ -33,7 +38,7 @@ package vegas.core
      * trace("toSource : " + core.toSource()) ;
      * </pre>
      */
-    public class CoreObject extends Object implements Logable, Serializable
+    public class CoreObject extends Object implements Loggable, Serializable
     {
         /**
          * Creates a new CoreObject instance.
@@ -44,17 +49,17 @@ package vegas.core
         }
 
         /**
-         * Determinates the internal <code class="prettyprint">ILogger</code> reference of this <code class="prettyprint">Logable</code> object.
+         * Determinates the internal <code class="prettyprint">Logger</code> reference of this <code class="prettyprint">Loggable</code> object.
          */
-        public function get logger():ILogger
+        public function get logger():Logger
         {
-            return _logger ;     
+            return _logger ;
         }
         
         /**
          * @private
          */
-        public function set logger( log:ILogger ):void 
+        public function set logger( log:Logger ):void 
         {
             _logger = (log == null ) ? Log.getLogger( Reflection.getClassPath(this) ) : log ;
         }
@@ -78,8 +83,8 @@ package vegas.core
         }
         
         /**
-         * The internal ILogger reference of this object.
+         * @private
          */
-        private var _logger:ILogger ;
+        private var _logger:Logger ;
     }
 }
