@@ -228,7 +228,6 @@ package vegas.utils
             {
                 return true ;
             }
-        
             return false ;
         }
         

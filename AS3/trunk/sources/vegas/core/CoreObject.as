@@ -29,7 +29,7 @@ package vegas.core
     import system.logging.Logger;
 
     /**
-     * CoreObject offers a default implementation of the IFormattable, IHashable and ISerializable interfaces.
+     * CoreObject offers a default implementation of the Loggable and Serializable interfaces.
      * <p><b>Example :</b></p>
      * <pre class="prettyprint">
      * import vegas.core.CoreObject ;
@@ -43,11 +43,11 @@ package vegas.core
         /**
          * Creates a new CoreObject instance.
          */
-        function CoreObject() 
+        public function CoreObject() 
         {
             _logger = Log.getLogger( Reflection.getClassPath(this) ) ;
         }
-
+        
         /**
          * Determinates the internal <code class="prettyprint">Logger</code> reference of this <code class="prettyprint">Loggable</code> object.
          */
@@ -72,7 +72,7 @@ package vegas.core
         {
             return "new " + Reflection.getClassPath(this) + "()" ;
         }
-
+        
         /**
          * Returns the string representation of this instance.
          * @return the string representation of this instance.
