@@ -26,7 +26,7 @@ package vegas.utils
     import system.Objects;
 
     import vegas.core.Copyable;
-
+    
     /**
      * The <code class="prettyprint">Copier</code> utility class is an all-static class with a method to returns a copy representation of an object.
      */

@@ -104,7 +104,7 @@ package vegas.string.json
         
         /**
          * Indicates the indentor string representation.
-         */        
+         */
         public function get indentor():String
         {
             return _indentor;
@@ -144,7 +144,7 @@ package vegas.string.json
         
         /**
          * @private
-         */        
+         */
         public function set prettyPrinting(value:Boolean):void
         {
             _prettyPrinting = value;
@@ -284,8 +284,7 @@ package vegas.string.json
                 }
             }
         }
-
-               
+       
         /**
          * The current position of the iterator in the source.
          */
@@ -724,7 +723,7 @@ package vegas.string.json
             error( JSONStrings.syntaxError );
             return null ;
         }
-                        
+        
         /**
          * @private
          */
@@ -739,7 +738,5 @@ package vegas.string.json
          * @private
          */
         private var _indentor:String = "    " ;
-
     }
-
 }

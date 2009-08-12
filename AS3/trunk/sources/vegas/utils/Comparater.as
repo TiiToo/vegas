@@ -22,8 +22,9 @@
 */
 package vegas.utils 
 {
+    import system.Comparable;
     import system.Equatable;
-    
+
     /**
      * The <code class="prettyprint">Comparater</code> utility class is an all-static class with a method to returns <code class="prettyprint">true</code> if two object are equals.
      */
@@ -45,7 +46,15 @@ package vegas.utils
             {
                 return true ;
             }
-            if (o1 is Equatable) 
+            if ( o1 is Comparable )
+            {
+                return o1.compare(o2) ;
+            }
+            else if ( o2 is Comparable )
+            {
+                return o2.compare( o1 ) ;
+            }
+            else if ( o1 is Equatable ) 
             {
                 return Equatable(o1).equals(o2) ;
             }
@@ -63,7 +72,7 @@ package vegas.utils
             }
             else if ( o1 is Error )
             {
-                return errorCompare(o1, o2) ;    
+                return errorCompare(o1, o2) ;
             }
             else if ( o1 is Function )
             {
@@ -239,7 +248,7 @@ package vegas.utils
         {
             if ( o2 is Function )
             {
-                return functionCompare( o2, o1 ) ;    
+                return functionCompare( o2, o1 ) ;
             }
             if ( o1.valueOf() == null && o2 == null )
             {

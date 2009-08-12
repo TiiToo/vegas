@@ -148,12 +148,12 @@ package vegas.string
         /**
          * Line Separator utf8 representation (line terminators).
          */        
-        public static const LS:String = LINE_TERMINATOR_CHARS[2] ;    
+        public static const LS:String = LINE_TERMINATOR_CHARS[2] ;
         
         /**
          * Paragraph Separator utf8 representation (line terminators).
          */   
-        public static const PS:String = LINE_TERMINATOR_CHARS[3] ;    
+        public static const PS:String = LINE_TERMINATOR_CHARS[3] ;
         
         /**
          * Overrides the behavior of an object property that can be called as a function. 

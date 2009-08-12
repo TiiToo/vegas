@@ -55,7 +55,7 @@ package vegas.utils
             }
             if ( _clazzBuffer[name] == null )
             {
-                _clazzBuffer[name] = 0 ;    
+                _clazzBuffer[name] = 0 ;
             }
             else
             {
