@@ -87,5 +87,4 @@ package vegas.string
      * </pre>
      */
     public var JSON:JSONSerializer = new JSONSerializer() ;
-    
 }

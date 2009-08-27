@@ -22,13 +22,11 @@
 */
 package vegas.utils
 {
-
     /**
      * Array static tool class.
      */
     public class ArrayUtil 
     {
-                
         /**
          * Creates the shallow copy of the Array.
          * <p><b>Example :</b></p>

@@ -27,7 +27,7 @@ package vegas.core
     import system.logging.Log;
     import system.logging.Loggable;
     import system.logging.Logger;
-
+    
     /**
      * CoreObject offers a default implementation of the Loggable and Serializable interfaces.
      * <p><b>Example :</b></p>

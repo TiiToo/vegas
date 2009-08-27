@@ -24,14 +24,14 @@ package vegas.utils
 {
     import system.Comparable;
     import system.Equatable;
-
+    
     /**
      * The <code class="prettyprint">Comparater</code> utility class is an all-static class with a method to returns <code class="prettyprint">true</code> if two object are equals.
      */
     public class Comparater 
     {
         /**
-         * Compares if two objects are equal by value. 
+         * Compares if two objects are equal by value.
          * @param o1 the first object to compare.
          * @param o2 the second object to compare.
          * @return <code class="prettyprint">true</code> if the 2 objects are equals.
@@ -267,7 +267,7 @@ package vegas.utils
                 /* Note: by convention we consider members starting with __ to be internal properties which should not be compared.*/
                 if ( member.charAt(0) == "__") 
                 {
-                    continue ;    
+                    continue ;
                 }
                 if( !Comparater.compare(o1[member], o2[member] ) )
                 {

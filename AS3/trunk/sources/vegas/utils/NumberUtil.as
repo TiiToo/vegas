@@ -80,7 +80,7 @@ package vegas.utils
         {
             if ( prefix == null )
             {
-                prefix = "0x" ;    
+                prefix = "0x" ;
             }
             var temp:String = n.toString(16) ;
             if(n < 16) 

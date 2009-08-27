@@ -40,7 +40,7 @@ package vegas.utils
          * The type of the 'date' objects.
          */
         public static const DATE:String = "date" ;
-
+        
         /**
          * The type of the 'error' objects.
          */
@@ -55,7 +55,7 @@ package vegas.utils
          * The type of the 'int' objects.
          */
         public static const INT:String = "int" ;
-
+        
         /**
          * The type of the 'null' objects.
          */
@@ -70,7 +70,7 @@ package vegas.utils
          * The type of the 'object' objects.
          */
         public static const OBJECT:String = "object" ;
-
+        
         /**
          * The type of the 'string' objects.
          */
@@ -91,7 +91,7 @@ package vegas.utils
          */
         public static const XML:String = "xml" ; 
         
-           /**
+        /**
          * Compares the types of two objects.
          * @return <code class="prettyprint">true</code> if the two objects are the same primitive type.
          */

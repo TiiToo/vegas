@@ -24,10 +24,10 @@
 package vegas.string
 {
     import system.Char;
-
+    
     import flash.utils.Proxy;
     import flash.utils.flash_proxy;
-
+    
     /**
      * <b>ECMA 262</b> Unicode IFormat-Control Characters tools.
      * <p>See <a href='http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf'>ECMAScript 262 specifications</a></p>
