@@ -76,7 +76,7 @@ package vegas.utils
             }
             else 
             {
-                return Objects.copyPrimitive( o ) ;
+                return Objects.copy( o ) ;
             }
         }
         
