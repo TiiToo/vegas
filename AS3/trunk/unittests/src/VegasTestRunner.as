@@ -25,6 +25,7 @@ package
     import buRRRn.ASTUce.Runner;
     import buRRRn.ASTUce.config;
     
+    import system.config;
     import system.console;
     import system.ui.TextFieldConsole;
     
@@ -60,7 +61,7 @@ package
             stage.addEventListener( Event.RESIZE , resize ) ;
             resize() ;
             
-            console = new TextFieldConsole( textfield ) ;            
+            console = new TextFieldConsole( textfield ) ;
             
             system.config.serializer.prettyPrinting = false;
             
