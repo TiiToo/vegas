@@ -6,6 +6,7 @@
     
     <component id="system:about"              class="system.about"              />
     <component id="system:Arrays"             class="system.Arrays"             />
+    <component id="system:ByteArrays"         class="system.ByteArrays"         />
     <component id="Char"                      class="system.Char"               />
     <component id="system:Cloneable"          class="system.Cloneable"          />
     <component id="system:Comparable"         class="system.Comparable"         />
@@ -32,6 +33,7 @@
     <component id="system:Strings"            class="system.Strings"            />
     <component id="system:SystemConfigurator" class="system.SystemConfigurator" />
     <component id="system:URI"                class="system.URI"                />
+    <component id="system:Vectors"            class="system.Vectors"            />
     <component id="system:Version"            class="system.Version"            />
     
     <!-- system.cli -->
@@ -76,11 +78,11 @@
     <component id="system.data:WeakReference"   class="system.data.WeakReference" />
         
     <!-- system.data.arrays -->
-
+    
     <component id="system.data:arrays:ArrayFilter" class="system.data.arrays.ArrayFilter" />
     <component id="system.data:arrays:ProxyArray"  class="system.data.arrays.ProxyArray"  />
     <component id="system.data.arrays:TypedArray"  class="system.data.arrays.TypedArray"  />
-  
+    
     <!-- system.data.bags -->
     
     <component id="system.data.bags:ArrayBag"     class="system.data.bags.ArrayBag"     />
@@ -109,6 +111,7 @@
     <component id="system.data.iterators:PageByPageIterator"  class="system.data.iterators.PageByPageIterator" />
     <component id="system.data.iterators:ProtectedIterator"   class="system.data.iterators.ProtectedIterator"  />
     <component id="system.data.iterators:StringIterator"      class="system.data.iterators.StringIterator"     />
+    <component id="system.data.iterators:VectorIterator"      class="system.data.iterators.VectorIterator"     />
     
     <!-- system.data.lists -->    
     
@@ -151,6 +154,12 @@
     <component id="system.data.stacks:ArrayStack" class="system.data.stacks.ArrayStack" />   
     <component id="system.data.stacks:TypedStack" class="system.data.stacks.TypedStack"  />  
     
+    <!-- system.data.trees -->
+    
+    <component id="system.data.trees:Trie"        class="system.data.trees.Trie" />
+    <component id="system.data.trees:TrieAverage" class="system.data.trees.TrieAverage" />
+    <component id="system.data.trees:TrieEntry"   class="system.data.trees.TrieEntry" />
+    
     <!-- system.diagnostics -->
     
     <component id="system.diagnostics:TraceConsole"   class="system.diagnostics.TraceConsole"   />
@@ -158,8 +167,11 @@
     
     <!-- system.errors -->
     
-    <component id="system.errors:ConcurrencyError"   class="system.errors.ConcurrencyError"   />
-    <component id="system.errors:NoSuchElementError" class="system.errors.NoSuchElementError" />
+    <component id="system.errors:ConcurrencyError"    class="system.errors.ConcurrencyError"   />
+    <component id="system.errors:InvalidChannelError" class="system.errors.InvalidChannelError" />
+    <component id="system.errors:InvalidFilterError"  class="system.errors.InvalidFilterError" />
+    <component id="system.errors:NonUniqueKeyError"  class="system.errors.NonUniqueKeyError" />
+    <component id="system.errors:NoSuchElementError"  class="system.errors.NoSuchElementError" />
     
     <!-- system.evaluators -->
     
@@ -177,7 +189,9 @@
     <component id="system.events:ArrayEvent"          class="system.events.ArrayEvent" />
     <component id="system.events:BasicEvent"          class="system.events.BasicEvent" />
     <component id="system.events:BooleanEvent"        class="system.events.BooleanEvent" />
+    <component id="system.events:Broadcaster"         class="system.events.Broadcaster" />
     <component id="system.events:Command"             class="system.events.Command" />
+    <component id="system.events:CoreBroadcaster"     class="system.events.CoreBroadcaster" />
     <component id="system.events:CoreEventDispatcher" class="system.events.CoreEventDispatcher" />
     <component id="system.events:DateEvent"           class="system.events.DateEvent" />
     <component id="system.events:Delegate"            class="system.events.Delegate" />
@@ -185,9 +199,13 @@
     <component id="system.events:EventDispatcher"     class="system.events.EventDispatcher" />
     <component id="system.events:EventListener"       class="system.events.EventListener" />
     <component id="system.events:EventListenerBatch"  class="system.events.EventListenerBatch" />
+    <component id="system.events:FastDispatcher"      class="system.events.FastDispatcher" />
     <component id="system.events:FrontController"     class="system.events.FrontController" />
     <component id="system.events:IEventDispatcher"    class="system.events.IEventDispatcher" />
+    <component id="system.events:InternalBroadcaster" class="system.events.InternalBroadcaster" />
     <component id="system.events:InternalDispatcher"  class="system.events.InternalDispatcher" />
+    <component id="system.events:LoggerEvent"         class="system.events.LoggerEvent" />
+    <component id="system.events:MessageBroadcaster"  class="system.events.MessageBroadcaster" />
     <component id="system.events:NumberEvent"         class="system.events.NumberEvent" />
     <component id="system.events:StringEvent"         class="system.events.StringEvent" />
     
@@ -209,6 +227,27 @@
     <component id="system.io:Readable"  class="system.io.Readable"  />
     <component id="system.io:Writeable" class="system.io.Writeable" />
     
+    <!-- system.logging -->
+    
+    <component id="system.logging:Log"             class="system.logging.Log" />
+    <component id="system.logging:Loggable"        class="system.logging.Loggable" />
+    <component id="system.logging:Logger"          class="system.logging.Logger" />
+    <component id="system.logging:LoggerFactory"   class="system.logging.LoggerFactory" />
+    <component id="system.logging:LoggerLevel"     class="system.logging.LoggerLevel" />
+    <component id="system.logging:LoggerStrings"   class="system.logging.LoggerStrings" />
+    <component id="system.logging:LoggerTarget"    class="system.logging.LoggerTarget" />
+    <component id="system.logging:LogLogger"       class="system.logging.LogLogger" />
+    
+    <!-- system.logging.targets -->
+    
+    <component id="system.logging.targets:CoreLoggerTarget"    class="system.logging.targets.CoreLoggerTarget" />
+    <component id="system.logging.targets:FireBugTarget"       class="system.logging.targets.FireBugTarget" />
+    <component id="system.logging.targets:LineFormattedTarget" class="system.logging.targets.LineFormattedTarget" />
+    <component id="system.logging.targets:SocketTarget"        class="system.logging.targets.SocketTarget" />
+    <component id="system.logging.targets:SOSTarget"           class="system.logging.targets.SOSTarget" />
+    <component id="system.logging.targets:TextFieldTarget"     class="system.logging.targets.TextFieldTarget" />
+    <component id="system.logging.targets:TraceTarget"         class="vegas.logging.targets.TraceTarget" />
+    
     <!-- system.network -->
     
     <component id="system.network:HostnameType" class="system.network.HostnameType"  />
@@ -217,6 +256,7 @@
     <!-- system.numeric -->
     
     <component id="system.numeric:Mathematics" class="system.numeric.Mathematics" />
+    <component id="system.numeric:PRNG"        class="system.numeric.PRNG"        />
     <component id="system.numeric:Range"       class="system.numeric.Range"       />
     <component id="system.numeric:RomanNumber" class="system.numeric.RomanNumber" />
     
@@ -232,6 +272,7 @@
     <component id="system.process:ActionLoader"           class="system.process.ActionLoader"           />
     <component id="system.process:ActionProxy"            class="system.process.ActionProxy"            />
     <component id="system.process:ActionURLLoader"        class="system.process.ActionURLLoader"        />
+    <component id="system.process:ActionURLStream"        class="system.process.ActionURLStream"        />
     <component id="system.process:Batch"                  class="system.process.Batch"                  />
     <component id="system.process:BatchProcess"           class="system.process.BatchProcess"           />
     <component id="system.process:Cache"                  class="system.process.Cache"                  />
@@ -244,6 +285,7 @@
     <component id="system.process:Resetable"              class="system.process.Resetable"              />
     <component id="system.process:Runnable"               class="system.process.Runnable"               />
     <component id="system.process:Sequencer"              class="system.process.Sequencer"              />
+    <component id="system.process:Startable"              class="system.process.Startable"              />
     <component id="system.process:Stoppable"              class="system.process.Stoppable"              />
     <component id="system.process:Task"                   class="system.process.Task"                   />
     <component id="system.process:TimeoutPolicy"          class="system.process.TimeoutPolicy"          />

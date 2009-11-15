@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <flex-config>
-
     <compiler>
-        
         <source-path>
             <path-element>../../src/</path-element>
         </source-path>
@@ -16,8 +14,13 @@
             </namespace>
             
             <namespace>
-                <uri>http://code.google.com/p/maashaack/2009</uri>
+                <uri>http://code.google.com/p/system/2009</uri>
                 <manifest>./manifests/system_manifest.xml</manifest>
+            </namespace>
+            
+            <namespace>
+                <uri>http://code.google.com/p/graphics/2009</uri>
+                <manifest>./manifests/graphics_manifest.xml</manifest>
             </namespace>
             
             <namespace>
@@ -29,11 +32,11 @@
                 <uri>http://code.google.com/p/andromed-as/2009</uri>
                 <manifest>./manifests/andromeda_manifest.xml</manifest>
             </namespace>
-
+            
             <namespace>
                 <uri>http://code.google.com/p/pegas/2009</uri>
                 <manifest>./manifests/pegas_manifest.xml</manifest>
-            </namespace>         
+            </namespace>
             
             <namespace>
                 <uri>http://code.google.com/p/as-gard/2009</uri>
@@ -43,7 +46,7 @@
             <namespace>
                 <uri>http://code.google.com/p/lun-as/2009</uri>
                 <manifest>./manifests/lunas_manifest.xml</manifest>
-            </namespace>             
+            </namespace>
             
             <namespace>
                 <uri>http://code.google.com/p/calista/2009</uri>
@@ -56,16 +59,16 @@
             </namespace>
             
         </namespaces>
-
+        
         <strict>true</strict>
         <optimize>true</optimize>
-
     </compiler>
     
     <include-namespaces>
         
         <uri>http://code.google.com/p/core/2009</uri>
-        <uri>http://code.google.com/p/maashaack/2009</uri>
+        <uri>http://code.google.com/p/system/2009</uri>
+        <uri>http://code.google.com/p/graphics/2009</uri>
         
         <uri>http://code.google.com/p/vegas/2009</uri>
         
@@ -85,7 +88,7 @@
     
     <metadata>
         
-        <title>The AS3 VEGAS framework - version 1.4.2.1325</title>
+        <title>The AS3 VEGAS framework - version 1.5.x.xxxx</title>
         <description>All class of VEGAS and this extensions</description>
         <publisher>http://www.ekameleon.net</publisher>
         <creator>Marc ALCARAZ (aka eKameleon)</creator>

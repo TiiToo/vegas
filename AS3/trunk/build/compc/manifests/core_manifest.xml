@@ -4,7 +4,8 @@
     
     <!-- core -->
     
-    <component id="core.uri"     class="core.uri"     />
-    <component id="core.version" class="core.version" />
+    <component id="core:bit"     class="core.bit"     />
+    <component id="core:uri"     class="core.uri"     />
+    <component id="core:version" class="core.version" />
     
 </componentPackage>

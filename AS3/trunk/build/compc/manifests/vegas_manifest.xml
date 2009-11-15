@@ -20,33 +20,6 @@
     <component id="vegas.errors:RuntimeError"      class="vegas.errors.RuntimeError"      />
     <component id="vegas.errors:Warning"           class="vegas.errors.Warning"           />
     
-    <!-- vegas.logging -->
-    
-    <component id="vegas.logging:AbstractTarget"  class="vegas.logging.AbstractTarget" />
-    <component id="vegas.logging:ILogger"         class="vegas.logging.ILogger" />
-    <component id="vegas.logging:ITarger"         class="vegas.logging.ITarget" />
-    <component id="vegas.logging:Log"             class="vegas.logging.Log" />
-    <component id="vegas.logging:Logable"         class="vegas.logging.Logable" />
-    <component id="vegas.logging:LogEvent"        class="vegas.logging.LogEvent" />
-    <component id="vegas.logging:LogEventLevel"   class="vegas.logging.LogEventLevel" />
-    <component id="vegas.logging:LogLogger"       class="vegas.logging.LogLogger" />
-    
-    <!-- vegas.logging.errors -->
-    
-    <component id="vegas.logging.errors:InvalidCategoryError" class="vegas.logging.errors.InvalidCategoryError" />
-    <component id="vegas.logging.errors:InvalidFilterError"   class="vegas.logging.errors.InvalidFilterError" />
-    
-    <!-- vegas.logging.targets -->
-
-    <component id="vegas.logging.targets:AirLoggerTarget"     class="vegas.logging.targets.AirLoggerTarget" />
-    <component id="vegas.logging.targets:FireBugTarget"       class="vegas.logging.targets.FireBugTarget" />
-    <component id="vegas.logging.targets:LineFormattedTarget" class="vegas.logging.targets.LineFormattedTarget" />
-    <component id="vegas.logging.targets:LuminicTarget"       class="vegas.logging.targets.LuminicTarget" />
-    <component id="vegas.logging.targets:SOSTarget"           class="vegas.logging.targets.SOSTarget" />
-    <component id="vegas.logging.targets:TextFieldTarget"     class="vegas.logging.targets.TextFieldTarget" />
-    <component id="vegas.logging.targets:TraceTarget"         class="vegas.logging.targets.TraceTarget" />
-    <component id="vegas.logging.targets:XPanelTarget"        class="vegas.logging.targets.XPanelTarget" />
-    
     <!-- vegas.string -->
     
     <component id="vegas.string:HTMLStringFormatter" class="vegas.string.HTMLStringFormatter" />
