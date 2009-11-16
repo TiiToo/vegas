@@ -82,6 +82,8 @@
                 
     </include-namespaces>
     
+    <target-player>10.0.0</target-player>
+    
     <directory>false</directory>
     
     <output>deploy/vegas.swc</output>

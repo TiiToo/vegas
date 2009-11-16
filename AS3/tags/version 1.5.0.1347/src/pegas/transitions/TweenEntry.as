@@ -1,0 +1,187 @@
+﻿/*
+
+  The contents of this file are subject to the Mozilla Public License Version
+  1.1 (the "License"); you may not use this file except in compliance with
+  the License. You may obtain a copy of the License at 
+  
+           http://www.mozilla.org/MPL/ 
+  
+  Software distributed under the License is distributed on an "AS IS" basis,
+  WITHOUT WARRANTY OF ANY KIND, either express or implied. See the License
+  for the specific language governing rights and limitations under the License. 
+  
+  The Original Code is PEGAS Framework.
+  
+  The Initial Developer of the Original Code is
+  ALCARAZ Marc (aka eKameleon)  <ekameleon@gmail.com>.
+  Portions created by the Initial Developer are Copyright (C) 2004-2009
+  the Initial Developer. All Rights Reserved.
+  
+  Contributor(s) :
+  
+*/
+
+package pegas.transitions 
+{
+    import pegas.transitions.easings.Easing;
+    
+    import system.Cloneable;
+    import system.hack;
+    
+    /**
+     * A basic TweenEntry used in the Tween and TweenLite class.
+     */
+    public class TweenEntry implements Cloneable 
+    {
+        use namespace hack ;
+        
+        /**
+         * Creates a new TweenEntry instance.
+         * @param prop the property string value.
+         * @param easing the easing function of the tween entry (use a Function or an Easing object).
+         * @param begin the begin value.
+         * @param finish the finish value.
+         */
+        public function TweenEntry( prop:String=null , easing:*=null , begin:Number=NaN , finish:Number=NaN )
+        {
+            this.begin  = begin  ;
+            this.easing = easing ;
+            this.finish = finish ;
+            this.prop   = prop   ;
+        }
+        
+        /**
+         * Defines the begin value of the value.
+         */
+        public var begin:Number ;
+        
+        /**
+         * Indicates the change value of this tween entry.
+         */
+        public function get change():Number 
+        {
+            return _change ;
+        }
+        
+        /**
+         * Defines the easing method reference of this entry (use a Function or an Easing object).
+         */
+        public function get easing():* 
+        {
+            return _easing as Object ;
+        }
+            
+        /**
+         * @private
+          */
+        public function set easing( f:* ):void 
+        {
+            if ( f is Easing )
+            {
+                _easing = f.ease ;
+            }
+            else if ( f is Function )
+            {
+                _easing = f ;
+            }
+            else
+            {
+                _easing = noEasing ;
+            }
+        }
+        
+        /**
+         * Defines the finish value of the entry.
+         */
+        public function get finish():Number 
+        {
+            return _finish ;
+        }
+        
+        /**
+         * @private
+         */
+        public function set finish(n:Number):void 
+        {
+            _finish = n ;
+            _change = n - begin ;
+            if ( isNaN(_change ) )
+            {
+                _change = 0 ;
+            }
+        }
+        
+        /**
+         * The property of the tween entry.
+         */
+        public var prop:String ;
+        
+        /**
+         * Returns a shallow copy of this entry.
+         * @return a shallow copy of this entry.
+         */
+        public function clone():*
+        {
+            return new TweenEntry(prop, easing, begin, finish);
+        }
+        
+        /**
+         * Returns the current position of this entry with the specified time value and with the specified duration.
+         * @param t The time position of the motion.
+         * @param d The duration value of the motion.
+         * @return the current position of this entry with the specified time value and with the specified duration.
+         */
+        public function getPosition( t:Number , d:Number ):Number 
+        {
+            return _easing( t, begin, _change , d ) ;
+        }
+            
+        /**
+         * The default static easing used by this tween entry if the easing property is empty.
+         */
+        public function noEasing( t:Number, b:Number, c:Number, d:Number ):Number 
+        {
+            return c*t/d + b ;
+        }
+        
+        /**
+         * Sets the position of the tween entry with the specified time value and with the specified duration.
+         * @param t The time position of the motion.
+         * @param d The duration value of the motion.
+         * @return the current position of this entry with the specified time value and with the specified duration.
+         */
+        public function set( t:Number , d:Number ):Number 
+        {
+            return _pos = _easing( t, begin, _change , d ) ;
+        }
+        
+        /**
+         * Returns the String representation of the object.
+         * @return the String representation of the object.
+         */
+        public function toString():String 
+        {
+            return "[TweenEntry" + (prop ? (":" + prop) : "") + "]" ;
+        }
+        
+        /**
+         * @private
+         */
+        hack var _change:Number = 0 ;
+        
+        /**
+         * @private
+         */
+        hack var _finish:Number ;
+        
+        /**
+         * @private
+         */
+        hack var _easing:Function ;
+        
+        /**
+         * @private
+         */
+        private var _pos:Number ;
+    }
+}

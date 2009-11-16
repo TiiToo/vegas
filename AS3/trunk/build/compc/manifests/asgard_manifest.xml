@@ -85,7 +85,6 @@
     <component id="asgard.net:BOM"                 class="asgard.net.BOM"                 />
     <component id="asgard.net:BOMInspector"        class="asgard.net.BOMInspector"        />
     <component id="asgard.net:ECMAObjectLoader"    class="asgard.net.ECMAObjectLoader"    />
-    <component id="asgard.net:FlashVars"           class="asgard.net.FlashVars"           />
     <component id="asgard.net:HTMLEntities"        class="asgard.net.HTMLEntities"        />
     <component id="asgard.net:HTTPHost"            class="asgard.net.HTTPHost"            />
     <component id="asgard.net:INetStreamClient"    class="asgard.net.INetStreamClient"    />

@@ -37,22 +37,27 @@
     <component id="andromeda.i18n:LocaleResource"         class="andromeda.i18n.LocaleResource"         />
     <component id="andromeda.i18n:Localization"           class="andromeda.i18n.Localization"           />
     
+    <!-- andromeda.ioc -->
+    
+    <component id="andromeda.ioc:IObjectDefinition"          class="andromeda.ioc.IObjectDefinition"          />
+    <component id="andromeda.ioc:IObjectDefinitionContainer" class="andromeda.ioc.IObjectDefinitionContainer" />
+    <component id="andromeda.ioc:IObjectFactory"             class="andromeda.ioc.IObjectFactory"             />
+    
     <!-- andromeda.ioc.core -->
     
-    <component id="andromeda.ioc.core:IObjectDefinition"          class="andromeda.ioc.core.IObjectDefinition"          />
-    <component id="andromeda.ioc.core:IObjectDefinitionContainer" class="andromeda.ioc.core.IObjectDefinitionContainer" />
-    <component id="andromeda.ioc.core:MagicReference"             class="andromeda.ioc.core.MagicReference"             />
-    <component id="andromeda.ioc.core:ObjectArgument"             class="andromeda.ioc.core.ObjectArgument"             />
-    <component id="andromeda.ioc.core:ObjectAttribute"            class="andromeda.ioc.core.ObjectAttribute"            />
-    <component id="andromeda.ioc.core:ObjectDefinition"           class="andromeda.ioc.core.ObjectDefinition"           />
-    <component id="andromeda.ioc.core:ObjectDefinitionContainer"  class="andromeda.ioc.core.ObjectDefinitionContainer"  />
-    <component id="andromeda.ioc.core:ObjectListener"             class="andromeda.ioc.core.ObjectListener"             />
-    <component id="andromeda.ioc.core:ObjectMethod"               class="andromeda.ioc.core.ObjectMethod"               />
-    <component id="andromeda.ioc.core:ObjectProperty"             class="andromeda.ioc.core.ObjectProperty"             />
-    <component id="andromeda.ioc.core:ObjectScope"                class="andromeda.ioc.core.ObjectScope"                />
-    <component id="andromeda.ioc.core:TypeAliases"                class="andromeda.ioc.core.TypeAliases"                />
-    <component id="andromeda.ioc.core:TypeExpression"             class="andromeda.ioc.core.TypeExpression"             />
-    <component id="andromeda.ioc.core:TypePolicy"                 class="andromeda.ioc.core.TypePolicy"                 />
+    <component id="andromeda.ioc.core:MagicReference"            class="andromeda.ioc.core.MagicReference"             />
+    <component id="andromeda.ioc.core:ObjectArgument"            class="andromeda.ioc.core.ObjectArgument"             />
+    <component id="andromeda.ioc.core:ObjectAttribute"           class="andromeda.ioc.core.ObjectAttribute"            />
+    <component id="andromeda.ioc.core:ObjectDefinition"          class="andromeda.ioc.core.ObjectDefinition"           />
+    <component id="andromeda.ioc.core:ObjectDefinitionContainer" class="andromeda.ioc.core.ObjectDefinitionContainer"  />
+    <component id="andromeda.ioc.core:ObjectListener"            class="andromeda.ioc.core.ObjectListener"             />
+    <component id="andromeda.ioc.core:ObjectMethod"              class="andromeda.ioc.core.ObjectMethod"               />
+    <component id="andromeda.ioc.core:ObjectOrder"               class="andromeda.ioc.core.ObjectOrder"               />
+    <component id="andromeda.ioc.core:ObjectProperty"            class="andromeda.ioc.core.ObjectProperty"             />
+    <component id="andromeda.ioc.core:ObjectScope"               class="andromeda.ioc.core.ObjectScope"                />
+    <component id="andromeda.ioc.core:TypeAliases"               class="andromeda.ioc.core.TypeAliases"                />
+    <component id="andromeda.ioc.core:TypeExpression"            class="andromeda.ioc.core.TypeExpression"             />
+    <component id="andromeda.ioc.core:TypePolicy"                class="andromeda.ioc.core.TypePolicy"                 />
     
     <!-- andromeda.ioc.evaluators -->
     
@@ -64,7 +69,6 @@
     <!-- andromeda.ioc.factory -->
     
     <component id="andromeda.ioc.factory:ECMAObjectFactory" class="andromeda.ioc.factory.ECMAObjectFactory" /> 
-    <component id="andromeda.ioc.factory:IObjectFactory"    class="andromeda.ioc.factory.IObjectFactory"    />
     <component id="andromeda.ioc.factory:ObjectConfig"      class="andromeda.ioc.factory.ObjectConfig"      />
     <component id="andromeda.ioc.factory:ObjectFactory"     class="andromeda.ioc.factory.ObjectFactory"     />
     
@@ -86,6 +90,7 @@
     <component id="andromeda.ioc.io:ContextResource"       class="andromeda.ioc.io.ContextResource"       />
     <component id="andromeda.ioc.io:ObjectResource"        class="andromeda.ioc.io.ObjectResource"        />
     <component id="andromeda.ioc.io:ObjectResourceBuilder" class="andromeda.ioc.io.ObjectResourceBuilder" />
+    <component id="andromeda.ioc.io:ObjectResourceInfo"    class="andromeda.ioc.io.ObjectResourceInfo"    />
     <component id="andromeda.ioc.io:ObjectResourceModel"   class="andromeda.ioc.io.ObjectResourceModel"   />
     <component id="andromeda.ioc.io:ObjectResourceType"    class="andromeda.ioc.io.ObjectResourceType"    />
     <component id="andromeda.ioc.io:TextResource"          class="andromeda.ioc.io.TextResource"          />
@@ -94,7 +99,6 @@
     <!-- andromeda.ioc.net -->
     
     <component id="andromeda.ioc.net:ObjectFactoryLoader" class="andromeda.ioc.net.ObjectFactoryLoader" />
-    <component id="andromeda.ioc.net:ObjectResourceInfo"  class="andromeda.ioc.net.ObjectResourceInfo"  />
     
     <!-- andromeda.logging -->
     
@@ -111,7 +115,7 @@
     
     <!-- andromeda.model.array -->
     
-    <component id="andromeda.model.array:PageableArrayModelObject" class="andromeda.model.array.PageableArrayModelObject" />    
+    <component id="andromeda.model.array:PageableArrayModelObject" class="andromeda.model.array.PageableArrayModelObject" />
     
     <!-- andromeda.model.collections -->
     
@@ -138,6 +142,7 @@
     <!-- andromeda.net -->
     
     <component id="andromeda.net:EdenLoader"   class="andromeda.net.EdenLoader"   />
+    <component id="andromeda.net:FlashVars"    class="andromeda.net.FlashVars"    />
     <component id="andromeda.net:JSONLoader"   class="andromeda.net.JSONLoader"   />
     <component id="andromeda.net:ParserLoader" class="andromeda.net.ParserLoader" />
     <component id="andromeda.net:XMLLoader"    class="andromeda.net.XMLLoader"    />
@@ -156,9 +161,9 @@
     
     <!-- andromeda.utils.visitor -->
     
-    <component id="andromeda.utils.visitor:CoreVisitable" class="andromeda.utils.visitor.CoreVisitable" />
-    <component id="andromeda.utils.visitor:Visitable"     class="andromeda.utils.visitor.Visitable"     />
-    <component id="andromeda.utils.visitor:Visitor"       class="andromeda.utils.visitor.Visitor"       />
+    <component id="andromeda.utils.visitors:CoreVisitable" class="andromeda.utils.visitors.CoreVisitable" />
+    <component id="andromeda.utils.visitors:Visitable"     class="andromeda.utils.visitors.Visitable"     />
+    <component id="andromeda.utils.visitors:Visitor"       class="andromeda.utils.visitors.Visitor"       />
     
     <!-- andromeda.vo -->
     

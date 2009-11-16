@@ -54,7 +54,7 @@
     <component id="system.comparators:PriorityComparator"   class="system.comparators.PriorityComparator"    />
     <component id="system.comparators:ReverseComparator"    class="system.comparators.ReverseComparator"    />
     <component id="system.comparators:StringComparator"     class="system.comparators.StringComparator"     />
-
+    
     <!-- system.data -->
     
     <component id="system.data:Bag"             class="system.data.Bag" />
@@ -113,7 +113,7 @@
     <component id="system.data.iterators:StringIterator"      class="system.data.iterators.StringIterator"     />
     <component id="system.data.iterators:VectorIterator"      class="system.data.iterators.VectorIterator"     />
     
-    <!-- system.data.lists -->    
+    <!-- system.data.lists -->
     
     <component id="system.data.lists:ArrayList"       class="system.data.lists.ArrayList"       />
     <component id="system.data.lists:LinkedList"      class="system.data.lists.LinkedList"      />
@@ -144,10 +144,10 @@
         
     <!-- system.data.sets -->
     
-    <component id="system.data.sets:ArraySet"     class="system.data.sets.ArraySet" />     
-    <component id="system.data.sets:CoreSet"      class="system.data.sets.CoreSet"  />
-    <component id="system.data.sets:HashSet"      class="system.data.sets.HashSet"  />
-    <component id="system.data.sets:TypedSet"     class="system.data.sets.TypedSet"     /> 
+    <component id="system.data.sets:ArraySet" class="system.data.sets.ArraySet" />
+    <component id="system.data.sets:CoreSet"  class="system.data.sets.CoreSet"  />
+    <component id="system.data.sets:HashSet"  class="system.data.sets.HashSet"  />
+    <component id="system.data.sets:TypedSet" class="system.data.sets.TypedSet" /> 
     
     <!-- system.data.stacks -->
     
@@ -246,7 +246,7 @@
     <component id="system.logging.targets:SocketTarget"        class="system.logging.targets.SocketTarget" />
     <component id="system.logging.targets:SOSTarget"           class="system.logging.targets.SOSTarget" />
     <component id="system.logging.targets:TextFieldTarget"     class="system.logging.targets.TextFieldTarget" />
-    <component id="system.logging.targets:TraceTarget"         class="vegas.logging.targets.TraceTarget" />
+    <component id="system.logging.targets:TraceTarget"         class="system.logging.targets.TraceTarget" />
     
     <!-- system.network -->
     

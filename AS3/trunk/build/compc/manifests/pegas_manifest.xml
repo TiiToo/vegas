@@ -90,7 +90,6 @@
     <component id="pegas.geom:Matrix2"        class="pegas.geom.Matrix2" />
     <component id="pegas.geom:Matrix4"        class="pegas.geom.Matrix4" />
     <component id="pegas.geom:Matrixs"        class="pegas.geom.Matrixs" />
-    <component id="pegas.geom:Matrixs2"       class="pegas.geom.Matrixs2" />
     <component id="pegas.geom:Matrixs4"       class="pegas.geom.Matrixs4" />
     <component id="pegas.geom:Plane"          class="pegas.geom.Plane" />
     <component id="pegas.geom:Planes"         class="pegas.geom.Planes" />
@@ -116,7 +115,7 @@
     <component id="pegas.numeric:Trigo"      class="pegas.numeric.Trigo"  />
     
     <!-- pegas.transitions -->
-
+    
     <component id="pegas.transitions:CoreTransition"   class="pegas.transitions.CoreTransition" />   
     <component id="pegas.transitions:EasingController" class="pegas.transitions.EasingController" />
     <component id="pegas.transitions:EasingPolicy"     class="pegas.transitions.EasingPolicy" />
