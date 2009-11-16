@@ -1,0 +1,966 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" href="../../style.css" type="text/css" media="screen">
+<link rel="stylesheet" href="../../print.css" type="text/css" media="print">
+<link rel="stylesheet" href="../../prettify.css" type="text/css">
+<meta content="CoreActionLoader,system.process.CoreActionLoader,DEFAULT_DELAY,bytesLoaded,bytesTotal,delay,loader,request,timeoutPolicy,_run,clone,close,complete,ioError,notifyFinished,notifyStarted,open,progress,register,run,securityError,setDelay,unregister" name="keywords">
+<title>system.process.CoreActionLoader</title>
+</head>
+<body>
+<script type="text/javascript" language="javascript" src="../../prettify.js"></script><script type="text/javascript" language="javascript" src="../../asdoc.js"></script><script type="text/javascript" language="javascript" src="../../cookies.js"></script><script type="text/javascript" language="javascript">
+<!--
+				asdocTitle = 'CoreActionLoader - VEGAS AS3 Reference';
+				var baseRef = '../../';
+				window.onload = configPage;
+			--></script>
+<table style="display:none" id="titleTable" cellspacing="0" cellpadding="0" class="titleTable">
+<tr>
+<td align="left" class="titleTableTitle">VEGAS AS3 Reference</td><td align="right" class="titleTableTopNav"><a onclick="loadClassListFrame('../../all-classes.html')" href="../../package-summary.html">All&nbsp;Packages</a>&nbsp;|&nbsp;<a onclick="loadClassListFrame('../../all-classes.html')" href="../../class-summary.html">All&nbsp;Classes</a>&nbsp;|&nbsp;<a onclick="loadClassListFrame('../../index-list.html')" href="../../all-index-A.html">Index</a>&nbsp;|&nbsp;<a href="../../index.html?system/process/CoreActionLoader.html&amp;system/process/class-list.html" id="framesLink1">Frames</a><a onclick="parent.location=document.location" href="" style="display:none" id="noFramesLink1">No&nbsp;Frames</a></td><td rowspan="3" align="right" class="titleTableLogo"><img alt="Adobe Logo" title="Adobe Logo" class="logoImage" src="../../images/logo.jpg"></td>
+</tr>
+<tr class="titleTableRow2">
+<td align="left" id="subTitle" class="titleTableSubTitle">Class&nbsp;CoreActionLoader</td><td align="right" id="subNav" class="titleTableSubNav"><a href="#propertySummary">Properties</a>&nbsp;| <a href="#methodSummary">Methods</a>&nbsp;| <a href="#eventSummary">Events</a>&nbsp;| <a href="#constantSummary">Constants</a></td>
+</tr>
+<tr class="titleTableRow3">
+<td colspan="2">&nbsp;</td>
+</tr>
+</table>
+<script type="text/javascript" language="javascript">
+<!--
+if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Class CoreActionLoader"); titleBar_setSubNav(true,true,false,false,true,false,true,false,false,false,false,false,false,false);}
+--></script>
+<div class="MainContent">
+<table cellspacing="0" cellpadding="0" class="classHeaderTable">
+<tr>
+<td class="classHeaderTableLabel">Package</td><td><a onclick="javascript:loadClassListFrame('class-list.html')" href="package-detail.html">system.process</a></td>
+</tr>
+<tr>
+<td class="classHeaderTableLabel">Class</td><td class="classSignature">public class CoreActionLoader</td>
+</tr>
+<tr>
+<td class="classHeaderTableLabel">Inheritance</td><td class="inheritanceList">CoreActionLoader <img class="inheritArrow" alt="Inheritance" title="Inheritance" src="../../images/inherit-arrow.gif"> <a href="CoreAction.html">CoreAction</a> <img class="inheritArrow" alt="Inheritance" title="Inheritance" src="../../images/inherit-arrow.gif"> <a href="Task.html">Task</a> <img class="inheritArrow" alt="Inheritance" title="Inheritance" src="../../images/inherit-arrow.gif"> <a href="../events/CoreEventDispatcher.html">CoreEventDispatcher</a></td>
+</tr>
+<tr>
+<td class="classHeaderTableLabel">Subclasses</td><td><a href="../process/ActionLoader.html">ActionLoader</a>, <a href="../process/ActionURLLoader.html">ActionURLLoader</a>, <a href="../process/ActionURLStream.html">ActionURLStream</a>, <a href="../../asgard/media/SoundLoader.html">SoundLoader</a></td>
+</tr>
+</table>
+<p></p>
+     This core command object run a "loader" object and notify ActionEvent during a load process.
+     <p></p>
+<br>
+<hr>
+</div>
+<a name="propertySummary"></a>
+<div class="summarySection">
+<div class="summaryTableTitle">Public Properties</div>
+<div class="showHideLinks">
+<div class="hideInheritedProperty" id="hideInheritedProperty">
+<a onclick="javascript:setInheritedVisible(false,'Property');" href="#propertySummary" class="showHideLink"><img src="../../images/expanded.gif" class="showHideLinkImage"> Hide Inherited Public Properties</a>
+</div>
+<div class="showInheritedProperty" id="showInheritedProperty">
+<a onclick="javascript:setInheritedVisible(true,'Property');" href="#propertySummary" class="showHideLink"><img src="../../images/collapsed.gif" class="showHideLinkImage"> Show Inherited Public Properties</a>
+</div>
+</div>
+<table id="summaryTableProperty" class="summaryTable " cellpadding="3" cellspacing="0">
+<tr>
+<th>&nbsp;</th><th colspan="2">Property</th><th class="summaryTableOwnerCol">Defined&nbsp;by</th>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#bytesLoaded">bytesLoaded</a> : uint<div class="summaryTableDescription">[read-only]
+         Indicates the number of bytes that have been loaded thus far during the load operation.</div>
+</td><td class="summaryTableOwnerCol">CoreActionLoader</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#bytesTotal">bytesTotal</a> : uint<div class="summaryTableDescription">[read-only]
+         Indicates the total number of bytes in the downloaded data.</div>
+</td><td class="summaryTableOwnerCol">CoreActionLoader</td>
+</tr>
+<tr class="hideInheritedProperty">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol"><a class="signatureLink" href="../events/CoreEventDispatcher.html#channel">channel</a> : String<div class="summaryTableDescription">
+         Indicates the channel of this dispatcher if this instance is global.</div>
+</td><td class="summaryTableOwnerCol"><a href="../events/CoreEventDispatcher.html">CoreEventDispatcher</a></td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#delay">delay</a> : uint<div class="summaryTableDescription">[read-only]
+         Indicates the timeout interval duration.</div>
+</td><td class="summaryTableOwnerCol">CoreActionLoader</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#loader">loader</a> : IEventDispatcher<div class="summaryTableDescription">
+         Indicates the loader object of this process.</div>
+</td><td class="summaryTableOwnerCol">CoreActionLoader</td>
+</tr>
+<tr class="hideInheritedProperty">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol"><a class="signatureLink" href="Task.html#logger">logger</a> : <a href="../logging/Logger.html">Logger</a>
+<div class="summaryTableDescription">
+         Determinates the internal <code class="prettyprint">Logger</code> reference of this <code class="prettyprint">Loggable</code> object.</div>
+</td><td class="summaryTableOwnerCol"><a href="Task.html">Task</a></td>
+</tr>
+<tr class="hideInheritedProperty">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol"><a class="signatureLink" href="CoreAction.html#looping">looping</a> : Boolean<div class="summaryTableDescription">
+         The flag to determinate if the Action object is looped.</div>
+</td><td class="summaryTableOwnerCol"><a href="CoreAction.html">CoreAction</a></td>
+</tr>
+<tr class="hideInheritedProperty">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol"><a class="signatureLink" href="Task.html#parent">parent</a> : <a href="../process/Action.html">Action</a>
+<div class="summaryTableDescription">
+         Determinates the parent Action reference of the current Action.</div>
+</td><td class="summaryTableOwnerCol"><a href="Task.html">Task</a></td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#request">request</a> : URLRequest<div class="summaryTableDescription">
+         Indicates the URLRequest object who captures all of the information in a single HTTP request.</div>
+</td><td class="summaryTableOwnerCol">CoreActionLoader</td>
+</tr>
+<tr class="hideInheritedProperty">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol"><a class="signatureLink" href="Task.html#running">running</a> : Boolean<div class="summaryTableDescription">
+         Indicates <code class="prettyprint">true</code> if the process is in progress.</div>
+</td><td class="summaryTableOwnerCol"><a href="Task.html">Task</a></td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#timeoutPolicy">timeoutPolicy</a> : <a href="../process/TimeoutPolicy.html">TimeoutPolicy</a>
+<div class="summaryTableDescription">
+         Indicates the timeout policy of the loader.</div>
+</td><td class="summaryTableOwnerCol">CoreActionLoader</td>
+</tr>
+</table>
+</div>
+<a name="methodSummary"></a>
+<div class="summarySection">
+<div class="summaryTableTitle">Public Methods</div>
+<div class="showHideLinks">
+<div class="hideInheritedMethod" id="hideInheritedMethod">
+<a onclick="javascript:setInheritedVisible(false,'Method');" href="#methodSummary" class="showHideLink"><img src="../../images/expanded.gif" class="showHideLinkImage"> Hide Inherited Public Methods</a>
+</div>
+<div class="showInheritedMethod" id="showInheritedMethod">
+<a onclick="javascript:setInheritedVisible(true,'Method');" href="#methodSummary" class="showHideLink"><img src="../../images/collapsed.gif" class="showHideLinkImage"> Show Inherited Public Methods</a>
+</div>
+</div>
+<table id="summaryTableMethod" class="summaryTable " cellpadding="3" cellspacing="0">
+<tr>
+<th>&nbsp;</th><th colspan="2">Method</th><th class="summaryTableOwnerCol">Defined&nbsp;by</th>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#CoreActionLoader()">CoreActionLoader</a>(loader:IEventDispatcher = null, global:Boolean = false, channel:String = null)</div>
+<div class="summaryTableDescription">
+         Creates a new CoreActionLoader instance.</div>
+</td><td class="summaryTableOwnerCol">CoreActionLoader</td>
+</tr>
+<tr class="hideInheritedMethod">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="../events/CoreEventDispatcher.html#addEventListener()">addEventListener</a>(type:String, listener:Function, useCapture:Boolean = false, priority:int = 0.0, useWeakReference:Boolean = false):void</div>
+<div class="summaryTableDescription">
+         Allows the registration of event listeners on the event target.</div>
+</td><td class="summaryTableOwnerCol"><a href="../events/CoreEventDispatcher.html">CoreEventDispatcher</a></td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#clone()">clone</a>():*</div>
+<div class="summaryTableDescription">
+         Returns a shallow copy of this object.</div>
+</td><td class="summaryTableOwnerCol">CoreActionLoader</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#close()">close</a>():void</div>
+<div class="summaryTableDescription">
+         Cancels a load() method operation that is currently in progress for the Loader instance.</div>
+</td><td class="summaryTableOwnerCol">CoreActionLoader</td>
+</tr>
+<tr class="hideInheritedMethod">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="../events/CoreEventDispatcher.html#dispatchEvent()">dispatchEvent</a>(event:Event):Boolean</div>
+<div class="summaryTableDescription">
+         Dispatches an event into the event flow.</div>
+</td><td class="summaryTableOwnerCol"><a href="../events/CoreEventDispatcher.html">CoreEventDispatcher</a></td>
+</tr>
+<tr class="hideInheritedMethod">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="../events/CoreEventDispatcher.html#getEventDispatcher()">getEventDispatcher</a>():<a href="../events/EventDispatcher.html">EventDispatcher</a>
+</div>
+<div class="summaryTableDescription">
+         Returns the internal <code class="prettyprint">system.events.EventDispatcher</code> reference.</div>
+</td><td class="summaryTableOwnerCol"><a href="../events/CoreEventDispatcher.html">CoreEventDispatcher</a></td>
+</tr>
+<tr class="hideInheritedMethod">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="../events/CoreEventDispatcher.html#hasEventListener()">hasEventListener</a>(type:String):Boolean</div>
+<div class="summaryTableDescription">
+         Checks whether the EventDispatcher object has any listeners registered for a specific type of event.</div>
+</td><td class="summaryTableOwnerCol"><a href="../events/CoreEventDispatcher.html">CoreEventDispatcher</a></td>
+</tr>
+<tr class="hideInheritedMethod">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="../events/CoreEventDispatcher.html#isGlobal()">isGlobal</a>():Boolean</div>
+<div class="summaryTableDescription">
+         Indicates if the dispatcher use a global event flow.</div>
+</td><td class="summaryTableOwnerCol"><a href="../events/CoreEventDispatcher.html">CoreEventDispatcher</a></td>
+</tr>
+<tr class="hideInheritedMethod">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="../events/CoreEventDispatcher.html#isLocked()">isLocked</a>():Boolean</div>
+<div class="summaryTableDescription">
+         Returns <code class="prettyprint">true</code> if the object is locked.</div>
+</td><td class="summaryTableOwnerCol"><a href="../events/CoreEventDispatcher.html">CoreEventDispatcher</a></td>
+</tr>
+<tr class="hideInheritedMethod">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="../events/CoreEventDispatcher.html#lock()">lock</a>():void</div>
+<div class="summaryTableDescription">
+         Locks the object.</div>
+</td><td class="summaryTableOwnerCol"><a href="../events/CoreEventDispatcher.html">CoreEventDispatcher</a></td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#notifyFinished()">notifyFinished</a>():void</div>
+<div class="summaryTableDescription">
+         Notify an ActionEvent when the process is finished.</div>
+</td><td class="summaryTableOwnerCol">CoreActionLoader</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#notifyStarted()">notifyStarted</a>():void</div>
+<div class="summaryTableDescription">
+         Notify an ActionEvent when the process is started.</div>
+</td><td class="summaryTableOwnerCol">CoreActionLoader</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#register()">register</a>(dispatcher:IEventDispatcher):void</div>
+<div class="summaryTableDescription">
+         Register the loader object.</div>
+</td><td class="summaryTableOwnerCol">CoreActionLoader</td>
+</tr>
+<tr class="hideInheritedMethod">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="../events/CoreEventDispatcher.html#registerEventListener()">registerEventListener</a>(type:String, listener:Boolean, useCapture:int = false, priority:Boolean = 0, useWeakReference:* = false):void</div>
+<div class="summaryTableDescription">
+         Allows the registration of event listeners on the event target (Function or EventListener).</div>
+</td><td class="summaryTableOwnerCol"><a href="../events/CoreEventDispatcher.html">CoreEventDispatcher</a></td>
+</tr>
+<tr class="hideInheritedMethod">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="../events/CoreEventDispatcher.html#removeEventListener()">removeEventListener</a>(type:String, listener:Function, useCapture:Boolean = false):void</div>
+<div class="summaryTableDescription"> 
+         Removes a listener from the EventDispatcher object.</div>
+</td><td class="summaryTableOwnerCol"><a href="../events/CoreEventDispatcher.html">CoreEventDispatcher</a></td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#run()">run</a>(... arguments):void</div>
+<div class="summaryTableDescription">
+         Run the process.</div>
+</td><td class="summaryTableOwnerCol">CoreActionLoader</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#setDelay()">setDelay</a>(time:uint, useSeconds:Boolean = false):void</div>
+<div class="summaryTableDescription">
+         Sets the timeout interval duration.</div>
+</td><td class="summaryTableOwnerCol">CoreActionLoader</td>
+</tr>
+<tr class="hideInheritedMethod">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="../events/CoreEventDispatcher.html#setEventDispatcher()">setEventDispatcher</a>(dispatcher:<a href="../events/EventDispatcher.html">EventDispatcher</a>):void</div>
+<div class="summaryTableDescription">
+         Sets the internal <code class="prettyprint">EventDispatcher</code> reference.</div>
+</td><td class="summaryTableOwnerCol"><a href="../events/CoreEventDispatcher.html">CoreEventDispatcher</a></td>
+</tr>
+<tr class="hideInheritedMethod">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="../events/CoreEventDispatcher.html#setGlobal()">setGlobal</a>(flag:Boolean = false, channel:String = null):void</div>
+<div class="summaryTableDescription">
+         Sets if the instance use a global <code class="prettyprint">system.events.EventDispatcher</code> to dispatch this events, if the <code class="prettyprint">flag</code> value is <code class="prettyprint">false</code> the instance use a local EventDispatcher.</div>
+</td><td class="summaryTableOwnerCol"><a href="../events/CoreEventDispatcher.html">CoreEventDispatcher</a></td>
+</tr>
+<tr class="hideInheritedMethod">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="../events/CoreEventDispatcher.html#unlock()">unlock</a>():void</div>
+<div class="summaryTableDescription">
+         Unlocks the display.</div>
+</td><td class="summaryTableOwnerCol"><a href="../events/CoreEventDispatcher.html">CoreEventDispatcher</a></td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#unregister()">unregister</a>(dispatcher:IEventDispatcher):void</div>
+<div class="summaryTableDescription">
+         Unregisters the loader object.</div>
+</td><td class="summaryTableOwnerCol">CoreActionLoader</td>
+</tr>
+<tr class="hideInheritedMethod">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="../events/CoreEventDispatcher.html#unregisterEventListener()">unregisterEventListener</a>(type:String, listener:Boolean, useCapture:* = false):void</div>
+<div class="summaryTableDescription"> 
+         Removes a listener (Function or EventListener object) from the EventDispatcher object.</div>
+</td><td class="summaryTableOwnerCol"><a href="../events/CoreEventDispatcher.html">CoreEventDispatcher</a></td>
+</tr>
+<tr class="hideInheritedMethod">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="../events/CoreEventDispatcher.html#willTrigger()">willTrigger</a>(type:String):Boolean</div>
+<div class="summaryTableDescription">
+         Checks whether an event listener is registered with this EventDispatcher object or any of its ancestors for the specified event type.</div>
+</td><td class="summaryTableOwnerCol"><a href="../events/CoreEventDispatcher.html">CoreEventDispatcher</a></td>
+</tr>
+</table>
+</div>
+<a name="protectedMethodSummary"></a>
+<div class="summarySection">
+<div class="summaryTableTitle">Protected Methods</div>
+<div class="showHideLinks">
+<div class="hideInheritedProtectedMethod" id="hideInheritedProtectedMethod">
+<a onclick="javascript:setInheritedVisible(false,'ProtectedMethod');" href="#protectedMethodSummary" class="showHideLink"><img src="../../images/expanded.gif" class="showHideLinkImage"> Hide Inherited Protected Methods</a>
+</div>
+<div class="showInheritedProtectedMethod" id="showInheritedProtectedMethod">
+<a onclick="javascript:setInheritedVisible(true,'ProtectedMethod');" href="#protectedMethodSummary" class="showHideLink"><img src="../../images/collapsed.gif" class="showHideLinkImage"> Show Inherited Protected Methods</a>
+</div>
+</div>
+<table id="summaryTableProtectedMethod" class="summaryTable " cellpadding="3" cellspacing="0">
+<tr>
+<th>&nbsp;</th><th colspan="2">Method</th><th class="summaryTableOwnerCol">Defined&nbsp;by</th>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#_run()">_run</a>():void</div>
+<div class="summaryTableDescription">
+         This protected method contains the invokation of the load method of the current loader of this process.</div>
+</td><td class="summaryTableOwnerCol">CoreActionLoader</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#complete()">complete</a>(e:Event):void</div>
+<div class="summaryTableDescription">
+         Invoked when the loading is complete.</div>
+</td><td class="summaryTableOwnerCol">CoreActionLoader</td>
+</tr>
+<tr class="hideInheritedProtectedMethod">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="../events/CoreEventDispatcher.html#initEventDispatcher()">initEventDispatcher</a>():<a href="../events/EventDispatcher.html">EventDispatcher</a>
+</div>
+<div class="summaryTableDescription">
+         Creates and returns the internal <code class="prettyprint">EventDispatcher</code> reference (this method is invoked in the constructor).</div>
+</td><td class="summaryTableOwnerCol"><a href="../events/CoreEventDispatcher.html">CoreEventDispatcher</a></td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#ioError()">ioError</a>(e:IOErrorEvent):void</div>
+<div class="summaryTableDescription">
+         Dispatch IOErrorEvent if a call to load() results in a fatal error that terminates the download.</div>
+</td><td class="summaryTableOwnerCol">CoreActionLoader</td>
+</tr>
+<tr class="hideInheritedProtectedMethod">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="CoreAction.html#notifyChanged()">notifyChanged</a>():void</div>
+<div class="summaryTableDescription">
+         Notify an ActionEvent when the process is changed.</div>
+</td><td class="summaryTableOwnerCol"><a href="CoreAction.html">CoreAction</a></td>
+</tr>
+<tr class="hideInheritedProtectedMethod">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="CoreAction.html#notifyCleared()">notifyCleared</a>():void</div>
+<div class="summaryTableDescription">
+         Notify an ActionEvent when the process is cleared.</div>
+</td><td class="summaryTableOwnerCol"><a href="CoreAction.html">CoreAction</a></td>
+</tr>
+<tr class="hideInheritedProtectedMethod">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="CoreAction.html#notifyInfo()">notifyInfo</a>(info:*):void</div>
+<div class="summaryTableDescription">
+         Notify an ActionEvent when the process info is changed.</div>
+</td><td class="summaryTableOwnerCol"><a href="CoreAction.html">CoreAction</a></td>
+</tr>
+<tr class="hideInheritedProtectedMethod">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="CoreAction.html#notifyLooped()">notifyLooped</a>():void</div>
+<div class="summaryTableDescription">
+         Notify an ActionEvent when the process is looped.</div>
+</td><td class="summaryTableOwnerCol"><a href="CoreAction.html">CoreAction</a></td>
+</tr>
+<tr class="hideInheritedProtectedMethod">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="CoreAction.html#notifyProgress()">notifyProgress</a>():void</div>
+<div class="summaryTableDescription">
+         Notify an ActionEvent when the process is in progress.</div>
+</td><td class="summaryTableOwnerCol"><a href="CoreAction.html">CoreAction</a></td>
+</tr>
+<tr class="hideInheritedProtectedMethod">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="CoreAction.html#notifyResumed()">notifyResumed</a>():void</div>
+<div class="summaryTableDescription">
+         Notify an ActionEvent when the process is resumed.</div>
+</td><td class="summaryTableOwnerCol"><a href="CoreAction.html">CoreAction</a></td>
+</tr>
+<tr class="hideInheritedProtectedMethod">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="CoreAction.html#notifyStopped()">notifyStopped</a>():void</div>
+<div class="summaryTableDescription">
+         Notify an ActionEvent when the process is stopped.</div>
+</td><td class="summaryTableOwnerCol"><a href="CoreAction.html">CoreAction</a></td>
+</tr>
+<tr class="hideInheritedProtectedMethod">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="CoreAction.html#notifyTimeOut()">notifyTimeOut</a>():void</div>
+<div class="summaryTableDescription">
+         Notify an ActionEvent when the process is out of time.</div>
+</td><td class="summaryTableOwnerCol"><a href="CoreAction.html">CoreAction</a></td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#open()">open</a>(e:Event):void</div>
+<div class="summaryTableDescription">
+         Dispatch Event.OPEN event when the download operation commences following a call to the load() method.</div>
+</td><td class="summaryTableOwnerCol">CoreActionLoader</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#progress()">progress</a>(e:ProgressEvent):void</div>
+<div class="summaryTableDescription">
+         Invoked when the loading is in complete.</div>
+</td><td class="summaryTableOwnerCol">CoreActionLoader</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#securityError()">securityError</a>(e:SecurityErrorEvent):void</div>
+<div class="summaryTableDescription">
+         Dispatch SecurityErrorEvent if a call to load() attempts to load data from a server outside the security sandbox.</div>
+</td><td class="summaryTableOwnerCol">CoreActionLoader</td>
+</tr>
+<tr class="hideInheritedProtectedMethod">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="Task.html#setRunning()">setRunning</a>(b:Boolean):void</div>
+<div class="summaryTableDescription">
+         Changes the running property value.</div>
+</td><td class="summaryTableOwnerCol"><a href="Task.html">Task</a></td>
+</tr>
+</table>
+</div>
+<a name="eventSummary"></a>
+<div class="summarySection">
+<div class="summaryTableTitle">Events</div>
+<div class="showHideLinks">
+<div class="hideInheritedEvent" id="hideInheritedEvent">
+<a onclick="javascript:setInheritedVisible(false,'Event');" href="#eventSummary" class="showHideLink"><img src="../../images/expanded.gif" class="showHideLinkImage"> Hide Inherited Events</a>
+</div>
+<div class="showInheritedEvent" id="showInheritedEvent">
+<a onclick="javascript:setInheritedVisible(true,'Event');" href="#eventSummary" class="showHideLink"><img src="../../images/collapsed.gif" class="showHideLinkImage"> Show Inherited Events</a>
+</div>
+</div>
+<table id="summaryTableEvent" class="summaryTable hideInheritedEvent" cellpadding="3" cellspacing="0">
+<tr>
+<th>&nbsp;</th><th colspan="2">Event</th><th>Summary</th><th class="summaryTableOwnerCol">Defined&nbsp;by</th>
+</tr>
+<tr class="hideInheritedEvent">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="CoreAction.html#event:change">change</a>
+</div>
+</td><td class="summaryTableDescription summaryTableCol">
+     Dispatched when a process is changed.</td><td class="summaryTableOwnerCol"><a href="CoreAction.html">CoreAction</a></td>
+</tr>
+<tr class="hideInheritedEvent">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="CoreAction.html#event:clear">clear</a>
+</div>
+</td><td class="summaryTableDescription summaryTableCol">
+     Dispatched when a process is cleared.</td><td class="summaryTableOwnerCol"><a href="CoreAction.html">CoreAction</a></td>
+</tr>
+<tr class="hideInheritedEvent">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="Task.html#event:finish">finish</a>
+</div>
+</td><td class="summaryTableDescription summaryTableCol">
+     Dispatched when a process is finished.</td><td class="summaryTableOwnerCol"><a href="Task.html">Task</a></td>
+</tr>
+<tr class="hideInheritedEvent">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="CoreAction.html#event:info">info</a>
+</div>
+</td><td class="summaryTableDescription summaryTableCol">
+     Dispatched when an info process is running.</td><td class="summaryTableOwnerCol"><a href="CoreAction.html">CoreAction</a></td>
+</tr>
+<tr class="hideInheritedEvent">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="CoreAction.html#event:loop">loop</a>
+</div>
+</td><td class="summaryTableDescription summaryTableCol">
+     Dispatched when a process is looped.</td><td class="summaryTableOwnerCol"><a href="CoreAction.html">CoreAction</a></td>
+</tr>
+<tr class="hideInheritedEvent">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="CoreAction.html#event:pause">pause</a>
+</div>
+</td><td class="summaryTableDescription summaryTableCol">
+     Dispatched when a process is paused.</td><td class="summaryTableOwnerCol"><a href="CoreAction.html">CoreAction</a></td>
+</tr>
+<tr class="hideInheritedEvent">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="CoreAction.html#event:progress">progress</a>
+</div>
+</td><td class="summaryTableDescription summaryTableCol">
+     Dispatched when a process is in progress.</td><td class="summaryTableOwnerCol"><a href="CoreAction.html">CoreAction</a></td>
+</tr>
+<tr class="hideInheritedEvent">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="CoreAction.html#event:resume">resume</a>
+</div>
+</td><td class="summaryTableDescription summaryTableCol">
+     Dispatched when a process is resumed.</td><td class="summaryTableOwnerCol"><a href="CoreAction.html">CoreAction</a></td>
+</tr>
+<tr class="hideInheritedEvent">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="Task.html#event:start">start</a>
+</div>
+</td><td class="summaryTableDescription summaryTableCol">
+     Dispatched when a process is started.</td><td class="summaryTableOwnerCol"><a href="Task.html">Task</a></td>
+</tr>
+<tr class="hideInheritedEvent">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="CoreAction.html#event:stop">stop</a>
+</div>
+</td><td class="summaryTableDescription summaryTableCol">
+     Dispatched when a process is stopped.</td><td class="summaryTableOwnerCol"><a href="CoreAction.html">CoreAction</a></td>
+</tr>
+<tr class="hideInheritedEvent">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="CoreAction.html#event:timeout">timeout</a>
+</div>
+</td><td class="summaryTableDescription summaryTableCol">
+     Dispatched when a process is out of time.</td><td class="summaryTableOwnerCol"><a href="CoreAction.html">CoreAction</a></td>
+</tr>
+</table>
+</div>
+<a name="constantSummary"></a>
+<div class="summarySection">
+<div class="summaryTableTitle">Public Constants</div>
+<table id="summaryTableConstant" class="summaryTable " cellpadding="3" cellspacing="0">
+<tr>
+<th>&nbsp;</th><th colspan="2">Constant</th><th class="summaryTableOwnerCol">Defined&nbsp;by</th>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#DEFAULT_DELAY">DEFAULT_DELAY</a> : uint = 8000<div class="summaryTableDescription">[static]
+         The default value of the delay before the ActionEvent.TIMEOUT event.</div>
+</td><td class="summaryTableOwnerCol">CoreActionLoader</td>
+</tr>
+</table>
+</div>
+<script type="text/javascript" language="javascript">
+<!--
+showHideInherited();
+--></script>
+<div class="MainContent">
+<a name="propertyDetail"></a>
+<div class="detailSectionHeader">Property detail</div>
+<a name="bytesLoaded"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">bytesLoaded</td><td class="detailHeaderType">property</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>bytesLoaded:uint</code>&nbsp;&nbsp;[read-only]<p>
+         Indicates the number of bytes that have been loaded thus far during the load operation.
+         </p><span class="label">Implementation</span>
+<br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function get bytesLoaded():uint</code>
+<br>
+</div>
+<a name="bytesTotal"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">bytesTotal</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>bytesTotal:uint</code>&nbsp;&nbsp;[read-only]<p>
+         Indicates the total number of bytes in the downloaded data.
+         </p><span class="label">Implementation</span>
+<br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function get bytesTotal():uint</code>
+<br>
+</div>
+<a name="delay"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">delay</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>delay:uint</code>&nbsp;&nbsp;[read-only]<p>
+         Indicates the timeout interval duration.
+         </p><span class="label">Implementation</span>
+<br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function get delay():uint</code>
+<br>
+</div>
+<a name="loader"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">loader</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>loader:IEventDispatcher</code>&nbsp;&nbsp;[read-write]<p>
+         Indicates the loader object of this process.
+         </p><span class="label">Implementation</span>
+<br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function get loader():IEventDispatcher</code>
+<br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function set loader(value:IEventDispatcher):void</code>
+<br>
+</div>
+<a name="request"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">request</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>request:URLRequest</code>&nbsp;&nbsp;[read-write]<p>
+         Indicates the URLRequest object who captures all of the information in a single HTTP request.
+         </p><span class="label">Implementation</span>
+<br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function get request():URLRequest</code>
+<br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function set request(value:URLRequest):void</code>
+<br>
+</div>
+<a name="timeoutPolicy"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">timeoutPolicy</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>timeoutPolicy:<a href="../process/TimeoutPolicy.html">TimeoutPolicy</a></code>&nbsp;&nbsp;[read-write]<p>
+         Indicates the timeout policy of the loader.
+         </p><span class="label">Implementation</span>
+<br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function get timeoutPolicy():<a href="../process/TimeoutPolicy.html">TimeoutPolicy</a></code>
+<br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function set timeoutPolicy(value:<a href="../process/TimeoutPolicy.html">TimeoutPolicy</a>):void</code>
+<br>
+<p>
+<span class="label">See also</span>
+</p>
+<div class="seeAlso">
+<a href="TimeoutPolicy.html" target="">TimeoutPolicy</a>
+</div>
+</div>
+<a name="constructorDetail"></a>
+<div class="detailSectionHeader">Constructor detail</div>
+<a name="CoreActionLoader()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">CoreActionLoader</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">constructor</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public function CoreActionLoader(loader:IEventDispatcher = null, global:Boolean = false, channel:String = null)</code><p>
+         Creates a new CoreActionLoader instance.
+         </p><span class="label">Parameters</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td><code><span class="label">loader</span>:IEventDispatcher</code> (default = <code>null</code>)<code></code> &mdash; The loader reference.
+         </td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><code><span class="label">global</span>:Boolean</code> (default = <code>false</code>)<code></code> &mdash; the flag to use a global event flow or a local event flow.
+         </td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><code><span class="label">channel</span>:String</code> (default = <code>null</code>)<code></code> &mdash; the name of the global event flow if the <code class="prettyprint">global</code> argument is <code class="prettyprint">true</code>.
+         </td>
+</tr>
+</table>
+</div>
+<a name="methodDetail"></a>
+<div class="detailSectionHeader">Method detail</div>
+<a name="_run()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">_run</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>protected function _run():void</code><p>
+         This protected method contains the invokation of the load method of the current loader of this process.
+         </p></div>
+<a name="clone()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">clone</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public override function clone():*</code><p>
+         Returns a shallow copy of this object.
+         </p><p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><code>*</code> &mdash; a shallow copy of this object.
+         </td>
+</tr>
+</table>
+</div>
+<a name="close()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">close</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public function close():void</code><p>
+         Cancels a load() method operation that is currently in progress for the Loader instance.
+         </p></div>
+<a name="complete()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">complete</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>protected function complete(e:Event):void</code><p>
+         Invoked when the loading is complete.
+         </p><span class="label">Parameters</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td><code><span class="label">e</span>:Event</code></td>
+</tr>
+</table>
+</div>
+<a name="ioError()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">ioError</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>protected function ioError(e:IOErrorEvent):void</code><p>
+         Dispatch IOErrorEvent if a call to load() results in a fatal error that terminates the download.
+         </p><span class="label">Parameters</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td><code><span class="label">e</span>:IOErrorEvent</code></td>
+</tr>
+</table>
+</div>
+<a name="notifyFinished()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">notifyFinished</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public override function notifyFinished():void</code><p>
+         Notify an ActionEvent when the process is finished.
+         </p></div>
+<a name="notifyStarted()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">notifyStarted</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public override function notifyStarted():void</code><p>
+         Notify an ActionEvent when the process is started.
+         </p></div>
+<a name="open()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">open</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>protected function open(e:Event):void</code><p>
+         Dispatch Event.OPEN event when the download operation commences following a call to the load() method.
+         </p><span class="label">Parameters</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td><code><span class="label">e</span>:Event</code></td>
+</tr>
+</table>
+</div>
+<a name="progress()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">progress</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>protected function progress(e:ProgressEvent):void</code><p>
+         Invoked when the loading is in complete.
+         </p><span class="label">Parameters</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td><code><span class="label">e</span>:ProgressEvent</code></td>
+</tr>
+</table>
+</div>
+<a name="register()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">register</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public function register(dispatcher:IEventDispatcher):void</code><p>
+         Register the loader object.
+         </p><span class="label">Parameters</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td><code><span class="label">dispatcher</span>:IEventDispatcher</code></td>
+</tr>
+</table>
+</div>
+<a name="run()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">run</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public override function run(... arguments):void</code><p>
+         Run the process.
+         </p><span class="label">Parameters</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td><code>... <span class="label">arguments</span></code></td>
+</tr>
+</table>
+</div>
+<a name="securityError()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">securityError</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>protected function securityError(e:SecurityErrorEvent):void</code><p>
+         Dispatch SecurityErrorEvent if a call to load() attempts to load data from a server outside the security sandbox. 
+         </p><span class="label">Parameters</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td><code><span class="label">e</span>:SecurityErrorEvent</code></td>
+</tr>
+</table>
+</div>
+<a name="setDelay()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">setDelay</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public function setDelay(time:uint, useSeconds:Boolean = false):void</code><p>
+         Sets the timeout interval duration.
+         </p><span class="label">Parameters</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td><code><span class="label">time</span>:uint</code> &mdash; The time interval of the timeout limit.
+         </td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><code><span class="label">useSeconds</span>:Boolean</code> (default = <code>false</code>)<code></code> &mdash; This optional boolean indicates if the time parameter is in seconds or milliseconds.
+         </td>
+</tr>
+</table>
+</div>
+<a name="unregister()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">unregister</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public function unregister(dispatcher:IEventDispatcher):void</code><p>
+         Unregisters the loader object.
+         </p><span class="label">Parameters</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td><code><span class="label">dispatcher</span>:IEventDispatcher</code></td>
+</tr>
+</table>
+</div>
+<a name="constantDetail"></a>
+<div class="detailSectionHeader">Constant detail</div>
+<a name="DEFAULT_DELAY"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">DEFAULT_DELAY</td><td class="detailHeaderType">constant</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public static const DEFAULT_DELAY:uint = 8000</code><p>
+         The default value of the delay before the ActionEvent.TIMEOUT event.
+         </p></div>
+<br>
+<br>
+<hr>
+<br>
+<p></p>
+<center class="copyright"> 
+</center>
+</div>
+</body>
+</html>
+<!-- -->

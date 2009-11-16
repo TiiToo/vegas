@@ -1,0 +1,303 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" href="../../style.css" type="text/css" media="screen">
+<link rel="stylesheet" href="../../print.css" type="text/css" media="print">
+<link rel="stylesheet" href="../../prettify.css" type="text/css">
+<meta content="KeyInspector,asgard.ui.KeyInspector,target,clear,isDown,isUp" name="keywords">
+<title>asgard.ui.KeyInspector</title>
+</head>
+<body>
+<script type="text/javascript" language="javascript" src="../../prettify.js"></script><script type="text/javascript" language="javascript" src="../../asdoc.js"></script><script type="text/javascript" language="javascript" src="../../cookies.js"></script><script type="text/javascript" language="javascript">
+<!--
+				asdocTitle = 'KeyInspector - VEGAS AS3 Reference';
+				var baseRef = '../../';
+				window.onload = configPage;
+			--></script>
+<table style="display:none" id="titleTable" cellspacing="0" cellpadding="0" class="titleTable">
+<tr>
+<td align="left" class="titleTableTitle">VEGAS AS3 Reference</td><td align="right" class="titleTableTopNav"><a onclick="loadClassListFrame('../../all-classes.html')" href="../../package-summary.html">All&nbsp;Packages</a>&nbsp;|&nbsp;<a onclick="loadClassListFrame('../../all-classes.html')" href="../../class-summary.html">All&nbsp;Classes</a>&nbsp;|&nbsp;<a onclick="loadClassListFrame('../../index-list.html')" href="../../all-index-A.html">Index</a>&nbsp;|&nbsp;<a href="../../index.html?asgard/ui/KeyInspector.html&amp;asgard/ui/class-list.html" id="framesLink1">Frames</a><a onclick="parent.location=document.location" href="" style="display:none" id="noFramesLink1">No&nbsp;Frames</a></td><td rowspan="3" align="right" class="titleTableLogo"><img alt="Adobe Logo" title="Adobe Logo" class="logoImage" src="../../images/logo.jpg"></td>
+</tr>
+<tr class="titleTableRow2">
+<td align="left" id="subTitle" class="titleTableSubTitle">Class&nbsp;KeyInspector</td><td align="right" id="subNav" class="titleTableSubNav"><a href="#propertySummary">Properties</a>&nbsp;| <a href="#methodSummary">Methods</a></td>
+</tr>
+<tr class="titleTableRow3">
+<td colspan="2">&nbsp;</td>
+</tr>
+</table>
+<script type="text/javascript" language="javascript">
+<!--
+if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Class KeyInspector"); titleBar_setSubNav(false,true,false,false,false,false,true,false,false,false,false,false,false,false);}
+--></script>
+<div class="MainContent">
+<table cellspacing="0" cellpadding="0" class="classHeaderTable">
+<tr>
+<td class="classHeaderTableLabel">Package</td><td><a onclick="javascript:loadClassListFrame('class-list.html')" href="package-detail.html">asgard.ui</a></td>
+</tr>
+<tr>
+<td class="classHeaderTableLabel">Class</td><td class="classSignature">public class KeyInspector</td>
+</tr>
+</table>
+<p></p>
+     The key inspector listenen all keyboard event of a specific InterativeObject display and indicates if a specific key is down or up (with the isDown and isUp methods). 
+     In AS3 the Key.isDown() and Key.isUp() method don't exist, this inspector use composition to emulate this feature.
+     <p><b>Example :</b></p>
+     <pre class="prettyprint">
+     package examples
+     {
+         import asgard.ui.KeyInspector;
+         
+         import flash.display.Sprite;
+         import flash.display.StageScaleMode;
+         import flash.events.Event;
+         import flash.geom.Point;
+         import flash.ui.Keyboard;
+         
+         [SWF(width="980", height="720", frameRate="24", backgroundColor="#666666")]
+         
+         public class KeyInspectorExample extends Sprite
+         {
+             public function KeyInspectorExample()
+             {
+                 ////////
+                 
+                 ball = new Sprite() ;
+                 
+                 ball.graphics.beginFill( 0xFF0000 ) ;
+                 ball.graphics.drawCircle(0, 0, 24) ;
+                 
+                 ball.x = 50 ;
+                 ball.y = 50 ;
+                 
+                 addChild( ball ) ;
+                 
+                 ////////
+                 
+                 key = new KeyInspector( stage );
+                 
+                 ////////
+                 
+                 stage.scaleMode = StageScaleMode.NO_SCALE ;
+                 stage.addEventListener( Event.ENTER_FRAME, enterFrame );
+             }
+             
+             protected var ball:Sprite ;
+             
+             protected var key:KeyInspector ;
+             
+             public var speed:Point = new Point(10,10) ;
+             
+             protected function enterFrame( e:Event ):void
+             {
+                 if ( key.isDown( Keyboard.LEFT ) )
+                 {
+                     ball.x -= speed.x ;
+                 }
+                 
+                 if ( key.isDown( Keyboard.RIGHT ) )
+                 {
+                     ball.x += speed.x ;
+                 }
+                 
+                 if ( key.isDown( Keyboard.UP ) )
+                 {
+                     ball.y -= speed.y ;
+                 }
+                 
+                 if ( key.isDown( Keyboard.DOWN ) )
+                 {
+                     ball.y += speed.y ;
+                 }
+                 
+             }
+         }
+     }
+     </pre>
+     <p></p>
+<br>
+<hr>
+</div>
+<a name="propertySummary"></a>
+<div class="summarySection">
+<div class="summaryTableTitle">Public Properties</div>
+<table id="summaryTableProperty" class="summaryTable " cellpadding="3" cellspacing="0">
+<tr>
+<th>&nbsp;</th><th colspan="2">Property</th><th class="summaryTableOwnerCol">Defined&nbsp;by</th>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#target">target</a> : InteractiveObject<div class="summaryTableDescription">
+         The interactive display object reference on which to listen for keyboard events.</div>
+</td><td class="summaryTableOwnerCol">KeyInspector</td>
+</tr>
+</table>
+</div>
+<a name="methodSummary"></a>
+<div class="summarySection">
+<div class="summaryTableTitle">Public Methods</div>
+<table id="summaryTableMethod" class="summaryTable " cellpadding="3" cellspacing="0">
+<tr>
+<th>&nbsp;</th><th colspan="2">Method</th><th class="summaryTableOwnerCol">Defined&nbsp;by</th>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#KeyInspector()">KeyInspector</a>(display:InteractiveObject)</div>
+<div class="summaryTableDescription">
+         Creates a new KeyInspector instance.</div>
+</td><td class="summaryTableOwnerCol">KeyInspector</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#clear()">clear</a>():void</div>
+<div class="summaryTableDescription">
+         Clear the inspector key code buffering.</div>
+</td><td class="summaryTableOwnerCol">KeyInspector</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#isDown()">isDown</a>(keyCode:uint):Boolean</div>
+<div class="summaryTableDescription">
+         To test whether a key is down.</div>
+</td><td class="summaryTableOwnerCol">KeyInspector</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#isUp()">isUp</a>(keyCode:uint):Boolean</div>
+<div class="summaryTableDescription">
+         Tests whether a key is up.</div>
+</td><td class="summaryTableOwnerCol">KeyInspector</td>
+</tr>
+</table>
+</div>
+<script type="text/javascript" language="javascript">
+<!--
+showHideInherited();
+--></script>
+<div class="MainContent">
+<a name="propertyDetail"></a>
+<div class="detailSectionHeader">Property detail</div>
+<a name="target"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">target</td><td class="detailHeaderType">property</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>target:InteractiveObject</code>&nbsp;&nbsp;[read-write]<p>
+         The interactive display object reference on which to listen for keyboard events.
+         </p><span class="label">Implementation</span>
+<br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function get target():InteractiveObject</code>
+<br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function set target(value:InteractiveObject):void</code>
+<br>
+</div>
+<a name="constructorDetail"></a>
+<div class="detailSectionHeader">Constructor detail</div>
+<a name="KeyInspector()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">KeyInspector</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">constructor</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public function KeyInspector(display:InteractiveObject)</code><p>
+         Creates a new KeyInspector instance.
+         </p><span class="label">Parameters</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td><code><span class="label">display</span>:InteractiveObject</code> &mdash; An interactive display object on which to listen for keyboard events.
+         To catch all key events, this should be a reference to the stage.
+         </td>
+</tr>
+</table>
+</div>
+<a name="methodDetail"></a>
+<div class="detailSectionHeader">Method detail</div>
+<a name="clear()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">clear</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public function clear():void</code><p>
+         Clear the inspector key code buffering.
+         </p></div>
+<a name="isDown()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">isDown</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public function isDown(keyCode:uint):Boolean</code><p>
+         To test whether a key is down.
+         </p><span class="label">Parameters</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td><code><span class="label">keyCode</span>:uint</code> &mdash; code for the key to test.
+         </td>
+</tr>
+</table>
+<p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><code>Boolean</code> &mdash; true if the key is down, false otherwise.
+         </td>
+</tr>
+</table>
+<p>
+<span class="label">See also</span>
+</p>
+<div class="seeAlso">
+<a href="../ui/KeyInspector.html#isUp()" target="">isUp()</a>
+</div>
+</div>
+<a name="isUp()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">isUp</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public function isUp(keyCode:uint):Boolean</code><p>
+         Tests whether a key is up.
+         </p><span class="label">Parameters</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td><code><span class="label">keyCode</span>:uint</code> &mdash; code for the key to test.
+         </td>
+</tr>
+</table>
+<p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><code>Boolean</code> &mdash; true if the key is up, false otherwise.
+         </td>
+</tr>
+</table>
+<p>
+<span class="label">See also</span>
+</p>
+<div class="seeAlso">
+<a href="../ui/KeyInspector.html#isDown()" target="">isDown()</a>
+</div>
+</div>
+<br>
+<br>
+<hr>
+<br>
+<p></p>
+<center class="copyright"> 
+</center>
+</div>
+</body>
+</html>
+<!-- -->
