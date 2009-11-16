@@ -1,5 +1,5 @@
  
-   VEGAS AS3 - version 1,4,2,1325
+   VEGAS AS3 - version 1.5.0.1347
 
    LICENCE 
 
@@ -16,27 +16,19 @@
 
    REAL SOURCES REPOSITORY URL :
 
-       - Maashaack  : http://maashaack.googlecode.com/svn/trunk/AS3/src/system
-
-       - VEGAS      : http://vegas.googlecode.com/svn/AS3/trunk/sources/vegas/
-       - AndromedAS : http://andromed-as.googlecode.com/svn/trunk/AS3/trunk/src/andromeda/
-
-       - PEGAS      : http://pegas.googlecode.com/svn/trunk/AS3/trunk/src/pegas
-       - ASGard     : http://as-gard.googlecode.com/svn/trunk/AS3/trunk/src/asgard/
-
-       - LunAS      : http://lun-as.googlecode.com/svn/trunk/AS3/trunk/src/lunas
-
-       - KronOS     : http://kron-os.googlecode.com/svn/trunk/AS3/trunk/src/kronos
-       - Calista    : http://calista.googlecode.com/svn/trunk/AS3/src/calista
+       - core       : http://maashaack.googlecode.com/svn/branches/maashaack_ekameleon/trunk/src/core
+       - system     : http://maashaack.googlecode.com/svn/branches/maashaack_ekameleon/trunk/src/system
+       - graphics   : http://maashaack.googlecode.com/svn/branches/maashaack_ekameleon/trunk/src/graphics
+       - vegas      : http://vegas.googlecode.com/svn/AS3/trunk/sources/vegas/
+       - andromeda  : http://andromed-as.googlecode.com/svn/trunk/AS3/trunk/src/andromeda/
+       - pegas      : http://pegas.googlecode.com/svn/trunk/AS3/trunk/src/pegas
+       - asgard     : http://as-gard.googlecode.com/svn/trunk/AS3/trunk/src/asgard/
+       - lunas      : http://lun-as.googlecode.com/svn/trunk/AS3/trunk/src/lunas
+       - kronos     : http://kron-os.googlecode.com/svn/trunk/AS3/trunk/src/kronos
+       - calista    : http://calista.googlecode.com/svn/trunk/AS3/src/calista
 
    ABOUT
 
     * Author  : ALCARAZ Marc (eKameleon)
-    * Version : 1,4,2,1325
     * Link    : http://www.ekameleon.net/blog
-    * Mail    : ekameleon@gmail.com 
-
-   THANKS
-
-    * Zwetan : ECMAScript Concepts and hosting | http://www.zwetan.com/
-    * PowerFlasher - FDT OpenSource Licence : http://powerflasher.com/ 
+    * Mail    : ekameleon@gmail.com
