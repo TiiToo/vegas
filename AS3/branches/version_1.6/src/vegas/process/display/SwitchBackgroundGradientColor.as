@@ -24,6 +24,8 @@
 package vegas.process.display 
 {    import graphics.FillGradientStyle;
     import graphics.colors.RGB;
+    import graphics.transitions.TweenArray;
+    import graphics.transitions.TweenUnit;
     
     import system.events.ActionEvent;
     import system.numeric.Mathematics;
@@ -31,8 +33,6 @@ package vegas.process.display
     import system.process.Task;
     
     import vegas.display.Background;
-    
-    // FIXME must finalize this class when the TweenArray and TweenUnit class are implemented in the graphics package
     
     /**
      * This process switch the fill gradient color of the specified background.     */    public class SwitchBackgroundGradientColor extends Task 
