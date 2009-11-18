@@ -1,5 +1,5 @@
  
-   VEGAS AS3 - version 1.5.0.1347
+   VEGAS AS3 - version 1.6.0.xxxx (in progress)
 
    LICENCE 
 
@@ -20,11 +20,7 @@
        - system     : http://maashaack.googlecode.com/svn/branches/maashaack_ekameleon/trunk/src/system
        - graphics   : http://maashaack.googlecode.com/svn/branches/maashaack_ekameleon/trunk/src/graphics
        - vegas      : http://vegas.googlecode.com/svn/AS3/trunk/sources/vegas/
-       - andromeda  : http://andromed-as.googlecode.com/svn/trunk/AS3/trunk/src/andromeda/
-       - pegas      : http://pegas.googlecode.com/svn/trunk/AS3/trunk/src/pegas
-       - asgard     : http://as-gard.googlecode.com/svn/trunk/AS3/trunk/src/asgard/
        - lunas      : http://lun-as.googlecode.com/svn/trunk/AS3/trunk/src/lunas
-       - kronos     : http://kron-os.googlecode.com/svn/trunk/AS3/trunk/src/kronos
        - calista    : http://calista.googlecode.com/svn/trunk/AS3/src/calista
 
    ABOUT
