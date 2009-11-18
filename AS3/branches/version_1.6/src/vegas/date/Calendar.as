@@ -117,7 +117,7 @@ package vegas.date
          * Adds the specified amount of time to the this instance.
          * <p>Examples :</p>
          * <pre class="prettyprint">
-         * import asgard.date.Calendar ;
+         * import vegas.date.Calendar ;
          *
          * var begin:Date = new Date( 2007, 5 , 14, 11, 30, 0 ) ;
          * var duration:Number = 50 ;
@@ -207,7 +207,7 @@ package vegas.date
          * Indicates if the current Date object is after the time of specified Date object.
          * <p><b>Example :</b></p>
          * <pre class="prettyprint">
-         * import asgard.date.Calendar ;
+         * import vegas.date.Calendar ;
          * 
          * var d1:Date = new Date(2005, 2, 15) ;
          * var d2:Date = new Date() ;
@@ -308,7 +308,7 @@ package vegas.date
          * Returns an array representation of all days in a full month. The array can begin with null values if the first day in the first week are previous days of the previous month.
          * <p><b>Example :</b></p>
          * <pre class="prettyprint">
-         * import asgard.date.Calendar ;
+         * import vegas.date.Calendar ;
          * var ar:Array = Calendar.getFullMonthCalendar( new Date(2007,03) , 1 ) ;
          * trace(ar) ;
          * </pre>
