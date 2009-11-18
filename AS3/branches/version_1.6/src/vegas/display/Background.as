@@ -33,6 +33,7 @@ package vegas.display
     import graphics.drawing.RoundedComplexRectanglePen;
     import graphics.geom.Dimension;
     import graphics.numeric.Trigo;
+    import graphics.transitions.FrameTimer;
     
     import system.numeric.Mathematics;
     
