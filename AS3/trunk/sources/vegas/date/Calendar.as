@@ -202,7 +202,7 @@ package vegas.date
             }
             return d ;
         }
-
+        
         /**
          * Indicates if the current Date object is after the time of specified Date object.
          * <p><b>Example :</b></p>
@@ -238,17 +238,17 @@ package vegas.date
             date        = date        || new Date() ; 
             return date.valueOf() > currentDate.valueOf() ;
         }
-
+        
         /**
          * Format the current Calendar date.
          * @param pattern The <code class="prettyprint">String</code> representation of the format pattern.
          * @return the format string representation of the current Calendar date.
          */
         public static function format( date:Date = null  , pattern:String="" ):String 
-        {            
+        {
             return (new DateFormatter(pattern)).format( date || new Date() ) ;
         }
-
+        
         /**
          * Returns the array representation of all days in the current month.
          * @param offset the day offset value between 0 and 6 to fill the calendar. The default value is 0 (Sunday). 
@@ -276,7 +276,7 @@ package vegas.date
             }
             return monthDays[m] ;
         }
-    
+        
         /**
          * Calculates the number of days the specified date is from January 1 of the specified calendar year.
          * Passing January 1 to this function would return an offset value of zero.
@@ -318,35 +318,31 @@ package vegas.date
          */
         public static function getFullMonthCalendar( date:Date=null , offset:Number=NaN ):Array 
         {
-            
             date = date || new Date() ;
             
             if (isNaN(offset))
             {
                 offset = DEFAULT_FULL_MONTH_OFFSET ;
             }
-            
-            offset = Math.max(Math.min(offset, 6), 0) ;
-
+            offset         = Math.max( Math.min( offset , 6 ) , 0 ) ;
             var y:Number   = date.getFullYear() ;
             var m:Number   = date.getMonth() ;
             var min:Number = ( getFirstDay ( date ) as Number) - offset ;
-        
             if (min < 0)
             {
                 min += 7 ;
             }
-                    
+            var d:Number ;
             var max:Number = min + getDaysInMonth ( date ) ;
             var ar:Array = new Array () ;
-            for (var i:Number = 0 ; i < max ; i++) 
+            for (var i:int = 0 ; i < max ; i++) 
             {
-                var d:Number = (i - min + 1)  ;
+                d = (i - min + 1)  ;
                 ar[i] = (i < min) ? null : new Date(y, m, d) ;
             }
             return ar ;
         }
-
+        
         /**
          * Retrieves a Date object representing January 1 of any given year.
          * @param calendarYear    The calendar year for which to retrieve January 1
@@ -383,7 +379,7 @@ package vegas.date
          */
         public static function getPreviousMonth( date:Date = null  ):Date
         {
-            var today:Date = ( date == null ) ? new Date() : new Date( date.valueOf() ) ;  
+            var today:Date = ( date == null ) ? new Date() : new Date( date.valueOf() ) ;
             var thisMonth:Number = today.getMonth();
             if(thisMonth > 0)
             {
@@ -396,8 +392,7 @@ package vegas.date
             }
             return today ;
         }
-
-            
+        
         /**
          * Calculates the week number for the given date. This function assumes that week 1 is the 
          * week in which January 1 appears, regardless of whether the week consists of a full 7 days.
@@ -411,7 +406,6 @@ package vegas.date
          */
         public static function getWeekNumber( date:Date = null , calendarYear:Number=NaN , weekStartsOn:Number=NaN ):Number 
         {
-            
             date = date || new Date() ; 
             
             if (isNaN(weekStartsOn)) 
@@ -434,7 +428,7 @@ package vegas.date
             
             if (dayOffset < 0 && dayOffset >= (-1 * jan1DayOfWeek)) 
             {
-                //            
+                //
             }
             else
             {
@@ -445,11 +439,9 @@ package vegas.date
                     testDate = Calendar.add(testDate, Calendar.WEEK, 1);
                 }
             }
-            
             return weekNum;
         };
-
-
+        
         /**
          * Returns <code class="prettyprint">true</code> if the current or specified <code class="prettyprint">Date</code> if the last day in the current or specified month.
          * @return <code class="prettyprint">true</code> if the current or specified <code class="prettyprint">Date</code> if the last day in the current or specified month.
@@ -460,7 +452,7 @@ package vegas.date
             var lastDate:Number = getDaysInMonth( today ) ; 
             return today.getDate().valueOf() == lastDate.valueOf() ;
         }
-
+        
         /**
          * Subtracts the specified amount of time from the this instance.
          * @param date The Date object to perform subtraction on
@@ -472,7 +464,7 @@ package vegas.date
         {
             return Calendar.add(date, field, (amount*-1));
         }
-
+        
         /**
          * Returns the Date reference of the "tomorrow" <code class="prettyprint">Date</code> object of the specified <code class="prettyprint">Date</code> in argument.
          * <p><b>Example :</b></p>
@@ -487,7 +479,7 @@ package vegas.date
             date = date || new Date() ;
             return new Date( date.valueOf() + ONE_DAY_MS ) ;
         }
-
+        
         /**
          * Returns the Calendar reference of the "yesterday" <code class="prettyprint">Calendar</code> object of the specified <code class="prettyprint">Date</code> in argument.
          * <p><b>Example :</b></p>
@@ -502,7 +494,5 @@ package vegas.date
             date = date || new Date() ;
             return new Date( date.valueOf() - ONE_DAY_MS ) ;
         }
-
     }
 }
-

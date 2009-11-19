@@ -47,7 +47,6 @@ package vegas.text
      */
     public class CoreStyleSheet extends StyleSheet implements Identifiable
     {
-        
         /**
          * Creates a new CoreStyleSheet instance.
          * @param source The CSS String representation to parse.
@@ -92,7 +91,7 @@ package vegas.text
             var str:String = "[" + Reflection.getClassName(this) ;
             if ( this.id != null )
             {
-                str += " " + this.id ;    
+                str += " " + this.id ;
             } 
             str += "]" ;
             return str ;

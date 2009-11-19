@@ -38,7 +38,7 @@ package vegas.text
      * import flash.events.Event ;
      * import flash.net.URLRequest ;
      * 
-     * import vegas.string.HTMLStringFormatter ;
+     * import vegas.strings.HTMLStringFormatter ;
      * 
      * var style:StyleSheet = new StyleSheet() ;
      * 

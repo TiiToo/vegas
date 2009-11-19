@@ -56,7 +56,7 @@ package vegas.config
      * loader.path = "config/" ;
      * loader.load() ;
      * </pre>
-     * @see vegas.string.JSON
+     * @see vegas.strings.JSON
      */
     public class JSONConfigLoader extends CoreConfigLoader
     {
