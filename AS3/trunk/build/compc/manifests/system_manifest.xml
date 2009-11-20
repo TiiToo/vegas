@@ -75,6 +75,7 @@
     <component id="system.data:Stack"           class="system.data.Stack" />
     <component id="system.data:Typeable"        class="system.data.Typeable" />
     <component id="system.data:Validator"       class="system.data.Validator" />
+    <component id="system.data:ValueObject"     class="system.data.ValueObject" />
     <component id="system.data:WeakReference"   class="system.data.WeakReference" />
         
     <!-- system.data.arrays -->

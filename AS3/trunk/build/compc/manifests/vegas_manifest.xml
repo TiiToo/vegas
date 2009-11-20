@@ -3,35 +3,292 @@
 <componentPackage>
     
     <!-- vegas.core -->
-	
-	<component id="vegas.core:Convertible" class="vegas.core.Convertible" />
-	<component id="vegas.core:Copyable"    class="vegas.core.Copyable"    />
-    <component id="vegas.core:CoreObject"  class="vegas.core.CoreObject"  />
-	<component id="vegas.core:Factory"     class="vegas.core.Factory"     />
-	<component id="vegas.core:Hashable"    class="vegas.core.Hashable"    />
-	<component id="vegas.core:HashCode"    class="vegas.core.HashCode"    />
-        
-    <!-- vegas.errors -->
     
-    <component id="vegas.errors:ClassCastError"    class="vegas.errors.ClassCastError"    />
-    <component id="vegas.errors:FatalError"        class="vegas.errors.FatalError"        />
-    <component id="vegas.errors:IllegalStateError" class="vegas.errors.IllegalStateError" />
-    <component id="vegas.errors:NullPointerError"  class="vegas.errors.NullPointerError"  />
-    <component id="vegas.errors:RuntimeError"      class="vegas.errors.RuntimeError"      />
-    <component id="vegas.errors:Warning"           class="vegas.errors.Warning"           />
+    <component id="vegas:Copyable"   class="vegas.Copyable"    />
+    <component id="vegas:CoreObject" class="vegas.CoreObject"  />
+    <component id="vegas:Factory"    class="vegas.Factory"     />
+    <component id="vegas:Hashable"   class="vegas.Hashable"    />
+    <component id="vegas:HashCode"   class="vegas.HashCode"    />
     
-    <!-- vegas.string -->
+    <!-- vegas.colors -->
     
-    <component id="vegas.string:HTMLStringFormatter" class="vegas.string.HTMLStringFormatter" />
-    <component id="vegas.string:JSON"                class="vegas.string.JSON" />
-    <component id="vegas.string:Luhn"                class="vegas.string.Luhn" />
-    <component id="vegas.string:UnicodeChar"         class="vegas.string.UnicodeChar" />
+    <component id="vegas.colors:Color"          class="vegas.colors.Color" />
+    <component id="vegas.colors:HTMLColor"      class="vegas.colors.HTMLColor" />
+    <component id="vegas.colors:LightColor"     class="vegas.colors.LightColor" />
+    <component id="vegas.colors:SolidColor"     class="vegas.colors.SolidColor" />
+    <component id="vegas.colors:SVGColor"       class="vegas.colors.SVGColor" />
+    <component id="vegas.colors:TintColor"      class="vegas.colors.TintColor" />
+    <component id="vegas.colors:TransformColor" class="vegas.colors.TransformColor" />
     
-    <!-- vegas.string.json -->
+    <!-- vegas.config -->
     
-    <component id="vegas.string.json:JSONError"       class="vegas.string.json.JSONError"      />
-    <component id="vegas.string.json:JSONSerializer"  class="vegas.string.json.JSONSerializer" />
-    <component id="vegas.string.json:JSONStrings"     class="vegas.string.json.JSONStrings"    />
+    <component id="vegas.config:Config"             class="vegas.config.Config"             />
+    <component id="vegas.config:ConfigCollector"    class="vegas.config.ConfigCollector"    />
+    <component id="vegas.config:ConfigurableObject" class="vegas.config.ConfigurableObject" />
+    <component id="vegas.config:CoreConfigLoader"   class="vegas.config.CoreConfigLoader"   />
+    <component id="vegas.config:EdenConfigLoader"   class="vegas.config.EdenConfigLoader"   />
+    <component id="vegas.config:IConfigLoader"      class="vegas.config.IConfigLoader"      />
+    <component id="vegas.config:IConfigurable"      class="vegas.config.IConfigurable"      />
+    <component id="vegas.config:JSONConfigLoader"   class="vegas.config.JSONConfigLoader"   />
+    
+    <!-- vegas.controllers -->
+    
+    <component id="vegas.controllers:AbstractController" class="vegas.controllers.AbstractController" />
+    <component id="vegas.controllers:Controller"         class="vegas.controllers.Controller"         />
+    
+    <!-- vegas.date -->
+    
+    <component id="vegas.date:Calendar" class="vegas.date.Calendar" />
+    <component id="vegas.date:Day"      class="vegas.date.Day"      />
+    <component id="vegas.date:Month"    class="vegas.date.Month"    />
+    <component id="vegas.date:Time"     class="vegas.date.Time"     />
+    
+    <!-- vegas.display -->
+
+    <component id="vegas.display:ApplicationDisplay"      class="vegas.display.ApplicationDisplay"  />
+    <component id="vegas.display:AVM2Loader"              class="vegas.display.AVM2Loader"  />
+    <component id="vegas.display:Background"              class="vegas.display.Background"  />
+    <component id="vegas.display:CoreBitmap"              class="vegas.display.CoreBitmap"  />
+    <component id="vegas.display:CoreLoader"              class="vegas.display.CoreLoader"  />
+    <component id="vegas.display:CoreMovieClip"           class="vegas.display.CoreMovieClip"  />
+    <component id="vegas.display:CoreShape"               class="vegas.display.CoreShape"  />
+    <component id="vegas.display:CoreSimpleButton"        class="vegas.display.CoreSimpleButton"  />
+    <component id="vegas.display:CoreSprite"              class="vegas.display.CoreSprite" />
+    <component id="vegas.display:DisplayObjectCollector"  class="vegas.display.DisplayObjectCollector" />
+    <component id="vegas.display:IDisplayObject"          class="vegas.display.IDisplayObject"  />
+    <component id="vegas.display:Parallaxe"               class="vegas.display.Parallaxe" />
+    <component id="vegas.display:ParallaxeLayer"          class="vegas.display.ParallaxeLayer" />
+    <component id="vegas.display:PolyLineBackground"      class="vegas.display.PolyLineBackground" />
+    <component id="vegas.display:Protector"               class="vegas.display.Protector"  />
+    <component id="vegas.display:ShaderLoader"            class="vegas.display.ShaderLoader"  />
+    <component id="vegas.display:SWFInfo"                 class="vegas.display.SWFInfo"  />
+    
+    <!-- vegas.display.coverflow -->
+    
+    <component id="vegas.display.coverflow:Cover"      class="vegas.display.coverflow.Cover"  />
+    <component id="vegas.display.coverflow:CoverEntry" class="vegas.display.coverflow.CoverEntry" />
+    <component id="vegas.display.coverflow:CoverFlow"  class="vegas.display.coverflow.CoverFlow" />
+    
+    <!-- vegas.events -->
+    
+    <component id="vegas.events:EntryEvent"        class="vegas.events.EntryEvent"        />
+    <component id="vegas.events:FontEvent"         class="vegas.events.FontEvent"         />
+    <component id="vegas.events:LocalizationEvent" class="vegas.events.LocalizationEvent" />
+    <component id="vegas.events:MediaExpertEvent"  class="vegas.events.MediaExpertEvent"  />
+    <component id="vegas.events:ModelObjectEvent"  class="vegas.events.ModelObjectEvent"  />
+    <component id="vegas.events:NetServerEvent"    class="vegas.events.NetServerEvent"    />
+    <component id="vegas.events:RemotingEvent"     class="vegas.events.RemotingEvent"     />
+    <component id="vegas.events:SoundEvent"        class="vegas.events.SoundEvent"        />
+    <component id="vegas.events:ValueEvent"        class="vegas.events.ValueEvent"        />
+    
+    <!-- vegas.i18n -->
+    
+    <component id="vegas.i18n:CoreLocalizationLoader" class="vegas.i18n.CoreLocalizationLoader" />  
+    <component id="vegas.i18n:EdenLocalizationLoader" class="vegas.i18n.EdenLocalizationLoader" />
+    <component id="vegas.i18n:ILocalizationLoader"    class="vegas.i18n.ILocalizationLoader"    />
+    <component id="vegas.i18n:JSONLocalizationLoader" class="vegas.i18n.JSONLocalizationLoader" />
+    <component id="vegas.i18n:Lang"                   class="vegas.i18n.Lang"                   />
+    <component id="vegas.i18n:Locale"                 class="vegas.i18n.Locale"                 />
+    <component id="vegas.i18n:Localization"           class="vegas.i18n.Localization"           />
+    
+    <!-- vegas.ioc -->
+    
+    <component id="vegas.ioc:IObjectDefinition"          class="vegas.ioc.IObjectDefinition"          />
+    <component id="vegas.ioc:IObjectDefinitionContainer" class="vegas.ioc.IObjectDefinitionContainer" />
+    <component id="vegas.ioc:IObjectFactory"             class="vegas.ioc.IObjectFactory"             />
+    <component id="vegas.ioc:MagicReference"             class="vegas.ioc.MagicReference"             />
+    <component id="vegas.ioc:ObjectArgument"             class="vegas.ioc.ObjectArgument"             />
+    <component id="vegas.ioc:ObjectAttribute"            class="vegas.ioc.ObjectAttribute"            />
+    <component id="vegas.ioc:ObjectDefinition"           class="vegas.ioc.ObjectDefinition"           />
+    <component id="vegas.ioc:ObjectDefinitionContainer"  class="vegas.ioc.ObjectDefinitionContainer"  />
+    <component id="vegas.ioc:ObjectListener"             class="vegas.ioc.ObjectListener"             />
+    <component id="vegas.ioc:ObjectMethod"               class="vegas.ioc.ObjectMethod"               />
+    <component id="vegas.ioc:ObjectOrder"                class="vegas.ioc.ObjectOrder"               />
+    <component id="vegas.ioc:ObjectProperty"             class="vegas.ioc.ObjectProperty"             />
+    <component id="vegas.ioc:ObjectScope"                class="vegas.ioc.ObjectScope"                />
+    <component id="vegas.ioc:TypeAliases"                class="vegas.ioc.TypeAliases"                />
+    <component id="vegas.ioc:TypeExpression"             class="vegas.ioc.TypeExpression"             />
+    <component id="vegas.ioc:TypePolicy"                 class="vegas.ioc.TypePolicy"                 />
+    
+    <!-- vegas.ioc.evaluators -->
+    
+    <component id="vegas.ioc.evaluators:ConfigEvaluator"    class="vegas.ioc.evaluators.ConfigEvaluator"    />
+    <component id="vegas.ioc.evaluators:LocaleEvaluator"    class="vegas.ioc.evaluators.LocaleEvaluator"    />
+    <component id="vegas.ioc.evaluators:ReferenceEvaluator" class="vegas.ioc.evaluators.ReferenceEvaluator" />
+    <component id="vegas.ioc.evaluators:TypeEvaluator"      class="vegas.ioc.evaluators.TypeEvaluator"      />
+    
+    <!-- vegas.ioc.factory -->
+    
+    <component id="vegas.ioc.factory:ECMAObjectFactory" class="vegas.ioc.factory.ECMAObjectFactory" /> 
+    <component id="vegas.ioc.factory:ObjectConfig"      class="vegas.ioc.factory.ObjectConfig"      />
+    <component id="vegas.ioc.factory:ObjectFactory"     class="vegas.ioc.factory.ObjectFactory"     />
+    
+    <!-- vegas.ioc.factory.strategy -->
+    
+    <component id="vegas.ioc.factory.strategy:IObjectFactoryStrategy"      class="vegas.ioc.factory.strategy.IObjectFactoryStrategy"      /> 
+    <component id="vegas.ioc.factory.strategy:ObjectFactoryBuilder"        class="vegas.ioc.factory.strategy.ObjectFactoryBuilder"        />
+    <component id="vegas.ioc.factory.strategy:ObjectFactoryMethod"         class="vegas.ioc.factory.strategy.ObjectFactoryMethod"         />
+    <component id="vegas.ioc.factory.strategy:ObjectFactoryProperty"       class="vegas.ioc.factory.strategy.ObjectFactoryProperty"       />
+    <component id="vegas.ioc.factory.strategy:ObjectFactoryReference"      class="vegas.ioc.factory.strategy.ObjectFactoryReference"      />
+    <component id="vegas.ioc.factory.strategy:ObjectFactoryValue"          class="vegas.ioc.factory.strategy.ObjectFactoryValue"          />
+    <component id="vegas.ioc.factory.strategy:ObjectStaticFactoryMethod"   class="vegas.ioc.factory.strategy.ObjectStaticFactoryMethod"   />
+    <component id="vegas.ioc.factory.strategy:ObjectStaticFactoryProperty" class="vegas.ioc.factory.strategy.ObjectStaticFactoryProperty" />
+    
+    <!-- vegas.ioc.io -->
+    
+    <component id="vegas.ioc.io:AssemblyDomain"        class="vegas.ioc.io.AssemblyDomain"        /> 
+    <component id="vegas.ioc.io:AssemblyResource"      class="vegas.ioc.io.AssemblyResource"      />
+    <component id="vegas.ioc.io:ConfigResource"        class="vegas.ioc.io.ConfigResource"        /> 
+    <component id="vegas.ioc.io:ContextResource"       class="vegas.ioc.io.ContextResource"       />
+    <component id="vegas.ioc.io:FontResource"          class="vegas.ioc.io.FontResource"          />
+    <component id="vegas.ioc.io:LocaleResource"        class="vegas.ioc.io.LocaleResource"        />
+    <component id="vegas.ioc.io:ObjectResource"        class="vegas.ioc.io.ObjectResource"        />
+    <component id="vegas.ioc.io:ObjectResourceBuilder" class="vegas.ioc.io.ObjectResourceBuilder" />
+    <component id="vegas.ioc.io:ObjectResourceInfo"    class="vegas.ioc.io.ObjectResourceInfo"    />
+    <component id="vegas.ioc.io:ObjectResourceModel"   class="vegas.ioc.io.ObjectResourceModel"   />
+    <component id="vegas.ioc.io:ObjectResourceType"    class="vegas.ioc.io.ObjectResourceType"    />
+    <component id="vegas.ioc.io:ShaderResource"        class="vegas.ioc.io.ShaderResource"        />
+    <component id="vegas.ioc.io:StyleSheetResource"    class="vegas.ioc.io.StyleSheetResource"    />
+    <component id="vegas.ioc.io:TextResource"          class="vegas.ioc.io.TextResource"          />
+    <component id="vegas.ioc.io:XMLResource"           class="vegas.ioc.io.XMLResource"           />
+    
+    <!-- vegas.ioc.net -->
+    
+    <component id="vegas.ioc.net:ECMAObjectLoader"    class="vegas.ioc.net.ECMAObjectLoader"    />
+    <component id="vegas.ioc.net:ObjectFactoryLoader" class="vegas.ioc.net.ObjectFactoryLoader" />
+    
+    <!-- vegas.logging -->
+    
+    <component id="vegas.logging:logger" class="vegas.logging.logger"  />
+    
+    <!-- asgard.managers -->  
+
+    <component id="vegas.managers:BitmapFilterManager" class="vegas.managers.BitmapFilterManager" />
+    <component id="vegas.managers:ProtectorManager"    class="vegas.managers.ProtectorManager" />
+    <component id="vegas.managers:TabManager"          class="vegas.managers.TabManager"  />
+    
+    <!-- vegas.media -->
+    
+    <component id="vegas.media:AudioCodec"       class="vegas.media.AudioCodec"  />
+    <component id="vegas.media:CameraExpert"     class="vegas.media.CameraExpert"  />
+    <component id="vegas.media:CameraStatus"     class="vegas.media.CameraStatus"  />
+    <component id="vegas.media:CameraVO"         class="vegas.media.CameraVO"  />
+    <component id="vegas.media:CoreSound"        class="vegas.media.CoreSound"  />
+    <component id="vegas.media:CoreVideo"        class="vegas.media.CoreVideo"  />
+    <component id="vegas.media:CuePoint"         class="vegas.media.CuePoint"  />
+    <component id="vegas.media:FLVMetaData"      class="vegas.media.FLVMetaData"  />
+    <component id="vegas.media:ISound"           class="vegas.media.ISound"  />
+    <component id="vegas.media:MediaExpert"      class="vegas.media.MediaExpert"  />
+    <component id="vegas.media:MicrophoneExpert" class="vegas.media.MicrophoneExpert"  />
+    <component id="vegas.media:MicrophoneStatus" class="vegas.media.MicrophoneStatus"  />
+    <component id="vegas.media:MicrophoneVO"     class="vegas.media.MicrophoneVO"  />
+    <component id="vegas.media:SoundCollector"   class="vegas.media.SoundCollector"  />
+    <component id="vegas.media:SoundLoader"      class="vegas.media.SoundLoader"  />
+    <component id="vegas.media:VideoCodec"       class="vegas.media.VideoCodec"  />
+    
+    <!-- vegas.models -->
+    
+    <component id="vegas.models:ChangeModel"     class="vegas.models.ChangeModel" />
+    <component id="vegas.models:CoreModel"       class="vegas.models.CoreModel" />
+    <component id="vegas.models:CoreModelObject" class="vegas.models.CoreModelObject" />
+    <component id="vegas.models:Model"           class="vegas.models.Model" />
+    <component id="vegas.models:ModelCollector"  class="vegas.models.ModelCollector" />
+    <component id="vegas.models:ModelObject"     class="vegas.models.ModelObject" />
+    
+    <!-- vegas.models.array -->
+    
+    <component id="vegas.models.array:PageableArrayModelObject" class="vegas.models.array.PageableArrayModelObject" />
+    
+    <!-- vegas.models.collections -->
+    
+    <component id="vegas.models.collections:CollectionModelObject" class="vegas.models.collections.CollectionModelObject" />
+    
+    <!-- vegas.models.map -->
+    
+    <component id="vegas.models.map:InitMapModelObject" class="vegas.models.map.InitMapModelObject" />
+    <component id="vegas.models.map:MapModel"           class="vegas.models.map.MapModel" />
+    <component id="vegas.models.map:MapModelObject"     class="vegas.models.map.MapModelObject" />
+    
+    <!-- vegas.models.queue -->
+    
+    <component id="vegas.models.queue:QueueModelObject" class="vegas.models.queue.QueueModelObject" />
+    
+    <!-- vegas.models.sets -->
+    
+    <component id="vegas.models.sets:SetModelObject" class="vegas.models.sets.SetModelObject" />
+    
+    <!-- vegas.models.stack -->
+    
+    <component id="vegas.models.stack:StackModelObject" class="vegas.models.stack.StackModelObject" />
+    
+    <!-- vegas.net -->
+    
+    <component id="vegas.net:BOM"                 class="vegas.net.BOM"                 />
+    <component id="vegas.net:BOMInspector"        class="vegas.net.BOMInspector"        />
+    <component id="vegas.net:EdenLoader"          class="vegas.net.EdenLoader"          />
+    <component id="vegas.net:FlashVars"           class="vegas.net.FlashVars"           />
+    <component id="vegas.net:HTMLEntities"        class="vegas.net.HTMLEntities"        />
+    <component id="vegas.net:HTTPHost"            class="vegas.net.HTTPHost"            />
+    <component id="vegas.net:INetStreamClient"    class="vegas.net.INetStreamClient"    />
+    <component id="vegas.net:JSONLoader"          class="vegas.net.JSONLoader"          />
+    <component id="vegas.net:MIME"                class="vegas.net.MIME"                />
+    <component id="vegas.net:NetServerConnection" class="vegas.net.NetServerConnection" />
+    <component id="vegas.net:NetServerGateway"    class="vegas.net.NetServerGateway"    />
+    <component id="vegas.net:NetServerInfo"       class="vegas.net.NetServerInfo"       />
+    <component id="vegas.net:NetServerLevel"      class="vegas.net.NetServerLevel"      />
+    <component id="vegas.net:NetServerStatus"     class="vegas.net.NetServerStatus"     />
+    <component id="vegas.net:NetStreamClient"     class="vegas.net.NetStreamClient"     />
+    <component id="vegas.net:NetStreamStatus"     class="vegas.net.NetStreamStatus"     />
+    <component id="vegas.net:ParserLoader"        class="vegas.net.ParserLoader"        />
+    <component id="vegas.net:XMLLoader"           class="vegas.net.XMLLoader"           />
+    
+    <!-- vegas.net.remoting -->
+    
+    <component id="vegas.net.remoting:IRemotingServiceListener"    class="vegas.net.remoting.IRemotingServiceListener"    />
+    <component id="vegas.net.remoting:RemotingAuthentification"    class="vegas.net.remoting.RemotingAuthentification"    />
+    <component id="vegas.net.remoting:RemotingConnection"          class="vegas.net.remoting.RemotingConnection"          />
+    <component id="vegas.net.remoting:RemotingConnectionCollector" class="vegas.net.remoting.RemotingConnectionCollector" />
+    <component id="vegas.net.remoting:RemotingGatewayUrl"          class="vegas.net.remoting.RemotingGatewayUrl"          />
+    <component id="vegas.net.remoting:RemotingService"             class="vegas.net.remoting.RemotingService"             />
+    <component id="vegas.net.remoting:RemotingServiceFormatter"    class="vegas.net.remoting.RemotingServiceFormatter"    />
+    <component id="vegas.net.remoting:RemotingServiceListener"     class="vegas.net.remoting.RemotingServiceListener"     />
+    <component id="vegas.net.remoting:RemotingServiceProxy"        class="vegas.net.remoting.RemotingServiceProxy"        />
+    
+    <!-- vegas.process.display -->
+    
+    <component id="vegas.process.display:AddChild"                      class="vegas.process.display.AddChild"       />
+    <component id="vegas.process.display:AddChildAt"                    class="vegas.process.display.AddChildAt"     />
+    <component id="vegas.process.display:FiltersDisplay"                class="vegas.process.display.FiltersDisplay" />
+    <component id="vegas.process.display:HideDisplay"                   class="vegas.process.display.HideDisplay"    />
+    <component id="vegas.process.display:RemoveChild"                   class="vegas.process.display.RemoveChild"    />
+    <component id="vegas.process.display:ShowDisplay"                   class="vegas.process.display.ShowDisplay"    />
+    <component id="vegas.process.display:SwitchBackgroundGradientColor" class="vegas.process.display.SwitchBackgroundGradientColor" />
+    
+    <!-- vegas.strings -->
+    
+    <component id="vegas.strings:HTMLStringFormatter" class="vegas.strings.HTMLStringFormatter" />
+    <component id="vegas.strings:JSON"                class="vegas.strings.JSON" />
+    <component id="vegas.strings:Luhn"                class="vegas.strings.Luhn" />
+    <component id="vegas.strings:UnicodeChar"         class="vegas.strings.UnicodeChar" />
+    
+    <!-- vegas.strings.json -->
+    
+    <component id="vegas.strings.json:JSONError"       class="vegas.strings.json.JSONError"      />
+    <component id="vegas.strings.json:JSONSerializer"  class="vegas.strings.json.JSONSerializer" />
+    <component id="vegas.strings.json:JSONStrings"     class="vegas.strings.json.JSONStrings"    />
+    
+    <!-- vegas.text -->
+    
+    <component id="vegas.text:CoreStyleSheet"     class="vegas.text.CoreStyleSheet"     />
+    <component id="vegas.text:CoreTextField"      class="vegas.text.CoreTextField"      />
+    <component id="vegas.text:FontLoader"         class="vegas.text.FontLoader"         />
+    <component id="vegas.text:StyleSheetLoader"   class="vegas.text.StyleSheetLoader"   />
+    
+    <!-- vegas.ui -->
+    
+    <component id="vegas.ui:KeyInspector"        class="vegas.ui.KeyInspector" />
+    <component id="vegas.ui:MouseWheelInspector" class="vegas.ui.MouseWheelInspector" />
+    <component id="vegas.ui:MouseWheelScript"    class="vegas.ui.MouseWheelScript" />
         
     <!-- vegas.utils -->
 
@@ -40,8 +297,30 @@
     <component id="vegas.utils:Comparater"    class="vegas.utils.Comparater" />
     <component id="vegas.utils:Copier"        class="vegas.utils.Copier" />
     <component id="vegas.utils:NumberUtil"    class="vegas.utils.NumberUtil" />
-    <component id="vegas.utils:ObjectUtil"    class="vegas.utils.ObjectUtil" />
     <component id="vegas.utils:StringUtil"    class="vegas.utils.StringUtil" />
-    <component id="vegas.utils:TypeUtil"      class="vegas.utils.TypeUtil" />
-
+    
+    <!-- vegas.utils.observer -->
+    
+    <component id="vegas.utils.observer:Observable" class="vegas.utils.observer.Observable" />
+    <component id="vegas.utils.observer:Observer"   class="vegas.utils.observer.Observer"   />
+    
+    <!-- vegas.utils.pool -->
+    
+    <component id="vegas.utils.pool:InstanceBuilder"   class="vegas.utils.pool.InstanceBuilder"   />
+    <component id="vegas.utils.pool:Node"              class="vegas.utils.pool.Node"              />
+    <component id="vegas.utils.pool:ObjectPool"        class="vegas.utils.pool.ObjectPool"        />
+    <component id="vegas.utils.pool:ObjectPoolBuilder" class="vegas.utils.pool.ObjectPoolBuilder" />
+    
+    <!-- vegas.utils.visitors -->
+    
+    <component id="vegas.utils.visitors:CoreVisitable" class="vegas.utils.visitors.CoreVisitable" />
+    <component id="vegas.utils.visitors:Visitable"     class="vegas.utils.visitors.Visitable"     />
+    <component id="vegas.utils.visitors:Visitor"       class="vegas.utils.visitors.Visitor"       />
+    
+    <!-- vegas.vo -->
+    
+    <component id="vegas.vo:FilterVO"          class="vegas.vo.FilterVO"            />
+    <component id="vegas.vo:NetServerInfoVO"   class="vegas.vo.NetServerInfoVO"     />
+    <component id="vegas.vo:SimpleValueObject" class="vegas.vo.SimpleValueObject"   />
+    
 </componentPackage>
