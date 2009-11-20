@@ -13,6 +13,7 @@
     <!-- vegas.colors -->
     
     <component id="vegas.colors:Color"          class="vegas.colors.Color" />
+    <component id="vegas.colors:ColorEvaluator" class="vegas.colors.ColorEvaluator" />
     <component id="vegas.colors:HTMLColor"      class="vegas.colors.HTMLColor" />
     <component id="vegas.colors:LightColor"     class="vegas.colors.LightColor" />
     <component id="vegas.colors:SolidColor"     class="vegas.colors.SolidColor" />
@@ -60,7 +61,6 @@
     <component id="vegas.display:ParallaxeLayer"          class="vegas.display.ParallaxeLayer" />
     <component id="vegas.display:PolyLineBackground"      class="vegas.display.PolyLineBackground" />
     <component id="vegas.display:Protector"               class="vegas.display.Protector"  />
-    <component id="vegas.display:ShaderLoader"            class="vegas.display.ShaderLoader"  />
     <component id="vegas.display:SWFInfo"                 class="vegas.display.SWFInfo"  />
     
     <!-- vegas.display.coverflow -->
