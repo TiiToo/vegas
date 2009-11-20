@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<componentPackage>
+    
+    <!-- calista.hash -->
+    
+    <component id="calista.hash:MD5"  class="calista.hash.MD5"  />
+    <component id="calista.hash:SHA1" class="calista.hash.SHA1" />
+    <component id="calista.hash:TEA"  class="calista.hash.TEA"  />
+        
+    <!-- calista.util -->
+    
+    <component id="calista.util:Base64" class="calista.util.Base64" />
+    <component id="calista.util:Base8"  class="calista.util.Base8"  />
+    <component id="calista.util:LZW"    class="calista.util.LZW"    />
+    
+</componentPackage>

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<componentPackage>
+    
+    <!-- vegas.core -->
+	
+	<component id="vegas.core:Convertible" class="vegas.core.Convertible" />
+	<component id="vegas.core:Copyable"    class="vegas.core.Copyable"    />
+    <component id="vegas.core:CoreObject"  class="vegas.core.CoreObject"  />
+	<component id="vegas.core:Factory"     class="vegas.core.Factory"     />
+	<component id="vegas.core:Hashable"    class="vegas.core.Hashable"    />
+	<component id="vegas.core:HashCode"    class="vegas.core.HashCode"    />
+        
+    <!-- vegas.errors -->
+    
+    <component id="vegas.errors:ClassCastError"    class="vegas.errors.ClassCastError"    />
+    <component id="vegas.errors:FatalError"        class="vegas.errors.FatalError"        />
+    <component id="vegas.errors:IllegalStateError" class="vegas.errors.IllegalStateError" />
+    <component id="vegas.errors:NullPointerError"  class="vegas.errors.NullPointerError"  />
+    <component id="vegas.errors:RuntimeError"      class="vegas.errors.RuntimeError"      />
+    <component id="vegas.errors:Warning"           class="vegas.errors.Warning"           />
+    
+    <!-- vegas.string -->
+    
+    <component id="vegas.string:HTMLStringFormatter" class="vegas.string.HTMLStringFormatter" />
+    <component id="vegas.string:JSON"                class="vegas.string.JSON" />
+    <component id="vegas.string:Luhn"                class="vegas.string.Luhn" />
+    <component id="vegas.string:UnicodeChar"         class="vegas.string.UnicodeChar" />
+    
+    <!-- vegas.string.json -->
+    
+    <component id="vegas.string.json:JSONError"       class="vegas.string.json.JSONError"      />
+    <component id="vegas.string.json:JSONSerializer"  class="vegas.string.json.JSONSerializer" />
+    <component id="vegas.string.json:JSONStrings"     class="vegas.string.json.JSONStrings"    />
+        
+    <!-- vegas.utils -->
+
+    <component id="vegas.utils:ArrayUtil"     class="vegas.utils.ArrayUtil" />
+    <component id="vegas.utils:ClassUtil"     class="vegas.utils.ClassUtil" />
+    <component id="vegas.utils:Comparater"    class="vegas.utils.Comparater" />
+    <component id="vegas.utils:Copier"        class="vegas.utils.Copier" />
+    <component id="vegas.utils:NumberUtil"    class="vegas.utils.NumberUtil" />
+    <component id="vegas.utils:ObjectUtil"    class="vegas.utils.ObjectUtil" />
+    <component id="vegas.utils:StringUtil"    class="vegas.utils.StringUtil" />
+    <component id="vegas.utils:TypeUtil"      class="vegas.utils.TypeUtil" />
+
+</componentPackage>

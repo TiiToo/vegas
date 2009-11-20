@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<componentPackage>
+        
+    <!-- andromeda.config -->
+    
+    <component id="andromeda.config:Config"             class="andromeda.config.Config"             />
+    <component id="andromeda.config:ConfigCollector"    class="andromeda.config.ConfigCollector"    />
+    <component id="andromeda.config:ConfigResource"     class="andromeda.config.ConfigResource"     />
+    <component id="andromeda.config:ConfigurableObject" class="andromeda.config.ConfigurableObject" />
+    <component id="andromeda.config:CoreConfigLoader"   class="andromeda.config.CoreConfigLoader"   />
+    <component id="andromeda.config:EdenConfigLoader"   class="andromeda.config.EdenConfigLoader"   />
+    <component id="andromeda.config:IConfigLoader"      class="andromeda.config.IConfigLoader"      />
+    <component id="andromeda.config:IConfigurable"      class="andromeda.config.IConfigurable"      />
+    <component id="andromeda.config:JSONConfigLoader"   class="andromeda.config.JSONConfigLoader"   />
+    
+    <!-- andromeda.controller -->
+    
+    <component id="andromeda.controller:AbstractController" class="andromeda.controller.AbstractController" />
+    <component id="andromeda.controller:Controller"         class="andromeda.controller.Controller"         />
+    
+    <!-- andromeda.events -->
+    
+    <component id="andromeda.events:EntryEvent"        class="andromeda.events.EntryEvent"        />
+    <component id="andromeda.events:LocalizationEvent" class="andromeda.events.LocalizationEvent" />
+    <component id="andromeda.events:ModelObjectEvent"  class="andromeda.events.ModelObjectEvent"  />
+    <component id="andromeda.events:ValueEvent"        class="andromeda.events.ValueEvent"        />
+    
+    <!-- andromeda.i18n -->
+    
+    <component id="andromeda.i18n:CoreLocalizationLoader" class="andromeda.i18n.CoreLocalizationLoader" />  
+    <component id="andromeda.i18n:EdenLocalizationLoader" class="andromeda.i18n.EdenLocalizationLoader" />
+    <component id="andromeda.i18n:ILocalizationLoader"    class="andromeda.i18n.ILocalizationLoader"    />
+    <component id="andromeda.i18n:JSONLocalizationLoader" class="andromeda.i18n.JSONLocalizationLoader" />
+    <component id="andromeda.i18n:Lang"                   class="andromeda.i18n.Lang"                   />
+    <component id="andromeda.i18n:Locale"                 class="andromeda.i18n.Locale"                 />
+    <component id="andromeda.i18n:LocaleResource"         class="andromeda.i18n.LocaleResource"         />
+    <component id="andromeda.i18n:Localization"           class="andromeda.i18n.Localization"           />
+    
+    <!-- andromeda.ioc -->
+    
+    <component id="andromeda.ioc:IObjectDefinition"          class="andromeda.ioc.IObjectDefinition"          />
+    <component id="andromeda.ioc:IObjectDefinitionContainer" class="andromeda.ioc.IObjectDefinitionContainer" />
+    <component id="andromeda.ioc:IObjectFactory"             class="andromeda.ioc.IObjectFactory"             />
+    
+    <!-- andromeda.ioc.core -->
+    
+    <component id="andromeda.ioc.core:MagicReference"            class="andromeda.ioc.core.MagicReference"             />
+    <component id="andromeda.ioc.core:ObjectArgument"            class="andromeda.ioc.core.ObjectArgument"             />
+    <component id="andromeda.ioc.core:ObjectAttribute"           class="andromeda.ioc.core.ObjectAttribute"            />
+    <component id="andromeda.ioc.core:ObjectDefinition"          class="andromeda.ioc.core.ObjectDefinition"           />
+    <component id="andromeda.ioc.core:ObjectDefinitionContainer" class="andromeda.ioc.core.ObjectDefinitionContainer"  />
+    <component id="andromeda.ioc.core:ObjectListener"            class="andromeda.ioc.core.ObjectListener"             />
+    <component id="andromeda.ioc.core:ObjectMethod"              class="andromeda.ioc.core.ObjectMethod"               />
+    <component id="andromeda.ioc.core:ObjectOrder"               class="andromeda.ioc.core.ObjectOrder"               />
+    <component id="andromeda.ioc.core:ObjectProperty"            class="andromeda.ioc.core.ObjectProperty"             />
+    <component id="andromeda.ioc.core:ObjectScope"               class="andromeda.ioc.core.ObjectScope"                />
+    <component id="andromeda.ioc.core:TypeAliases"               class="andromeda.ioc.core.TypeAliases"                />
+    <component id="andromeda.ioc.core:TypeExpression"            class="andromeda.ioc.core.TypeExpression"             />
+    <component id="andromeda.ioc.core:TypePolicy"                class="andromeda.ioc.core.TypePolicy"                 />
+    
+    <!-- andromeda.ioc.evaluators -->
+    
+    <component id="andromeda.ioc.evaluators:ConfigEvaluator"    class="andromeda.ioc.evaluators.ConfigEvaluator"    />     
+    <component id="andromeda.ioc.evaluators:LocaleEvaluator"    class="andromeda.ioc.evaluators.LocaleEvaluator"    />
+    <component id="andromeda.ioc.evaluators:ReferenceEvaluator" class="andromeda.ioc.evaluators.ReferenceEvaluator" />
+    <component id="andromeda.ioc.evaluators:TypeEvaluator"      class="andromeda.ioc.evaluators.TypeEvaluator"      />
+    
+    <!-- andromeda.ioc.factory -->
+    
+    <component id="andromeda.ioc.factory:ECMAObjectFactory" class="andromeda.ioc.factory.ECMAObjectFactory" /> 
+    <component id="andromeda.ioc.factory:ObjectConfig"      class="andromeda.ioc.factory.ObjectConfig"      />
+    <component id="andromeda.ioc.factory:ObjectFactory"     class="andromeda.ioc.factory.ObjectFactory"     />
+    
+    <!-- andromeda.ioc.factory.strategy -->
+    
+    <component id="andromeda.ioc.factory.strategy:IObjectFactoryStrategy"      class="andromeda.ioc.factory.strategy.IObjectFactoryStrategy"      /> 
+    <component id="andromeda.ioc.factory.strategy:ObjectFactoryBuilder"        class="andromeda.ioc.factory.strategy.ObjectFactoryBuilder"        />
+    <component id="andromeda.ioc.factory.strategy:ObjectFactoryMethod"         class="andromeda.ioc.factory.strategy.ObjectFactoryMethod"         />
+    <component id="andromeda.ioc.factory.strategy:ObjectFactoryProperty"       class="andromeda.ioc.factory.strategy.ObjectFactoryProperty"       />
+    <component id="andromeda.ioc.factory.strategy:ObjectFactoryReference"      class="andromeda.ioc.factory.strategy.ObjectFactoryReference"      />
+    <component id="andromeda.ioc.factory.strategy:ObjectFactoryValue"          class="andromeda.ioc.factory.strategy.ObjectFactoryValue"          />
+    <component id="andromeda.ioc.factory.strategy:ObjectStaticFactoryMethod"   class="andromeda.ioc.factory.strategy.ObjectStaticFactoryMethod"   />
+    <component id="andromeda.ioc.factory.strategy:ObjectStaticFactoryProperty" class="andromeda.ioc.factory.strategy.ObjectStaticFactoryProperty" />
+    
+    <!-- andromeda.ioc.io -->
+    
+    <component id="andromeda.ioc.io:AssemblyDomain"        class="andromeda.ioc.io.AssemblyDomain"        /> 
+    <component id="andromeda.ioc.io:AssemblyResource"      class="andromeda.ioc.io.AssemblyResource"      /> 
+    <component id="andromeda.ioc.io:ContextResource"       class="andromeda.ioc.io.ContextResource"       />
+    <component id="andromeda.ioc.io:ObjectResource"        class="andromeda.ioc.io.ObjectResource"        />
+    <component id="andromeda.ioc.io:ObjectResourceBuilder" class="andromeda.ioc.io.ObjectResourceBuilder" />
+    <component id="andromeda.ioc.io:ObjectResourceInfo"    class="andromeda.ioc.io.ObjectResourceInfo"    />
+    <component id="andromeda.ioc.io:ObjectResourceModel"   class="andromeda.ioc.io.ObjectResourceModel"   />
+    <component id="andromeda.ioc.io:ObjectResourceType"    class="andromeda.ioc.io.ObjectResourceType"    />
+    <component id="andromeda.ioc.io:TextResource"          class="andromeda.ioc.io.TextResource"          />
+    <component id="andromeda.ioc.io:XMLResource"           class="andromeda.ioc.io.XMLResource"           />
+    
+    <!-- andromeda.ioc.net -->
+    
+    <component id="andromeda.ioc.net:ObjectFactoryLoader" class="andromeda.ioc.net.ObjectFactoryLoader" />
+    
+    <!-- andromeda.logging -->
+    
+    <component id="andromeda.logging:logger" class="andromeda.logging.logger" /> 
+    
+    <!-- andromeda.model -->
+    
+    <component id="andromeda.model:ChangeModel"     class="andromeda.model.ChangeModel" />
+    <component id="andromeda.model:CoreModel"       class="andromeda.model.CoreModel" />
+    <component id="andromeda.model:CoreModelObject" class="andromeda.model.CoreModelObject" />
+    <component id="andromeda.model:Model"           class="andromeda.model.Model" />
+    <component id="andromeda.model:ModelCollector"  class="andromeda.model.ModelCollector" />
+    <component id="andromeda.model:ModelObject"     class="andromeda.model.ModelObject" />
+    
+    <!-- andromeda.model.array -->
+    
+    <component id="andromeda.model.array:PageableArrayModelObject" class="andromeda.model.array.PageableArrayModelObject" />
+    
+    <!-- andromeda.model.collections -->
+    
+    <component id="andromeda.model.collections:CollectionModelObject" class="andromeda.model.collections.CollectionModelObject" />
+    
+    <!-- andromeda.model.map -->
+    
+    <component id="andromeda.model.map:InitMapModelObject" class="andromeda.model.map.InitMapModelObject" />
+    <component id="andromeda.model.map:MapModel"           class="andromeda.model.map.MapModel" />
+    <component id="andromeda.model.map:MapModelObject"     class="andromeda.model.map.MapModelObject" />
+    
+    <!-- andromeda.model.queue -->
+    
+    <component id="andromeda.model.queue:QueueModelObject" class="andromeda.model.queue.QueueModelObject" />
+    
+    <!-- andromeda.model.sets -->
+    
+    <component id="andromeda.model.sets:SetModelObject" class="andromeda.model.sets.SetModelObject" />
+    
+    <!-- andromeda.model.stack -->
+    
+    <component id="andromeda.model.stack:StackModelObject" class="andromeda.model.stack.StackModelObject" />
+    
+    <!-- andromeda.net -->
+    
+    <component id="andromeda.net:EdenLoader"   class="andromeda.net.EdenLoader"   />
+    <component id="andromeda.net:FlashVars"    class="andromeda.net.FlashVars"    />
+    <component id="andromeda.net:JSONLoader"   class="andromeda.net.JSONLoader"   />
+    <component id="andromeda.net:ParserLoader" class="andromeda.net.ParserLoader" />
+    <component id="andromeda.net:XMLLoader"    class="andromeda.net.XMLLoader"    />
+    
+    <!-- andromeda.utils.observer -->
+    
+    <component id="andromeda.utils.observer:Observable" class="andromeda.utils.observer.Observable" />
+    <component id="andromeda.utils.observer:Observer"   class="andromeda.utils.observer.Observer"   />
+    
+    <!-- andromeda.utils.pool -->
+    
+    <component id="andromeda.utils.pool:InstanceBuilder"   class="andromeda.utils.pool.InstanceBuilder"   />
+    <component id="andromeda.utils.pool:Node"              class="andromeda.utils.pool.Node"              />
+    <component id="andromeda.utils.pool:ObjectPool"        class="andromeda.utils.pool.ObjectPool"        />
+    <component id="andromeda.utils.pool:ObjectPoolBuilder" class="andromeda.utils.pool.ObjectPoolBuilder" />
+    
+    <!-- andromeda.utils.visitor -->
+    
+    <component id="andromeda.utils.visitors:CoreVisitable" class="andromeda.utils.visitors.CoreVisitable" />
+    <component id="andromeda.utils.visitors:Visitable"     class="andromeda.utils.visitors.Visitable"     />
+    <component id="andromeda.utils.visitors:Visitor"       class="andromeda.utils.visitors.Visitor"       />
+    
+    <!-- andromeda.vo -->
+    
+    <component id="andromeda.vo:FilterVO"          class="andromeda.vo.FilterVO"            />
+    <component id="andromeda.vo:NetServerInfoVO"   class="andromeda.vo.NetServerInfoVO"     />
+    <component id="andromeda.vo:SimpleValueObject" class="andromeda.vo.SimpleValueObject"   />
+    <component id="andromeda.vo:ValueObject"       class="andromeda.vo.ValueObject"         />
+    
+</componentPackage>

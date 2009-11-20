@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<componentPackage>
+    
+    <!-- kronos.date -->
+    
+    <component id="kronos.date:Calendar" class="kronos.date.Calendar" />
+    <component id="kronos.date:Day"      class="kronos.date.Day"      />
+    <component id="kronos.date:Month"    class="kronos.date.Month"    />
+    <component id="kronos.date:Time"     class="kronos.date.Time"     />
+    
+</componentPackage>

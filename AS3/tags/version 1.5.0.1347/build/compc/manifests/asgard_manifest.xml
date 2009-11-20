@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<componentPackage>
+        
+    <!-- asgard.display -->
+
+    <component id="asgard.display:ApplicationDisplay"      class="asgard.display.ApplicationDisplay"  />
+    <component id="asgard.display:AVM2Loader"              class="asgard.display.AVM2Loader"  />
+    <component id="asgard.display:Background"              class="asgard.display.Background"  />
+    <component id="asgard.display:CoreBitmap"              class="asgard.display.CoreBitmap"  />
+    <component id="asgard.display:CoreLoader"              class="asgard.display.CoreLoader"  />
+    <component id="asgard.display:CoreMovieClip"           class="asgard.display.CoreMovieClip"  />
+    <component id="asgard.display:CoreShape"               class="asgard.display.CoreShape"  />
+    <component id="asgard.display:CoreSimpleButton"        class="asgard.display.CoreSimpleButton"  />
+    <component id="asgard.display:CoreSprite"              class="asgard.display.CoreSprite" />
+    <component id="asgard.display:DisplayObjectCollector"  class="asgard.display.DisplayObjectCollector" />
+    <component id="asgard.display:IDisplayObject"          class="asgard.display.IDisplayObject"  />
+    <component id="asgard.display:PolyLineBackground"      class="asgard.display.PolyLineBackground" />
+    <component id="asgard.display:Protector"               class="asgard.display.Protector"  />
+    <component id="asgard.display:ShaderLoader"            class="asgard.display.ShaderLoader"  />
+    <component id="asgard.display:ShaderResource"          class="asgard.display.ShaderResource"  />
+    <component id="asgard.display:SWFInfo"                 class="asgard.display.SWFInfo"  />
+    <component id="asgard.display:TimelineInspector"       class="asgard.display.TimelineInspector" />
+    <component id="asgard.display:TimelineIterator"        class="asgard.display.TimelineIterator"  />
+    <component id="asgard.display:TimelineScript"          class="asgard.display.TimelineScript"  />
+    
+    <!-- asgard.display.coverflow -->
+    
+    <component id="asgard.display.coverflow:Cover"      class="asgard.display.coverflow.Cover"  />
+    <component id="asgard.display.coverflow:CoverEntry" class="asgard.display.coverflow.CoverEntry"  />
+    <component id="asgard.display.coverflow:CoverFlow"  class="asgard.display.coverflow.CoverFlow"  />
+    
+    <!-- asgard.events -->
+    
+    <component id="asgard.events:FontEvent"        class="asgard.events.FontEvent"  />
+    <component id="asgard.events:FrameLabelEvent"  class="asgard.events.FrameLabelEvent" />
+    <component id="asgard.events:MediaExpertEvent" class="asgard.events.MediaExpertEvent"  />
+    <component id="asgard.events:NetServerEvent"   class="asgard.events.NetServerEvent"  />
+    <component id="asgard.events:RemotingEvent"    class="asgard.events.RemotingEvent"  />
+    <component id="asgard.events:SoundEvent"       class="asgard.events.SoundEvent"  />
+    
+    <!-- asgard.filters -->
+    
+    <component id="asgard.filters:HoleFilter" class="asgard.filters.HoleFilter"  />
+    <component id="asgard.filters:ReflectionFilter" class="asgard.filters.ReflectionFilter"  />
+    <component id="asgard.filters:RGBDistortFilter" class="asgard.filters.RGBDistortFilter"  />
+    <component id="asgard.filters:RippleBlocksFilter" class="asgard.filters.RippleBlocksFilter"  />
+    <component id="asgard.filters:RoundPixelFilter" class="asgard.filters.RoundPixelFilter"  />
+    <component id="asgard.filters:ShaderCustomFilter" class="asgard.filters.ShaderCustomFilter"  />
+    <component id="asgard.filters:SharpenFilter" class="asgard.filters.SharpenFilter"  />
+    <component id="asgard.filters:TwirlFilter" class="asgard.filters.TwirlFilter"  />
+    <component id="asgard.filters:WaveReflectionFilter" class="asgard.filters.WaveReflectionFilter"  />
+    
+    <!-- asgard.logging -->
+    
+    <component id="asgard.logging:logger" class="asgard.logging.logger"  />
+    
+    <!-- asgard.managers -->  
+
+    <component id="asgard.managers:BitmapFilterManager" class="asgard.managers.BitmapFilterManager" />
+    <component id="asgard.managers:ProtectorManager"    class="asgard.managers.ProtectorManager" />
+    <component id="asgard.managers:TabManager"          class="asgard.managers.TabManager"  />
+    
+    <!-- asgard.media -->
+    
+    <component id="asgard.media:AudioCodec"       class="asgard.media.AudioCodec"  />
+    <component id="asgard.media:CameraExpert"     class="asgard.media.CameraExpert"  />
+    <component id="asgard.media:CameraStatus"     class="asgard.media.CameraStatus"  />
+    <component id="asgard.media:CameraVO"         class="asgard.media.CameraVO"  />
+    <component id="asgard.media:CoreSound"        class="asgard.media.CoreSound"  />
+    <component id="asgard.media:CoreVideo"        class="asgard.media.CoreVideo"  />
+    <component id="asgard.media:CuePoint"         class="asgard.media.CuePoint"  />
+    <component id="asgard.media:FLVMetaData"      class="asgard.media.FLVMetaData"  />
+    <component id="asgard.media:ISound"           class="asgard.media.ISound"  />
+    <component id="asgard.media:MediaExpert"      class="asgard.media.MediaExpert"  />
+    <component id="asgard.media:MicrophoneExpert" class="asgard.media.MicrophoneExpert"  />
+    <component id="asgard.media:MicrophoneStatus" class="asgard.media.MicrophoneStatus"  />
+    <component id="asgard.media:MicrophoneVO"     class="asgard.media.MicrophoneVO"  />
+    <component id="asgard.media:SoundCollector"   class="asgard.media.SoundCollector"  />
+    <component id="asgard.media:SoundLoader"      class="asgard.media.SoundLoader"  />
+    <component id="asgard.media:VideoCodec"       class="asgard.media.VideoCodec"  />
+    
+    <!-- asgard.net -->
+    
+    <component id="asgard.net:BOM"                 class="asgard.net.BOM"                 />
+    <component id="asgard.net:BOMInspector"        class="asgard.net.BOMInspector"        />
+    <component id="asgard.net:ECMAObjectLoader"    class="asgard.net.ECMAObjectLoader"    />
+    <component id="asgard.net:HTMLEntities"        class="asgard.net.HTMLEntities"        />
+    <component id="asgard.net:HTTPHost"            class="asgard.net.HTTPHost"            />
+    <component id="asgard.net:INetStreamClient"    class="asgard.net.INetStreamClient"    />
+    <component id="asgard.net:MIME"                class="asgard.net.MIME"                />
+    <component id="asgard.net:NetServerConnection" class="asgard.net.NetServerConnection" />
+    <component id="asgard.net:NetServerGateway"    class="asgard.net.NetServerGateway"    />
+    <component id="asgard.net:NetServerInfo"       class="asgard.net.NetServerInfo"       />
+    <component id="asgard.net:NetServerLevel"      class="asgard.net.NetServerLevel"      />
+    <component id="asgard.net:NetServerStatus"     class="asgard.net.NetServerStatus"     />
+    <component id="asgard.net:NetStreamClient"     class="asgard.net.NetStreamClient"     />
+    <component id="asgard.net:NetStreamStatus"     class="asgard.net.NetStreamStatus"     />
+    
+    <!-- asgard.net.remoting -->
+    
+    <component id="asgard.net.remoting:IRemotingServiceListener"    class="asgard.net.remoting.IRemotingServiceListener"    />
+    <component id="asgard.net.remoting:RemotingAuthentification"    class="asgard.net.remoting.RemotingAuthentification"    />
+    <component id="asgard.net.remoting:RemotingConnection"          class="asgard.net.remoting.RemotingConnection"          />
+    <component id="asgard.net.remoting:RemotingConnectionCollector" class="asgard.net.remoting.RemotingConnectionCollector" />
+    <component id="asgard.net.remoting:RemotingGatewayUrl"          class="asgard.net.remoting.RemotingGatewayUrl"          />
+    <component id="asgard.net.remoting:RemotingService"             class="asgard.net.remoting.RemotingService"             />
+    <component id="asgard.net.remoting:RemotingServiceFormatter"    class="asgard.net.remoting.RemotingServiceFormatter"    />
+    <component id="asgard.net.remoting:RemotingServiceListener"     class="asgard.net.remoting.RemotingServiceListener"     />
+    <component id="asgard.net.remoting:RemotingServiceProxy"        class="asgard.net.remoting.RemotingServiceProxy"        />
+    
+    <!-- asgard.process.display -->
+    
+    <component id="asgard.process.display:AddChild"                      class="asgard.process.display.AddChild"       />
+    <component id="asgard.process.display:AddChildAt"                    class="asgard.process.display.AddChildAt"     />
+    <component id="asgard.process.display:FiltersDisplay"                class="asgard.process.display.FiltersDisplay" />
+    <component id="asgard.process.display:HideDisplay"                   class="asgard.process.display.HideDisplay"    />
+    <component id="asgard.process.display:RemoveChild"                   class="asgard.process.display.RemoveChild"    />
+    <component id="asgard.process.display:ShowDisplay"                   class="asgard.process.display.ShowDisplay"    />
+    <component id="asgard.process.display:SwitchBackgroundGradientColor" class="asgard.process.display.SwitchBackgroundGradientColor" />
+    
+    <!-- asgard.text -->
+    
+    <component id="asgard.text:CoreStyleSheet"     class="asgard.text.CoreStyleSheet"     />
+    <component id="asgard.text:CoreTextField"      class="asgard.text.CoreTextField"      />
+    <component id="asgard.text:FontLoader"         class="asgard.text.FontLoader"         />
+    <component id="asgard.text:FontResource"       class="asgard.text.FontResource"       />
+    <component id="asgard.text:StyleSheetLoader"   class="asgard.text.StyleSheetLoader"   />
+    <component id="asgard.text:StyleSheetResource" class="asgard.text.StyleSheetResource" />
+    
+    <!-- asgard.text -->
+    
+    <component id="asgard.ui:KeyInspector"        class="asgard.ui.KeyInspector" />
+    <component id="asgard.ui:MouseWheelInspector" class="asgard.ui.MouseWheelInspector" />
+    <component id="asgard.ui:MouseWheelScript"    class="asgard.ui.MouseWheelScript" />
+    
+</componentPackage>
