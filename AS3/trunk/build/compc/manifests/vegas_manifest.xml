@@ -2,7 +2,7 @@
 
 <componentPackage>
     
-    <!-- vegas.core -->
+    <!-- vegas -->
     
     <component id="vegas:Copyable"   class="vegas.Copyable"    />
     <component id="vegas:CoreObject" class="vegas.CoreObject"  />
@@ -195,31 +195,31 @@
     <component id="vegas.models:ModelCollector"  class="vegas.models.ModelCollector" />
     <component id="vegas.models:ModelObject"     class="vegas.models.ModelObject" />
     
-    <!-- vegas.models.array -->
+    <!-- vegas.models.arrays -->
     
-    <component id="vegas.models.array:PageableArrayModelObject" class="vegas.models.array.PageableArrayModelObject" />
+    <component id="vegas.models.arrays:PageableArrayModelObject" class="vegas.models.arrays.PageableArrayModelObject" />
     
     <!-- vegas.models.collections -->
     
     <component id="vegas.models.collections:CollectionModelObject" class="vegas.models.collections.CollectionModelObject" />
     
-    <!-- vegas.models.map -->
+    <!-- vegas.models.maps -->
     
-    <component id="vegas.models.map:InitMapModelObject" class="vegas.models.map.InitMapModelObject" />
-    <component id="vegas.models.map:MapModel"           class="vegas.models.map.MapModel" />
-    <component id="vegas.models.map:MapModelObject"     class="vegas.models.map.MapModelObject" />
+    <component id="vegas.models.maps:InitMapModelObject" class="vegas.models.maps.InitMapModelObject" />
+    <component id="vegas.models.maps:MapModel"           class="vegas.models.maps.MapModel" />
+    <component id="vegas.models.maps:MapModelObject"     class="vegas.models.maps.MapModelObject" />
     
-    <!-- vegas.models.queue -->
+    <!-- vegas.models.queues -->
     
-    <component id="vegas.models.queue:QueueModelObject" class="vegas.models.queue.QueueModelObject" />
+    <component id="vegas.models.queues:QueueModelObject" class="vegas.models.queues.QueueModelObject" />
     
     <!-- vegas.models.sets -->
     
     <component id="vegas.models.sets:SetModelObject" class="vegas.models.sets.SetModelObject" />
     
-    <!-- vegas.models.stack -->
+    <!-- vegas.models.stacks -->
     
-    <component id="vegas.models.stack:StackModelObject" class="vegas.models.stack.StackModelObject" />
+    <component id="vegas.models.stacks:StackModelObject" class="vegas.models.stacks.StackModelObject" />
     
     <!-- vegas.net -->
     
