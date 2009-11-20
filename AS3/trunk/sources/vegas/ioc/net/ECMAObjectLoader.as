@@ -27,8 +27,6 @@ package vegas.ioc.net
     import vegas.i18n.Localization;
     import vegas.ioc.factory.ECMAObjectFactory;
     import vegas.ioc.factory.ObjectFactory;
-    import vegas.text.FontResource;
-    import vegas.text.StyleSheetResource;
     
     /**
      * This loader load an external file who contains a context with all object definitions, resources and configuration objects to create and manage the ECMAObjectFactory IoC container.
@@ -83,9 +81,9 @@ package vegas.ioc.net
      * <p><b>2 -</b> The main source code :</p>
      * <pre class="prettyprint">
      * import system.events.ActionEvent;
-     * import andromeda.ioc.factory.ECMAObjectFactory;
+     * import vegas.ioc.factory.ECMAObjectFactory;
      * 
-     * import vegas.net.ECMAObjectLoader ;
+     * import vegas.ioc.io.ECMAObjectLoader ;
      * 
      * var debug:Function = function( e:Event ):void
      * {
@@ -101,7 +99,7 @@ package vegas.ioc.net
      * 
      * loader.run() ;
      * </pre>
-     * @see andromeda.ioc.factory.ECMAObjectFactory
+     * @see vegas.ioc.factory.ECMAObjectFactory
      */
     public class ECMAObjectLoader extends ObjectFactoryLoader
     {
@@ -117,13 +115,6 @@ package vegas.ioc.net
             super( context , path , factory ) ;
             localization = Localization.getInstance() ;
         }
-        
-        ////////////////////// Fill the ObjectResourceBuilder with the custom ObjectResource class.
-        
-        FontResource.register() ;
-        StyleSheetResource.register() ;
-        
-        //////////////////////
         
         /**
          * @private

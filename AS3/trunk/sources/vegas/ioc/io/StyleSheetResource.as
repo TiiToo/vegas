@@ -21,7 +21,7 @@
   
 */
 
-package vegas.text 
+package vegas.ioc.io 
 {
     import system.Reflection;
     import system.process.ActionURLLoader;
@@ -29,9 +29,9 @@ package vegas.text
     
     import vegas.ioc.ObjectDefinition;
     import vegas.ioc.factory.ObjectFactory;
-    import vegas.ioc.io.ObjectResource;
+    import vegas.text.StyleSheetLoader;
     import vegas.ioc.io.ObjectResourceBuilder;
-    import vegas.ioc.io.ObjectResourceType;
+    
     import vegas.logging.logger;
     
     import flash.net.URLRequest;
@@ -83,7 +83,7 @@ package vegas.text
                 var factory:ObjectFactory = owner as ObjectFactory ;
                 
                 if ( factory == null )
-                {            
+                {
                     throw new Error(this + " create failed, the factory reference of this resource not must be 'null'.") ;
                 }
                 

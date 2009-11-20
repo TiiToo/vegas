@@ -21,14 +21,14 @@
   
 */
 
-package vegas.display 
+package vegas.ioc.io 
 {
     import system.process.ActionURLLoader;
     import system.process.CoreActionLoader;
     
     import vegas.ioc.ObjectDefinition;
     import vegas.ioc.factory.ObjectFactory;
-    import vegas.ioc.io.ObjectResource;
+    import graphics.display.ShaderLoader;
     import vegas.ioc.io.ObjectResourceBuilder;
     import vegas.logging.logger;
     

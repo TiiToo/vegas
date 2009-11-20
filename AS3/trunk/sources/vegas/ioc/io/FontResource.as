@@ -21,16 +21,16 @@
   
 */
 
-package vegas.text 
+package vegas.ioc.io 
 {
     import system.process.ActionLoader;
     import system.process.CoreActionLoader;
     
     import vegas.events.FontEvent;
     import vegas.ioc.factory.ObjectFactory;
-    import vegas.ioc.io.ObjectResource;
+    import vegas.text.FontLoader;
     import vegas.ioc.io.ObjectResourceBuilder;
-    import vegas.ioc.io.ObjectResourceType;
+    
     import vegas.logging.logger;
     
     import flash.net.URLRequest;

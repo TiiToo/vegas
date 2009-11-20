@@ -346,7 +346,7 @@ package vegas.net.remoting
         
         /**
          * The scope of this object ("prototype" or "singleton")
-         * @see andromeda.ioc.core.ObjectScope
+         * @see vegas.ioc.ObjectScope
          */
         public function get scope():String
         {

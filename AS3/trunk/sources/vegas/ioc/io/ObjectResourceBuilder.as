@@ -30,7 +30,7 @@ package vegas.ioc.io
     
     // default ObjectResource class in the factory.
     
-    ObjectResourceBuilder.addObjectResource( null , ContextResource ) ;
+    ObjectResourceBuilder.addObjectResource( null                        , ContextResource  ) ;
     
     ObjectResourceBuilder.addObjectResource( ObjectResourceType.ASSEMBLY , AssemblyResource ) ;
     
@@ -38,7 +38,11 @@ package vegas.ioc.io
     
     ObjectResourceBuilder.addObjectResource( ObjectResourceType.CONFIG   , ConfigResource   ) ;
     
+    ObjectResourceBuilder.addObjectResource( ObjectResourceType.FONT     , FontResource     ) ;
+    
     ObjectResourceBuilder.addObjectResource( ObjectResourceType.I18N     , LocaleResource   ) ;
+    
+    ObjectResourceBuilder.addObjectResource( ObjectResourceType.STYLE    , StyleSheetResource ) ;
     
     ObjectResourceBuilder.addObjectResource( ObjectResourceType.TEXT     , TextResource     ) ;
     
