@@ -33,7 +33,7 @@ package examples
     import flash.text.TextFormat;
 
     /**
-     * Test the asgard.net.FlashVars class.
+     * Test the vegas.net.FlashVars class.
      * Launchs this example in the deploy/FlashVars.html page
      */
     public class FlashVarsExample extends Sprite 
