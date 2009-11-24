@@ -1,0 +1,59 @@
+imports =
+[
+
+    { resource : "library/dll.swf" , type:"assembly" } 
+    ,
+    { 
+        id         : "my_picture" ,
+        resource   : "library/picture.jpg" , 
+        type       : "assembly" ,
+        definition : 
+        { 
+            type       : "flash.display.Bitmap" ,
+            properties : 
+            [
+                { name : "x" , value  : 270 } ,
+                { name : "y" , value  : 75  }
+            ]
+        }
+    } 
+    
+] ;
+
+objects =
+[
+    {
+        id         : "my_logo" ,
+        type       : "Logo"    , // in the external library : dll.swf
+        singleton  : true      , 
+        lazyInit   : true      ,
+        properties : 
+        [
+            { name : "x" , value  : 80 } ,
+            { name : "y" , value  : 50  }
+        ]
+    }  
+    ,
+    {
+        id               : "application" ,
+        type             : "flash.display.MovieClip" ,
+        factoryReference : "#root" ,
+        singleton        : true ,
+        properties       :
+        [
+            { name : "addChild" , arguments : [ { ref : "my_picture" } ] } ,
+            { name : "addChild" , arguments : [ { ref : "my_logo"    } ] } 
+        ]
+    }
+    ,
+    {
+        id               : "stage" ,
+        type             : "flash.display.Stage" ,
+        factoryReference : "#stage" ,
+        singleton        : true ,
+        properties       :
+        [
+            { name : "scaleMode" , value : "noScale" } 
+        ]
+    }
+]

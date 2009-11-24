@@ -1,0 +1,6 @@
+pattern = "<p class='my-style'>Bonjour {0}</p>" ;
+
+field = 
+{
+    text : "Bonjour le monde"
+};

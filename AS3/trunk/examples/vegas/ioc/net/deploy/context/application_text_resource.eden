@@ -1,0 +1,59 @@
+imports =
+[
+    { id:"my_string" , type:"text" ,  resource : "text.txt" , path : "data/" } 
+] ;
+
+objects =
+[
+    {
+        id         : "format" ,
+        type       : "flash.text.TextFormat"  ,
+        properties : 
+        [
+            { name : "align" , value  : "justify" } ,
+            { name : "color" , value  : 0xFFFFFF  } ,
+            { name : "font"  , value  : "Arial"   } ,
+            { name : "size"  , value  : 12        } 
+        ]
+    }
+    ,
+    {
+        id         : "field" ,
+        type       : "flash.text.TextField"  ,
+        properties : 
+        [
+            { name : "autoSize"          , value  : "left"        } ,
+            { name : "border"            , value  : false         } ,
+            { name : "multiline"         , value  : true          } ,
+            { name : "width"             , value  : 680           } ,
+            { name : "wordWrap"          , value  : true          } ,
+            { name : "x"                 , value  : 20            } ,
+            { name : "y"                 , value  : 20            } ,
+            { name : "defaultTextFormat" , ref    : "format"      } ,
+            { name : "text"              , ref    : "my_string"   } 
+        ]
+    }
+    ,
+    {
+        id               : "stage" ,
+        type             : "flash.display.Stage"  ,
+        factoryReference : "#stage" ,
+        singleton        : true ,
+        properties       : 
+        [
+            { name : "align"     , value:""        } ,
+            { name : "scaleMode" , value:"noScale" }  
+        ]
+    }  
+    ,
+    {
+        id               : "root" ,
+        type             : "flash.display.MovieClip"  ,
+        factoryReference : "#root" ,
+        singleton        : true ,
+        properties       : 
+        [
+            { name : "addChild" , arguments  : [ { ref:"field" } ]} 
+        ]
+    }  
+] ;

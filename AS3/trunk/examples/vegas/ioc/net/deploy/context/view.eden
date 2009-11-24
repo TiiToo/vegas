@@ -1,0 +1,79 @@
+objects =
+[
+    {
+        id                  : "formatter" ,
+        type                : "String"    ,
+        staticFactoryMethod :
+        {
+            type      : "system.Strings" , 
+            name      : "format" ,
+            arguments : [ { locale:"pattern" } , { config:"pseudo" } ]
+        }
+    }
+    ,
+    {
+        id         : "my_field" ,
+        type       : "TextField"  ,
+        properties : 
+        [
+            { name : "autoSize"          , value  : "left"            } ,
+            { name : "filters"           , config : "display.filters" } ,
+            { name : "x"                 , value  : 10                } ,
+            { name : "y"                 , value  : 10                } ,
+            { name : "styleSheet"        , ref    : "style_sheet"     } ,
+            { name : "htmlText"          , ref    : "formatter"       } 
+        ]
+    }
+    ,
+    {
+        id               : "my_picture" ,
+        type             : "flash.display.Bitmap"  ,
+        factoryReference : "assembly_picture" ,
+        properties : 
+        [
+            { name : "filters" , config : "display.filters" } ,
+            { name : "x"       , value  : 470               } ,
+            { name : "y"       , value  : 75                }
+        ]
+    }    
+    ,
+    {
+        id         : "my_square" ,
+        type       : "Square" ,
+        properties : [ { name : "filters" , config : "display.filters" } ]
+    } 
+    ,
+    {
+        id         : "my_container" ,
+        type       : "{display}.CoreSprite" ,
+        singleton  : true  , 
+        lazyInit   : true  ,
+        identify   : true  ,
+        properties : 
+        [
+            
+            // attributs
+            
+            { name : "x" , value : 50 } ,
+            { name : "y" , value : 50 } ,
+            
+            // methods
+            
+            { name : "addChild" , arguments : [ { ref:"my_square"  } ] } ,
+            { name : "addChild" , arguments : [ { ref:"my_field"   } ] }  
+        ]
+    }  
+    ,
+    {
+        id         : "my_logo" ,
+        type       : "Logo"    ,
+        singleton  : true      , 
+        lazyInit   : true      ,
+        properties : 
+        [
+            { name : "filters" , config : "display.filters" } ,
+            { name : "x"       , value  : 280               } ,
+            { name : "y"       , value  : 50                }
+        ]
+    }
+] ;

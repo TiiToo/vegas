@@ -1,0 +1,65 @@
+imports =
+[   
+    // shader
+    
+    { 
+        id       : "asset_shader" , 
+        resource : "pbj/RGBInvert.pbj" , 
+        type     : "shader"
+    } 
+    ,
+    
+    // assembly
+    
+    { 
+        id         : "asset_picture" ,
+        resource   : "library/picture.jpg" , 
+        type       : "assembly" ,
+        definition : 
+        { 
+            type       : "flash.display.Bitmap" ,
+            properties : 
+            [
+                { name : "x" , value  : 30 } ,
+                { name : "y" , value  : 30 }
+            ]
+        }
+    } 
+] ;
+
+objects =
+[
+    {
+        id        : "invert_filter" ,
+        type      : "flash.filters.ShaderFilter" ,
+        arguments : [ { ref : "asset_shader" } ] 
+    }
+    ,
+    {
+        id        : "picture_filters" ,
+        type      : "Array" ,
+        arguments : [ { ref : "invert_filter" } ] 
+    }
+    ,
+    {
+        id               : "picture" ,
+        type             : "flash.display.Bitmap" ,
+        factoryReference : "asset_picture" ,
+        properties       : 
+        [ 
+            { name : "filters" , ref : "picture_filters" } 
+        ] 
+    }
+    ,    
+    {
+        id               : "stage" ,
+        type             : "flash.display.Stage" ,
+        factoryReference : "#stage" ,
+        singleton        : true ,
+        properties       :
+        [
+            { name : "scaleMode" , value     : "noScale"               } ,
+            { name : "addChild"  , arguments : [ { ref : "picture" } ] } 
+        ]
+    }
+]

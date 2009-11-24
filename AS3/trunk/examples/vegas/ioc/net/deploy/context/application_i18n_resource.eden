@@ -1,0 +1,58 @@
+imports =
+[
+    { resource : "fr" , type:"i18n" , prefix : "localize_" , path:"locale/" , suffix:".eden" , verbose:true } ,
+    { resource : "en" , type:"i18n" , path:"locale/" , verbose:true } 
+] ;
+
+objects =
+[
+    {
+        id         : "localization" ,
+        type       : "andromeda.i18n.Localization" ,
+        singleton  : true ,
+        lazyInit   : true ,
+        staticFactoryMethod : 
+        { 
+            type      : "andromeda.i18n.Localization" , 
+            name      : "getInstance" 
+        }
+    }
+    ,
+    {
+        id         : "field" ,
+        type       : "flash.text.TextField" ,
+        singleton  : true ,
+        lazyInit   : true ,
+        properties :
+        [
+            { name : "autoSize"          , value  : "left"                                           } ,
+            { name : "defaultTextFormat" , value  : new flash.text.TextFormat("Arial", 14, 0xEEED2B) } ,
+            { name : "text"              , locale : "field.text"                                     } ,
+            { name : "x"                 , value  : 25                                               } ,
+            { name : "y"                 , value  : 25                                               } 
+        ]
+    }
+    ,
+    {
+        id               : "application" ,
+        type             : "flash.display.MovieClip" ,
+        factoryReference : "#root" ,
+        singleton        : true ,
+        properties       :
+        [
+            // dependencies
+            
+            { name : "field"        , ref : "field"        } ,
+            { name : "localization" , ref : "localization" } ,
+            
+            // childs
+            
+            { name : "addChild" , arguments : [ { ref : "field" } ] } 
+        ]
+        ,
+        listeners :
+        [
+            { dispatcher : "localization" , type : "change" , method : "changeLocalization" }
+        ]
+    }
+]

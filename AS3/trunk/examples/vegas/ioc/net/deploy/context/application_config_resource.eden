@@ -1,0 +1,44 @@
+imports =
+[
+    { resource : "config" , type : "config" , path : "config/" }
+] ;
+
+objects =
+[
+    
+    {
+        id   : "field" ,
+        type : "flash.text.TextField" ,
+        properties :
+        [
+            { name : "autoSize"          , config : "field.autoSize"          } ,
+            { name : "defaultTextFormat" , config : "field.defaultTextFormat" } ,
+            { name : "filters"           , config : "display.filters"         } ,
+            { name : "text"              , config : "field.text"              } ,
+            { name : "x"                 , config : "field.x"                 } ,
+            { name : "y"                 , config : "field.y"                 } 
+        ]
+    }
+    ,
+    {
+        id               : "application" ,
+        type             : "flash.display.MovieClip" ,
+        factoryReference : "#root" ,
+        singleton        : true ,
+        properties       :
+        [
+            { name : "addChild" , arguments : [ { ref : "field" } ] } 
+        ]
+    }
+    ,
+    {
+        id               : "stage" ,
+        type             : "flash.display.Stage" ,
+        factoryReference : "#stage" ,
+        singleton        : true ,
+        properties       :
+        [
+            { name : "scaleMode" , value : "noScale" } 
+        ]
+    }    
+]
