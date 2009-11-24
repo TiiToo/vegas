@@ -25,14 +25,14 @@ package examples
 {
     import graphics.Align;
     import graphics.display.DisplayObjects;
-    
+
     import vegas.display.Parallaxe;
-    
+
     import flash.display.MovieClip;
     import flash.display.StageScaleMode;
     import flash.events.Event;
     import flash.geom.Rectangle;
-    
+
     [SWF(width="700", height="200", frameRate="24", backgroundColor="#A9A988")]
     
     public dynamic class ParallaxeExample extends MovieClip 
