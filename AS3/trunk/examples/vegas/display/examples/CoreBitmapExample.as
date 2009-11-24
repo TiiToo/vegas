@@ -31,7 +31,7 @@ package examples
     import flash.display.StageScaleMode;
     
     /**
-     * Example with the asgard.display.CoreBitmap class.
+     * Example with the vegas.display.CoreBitmap class.
      */
     public dynamic class CoreBitmapExample extends Sprite 
     {

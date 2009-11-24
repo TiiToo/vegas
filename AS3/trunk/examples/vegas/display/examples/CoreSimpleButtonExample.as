@@ -32,7 +32,7 @@ package examples
     import flash.events.MouseEvent;
 
     /**
-     * Example with the asgard.display.CoreSimpleButton class.
+     * Example with the vegas.display.CoreSimpleButton class.
      */
     public dynamic class CoreSimpleButtonExample extends Sprite 
     {

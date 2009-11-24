@@ -2,7 +2,7 @@
     header : 
     {
         name      : "CONFIG JSON TEST" , 
-        namespace : "andromeda.config" ,
+        namespace : "vegas.config" ,
         version   : "1.0.0.0"
     } 
     

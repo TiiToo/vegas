@@ -8,12 +8,12 @@ objects =
 [
     {
         id         : "localization" ,
-        type       : "andromeda.i18n.Localization" ,
+        type       : "vegas.i18n.Localization" ,
         singleton  : true ,
         lazyInit   : true ,
         staticFactoryMethod : 
         { 
-            type      : "andromeda.i18n.Localization" , 
+            type      : "vegas.i18n.Localization" , 
             name      : "getInstance" 
         }
     }

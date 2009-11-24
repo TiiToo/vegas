@@ -25,13 +25,13 @@ package examples
 {
     import vegas.display.CoreSprite;
     import vegas.display.DisplayObjectCollector;
-
+    
     import flash.display.Sprite;
     import flash.display.StageAlign;
     import flash.display.StageScaleMode;
-
+    
     /**
-     * Example with the asgard.display.CoreSprite class.
+     * Example with the vegas.display.CoreSprite class.
      */
     public dynamic class CoreSpriteExample extends Sprite 
     {
