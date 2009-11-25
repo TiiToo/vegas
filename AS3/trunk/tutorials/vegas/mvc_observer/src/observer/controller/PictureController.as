@@ -24,22 +24,22 @@ package observer.controller
 {
     import observer.display.DisplayList;
     import observer.events.PictureModelEvent;
-    
+    import observer.model.ModelListener;
+
     import vegas.display.Background;
     import vegas.display.DisplayObjectCollector;
-    
+
     import flash.display.Loader;
-    import flash.display.LoaderInfo;
     import flash.events.Event;
     import flash.net.URLRequest;
-    
+
     /**
-     * This observer of the picture display.
+     * This observer of the picture model.
      */
-    public class PictureController
+    public class PictureController implements ModelListener
     {
         /**
-         * Creates a new PictureObserver instance.
+         * Creates a new PictureController instance.
          */
         public function PictureController()
         {
@@ -47,16 +47,17 @@ package observer.controller
         }
         
         /**
-         * Invoked when the picture model notify a change.
+         * Invoked when model notify a change.
          */
-        public function change( event:PictureModelEvent ):void
+        public function change( e:Event ):void
         {
+            var event:PictureModelEvent = e as PictureModelEvent ;
             if ( event == null )
             {
                 trace(this + ' failed, the event not must be null.' ) ;
                 return ;
             }
-            var loader:Loader      = DisplayObjectCollector.get( DisplayList.LOADER  ) as Loader  ;
+            var loader:Loader = DisplayObjectCollector.get( DisplayList.LOADER  ) as Loader  ;
             switch (event.type)
             {
                 case PictureModelEvent.ADD :
@@ -101,8 +102,7 @@ package observer.controller
          */
         protected function complete(e:Event):void
         {
-            var info:LoaderInfo    = e.target as LoaderInfo ;
-            var loader:Loader      = info.loader ;
+            var loader:Loader      = DisplayObjectCollector.get( DisplayList.LOADER  ) as Loader  ;
             var picture:Background = DisplayObjectCollector.get( DisplayList.PICTURE ) as Background  ;
             if ( loader )
             {
@@ -114,6 +114,5 @@ package observer.controller
                 } 
             }
         }
-        
     }
 }
