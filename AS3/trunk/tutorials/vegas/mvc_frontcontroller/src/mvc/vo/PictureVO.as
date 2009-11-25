@@ -23,8 +23,6 @@
 
 package mvc.vo
 {
-    import system.Reflection;
-    
     import vegas.vo.SimpleValueObject;
     
     /**
@@ -36,7 +34,7 @@ package mvc.vo
          * Creates a new PictureVO instance.
          * @param init A generic object containing properties with which to populate the newly instance. If this argument is null, it is ignored.
          */
-        public function PictureVO( init:Object=null )
+        public function PictureVO( init:Object = null )
         {
             super( init ) ;
         }
@@ -57,7 +55,7 @@ package mvc.vo
           */
         public override function toString():String
         {
-            var str:String = "[" + Reflection.getClassName(this) ;
+            var str:String = "[PictureVO" ;
             if ( this.id != null )
             {
                 str += " id:" + this.id ;

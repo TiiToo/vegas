@@ -23,12 +23,12 @@
 package mvc.controller.model
 {
     import mvc.vo.PictureVO;
-
+    
     import vegas.controllers.AbstractController;
     import vegas.events.ModelObjectEvent;
-
+    
     import flash.events.Event;
-
+    
     public class AddPicture extends AbstractController
     {
         /**

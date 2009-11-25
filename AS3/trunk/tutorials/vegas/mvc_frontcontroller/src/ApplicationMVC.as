@@ -31,8 +31,8 @@ package
     import mvc.controller.model.RemovePicture;
     import mvc.display.DisplayList;
     import mvc.events.EventList;
-    import mvc.model.GalleryModel;
     import mvc.model.ModelList;
+    import mvc.model.PictureModel;
     import mvc.vo.PictureVO;
     
     import system.events.FrontController;
@@ -71,7 +71,7 @@ package
             
             // model
             
-            var gallery:GalleryModel = new GalleryModel( ModelList.GALLERY_MODEL ) ;
+            var gallery:PictureModel = new PictureModel( ModelList.PICTURE_MODEL ) ;
             
             gallery.setEventTypeADD    ( EventList.ADD_PICTURE    ) ;
             gallery.setEventTypeCHANGE ( EventList.CHANGE_PICTURE ) ;
@@ -125,7 +125,7 @@ package
         public function keyDown( e:KeyboardEvent ):void
         {
             var code:uint = e.keyCode ;
-            var gallery:GalleryModel = ModelCollector.get( ModelList.GALLERY_MODEL ) as GalleryModel ;
+            var gallery:PictureModel = ModelCollector.get( ModelList.PICTURE_MODEL ) as PictureModel ;
             trace( e.type + " : " + code ) ;
             try
             {

@@ -1,4 +1,4 @@
-/*
+﻿/*
 
   The contents of this file are subject to the Mozilla Public License Version
   1.1 (the "License"); you may not use this file except in compliance with
@@ -29,8 +29,8 @@ package mvc.model
     public class ModelList 
     {
         /**
-         * The id name of this gallery model.
+         * The id name of this picture model.
          */
-        public static var GALLERY_MODEL:String = "gallery_model" ;
+        public static var PICTURE_MODEL:String = "picture_model" ;
     }
 }

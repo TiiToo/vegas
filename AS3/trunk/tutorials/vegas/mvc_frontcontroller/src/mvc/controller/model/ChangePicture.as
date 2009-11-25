@@ -1,4 +1,4 @@
-/*
+﻿/*
 
   The contents of this file are subject to the Mozilla Public License Version
   1.1 (the "License"); you may not use this file except in compliance with
@@ -24,17 +24,17 @@ package mvc.controller.model
 {
     import mvc.display.DisplayList;
     import mvc.vo.PictureVO;
-
+    
     import vegas.controllers.AbstractController;
     import vegas.display.Background;
     import vegas.display.DisplayObjectCollector;
     import vegas.events.ModelObjectEvent;
-
+    
     import flash.display.Loader;
     import flash.display.LoaderInfo;
     import flash.events.Event;
     import flash.net.URLRequest;
-
+    
     public class ChangePicture extends AbstractController
     {
         /**
@@ -69,14 +69,17 @@ package mvc.controller.model
          */
         protected function complete(e:Event):void
         {
-            var info:LoaderInfo = e.target as LoaderInfo ;
-            var loader:Loader   = info.loader ;
-            if ( loader != null )
+            var info:LoaderInfo    = e.target as LoaderInfo ;
+            var loader:Loader      = info.loader ;
+            var picture:Background = DisplayObjectCollector.get( DisplayList.PICTURE  ) as Background  ;
+            if ( loader )
             {
                 loader.removeEventListener( Event.COMPLETE , complete ) ;
-                var picture:Background = DisplayObjectCollector.get( DisplayList.PICTURE  ) as Background  ;
-                loader.x = ( picture.w  - loader.width  ) / 2 ;
-                loader.y = ( picture.h - loader.height ) / 2 ; 
+                if ( picture )
+                {
+                    loader.x = ( picture.w - loader.width  ) / 2 ;
+                    loader.y = ( picture.h - loader.height ) / 2 ;
+                } 
             }
         }
     }

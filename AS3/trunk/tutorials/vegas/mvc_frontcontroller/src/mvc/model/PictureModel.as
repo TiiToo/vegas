@@ -29,15 +29,15 @@ package mvc.model
     import vegas.models.maps.MapModelObject;
     
     /**
-     * The model of the picture gallery.
+     * The model of all pictures.
      */
-    public final class GalleryModel extends MapModelObject
+    public final class PictureModel extends MapModelObject
     {
         /**
-         * Creates a new GalleryModel instance.
+         * Creates a new PictureModel instance.
          * @param id the id of this model.
          */
-        public function GalleryModel( id:* = null )
+        public function PictureModel( id:* = null )
         {
             super( id ) ;
         }
