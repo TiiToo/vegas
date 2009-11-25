@@ -1,4 +1,4 @@
-   VEGAS AS3 - version 1.6.x.xxxx (in progress)
+   VEGAS AS3 - version 1.6.0.1421 (Release Candidate 1)
     
    LICENCE 
     

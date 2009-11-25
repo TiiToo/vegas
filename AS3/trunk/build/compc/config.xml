@@ -8,27 +8,27 @@
         
         <namespaces>
             <namespace>
-                <uri>http://code.google.com/p/core/2009</uri>
+                <uri>http://code.google.com/p/core/2010</uri>
                 <manifest>./manifests/core_manifest.xml</manifest>
             </namespace>
             <namespace>
-                <uri>http://code.google.com/p/system/2009</uri>
+                <uri>http://code.google.com/p/system/2010</uri>
                 <manifest>./manifests/system_manifest.xml</manifest>
             </namespace>
             <namespace>
-                <uri>http://code.google.com/p/graphics/2009</uri>
+                <uri>http://code.google.com/p/graphics/2010</uri>
                 <manifest>./manifests/graphics_manifest.xml</manifest>
             </namespace>
             <namespace>
-                <uri>http://code.google.com/p/vegas/2009</uri>
+                <uri>http://code.google.com/p/vegas/2010</uri>
                 <manifest>./manifests/vegas_manifest.xml</manifest>
             </namespace>
             <namespace>
-                <uri>http://code.google.com/p/lun-as/2009</uri>
+                <uri>http://code.google.com/p/lun-as/2010</uri>
                 <manifest>./manifests/lunas_manifest.xml</manifest>
             </namespace>
             <namespace>
-                <uri>http://code.google.com/p/calista/2009</uri>
+                <uri>http://code.google.com/p/calista/2010</uri>
                 <manifest>./manifests/calista_manifest.xml</manifest>
             </namespace>
         </namespaces>
@@ -38,12 +38,12 @@
     </compiler>
     
     <include-namespaces>
-        <uri>http://code.google.com/p/core/2009</uri>
-        <uri>http://code.google.com/p/system/2009</uri>
-        <uri>http://code.google.com/p/graphics/2009</uri>
-        <uri>http://code.google.com/p/vegas/2009</uri>
-        <uri>http://code.google.com/p/lun-as/2009</uri>
-        <uri>http://code.google.com/p/calista/2009</uri>
+        <uri>http://code.google.com/p/core/2010</uri>
+        <uri>http://code.google.com/p/system/2010</uri>
+        <uri>http://code.google.com/p/graphics/2010</uri>
+        <uri>http://code.google.com/p/vegas/2010</uri>
+        <uri>http://code.google.com/p/lun-as/2010</uri>
+        <uri>http://code.google.com/p/calista/2010</uri>
     </include-namespaces>
     
     <target-player>10.0.0</target-player>
@@ -53,7 +53,7 @@
     <output>deploy/vegas.swc</output>
     
     <metadata>
-        <title>The AS3 VEGAS framework - version 1.5.x.xxxx</title>
+        <title>The AS3 VEGAS framework - version 1.6.0.1421</title>
         <description>All class of VEGAS and this extensions</description>
         <publisher>http://www.ekameleon.net</publisher>
         <creator>Marc ALCARAZ (aka eKameleon)</creator>
