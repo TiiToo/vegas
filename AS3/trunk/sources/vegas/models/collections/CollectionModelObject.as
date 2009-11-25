@@ -39,10 +39,10 @@ package vegas.models.collections
         /**
          * Creates a new CollectionModelObject instance.
          * @param id the id of this model.
-         * @param global the flag to use a global event flow or a local event flow.
+         * @param global the flag to use a global event flow or a local event flow (default true).
          * @param channel (optional) the name of the global event flow if the <code class="prettyprint">global</code> argument is <code class="prettyprint">true</code>.
          */ 
-        public function CollectionModelObject(id:* = null, global:Boolean = false, channel:String = null)
+        public function CollectionModelObject(id:* = null, global:Boolean = true, channel:String = null)
         {
             super( id, global, channel );
             _co = initializeCollection() ;

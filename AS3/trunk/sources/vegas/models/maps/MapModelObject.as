@@ -40,11 +40,11 @@ package vegas.models.maps
         /**
          * Creates a new MapModelObject instance.
          * @param id the id of this model.
-         * @param global the flag to use a global event flow or a local event flow.
+         * @param global the flag to use a global event flow or a local event flow (default true).
          * @param channel (optional) the name of the global event flow if the <code class="prettyprint">global</code> argument is <code class="prettyprint">true</code>.
          * @param factory (optional) the Map factory reference used in the model to register all entries.
          */
-        public function MapModelObject(id:* = null, global:Boolean = false, channel:String=null , factory:Map = null )
+        public function MapModelObject(id:* = null , global:Boolean = true , channel:String = null , factory:Map = null )
         {
             super( id , global , channel );
             _map = factory || initializeMap() ;
