@@ -39,6 +39,7 @@
     <!-- graphics.display -->
     
     <component id="graphics.display:ByteArrays"              class="graphics.display.ByteArrays" />
+    <component id="graphics.display:CropBitmapData"          class="graphics.display.CropBitmapData" />
     <component id="graphics.display:DisplayObjectContainers" class="graphics.display.DisplayObjectContainers" />
     <component id="graphics.display:DisplayObjects"          class="graphics.display.DisplayObjects" />
     <component id="graphics.display:Pattern"                 class="graphics.display.Pattern" />
@@ -54,7 +55,7 @@
     <component id="graphics.display.patterns:MangaPatterns"    class="graphics.display.patterns.MangaPatterns" />
     <component id="graphics.display.patterns:StandardPatterns" class="graphics.display.patterns.StandardPatterns" />
     
-    <!-- graphics.draw -->
+    <!-- graphics.drawing -->
     
     <component id="graphics.drawing:ArcPen"                     class="graphics.drawing.ArcPen" />
     <component id="graphics.drawing:ArrowPen"                   class="graphics.drawing.ArrowPen" />
