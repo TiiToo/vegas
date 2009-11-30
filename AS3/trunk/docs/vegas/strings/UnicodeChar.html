@@ -1,0 +1,591 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" href="../../style.css" type="text/css" media="screen">
+<link rel="stylesheet" href="../../print.css" type="text/css" media="print">
+<link rel="stylesheet" href="../../prettify.css" type="text/css">
+<meta content="UnicodeChar,vegas.strings.UnicodeChar,BACK_SLASH,BACK_SPACE,CR,DOUBLE_QUOTE,FF,LF,LINE_TERMINATOR_CHARS,LS,NBSP,PS,SIMPLE_QUOTE,SP,SPECIAL_CHARS,TAB,VT,WHITE_SPACE_CHARS,callProperty,isLineTerminators,isWhiteSpace,toChar,toCharString,toUnicode" name="keywords">
+<title>vegas.strings.UnicodeChar</title>
+</head>
+<body>
+<script type="text/javascript" language="javascript" src="../../prettify.js"></script><script type="text/javascript" language="javascript" src="../../asdoc.js"></script><script type="text/javascript" language="javascript" src="../../cookies.js"></script><script type="text/javascript" language="javascript">
+<!--
+				asdocTitle = 'UnicodeChar - VEGAS AS3 Reference';
+				var baseRef = '../../';
+				window.onload = configPage;
+			--></script>
+<table style="display:none" id="titleTable" cellspacing="0" cellpadding="0" class="titleTable">
+<tr>
+<td align="left" class="titleTableTitle">VEGAS AS3 Reference</td><td align="right" class="titleTableTopNav"><a onclick="loadClassListFrame('../../all-classes.html')" href="../../package-summary.html">All&nbsp;Packages</a>&nbsp;|&nbsp;<a onclick="loadClassListFrame('../../all-classes.html')" href="../../class-summary.html">All&nbsp;Classes</a>&nbsp;|&nbsp;<a onclick="loadClassListFrame('../../index-list.html')" href="../../all-index-A.html">Index</a>&nbsp;|&nbsp;<a href="../../index.html?vegas/strings/UnicodeChar.html&amp;vegas/strings/class-list.html" id="framesLink1">Frames</a><a onclick="parent.location=document.location" href="" style="display:none" id="noFramesLink1">No&nbsp;Frames</a></td><td rowspan="3" align="right" class="titleTableLogo"><img alt="Adobe Logo" title="Adobe Logo" class="logoImage" src="../../images/logo.jpg"></td>
+</tr>
+<tr class="titleTableRow2">
+<td align="left" id="subTitle" class="titleTableSubTitle">Class&nbsp;UnicodeChar</td><td align="right" id="subNav" class="titleTableSubNav"><a href="#methodSummary">Methods</a>&nbsp;| <a href="#constantSummary">Constants</a></td>
+</tr>
+<tr class="titleTableRow3">
+<td colspan="2">&nbsp;</td>
+</tr>
+</table>
+<script type="text/javascript" language="javascript">
+<!--
+if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Class UnicodeChar"); titleBar_setSubNav(true,false,false,false,false,false,true,false,false,false,false,false,false,false);}
+--></script>
+<div class="MainContent">
+<table cellspacing="0" cellpadding="0" class="classHeaderTable">
+<tr>
+<td class="classHeaderTableLabel">Package</td><td><a onclick="javascript:loadClassListFrame('class-list.html')" href="package-detail.html">vegas.strings</a></td>
+</tr>
+<tr>
+<td class="classHeaderTableLabel">Class</td><td class="classSignature">public dynamic  class UnicodeChar</td>
+</tr>
+<tr>
+<td class="classHeaderTableLabel">Inheritance</td><td class="inheritanceList">UnicodeChar <img class="inheritArrow" alt="Inheritance" title="Inheritance" src="../../images/inherit-arrow.gif"> flash.utils.Proxy</td>
+</tr>
+</table>
+<p></p>
+     <b>ECMA 262</b> Unicode IFormat-Control Characters tools.
+     <p>See <a href='http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf'>ECMAScript 262 specifications</a></p>
+     <p><b>Example :</b></p>
+     <pre class="prettyprint">
+     UnicodeChar = vegas.strings.UnicodeChar ;
+     
+     trace("-----") ;
+     
+     trace("Number of white space characters : " + UnicodeChar.WHITE_SPACE_CHARS.length) ;
+     
+     trace("-----") ;
+     
+     trace( "|" + UnicodeChar.TAB + "hello world" ) ;
+     
+     trace("-----") ;
+     
+     trace ("isWhiteSpace UnicodeChar.TAB : " + UnicodeChar.isWhiteSpace( UnicodeChar.TAB ) ) ;
+     
+     trace("-----") ;
+     
+     trace("UnicodeChar.toChar('0040') : " + UnicodeChar.toChar("0040")) ;
+     
+     trace("UnicodeChar.toUnicode('220')  : " + UnicodeChar.toUnicode(220)) ;
+     trace("UnicodeChar.toChar(UnicodeChar.toUnicode('220')) : " + UnicodeChar.toChar(UnicodeChar.toUnicode(220))) ;
+     
+     trace("-----") ;
+     
+     u = new UnicodeChar() ;
+     trace( u.u5c0f() + u.u98fc() + u.u5f3e() + u.u0040() ) ; // 小飼弾<p></p>
+<br>
+<hr>
+</div>
+<a name="methodSummary"></a>
+<div class="summarySection">
+<div class="summaryTableTitle">Public Methods</div>
+<table id="summaryTableMethod" class="summaryTable " cellpadding="3" cellspacing="0">
+<tr>
+<th>&nbsp;</th><th colspan="2">Method</th><th class="summaryTableOwnerCol">Defined&nbsp;by</th>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#UnicodeChar()">UnicodeChar</a>()</div>
+<div class="summaryTableDescription">
+         Creates a new <code class="prettyprint">UnicodeChar</code> instance.</div>
+</td><td class="summaryTableOwnerCol">UnicodeChar</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#isLineTerminators()">isLineTerminators</a>(char:String):Boolean</div>
+<div class="summaryTableDescription">[static]
+         Returns <code class="prettyprint">true</code> of the specified character is a line terminator.</div>
+</td><td class="summaryTableOwnerCol">UnicodeChar</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#isWhiteSpace()">isWhiteSpace</a>(char:String):Boolean</div>
+<div class="summaryTableDescription">[static]
+         Returns <code class="prettyprint">true</code> of the specified character is a whitespace.</div>
+</td><td class="summaryTableOwnerCol">UnicodeChar</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#toChar()">toChar</a>(unicode:String):<a href="../../system/system/Char.html">Char</a>
+</div>
+<div class="summaryTableDescription">[static]
+         Converts a unicode representation and returns this char's string.</div>
+</td><td class="summaryTableOwnerCol">UnicodeChar</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#toCharString()">toCharString</a>(unicode:String):String</div>
+<div class="summaryTableDescription">[static]
+         Converts a unicode representation and returns this char's string.</div>
+</td><td class="summaryTableOwnerCol">UnicodeChar</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#toUnicode()">toUnicode</a>(n:Number):String</div>
+<div class="summaryTableDescription">[static]
+         Converts an unicode number value and returns this string representation.</div>
+</td><td class="summaryTableOwnerCol">UnicodeChar</td>
+</tr>
+</table>
+</div>
+<a name="protectedMethodSummary"></a>
+<div class="summarySection">
+<div class="summaryTableTitle">Protected Methods</div>
+<table id="summaryTableProtectedMethod" class="summaryTable " cellpadding="3" cellspacing="0">
+<tr>
+<th>&nbsp;</th><th colspan="2">Method</th><th class="summaryTableOwnerCol">Defined&nbsp;by</th>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#callProperty()">callProperty</a>(methodName:*, ... rest):*</div>
+<div class="summaryTableDescription">
+         Overrides the behavior of an object property that can be called as a function.</div>
+</td><td class="summaryTableOwnerCol">UnicodeChar</td>
+</tr>
+</table>
+</div>
+<a name="constantSummary"></a>
+<div class="summarySection">
+<div class="summaryTableTitle">Public Constants</div>
+<table id="summaryTableConstant" class="summaryTable " cellpadding="3" cellspacing="0">
+<tr>
+<th>&nbsp;</th><th colspan="2">Constant</th><th class="summaryTableOwnerCol">Defined&nbsp;by</th>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#BACK_SLASH">BACK_SLASH</a> : String<div class="summaryTableDescription">[static]
+         Back Slash utf8 representation (special char).</div>
+</td><td class="summaryTableOwnerCol">UnicodeChar</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#BACK_SPACE">BACK_SPACE</a> : String<div class="summaryTableDescription">[static]
+         Back Space utf8 representation (special char).</div>
+</td><td class="summaryTableOwnerCol">UnicodeChar</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#CR">CR</a> : String<div class="summaryTableDescription">[static]
+         Carriage Return utf8 representation (line terminators).</div>
+</td><td class="summaryTableOwnerCol">UnicodeChar</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#DOUBLE_QUOTE">DOUBLE_QUOTE</a> : String<div class="summaryTableDescription">[static]
+         Double Quote utf8 representation (special char).</div>
+</td><td class="summaryTableOwnerCol">UnicodeChar</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#FF">FF</a> : String<div class="summaryTableDescription">[static]
+         Form Feed utf8 representation (whitespace).</div>
+</td><td class="summaryTableOwnerCol">UnicodeChar</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#LF">LF</a> : String<div class="summaryTableDescription">[static]
+         Line Feed utf8 representation (line terminators).</div>
+</td><td class="summaryTableOwnerCol">UnicodeChar</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#LINE_TERMINATOR_CHARS">LINE_TERMINATOR_CHARS</a> : Array<div class="summaryTableDescription">[static]
+         Array with all line terminators characters
+         </div>
+</td><td class="summaryTableOwnerCol">UnicodeChar</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#LS">LS</a> : String<div class="summaryTableDescription">[static]
+         Line Separator utf8 representation (line terminators).</div>
+</td><td class="summaryTableOwnerCol">UnicodeChar</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#NBSP">NBSP</a> : String<div class="summaryTableDescription">[static]
+         No-break space utf8 representation (whitespace).</div>
+</td><td class="summaryTableOwnerCol">UnicodeChar</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#PS">PS</a> : String<div class="summaryTableDescription">[static]
+         Paragraph Separator utf8 representation (line terminators).</div>
+</td><td class="summaryTableOwnerCol">UnicodeChar</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#SIMPLE_QUOTE">SIMPLE_QUOTE</a> : String<div class="summaryTableDescription">[static]
+         Simple Quote utf8 representation (special char).</div>
+</td><td class="summaryTableOwnerCol">UnicodeChar</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#SP">SP</a> : String<div class="summaryTableDescription">[static]
+        Space utf8 representation (whitespace).</div>
+</td><td class="summaryTableOwnerCol">UnicodeChar</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#SPECIAL_CHARS">SPECIAL_CHARS</a> : Array<div class="summaryTableDescription">[static]
+         Array with all whitespace characters.</div>
+</td><td class="summaryTableOwnerCol">UnicodeChar</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#TAB">TAB</a> : String<div class="summaryTableDescription">[static]
+         Tab utf8 representation (whitespace).</div>
+</td><td class="summaryTableOwnerCol">UnicodeChar</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#VT">VT</a> : String<div class="summaryTableDescription">[static]
+         Vertical Tab utf8 representation (whitespace).</div>
+</td><td class="summaryTableOwnerCol">UnicodeChar</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#WHITE_SPACE_CHARS">WHITE_SPACE_CHARS</a> : Array<div class="summaryTableDescription">[static]
+         Array with all whitespace characters.</div>
+</td><td class="summaryTableOwnerCol">UnicodeChar</td>
+</tr>
+</table>
+</div>
+<script type="text/javascript" language="javascript">
+<!--
+showHideInherited();
+--></script>
+<div class="MainContent">
+<a name="constructorDetail"></a>
+<div class="detailSectionHeader">Constructor detail</div>
+<a name="UnicodeChar()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">UnicodeChar</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">constructor</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public function UnicodeChar()</code><p>
+         Creates a new <code class="prettyprint">UnicodeChar</code> instance.
+         </p><p><b>Example :</b></p>
+         <pre class="prettyprint">
+         var u:UnicodeChar = new UnicodeChar() ;
+         trace( u.u0040() ) ; // </div>
+<a name="methodDetail"></a>
+<div class="detailSectionHeader">Method detail</div>
+<a name="callProperty()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">callProperty</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>flash_proxy override function callProperty(methodName:*, ... rest):*</code><p>
+         Overrides the behavior of an object property that can be called as a function. 
+         When a method of the object is invoked, this method is called. 
+         While some objects can be called as functions, some object properties can also be called as functions. 
+         </p><span class="label">Parameters</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td><code><span class="label">methodName</span>:*</code></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><code>... <span class="label">rest</span></code></td>
+</tr>
+</table>
+<p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><code>*</code></td>
+</tr>
+</table>
+</div>
+<a name="isLineTerminators()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">isLineTerminators</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public static function isLineTerminators(char:String):Boolean</code><p>
+         Returns <code class="prettyprint">true</code> of the specified character is a line terminator.
+         </p><span class="label">Parameters</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td><code><span class="label">char</span>:String</code></td>
+</tr>
+</table>
+<p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><code>Boolean</code> &mdash; <code class="prettyprint">true</code> of the specified character is a line terminator.
+         </td>
+</tr>
+</table>
+</div>
+<a name="isWhiteSpace()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">isWhiteSpace</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public static function isWhiteSpace(char:String):Boolean</code><p>
+         Returns <code class="prettyprint">true</code> of the specified character is a whitespace.
+         </p><span class="label">Parameters</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td><code><span class="label">char</span>:String</code></td>
+</tr>
+</table>
+<p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><code>Boolean</code> &mdash; <code class="prettyprint">true</code> of the specified character is a whitespace.
+         </td>
+</tr>
+</table>
+</div>
+<a name="toChar()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">toChar</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public static function toChar(unicode:String):<a href="../../system/system/Char.html">Char</a></code><p>
+         Converts a unicode representation and returns this char's string.
+         </p><span class="label">Parameters</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td><code><span class="label">unicode</span>:String</code></td>
+</tr>
+</table>
+<p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><code><a href="../../system/system/Char.html">Char</a></code> &mdash; 
+                        The char of the unicode representation.
+         
+                        
+                     </td>
+</tr>
+</table>
+</div>
+<a name="toCharString()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">toCharString</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public static function toCharString(unicode:String):String</code><p>
+         Converts a unicode representation and returns this char's string.
+         </p><span class="label">Parameters</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td><code><span class="label">unicode</span>:String</code></td>
+</tr>
+</table>
+<p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><code>String</code> &mdash; The char of the unicode representation.
+         </td>
+</tr>
+</table>
+</div>
+<a name="toUnicode()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">toUnicode</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public static function toUnicode(n:Number):String</code><p>
+         Converts an unicode number value and returns this string representation.
+         </p><span class="label">Parameters</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td><code><span class="label">n</span>:Number</code></td>
+</tr>
+</table>
+<p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><code>String</code> &mdash; The string representation of a unicode number.
+         </td>
+</tr>
+</table>
+</div>
+<a name="constantDetail"></a>
+<div class="detailSectionHeader">Constant detail</div>
+<a name="BACK_SLASH"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">BACK_SLASH</td><td class="detailHeaderType">constant</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public static const BACK_SLASH:String</code><p>
+         Back Slash utf8 representation (special char).
+         </p></div>
+<a name="BACK_SPACE"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">BACK_SPACE</td><td class="detailHeaderType">constant</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public static const BACK_SPACE:String</code><p>
+         Back Space utf8 representation (special char).
+         </p></div>
+<a name="CR"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">CR</td><td class="detailHeaderType">constant</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public static const CR:String</code><p>
+         Carriage Return utf8 representation (line terminators).
+         </p></div>
+<a name="DOUBLE_QUOTE"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">DOUBLE_QUOTE</td><td class="detailHeaderType">constant</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public static const DOUBLE_QUOTE:String</code><p>
+         Double Quote utf8 representation (special char).
+         </p></div>
+<a name="FF"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">FF</td><td class="detailHeaderType">constant</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public static const FF:String</code><p>
+         Form Feed utf8 representation (whitespace).
+         </p></div>
+<a name="LF"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">LF</td><td class="detailHeaderType">constant</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public static const LF:String</code><p>
+         Line Feed utf8 representation (line terminators).
+         </p></div>
+<a name="LINE_TERMINATOR_CHARS"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">LINE_TERMINATOR_CHARS</td><td class="detailHeaderType">constant</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public static const LINE_TERMINATOR_CHARS:Array</code><p>
+         Array with all line terminators characters
+         </p></div>
+<a name="LS"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">LS</td><td class="detailHeaderType">constant</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public static const LS:String</code><p>
+         Line Separator utf8 representation (line terminators).
+         </p></div>
+<a name="NBSP"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">NBSP</td><td class="detailHeaderType">constant</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public static const NBSP:String</code><p>
+         No-break space utf8 representation (whitespace).
+         </p></div>
+<a name="PS"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">PS</td><td class="detailHeaderType">constant</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public static const PS:String</code><p>
+         Paragraph Separator utf8 representation (line terminators).
+         </p></div>
+<a name="SIMPLE_QUOTE"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">SIMPLE_QUOTE</td><td class="detailHeaderType">constant</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public static const SIMPLE_QUOTE:String</code><p>
+         Simple Quote utf8 representation (special char).
+         </p></div>
+<a name="SP"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">SP</td><td class="detailHeaderType">constant</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public static const SP:String</code><p>
+        Space utf8 representation (whitespace).
+        </p></div>
+<a name="SPECIAL_CHARS"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">SPECIAL_CHARS</td><td class="detailHeaderType">constant</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public static const SPECIAL_CHARS:Array</code><p>
+         Array with all whitespace characters. NB : USP no implement (Any other Unicode "space separator")
+         </p></div>
+<a name="TAB"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">TAB</td><td class="detailHeaderType">constant</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public static const TAB:String</code><p>
+         Tab utf8 representation (whitespace).
+         </p></div>
+<a name="VT"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">VT</td><td class="detailHeaderType">constant</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public static const VT:String</code><p>
+         Vertical Tab utf8 representation (whitespace).
+         </p></div>
+<a name="WHITE_SPACE_CHARS"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">WHITE_SPACE_CHARS</td><td class="detailHeaderType">constant</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public static const WHITE_SPACE_CHARS:Array</code><p>
+         Array with all whitespace characters. NB : USP no implement (Any other Unicode "space separator")
+         </p></div>
+<br>
+<br>
+<hr>
+<br>
+<p></p>
+<center class="copyright"> 
+</center>
+</div>
+</body>
+</html>
+<!-- -->
