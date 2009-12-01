@@ -53,9 +53,9 @@ package vegas
             }
             else
             {
-                if ( (o as Object).hasOwnProperty( "hashCode" ) )
+                if ( "hashCode" in o && o["hashCode"] is Function )
                 {
-                    return o["hashCode"]() ;
+                    return uint( o["hashCode"]() ) ;
                 }
                 else
                 {
