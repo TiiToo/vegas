@@ -89,8 +89,8 @@ package vegas.strings
          */
         public function JSMinifier( input:String = "" , level:uint = 2 )
         {
-            this.input   = input ;
-            this.level   = Math.max( Math.min( level, 3 ), 1 ) ;
+            this.input = input ;
+            this.level = level ;
         }
         
         /**
@@ -109,12 +109,25 @@ package vegas.strings
         public static const AGRESSIVE:uint = 3 ;
         
         /**
-         * The level of compression.
+         * The level of compression of the minifier.
+         * <ul>
          * <li>1 : minimal, keep linefeeds if single</li>
          * <li>2 : normal, the standard algorithm</li>
          * <li>3 : agressive, remove any linefeed and doesn't take care of potential missing semicolons (can be regressive)</li>
+         * </ul>
          */
-        public var level:uint ;
+        public function get level():uint
+        {
+            return _level ;
+        }
+        
+        /**
+         * @private
+         */
+        public function set level( value:uint ):void
+        {
+            _level = Math.max( Math.min( value , 3 ) , 1 ) ;
+        }
         
         /**
          * The input String to minimize.
@@ -129,29 +142,35 @@ package vegas.strings
          */
         public function set input( str:String ):void
         {
-            _input = str || "" ;
-            l        = _input.length ;
-            newSize  = l ;
-            oldSize  = l ;
+            _input    = str || "" ;
+            _newSize  = _input.length ;
+            _oldSize  = _newSize ;
+            _output   = _input ;
         }
         
         /**
-         * Store the original size of the input source.
+         * Indicates the original size of the input source.
          */
-        public var oldSize:uint ;
+        public function get oldSize():uint
+        {
+            return _oldSize ;
+        }
         
         /**
          * The output result of the minifier process.
          */
         public function get output():String
         {
-            return _output ;
+            return _output || "" ;
         }
         
         /**
-         * Store the new size of the output source.
+         * Indicates the new size of the output source.
          */
-        public var newSize:uint ;
+        public function get newSize():uint
+        {
+            return _newSize ;
+        }
         
         /**
          * minify the javascript/ecmascript String input value.
@@ -166,8 +185,7 @@ package vegas.strings
                 }
                 if ( arguments[1] != null && arguments[1] is Number )
                 {
-                    level = new uint(arguments[1]) ;
-                    level = Math.max( Math.min( level, 3 ), 1 ) ;
+                    this.level = uint( arguments[1] ) ;
                 }
             }
             a            = ""  ;
@@ -175,11 +193,12 @@ package vegas.strings
             theLookahead = EOF ;
             i            =  0  ;
             l            = _input.length ;
-            newSize      = l ;
-            oldSize      = l ;
+            _oldSize     = l ;
             _output      = modify() ;
-            newSize      = _output.length ;
+            _newSize     = _output.length ;
         }
+        
+        ///////////////////////////////////////////////////////////////
         
         private var a:String            ;
         private var b:String            ;
@@ -187,6 +206,11 @@ package vegas.strings
         
         private var _input:String  ;
         private var _output:String ;
+        
+        private var _oldSize:uint ;
+        private var _newSize:uint ;
+        
+        private var _level:uint ;
         
         private var i:int ;
         private var l:int ;
@@ -394,7 +418,7 @@ package vegas.strings
                                 } 
                                 else 
                                 {
-                                    if (level == 1 && b != '\n') 
+                                    if (_level == 1 && b != '\n') 
                                     {
                                         r.push(action(1));
                                     } 
@@ -424,7 +448,7 @@ package vegas.strings
                             
                             case '\n' :
                             {
-                                if (level == 1 && a != '\n') 
+                                if (_level == 1 && a != '\n') 
                                 {
                                     r.push( action(1) ) ;
                                 }
@@ -440,7 +464,7 @@ package vegas.strings
                                         case '"':
                                         case '\'':
                                         {
-                                            if (level == 3) 
+                                            if (_level == 3) 
                                             {
                                                 r.push( action(3) ) ;
                                             }

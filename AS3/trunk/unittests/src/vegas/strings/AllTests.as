@@ -20,28 +20,20 @@
   Contributor(s) :
   
 */
-package vegas.string  
+package vegas.strings
 {
-	import buRRRn.ASTUce.framework.ITest;
-	import buRRRn.ASTUce.framework.TestSuite;	
-
-	/**
-	 * This class launch all tests.
-	 */
-	public class AllTests
-	{
-		
-        /**
-         * Creates the Test list.
-         */		
+    import buRRRn.ASTUce.framework.ITest;
+    import buRRRn.ASTUce.framework.TestSuite;
+    
+    public class AllTests
+    {
         public static function suite():ITest
         {
+            var suite:TestSuite = new TestSuite( "vegas.strings unit tests" );
             
-            var suite:TestSuite = new TestSuite( "vegas.string" );
-
+            suite.addTestSuite( JSMinifierTest ) ;
+            
             return suite;
-            
         }
-        
-	}
+    }
 }

@@ -27,16 +27,16 @@ package
     
     import system.config;
     import system.console;
-    import system.ui.TextFieldConsole;
+    import system.diagnostics.TextFieldConsole;
+    
+    import vegas.AllTests;
     
     import flash.display.Sprite;
     import flash.display.StageAlign;
     import flash.display.StageScaleMode;
     import flash.events.Event;
     import flash.text.TextField;
-    import flash.text.TextFormat; 
-    
-    import vegas.AllTests ;
+    import flash.text.TextFormat;
     
     /**
      * The main VEGAS TestRunner launcher.

@@ -25,26 +25,16 @@ package vegas
     import buRRRn.ASTUce.framework.ITest;
     import buRRRn.ASTUce.framework.TestSuite;
     
-    import vegas.core.AllTests;
-    import vegas.errors.AllTests;
-    import vegas.string.AllTests;
+    import vegas.strings.AllTests;
     import vegas.utils.AllTests;
     
-    /**
-     * This class launch all tests.
-     */
     public class AllTests
     {
-        /**
-         * Creates the Test list.
-         */
         public static function suite():ITest
         {
-            var suite:TestSuite = new TestSuite( "vegas tests" );
+            var suite:TestSuite = new TestSuite( "vegas unit tests" );
             
-            suite.addTest( vegas.core.AllTests.suite() ) ;
-            suite.addTest( vegas.errors.AllTests.suite() ) ;
-            suite.addTest( vegas.string.AllTests.suite() ) ;
+            suite.addTest( vegas.strings.AllTests.suite() ) ;
             suite.addTest( vegas.utils.AllTests.suite() ) ;
             
             return suite;
