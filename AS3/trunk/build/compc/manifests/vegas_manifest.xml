@@ -267,9 +267,14 @@
     <!-- vegas.strings -->
     
     <component id="vegas.strings:HTMLStringFormatter" class="vegas.strings.HTMLStringFormatter" />
+    <component id="vegas.strings:JSMinifier"          class="vegas.strings.JSMinifier" />
     <component id="vegas.strings:JSON"                class="vegas.strings.JSON" />
     <component id="vegas.strings:Luhn"                class="vegas.strings.Luhn" />
     <component id="vegas.strings:UnicodeChar"         class="vegas.strings.UnicodeChar" />
+    
+    <!-- vegas.strings.jsminifier -->
+    
+    <component id="vegas.strings.jsminifier:JSMinifierStrings" class="vegas.strings.jsminifier.JSMinifierStrings"    />
     
     <!-- vegas.strings.json -->
     
