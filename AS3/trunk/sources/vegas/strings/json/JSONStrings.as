@@ -23,7 +23,7 @@
 package vegas.strings.json
 {
     /**
-     * The string messages used in the eden class.
+     * The string messages used in the JSON class.
      */
     public class JSONStrings
     {
