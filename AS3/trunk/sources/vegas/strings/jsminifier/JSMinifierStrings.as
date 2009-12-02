@@ -33,12 +33,12 @@ package vegas.strings.jsminifier
         public static var unterminatedComment:String = "Unterminated Comment" ;
         
         /**
-         * The unterminated comment error message.
+         * The unterminated regular expression literal.
          */
         public static var unterminatedRegularExpression:String = "Unterminated regular expression literal." ;
         
         /**
-         * The unterminated comment error message.
+         * The unterminated string literal.
          */
         public static var unterminatedStringLiteral:String = "Unterminated string literal : " ;
     }
