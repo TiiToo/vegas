@@ -36,7 +36,7 @@ package vegas.ioc
          * Creates a new ObjectProperty instance.
          * @param name The name of the property.
          * @param value The value of the property.
-         * @param policy The policy of the property ( ObjectAttribute.REFERENCE or by default ObjectAttribute.VALUE )
+         * @param policy The policy of the property ( ObjectAttribute.REFERENCE, ObjectAttribute.CONFIG, ObjectAttribute.LOCALE or by default ObjectAttribute.VALUE )
          * @param evaluators The Array representation of all evaluators who evaluate the value of the property.
          */
         public function ObjectProperty( name:String , value:* , policy:String="value" , evaluators:Array = null )
@@ -138,7 +138,7 @@ package vegas.ioc
                     if ( args != null )
                     {
                         properties.push( new ObjectProperty( name , ObjectArgument.create( args ) , ObjectAttribute.ARGUMENTS ) ) ; // arguments property
-                    }            
+                    }
                     else if ( ref != null ) 
                     {
                         properties.push( new ObjectProperty( name , ref , ObjectAttribute.REFERENCE , evaluators ) ) ; // ref property

@@ -588,70 +588,81 @@ package vegas.ioc.factory
         /**
          * Populates all properties in the Map passed in argument.
          */
-        protected function populateProperties( o:* , properties:Array=null ):void 
+        protected function populateProperties( o:* , definition:IObjectDefinition ):void 
         {
+            var properties:Array = definition.getProperties() ;
             if (properties != null && properties.length > 0)
             {
+                var id:*             = definition.id ;
                 var size:int = properties.length ;
                 for( var i:int ; i < size ; i++ )
                 {
-                    populateProperty( o , properties[i] as ObjectProperty ) ;
+                    populateProperty( o , properties[i] as ObjectProperty , id ) ;
                 }
             } 
         }
         
         /**
          * Populates a property in the specified object with the passed-in ObjectProperty object.
+         * @param o The object to populate.
+         * @param prop The ObjectProperty used to populate the object.
+         * @param id The id of the current IObjectDefinition.
          */
-        protected function populateProperty( o:* , prop:ObjectProperty ):void 
+        protected function populateProperty( o:* , prop:ObjectProperty , id:* ):void 
         {
             if ( o == null )
             {
-                warn( this + " populate a new property failed, the object not must be 'null' or 'undefined'." ) ;
+                warn( this + " populate a new property failed, the object not must be 'null' or 'undefined', see the factory with the object definition '" + id + "'." ) ;
                 return ;
             }
             var name:String  = prop.name ;
             if ( !( name in o ) )
             {
-                warn( this + " populate a new property failed with the name:" + name + ", this property don't exist in the object:" + o ) ;
+                warn( this + " populate a new property failed with the name:" + name + ", this property don't exist in the object:" + o + ", see the factory with the object definition '" + id + "'." ) ;
                 return ;
             }
             var value:* = prop.value ;
             
             if ( o[name] is Function )
             {
-                o[ name ].apply( o , createArguments( value as Array ) ) ; 
+                if( prop.policy == ObjectAttribute.ARGUMENTS )
+                {
+                    o[ name ].apply( o , createArguments( value as Array ) ) ;
+                    return ;
+                }
+                else if ( prop.policy == ObjectAttribute.VALUE && prop.value === undefined )
+                {
+                    o[ name ]() ;
+                    return ;
+                }
             }
-            else 
+            try
             {
-                try
+                if ( prop.policy == ObjectAttribute.REFERENCE && value is String )
                 {
-                    if ( prop.policy == ObjectAttribute.REFERENCE && value is String )
-                    {
-                        o[ name ] = _config.referenceEvaluator.eval( value as String ) ;
-                    }
-                    else if ( prop.policy == ObjectAttribute.CONFIG )
-                    {
-                        o[ name ] = config.configEvaluator.eval( value as String ) ;
-                    }
-                    else if ( prop.policy == ObjectAttribute.LOCALE )
-                    {
-                        o[ name ] = config.localeEvaluator.eval( value as String ) ;
-                    }
-                    else
-                    {
-                        o[ name ] = value ;
-                    }
-                    
-                    if ( prop.evaluators != null && prop.evaluators.length > 0 )
-                    {
-                        o[ name ] = eval( o[ name ] , prop.evaluators  ) ;
-                    }
+                    o[ name ] = _config.referenceEvaluator.eval( value as String ) ;
                 }
-                catch( e:Error )
+                else if ( prop.policy == ObjectAttribute.CONFIG )
                 {
-                    warn( this + " populateProperty failed with the name '" + name + "' in the object '" + o + "' : " + e.toString() ) ;
+                    o[ name ] = config.configEvaluator.eval( value as String ) ;
                 }
+                else if ( prop.policy == ObjectAttribute.LOCALE )
+                {
+                    o[ name ] = config.localeEvaluator.eval( value as String ) ;
+                }
+                else
+                {
+                    o[ name ] = value ;
+                }
+                
+                if ( prop.evaluators != null && prop.evaluators.length > 0 )
+                {
+                    o[ name ] = eval( o[ name ] , prop.evaluators ) ;
+                }
+            }
+            catch( e:Error )
+            {
+                warn( this + " populateProperty failed with the name '" + name + "' in the object '" + o + ", see the factory with the object definition '" + id + "' error: " + e.toString() ) ;
             }
         }
         
@@ -763,7 +774,7 @@ package vegas.ioc.factory
                 
                 registerListeners( instance , definition.getBeforeListeners() ) ; // before
                 
-                populateProperties( instance , definition.getProperties() ) ; // init properties
+                populateProperties( instance , definition ) ; // init properties
                 
                 registerListeners( instance , definition.getAfterListeners() ) ; // after
                 

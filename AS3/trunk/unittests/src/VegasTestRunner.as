@@ -24,20 +24,21 @@ package
 {
     import buRRRn.ASTUce.Runner;
     import buRRRn.ASTUce.config;
-    
+
     import system.config;
     import system.console;
     import system.diagnostics.TextFieldConsole;
-    
+
     import vegas.AllTests;
-    
+
     import flash.display.Sprite;
     import flash.display.StageAlign;
     import flash.display.StageScaleMode;
     import flash.events.Event;
     import flash.text.TextField;
     import flash.text.TextFormat;
-    
+    import flash.utils.describeType;
+
     /**
      * The main VEGAS TestRunner launcher.
      */
@@ -45,6 +46,7 @@ package
     {
         public function VegasTestRunner()
         {
+            trace( describeType( this )  ) ;
             // init
             
             stage.align     = StageAlign.TOP_LEFT;
@@ -74,7 +76,21 @@ package
             // run tests
            
             Runner.main( vegas.AllTests );
+            
+            
         }
+        
+        public var func1:Function ;
+        
+        public function func2():void
+        {
+            
+        }
+        
+        prototype.function3 = function():void
+        {
+            
+        };
         
         /**
          * The debug textfield of this application.

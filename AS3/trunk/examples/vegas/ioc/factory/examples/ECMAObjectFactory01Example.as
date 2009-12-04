@@ -23,16 +23,16 @@
 package examples 
 {
     import examples.core.User;
-
+    
     import system.eden;
     import system.events.ActionEvent;
-
+    
     import vegas.ioc.IObjectDefinition;
     import vegas.ioc.ObjectAttribute;
     import vegas.ioc.factory.ECMAObjectFactory;
     import vegas.ioc.factory.ObjectConfig;
     import vegas.ioc.factory.ObjectFactory;
-
+    
     import flash.display.Sprite;
     import flash.display.StageAlign;
     import flash.display.StageScaleMode;
@@ -41,7 +41,7 @@ package examples
     import flash.events.ProgressEvent;
     import flash.net.URLLoader;
     import flash.net.URLRequest;
-
+    
     public class ECMAObjectFactory01Example extends Sprite 
     {
         public function ECMAObjectFactory01Example()
