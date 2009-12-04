@@ -31,7 +31,7 @@ package vegas.display.coverflow
     import flash.display.BitmapData;
     import flash.display.IBitmapDrawable;
     import flash.geom.ColorTransform;
-
+    
     /**
      * A cover thumb display.
      */

@@ -49,7 +49,7 @@ package vegas.config
             }
             this.isConfigurable = isConfigurable ;
         }
-
+        
         /**
          * Returns the id of this object.
          * @return the id of this object.
@@ -94,7 +94,7 @@ package vegas.config
         /**
          * Invoked when this object when the ConfigCollector is run.
          */
-           public function setup():void
+        public function setup():void
         {
             if ( id != null )
             {

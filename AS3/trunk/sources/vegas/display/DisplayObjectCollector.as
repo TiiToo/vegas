@@ -24,32 +24,31 @@
 package vegas.display
 {
     import system.data.maps.HashMap;
-
+    
     import flash.display.DisplayObject;
-
+    
     /**
      * This collector use a Map to register all Displays in the application.
      */
     public class DisplayObjectCollector
     {
-    
         /**
          * Clear the DisplayObjectCollector.
          */
         public static function clear():void 
         {
-            _map.clear() ;    
+            _map.clear() ;
         }
-    
+        
         /**
          * Returns 'true' if the DisplayObjectCollector contains the display's id.
          * @return 'true' if the DisplayObjectCollector contains the display's id.
          */    
         public static function contains( id:* ):Boolean 
         {
-            return _map.containsKey( id ) ;    
+            return _map.containsKey( id ) ;
         }
-
+        
         /**
          * Returns the DisplayObject register in the collector with the id passed-in argument.
          * @return the DisplayObject register in the collector with the id passed-in argument.
@@ -60,9 +59,9 @@ package vegas.display
             {
                 throw new ArgumentError("[DisplayObjectCollector].get('" + id + "'). Can't find DisplayObject instance." ) ;
             } ;
-            return _map.get( id ) as DisplayObject ;    
+            return _map.get( id ) as DisplayObject ;
         }
-    
+        
         /**
          * Insert a DisplayObject with an unique id into the DisplayObjectCollector.
          * @param id the index of the display to register
@@ -74,39 +73,38 @@ package vegas.display
             {
                 throw new ArgumentError ("[DisplayObjectCollector] insert method failed. A DisplayObject instance is already registered with '" + id + "' name." ) ;
             } ;
-            return _map.put(id, display) == null  ;    
+            return _map.put(id, display) == null  ;
         }
-    
+        
         /**
          * Returns 'true' if the DisplayObjectCollector is 'empty'.
          * @return 'true' if the DisplayObjectCollector is 'empty'.
          */
         public static function isEmpty():Boolean 
         {
-            return _map.isEmpty() ;    
+            return _map.isEmpty() ;
         }
-    
+        
         /**
          * Removes the specified DisplayObject into the DisplayObjectCollector.
          */
-        public static function remove( id:* ):void     
+        public static function remove( id:* ):void
         {
             _map.remove(id) ;
         }
-
+        
         /**
          * Returns the size of the DisplayObjectCollector.
          * @return the size of the DisplayObjectCollector.
          */
-        public static function size():uint     
+        public static function size():uint
         {
             return _map.size() ;
         }
-    
+        
         /**
          * @private
          */
         private static var _map:HashMap = new HashMap() ;
-        
     }
 }

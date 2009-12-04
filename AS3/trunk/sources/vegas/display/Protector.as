@@ -39,7 +39,7 @@ package vegas.display
      * 
      * import vegas.display.Protector ;
      * 
-     * import pegas.draw.FillStyle ;
+     * import graphics.FillStyle ;
      * 
      * stage.align     = StageAlign.TOP_LEFT ; // important
      * stage.scaleMode = StageScaleMode.NO_SCALE ;

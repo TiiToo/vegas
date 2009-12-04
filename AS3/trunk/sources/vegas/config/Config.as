@@ -93,7 +93,7 @@ package vegas.config
         
         /**
          * Indicates if the class throws errors or return null when an error is throwing.
-         */        
+         */
         public function get throwError():Boolean
         {
             return _evaluator.throwError ;
@@ -101,7 +101,7 @@ package vegas.config
         
         /**
          * @private
-         */        
+         */
         public function set throwError( b:Boolean ):void
         {
             _evaluator.throwError = b ;
