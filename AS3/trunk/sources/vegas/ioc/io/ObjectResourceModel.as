@@ -37,9 +37,9 @@ package vegas.ioc.io
         /**
          * Creates a new ObjectResourceModel instance.
          */
-        public function ObjectResourceModel( id:* = null , bGlobal:Boolean = false , sChannel:String = null )
+        public function ObjectResourceModel( id:* = null )
         {
-            super( id, bGlobal , sChannel ) ;
+            super( id ) ;
             _map = new HashMap() ;
         }
         

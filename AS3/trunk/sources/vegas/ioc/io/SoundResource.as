@@ -23,38 +23,40 @@
 
 package vegas.ioc.io 
 {
-    import graphics.display.ShaderLoader;
-
-    import system.process.ActionURLLoader;
     import system.process.CoreActionLoader;
 
     import vegas.ioc.ObjectDefinition;
     import vegas.ioc.factory.ObjectFactory;
     import vegas.logging.logger;
-
-    import flash.display.Shader;
-    import flash.net.URLLoaderDataFormat;
+    import vegas.media.CoreSound;
+    import vegas.media.SoundLoader;
+    
     import flash.net.URLRequest;
-
+    
     /**
-     * This resource object contains all information about a Shader file (*.pbj) to load in the application.
+     * This resource contains all information about an external sound to load in the application.
      */
-    public class ShaderResource extends ObjectResource 
+    public class SoundResource extends ObjectResource 
     {
         /**
-         * Creates a new ShaderResource instance.
+         * Creates a new SoundResource instance.
          * @param init A generic object containing properties with which to populate the newly instance. If this argument is null, it is ignored.
          */
-        public function ShaderResource( init:Object = null )
+        public function SoundResource( init:Object = null )
         {
             super(init);
-            type = ObjectResourceType.SHADER ;
+            type = ObjectResourceType.SOUND ;
         }
         
         /**
-         * The root path of all Shader resources.
+         * The root path of all sound resources.
          */
         public static var DEFAULT_PATH:String = "" ;
+        
+        /**
+         * Indicates the definition object to complete and override the default ObjectDefinition of the current sound.
+         */
+        public var definition:Object ;
         
         /**
          * The optional path of the external Shader file to load.
@@ -62,9 +64,9 @@ package vegas.ioc.io
         public var path:String ;
         
         /**
-         * The Shader reference use to load the resource.
+         * The CoreSound reference or id (in the factory) used to load the resource.
          */
-        public var shader:* ;
+        public var sound:* ;
         
         /**
          * Indicates if the object definition of this resource must be a singleton.
@@ -95,40 +97,44 @@ package vegas.ioc.io
                     throw new Error(this + " create failed, the factory already contains the specified id : " + id) ;
                 } 
                 
-                if ( shader != null )
+                if ( sound != null )
                 {
-                    if ( shader is String )
+                    if ( sound is String )
                     {
-                        shader = factory.getObject( shader as String ) as Shader ;
+                        sound = factory.getObject( sound as String ) as CoreSound ;
                     }
-                    else if ( shader is Shader )
+                    else if ( sound is CoreSound )
                     {
-                        shader = shader as Shader ;
+                        sound = sound as CoreSound ;
                     }
                 }
                 
-                if ( shader == null )
+                if ( sound == null )
                 {
-                    shader = new Shader() ;
+                    sound = new CoreSound() ;
                 }
                 
                 var init:Object = 
                 {
                     id           : id , 
-                    type         : "flash.display.Shader",
-                    factoryValue : shader , 
+                    type         : "vegas.media.CoreSound",
+                    factoryValue : sound , 
                     singleton    : singleton , 
                     lazyInit     : true 
                 };
-                    
-                var definition:ObjectDefinition = ObjectDefinition.create(init) ;
                 
-                factory.addObjectDefinition( definition ) ;
+                if ( definition != null )
+                {
+                    for (var prop:String in definition )
+                    {
+                       init[prop] = definition[prop] ;
+                    }
+                }
                 
-                var uri:String             = (path || DEFAULT_PATH) + resource ;
-                var action:ActionURLLoader = new ActionURLLoader( new ShaderLoader( shader )  ) ;
+                factory.addObjectDefinition( ObjectDefinition.create( init ) ) ;
                 
-                action.dataFormat = URLLoaderDataFormat.BINARY ;
+                var uri:String         = (path || DEFAULT_PATH) + resource ;
+                var action:SoundLoader = new SoundLoader( sound )  ;
                 
                 action.request = new URLRequest( uri ) ;
                 
@@ -147,9 +153,9 @@ package vegas.ioc.io
         /**
          * Registers the resource in the ObjectResourceBuilder.
          */
-        public static function register( type:String = "shader" ):void
+        public static function register( type:String = "sound" ):void
         {
-            ObjectResourceBuilder.addObjectResource( type , ShaderResource ) ;
+            ObjectResourceBuilder.addObjectResource( type , SoundResource ) ;
         }
     }
 }

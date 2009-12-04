@@ -39,7 +39,7 @@ package vegas.ioc.io
     import flash.text.Font;
     
     /**
-     * This resource object contains all information about an external library (swf) to embed fonts in the application.
+     * This resource contains all information about an external library (swf) to embed fonts in the application.
      */
     public class FontResource extends ObjectResource 
     {

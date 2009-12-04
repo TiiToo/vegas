@@ -37,7 +37,7 @@ package examples
      * Test the ShaderResource class. 
      * Note : The ShaderResource isn't register in the ObjectResourceBuilder.
      * Run  : Use this example only with the FP10 compilation with the compiler parameters :
-     * -default-size 550 400 -default-frame-rate 31 -default-background-color 0x666666 -target-player=10.0.0
+     * -default-size 200 200 -default-frame-rate 31 -default-background-color 0x666666 -target-player=10.0
      */
     public class ECMAObjectLoader09Example extends Sprite 
     {

@@ -53,7 +53,7 @@ objects =
         singleton        : true ,
         properties       : 
         [
-            { name : "addChild" , arguments  : [ { ref:"field" } ]} 
+            { name : "addChild" , arguments  : [ { ref:"field" } ] } 
         ]
     }  
 ] ;

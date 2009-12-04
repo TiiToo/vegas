@@ -46,7 +46,7 @@ package vegas.ioc.io
         /**
          * The cache flag of this resource (default is true).
          */
-        public var cache:Boolean = true ;
+        public var cache:Boolean ;
         
         /**
          * The data object of this resource.

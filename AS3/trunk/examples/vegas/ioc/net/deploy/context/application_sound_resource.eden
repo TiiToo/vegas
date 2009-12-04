@@ -1,0 +1,110 @@
+imports =
+[
+    { 
+        id       : "sound" , 
+        type     : "sound" , 
+        resource : "mp3/test.mp3" ,
+        definition : 
+        {
+            init       : "play" ,
+            singleton  : true   ,
+            lazyInit   : true   ,
+            properties :
+            [
+                { name : "volume" , value : 0.4 }
+            ]
+        }
+    } 
+] ;
+
+objects =
+[
+    {
+        id         : "format" ,
+        type       : "flash.text.TextFormat"  ,
+        properties : 
+        [
+            { name : "bold"  , value : true      } ,
+            { name : "color" , value : 0xFFFFFF  } ,
+            { name : "font"  , value : "Verdana" } ,
+            { name : "size"  , value : 11        } 
+        ]
+    }
+    ,
+    {
+        id         : "field" ,
+        type       : "flash.text.TextField"  ,
+        singleton  : true ,
+        lazyInit   : true ,
+        properties : 
+        [
+            { name : "border"            , value  : false         } ,
+            { name : "multiline"         , value  : true          } ,
+            { name : "wordWrap"          , value  : true          } ,
+            { name : "width"             , value  : 500           } ,
+            { name : "height"            , value  : 300           } ,
+            { name : "x"                 , value  : 10            } ,
+            { name : "y"                 , value  : 10            } ,
+            { name : "defaultTextFormat" , ref    : "format"      } 
+        ]
+    }
+    ,
+    {
+        id               : "stage" ,
+        type             : "flash.display.Stage" ,
+        factoryReference : "#stage" ,
+        singleton        : true ,
+        lazyInit         : true ,
+        properties       :
+        [
+            { name : "scaleMode" , value : "noScale" } 
+        ]
+    }
+    ,
+    {
+        id               : "root" ,
+        singleton        : true   ,
+        type             : "examples.ECMAObjectLoader11Example" ,
+        factoryReference : "#root" ,
+        properties       : 
+        [ 
+            // dependencies
+            
+            { name : "field" , ref : "field" } , 
+            { name : "sound" , ref : "sound" } ,
+            
+            // children
+            
+            { name : "addChild" , arguments  : [ { ref:"field" } ] } 
+        ] 
+        ,
+        listeners :
+        [ 
+            /////
+            
+            { dispatcher : "stage" , type : "keyDown" , method : "keyDown" } , 
+            
+            /////
+            
+            { dispatcher : "sound" , type : "complete" , method : "debug" } , 
+            { dispatcher : "sound" , type : "id3"      , method : "debug" } ,
+            { dispatcher : "sound" , type : "ioError"  , method : "debug" } ,
+            { dispatcher : "sound" , type : "progress" , method : "debug" } ,
+            
+            /////
+            
+            { dispatcher : "sound" , type : "change"        , method : "soundChange"   } ,
+            { dispatcher : "sound" , type : "soundComplete" , method : "soundComplete" } ,
+            { dispatcher : "sound" , type : "soundUpdate"   , method : "soundUpdate"   } ,
+            
+            /////
+            
+            { dispatcher : "sound" , type : "finish" , method : "debug" } , 
+            { dispatcher : "sound" , type : "loop"   , method : "debug" } ,
+            { dispatcher : "sound" , type : "pause"  , method : "debug" } ,
+            { dispatcher : "sound" , type : "resume" , method : "debug" } ,
+            { dispatcher : "sound" , type : "stop"   , method : "debug" } ,
+            { dispatcher : "sound" , type : "start"  , method : "debug" } 
+        ] 
+    }
+]

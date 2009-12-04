@@ -80,7 +80,7 @@ package vegas.media
          * @param global the flag to use a global event flow or a local event flow.
          * @param channel the name of the global event flow if the <code class="prettyprint">global</code> argument is <code class="prettyprint">true</code>.
          */
-        public function SoundLoader( sound:CoreSound, global:Boolean = false, channel:String = null )
+        public function SoundLoader( sound:CoreSound = null , global:Boolean = false, channel:String = null )
         {
             super( sound , global, channel );
         }

@@ -20,73 +20,48 @@
   Contributor(s) :
   
 */
+
 package examples 
 {
     import system.events.ActionEvent;
     
     import vegas.date.Time;
     import vegas.events.SoundEvent;
+    import vegas.ioc.io.SoundResource;
+    import vegas.ioc.net.ECMAObjectLoader;
     import vegas.media.CoreSound;
-    import vegas.media.SoundCollector;
     
-    import flash.display.MovieClip;
+    import flash.display.Sprite;
     import flash.events.Event;
-    import flash.events.IOErrorEvent;
     import flash.events.KeyboardEvent;
-    import flash.events.ProgressEvent;
-    import flash.net.URLRequest;
     import flash.text.TextField;
-    import flash.text.TextFormat;
     import flash.ui.Keyboard;
     
-    public class CoreSound02Example extends MovieClip 
+    [SWF(width="520", height="320", frameRate="24", backgroundColor="#666666")]
+    
+    /**
+     * Test the SoundResource class. 
+     * Note : The SoundResource isn't register by default in the ObjectResourceBuilder, you must register it manualy.
+     * Run  : Use this example only with the FP10 compilation with the compiler parameters :
+     * -default-size 520 320 -default-frame-rate 31 -default-background-color 0x666666 -target-player=10.0
+     */
+    public class ECMAObjectLoader11Example extends Sprite 
     {
-        public function CoreSound02Example()
+        public function ECMAObjectLoader11Example()
         {
-            // debug TextField
+            // register the resource in the ObjectResourceBuilder singleton.
             
-            field        = new TextField() ;
-            field.x      = 10 ;
-            field.y      = 10 ;
-            field.width  = 500 ;
-            field.height = 300 ;
-            field.defaultTextFormat = new TextFormat( "Verdana" , 11, 0xFFFFFF, true ) ;
+            SoundResource.register() ; 
             
-            addChild(field) ;
+            // load the external IoC context and initialize the application.
             
+            var loader:ECMAObjectLoader = new ECMAObjectLoader( "context/application_sound_resource.eden" ) ;
             
-            var request:URLRequest = new URLRequest( "mp3/test.mp3" ) ;
+            loader.addEventListener( ActionEvent.FINISH , finish ) ;
+            loader.addEventListener( ActionEvent.START  , start ) ;
             
-            sound = new CoreSound( request , null , "mySound" ) ;
-            
-            trace("SoundCollector.get('mySound') : " + SoundCollector.get( "mySound" ) ) ;
-            
-            sound.addEventListener( Event.COMPLETE         , debug );
-            sound.addEventListener( Event.ID3              , debug );
-            sound.addEventListener( IOErrorEvent.IO_ERROR  , debug );
-            sound.addEventListener( ProgressEvent.PROGRESS , debug );
-            
-            sound.addEventListener( Event.SOUND_COMPLETE    , soundComplete ) ;
-            sound.addEventListener( SoundEvent.SOUND_UPDATE , soundUpdate   ) ;
-            
-            sound.addEventListener( ActionEvent.CHANGE   , soundChange ) ;
-            
-            sound.addEventListener( ActionEvent.FINISH   , debug ) ;
-            sound.addEventListener( ActionEvent.LOOP     , debug ) ;
-            sound.addEventListener( ActionEvent.PAUSE    , debug ) ;
-            sound.addEventListener( ActionEvent.RESUME   , debug ) ;
-            sound.addEventListener( ActionEvent.STOP     , debug ) ;
-            sound.addEventListener( ActionEvent.START    , debug ) ;
-            
-            sound.volume = 0.6 ;
-            
-            // sound.looping = true ;
-            
-            sound.play() ;
-            
-            /// stage
-            
-            stage.addEventListener( KeyboardEvent.KEY_DOWN , keyDown ) ;
+            loader.root = this ;
+            loader.run() ;
         }
         
         public var field:TextField ;
@@ -101,44 +76,49 @@ package examples
         
         public function keyDown( e:KeyboardEvent ):void
         {
-            var code:uint = e.keyCode  ;
-            switch( code )
+            trace( sound ) ;
+            if ( sound )
             {
-                case Keyboard.SPACE :
+                var code:uint = e.keyCode  ;
+                switch( code )
                 {
-                    if ( sound.pausing )
+                    case Keyboard.SPACE :
                     {
-                        sound.resume() ;
+                        if ( sound.pausing )
+                        {
+                            sound.resume() ;
+                        }
+                        else if ( sound.running )
+                        {
+                            sound.pause() ;
+                        }
+                        else
+                        {
+                            sound.play() ;
+                        }
+                        break ;
                     }
-                    else if ( sound.running )
+                    case Keyboard.UP :
                     {
-                        sound.pause() ;
+                        sound.stop() ;
+                        break ;
                     }
-                    else
+                    case Keyboard.DOWN :
                     {
-                        sound.play() ;
+                        sound.togglePause() ;
+                        break ;
                     }
-                    break ;
-                }
-                case Keyboard.UP :
-                {
-                    sound.stop() ;
-                    break ;
-                }
-                case Keyboard.DOWN :
-                {
-                    sound.togglePause() ;
-                    break ;
                 }
             }
         }
+        
         public function soundComplete( e:Event ):void
         {
-            var time:Time = new Time( (e.target as CoreSound).length ) ;
+            var time:Time = new Time( sound.length ) ;
             trace( e + " : duration " + time.getMilliseconds(2) + " ms" ) ;
         }
         
-        public function soundChange( e:ActionEvent =null ):void
+        public function soundChange( e:ActionEvent = null ):void
         {
             var percent:uint    = Math.floor( ( ( sound.position > 0 ) ? sound.position : 0 ) * 100 / sound.length )  ;
             
@@ -164,6 +144,16 @@ package examples
         public function soundUpdate( e:SoundEvent ):void
         {
             trace( e.type + " volume:" + e.soundTransform.volume ) ;
+        }
+        
+        protected function finish( e:Event ):void
+        {
+            trace("finish") ;
+        }
+        
+        protected function start( e:Event ):void
+        {
+            trace("start") ;
         }
     }
 }

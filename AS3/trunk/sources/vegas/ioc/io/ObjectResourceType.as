@@ -52,7 +52,17 @@ package vegas.ioc.io
          * The "i18n" resource type.
          */
         public static const I18N:String = "i18n" ;
-
+        
+        /**
+         * The "shader" resource type.
+         */
+        public static const SHADER:String = "shader" ;
+        
+        /**
+         * The "sound" resource type.
+         */
+        public static const SOUND:String = "sound" ;
+        
         /**
          * The "style" resource type.
          */

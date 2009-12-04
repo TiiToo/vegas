@@ -251,7 +251,7 @@ package vegas.ioc.factory
             if ( isSingleton(id) && singletons.containsKey(id) )
             {
                 invokeDestroyMethod( singletons.get(id), getObjectDefinition(id) ) ;
-                singletons.remove( id ) ;    
+                singletons.remove( id ) ;
             }
         }
         

@@ -190,7 +190,7 @@ package vegas.managers
             }
             return b == true ;
         } 
-
+        
         /**
          * Removes a child object in the manager with the specified id.
          * @param id The key of the group to collect the specified interactive object.
@@ -254,7 +254,7 @@ package vegas.managers
             else
             {
                 return false ;
-            }    
+            }
         }
         
         /**
@@ -280,13 +280,13 @@ package vegas.managers
         }
         
         /**
-          * The current group selected in the manager.
-          */
+         * The current group selected in the manager.
+         */
         private var _current:* ;
         
         /**
-          * @private
-          */
+         * @private
+         */
         private static var _instance:TabManager ;
         
         /**

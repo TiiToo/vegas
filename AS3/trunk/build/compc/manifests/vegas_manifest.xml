@@ -136,9 +136,9 @@
     
     <!-- vegas.ioc.io -->
     
-    <component id="vegas.ioc.io:AssemblyDomain"        class="vegas.ioc.io.AssemblyDomain"        /> 
+    <component id="vegas.ioc.io:AssemblyDomain"        class="vegas.ioc.io.AssemblyDomain"        />
     <component id="vegas.ioc.io:AssemblyResource"      class="vegas.ioc.io.AssemblyResource"      />
-    <component id="vegas.ioc.io:ConfigResource"        class="vegas.ioc.io.ConfigResource"        /> 
+    <component id="vegas.ioc.io:ConfigResource"        class="vegas.ioc.io.ConfigResource"        />
     <component id="vegas.ioc.io:ContextResource"       class="vegas.ioc.io.ContextResource"       />
     <component id="vegas.ioc.io:FontResource"          class="vegas.ioc.io.FontResource"          />
     <component id="vegas.ioc.io:LocaleResource"        class="vegas.ioc.io.LocaleResource"        />
@@ -148,6 +148,7 @@
     <component id="vegas.ioc.io:ObjectResourceModel"   class="vegas.ioc.io.ObjectResourceModel"   />
     <component id="vegas.ioc.io:ObjectResourceType"    class="vegas.ioc.io.ObjectResourceType"    />
     <component id="vegas.ioc.io:ShaderResource"        class="vegas.ioc.io.ShaderResource"        />
+    <component id="vegas.ioc.io:SoundResource"         class="vegas.ioc.io.SoundResource"         />
     <component id="vegas.ioc.io:StyleSheetResource"    class="vegas.ioc.io.StyleSheetResource"    />
     <component id="vegas.ioc.io:TextResource"          class="vegas.ioc.io.TextResource"          />
     <component id="vegas.ioc.io:XMLResource"           class="vegas.ioc.io.XMLResource"           />
