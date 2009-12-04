@@ -37,7 +37,6 @@ package
     import flash.events.Event;
     import flash.text.TextField;
     import flash.text.TextFormat;
-    import flash.utils.describeType;
 
     /**
      * The main VEGAS TestRunner launcher.
@@ -46,7 +45,6 @@ package
     {
         public function VegasTestRunner()
         {
-            trace( describeType( this )  ) ;
             // init
             
             stage.align     = StageAlign.TOP_LEFT;
