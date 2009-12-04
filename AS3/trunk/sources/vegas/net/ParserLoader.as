@@ -85,7 +85,6 @@ package vegas.net
                 }
                 case URLLoaderDataFormat.VARIABLES :
                 {
-                    
                     data = new URLVariables(data) ;
                     if ( serializer != null && isDeserialize )
                     {

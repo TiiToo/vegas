@@ -86,7 +86,7 @@ package vegas.net
                 throw new Error("HTTPHost failed, host name may not be null.") ;
             }
             _host = value.toLowerCase() ;
-        }         
+        }
         
         /**
          * Determinates the port value. <code class="prettyprint">-1</code> indicates the scheme default port.

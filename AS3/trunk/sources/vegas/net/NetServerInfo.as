@@ -94,11 +94,11 @@ package vegas.net
             var s:String = "[NetServerInfo" ;
             if (code != null)
             {
-                s += ",code:'" + code + "'" ;    
+                s += ",code:'" + code + "'" ;
             }
             if (level != null)
             {
-                s += ",level:'" + level + "'" ;    
+                s += ",level:'" + level + "'" ;
             }
             if (description != null)
             {

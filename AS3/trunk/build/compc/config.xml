@@ -50,10 +50,10 @@
     
     <directory>false</directory>
     
-    <output>deploy/vegas.swc</output>
+    <output>../../libs/vegas.swc</output>
     
     <metadata>
-        <title>The AS3 VEGAS framework - version 1.6.0.1421</title>
+        <title>The AS3 VEGAS framework - version 1.6.0.1436</title>
         <description>All class of VEGAS and this extensions</description>
         <publisher>http://www.ekameleon.net</publisher>
         <creator>Marc ALCARAZ (aka eKameleon)</creator>

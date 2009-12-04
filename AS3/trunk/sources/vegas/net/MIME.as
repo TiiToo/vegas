@@ -60,7 +60,6 @@ package vegas.net
                 this.subType = a[1] as String ;
             }
             _extensions = new HashSet() ;
-            
             if ( extensions != null && extensions.length > 0 )
             {
                 var l:int = extensions.length ;
@@ -221,7 +220,8 @@ package vegas.net
         addMimeType("application/andrew-inset", "ez") ;
         addMimeType("application/atom+xml", "atom") ;
         addMimeType("application/excel", "xls" ) ;
-        addMimeType("application/java-archive", "jar" ) ;
+        addMimeType("application/java-archive", "jar" ) ;        addMimeType("application/javascript", "js" ) ;
+        addMimeType("application/json", "json" ) ;
         addMimeType("application/mac-binhex40", "hqx") ;
         addMimeType("application/mac-compactpro", "cpt") ;
         addMimeType("application/mathml+xml", "mathml") ;
@@ -329,6 +329,8 @@ package vegas.net
         
         addMimeType("text/calendar", "ics", "ifb") ;
         addMimeType("text/css", "css") ;
+        addMimeType("text/ecmascript" , "eden" ) ;
+        addMimeType("text/javascript" , "js" ) ;
         addMimeType("text/html", "html", "htm") ;
         addMimeType("text/plain", "txt", "asc", "m", "hh", "h", "f", "f90", "cc", "c", "asc txt") ;
         addMimeType("text/richtext", "rtx") ;
@@ -346,20 +348,20 @@ package vegas.net
         addMimeType("video/dl", "dl") ;
         addMimeType("video/fli", "fli") ;
         addMimeType("video/flv", "flv") ;
-        addMimeType("video/gl", "gl") ;
+        addMimeType("video/gl", "gl") ;        addMimeType("video/h264", "h264") ;
         addMimeType("video/mpeg", "mpg", "mpeg", "mpe", "mp2") ;
         addMimeType("video/quicktime", "mov", "qt") ;
-        addMimeType("video/vnd.mpegurl", "m4u", "mxu") ;
+        addMimeType("video/vnd.fvt", "fvt") ;        addMimeType("video/vnd.mpegurl", "m4u", "mxu") ;
         addMimeType("video/vnd.vivo", "viv", "vivo") ;
-        addMimeType("video/x-fli", "fli") ;
-        addMimeType("video/x-flv", "flv") ;
+        addMimeType("video/x-f4v", "f4v") ;        addMimeType("video/x-fli", "fli") ;        addMimeType("video/x-flv", "flv") ;
+        addMimeType("video/x-m4v", "m4v") ;
         addMimeType("video/x-ms-asf", "asf") ;
         addMimeType("video/x-ms-asx", "asx") ;
-        addMimeType("video/x-ms-wmv", "wmv") ;
+        addMimeType("video/x-ms-wm", "wm") ;        addMimeType("video/x-ms-wmv", "wmv") ;
         addMimeType("video/x-ms-wmx", "wmx") ;
         addMimeType("video/x-ms-wvx", "wvx") ;
         addMimeType("video/x-msvideo", "avi") ;
-        addMimeType("video/x-sgi-movie", "movie") ;
+        addMimeType("video/x-sgi-movie", "movie") ;        addMimeType("x-conference/x-cooltalk", "ice") ;
         
         // www/mime
         
