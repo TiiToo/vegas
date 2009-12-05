@@ -10,7 +10,7 @@
   WITHOUT WARRANTY OF ANY KIND, either express or implied. See the License
   for the specific language governing rights and limitations under the License. 
   
-  The Original Code is VEGAS Framework.
+  The Original Code is Vegas Framework.
   
   The Initial Developer of the Original Code is
   ALCARAZ Marc (aka eKameleon)  <vegas@ekameleon.net>.
@@ -20,24 +20,19 @@
   Contributor(s) :
   
 */
-package vegas  
+package vegas.colors  
 {
     import buRRRn.ASTUce.framework.ITest;
     import buRRRn.ASTUce.framework.TestSuite;
-    
-    import vegas.colors.AllTests;
-    import vegas.strings.AllTests;
-    import vegas.utils.AllTests;
     
     public class AllTests
     {
         public static function suite():ITest
         {
-            var suite:TestSuite = new TestSuite( "vegas unit tests" );
+            var suite:TestSuite = new TestSuite( "vegas colors tests" );
             
-            suite.addTest( vegas.colors.AllTests.suite() ) ;
-            suite.addTest( vegas.strings.AllTests.suite() ) ;
-            suite.addTest( vegas.utils.AllTests.suite() ) ;
+            suite.addTestSuite( ColorEvaluatorTest ) ;
+            suite.addTestSuite( ColorTest          ) ;
             
             return suite;
         }
