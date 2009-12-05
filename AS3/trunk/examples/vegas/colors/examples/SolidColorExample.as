@@ -23,26 +23,60 @@
 
 package examples 
 {
-    import graphics.transitions.Tween;
-    import graphics.transitions.easings.Bounce;
+    import graphics.transitions.TweenTo;
+    import graphics.transitions.easings.Elastic;
+    
+    import system.events.ActionEvent;
     
     import vegas.colors.SolidColor;
     
-    import flash.display.MovieClip;
+    import flash.display.Loader;
     import flash.display.Sprite;
+    import flash.events.Event;
+    import flash.net.URLRequest;
+    
+    [SWF(width="260", height="260", frameRate="24", backgroundColor="#666666")]
     
     public class SolidColorExample extends Sprite 
     {
         public function SolidColorExample()
         {
-            // mc1 and mc2 are 2 MovieClip in the Stage of the application.
-            var color1:SolidColor = new SolidColor( getChildByName( "mc1" ) as MovieClip ) ;
-            var tween1:Tween      = new Tween( color1 , "blueOffset", Bounce.easeOut, 0, 255, 4, true ) ;
-            tween1.run() ;
+            // initialize
             
-            var color2:SolidColor = new SolidColor( getChildByName( "mc2" ) as MovieClip ) ;
-            var tween2:Tween      = new Tween( color2 , "bluePercent", Bounce.easeOut, 100, 0, 4, true ) ;
-            tween2.run() ;
+            loader = new Loader() ;
+            color  = new SolidColor( loader ) ;
+            tween  = new TweenTo( color , { redOffset : 255 }, Elastic.easeOut, 2 , true , false , { redOffset : 0 } ) ;
+            
+            // behaviours
+            
+            loader.x = 10 ; 
+            loader.y = 10 ;
+            
+            loader.contentLoaderInfo.addEventListener( Event.COMPLETE , complete ) ;
+            
+            addChild( loader ) ;
+            
+            tween.addEventListener( ActionEvent.CHANGE , change ) ;
+            
+            // run example
+            
+            loader.load( new URLRequest("library/picture.jpg")) ;
+        }
+        
+        public var color:SolidColor ;
+        
+        public var loader:Loader ;
+        
+        public var tween:TweenTo ;
+        
+        public function change( e:ActionEvent ):void
+        {
+            trace( "red:" + color.red + " / redPercent:" + color.redPercent + " / redOffset:" + color.redOffset ) ;
+        }
+        
+        public function complete( e:Event ):void
+        {
+            tween.run() ;
         }
     }
 }

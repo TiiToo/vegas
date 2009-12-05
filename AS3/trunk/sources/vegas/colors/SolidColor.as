@@ -198,7 +198,7 @@ package vegas.colors
         /**
          * @private
          */
-        public function set redPercent(n:Number):void 
+        public function set redPercent( n:Number ):void 
         {
             var t:Object = getTransform();
             t.ra = n ; 

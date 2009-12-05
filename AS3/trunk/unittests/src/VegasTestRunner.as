@@ -39,6 +39,8 @@ package
     import flash.text.TextField;
     import flash.text.TextFormat;
     
+    [SWF(width="780", height="700", frameRate="24", backgroundColor="#666666")]
+    
     /**
      * The main VEGAS TestRunner launcher.
      */
