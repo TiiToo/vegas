@@ -36,7 +36,7 @@ package vegas.colors
          * Creates a new SolidColor instance.
          * @param display a DisplayObject reference.
          */
-        public function SolidColor(display:DisplayObject)
+        public function SolidColor( display:DisplayObject )
         {
             super( display );
         }
@@ -47,7 +47,7 @@ package vegas.colors
          */
         public function get blue():Number 
         {
-            return getBlue() ;
+            return getTransform().bb ;
         }
         
         /**
@@ -55,75 +55,79 @@ package vegas.colors
          */
         public function set blue(n:Number):void 
         {
-            setBlue(n) ;
+            var t:Object = getTransform() ;
+            setRGB ( RGB.toNumber(t.rb, t.gb, n) ) ;
         }
         
         /**
-         * Returns the blue offset color value of a Color object.
-         * @return the blue offset color value of a Color object.
+         * Determinates the blue offset color value of a Color object.
          */
         public function get blueOffset():Number 
         {
-            return getBlueOffset() ;
+            return getTransform().bb ; 
         }
         
         /**
-         * Specifies a blue offset value for a Color object.
+         * @private
          */
-        public function set blueOffset(n:Number):void 
+        public function set blueOffset( n:Number ):void 
         {
-            setBlueOffset(n) ;
+            var t:Object = getTransform() ;
+            t.bb = n ; 
+            setTransform (t) ;
         }
         
         /**
-         * Returns the blue percentage color value of a Color object.
-         * @return the blue percentage color value of a Color object.
+         * Determinates the blue percentage color value of a Color object.
          */
         public function get bluePercent():Number 
         {
-            return getBluePercent() ;
+            return getTransform().ba ;
         }
         
         /**
-         * Specifies a blue percentage color value for a Color object.
-          */
-        public function set bluePercent(n:Number):void 
+         * @private
+         */
+        public function set bluePercent( n:Number ):void 
         {
-            setBluePercent(n) ;
+            var t:Object = getTransform();
+            t.ba = n ; 
+            setTransform (t);
         }
         
         /**
-          * Returns the green color value for a Color object.
-          * @return the green color value for a Color object.
+         * Determinates the green color value for a Color object.
          */
         public function get green():Number 
         {
-            return getGreen() ;
+            return getTransform().gb ;
         }
         
         /**
-         * Specifies a green color value for a Color object.
+         * @private
          */
         public function set green(n:Number):void 
         {
-            setGreen(n) ;
+            var t:Object = getTransform();
+            setRGB ( RGB.toNumber(t.rb, n, t.bb) ) ;
         }
         
         /**
-         * Returns the green offset color value of a Color object.
-         * @return the green offset color value of a Color object.
+         * Determinates the green offset color value of a Color object.
          */
         public function get greenOffset():Number 
         {
-            return getGreenOffset() ;
+            return getTransform().gb ; 
         }
         
         /**
-         * Specifies a green offset color value for a Color object.
+         * @private
          */
         public function set greenOffset(n:Number):void 
         {
-            setGreenOffset(n) ;
+            var t:Object = getTransform();
+            t.gb = n ; 
+            setTransform (t);
         }
         
         /**
@@ -132,15 +136,17 @@ package vegas.colors
          */
         public function get greenPercent():Number 
         {
-            return getGreenPercent() ;
+            return getTransform().ga ;
         }
         
         /**
-         * Specifies a green percentage color value for a Color object.
-          */
-        public function set greenPercent(n:Number):void 
+         * @private
+         */
+        public function set greenPercent( n:Number ):void 
         {
-            setGreenPercent(n) ;
+            var t:Object = getTransform();
+            t.ga = n ; 
+            setTransform (t);
         }
         
         /**
@@ -149,15 +155,16 @@ package vegas.colors
          */
         public function get red():Number 
         {
-            return getRed() ;
+            return getTransform().rb ; 
         }
         
         /**
-         * Specifies a red color value for a Color object.
+         * @private
          */
         public function set red(n:Number):void 
         {
-            setRed(n) ;
+            var t:Object = getTransform();
+            setRGB ( RGB.toNumber( n , t.gb , t.bb ) ) ;
         }
         
         /**
@@ -166,7 +173,7 @@ package vegas.colors
          */
         public function get redOffset():Number 
         {
-            return getRedOffset() ;
+            return getTransform().rb ; 
         }
         
         /**
@@ -174,7 +181,9 @@ package vegas.colors
          */
         public function set redOffset(n:Number):void 
         {
-            setRedOffset(n) ;
+            var t:Object = getTransform() ;
+            t.rb = n ; 
+            setTransform (t) ;
         }
         
         /**
@@ -183,220 +192,49 @@ package vegas.colors
          */
         public function get redPercent():Number 
         {
-            return getRedPercent() ;
-        }
-        
-        /**
-         * Specifies a red percentage color value for a Color object.
-         */
-        public function set redPercent(n:Number):void 
-        {
-            setRedPercent(n) ;
-        }
-        
-        /**
-         * Returns the blue color value of a Color object.
-         * @return the blue color value of a Color object.
-         */
-        public function getBlue():Number 
-        { 
-            return getTransform().bb ; 
-        }
-        
-        /**
-         * Returns the blue offset color value of a Color object.
-         * @return the blue offset color value of a Color object.
-          */
-        public function getBlueOffset():Number 
-        { 
-            return getTransform().bb ; 
-        }
-        
-        /**
-          * Returns the blue percentage value of a Color object.
-          * @return the blue percentage value of a Color object.
-         */
-        public function getBluePercent():Number 
-        { 
-            return getTransform().ba ; 
-        }
-        
-        /**
-         * Returns the green color value of a Color object.
-         * @return the green color value of a Color object.
-         */
-        public function getGreen():Number 
-        { 
-            return getTransform().gb ; 
-        }
-        
-        /**
-         * Returns the green offset color value of a Color object.
-         * @return the green offset color value of a Color object.
-         */
-        public function getGreenOffset():Number 
-        { 
-            return getTransform().gb ; 
-        }
-        
-        /**    
-         * Returns the green percentage color value of a Color object.
-         * @return the green percentage value of a Color object.
-         */
-        public function getGreenPercent():Number 
-        { 
-            return getTransform().ga ; 
-        }
-        
-        /**
-         * Returns the red color value of a Color object.
-         * @return the red color value of a Color object.
-         */
-        public function getRed():Number 
-        { 
-            return getTransform().rb ; 
-        }
-        
-        /**
-         * Returns the red offset color value of a Color object.
-         * @return the red offset color value of a Color object.
-         */
-        public function getRedOffset():Number 
-        { 
-            return getTransform().rb ; 
-        }
-        
-        /**
-          * Returns the red percentage color value of a Color object.
-         * @return the red percentage color value of a Color object.
-         */
-        public function getRedPercent():Number 
-        { 
             return getTransform().ra ; 
         }
         
         /**
-         * Returns the R+G+B values currently in use by the Color object as individual red, green, and blue values.
-         * <p><b>Example :</b></p>
-         * <code class="prettyprint">
-         * var my_color:Color = new Color(my_mc);
-         * my_color.setRGB2(255, 0, 255);
-         * var rgb:Object = my_color.getRGB2();
-         * trace (rgb.r);
-         * trace (rgb.g);
-         * trace (rgb.b);
-         * </code>
+         * @private
          */
-        public function getRGB2():Object 
-        {
-            var t:Object = getTransform() ;
-            return {r:t.rb, g:t.gb, b:t.bb} ;
-        }
-        
-        /**
-         * Specifies a blue value for a Color object.
-         * @param amount The blue value.
-         */
-        public function setBlue(amount:Number):void 
-        {
-            var t:Object = getTransform() ;
-            setRGB ( RGB.toNumber(t.rb, t.gb, amount) ) ;
-        }
-        
-        /**
-         * Specifies a blue offset value for a Color object.
-         * @param offset The blue offset value.
-         */
-        public function setBlueOffset(offset:Number):void 
-        {
-            var t:Object = getTransform() ;
-            t.bb = offset ; setTransform (t);
-        }
-
-        /**
-         * Specifies a blue percentage value for a Color object.
-         * @param percent The blue offset value.
-         */
-        public function setBluePercent(percent:Number):void 
+        public function set redPercent(n:Number):void 
         {
             var t:Object = getTransform();
-            t.ba = percent ; setTransform (t);
-        }
-        
-        /**
-         * Specifies a green color value for a Color object.
-         * @param amount The green value.
-         */
-        public function setGreen(amount:Number):void
-        {
-            var t:Object = getTransform();
-            setRGB ( RGB.toNumber(t.rb, amount, t.bb) ) ;
-        }
-        
-        /**
-         * Specifies a green offset color value for a Color object.
-         * @param offset The green offset value.
-         */
-        public function setGreenOffset(offset:Number):void 
-        {
-            var t:Object = getTransform();
-            t.gb = offset; setTransform (t);
-        }
-        
-        /**
-         * Specifies a green percentage value for a Color object.
-         * @param percent The green percent value.
-         */
-        public function setGreenPercent(percent:Number):void 
-        {
-            var t:Object = getTransform();
-            t.ga = percent ; setTransform (t);
-        }
-        
-        /**
-         * Specifies a red value for a Color object.
-         * @param amount The red value.
-         */
-        public function setRed(amount:Number):void
-        {
-            var t:Object = getTransform();
-            setRGB ( RGB.toNumber(amount, t.gb, t.bb) ) ;
-        }
-        
-        /**
-         * Specifies a red offset value for a Color object.
-          * @param offset The red offset value.
-         */
-        public function setRedOffset(offset:Number):void 
-        {
-            var t:Object = getTransform() ;
-            t.rb = offset ; setTransform (t) ;
-        }
-            
-        /**
-         * Specifies a red percentage value for a Color object.
-         * @param percent The red percent value.
-         */
-        public function setRedPercent(percent:Number):void 
-        {
-            var t:Object = getTransform();
-            t.ra = percent ; setTransform (t) ; 
+            t.ra = n ; 
+            setTransform( t ) ; 
         }
         
         /**
          * Specifies an RGB color for a Color object using individual red, green, and blue values.
          * <p><b>Example :</b></p>
          * <code class="prettyprint">
-         * var my_color:SolidColor = new SolidColor(my_mc);
-         * my_color.setRGB2(255, 0, 255);
+         * var color:SolidColor = new SolidColor( display );
+         * color.fromRGB( 255 , 0 , 255 ) ;
          * </code>
          * @param r The red color value.
          * @param g The green color value.
          * @param b The blue color value.
          */
-        public function setRGB2(r:Number, g:Number, b:Number):void  
+        public function fromRGB(r:Number, g:Number, b:Number):void  
         { 
             setRGB( RGB.toNumber(r,g,b) ) ; 
+        }
+        
+        /**
+         * Returns the R+G+B values currently in use by the Color object as individual red, green, and blue values.
+         * <p><b>Example :</b></p>
+         * <code class="prettyprint">
+         * var color:Color = new Color( display );
+         * color.fromRGB( 255 , 0 , 255 ) ;
+         * var rgb:RGB = color.toRGB();
+         * trace ( rgb );
+         * </code>
+         */
+        public function toRGB():RGB 
+        {
+            var t:Object = getTransform() ;
+            return new RGB( t.rb , t.gb, t.bb ) ;
         }
     }
 }

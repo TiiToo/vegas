@@ -137,7 +137,7 @@ package vegas.date
          */
         public static function add( date:Date = null , field:String=null , amount:Number=0 ):Date 
         {
-            var d:Date = ( date == null ) ? new Date() : new Date( date.valueOf() ) ;  
+            var d:Date = ( date == null ) ? new Date() : new Date( date.valueOf() ) ;
             switch ( field ) 
             {
                 case Calendar.MILLISECOND :

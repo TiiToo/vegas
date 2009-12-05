@@ -128,7 +128,7 @@ package vegas.colors
             setTransform 
             ( 
                 {
-                    ra : -t.ra , ga : -t.ga , ba : -t.ba ,
+                    ra : -t.ra      , ga : -t.ga      , ba : -t.ba      ,
                     rb : 255 - t.rb , gb : 255 - t.gb , bb : 255 - t.bb 
                 } 
             ) ;
@@ -139,7 +139,7 @@ package vegas.colors
          */
         public function reset():void 
         { 
-            setTransform ({ra:100, ga:100, ba:100, rb:0, gb:0, bb:0}) ;
+            setTransform ( {ra:100, ga:100, ba:100, rb:0, gb:0, bb:0} ) ;
         }
         
         /**

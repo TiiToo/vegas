@@ -93,14 +93,13 @@ package vegas.colors
             assertEquals ( color.rgb , 0 , "01 - getRGB() failed" ) ;
             
             color.rgb = 0xFF0000 ;
-
+            
             // Test the red color.
             assertEquals ( color.rgb , 16711680 , "02 - getRGB() failed" ) ;
             
             color.reset() ;
             
             assertEquals ( color.rgb , 0 , "03 - getRGB() failed" ) ;
-            
         }
           
         public function testGetRGB():void
@@ -114,13 +113,11 @@ package vegas.colors
             
             // test reset
             color.reset() ;
-            assertEquals ( color.getRGB() , 0 , "03 - getRGB() failed" ) ;                  
+            assertEquals ( color.getRGB() , 0 , "03 - getRGB() failed" ) ;
         }
-
         
         public function testGetTransform():void
         {
-
             var o:Object ;
             
             var o1:Object = { ra : 100 , rb : 0   , ga : 100 , gb : 0   , ba : 100 , bb : 0   , aa : 100 , ab : 0 } ;
@@ -156,7 +153,7 @@ package vegas.colors
             assertEquals( o.bb , o2.bb , "03-06 getTransform() failed." ) ;
             assertEquals( o.aa , o2.aa , "03-07 getTransform() failed." ) ;
             assertEquals( o.ab , o2.ab , "03-08 getTransform() failed." ) ;
-
+            
             // Test color green.
             
             color.rgb = 0x00FF00 ;
@@ -170,7 +167,7 @@ package vegas.colors
             assertEquals( o.bb , o3.bb , "04-06 getTransform() failed." ) ;
             assertEquals( o.aa , o3.aa , "04-07 getTransform() failed." ) ;
             assertEquals( o.ab , o3.ab , "04-08 getTransform() failed." ) ;
-
+            
             // Test color blue.
             
             color.rgb = 0x0000FF ;
@@ -184,7 +181,7 @@ package vegas.colors
             assertEquals( o.bb , o4.bb , "05-06 getTransform() failed." ) ;
             assertEquals( o.aa , o4.aa , "05-07 getTransform() failed." ) ;
             assertEquals( o.ab , o4.ab , "05-08 getTransform() failed." ) ;
-
+            
             // Test color white.
                         
             color.rgb = 0xFFFFFF ;
@@ -201,7 +198,7 @@ package vegas.colors
             
             color.reset() ;
         }
-
+        
         public function testInvert():void
         {
             color.invert() ;
@@ -218,23 +215,23 @@ package vegas.colors
         public function testSetRGB():void
         {
             color.setRGB( 0xFF0000 ) ;
-
+            
             // Test the red color.
             assertEquals ( color.getRGB() , 0xFF0000 , "01 - setRGB() failed" ) ;
             
             color.reset() ;
             
-            assertEquals ( color.getRGB() , 0 , "02 - setRGB() failed" ) ;       
+            assertEquals ( color.getRGB() , 0 , "02 - setRGB() failed" ) ;
             
-        }          
+        }
         
         public function testSetRGBWithStringArgument():void
         {
             color.setRGB( "0xFF0000" ) ;
-
+            
             // Test the red color.
             assertEquals ( color.rgb, 0xFF0000 , "01 - setRGB() failed" ) ;
-                        
+            
             color.reset() ;
         }
         
@@ -261,12 +258,12 @@ package vegas.colors
             var rgb:RGB = new RGB(255,0,0) ;
             
             color.setRGB( rgb ) ;
-
+            
             // Test the red color.
             assertEquals ( color.rgb, 0xFF0000 , "setRGB() failed with RGB parameter" ) ;
-                        
+            
             color.reset() ;
-        }    
+        }
         
         public function testSetTransform():void
         {
@@ -286,7 +283,7 @@ package vegas.colors
             assertEquals( o.bb , o1.bb , "01-07 setTransform() failed" ) ;
             assertEquals( o.aa , o1.aa , "01-08 setTransform() failed" ) ;
             assertEquals( o.ab , o1.ab , "01-09 setTransform() failed" ) ;
-
+            
             color.setTransform( o2 ) ;
             o = color.getTransform() ;
             
@@ -298,7 +295,7 @@ package vegas.colors
             assertEquals( o.bb , 0   , "02-06 setTransform() failed" ) ;
             assertEquals( o.aa , 100 , "02-07 setTransform() failed" ) ;
             assertEquals( o.ab , 0   , "02-08 setTransform() failed" ) ;
-
+            
             color.setTransform( null ) ;
             o = color.getTransform() ;
             
@@ -310,11 +307,10 @@ package vegas.colors
             assertEquals( o.bb , 0   , "03-06 setTransform() failed" ) ;
             assertEquals( o.aa , 100 , "03-07 setTransform() failed" ) ;
             assertEquals( o.ab , 0   , "03-08 setTransform() failed" ) ;
-
-        
+            
             color.setTransform( undefined ) ;
             o = color.getTransform() ;
-
+            
             assertEquals( o.ra , 100 , "04-01 setTransform() failed" ) ;
             assertEquals( o.rb , 0   , "04-02 setTransform() failed" ) ;
             assertEquals( o.ga , 100 , "04-03 setTransform() failed" ) ;
@@ -323,7 +319,7 @@ package vegas.colors
             assertEquals( o.bb , 0   , "04-06 setTransform() failed" ) ;
             assertEquals( o.aa , 100 , "04-07 setTransform() failed" ) ;
             assertEquals( o.ab , 0   , "04-08 setTransform() failed" ) ;
-
+            
             color.reset() ;
         }  
         
@@ -335,7 +331,7 @@ package vegas.colors
             assertEquals ( s , "000000" , "01 - toRGBString() failed" ) ;
             
             color.rgb = 0xFF0000 ;
-
+            
             // Test the red color.
             assertEquals ( color.toRGBString() , "FF0000" , "02 - toRGBString() failed" ) ;
             

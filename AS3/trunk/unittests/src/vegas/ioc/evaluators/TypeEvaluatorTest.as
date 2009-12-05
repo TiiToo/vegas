@@ -82,7 +82,6 @@ package vegas.ioc.evaluators
         
         public function testEvaluator2():void
         {
-            
             var config:ObjectConfig = evaluator2.config ;
             config.typeAliases = [ { alias:"CoreObject" , type:"vegas.CoreObject" } ] ;
             
