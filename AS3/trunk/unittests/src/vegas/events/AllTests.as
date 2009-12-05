@@ -21,28 +21,21 @@
   
 */
 
-package vegas  
+package vegas.events
 {
     import buRRRn.ASTUce.framework.ITest;
     import buRRRn.ASTUce.framework.TestSuite;
-    
-    import vegas.colors.AllTests;
-    import vegas.events.AllTests;
-    import vegas.ioc.AllTests;
-    import vegas.strings.AllTests;
-    import vegas.utils.AllTests;
     
     public class AllTests
     {
         public static function suite():ITest
         {
-            var suite:TestSuite = new TestSuite( "vegas unit tests" );
+            var suite:TestSuite = new TestSuite( "vegas.events unit tests" );
             
-            suite.addTest( vegas.colors.AllTests.suite() ) ;
-            suite.addTest( vegas.events.AllTests.suite() ) ;
-            suite.addTest( vegas.ioc.AllTests.suite() ) ;
-            suite.addTest( vegas.strings.AllTests.suite() ) ;
-            suite.addTest( vegas.utils.AllTests.suite() ) ;
+            suite.addTestSuite( EntryEventTest ) ;
+            suite.addTestSuite( LocalizationEventTest ) ;
+            suite.addTestSuite( ModelObjectEventTest ) ;
+            suite.addTestSuite( ValueEventTest ) ;
             
             return suite;
         }

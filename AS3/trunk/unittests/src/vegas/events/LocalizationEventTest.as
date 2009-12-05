@@ -21,30 +21,28 @@
   
 */
 
-package vegas  
+package vegas.events
 {
-    import buRRRn.ASTUce.framework.ITest;
-    import buRRRn.ASTUce.framework.TestSuite;
-    
-    import vegas.colors.AllTests;
-    import vegas.events.AllTests;
-    import vegas.ioc.AllTests;
-    import vegas.strings.AllTests;
-    import vegas.utils.AllTests;
-    
-    public class AllTests
+    import buRRRn.ASTUce.framework.TestCase;
+
+    public class LocalizationEventTest extends TestCase 
     {
-        public static function suite():ITest
+        public function LocalizationEventTest(name:String = "")
         {
-            var suite:TestSuite = new TestSuite( "vegas unit tests" );
-            
-            suite.addTest( vegas.colors.AllTests.suite() ) ;
-            suite.addTest( vegas.events.AllTests.suite() ) ;
-            suite.addTest( vegas.ioc.AllTests.suite() ) ;
-            suite.addTest( vegas.strings.AllTests.suite() ) ;
-            suite.addTest( vegas.utils.AllTests.suite() ) ;
-            
-            return suite;
+            super(name);
+        }
+        
+        public function testConstructor():void
+        {
+            var e:LocalizationEvent = new LocalizationEvent("type") ;
+            assertNotNull(e , "LocalizationEvent constructor failed.") ;
+        }
+        
+        public function testClone():void
+        {
+            var e:LocalizationEvent = new LocalizationEvent("type") ;
+            var c:LocalizationEvent = e.clone() as LocalizationEvent ;
+            assertNotNull(c , "LocalizationEvent clone failed.") ;
         }
     }
 }

@@ -21,28 +21,26 @@
   
 */
 
-package vegas  
+package vegas.ioc  
 {
     import buRRRn.ASTUce.framework.ITest;
     import buRRRn.ASTUce.framework.TestSuite;
     
-    import vegas.colors.AllTests;
-    import vegas.events.AllTests;
-    import vegas.ioc.AllTests;
-    import vegas.strings.AllTests;
-    import vegas.utils.AllTests;
+    import vegas.ioc.evaluators.AllTests;
     
     public class AllTests
     {
         public static function suite():ITest
         {
-            var suite:TestSuite = new TestSuite( "vegas unit tests" );
+            var suite:TestSuite = new TestSuite( "andromeda.ioc" );
             
-            suite.addTest( vegas.colors.AllTests.suite() ) ;
-            suite.addTest( vegas.events.AllTests.suite() ) ;
-            suite.addTest( vegas.ioc.AllTests.suite() ) ;
-            suite.addTest( vegas.strings.AllTests.suite() ) ;
-            suite.addTest( vegas.utils.AllTests.suite() ) ;
+            // FIXME suite.addTestSuite( IObjectDefinitionTest ) ;
+            // FIXME suite.addTestSuite( IObjectDefinitionContainerTest ) ;
+            
+            suite.addTest( vegas.ioc.evaluators.AllTests.suite() ) ;
+            // FIXME suite.addTest( vegas.ioc.factory.AllTests.suite() ) ;
+            // FIXME suite.addTest( vegas.ioc.io.AllTests.suite() ) ;
+            // FIXME suite.addTest( vegas.ioc.net.AllTests.suite() ) ;
             
             return suite;
         }

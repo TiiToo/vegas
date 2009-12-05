@@ -10,22 +10,23 @@
   WITHOUT WARRANTY OF ANY KIND, either express or implied. See the License
   for the specific language governing rights and limitations under the License. 
   
-  The Original Code is Vegas Framework.
+  The Original Code is VEGAS Framework.
   
   The Initial Developer of the Original Code is
-  ALCARAZ Marc (aka eKameleon)  <ekameleon@gmail.com>.
+  ALCARAZ Marc (aka eKameleon)  <vegas@ekameleon.net>.
   Portions created by the Initial Developer are Copyright (C) 2004-2010
   the Initial Developer. All Rights Reserved.
   
   Contributor(s) :
   
 */
+
 package vegas.strings 
 {
     import buRRRn.ASTUce.framework.TestCase;
-
+    
     import system.process.Runnable;
-
+    
     public class JSMinifierTest extends TestCase 
     {
         public function JSMinifierTest(name:String = "")

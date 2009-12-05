@@ -10,16 +10,15 @@
   WITHOUT WARRANTY OF ANY KIND, either express or implied. See the License
   for the specific language governing rights and limitations under the License. 
   
-  The Original Code is Vegas Framework.
+  The Original Code is VEGAS Framework.
   
   The Initial Developer of the Original Code is
-  Marc Alcaraz <ekameleon@gmail.com>.
+  ALCARAZ Marc (aka eKameleon)  <vegas@ekameleon.net>.
   Portions created by the Initial Developer are Copyright (C) 2004-2010
   the Initial Developer. All Rights Reserved.
   
   Contributor(s) :
-  Nicolas Surian <nicolas.surian@gmail.com>
-    
+  
 */
 
 package vegas.colors

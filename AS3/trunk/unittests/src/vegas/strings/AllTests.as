@@ -20,6 +20,7 @@
   Contributor(s) :
   
 */
+
 package vegas.strings
 {
     import buRRRn.ASTUce.framework.ITest;
