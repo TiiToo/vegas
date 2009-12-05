@@ -21,7 +21,7 @@
   
 */
 
-package vegas.ioc.evaluators
+package vegas.ioc.factory.strategy
 {
     import buRRRn.ASTUce.framework.ITest;
     import buRRRn.ASTUce.framework.TestSuite;
@@ -30,8 +30,12 @@ package vegas.ioc.evaluators
     {
         public static function suite():ITest
         {
-            var suite:TestSuite = new TestSuite( "andromeda.ioc.evaluators" );
-            suite.addTestSuite( TypeEvaluatorTest ) ;
+            var suite:TestSuite = new TestSuite( "vegas.ioc.factory.strategy unit tests" );
+            // FIXME suite.addTestSuite( ObjectFactoryMethodTest ) ;
+            // FIXME suite.addTestSuite( ObjectFactoryPropertyTest ) ;
+            // FIXME suite.addTestSuite( ObjectFactoryValuePropertyTest ) ;
+            // FIXME suite.addTestSuite( ObjectStaticFactoryMethodTest ) ;
+            // FIXME suite.addTestSuite( ObjectStaticFactoryPropertyTest ) ;
             return suite;
         }
     }

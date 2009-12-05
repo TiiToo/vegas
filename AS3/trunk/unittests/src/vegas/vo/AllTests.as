@@ -21,7 +21,7 @@
   
 */
 
-package vegas.ioc.evaluators
+package vegas.vo  
 {
     import buRRRn.ASTUce.framework.ITest;
     import buRRRn.ASTUce.framework.TestSuite;
@@ -30,8 +30,7 @@ package vegas.ioc.evaluators
     {
         public static function suite():ITest
         {
-            var suite:TestSuite = new TestSuite( "andromeda.ioc.evaluators" );
-            suite.addTestSuite( TypeEvaluatorTest ) ;
+            var suite:TestSuite = new TestSuite( "vegas.vo unit tests" );
             return suite;
         }
     }

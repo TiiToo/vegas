@@ -21,18 +21,15 @@
   
 */
 
-package vegas.ioc.evaluators
+package vegas.ioc.factory.strategy
 {
-    import buRRRn.ASTUce.framework.ITest;
-    import buRRRn.ASTUce.framework.TestSuite;
+    import buRRRn.ASTUce.framework.TestCase;
     
-    public class AllTests
+    public class ObjectStaticFactoryPropertyTest extends TestCase 
     {
-        public static function suite():ITest
+        public function ObjectStaticFactoryPropertyTest(name:String = "")
         {
-            var suite:TestSuite = new TestSuite( "andromeda.ioc.evaluators" );
-            suite.addTestSuite( TypeEvaluatorTest ) ;
-            return suite;
+            super(name);
         }
     }
 }

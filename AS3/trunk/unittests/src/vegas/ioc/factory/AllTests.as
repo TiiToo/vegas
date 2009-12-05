@@ -21,17 +21,31 @@
   
 */
 
-package vegas.ioc.evaluators
+package vegas.ioc.factory
 {
     import buRRRn.ASTUce.framework.ITest;
     import buRRRn.ASTUce.framework.TestSuite;
     
+    import vegas.ioc.factory.strategy.AllTests;
+    
+    /**
+     * This class launch all tests.
+     */
     public class AllTests
     {
+        /**
+         * Creates the Test list.
+         */
         public static function suite():ITest
         {
-            var suite:TestSuite = new TestSuite( "andromeda.ioc.evaluators" );
-            suite.addTestSuite( TypeEvaluatorTest ) ;
+            var suite:TestSuite = new TestSuite( "vegas.ioc.factory unit tests" );
+            
+            suite.addTest( vegas.ioc.factory.strategy.AllTests.suite() ) ;
+            
+            // FIXME suite.addTestSuite( ECMAObjectFactoryTest ) ;
+            // FIXME suite.addTestSuite( ObjectConfigTest ) ;
+            // FIXME suite.addTestSuite( ObjectFactoryTest ) ;
+            
             return suite;
         }
     }

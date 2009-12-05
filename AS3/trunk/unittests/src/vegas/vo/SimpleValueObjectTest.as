@@ -21,18 +21,15 @@
   
 */
 
-package vegas.ioc.evaluators
+package vegas.vo  
 {
-    import buRRRn.ASTUce.framework.ITest;
-    import buRRRn.ASTUce.framework.TestSuite;
+    import buRRRn.ASTUce.framework.TestCase;
     
-    public class AllTests
+    public class SimpleValueObjectTest extends TestCase 
     {
-        public static function suite():ITest
+        public function SimpleValueObjectTest(name:String = "")
         {
-            var suite:TestSuite = new TestSuite( "andromeda.ioc.evaluators" );
-            suite.addTestSuite( TypeEvaluatorTest ) ;
-            return suite;
+            super(name);
         }
     }
 }

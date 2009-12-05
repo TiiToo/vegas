@@ -13,7 +13,7 @@
   The Original Code is VEGAS Framework.
   
   The Initial Developer of the Original Code is
-  ALCARAZ Marc (aka eKameleon)  <vegas@ekameleon.net>.
+  ALCARAZ Marc (aka eKameleon)  <ekameleon@gmail.com>.
   Portions created by the Initial Developer are Copyright (C) 2004-2010
   the Initial Developer. All Rights Reserved.
   
@@ -25,13 +25,14 @@ package vegas
 {
     import buRRRn.ASTUce.framework.ITest;
     import buRRRn.ASTUce.framework.TestSuite;
-    
+
     import vegas.colors.AllTests;
     import vegas.events.AllTests;
     import vegas.ioc.AllTests;
     import vegas.strings.AllTests;
     import vegas.utils.AllTests;
-    
+    import vegas.vo.AllTests;
+
     public class AllTests
     {
         public static function suite():ITest
@@ -43,6 +44,7 @@ package vegas
             suite.addTest( vegas.ioc.AllTests.suite() ) ;
             suite.addTest( vegas.strings.AllTests.suite() ) ;
             suite.addTest( vegas.utils.AllTests.suite() ) ;
+            suite.addTest( vegas.vo.AllTests.suite() ) ;
             
             return suite;
         }

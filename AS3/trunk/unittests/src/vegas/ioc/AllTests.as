@@ -13,7 +13,7 @@
   The Original Code is VEGAS Framework.
   
   The Initial Developer of the Original Code is
-  ALCARAZ Marc (aka eKameleon)  <vegas@ekameleon.net>.
+  ALCARAZ Marc (aka eKameleon)  <ekameleon@gmail.com>.
   Portions created by the Initial Developer are Copyright (C) 2004-2010
   the Initial Developer. All Rights Reserved.
   
@@ -27,19 +27,21 @@ package vegas.ioc
     import buRRRn.ASTUce.framework.TestSuite;
     
     import vegas.ioc.evaluators.AllTests;
+    import vegas.ioc.factory.AllTests;
+    import vegas.ioc.io.AllTests;
     
     public class AllTests
     {
         public static function suite():ITest
         {
-            var suite:TestSuite = new TestSuite( "andromeda.ioc" );
+            var suite:TestSuite = new TestSuite( "veags.ioc unit tests" );
             
             // FIXME suite.addTestSuite( IObjectDefinitionTest ) ;
             // FIXME suite.addTestSuite( IObjectDefinitionContainerTest ) ;
             
             suite.addTest( vegas.ioc.evaluators.AllTests.suite() ) ;
-            // FIXME suite.addTest( vegas.ioc.factory.AllTests.suite() ) ;
-            // FIXME suite.addTest( vegas.ioc.io.AllTests.suite() ) ;
+            suite.addTest( vegas.ioc.factory.AllTests.suite() ) ;
+            suite.addTest( vegas.ioc.io.AllTests.suite() ) ;
             // FIXME suite.addTest( vegas.ioc.net.AllTests.suite() ) ;
             
             return suite;
