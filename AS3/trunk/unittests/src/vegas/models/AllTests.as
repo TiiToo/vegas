@@ -21,32 +21,31 @@
   
 */
 
-package vegas  
+package vegas.models
 {
     import buRRRn.ASTUce.framework.ITest;
     import buRRRn.ASTUce.framework.TestSuite;
-
-    import vegas.colors.AllTests;
-    import vegas.events.AllTests;
-    import vegas.ioc.AllTests;
-    import vegas.models.AllTests;
-    import vegas.strings.AllTests;
-    import vegas.utils.AllTests;
-    import vegas.vo.AllTests;
-
+    
+    import vegas.models.maps.AllTests;
+    
     public class AllTests
     {
         public static function suite():ITest
         {
-            var suite:TestSuite = new TestSuite( "vegas unit tests" );
+            var suite:TestSuite = new TestSuite( "vegas.models" );
             
-            suite.addTest( vegas.colors.AllTests.suite() ) ;
-            suite.addTest( vegas.events.AllTests.suite() ) ;
-            suite.addTest( vegas.ioc.AllTests.suite() ) ;
-            suite.addTest( vegas.models.AllTests.suite() ) ;
-            suite.addTest( vegas.strings.AllTests.suite() ) ;
-            suite.addTest( vegas.utils.AllTests.suite() ) ;
-            suite.addTest( vegas.vo.AllTests.suite() ) ;
+            // suites
+            
+            suite.addTest( vegas.models.maps.AllTests.suite() ) ;
+            
+            // cases
+            
+            // FIXME suite.addTestSuite( ChangeModelTest ) ;
+            // FIXME suite.addTestSuite( CoreModelTest ) ;
+            // FIXME suite.addTestSuite( CoreModelObjectTest ) ;
+            // FIXME suite.addTestSuite( ModelTest ) ;
+            // FIXME suite.addTestSuite( ModelCollectorTest ) ;
+            // FIXME suite.addTestSuite( ModelObjectTest ) ;
             
             return suite;
         }
