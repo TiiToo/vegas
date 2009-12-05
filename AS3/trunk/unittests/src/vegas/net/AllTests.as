@@ -21,35 +21,17 @@
   
 */
 
-package vegas  
+package vegas.net  
 {
     import buRRRn.ASTUce.framework.ITest;
     import buRRRn.ASTUce.framework.TestSuite;
-
-    import vegas.colors.AllTests;
-    import vegas.events.AllTests;
-    import vegas.ioc.AllTests;
-    import vegas.models.AllTests;
-    import vegas.net.AllTests;
-    import vegas.strings.AllTests;
-    import vegas.utils.AllTests;
-    import vegas.vo.AllTests;
-
+    
     public class AllTests
     {
         public static function suite():ITest
         {
-            var suite:TestSuite = new TestSuite( "vegas unit tests" );
-            
-            suite.addTest( vegas.colors.AllTests.suite() ) ;
-            suite.addTest( vegas.events.AllTests.suite() ) ;
-            suite.addTest( vegas.ioc.AllTests.suite() ) ;
-            suite.addTest( vegas.models.AllTests.suite() ) ;
-            suite.addTest( vegas.net.AllTests.suite() ) ;
-            suite.addTest( vegas.strings.AllTests.suite() ) ;
-            suite.addTest( vegas.utils.AllTests.suite() ) ;
-            suite.addTest( vegas.vo.AllTests.suite() ) ;
-            
+            var suite:TestSuite = new TestSuite( "vegas.net unit tests." );
+            suite.addTestSuite( HTTPHostTest ) ;
             return suite;
         }
     }
