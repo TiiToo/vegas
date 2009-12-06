@@ -28,7 +28,7 @@ package vegas.colors
     import system.hack;
     
     /**
-     * The test class of pegas.evaluators.ColorEvaluator.
+     * The test class of vegas.colors.ColorEvaluator.
      */
     public class ColorEvaluatorTest extends TestCase 
     {

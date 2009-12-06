@@ -30,8 +30,9 @@ package vegas.ioc.evaluators
     {
         public static function suite():ITest
         {
-            var suite:TestSuite = new TestSuite( "andromeda.ioc.evaluators" );
-            suite.addTestSuite( TypeEvaluatorTest ) ;
+            var suite:TestSuite = new TestSuite( "vegas.ioc.evaluators unit tests" );
+            suite.addTestSuite( ConfigEvaluatorTest ) ;
+            suite.addTestSuite( TypeEvaluatorTest   ) ;
             return suite;
         }
     }
