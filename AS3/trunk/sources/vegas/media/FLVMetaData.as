@@ -149,9 +149,9 @@ package vegas.media
         public var lasttimestamp:Number ;
         
         /**
-         * Date and time metadata added. (Note that this is not of type string like 'creationdate').
+         * The metadata name of the creator.
          */
-        public var metadatacreator:Date ;
+        public var metadatacreator:String ;
         
         /**
          * The metadata date of the video.
