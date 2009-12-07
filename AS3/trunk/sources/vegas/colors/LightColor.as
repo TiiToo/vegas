@@ -29,7 +29,7 @@ package vegas.colors
      * This class is the basic extension of the actionscript Color class to changed light and contrast over a MovieClip. 
      * <p><b>Example :</b></p>
      * <pre class="prettyprint">
-     * import pegas.colors.LightColor;
+     * import vegas.colors.LightColor;
      * var c:LightColor = new LightColor( display ) ; 
      * c.brightness     = 255 ;
      * </pre>

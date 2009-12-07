@@ -52,10 +52,10 @@ package vegas.display
      * import flash.display.StageAlign ;
      * import flash.display.StageScaleMode ;
      * 
-     * import pegas.draw.Direction ;
-     * import pegas.draw.FillStyle ;
-     * import pegas.draw.FillGradientStyle ;
-     * import pegas.draw.LineStyle ;
+     * import graphics.Direction ;
+     * import graphics.FillStyle ;
+     * import graphics.FillGradientStyle ;
+     * import graphics.LineStyle ;
      * 
      * stage.align     = StageAlign.TOP_LEFT ;
      * stage.scaleMode = StageScaleMode.NO_SCALE ;

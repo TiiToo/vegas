@@ -31,7 +31,7 @@ package vegas.colors
      * <p>Read the about it the <a href="http://www.w3.org/TR/html4/types.html">W3C HTML 4 Specifications</a> (chap 6.5)</p>
      * <p><b>Example :</b></p>
      * <pre class="prettyprint">
-     * import pegas.colors.HTMLColor ;
+     * import vegas.colors.HTMLColor ;
      * 
      * var n:Number = HTMLColor.htmlToNumber( "#FF0000" ) ;
      * trace("convert #FF0000 : "  + n) ;

@@ -32,7 +32,7 @@ package vegas.colors
      * <code class="prettyprint">Color</code> extends the Color Object.
      * <p><b>Example :</b></p>
      * <pre class="prettyprint">
-     * import pegas.colors.Color;
+     * import vegas.colors.Color;
      * var c:Color = new Color ( display ); // assuming 'display' is a DisplayObject
      * c.setRGB(0xFF9900);
      * </pre>

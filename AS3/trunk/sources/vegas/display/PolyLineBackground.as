@@ -84,7 +84,7 @@ package vegas.display
         
         /**
          * Determinates the array representation of all points of this polyline pen.
-         * <p>This Array can contains pegas.geom.Vector2, flash.geom.Point or all objects with a numeric x an y properties.</p>
+         * <p>This Array can contains graphics.geom.Vector2, flash.geom.Point or all objects with a numeric x an y properties.</p>
          */
         public function get data():Array
         {
@@ -164,7 +164,7 @@ package vegas.display
         {
             if ( data != null )
             {
-                _pen.data = data ;    
+                _pen.data = data ;
             }
             if ( useGradientBox && fill is FillGradientStyle )
             {

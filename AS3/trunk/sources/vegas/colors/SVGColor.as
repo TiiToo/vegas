@@ -32,7 +32,7 @@ package vegas.colors
      * Scalable Vector Graphics Color Names : <a href='http://www.december.com/html/spec/colorsvg.html'>http://www.december.com/html/spec/colorsvg.html</a>
      * <p><b>Example :</b></p>
      * <pre class="prettyprint">
-     * import pegas.colors.SVGColor ;
+     * import vegas.colors.SVGColor ;
      * 
      * var c:SVGColor ;
      * 

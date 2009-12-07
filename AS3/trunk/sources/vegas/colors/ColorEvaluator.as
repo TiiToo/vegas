@@ -25,12 +25,12 @@ package vegas.colors
 {
     import system.evaluators.Evaluable;
     import system.hack;
-
+    
     /**
      * Evaluates a rgb color string expression.
      * <p>All characters from 'A' to 'F' and from '0' to '9' are reserved, although not all of these characters are interpreted right now.</p> 
      * <pre class="prettyprint">
-     * import pegas.evaluators.ColorEvaluator ;
+     * import vegas.colors.ColorEvaluator ;
      * 
      * var evaluator:ColorEvaluator = new ColorEvaluator() ;
      * 
