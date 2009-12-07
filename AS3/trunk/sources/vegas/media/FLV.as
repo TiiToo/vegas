@@ -23,8 +23,9 @@ Contributor(s) :
 
 package vegas.media 
 {
+    import flash.display.BitmapData;
     import flash.utils.ByteArray;
-    
+
     [ExcludeClass]
     
     /**
@@ -87,13 +88,45 @@ package vegas.media
          * @param frameRate The frames rate of the video.
          * @param duration The duration in second of the video.
          */
-        public function FLV( width:uint , height:uint , frameRate:Number , duration:Number = 0 ):void
+        public function FLV( width:uint = 320 , height:uint = 240 , frameRate:Number = 24 , duration:Number = 0 , metaData:FLVMetaData = null ):void
         {
-            // FIXME use a FLVMetaData object to initialize the FLV
-            frameWidth  = width;
-            frameHeight = height;
-            frameRate   = frameRate;
-            duration    = duration;
+            _width    = width ;
+            _height   = height ;
+            _rate     = frameRate ;
+            _duration = duration ;
+            _metaData = metaData || new FLVMetaData() ;
+        }
+        
+        /**
+         * The duration in sedonc of the video.
+         */
+        public function get duration():Number
+        {
+            return _duration ;
+        }
+        
+        /**
+         * Indicates the frame rate of the FLV video stream.
+         */
+        public function get frameRate():Number
+        {
+            return _rate ;
+        }
+        
+        /**
+         * The frame height of the FLV video stream.
+         */
+        public function get height():void
+        {
+            return _height ;
+        }
+        
+        /**
+         * The frame width of the FLV video stream.
+         */
+        public function get width():void
+        {
+            return _width ;
         }
         
         /**
@@ -131,16 +164,45 @@ package vegas.media
             writeBytes( metaTag() ) ;
         }
         
-        private const blockWidth:int = 32 ;
-        private const blockHeight:int = 32 ;
+        /**
+         * @private
+         */
+        protected var _duration:Number ;
         
-        protected var duration:Number = 10 ;
-        protected var frameHeight:int = 240 ;
-        protected var frameRate:Number = 15 ;
-        protected var frameWidth:int = 320 ;
-        protected var iteration:int = 0 ;
+        /**
+         * @private
+         */
+        protected var _height:int ;
+        
+        /**
+         * @private
+         */
+        protected var _metaData:FLVMetaData ;
+        
+        /**
+         * @private
+         */
+        protected var _rate:Number ;
+        
+        /**
+         * @private
+         */
+        protected var _width:int  ;
+        
+        /**
+         * @private
+         */
+        protected var iteration:int  ;
+        
+        /**
+         * @private
+         */
         protected var metadatacreator:String = "VEGAS code.google.com/p/vegas - vegas.media.FLV"; // FIXME use a FLVMetaData object to initialize the FLV
-        protected var previousTagSize:uint = 0 ;
+        
+        /**
+         * @private
+         */
+        protected var previousTagSize:uint ;
         
         /**
          * Creates the header of the FLV file.
@@ -182,12 +244,12 @@ package vegas.media
             
             // SCRIPTDATAVARIABLES
             
-            if ( duration > 0 ) 
+            if ( _duration > 0 ) 
             {
                 writeUI16(b, "duration".length ) ;
                 b.writeUTFBytes("duration") ;
                 b.writeByte(0) ; 
-                b.writeDouble(duration) ;
+                b.writeDouble( _duration ) ;
             }
             
             // width
@@ -195,19 +257,19 @@ package vegas.media
             writeUI16(b, "width".length);
             b.writeUTFBytes("width");
             b.writeByte(0); 
-            b.writeDouble(frameWidth);
+            b.writeDouble(_width);
             
             // height
             
             writeUI16(b, "height".length);
             b.writeUTFBytes("height");
             b.writeByte(0); 
-            b.writeDouble(frameHeight);
+            b.writeDouble(_height);
             
             writeUI16(b, "framerate".length) ;
             b.writeUTFBytes("framerate") ;
             b.writeByte(0); 
-            b.writeDouble(frameRate) ;
+            b.writeDouble(_rate) ;
             
             writeUI16(b, "videocodecid".length);
             b.writeUTFBytes("videocodecid") ;
@@ -266,24 +328,24 @@ package vegas.media
             
             // blockwidth/16-1 (4bits) + imagewidth (12bits)
             
-            writeUI4_12( stream , int(blockWidth / 16) - 1, frameWidth) ;
+            writeUI4_12( stream , int(blockWidth / 16) - 1, _width) ;
             
             // blockheight/16-1 (4bits) + imageheight (12bits)
             
-            writeUI4_12( stream , int(blockHeight / 16) - 1, frameHeight) ;
+            writeUI4_12( stream , int(blockHeight / 16) - 1, _height) ;
             
             // VIDEODATA > SCREENVIDEOPACKET > IMAGEBLOCKS:
             
-            var yMax : int = int(frameHeight / blockHeight);
-            var yRemainder : int = frameHeight % blockHeight; 
+            var yMax : int = int(_height / blockHeight);
+            var yRemainder : int = _height % blockHeight; 
             
             if (yRemainder > 0) 
             {
                 yMax += 1 ;
             }
             
-            var xMax:int       = int( frameWidth / blockWidth ) ;
-            var xRemainder:int = frameWidth % blockWidth ;
+            var xMax:int       = int( _width / blockWidth ) ;
+            var xRemainder:int = _width % blockWidth ;
             
             if (xRemainder > 0)
             {
@@ -316,7 +378,7 @@ package vegas.media
                         for ( var x2:int ; x2 < xLimit ; x2++ ) 
                         {
                             x = ( x1 * blockWidth ) + x2;
-                            y = frameHeight - ( ( y1 * blockHeight ) + y2) ; // (flv's save from bottom to top)
+                            y = _height - ( ( y1 * blockHeight ) + y2) ; // (flv's save from bottom to top)
                             p = frame.getPixel( x , y ) ;
                             
                             block.writeByte( p & 0xFF ) ;  // blue 
@@ -339,7 +401,7 @@ package vegas.media
         {
             var tag:ByteArray  = new ByteArray();
             var datas:ByteArray = videoData( frame );
-            var timeStamp:uint = uint(1000 / frameRate * iteration++) ;
+            var timeStamp:uint = uint(1000 / _rate * iteration++) ;
             
             // tag 'header'
             tag.writeByte(0x09);                    // tagType = video
@@ -354,6 +416,17 @@ package vegas.media
             
             return tag;
         }
+        
+        /**
+         * @private
+         */
+        private const blockWidth:int = 32 ;
+        
+        
+        /**
+         * @private
+         */
+        private const blockHeight:int = 32 ;
         
         /**
          * @private
@@ -378,11 +451,11 @@ package vegas.media
         }
         
         /**
+         * Writes a 4-bit value followed by a 12-bit value in two sequential bytes.
          * @private
          */
         private function writeUI4_12(stream:*, p1:uint, p2:uint):void 
         {
-            // writes a 4-bit value followed by a 12-bit value in two sequential bytes
             var byte1a:int = p1 << 4;
             var byte1b:int = p2 >> 8;
             var byte1:int  = byte1a + byte1b;

@@ -151,7 +151,7 @@ package vegas.media
         /**
          * The metadata name of the creator.
          */
-        public var metadatacreator:String ;
+        public var metadatacreator:String = "" ;
         
         /**
          * The metadata date of the video.
@@ -195,7 +195,7 @@ package vegas.media
         public var videosize:Number ;
         
         /**
-         * A number that is the width of the FLV file, in pixels. (Flash exporter 1.1 sets this to 0).
+         * A number that is the width of the FLV file, in pixels (Flash exporter 1.1 sets this to 0).
          */
         public var width:Number ;
         
