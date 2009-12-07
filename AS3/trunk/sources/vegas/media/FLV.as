@@ -116,7 +116,7 @@ package vegas.media
         /**
          * The frame height of the FLV video stream.
          */
-        public function get height():void
+        public function get height():int
         {
             return _height ;
         }
@@ -124,7 +124,7 @@ package vegas.media
         /**
          * The frame width of the FLV video stream.
          */
-        public function get width():void
+        public function get width():int
         {
             return _width ;
         }
@@ -192,7 +192,7 @@ package vegas.media
         /**
          * @private
          */
-        protected var iteration:int  ;
+        protected var iteration:int ;
         
         /**
          * @private
@@ -403,14 +403,16 @@ package vegas.media
             var datas:ByteArray = videoData( frame );
             var timeStamp:uint = uint(1000 / _rate * iteration++) ;
             
-            // tag 'header'
-            tag.writeByte(0x09);                    // tagType = video
-            writeUI24(tag, datas.length);             // data size
-            writeUI24(tag, timeStamp);              // timestamp in ms
-            tag.writeByte(0);                       // timestamp extended, not using *** 
-            writeUI24(tag, 0);                      // streamID always 0
+            // header
+            
+            tag.writeByte(0x09) ; // tagType = video
+            writeUI24(tag, datas.length) ; // data size
+            writeUI24(tag, timeStamp) ; // timestamp in ms
+            tag.writeByte(0) ; // timestamp extended, not using *** 
+            writeUI24(tag, 0) ; // streamID always 0
             
             // videodata
+            
             tag.writeBytes( datas );
             previousTagSize = tag.length;
             
