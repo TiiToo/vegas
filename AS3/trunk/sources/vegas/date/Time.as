@@ -68,7 +68,7 @@ package vegas.date
          * @param timeDifference The time size of the time difference for the passed-in <code class="prettyprint">format</code>.
          * @param format (optional) "d"/"h"/"m"/"s"/"ms" for the unit of the amout, default case is "ms".
          */
-        public function Time( timeDifference:Number, format:String=null )
+        public function Time( timeDifference:Number = 0 , format:String = "ms" )
         {
             setValue( timeDifference, format ) ;
         }
@@ -96,7 +96,7 @@ package vegas.date
         /**
          * The 'second' string representation to format the unit amount time value.
          */
-        public static const SECOND_FORMAT:String = "ms" ;
+        public static const SECOND_FORMAT:String = "s" ;
         
         /** 
          * Factor from ms to second. 
@@ -159,22 +159,22 @@ package vegas.date
         public function evaluate():void 
         {
             var negative:int = Mathematics.sign(ms) ;
-            var rest:Number = ms ;
-                    
+            var rest:Number  = ms ;
+            
             days = rest / DAY ;
             rest -= negative * Math.floor(days) * DAY ;
-                    
+            
             hours = rest / HOUR;
             rest -= negative * Math.floor(hours) * HOUR ;
-                    
+            
             minutes = rest / MINUTE;
             rest -= negative * Math.floor(minutes) * MINUTE ;
-                    
+            
             seconds = rest / SECOND ;
             rest -= negative * Math.floor(seconds)*SECOND ;
-                    
+            
             milliSeconds = rest;
-                    
+            
             doEval = false ;
         }
         
@@ -326,28 +326,26 @@ package vegas.date
          * @param time size of the time difference for the passed-in <code class="prettyprint">format</code>
          * @param format (optional) "d"/"h"/"m"/"s"/"ms" for the unit of the amout. Default value is ms.
          */
-        public function setValue( timeDifference:Number=Infinity , format:String=null ):Time 
+        public function setValue( timeDifference:Number=Infinity , format:String = "ms" ):Time 
         {
-            
             if (timeDifference == Infinity) 
             {
                 timeDifference = Number.MAX_VALUE ;
             }
-            
             switch (format) 
             {
                 case DAY_FORMAT :
-                    {
+                {
                     ms = timeDifference * DAY ;
                     break;
                 }
                 case HOUR_FORMAT :
-                    {
+                {
                     ms = timeDifference * HOUR ;
                     break;
                 }
                 case MINUTE_FORMAT :
-                    {
+                {
                     ms = timeDifference * MINUTE ;
                     break;
                 }
@@ -373,7 +371,7 @@ package vegas.date
          */
         public function valueOf():Number 
         {
-            return ms;
+            return ms ;
         }
     }
 }

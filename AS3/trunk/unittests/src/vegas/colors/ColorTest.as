@@ -41,7 +41,7 @@ package vegas.colors
         public var display:DisplayObject ;
         
         public var color:Color ;
-                
+        
         public function setUp():void
         {
             display = new Sprite() ;
@@ -53,7 +53,7 @@ package vegas.colors
             color   = undefined ;
             display = undefined ;
         }
-
+        
         public function testConstructor():void
         {
             assertNotNull( color                   , "01-01 Color constructor failed" ) ;
