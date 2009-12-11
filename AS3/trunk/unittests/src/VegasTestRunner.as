@@ -77,21 +77,7 @@ package
             // run tests
            
             Runner.main( vegas.AllTests );
-            
-            
         }
-        
-        public var func1:Function ;
-        
-        public function func2():void
-        {
-            
-        }
-        
-        prototype.function3 = function():void
-        {
-            
-        };
         
         /**
          * The debug textfield of this application.

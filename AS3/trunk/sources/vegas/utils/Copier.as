@@ -68,7 +68,7 @@ package vegas.utils
             }
             else if (o is Date) 
             {
-                return copyDate( o as Date ) ;
+                return new Date( (o as Date).valueOf() ) ;
             }
             else if ( o is Function ) 
             {
@@ -115,15 +115,6 @@ package vegas.utils
                 }
             }
             return a ;
-        }  
-          
-        /**
-         * Returns a deep copy of the date object passed in argument.
-         * @return a deep copy of the date object passed in argument.
-         */
-        public static function copyDate( d:Date ):Date 
-        {
-            return new Date( d.valueOf() ) ;
         }
     }
 }

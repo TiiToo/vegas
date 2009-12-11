@@ -43,7 +43,7 @@ package vegas.utils
          * </pre>
          * @return the shallow copy of the Array.
          */
-        public static function clone(ar:Array):Array 
+        public static function clone( ar:Array ):Array 
         {
               return ar.slice() ;
         }
@@ -93,7 +93,7 @@ package vegas.utils
             var index:int = len - 1 ;
             for (var i:int ; i < len; i++) 
             {
-                tmp.push( ArrayUtil.pierce( ar, Math.round(Math.random() * index), false) );
+                tmp.push( pierce( ar , Math.round(Math.random() * index ) , false ) );
                 index-- ;
             }
             while(--len > -1) 
