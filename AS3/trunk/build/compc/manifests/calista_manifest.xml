@@ -4,14 +4,17 @@
     
     <!-- calista.hash -->
     
-    <component id="calista.hash:MD5"  class="calista.hash.MD5"  />
-    <component id="calista.hash:SHA1" class="calista.hash.SHA1" />
-    <component id="calista.hash:TEA"  class="calista.hash.TEA"  />
+    <component id="calista.hash:Adler32" class="calista.hash.Adler32" />
+    <component id="calista.hash:CRC32"   class="calista.hash.CRC32"   />
+    <component id="calista.hash:MD5"     class="calista.hash.MD5"     />
+    <component id="calista.hash:SHA1"    class="calista.hash.SHA1"    />
+    <component id="calista.hash:SHA256"  class="calista.hash.SHA256"  />
+    <component id="calista.hash:TEA"     class="calista.hash.TEA"     />
         
     <!-- calista.util -->
     
-    <component id="calista.util:Base64" class="calista.util.Base64" />
-    <component id="calista.util:Base8"  class="calista.util.Base8"  />
-    <component id="calista.util:LZW"    class="calista.util.LZW"    />
+    <component id="calista.utils:Base64" class="calista.utils.Base64" />
+    <component id="calista.utils:Base8"  class="calista.utils.Base8"  />
+    <component id="calista.utils:LZW"    class="calista.utils.LZW"    />
     
 </componentPackage>

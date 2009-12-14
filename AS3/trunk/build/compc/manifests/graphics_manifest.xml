@@ -43,7 +43,8 @@
     <component id="graphics.display:DisplayObjectContainers" class="graphics.display.DisplayObjectContainers" />
     <component id="graphics.display:DisplayObjects"          class="graphics.display.DisplayObjects" />
     <component id="graphics.display:Pattern"                 class="graphics.display.Pattern" />
-    <component id="graphics.display:PerlinNoise"             class="graphics.display.PerlinNoise" />
+    <component id="graphics.display:PerlinNoiseBitmapData"   class="graphics.display.PerlinNoiseBitmapData" />
+    <component id="graphics.display:RadialPerlinBitmapData"  class="graphics.display.RadialPerlinBitmapData" />
     <component id="graphics.display:ReflectionBitmapData"    class="graphics.display.ReflectionBitmapData" />
     <component id="graphics.display:ShaderLoader"            class="graphics.display.ShaderLoader" />
     <component id="graphics.display:TimelineInspector"       class="graphics.display.TimelineInspector" />
