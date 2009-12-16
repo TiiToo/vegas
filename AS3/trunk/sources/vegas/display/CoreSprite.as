@@ -79,10 +79,10 @@ package vegas.display
         {
             return _id ;
         }
-    
+        
         /**
-          * Sets the id of the object.
-          */
+         * Sets the id of the object.
+         */
         public function set id( id:* ):void
         {
             _setID(id) ;

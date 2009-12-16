@@ -134,7 +134,8 @@ package vegas.display
         
         /**
          * Loads a SWF, JPEG, progressive JPEG, unanimated GIF, or PNG file into an object that is a child of this Loader object.
-         * @param request The absolute or relative URL of the SWF, JPEG, GIF, or PNG file to be loaded. A relative path must be relative to the main SWF file. Absolute URLs must include the protocol reference, such as http:// or file:///. Filenames cannot include disk drive specifications.
+         * @param request The absolute or relative URL of the SWF, JPEG, GIF, or PNG file to be loaded. A relative path must be relative to the main SWF file. 
+         * Absolute URLs must include the protocol reference, such as http:// or file:///. Filenames cannot include disk drive specifications.
          * @param context A LoaderContext object.
          */
         public override function load( request:URLRequest , context:LoaderContext = null ):void

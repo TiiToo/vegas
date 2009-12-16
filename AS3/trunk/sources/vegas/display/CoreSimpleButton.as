@@ -66,7 +66,11 @@ package vegas.display
          * @param isConfigurable This flag indicates if the IConfigurable object is register in the ConfigCollector.
          * @param name Indicates the instance name of the object. 
          */
-        public function CoreSimpleButton( id:*=null , upState:DisplayObject = null, overState:DisplayObject = null, downState:DisplayObject = null, hitTestState:DisplayObject = null, name:String=null  )
+        public function CoreSimpleButton
+        ( 
+            id:*=null , upState:DisplayObject   = null , overState:DisplayObject    = null , 
+                        downState:DisplayObject = null , hitTestState:DisplayObject = null , name:String = null  
+        )
         {
             super( upState, overState, downState, hitTestState ) ;
             if ( id != null )

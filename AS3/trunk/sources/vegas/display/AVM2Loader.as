@@ -35,8 +35,6 @@ package vegas.display
     import flash.utils.ByteArray;
     import flash.utils.Endian;
     
-    import vegas.display.CoreLoader;
-    
     /**
      * This AVM2Loader loads both of AVM1 and AVM2 swf as AVM2.
      * <p><b>Example :</b></p>

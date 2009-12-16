@@ -23,8 +23,6 @@
 
 package vegas.display 
 {
-    import vegas.display.Background;
-    
     import flash.display.MovieClip;
     import flash.display.Sprite;
     import flash.events.Event;
