@@ -108,7 +108,7 @@ Use examples in AS2/bin/test/lunas to test this framework.
 
  * [http://code.google.com/p/calista/ CalistA page project (Google Code)] 
 
-CalistA is a little cryptography library written in Actionscript include in the VEGAS framework with SHA1, TEA, MD5, LZW, Base64 and Base8 algorithms.
+CalistA is a little cryptography library written in Actionscript include in the VEGAS framework with SHA256, SHA1, TEA, MD5, LZW, Base64 and Base8 algorithms.
 
 ===AST'r===
 
