@@ -54,10 +54,12 @@
 
 package vegas.strings 
 {
+    import core.strings.trim;
+    
     import system.process.Runnable;
-
+    
     import vegas.strings.jsminifier.JSMinifierStrings;
-
+    
     /**
      * Provides a script to remove comments and unnecessary whitespaces from JavaScript or basic ECMAScript files.
      * <pre class="prettyprint">
@@ -192,6 +194,7 @@ package vegas.strings
             b            = ""  ;
             theLookahead = EOF ;
             i            =  0  ;
+            _input       = trim(_input) ;
             l            = _input.length ;
             _oldSize     = l ;
             _output      = modify() ;

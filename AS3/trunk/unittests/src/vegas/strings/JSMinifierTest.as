@@ -129,6 +129,15 @@ package vegas.strings
             assertEquals( minifier.newSize , 25 ) ;
         }
         
+        public function testRunWithTab():void
+        {
+            minifier.level = JSMinifier.NORMAL ;
+            minifier.input = "\r\rvar a =       1 ; \r\t\n var b      = 2 ;  var      c = 3    ;  " ;
+            minifier.run() ;
+            assertEquals(minifier.output , "var a=1;var b=2;var c=3;") ;
+            assertEquals( minifier.newSize , 24 ) ;
+        }
+        
         public function testRunNORMAL():void
         {
             minifier.level = JSMinifier.NORMAL ;
