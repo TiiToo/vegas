@@ -1,5 +1,5 @@
  
-   VEGAS AS3 - version 1.6.0.1451
+   VEGAS AS3 - version 1.6.0.1457
 
    LICENCE 
 
