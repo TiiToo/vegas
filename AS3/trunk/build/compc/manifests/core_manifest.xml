@@ -8,4 +8,10 @@
     <component id="core:uri"     class="core.uri"     />
     <component id="core:version" class="core.version" />
     
+    <!-- core.strings -->
+    
+    <component id="core.strings:trim"      class="core.strings.trim"      />
+    <component id="core.strings:trimEnd"   class="core.strings.trimEnd"   />
+    <component id="core.strings:trimStart" class="core.strings.trimStart" />
+    
 </componentPackage>
