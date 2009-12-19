@@ -34,14 +34,15 @@
   the terms of any one of the MPL, the GPL or the LGPL.
   
 */
+
 package vegas.strings
 {
     /**
      * This static tool class defined each of the following methods returns a copy of the string wrapped inside an HTML tag.
-     * For example, <code class="prettyprint">HTMLStringFormatter.bold("test")</code> returns <code class="prettyprint"><b>test</b></code>.
+     * For example, <code class="prettyprint">HTMLFormatter.bold("test")</code> returns <code class="prettyprint"><b>test</b></code>.
      * Compatibility with Javascript String HTML wrappers, this methods are native in the Javascript String class. 
      */
-    public class HTMLStringFormatter
+    public class HTMLFormatter
     {
         /**
          * Creates an HTML anchor that is used as a hypertext target.
@@ -51,7 +52,7 @@ package vegas.strings
          */
         public static function anchor( str:String , name:String ):String
         {
-            return '<a name="' + name + "'>" + str + "</a>" ; 
+            return '<a name="' + name + '">' + str + "</a>" ; 
         }
         
         /**
@@ -77,7 +78,7 @@ package vegas.strings
         /**
          * Use the bold method to format and display a string in a document.
          * <pre class="prettyprint">
-         * var s:String = HTMLStringFormatter.bold("hello world") ;
+         * var s:String = HTMLFormatter.bold("hello world") ;
          * trace("bold : " + s) ; // bold : &lt;b&gt;hello world&lt;/b&gt;
          * </pre>
          * @param str the string to be formatted.
@@ -106,7 +107,7 @@ package vegas.strings
          */
         public static function fontColor( str:String , color:String ):String
         {
-            return "<font color='" + color + "'>" + str + "</font>" ;
+            return '<font color="' + color + '">' + str + '</font>' ;
         }
         
         /**
@@ -115,16 +116,16 @@ package vegas.strings
          * @param size an Integer representing the size of the font.
          * @return the string formatted with the method.
          */
-        public static function fontSize( str:String , size:Number ):String
+        public static function fontSize( str:String , size:* ):String
         {
-            return "<font size='" + size + "'>" + str + "</font>" ;
+            return '<font size="' + size + '">' + str + '</font>' ;
         }
         
         /**
          * Use the italics method to format and display a string in a document.
          * <pre class="prettyprint">
-         * import vegas.strings.HTMLStringFormatter ;
-         * var s:String = HTMLStringFormatter.italics("hello world") ;
+         * import vegas.strings.HTMLFormatter ;
+         * var s:String = HTMLFormatter.italics("hello world") ;
          * trace("italics : " + s) ; // italics : &lt;i&gt;hello world&lt;/i&gt;
          * </pre>
          * @param str the string to be formatted.
@@ -138,8 +139,8 @@ package vegas.strings
         /**
          * Creates an HTML hypertext link that requests another URL.
          * <pre class="prettyprint">
-         * import vegas.strings.HTMLStringFormatter ;
-         * var s:String = HTMLStringFormatter.link("hello world", "http://ekameleon.net/blog", "_blank") ;
+         * import vegas.strings.HTMLFormatter ;
+         * var s:String = HTMLFormatter.link("hello world", "http://ekameleon.net/blog", "_blank") ;
          * trace("link : " + s) ; // link : &lt;a href=&quot;http://google.fr&quot; target=&quot;_blank&quot;&gt;hello world&lt;/a&gt;
          * </pre>
          * @param str the string to be formatted.
@@ -161,12 +162,12 @@ package vegas.strings
         /**
          * Creates an HTML paragraph HTML string in a document.
          * <pre class="prettyprint">
-         * import vegas.strings.HTMLStringFormatter ;
+         * import vegas.strings.HTMLFormatter ;
          * 
-         * var s:String = HTMLStringFormatter.paragraph("hello world") ;
+         * var s:String = HTMLFormatter.paragraph("hello world") ;
          * trace("paragraph : " + s) ; // paragraph : &lt;p&gt;hello world&lt;/p&gt;
          * 
-         * var s:String = HTMLStringFormatter.paragraph("hello world", "myStyle") ;
+         * var s:String = HTMLFormatter.paragraph("hello world", "myStyle") ;
          * trace("paragraph : " + s) ; // paragraph : &lt;p class=&quot;myStyle&quot;&gt;hello world&lt;/p&gt;
          * </pre>
          * @param str the string to be formatted.
@@ -198,12 +199,12 @@ package vegas.strings
         /**
          * Creates an HTML span string in a document.
          * <pre class="prettyprint">
-         * import vegas.strings.HTMLStringFormatter ;
+         * import vegas.strings.HTMLFormatter ;
          * 
-         * var sP:String = HTMLStringFormatter.span("hello world") ;
+         * var sP:String = HTMLFormatter.span("hello world") ;
          * trace("span : " + sP) ; // span : &lt;span&gt;hello world&lt;/span&gt;
          * 
-         * var sP:String = HTMLStringFormatter.span("hello world", "myStyle") ;
+         * var sP:String = HTMLFormatter.span("hello world", "myStyle") ;
          * trace("span : " + sP) ; // span : &lt;span class=&quot;myStyle&quot;&gt;hello world&lt;/span&gt;
          * </pre>
          * @param str the string to be formatted.
@@ -255,8 +256,8 @@ package vegas.strings
         /**
          * Use the underline method to format and display a string in a document.
          * <pre class="prettyprint">
-         * import vegas.strings.HTMLStringFormatter ;
-         * var s:String = HTMLStringFormatter.underline("hello world") ;
+         * import vegas.strings.HTMLFormatter ;
+         * var s:String = HTMLFormatter.underline("hello world") ;
          * trace("underline : " + s) ; // underline : &lt;u&gt;hello world&lt;/u&gt;
          * </pre>
          * @param str the string to be formatted.
