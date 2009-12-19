@@ -20,12 +20,12 @@
   Contributor(s) :
   
 */
-package vegas.strings.jsminifier
+package vegas.strings
 {
     /**
-     * The string messages used in the JSMinifier class.
+     * The string messages used in the Minifier class.
      */
-    public class JSMinifierStrings
+    public class MinifierStrings
     {
         /**
          * The unterminated comment error message.

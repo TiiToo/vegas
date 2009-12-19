@@ -32,7 +32,8 @@ package vegas.strings
         {
             var suite:TestSuite = new TestSuite( "vegas.strings unit tests" );
             
-            suite.addTestSuite( JSMinifierTest ) ;
+            suite.addTestSuite( MinifierTest ) ;
+            suite.addTestSuite( MinifierStringsTest ) ;
             
             return suite;
         }

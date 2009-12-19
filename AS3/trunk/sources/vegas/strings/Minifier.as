@@ -18,37 +18,6 @@
   the Initial Developer. All Rights Reserved.
   
   Contributor(s) :
-  
-  --------------------------------------------------------------
-  
-  This work is an adaptation of jsminc.c published by Douglas Crockford.
-  
-  Permission is hereby granted to use the ActionScript version under the same
-  conditions as the jsmin.c on which it is based.
-  
-  jsmin.c 2008-08-03
-  
-  Copyright (c) 2002 Douglas Crockford  (www.crockford.com)
-  
-  Permission is hereby granted, free of charge, to any person obtaining a copy of
-  this software and associated documentation files (the "Software"), to deal in
-  the Software without restriction, including without limitation the rights to
-  use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies
-  of the Software, and to permit persons to whom the Software is furnished to do
-  so, subject to the following conditions:
-  
-  The above copyright notice and this permission notice shall be included in all
-  copies or substantial portions of the Software.
-  
-  The Software shall be used for Good, not Evil.
-  
-  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-  SOFTWARE.
 
 */
 
@@ -58,12 +27,10 @@ package vegas.strings
     
     import system.process.Runnable;
     
-    import vegas.strings.jsminifier.JSMinifierStrings;
-    
     /**
-     * Provides a script to remove comments and unnecessary whitespaces from JavaScript or basic ECMAScript files.
+     * Provides a script to remove comments and unnecessary whitespaces from ECMAScript strings. You can use this class to minify .eden, .json, .js files.
      * <pre class="prettyprint">
-     * import vegas.strings.JSMinifier ;
+     * import vegas.strings.Minifier ;
      * 
      * var input:String = "var a =       1 ; \r\n var b      = 2 ;  var c = 3    ;  " ;
      * 
@@ -79,7 +46,7 @@ package vegas.strings
      * trace("output   : " + output ) ;
      * </pre>
      */
-    public class JSMinifier implements Runnable
+    public class Minifier implements Runnable
     {
         /**
          * Creates a new JSMinifier instance.
@@ -89,7 +56,7 @@ package vegas.strings
          * <li>2 : normal, the standard algorithm</li>
          * <li>3 : agressive, remove any linefeed and doesn't take care of potential missing semicolons (can be regressive)</li>
          */
-        public function JSMinifier( input:String = "" , level:uint = 2 )
+        public function Minifier( input:String = "" , level:uint = 2 )
         {
             this.input = input ;
             this.level = level ;
@@ -253,7 +220,7 @@ package vegas.strings
                         }
                         if (a <= '\n') 
                         {
-                            throw new SyntaxError( JSMinifierStrings.unterminatedStringLiteral + a ) ;
+                            throw new SyntaxError( MinifierStrings.unterminatedStringLiteral + a ) ;
                         }
                         if (a == '\\') 
                         {
@@ -266,7 +233,7 @@ package vegas.strings
             
             b = next();
             
-            if (b == '/' && has( '(,=:[!&|' , a ) ) 
+            if (b == '/' && '(,=:[!&|'.indexOf( a ) > -1 ) 
             {
                 r.push(a);
                 r.push(b);
@@ -285,7 +252,7 @@ package vegas.strings
                     }
                     else if (a <= '\n') 
                     {
-                        throw new SyntaxError( JSMinifierStrings.unterminatedRegularExpression ) ;
+                        throw new SyntaxError( MinifierStrings.unterminatedRegularExpression ) ;
                     }
                     r.push(a);
                 }
@@ -323,21 +290,12 @@ package vegas.strings
         }
         
         /**
-         * Indicates if the passed-in character is include in the specified source.
-         * @return <code class="prettyprint">true</code> if the passed-in character is include in the specified source.
-         */
-        private function has( source:String , char:String ):Boolean
-        {
-            return source.indexOf(char) > -1;
-        }
-        
-        /**
          * Indicates if the specified character is an alpha (A-Z or a-z) character.
          * @return <code class="prettyprint">true</code> if the specified character is an alpha (A-Z or a-z) character.
          */
         private function isAlpha( c:String ):Boolean
         {
-            return c != EOF && ( has(ALNUM , c) || c.charCodeAt(0) > 126 ) ;
+            return c != EOF && ( ALNUM.indexOf(c) > -1 || c.charCodeAt(0) > 126 ) ;
         }
         
         /**
@@ -549,7 +507,7 @@ package vegas.strings
                                     }
                                     case EOF:
                                     {
-                                        throw new SyntaxError( JSMinifierStrings.unterminatedComment ) ;
+                                        throw new SyntaxError( MinifierStrings.unterminatedComment ) ;
                                     }
                                     default:
                                     {
@@ -575,7 +533,7 @@ package vegas.strings
                                     }
                                     case EOF :
                                     {
-                                        throw new SyntaxError( JSMinifierStrings.unterminatedComment ) ;
+                                        throw new SyntaxError( MinifierStrings.unterminatedComment ) ;
                                     }
                                 }
                             }

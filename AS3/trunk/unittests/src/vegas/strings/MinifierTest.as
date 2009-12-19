@@ -27,18 +27,18 @@ package vegas.strings
     
     import system.process.Runnable;
     
-    public class JSMinifierTest extends TestCase 
+    public class MinifierTest extends TestCase 
     {
-        public function JSMinifierTest(name:String = "")
+        public function MinifierTest(name:String = "")
         {
             super(name);
         }
         
-        public var minifier:JSMinifier ;
+        public var minifier:Minifier ;
         
         public function setUp():void
         {
-            minifier = new JSMinifier() ;
+            minifier = new Minifier() ;
         }
         public function tearDown():void
         {
@@ -52,17 +52,17 @@ package vegas.strings
         
         public function testAGRESSIVE():void
         {
-            assertEquals( JSMinifier.AGRESSIVE , 3 ) ;
+            assertEquals( Minifier.AGRESSIVE , 3 ) ;
         }
         
         public function testMINIMAL():void
         {
-            assertEquals( JSMinifier.MINIMAL , 1 ) ;
+            assertEquals( Minifier.MINIMAL , 1 ) ;
         }
         
         public function testNORMAL():void
         {
-            assertEquals( JSMinifier.NORMAL , 2 ) ;
+            assertEquals( Minifier.NORMAL , 2 ) ;
         }
         
         public function testConstructor():void
@@ -70,18 +70,18 @@ package vegas.strings
             assertNotNull( minifier , "01 - constructor failed, the instance not must be null.") ;
             assertEquals( minifier.input , '' , "02 - constructor failed, the input property must be an empty string '' by default.") ;
             assertEquals( minifier.output , '' , "03 - constructor failed, the output property must be an empty string '' by default." ) ;
-            assertEquals( minifier.level , JSMinifier.NORMAL , "04 - constructor failed, the level property must be normal by default (2)." ) ;
+            assertEquals( minifier.level , Minifier.NORMAL , "04 - constructor failed, the level property must be normal by default (2)." ) ;
             assertEquals( minifier.newSize , 0 , "05 - constructor failed, the newSize property value must be 0." ) ;
             assertEquals( minifier.oldSize , 0 , "06 - constructor failed, the oldSize property value must be 0." ) ;
         }
         
         public function testConstructorWithArguments():void
         {
-            minifier = new JSMinifier( "var a = 1 ;" , JSMinifier.AGRESSIVE ) ;
+            minifier = new Minifier( "var a = 1 ;" , Minifier.AGRESSIVE ) ;
             assertNotNull( minifier , "01 - constructor failed, the instance not must be null.") ;
             assertEquals( minifier.input , 'var a = 1 ;' , "02 - constructor failed, the input property must be an empty string '' by default.") ;
             assertEquals( minifier.output , 'var a = 1 ;' , "03 - constructor failed, the output property not must be an empty." ) ;
-            assertEquals( minifier.level , JSMinifier.AGRESSIVE , "04 - constructor failed, the level property must be agressive (3)." ) ;
+            assertEquals( minifier.level , Minifier.AGRESSIVE , "04 - constructor failed, the level property must be agressive (3)." ) ;
             assertEquals( minifier.newSize , 11 , "05 - constructor failed, the newSize property is not changed." ) ;
             assertEquals( minifier.oldSize , 11 , "06 - constructor failed, the oldSize property is not changed." ) ;
         }
@@ -97,23 +97,23 @@ package vegas.strings
         
         public function testLevel():void
         {
-            minifier.level = JSMinifier.MINIMAL ;
-            assertEquals( minifier.level , JSMinifier.MINIMAL , "01 - minifier.level failed.") ;
-            minifier.level = JSMinifier.NORMAL ;
-            assertEquals( minifier.level , JSMinifier.NORMAL , "02 - minifier.level failed.") ;
-            minifier.level = JSMinifier.AGRESSIVE ;
-            assertEquals( minifier.level , JSMinifier.AGRESSIVE , "03 - minifier.level failed.") ;
+            minifier.level = Minifier.MINIMAL ;
+            assertEquals( minifier.level , Minifier.MINIMAL , "01 - minifier.level failed.") ;
+            minifier.level = Minifier.NORMAL ;
+            assertEquals( minifier.level , Minifier.NORMAL , "02 - minifier.level failed.") ;
+            minifier.level = Minifier.AGRESSIVE ;
+            assertEquals( minifier.level , Minifier.AGRESSIVE , "03 - minifier.level failed.") ;
             minifier.level = 0  ;
-            assertEquals( minifier.level , JSMinifier.MINIMAL , "04 - minifier.level failed.") ;
+            assertEquals( minifier.level , Minifier.MINIMAL , "04 - minifier.level failed.") ;
             minifier.level = 3 ;
-            assertEquals( minifier.level , JSMinifier.AGRESSIVE , "04 - minifier.level failed.") ;
+            assertEquals( minifier.level , Minifier.AGRESSIVE , "04 - minifier.level failed.") ;
             minifier.level = 100 ;
-            assertEquals( minifier.level , JSMinifier.AGRESSIVE , "05 - minifier.level failed.") ;
+            assertEquals( minifier.level , Minifier.AGRESSIVE , "05 - minifier.level failed.") ;
         }
         
         public function testRunAGRESSIVE():void
         {
-            minifier.level = JSMinifier.AGRESSIVE ;
+            minifier.level = Minifier.AGRESSIVE ;
             minifier.input = "var a =       1 ; \r\n var b      = 2 ;  var c = 3    ;  " ;
             minifier.run() ;
             assertEquals(minifier.output , "var a=1;var b=2;var c=3;") ;
@@ -122,7 +122,7 @@ package vegas.strings
         
         public function testRunMINIMAL():void
         {
-            minifier.level = JSMinifier.MINIMAL ;
+            minifier.level = Minifier.MINIMAL ;
             minifier.input = "var a =       1 ; \r\n var b      = 2 ;  var c = 3    ;  " ;
             minifier.run() ;
             assertEquals(minifier.output , "var a=1;\nvar b=2;var c=3;") ;
@@ -131,16 +131,25 @@ package vegas.strings
         
         public function testRunWithTab():void
         {
-            minifier.level = JSMinifier.NORMAL ;
+            minifier.level = Minifier.NORMAL ;
             minifier.input = "\r\rvar a =       1 ; \r\t\n var b      = 2 ;  var      c = 3    ;  " ;
             minifier.run() ;
             assertEquals(minifier.output , "var a=1;var b=2;var c=3;") ;
             assertEquals( minifier.newSize , 24 ) ;
         }
         
+        public function testRunWithComments():void
+        {
+            minifier.level = Minifier.NORMAL ;
+            minifier.input = "\r\r/*test1\rtest2*/var a =       1 ; \r\t\n var b      = 2 ;  var      c = 3    ;  " ;
+            minifier.run() ;
+            assertEquals(minifier.output , " var a=1;var b=2;var c=3;") ;
+            assertEquals( minifier.newSize , 25 ) ;
+        }
+        
         public function testRunNORMAL():void
         {
-            minifier.level = JSMinifier.NORMAL ;
+            minifier.level = Minifier.NORMAL ;
             minifier.input = "var a =       1 ; \r\n var b      = 2 ;  var c = 3    ;  " ;
             minifier.run() ;
             assertEquals(minifier.output , "var a=1;var b=2;var c=3;") ;
