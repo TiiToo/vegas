@@ -267,12 +267,12 @@
     
     <!-- vegas.strings -->
     
-    <component id="vegas.strings:HTMLStringFormatter" class="vegas.strings.HTMLStringFormatter" />
-    <component id="vegas.strings:JSON"                class="vegas.strings.JSON" />
-    <component id="vegas.strings:Luhn"                class="vegas.strings.Luhn" />
-    <component id="vegas.strings:Minifier"            class="vegas.strings.Minifier" />
-    <component id="vegas.strings:MinifierStrings"     class="vegas.strings.MinifierStrings" />
-    <component id="vegas.strings:UnicodeChar"         class="vegas.strings.UnicodeChar" />
+    <component id="vegas.strings:HTMLFormatter"   class="vegas.strings.HTMLFormatter" />
+    <component id="vegas.strings:JSON"            class="vegas.strings.JSON" />
+    <component id="vegas.strings:Luhn"            class="vegas.strings.Luhn" />
+    <component id="vegas.strings:Minifier"        class="vegas.strings.Minifier" />
+    <component id="vegas.strings:MinifierStrings" class="vegas.strings.MinifierStrings" />
+    <component id="vegas.strings:UnicodeChar"     class="vegas.strings.UnicodeChar" />
     
     <!-- vegas.strings.json -->
     
