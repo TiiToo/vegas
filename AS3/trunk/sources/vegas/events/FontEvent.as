@@ -69,7 +69,7 @@ package vegas.events
         /**
          * Defines the value of the type property of an added FontEvent object. 
          */
-        public static var ADD_FONT:String = "add_font" ;
+        public static var ADD_FONT:String = "addFont" ;
         
         /**
          * Indicates the font reference of this event.

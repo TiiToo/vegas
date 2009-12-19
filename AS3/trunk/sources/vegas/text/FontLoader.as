@@ -50,6 +50,12 @@ package vegas.text
     import flash.text.Font;
     
     /**
+     * Dispatched when a new font is registered in the application.
+     * @eventType vegas.events.FontEvent.ADD_FONT
+     */
+    [Event(name="addFont", type="vegas.events.FontEvent")]
+    
+    /**
      * This loader load an external swf who contains embed fonts.
      * <p><b>Example :</b></p>
      * <pre class="prettyprint">
@@ -162,7 +168,7 @@ package vegas.text
                     dispatchEvent( new FontEvent( FontEvent.ADD_FONT , font , this ) ) ;
                 }
             }   
-        }        
+        }
         
         /**
          * Unregisters a new FontClassName in the specified FontLoader.
