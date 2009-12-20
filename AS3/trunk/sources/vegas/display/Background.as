@@ -522,6 +522,19 @@ package vegas.display
             dispatchEvent( new Event( Event.RESIZE ) ) ;
         }
         
+        
+        /**
+         * Refresh and initialize the display with a generic object and invoke the "update" method.
+         */
+        public function refresh( init:* ):void 
+        {
+            for ( var prop:String in init ) 
+            {
+                this[prop] = init[prop] ;
+            }
+            update() ;
+        }
+        
         /**
          * Resize and update the background.
          */
