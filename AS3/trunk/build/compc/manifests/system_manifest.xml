@@ -59,6 +59,7 @@
     <component id="system.data:Bag"             class="system.data.Bag" />
     <component id="system.data:Boundable"       class="system.data.Boundable" />
     <component id="system.data:Collection"      class="system.data.Collection" />
+    <component id="system.data:Data"            class="system.data.Data" />
     <component id="system.data:Entry"           class="system.data.Entry" />
     <component id="system.data:Identifiable"    class="system.data.Identifiable" />
     <component id="system.data:Iterable"        class="system.data.Iterable" />
