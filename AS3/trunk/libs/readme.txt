@@ -1,25 +1,25 @@
-VEGAS AS3 - version 1.6.0.1469
+VEGAS AS3 - version 1.6.0.1471
     
-   The "vegas.swc" library contains all the AS3 source code of the VEGAS project with all this extensions.
+The "vegas.swc" library contains all the AS3 source code of the VEGAS project with all this extensions.
     
-   LICENCE 
+LICENCE 
+   
+    Version: MPL 1.1/GPL 2.0/LGPL 2.1
+   
+PROJECT PAGES
     
-    Mozilla Public License 1.1 (MPL 1.1) (read Licence.txt)
+    * http://code.google.com/p/vegas/
     
-   PROJECT PAGES
+DOCUMENTATION & CO
     
-    - http://code.google.com/p/vegas/
+    * http://code.google.com/p/vegas/ (tutorials and install)
+    * http://code.google.com/p/vegas/issues/list (issues)
+    * http://www.ekameleon.net/vegas/docs
     
-   DOCUMENTATION & CO
+    * http://www.ekameleon.net/blog/ (french blog)
     
-    - http://code.google.com/p/vegas/ (tutorials and install)
-    - http://code.google.com/p/vegas/issues/list (issues)
-    - http://www.ekameleon.net/vegas/docs
+ABOUT AUTHOR
     
-    - http://www.ekameleon.net/blog/ (french blog)
-    
-   ABOUT AUTHOR
-    
-    - Author : ALCARAZ Marc (eKameleon)
-    - Link   : http://www.ekameleon.net/blog
-    - Mail   : ekameleon@gmail.com
+    * Author : ALCARAZ Marc (eKameleon)
+    * Link   : http://www.ekameleon.net/blog
+    * Mail   : ekameleon@gmail.com

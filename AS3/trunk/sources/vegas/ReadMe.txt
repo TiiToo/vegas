@@ -1,22 +1,25 @@
-   VEGAS AS3 - version 1.6.0.1469
+VEGAS AS3 - version 1.6.0.1471
     
-   LICENCE 
+    The VEGAS source code without extensions.
     
-    Mozilla Public License 1.1 (MPL 1.1) (read Licence.txt)
+LICENCE 
+   
+    Version: MPL 1.1/GPL 2.0/LGPL 2.1
+   
+PROJECT PAGES
     
-   PROJECT PAGES
+    * http://code.google.com/p/vegas/
     
-    - http://code.google.com/p/vegas/
+DOCUMENTATION & CO
     
-   DOCUMENTATION & CO
+    * http://code.google.com/p/vegas/ (tutorials and install)
+    * http://code.google.com/p/vegas/issues/list (issues)
+    * http://www.ekameleon.net/vegas/docs
     
-    - http://code.google.com/p/vegas/ (tutorials and install)
-    - http://code.google.com/p/vegas/issues/list (issues)
-    - http://www.ekameleon.net/ekameleon/docs (AS3 reference)
-    - http://www.ekameleon.net/blog/ (french blog)
+    * http://www.ekameleon.net/blog/ (french blog)
     
-   ABOUT
+ABOUT AUTHOR
     
-    - Author : eKameleon
-    - Link   : http://www.ekameleon.net
-    - Mail   : ekameleon@gmail.com
+    * Author : ALCARAZ Marc (eKameleon)
+    * Link   : http://www.ekameleon.net/blog
+    * Mail   : ekameleon@gmail.com
