@@ -216,6 +216,7 @@
     <component id="system.formatters:DateFormatter"       class="system.formatters.DateFormatter" />
     <component id="system.formatters:ExpressionFormatter" class="system.formatters.ExpressionFormatter" />
     <component id="system.formatters:Formattable"         class="system.formatters.Formattable"   />
+    <component id="system.formatters:StringFormatter"     class="system.formatters.StringFormatter" />
     
     <!-- system.hosts -->    
     
