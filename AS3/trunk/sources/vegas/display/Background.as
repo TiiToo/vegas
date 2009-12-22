@@ -48,14 +48,15 @@ package vegas.display
     import graphics.geom.Dimension;
     import graphics.numeric.Trigo;
     import graphics.transitions.FrameTimer;
-    
+
+    import system.hack;
     import system.numeric.Mathematics;
-    
+
     import flash.events.Event;
     import flash.events.TimerEvent;
     import flash.geom.Matrix;
     import flash.geom.Point;
-    
+
     /**
      * This display is used to create a background in your application or in an other display of the application.
      * <p><b>Example :</b></p>
@@ -143,6 +144,8 @@ package vegas.display
      */
     public class Background extends CoreSprite implements Directionable, Drawable
     {
+        use namespace hack ;
+        
         /**
          * Creates a new Background instance.
          * @param id Indicates the id of the object.
@@ -651,7 +654,7 @@ package vegas.display
             {
                 stage.addEventListener( Event.RESIZE , resize ) ;
                 resize() ;
-            } 
+            }
         }
          
         /**
@@ -668,92 +671,92 @@ package vegas.display
         /**
          * @private
          */
-        private var _align:uint = 10 ;
+        hack var _align:uint = 10 ;
         
         /**
          * @private
          */
-        private var _autoSize:Boolean ;
+        hack var _autoSize:Boolean ;
         
         /**
          * @private
          */
-        protected var _bottomLeftRadius:Number = 0 ;
+        hack var _bottomLeftRadius:Number = 0 ;
         
         /**
          * @private
          */
-        protected var _bottomRightRadius:Number = 0 ;
+        hack var _bottomRightRadius:Number = 0 ;
         
         /**
          * @private
          */
-        protected var _direction:String ;
+        hack var _direction:String ;
         
         /**
          * @private
          */
-        private var _fillStyle:IFillStyle ;
+        hack var _fillStyle:IFillStyle ;
         
         /**
          * @private
          */
-        protected var _h:Number = 0 ;
+        hack var _h:Number = 0 ;
         
         /**
          * @private
          */
-        private var _isFull:Boolean ;
+        hack var _isFull:Boolean ;
         
         /**
          * @private
          */
-        private var _lineStyle:ILineStyle ;
+        hack var _lineStyle:ILineStyle ;
         
         /**
          * @private
          */
-        private var _maxHeight:Number ;
+        hack var _maxHeight:Number ;
         
         /**
          * @private
          */
-        private var _maxWidth:Number ;
+        hack var _maxWidth:Number ;
         
         /**
          * @private
          */
-        private var _minHeight:Number = 0 ;
+        hack var _minHeight:Number = 0 ;
         
         /**
          * @private
          */
-        private var _minWidth:Number = 0 ;
+        hack var _minWidth:Number = 0 ;
         
         /**
          * @private
          */
-        private var _pen:IPen ;
+        hack var _pen:IPen ;
         
         /**
          * @private
          */
-        protected var _real:Dimension ;
+        hack var _real:Dimension ;
         
         /**
          * @private
          */
-        protected var _topLeftRadius:Number = 0 ;
+        hack var _topLeftRadius:Number = 0 ;
         
         /**
          * @private
          */
-        protected var _topRightRadius:Number = 0 ;
+        hack var _topRightRadius:Number = 0 ;
         
         /**
          * @private
          */
-        protected var _w:Number = 0 ;
+        hack var _w:Number = 0 ;
         
         /**
          * @private
