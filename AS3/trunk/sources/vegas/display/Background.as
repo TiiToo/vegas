@@ -162,7 +162,7 @@ package vegas.display
         
         /**
          * The alignement of the background.
-         * @see pegas.draw.Align
+         * @see graphics.Align
          */
         public function get align():uint
         {
@@ -211,16 +211,40 @@ package vegas.display
         /**
          * The radius of the bottom-left corner, in pixels.
          */
-        public var bottomLeftRadius:Number = 0 ;
+        public function get bottomLeftRadius():Number
+        {
+            return _bottomLeftRadius ;
+        }
         
         /**
-         * The radius of the bottom-left corner, in pixels.
+         * @private
          */
-        public var bottomRightRadius:Number = 0 ;
+        public function set bottomLeftRadius( n:Number ):void
+        {
+            _bottomLeftRadius = n > 0 ? n : 0 ;
+            update() ;
+        }
+        
+        /**
+         * The radius of the bottom-right corner, in pixels.
+         */
+        public function get bottomRightRadius():Number
+        {
+            return _bottomRightRadius ;
+        }
+        
+        /**
+         * @private
+         */
+        public function set bottomRightRadius( n:Number ):void
+        {
+            _bottomRightRadius = n > 0 ? n : 0 ;
+            update() ;
+        }
         
         /**
          * Indicates the direction value of the background when the display is in this "full" mode (default value is null).
-         * @see pegas.draw.Direction
+         * @see graphics.Direction
          */
         public function get direction():String
         {
@@ -349,7 +373,7 @@ package vegas.display
             }
             update() ;
         }
-
+        
         /**
          * This property defined the mimimun width of this display (This value is >= 0).
          */
@@ -416,12 +440,36 @@ package vegas.display
         /**
          * The radius of the upper-left corner, in pixels.
          */
-        public var topLeftRadius:Number = 0 ;
+        public function get topLeftRadius():Number
+        {
+            return _topLeftRadius ;
+        }
+        
+        /**
+         * @private
+         */
+        public function set topLeftRadius( n:Number ):void
+        {
+            _topLeftRadius = n > 0 ? n : 0 ;
+            update() ;
+        }
         
         /**
          * The radius of the upper-right corner, in pixels. 
          */
-        public var topRightRadius:Number = 0 ; 
+        public function get topRightRadius():Number
+        {
+            return _topRightRadius ;
+        }
+        
+        /**
+         * @private
+         */
+        public function set topRightRadius( n:Number ):void
+        {
+            _topRightRadius = n > 0 ? n : 0 ;
+            update() ;
+        }
         
         /**
          * Indicates if the IFillStyle of this display use gradient box matrix (only if the IFillStyle is a FillGradientStyle).
@@ -630,7 +678,22 @@ package vegas.display
         /**
          * @private
          */
+        protected var _bottomLeftRadius:Number = 0 ;
+        
+        /**
+         * @private
+         */
+        protected var _bottomRightRadius:Number = 0 ;
+        
+        /**
+         * @private
+         */
         protected var _direction:String ;
+        
+        /**
+         * @private
+         */
+        private var _fillStyle:IFillStyle ;
         
         /**
          * @private
@@ -640,32 +703,12 @@ package vegas.display
         /**
          * @private
          */
-        protected var _w:Number = 0 ;
-        
-        /**
-         * @private
-         */
-        private var _fillStyle:IFillStyle ;
-                
-        /**
-         * @private
-         */
-        private var _isFull:Boolean = false ;
+        private var _isFull:Boolean ;
         
         /**
          * @private
          */
         private var _lineStyle:ILineStyle ;
-        
-        /**
-         * @private
-         */
-        private var _minHeight:Number = 0 ;
-        
-        /**
-         * @private
-         */
-        private var _minWidth:Number = 0 ;
         
         /**
          * @private
@@ -680,12 +723,37 @@ package vegas.display
         /**
          * @private
          */
+        private var _minHeight:Number = 0 ;
+        
+        /**
+         * @private
+         */
+        private var _minWidth:Number = 0 ;
+        
+        /**
+         * @private
+         */
         private var _pen:IPen ;
         
         /**
          * @private
          */
         protected var _real:Dimension ;
+        
+        /**
+         * @private
+         */
+        protected var _topLeftRadius:Number = 0 ;
+        
+        /**
+         * @private
+         */
+        protected var _topRightRadius:Number = 0 ;
+        
+        /**
+         * @private
+         */
+        protected var _w:Number = 0 ;
         
         /**
          * @private
