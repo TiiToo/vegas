@@ -554,11 +554,13 @@ package vegas.display
          * Init the pen to draw the background of this display.
          * This method is invoked in the constructor of the class.
          * You can override this method to change the shape of the background.
+         * @param graphic The Graphics reference to control with this helper. You can passed-in a Graphics or a Shape or a Sprite/MovieClip reference in argument. 
+         * If this argument is null the default target it's the main background reference.
          * @return the IPen reference to draw the background of the display.
          */
-        public function initBackgroundPen():IPen
+        public function initBackgroundPen( graphic:* = null ):IPen
         {
-            var p:RoundedComplexRectanglePen = new RoundedComplexRectanglePen( this ) ;
+            var p:RoundedComplexRectanglePen = new RoundedComplexRectanglePen( graphic || this ) ;
             p.fill = _fillStyle ;
             p.line = _lineStyle ;
             return p ;
