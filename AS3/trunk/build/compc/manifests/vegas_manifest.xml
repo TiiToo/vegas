@@ -162,7 +162,7 @@
     
     <component id="vegas.logging:logger" class="vegas.logging.logger"  />
     
-    <!-- asgard.managers -->  
+    <!-- vegas.managers -->  
 
     <component id="vegas.managers:BitmapFilterManager" class="vegas.managers.BitmapFilterManager" />
     <component id="vegas.managers:ProtectorManager"    class="vegas.managers.ProtectorManager" />
@@ -195,6 +195,7 @@
     <component id="vegas.models:Model"           class="vegas.models.Model" />
     <component id="vegas.models:ModelCollector"  class="vegas.models.ModelCollector" />
     <component id="vegas.models:ModelObject"     class="vegas.models.ModelObject" />
+    <component id="vegas.models:PageByPageModel" class="vegas.models.PageByPageModel" />
     
     <!-- vegas.models.arrays -->
     
