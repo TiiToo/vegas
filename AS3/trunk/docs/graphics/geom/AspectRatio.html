@@ -1,0 +1,480 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" href="../../style.css" type="text/css" media="screen">
+<link rel="stylesheet" href="../../print.css" type="text/css" media="print">
+<link rel="stylesheet" href="../../prettify.css" type="text/css">
+<meta content="AspectRatio,graphics.geom.AspectRatio,verbose,gcd,clone,equals,isLocked,lock,toSource,toString,unlock" name="keywords">
+<title>graphics.geom.AspectRatio</title>
+</head>
+<body>
+<script type="text/javascript" language="javascript" src="../../prettify.js"></script><script type="text/javascript" language="javascript" src="../../asdoc.js"></script><script type="text/javascript" language="javascript" src="../../cookies.js"></script><script type="text/javascript" language="javascript">
+<!--
+				asdocTitle = 'AspectRatio - VEGAS AS3 Reference';
+				var baseRef = '../../';
+				window.onload = configPage;
+			--></script>
+<table style="display:none" id="titleTable" cellspacing="0" cellpadding="0" class="titleTable">
+<tr>
+<td align="left" class="titleTableTitle">VEGAS AS3 Reference</td><td align="right" class="titleTableTopNav"><a onclick="loadClassListFrame('../../all-classes.html')" href="../../package-summary.html">All&nbsp;Packages</a>&nbsp;|&nbsp;<a onclick="loadClassListFrame('../../all-classes.html')" href="../../class-summary.html">All&nbsp;Classes</a>&nbsp;|&nbsp;<a onclick="loadClassListFrame('../../index-list.html')" href="../../all-index-A.html">Index</a>&nbsp;|&nbsp;<a href="../../index.html?graphics/geom/AspectRatio.html&amp;graphics/geom/class-list.html" id="framesLink1">Frames</a><a onclick="parent.location=document.location" href="" style="display:none" id="noFramesLink1">No&nbsp;Frames</a></td><td rowspan="3" align="right" class="titleTableLogo"><img alt="Adobe Logo" title="Adobe Logo" class="logoImage" src="../../images/logo.jpg"></td>
+</tr>
+<tr class="titleTableRow2">
+<td align="left" id="subTitle" class="titleTableSubTitle">Class&nbsp;AspectRatio</td><td align="right" id="subNav" class="titleTableSubNav"><a href="#propertySummary">Properties</a>&nbsp;| <a href="#methodSummary">Methods</a></td>
+</tr>
+<tr class="titleTableRow3">
+<td colspan="2">&nbsp;</td>
+</tr>
+</table>
+<script type="text/javascript" language="javascript">
+<!--
+if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Class AspectRatio"); titleBar_setSubNav(false,true,false,false,false,false,true,false,false,false,false,false,false,false);}
+--></script>
+<div class="MainContent">
+<table cellspacing="0" cellpadding="0" class="classHeaderTable">
+<tr>
+<td class="classHeaderTableLabel">Package</td><td><a onclick="javascript:loadClassListFrame('class-list.html')" href="package-detail.html">graphics.geom</a></td>
+</tr>
+<tr>
+<td class="classHeaderTableLabel">Class</td><td class="classSignature">public class AspectRatio</td>
+</tr>
+<tr>
+<td class="classHeaderTableLabel">Inheritance</td><td class="inheritanceList">AspectRatio <img class="inheritArrow" alt="Inheritance" title="Inheritance" src="../../images/inherit-arrow.gif"> <a href="Dimension.html">Dimension</a></td>
+</tr>
+<tr>
+<td class="classHeaderTableLabel">Implements</td><td><a href="Geometry.html">Geometry</a>, <a href="../../system/process/Lockable.html">Lockable</a></td>
+</tr>
+</table>
+<p></p>
+     The <code class="prettyprint">AspectRatio</code> class encapsulates the width and height of an object and indicates this aspect ratio.
+     <p>The aspect ratio of an image is the ratio of its width to its height. For example, a standard NTSC television set uses an aspect ratio of 4:3, and an HDTV set uses an aspect ratio of 16:9. A computer monitor with a resolution of 640 by 480 pixels also has an aspect ratio of 4:3. A square has an aspect ratio of 1:1.</p>
+     <p><b>Note :</b></p>This class use integers to specified the aspect ratio.</p>
+     <p><b>Example :</b></p>
+     <pre class="prettyprint">
+     import graphics.geom.AspectRatio ;
+     
+     var ar:AspectRatio ;
+     
+     trace("------ AspectRatio(320,240)") ;
+     
+     ar = new AspectRatio(320,240) ;
+     trace(ar) ; // 4:3
+     
+     ar.verbose = true ;
+     trace(ar) ; // [AspectRatio width:320, height:240, ratio:{4:3}]
+     
+     ar.lock() ;
+     
+     ar.width = 640 ;
+     trace(ar) ; // [AspectRatio width:640, height:480, ratio:{4:3}]
+     
+     ar.height = 120 ;
+     trace(ar) ; // [AspectRatio width:160, height:120, ratio:{4:3}]
+     
+     ar.unlock() ;
+     
+     ar.width = 320 ;
+     trace(ar) ; // [AspectRatio width:320, height:120, ratio:{8:3}]
+     
+     trace("------ AspectRatio(1680,1050)") ;
+     
+     ar = new AspectRatio(1680,1050) ;
+     
+     trace(ar) ; // 8:5
+     
+     ar.verbose = true ;
+     
+     trace(ar) ; // [AspectRatio width:1680, height:1050, ratio:{8:5}]
+     
+     trace("------ AspectRatio(0,0)") ;
+     
+     ar = new AspectRatio(0) ;
+     
+     trace(ar) ; // 0:0
+     
+     ar.verbose = true ;
+     
+     trace(ar) ; // [AspectRatio width:0, height:0, ratio:{0:0}]
+     </pre>
+     <p></p>
+<br>
+<hr>
+</div>
+<a name="propertySummary"></a>
+<div class="summarySection">
+<div class="summaryTableTitle">Public Properties</div>
+<div class="showHideLinks">
+<div class="hideInheritedProperty" id="hideInheritedProperty">
+<a onclick="javascript:setInheritedVisible(false,'Property');" href="#propertySummary" class="showHideLink"><img src="../../images/expanded.gif" class="showHideLinkImage"> Hide Inherited Public Properties</a>
+</div>
+<div class="showInheritedProperty" id="showInheritedProperty">
+<a onclick="javascript:setInheritedVisible(true,'Property');" href="#propertySummary" class="showHideLink"><img src="../../images/collapsed.gif" class="showHideLinkImage"> Show Inherited Public Properties</a>
+</div>
+</div>
+<table id="summaryTableProperty" class="summaryTable " cellpadding="3" cellspacing="0">
+<tr>
+<th>&nbsp;</th><th colspan="2">Property</th><th class="summaryTableOwnerCol">Defined&nbsp;by</th>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#gcd">gcd</a> : int<div class="summaryTableDescription">[read-only]
+         Determinates the greatest common divisor if the current object.</div>
+</td><td class="summaryTableOwnerCol">AspectRatio</td>
+</tr>
+<tr class="hideInheritedProperty">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol"><a class="signatureLink" href="Dimension.html#height">height</a> : Number<div class="summaryTableDescription">
+         Determinates the height value of this instance.</div>
+</td><td class="summaryTableOwnerCol"><a href="Dimension.html">Dimension</a></td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#verbose">verbose</a> : Boolean<div class="summaryTableDescription">
+         Indicates the verbose mode used in the toString() method.</div>
+</td><td class="summaryTableOwnerCol">AspectRatio</td>
+</tr>
+<tr class="hideInheritedProperty">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol"><a class="signatureLink" href="Dimension.html#width">width</a> : Number<div class="summaryTableDescription">
+         Determinates the width value of this instance.</div>
+</td><td class="summaryTableOwnerCol"><a href="Dimension.html">Dimension</a></td>
+</tr>
+<tr class="hideInheritedProperty">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol"><a class="signatureLink" href="Dimension.html#ZERO">ZERO</a> : <a href="../geom/Dimension.html">Dimension</a>
+<div class="summaryTableDescription">[static]
+         Defines the Dimension object with the width and height properties set to zero.</div>
+</td><td class="summaryTableOwnerCol"><a href="Dimension.html">Dimension</a></td>
+</tr>
+</table>
+</div>
+<a name="methodSummary"></a>
+<div class="summarySection">
+<div class="summaryTableTitle">Public Methods</div>
+<div class="showHideLinks">
+<div class="hideInheritedMethod" id="hideInheritedMethod">
+<a onclick="javascript:setInheritedVisible(false,'Method');" href="#methodSummary" class="showHideLink"><img src="../../images/expanded.gif" class="showHideLinkImage"> Hide Inherited Public Methods</a>
+</div>
+<div class="showInheritedMethod" id="showInheritedMethod">
+<a onclick="javascript:setInheritedVisible(true,'Method');" href="#methodSummary" class="showHideLink"><img src="../../images/collapsed.gif" class="showHideLinkImage"> Show Inherited Public Methods</a>
+</div>
+</div>
+<table id="summaryTableMethod" class="summaryTable " cellpadding="3" cellspacing="0">
+<tr>
+<th>&nbsp;</th><th colspan="2">Method</th><th class="summaryTableOwnerCol">Defined&nbsp;by</th>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#AspectRatio()">AspectRatio</a>(width:int = 0, height:int = 0, lock:Boolean = false)</div>
+<div class="summaryTableDescription">
+         Creates a new <code class="prettyprint">AspectRatio</code> instance.</div>
+</td><td class="summaryTableOwnerCol">AspectRatio</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#clone()">clone</a>():*</div>
+<div class="summaryTableDescription">
+         Creates and returns a shallow copy of the object.</div>
+</td><td class="summaryTableOwnerCol">AspectRatio</td>
+</tr>
+<tr class="hideInheritedMethod">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="Dimension.html#decreaseSize()">decreaseSize</a>(s:<a href="../geom/Dimension.html">Dimension</a>):<a href="../geom/Dimension.html">Dimension</a>
+</div>
+<div class="summaryTableDescription">
+         Decreases the size by s and return its self(this).</div>
+</td><td class="summaryTableOwnerCol"><a href="Dimension.html">Dimension</a></td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#equals()">equals</a>(o:*):Boolean</div>
+<div class="summaryTableDescription">
+         Compares the specified object with this object for equality.</div>
+</td><td class="summaryTableOwnerCol">AspectRatio</td>
+</tr>
+<tr class="hideInheritedMethod">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="Dimension.html#getBounds()">getBounds</a>(x:Number, y:Number):<a href="../geom/Rectangle.html">Rectangle</a>
+</div>
+<div class="summaryTableDescription">
+         Returns a new bounds with this size with a pos.</div>
+</td><td class="summaryTableOwnerCol"><a href="Dimension.html">Dimension</a></td>
+</tr>
+<tr class="hideInheritedMethod">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="Dimension.html#increaseSize()">increaseSize</a>(s:<a href="../geom/Dimension.html">Dimension</a>):<a href="../geom/Dimension.html">Dimension</a>
+</div>
+<div class="summaryTableDescription">
+         Increases the size by s and return its self(this).</div>
+</td><td class="summaryTableOwnerCol"><a href="Dimension.html">Dimension</a></td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#isLocked()">isLocked</a>():Boolean</div>
+<div class="summaryTableDescription">
+         Returns <code class="prettyprint">true</code> if the object is locked.</div>
+</td><td class="summaryTableOwnerCol">AspectRatio</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#lock()">lock</a>():void</div>
+<div class="summaryTableDescription">
+         Locks the object.</div>
+</td><td class="summaryTableOwnerCol">AspectRatio</td>
+</tr>
+<tr class="hideInheritedMethod">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="Dimension.html#setSize()">setSize</a>(w:Number, h:Number):void</div>
+<div class="summaryTableDescription">
+         Sets the size of this instance.</div>
+</td><td class="summaryTableOwnerCol"><a href="Dimension.html">Dimension</a></td>
+</tr>
+<tr class="hideInheritedMethod">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="Dimension.html#toObject()">toObject</a>():Object</div>
+<div class="summaryTableDescription">
+         Returns the Object representation of this object.</div>
+</td><td class="summaryTableOwnerCol"><a href="Dimension.html">Dimension</a></td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#toSource()">toSource</a>(indent:int = 0):String</div>
+<div class="summaryTableDescription">
+         Returns the source code string representation of the object.</div>
+</td><td class="summaryTableOwnerCol">AspectRatio</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#toString()">toString</a>():String</div>
+<div class="summaryTableDescription">
+         Returns the string representation of this instance.</div>
+</td><td class="summaryTableOwnerCol">AspectRatio</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#unlock()">unlock</a>():void</div>
+<div class="summaryTableDescription">
+         Unlocks the object.</div>
+</td><td class="summaryTableOwnerCol">AspectRatio</td>
+</tr>
+</table>
+</div>
+<script type="text/javascript" language="javascript">
+<!--
+showHideInherited();
+--></script>
+<div class="MainContent">
+<a name="propertyDetail"></a>
+<div class="detailSectionHeader">Property detail</div>
+<a name="gcd"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">gcd</td><td class="detailHeaderType">property</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>gcd:int</code>&nbsp;&nbsp;[read-only]<p>
+         Determinates the greatest common divisor if the current object. 
+         </p><p>This property cast the width and the height Number in two int objects to calculate the value.</p>
+         <p>The floating values are ignored and convert in integers.</p> 
+         <span class="label">Implementation</span>
+<br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function get gcd():int</code>
+<br>
+</div>
+<a name="verbose"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">verbose</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public var verbose:Boolean</code><p>
+         Indicates the verbose mode used in the toString() method.
+         </p></div>
+<a name="constructorDetail"></a>
+<div class="detailSectionHeader">Constructor detail</div>
+<a name="AspectRatio()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">AspectRatio</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">constructor</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public function AspectRatio(width:int = 0, height:int = 0, lock:Boolean = false)</code><p>
+         Creates a new <code class="prettyprint">AspectRatio</code> instance.
+         </p><span class="label">Parameters</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td><code><span class="label">width</span>:int</code> (default = <code>0</code>)<code></code> &mdash; The width int value use to defines the aspect ratio value.
+         </td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><code><span class="label">height</span>:int</code> (default = <code>0</code>)<code></code> &mdash; The height int value use to defines the aspect ratio value. 
+         </td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><code><span class="label">lock</span>:Boolean</code> (default = <code>false</code>)<code></code> &mdash; This boolean flag indicates if the aspect ratio must be keeped when the width or height values changes.
+         </td>
+</tr>
+</table>
+</div>
+<a name="methodDetail"></a>
+<div class="detailSectionHeader">Method detail</div>
+<a name="clone()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">clone</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public override function clone():*</code><p>
+         Creates and returns a shallow copy of the object.
+         </p><p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><code>*</code> &mdash; A new object that is a shallow copy of this instance.
+         </td>
+</tr>
+</table>
+</div>
+<a name="equals()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">equals</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public override function equals(o:*):Boolean</code><p>
+         Compares the specified object with this object for equality.
+         </p><p>Compares the toString() (ex:4:3) of the aspect ratio object and the passed-in object type.</p>
+         <p><b>Example :</b></p>
+         <pre class="prettyprint">
+         import graphics.geom.AspectRatio ;
+         
+         var a:= new AspectRatio( 320 , 240 ) ;
+         var b:= new AspectRatio( 640 , 480 ) ;
+         
+         trace( a.equals( b ) ) ; // true 
+         </pre>
+         <span class="label">Parameters</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td><code><span class="label">o</span>:*</code></td>
+</tr>
+</table>
+<p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><code>Boolean</code> &mdash; <code class="prettyprint">true</code> if the the specified object is equal with this object.
+         </td>
+</tr>
+</table>
+</div>
+<a name="isLocked()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">isLocked</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public function isLocked():Boolean</code><p>
+         Returns <code class="prettyprint">true</code> if the object is locked.
+         </p><p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><code>Boolean</code> &mdash; <code class="prettyprint">true</code> if the object is locked.
+         </td>
+</tr>
+</table>
+</div>
+<a name="lock()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">lock</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public function lock():void</code><p>
+         Locks the object.
+         </p></div>
+<a name="toSource()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">toSource</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public override function toSource(indent:int = 0):String</code><p>
+         Returns the source code string representation of the object.
+         </p><span class="label">Parameters</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td><code><span class="label">indent</span>:int</code> (default = <code>0</code>)<code></code></td>
+</tr>
+</table>
+<p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><code>String</code> &mdash; the source code string representation of the object.
+         </td>
+</tr>
+</table>
+</div>
+<a name="toString()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">toString</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public override function toString():String</code><p>
+         Returns the string representation of this instance.
+         </p><p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><code>String</code> &mdash; the string representation of this instance.
+         </td>
+</tr>
+</table>
+</div>
+<a name="unlock()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">unlock</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public function unlock():void</code><p>
+         Unlocks the object.
+         </p></div>
+<br>
+<br>
+<hr>
+<br>
+<p></p>
+<center class="copyright"> 
+</center>
+</div>
+</body>
+</html>
+<!-- -->
