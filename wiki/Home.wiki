@@ -1,9 +1,9 @@
 #labels Documentation
-= VEGAS version 1.6 =
+= VEGAS version 1.7 =
 
 Vegas is an opensource framework based on ECMAScript and ActionScript.
 
- * _Last version stable : *1.6.0.1426*_
+ * _Last version stable : *1.7.0.1479*_
 
 ==Description==
 
@@ -21,7 +21,7 @@ If you use the framework please show it :)
 
 ==Install VEGAS==
 
- * [InstallVEGASwithSVN Install the SVN VEGAS sources with TortoiseSVN (AS2 and AS3)]
+ * [InstallVEGASwithSVN Install the SVN VEGAS sources with TortoiseSVN ( AS3 and AS2 )]
  * Download the sources with the top-level SVN repository : http://vegas.googlecode.com/svn
 
 ==Documentation==
