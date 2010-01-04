@@ -70,6 +70,7 @@
     <component id="system.data:Map"             class="system.data.Map" />
     <component id="system.data:MultiMap"        class="system.data.MultiMap" />
     <component id="system.data:OrderedIterator" class="system.data.OrderedIterator" />
+    <component id="system.data:ProxyReference"  class="system.data.ProxyReference" />
     <component id="system.data:Queue"           class="system.data.Queue" />
     <component id="system.data:Set"             class="system.data.Set" />
     <component id="system.data:Stack"           class="system.data.Stack" />
@@ -77,7 +78,7 @@
     <component id="system.data:Validator"       class="system.data.Validator" />
     <component id="system.data:ValueObject"     class="system.data.ValueObject" />
     <component id="system.data:WeakReference"   class="system.data.WeakReference" />
-        
+    
     <!-- system.data.arrays -->
     
     <component id="system.data:arrays:ArrayFilter" class="system.data.arrays.ArrayFilter" />
