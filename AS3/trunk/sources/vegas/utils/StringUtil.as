@@ -37,8 +37,6 @@
 
 package vegas.utils
 {
-    import system.serializers.eden.BuiltinSerializer;
-    
     /**
      * The <code class="prettyprint">StringUtil</code> utility class is an extended String class with methods for working with string.
      * This class complete the system.Strings static class.
@@ -86,7 +84,7 @@ package vegas.utils
          * Returns <code class="prettyprint">true</code> if this string is empty.
          * <p><b>Example :</b></p>
          * <pre class="prettyprint">
-         * import vegas.util.StringUtil ;
+         * import vegas.utils.StringUtil ;
          * var b1:Boolean = StringUtil.isEmpty("") ; // true
          * var b2:Boolean = StringUtil.isEmpty("hello world") ; // false
          * </pre>
@@ -102,7 +100,7 @@ package vegas.utils
          * Returns the last char of the string. 
          * <p><b>Example :</b></p>
          * <pre class="prettyprint">
-         * import vegas.util.StringUtil ;
+         * import vegas.utils.StringUtil ;
          * trace( StringUtil.lastChar("hello world") ; // d
          * </pre>
          * @param str the string object.
@@ -136,7 +134,7 @@ package vegas.utils
          * Returns a new String value who contains the specified String characters repeated count times.
          * <p><b>Example :</b></p>
          * <pre class="prettyprint">
-         * import vegas.util.StringUtil ;
+         * import vegas.utils.StringUtil ;
          * 
          * trace(StringUtil.repeat("hello", 0)) ; // hello
          * trace(StringUtil.repeat("hello", 3)) ; // hellohellohello
@@ -164,7 +162,7 @@ package vegas.utils
          * Replaces the 'search' string with the 'replace' String.
          * <p><b>Example :</b></p>
          * <pre class="prettyprint">
-         * vegas.util.StringUtil.replace("hello world", "hello", "hi") ; // "hello world" -> "hi world"
+         * vegas.utils.StringUtil.replace("hello world", "hello", "hi") ; // "hello world" -> "hi world"
          * </pre>
          * @param the string to transform.
          * @return the new string transform with this method.
@@ -178,7 +176,7 @@ package vegas.utils
           * Reverses the current instance.
          * <p><b>Example :</b></p>
          * <pre class="prettyprint">
-         * var reverse:String = vegas.util.StringUtil.reverse("hello") ; // "olleh"
+         * var reverse:String = vegas.utils.StringUtil.reverse("hello") ; // "olleh"
          * </pre>
           * @return the reverse string of the specified string passed-in argument.
          */
@@ -193,7 +191,7 @@ package vegas.utils
          * Adds and removes elements in the string.
          * <p><b>Example :</b></p>
          * <pre class="prettyprint">
-         * import vegas.util.StringUtil ;
+         * import vegas.utils.StringUtil ;
          * 
          * var result:String ;
          * 
@@ -221,7 +219,7 @@ package vegas.utils
          * Returns an array representation of this instance.
          * <p><b>Example :</b></p>
          * <pre class="prettyprint">
-         * import vegas.util.StringUtil ;
+         * import vegas.utils.StringUtil ;
          * trace( StringUtil.toArray("hello world" )) ; // h,e,l,l,o, ,w,o,r,l,d
          * </pre>
          * @return an array representation of this instance.
@@ -232,25 +230,10 @@ package vegas.utils
         }
         
         /**
-         * Returns the eden representation of the object.
-         * <p><b>Example :</b></p>
-         * <pre class="prettyprint">
-         * import vegas.util.StringUtil ;
-         * var source:String = StringUtil.toSource("hello world") ;
-         * trace(source) ; // "hello world"
-         * </pre>
-         * @return a string representing the source code of the object.
-         */
-        public static function toSource( str:String , ...rest:Array ):String 
-        {
-            return BuiltinSerializer.emitString(str) ;
-        }
-        
-        /**
          * Returns the value of this specified string with the first character in uppercase.
          * <p><b>Example :</b></p>
          * <pre class="prettyprint">
-         * import vegas.util.StringUtil ;
+         * import vegas.utils.StringUtil ;
          * trace( StringUtil.ucFirst("hello world" )) ; // Hello world
          * </pre>
          * @return the value of this string with the first character in uppercase.
@@ -264,7 +247,7 @@ package vegas.utils
          * Uppercases the first character of each word in a string.
          * <p><b>Example :</b></p>
          * <pre class="prettyprint">
-         * import vegas.util.StringUtil ;
+         * import vegas.utils.StringUtil ;
          * trace( StringUtil.ucWords("hello world" )) ; // Hello World
          * </pre>
          * @return the string value with the first character in uppercase of each word in a string.

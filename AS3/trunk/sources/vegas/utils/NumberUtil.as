@@ -72,7 +72,7 @@ package vegas.utils
          * Returns the hexadecimal string representation of the specified number value.
          * @example
          * <pre class="prettyprint">
-         * import vegas.util.NumberUtil ;
+         * import vegas.utils.NumberUtil ;
          *
          * for (var i:uint =0 ; i<256 ; i++)
          * {

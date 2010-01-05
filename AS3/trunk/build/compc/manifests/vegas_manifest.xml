@@ -297,9 +297,9 @@
     <!-- vegas.utils -->
     
     <component id="vegas.utils:ArrayUtil"     class="vegas.utils.ArrayUtil" />
-    <component id="vegas.utils:ClassUtil"     class="vegas.utils.ClassUtil" />
     <component id="vegas.utils:Comparater"    class="vegas.utils.Comparater" />
     <component id="vegas.utils:Copier"        class="vegas.utils.Copier" />
+    <component id="vegas.utils:getUniqueName" class="vegas.utils.getUniqueName" />
     <component id="vegas.utils:NumberUtil"    class="vegas.utils.NumberUtil" />
     <component id="vegas.utils:StringUtil"    class="vegas.utils.StringUtil" />
     

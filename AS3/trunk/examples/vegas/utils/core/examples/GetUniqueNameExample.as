@@ -35,19 +35,25 @@
 
 package examples 
 {
-    import vegas.utils.ClassUtil;
+    import vegas.utils.getUniqueName;
 
     import flash.display.Sprite;
 
-    public class ClassUtilExample extends Sprite 
+    public class GetUniqueNameExample extends Sprite 
     {
-        public function ClassUtilExample()
+        public function GetUniqueNameExample()
         {
-            trace( ClassUtil.getUniqueName( new Sprite()  ) ) ; // Sprite0
-            trace( ClassUtil.getUniqueName( new Sprite()  ) ) ; // Sprite1
+            var s1:Sprite = new Sprite() ;
+            var s2:Sprite = new Sprite() ;
+            var s3:Sprite = new Sprite() ;
+            var s4:Sprite = new Sprite() ;
             
-            trace( ClassUtil.getUniqueName( new Sprite() , true ) ) ; // flash.display.Sprite0
-            trace( ClassUtil.getUniqueName( new Sprite() , true ) ) ; // flash.display.Sprite1
+            trace( getUniqueName( s1 ) ) ; // Sprite0
+            trace( getUniqueName( s1 ) ) ; // Sprite1
+            trace( getUniqueName( s2  ) ) ; // Sprite2
+            
+            trace( getUniqueName( s3 , true ) ) ; // flash.display.Sprite0
+            trace( getUniqueName( s4 , true ) ) ; // flash.display.Sprite1
         }
     }
 }
