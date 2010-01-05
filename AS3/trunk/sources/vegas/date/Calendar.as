@@ -243,6 +243,14 @@ package vegas.date
         }
         
         /**
+         * Indicates whether or not the current time is AM.
+         */
+        public static function antemeridian( date:Date ):Boolean 
+        {
+            return date.hours < 12;
+        }
+        
+        /**
          * Returns <code class="prettyprint">true</code> if the current time of this Calendar is before the time of Calendar when; false otherwise.
          * @return <code class="prettyprint">true</code> if the current time of this Calendar is before the time of Calendar when; false otherwise. 
          */
@@ -465,6 +473,14 @@ package vegas.date
             var today:Date = date || new Date() ;
             var lastDate:Number = getDaysInMonth( today ) ; 
             return today.getDate().valueOf() == lastDate.valueOf() ;
+        }
+        
+        /**
+         * Indicates whether or not the current time is PM.
+         */
+        public static function postmeridian( date:Date ):Boolean 
+        {
+            return date.hours >= 12;
         }
         
         /**

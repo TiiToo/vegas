@@ -37,13 +37,14 @@ package vegas.date
 {
     import buRRRn.ASTUce.framework.ITest;
     import buRRRn.ASTUce.framework.TestSuite;
-
+    
     public class AllTests
     {
         public static function suite():ITest
         {
             var suite:TestSuite = new TestSuite( "vegas.date unit tests" );
             
+            suite.addTestSuite( CalendarTest ) ;
             suite.addTestSuite( TimeTest ) ;
             
             return suite;
