@@ -1,9 +1,9 @@
-#labels Documentation
+#labels Documentation,Phase-Requirements
 = VEGAS version 1.7 =
 
 Vegas is an opensource framework based on ECMAScript and ActionScript.
 
- * _Last version stable : *1.7.0.1479*_
+ * _The latest stable release : *[http://code.google.com/p/vegas/downloads/detail?name=version%201.7.0.1479.zip&can=2&q=#makechanges 1.7.0.1479]*_
 
 ==Description==
 
@@ -97,12 +97,13 @@ This library based VEGAS to create components. It's not a component of framework
 
  * [http://code.google.com/p/lun-as/ LunAS page project (Google Code)] 
 
-Use examples in AS2/bin/test/lunas to test this framework.
+Features :
 
- * *bar* package : Progressbar, scrollbar...
- * *button* package
- * *container* package : SimpleContainer, ListContainer, ScrollContainer, AutoScrollContainer, MatrixContainer...
- * *text* package : Label, TextArea and TextInput abstract implementation.
+ * Progressbar, Scrollbar
+ * Button implementations
+ * Container implementations : SimpleContainer, ListContainer, ScrollContainer, AutoScrollContainer, MatrixContainer, CircleContainer
+ * Label package : Label, IconLabel, PaginationLabel
+ * TextInput : SimpleTextInput, VisualTextInput
 
 ===CalistA===
 
