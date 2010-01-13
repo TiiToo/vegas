@@ -157,7 +157,8 @@ package vegas.display
             super( id, name );
             addEventListener( Event.ADDED_TO_STAGE      , addedToStageResize     , false , 9999 ) ;
             addEventListener( Event.REMOVED_FROM_STAGE  , removedFromStageResize , false , 9999 ) ;
-            _pen = initBackgroundPen() ;
+            _pen  = initBackgroundPen() ;
+            _real = new Dimension() ;
             ___timer___ = new FrameTimer(24, 1) ;
             ___timer___.addEventListener(TimerEvent.TIMER, _redraw ) ;
             this.isFull = isFull ;
@@ -199,7 +200,7 @@ package vegas.display
             if ( old == b ) return ;
             if ( stage != null )
             {
-            	if ( _autoSize )
+                if ( _autoSize )
                 {
                     stage.addEventListener( Event.RESIZE , resize ) ;
                     resize() ;
@@ -305,7 +306,7 @@ package vegas.display
         public function get h():Number 
         {
             var n:Number = ( isFull && (stage != null) && (_direction != Direction.HORIZONTAL) ) ? stage.stageHeight : _h ;
-            return Mathematics.clamp( n , minHeight, maxHeight) ;
+            return Mathematics.clamp( n , _minHeight, _maxHeight) ;
         }
         
         /**
@@ -313,7 +314,7 @@ package vegas.display
          */
         public function set h( n:Number ):void 
         {
-            _h = Mathematics.clamp( n , minHeight, maxHeight ) ;
+            _h = Mathematics.clamp( n , _minHeight, _maxHeight ) ;
             update() ;
             notifyResized() ;
         }
@@ -485,7 +486,7 @@ package vegas.display
         public function get w():Number 
         {
             var n:Number = ( isFull && (stage != null) && (_direction != Direction.VERTICAL) ) ? stage.stageWidth : _w ;
-            return Mathematics.clamp( n , minWidth, maxWidth ) ;
+            return Mathematics.clamp( n , _minWidth, _maxWidth ) ;
         }
         
         /**
@@ -493,7 +494,7 @@ package vegas.display
          */
         public function set w( n:Number ):void 
         {
-            _w = Mathematics.clamp( n , minWidth, maxWidth ) ;
+            _w = Mathematics.clamp( n , _minWidth, _maxWidth ) ;
             update() ;
             notifyResized() ;
         }
@@ -508,7 +509,6 @@ package vegas.display
             var      $h:Number = isNaN(arguments[1]) ? this.h : arguments[1] ;
             var offsetX:Number = isNaN(arguments[2]) ?      0 : arguments[2] ;
             var offsetY:Number = isNaN(arguments[3]) ?      0 : arguments[3] ;
-            
             if ( fill is FillGradientStyle )
             {
                 var matrix:Matrix ;
@@ -534,8 +534,9 @@ package vegas.display
                 }
                 ( fill as FillGradientStyle ).matrix = matrix ;
             }
-            _pen.draw(offsetX, offsetY, $w, $h, topLeftRadius , topRightRadius , bottomLeftRadius , bottomRightRadius, _align ) ;
-            _real = new Dimension( $w, $h ) ;
+            _real.width  = $w ;
+            _real.height = $h ;
+            _pen.draw( offsetX , offsetY , $w , $h , _topLeftRadius , _topRightRadius , _bottomLeftRadius , _bottomRightRadius , _align ) ;
         }
         
         /**
@@ -601,8 +602,8 @@ package vegas.display
          */
         public function setSize( w:Number, h:Number ):void
         {
-            _w = isNaN(w) ? 0 : Mathematics.clamp( w , minWidth, maxWidth) ; 
-            _h = isNaN(h) ? 0 : Mathematics.clamp( h , minHeight, maxHeight) ; 
+            _w = isNaN(w) ? 0 : Mathematics.clamp( w , _minWidth, _maxWidth) ; 
+            _h = isNaN(h) ? 0 : Mathematics.clamp( h , _minHeight, _maxHeight) ; 
             update() ;
             notifyResized() ;
         }
