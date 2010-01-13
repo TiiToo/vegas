@@ -82,6 +82,7 @@
     <component id="graphics.drawing:RectanglePen"               class="graphics.drawing.RectanglePen" />
     <component id="graphics.drawing:RoundedComplexRectanglePen" class="graphics.drawing.RoundedComplexRectanglePen" />
     <component id="graphics.drawing:RoundedRectanglePen"        class="graphics.drawing.RoundedRectanglePen" />
+    <component id="graphics.drawing:ScalePen"                   class="graphics.drawing.ScalePen" />
     <component id="graphics.drawing:StarPen"                    class="graphics.drawing.StarPen" />
     <component id="graphics.drawing:TrianglePen"                class="graphics.drawing.TrianglePen" />
     
