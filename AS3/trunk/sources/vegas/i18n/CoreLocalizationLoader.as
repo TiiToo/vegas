@@ -119,7 +119,14 @@ package vegas.i18n
          */
         public function get path():String 
         {
-            return _path || default_file_path || "" ;
+            if ( _path != null )
+            {
+                return _path ;
+            }
+            else
+            {
+                return default_file_path || "" ;
+            }
         }
         
         /**
@@ -135,7 +142,14 @@ package vegas.i18n
          */
         public function get prefix():String 
         {
-            return _prefix || default_file_prefix || "" ;
+            if ( _prefix != null )
+            {
+                return _prefix ;
+            }
+            else
+            {
+                return default_file_prefix || "" ;
+            }
         }
         
         /**
@@ -159,7 +173,14 @@ package vegas.i18n
          */
         public function get suffix():String 
         {
-            return _suffix || default_file_suffix || "" ;
+            if ( _suffix != null )
+            {
+                return _suffix ;
+            }
+            else
+            {
+                return default_file_suffix || "" ;
+            }
         }
         
         /**

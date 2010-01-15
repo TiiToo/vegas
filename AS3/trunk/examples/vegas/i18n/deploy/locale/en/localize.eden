@@ -1,0 +1,20 @@
+lang      = "en" ;
+namespace = "http://www.ekameleon.net/2010/vegas" ;
+version   = "1.0.0.0" ;
+
+type      = "eden" ;
+
+door = 
+{
+    connectStarted    : "START CONNECTION"  ,
+    connectFinished   : "FINISH CONNECTION" ,
+    connectInProgress : "CONNECTION IN PROGRESS" ,
+    connectOutOfTime  : "THE CONNECTION IS OUT OF TIME"
+} ;
+
+info = 
+{
+    finish_loading   : "THE LOADING IS FINISHED" ,
+    progress_loading : "THE LOADING IS IN PROGRESS" ,
+    start_loading    : "THE LOADING IS STARTED"
+};
