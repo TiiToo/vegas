@@ -43,7 +43,7 @@ package vegas.net
     /**
      * Defines the information object in a onStatus callback method.
      */
-    public class NetServerInfo implements Serializable
+    public dynamic class NetServerInfo implements Serializable
     {
         /**
          * Creates a new NetServerInfo object.
@@ -69,17 +69,17 @@ package vegas.net
         /**
          * The code of this information object.
          */
-        public var code:String = null ;
+        public var code:String ;
         
         /**
          * The description of this information object.
          */
-        public var description:String = null ;
+        public var description:String ;
         
         /**
          * The level of this information object.
          */
-        public var level:String = null ;
+        public var level:String ;
         
         /**
          * Returns an object representation of this instance.
