@@ -21,5 +21,5 @@ DOCUMENTATION & CO
 ABOUT AUTHOR
     
     * Author : ALCARAZ Marc (eKameleon)
-    * Link   : http://www.ekameleon.net/blog
+    * Link   : http://www.ekameleon.net/
     * Mail   : ekameleon@gmail.com

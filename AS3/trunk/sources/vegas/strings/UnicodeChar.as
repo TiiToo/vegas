@@ -92,7 +92,7 @@ package vegas.strings
         /**
          * Array with all whitespace characters. NB : USP no implement (Any other Unicode "space separator")
          */
-        public static const SPECIAL_CHARS:Array = [ "\u005C" , "\u0008" , "\u0027" , "\u0022" ] ;
+        public static const SPECIAL_CHARS:Array = [ "\u005C" , "\u0008" , "\u0027" , "\u0022" ] ; // // hack in AS3 only to generates the ASDoc :(
         
         /**
          * Back Slash utf8 representation (special char).
@@ -117,7 +117,7 @@ package vegas.strings
         /**
          * Array with all whitespace characters. NB : USP no implement (Any other Unicode "space separator")
          */
-        public static const WHITE_SPACE_CHARS:Array = [ "\u0009", "\u000B", "\u000C", "\u0020", "\u00A0" ] ; // hack only with ASDoc :(        
+        public static const WHITE_SPACE_CHARS:Array = [ "\u0009", "\u000B", "\u000C", "\u0020", "\u00A0" ] ; // hack in AS3 only to generates the ASDoc :(
         
         /**
          * Tab utf8 representation (whitespace).
@@ -147,7 +147,7 @@ package vegas.strings
         /**
          * Array with all line terminators characters
          */
-        public static const LINE_TERMINATOR_CHARS:Array = [ "\u000A", "\u000D", "\u2028", "\u2029" ] ;  // hack only with ASDoc :(     
+        public static const LINE_TERMINATOR_CHARS:Array = [ "\u000A", "\u000D", "\u2028", "\u2029" ] ;  // hack in AS3 only to generates the ASDoc :(
         
         /**
          * Line Feed utf8 representation (line terminators).
