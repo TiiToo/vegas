@@ -290,7 +290,7 @@
     
     <!-- vegas.ui -->
     
-    <component id="vegas.ui:CheatCode"           class="vegas.ui.CheatCode />
+    <component id="vegas.ui:CheatCode"           class="vegas.ui.CheatCode" />
     <component id="vegas.ui:KeyInspector"        class="vegas.ui.KeyInspector" />
     <component id="vegas.ui:MouseWheelInspector" class="vegas.ui.MouseWheelInspector" />
     <component id="vegas.ui:MouseWheelScript"    class="vegas.ui.MouseWheelScript" />
