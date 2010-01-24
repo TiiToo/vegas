@@ -38,18 +38,18 @@
 package vegas.process.display 
 {    import graphics.FillGradientStyle;
     import graphics.colors.RGB;
+    import graphics.transitions.CoreTransition;
     import graphics.transitions.TweenArray;
     import graphics.transitions.TweenUnit;
     
     import system.events.ActionEvent;
     import system.numeric.Mathematics;
     import system.process.BatchProcess;
-    import system.process.Task;
     
     import vegas.display.Background;
     
     /**
-     * This process switch the fill gradient color of the specified background.     */    public class SwitchBackgroundGradientColor extends Task 
+     * This process switch the fill gradient color of the specified background.     */    public class SwitchBackgroundGradientColor extends CoreTransition 
     {        /**
          * Creates a new SwitchBackgroundGradientColor instance.
          * @param background The background reference to switch.
@@ -62,8 +62,7 @@ package vegas.process.display
          */
         public function SwitchBackgroundGradientColor( background:Background = null , colors:Array = null , alphas:Array = null , ratios:Array = null , easing:* = null , duration:Number = 1 , useSeconds:Boolean = true )
         {
-            super() ;
-                        _tweenAlphas = new TweenArray( null , null, null, 1 , true ) ;
+            _tweenAlphas = new TweenArray( null , null, null, 1 , true ) ;
             _tweenAlphas.addEventListener(ActionEvent.CHANGE, _change) ;
             
             _tweenColors = new TweenUnit( null , 1, true) ;
@@ -189,6 +188,15 @@ package vegas.process.display
         }
         
         /**
+         * Returns a shallow copy of this object.
+         * @return a shallow copy of this object.
+         */
+        public override function clone():*
+        {
+            return new SwitchBackgroundGradientColor( background , colors , alphas , ratios , easing , duration , useSeconds ) ;
+        }
+        
+        /**
          * Run the process.
          */
         public override function run( ...arguments:Array ):void 
@@ -242,6 +250,26 @@ package vegas.process.display
                 }
             }
             notifyFinished() ;
+        }
+        
+        
+        /**
+         * Starts the transition.
+         */
+        public override function start():void
+        {
+            run() ;
+        }
+        
+        /**
+         * Stops the transition.
+         */
+        public override function stop():void
+        {
+            if ( _batch.running )
+            {
+                _batch.stop() ;
+            }
         }
         
         /**
