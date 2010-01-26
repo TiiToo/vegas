@@ -58,6 +58,7 @@
     
     <!-- graphics.drawing -->
     
+    <component id="graphics.drawing:AntPen"                     class="graphics.drawing.AntPen" />
     <component id="graphics.drawing:ArcPen"                     class="graphics.drawing.ArcPen" />
     <component id="graphics.drawing:ArrowPen"                   class="graphics.drawing.ArrowPen" />
     <component id="graphics.drawing:BevelRectanglePen"          class="graphics.drawing.BevelRectanglePen" />
