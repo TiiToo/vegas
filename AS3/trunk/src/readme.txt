@@ -1,7 +1,14 @@
-VEGAS AS3 - version 1.7.0.1506
-    
-The "vegas.swc" library contains all the AS3 source code of the VEGAS project with all this extensions.
-    
+VEGAS AS3 - version 1.7.0.1509
+
+This directory use svn externals to centralize all sources.
+
+    - core http://maashaack.googlecode.com/svn/branches/maashaack_ekameleon/trunk/src/core/
+    - system http://maashaack.googlecode.com/svn/branches/maashaack_ekameleon/trunk/src/system/
+    - graphics http://maashaack.googlecode.com/svn/branches/maashaack_ekameleon/trunk/src/graphics/
+    - vegas http://vegas.googlecode.com/svn/AS3/trunk/sources/vegas/
+    - lunas http://lun-as.googlecode.com/svn/trunk/AS3/trunk/src/lunas
+    - calista http://calista.googlecode.com/svn/trunk/AS3/src/calista
+
 LICENCE 
    
     Version: MPL 1.1/GPL 2.0/LGPL 2.1
