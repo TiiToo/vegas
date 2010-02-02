@@ -37,15 +37,13 @@
 
 package vegas.process.display 
 {
-    import system.process.Task;
-    
     import flash.display.DisplayObject;
     import flash.display.DisplayObjectContainer;
     
     /**
-     * This process add a DisplayObject in a specific DisplayObjectContainer.
+     * This process add a DisplayObject in a specific index in a DisplayObjectContainer.
      */
-    public class AddChildAt extends Task 
+    public class AddChildAt extends AddChild 
     {
         /**
          * Creates a new AddChildAt instance.
@@ -53,27 +51,16 @@ package vegas.process.display
          * @param child The child to remove in the target.
          * @param at The index position to insert the display.
          */
-        public function AddChildAt( target:DisplayObjectContainer , child:DisplayObject , at:uint )
+        public function AddChildAt( target:DisplayObjectContainer = null , child:DisplayObject = null , at:uint = 0 )
         {
-            this.target = target ;
-            this.child  = child  ;
-            this.at     = at     ;
+            super( target , child ) ;
+            this.at = at ;
         }
         
         /**
          * The index position to insert the display in the container.
          */
         public var at:uint ;
-        
-        /**
-         * The DisplayObject reference.
-         */
-        public var child:DisplayObject ;
-        
-        /**
-         * The DisplayObject reference.
-         */
-        public var target:DisplayObjectContainer ;
         
         /**
          * Run the process.

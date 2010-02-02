@@ -52,7 +52,7 @@ package vegas.process.display
          * @param display The DisplayObjectContainer reference.
          * @param child The child to remove in the target.
          */
-        public function RemoveChild( target:DisplayObjectContainer , child:DisplayObject )
+        public function RemoveChild( target:DisplayObjectContainer = null , child:DisplayObject = null )
         {
             this.target = target ;
             this.child  = child  ;
