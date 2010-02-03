@@ -45,9 +45,11 @@ package vegas.media
     import system.numeric.Range;
     import system.process.Action;
     import system.process.Stoppable;
-    
+    import system.signals.Signal;
+    import system.signals.Signaler;
+
     import vegas.events.SoundEvent;
-    
+
     import flash.events.Event;
     import flash.events.IOErrorEvent;
     import flash.events.TimerEvent;
@@ -57,7 +59,7 @@ package vegas.media
     import flash.media.SoundTransform;
     import flash.net.URLRequest;
     import flash.utils.Timer;
-    
+
     /**
      * The CoreSound class extends the flash.media.Sound class and implements the IConfigurable, Identifiable, Lockable and ILogable interfaces.
      * <p><b>Example :</b></p>
@@ -139,6 +141,22 @@ package vegas.media
         public function get channel():SoundChannel
         {
             return _channel ;
+        }
+        
+        /**
+         * This signal emit when the notifyFinished method is invoked. 
+         */
+        public function get finishIt():Signaler
+        {
+            return _finishIt ;
+        }
+        
+        /**
+         * @private
+         */
+        public function set finishIt( signal:Signaler ):void
+        {
+            _finishIt = signal || new Signal() ;
         }
         
         /**
@@ -305,6 +323,22 @@ package vegas.media
         }
         
         /**
+         * This signal emit when the notifyStarted method is invoked. 
+         */
+        public function get startIt():Signaler
+        {
+            return _startIt || new Signal() ;
+        }
+        
+        /**
+         * @private
+         */
+        public function set startIt( signal:Signaler ):void
+        {
+            _startIt = signal ;
+        }
+        
+        /**
          * The volume, ranging from 0 (silent) to 1 (full volume). 
          */
         public function get volume():Number
@@ -378,6 +412,7 @@ package vegas.media
         {
             _isRunning = false ;
             _timer.stop() ;
+            _finishIt.emit() ;
             _fireActionEvent( ActionEvent.FINISH ) ;
         }
         
@@ -387,8 +422,9 @@ package vegas.media
         public function notifyStarted():void
         {
             _isRunning = true ;
-            _timer.start() ;
+            _startIt.emit() ;
             _fireActionEvent( ActionEvent.START ) ;
+            _timer.start() ;
         }
         
         /**
@@ -611,6 +647,11 @@ package vegas.media
         private var _currentPosition:Number = 0 ;
         
         /**
+         * @private
+         */
+        private var _finishIt:Signaler = new Signal() ;
+        
+        /**
          * The internal id of this object.
          * @private
          */
@@ -646,6 +687,11 @@ package vegas.media
          * @private
          */
         private var _soundTransform:SoundTransform ;
+        
+        /**
+         * @private
+         */
+        private var _startIt:Signaler = new Signal() ;
         
         /**
          * @private

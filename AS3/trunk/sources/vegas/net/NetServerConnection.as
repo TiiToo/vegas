@@ -42,9 +42,11 @@ package vegas.net
     import system.events.CoreEventDispatcher;
     import system.process.Action;
     import system.process.TimeoutPolicy;
-    
+    import system.signals.Signal;
+    import system.signals.Signaler;
+
     import vegas.events.NetServerEvent;
-    
+
     import flash.events.AsyncErrorEvent;
     import flash.events.Event;
     import flash.events.IOErrorEvent;
@@ -54,7 +56,7 @@ package vegas.net
     import flash.net.NetConnection;
     import flash.net.Responder;
     import flash.utils.Timer;
-    
+
     /**
      * This class extends the NetConnection class and defined an implementation based on VEGAS to used Flash Remoting or Flash MediaServer (with AMF protocol).
      * <p><b>Example :</b></p>
@@ -216,6 +218,22 @@ package vegas.net
         }
         
         /**
+         * This signal emit when the notifyFinished method is invoked. 
+         */
+        public function get finishIt():Signaler
+        {
+            return _finishIt ;
+        }
+        
+        /**
+         * @private
+         */
+        public function set finishIt( signal:Signaler ):void
+        {
+            _finishIt = signal || new Signal() ;
+        }
+        
+        /**
          * The total number of inbound and outbound peer connections that this instance of Flash Player or Adobe AIR allows.
          */
         public function get maxPeerConnections():uint
@@ -303,13 +321,29 @@ package vegas.net
         {
             return _nc.proxyType ;
         }
-
+        
         /**
          * @private 
          */
         public function set proxyType( type:String ):void
         {
             _nc.proxyType = type ;
+        }
+        
+        /**
+         * This signal emit when the notifyStarted method is invoked. 
+         */
+        public function get startIt():Signaler
+        {
+            return _startIt || new Signal() ;
+        }
+        
+        /**
+         * @private
+         */
+        public function set startIt( signal:Signaler ):void
+        {
+            _startIt = signal ;
         }
         
         /**
@@ -330,7 +364,7 @@ package vegas.net
         {
             return _uri || _nc.uri ;
         }
-
+        
         /**
          * @private
          */
@@ -431,7 +465,7 @@ package vegas.net
         public function notifyFinished():void 
         {
             setRunning( false ) ;
-            this["finishIt"]() ;
+            _finishIt.emit() ;
             dispatchEvent( new ActionEvent( ActionEvent.FINISH , this ) ) ;
         }
         
@@ -449,7 +483,7 @@ package vegas.net
         public function notifyStarted():void 
         {
             setRunning( true ) ;
-            this["startIt"]() ;
+            _startIt.emit() ;
             dispatchEvent( new ActionEvent( ActionEvent.START , this ) ) ;
         }
             
@@ -498,14 +532,6 @@ package vegas.net
                 _timer.removeEventListener(TimerEvent.TIMER_COMPLETE, _onTimeOut) ;
             }
         }
-        /**
-         * Called in the notifyFinished method.
-         * <p>This method it's special and can be override. In the future can be used in the Sequencer Class to optimiser the process.</p>
-         */
-        prototype.finishIt = function():void
-        {
-            // overrides
-        };
         
         /**
          * Changes the running property value.
@@ -514,15 +540,6 @@ package vegas.net
         {
             _isRunning = b ;
         }
-        
-        /**
-         * Called in the notifyStarted method.
-         * <p>This method it's special and can be override. In the future can be used in the Sequencer Class to optimiser the process.</p>
-         */
-        prototype.startIt = function():void
-        {
-            // overrides
-        };
         
         /**
          * Use this method to dispatch in FMS application an event.
@@ -538,6 +555,11 @@ package vegas.net
                 _nc.call( event, null, context ) ;
             }
         }
+        
+        /**
+         * @private
+         */
+        private var _finishIt:Signaler = new Signal() ;
         
         /**
          * @private
@@ -558,6 +580,11 @@ package vegas.net
          * @private
          */
         private var _policy:TimeoutPolicy ;
+        
+        /**
+         * @private
+         */
+        private var _startIt:Signaler = new Signal() ;
         
         /**
          * @private
@@ -624,7 +651,7 @@ package vegas.net
                 {
                    notifyNetServerEvent( NetServerEvent.CLOSE, status, e.info ) ;
                    break ;
-                }                
+                }
                 case NetServerStatus.CONNECT_REJECTED.code :
                 {
                    notifyNetServerEvent( NetServerEvent.REJECT, status , e.info ) ;

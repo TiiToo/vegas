@@ -33,38 +33,20 @@
   
 */
 
-package vegas  
+package vegas.process  
 {
     import buRRRn.ASTUce.framework.ITest;
     import buRRRn.ASTUce.framework.TestSuite;
     
-    import vegas.colors.AllTests;
-    import vegas.date.AllTests;
-    import vegas.events.AllTests;
-    import vegas.ioc.AllTests;
-    import vegas.models.AllTests;
-    import vegas.net.AllTests;
-    import vegas.process.AllTests;
-    import vegas.strings.AllTests;
-    import vegas.utils.AllTests;
-    import vegas.vo.AllTests;
+    import vegas.process.display.AllTests;
     
     public class AllTests
     {
         public static function suite():ITest
         {
-            var suite:TestSuite = new TestSuite( "vegas unit tests" );
+            var suite:TestSuite = new TestSuite( "vegas.process unit tests" );
             
-            suite.addTest( vegas.colors.AllTests.suite() ) ;
-            suite.addTest( vegas.date.AllTests.suite() ) ;
-            suite.addTest( vegas.events.AllTests.suite() ) ;
-            suite.addTest( vegas.ioc.AllTests.suite() ) ;
-            suite.addTest( vegas.models.AllTests.suite() ) ;
-            suite.addTest( vegas.net.AllTests.suite() ) ;
-            suite.addTest( vegas.process.AllTests.suite() ) ;
-            suite.addTest( vegas.strings.AllTests.suite() ) ;
-            suite.addTest( vegas.utils.AllTests.suite() ) ;
-            suite.addTest( vegas.vo.AllTests.suite() ) ;
+            suite.addTest( vegas.process.display.AllTests.suite() ) ;
             
             return suite;
         }
