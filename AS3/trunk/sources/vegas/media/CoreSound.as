@@ -59,7 +59,7 @@ package vegas.media
     import flash.media.SoundTransform;
     import flash.net.URLRequest;
     import flash.utils.Timer;
-
+    
     /**
      * The CoreSound class extends the flash.media.Sound class and implements the IConfigurable, Identifiable, Lockable and ILogable interfaces.
      * <p><b>Example :</b></p>
@@ -412,8 +412,11 @@ package vegas.media
         {
             _isRunning = false ;
             _timer.stop() ;
+            if ( hasEventListener( ActionEvent.FINISH ) )
+            {
+                dispatchEvent( new ActionEvent( ActionEvent.FINISH , this ) ) ;
+            }
             _finishIt.emit() ;
-            _fireActionEvent( ActionEvent.FINISH ) ;
         }
         
         /**
@@ -423,7 +426,10 @@ package vegas.media
         {
             _isRunning = true ;
             _startIt.emit() ;
-            _fireActionEvent( ActionEvent.START ) ;
+            if ( hasEventListener( ActionEvent.START ) )
+            {
+                dispatchEvent( new ActionEvent( ActionEvent.START , this ) ) ;
+            }
             _timer.start() ;
         }
         

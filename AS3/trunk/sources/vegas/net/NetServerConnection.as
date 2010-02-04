@@ -122,7 +122,7 @@ package vegas.net
             
             _nc        = new NetConnection() ;
             _nc.client = this ;
-                        
+            
             _nc.addEventListener( AsyncErrorEvent.ASYNC_ERROR       , _onAsyncError    ) ;
             _nc.addEventListener( IOErrorEvent.IO_ERROR             , _onIOError       ) ;
             _nc.addEventListener( NetStatusEvent.NET_STATUS         , _onStatus        ) ;
@@ -465,8 +465,11 @@ package vegas.net
         public function notifyFinished():void 
         {
             setRunning( false ) ;
+            if ( hasEventListener( ActionEvent.FINISH ) )
+            {
+                dispatchEvent( new ActionEvent( ActionEvent.FINISH , this ) ) ;
+            }
             _finishIt.emit() ;
-            dispatchEvent( new ActionEvent( ActionEvent.FINISH , this ) ) ;
         }
         
         /**
@@ -484,9 +487,12 @@ package vegas.net
         {
             setRunning( true ) ;
             _startIt.emit() ;
-            dispatchEvent( new ActionEvent( ActionEvent.START , this ) ) ;
+            if ( hasEventListener( ActionEvent.START ) )
+            {
+                dispatchEvent( new ActionEvent( ActionEvent.START , this ) ) ;
+            }
         }
-            
+        
         /**
          * Invoked when the connection is timeout.
          */
