@@ -37,8 +37,7 @@ package examples
 {
     import system.eden;
     
-    import vegas.media.FLVMetaData;
-    import vegas.net.NetStreamClient;
+    import vegas.net.NetStreamExpert;
     
     import flash.display.Sprite;
     import flash.events.NetStatusEvent;
@@ -46,9 +45,9 @@ package examples
     import flash.net.NetConnection;
     import flash.net.NetStream;
     
-    public class NetStreamClientExample extends Sprite 
+    public class NetStreamExpertExample extends Sprite 
     {
-        public function NetStreamClientExample()
+        public function NetStreamExpertExample()
         {
             // connection
             
@@ -60,7 +59,7 @@ package examples
             
             // stream
             
-            stream = new NetStream( connection ) ;
+            var stream:NetStream = new NetStream( connection ) ;
             
             // video
             
@@ -73,59 +72,22 @@ package examples
             
             addChild( video ) ;
             
-            // client
+            // expert
             
-            var client:NetStreamClient = new NetStreamClient( stream ) ;
-            
-            // signals
-            
-            client.imageData.connect( imageData ) ;
-            client.meta.connect( metaData ) ;
-            client.playStatus.connect( playStatus ) ;
-            client.status.connect( streamStatus ) ;
-            
-            // run application
-            
-            stream.play( "flv/motion.flv" ) ;
+            expert = new NetStreamExpert( stream ) ;
+            expert.status.connect( streamStatus ) ;
+            expert.play( "flv/video.flv" ) ;
         }
         
-        public var stream:NetStream ;
+        public var expert:NetStreamExpert ;
         
         public function connectionStatus( e:NetStatusEvent ):void
         {
-            trace( "statusConnection : " + eden.serialize( e.info ) ) ;
+            trace( "connectionStatus : " + eden.serialize( e.info ) ) ;
         }
-        
-        public function imageData( data:Object ):void
-        {
-            trace( "metaData : " + eden.serialize( data ) ) ;
-        }
-        
-        public function metaData( metaData:FLVMetaData ):void
-        {
-            trace( "metaData duration:" + metaData.duration ) ;
-        }
-        
-        public function playStatus( info:Object ):void
-        {
-            trace( "playStatus : " + eden.serialize( info ) ) ;
-        }
-        
         public function streamStatus( info:Object ):void
         {
             trace( "streamStatus : " + eden.serialize( info ) ) ;
-            switch( info.code )
-            {
-                case "NetStream.Play.Stop" :
-                {
-                    stream.seek( 0 ) ;
-                    break ;
-                }
-                default :
-                {
-                    break ;
-                }
-            }
         }
     }
 }

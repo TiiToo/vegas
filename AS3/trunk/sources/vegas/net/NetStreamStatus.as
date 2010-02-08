@@ -169,7 +169,7 @@ package vegas.net
         /**
          * The stream is paused.
          */
-        public static const PAUSE:NetStreamStatus = new NetStreamStatus("NetStream.Pause.Notify", STATUS, true) ;    
+        public static const PAUSE:NetStreamStatus = new NetStreamStatus("NetStream.Pause.Notify", STATUS, true) ; 
         
         /**
          * Playback has completed.

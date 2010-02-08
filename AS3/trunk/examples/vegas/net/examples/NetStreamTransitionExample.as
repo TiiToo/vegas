@@ -36,25 +36,31 @@
 package examples 
 {
     import system.eden;
+    import system.process.Sequencer;
     
-    import vegas.media.FLVMetaData;
     import vegas.net.NetStreamClient;
+    import vegas.net.NetStreamTransition;
     
     import flash.display.Sprite;
-    import flash.events.NetStatusEvent;
+    import flash.display.StageAlign;
+    import flash.events.KeyboardEvent;
     import flash.media.Video;
     import flash.net.NetConnection;
     import flash.net.NetStream;
+    import flash.ui.Keyboard;
     
-    public class NetStreamClientExample extends Sprite 
+    public class NetStreamTransitionExample extends Sprite 
     {
-        public function NetStreamClientExample()
+        public function NetStreamTransitionExample()
         {
+            // stage
+            
+            stage.align = StageAlign.TOP_LEFT ;
+            stage.addEventListener( KeyboardEvent.KEY_DOWN , keyDown ) ;
+            
             // connection
             
             var connection:NetConnection = new NetConnection() ;
-            
-            connection.addEventListener( NetStatusEvent.NET_STATUS , connectionStatus ) ;
             
             connection.connect( null ) ;
             
@@ -69,63 +75,79 @@ package examples
             video.x = 20 ;
             video.y = 20 ;
             
-            video.attachNetStream( stream ) ;
-            
             addChild( video ) ;
             
             // client
             
-            var client:NetStreamClient = new NetStreamClient( stream ) ;
+            var client:NetStreamClient = new NetStreamClient( stream , video ) ;
             
-            // signals
+            client.status.connect( status );
             
-            client.imageData.connect( imageData ) ;
-            client.meta.connect( metaData ) ;
-            client.playStatus.connect( playStatus ) ;
-            client.status.connect( streamStatus ) ;
+            // sequencer
             
-            // run application
+            sequencer = new Sequencer() ;
             
-            stream.play( "flv/motion.flv" ) ;
+            sequencer.finishIt.connect( finish ) ;
+            sequencer.progressIt.connect( progress ) ;
+            sequencer.startIt.connect( start ) ;
+            
+            sequencer.addAction( new NetStreamTransition( stream , "flv/video.flv" ) ) ;
+            sequencer.addAction( new NetStreamTransition( stream , "flv/motion.flv" ) ) ;
+            sequencer.addAction( new NetStreamTransition( stream , "flv/video.flv" ) ) ;
+            sequencer.addAction( new NetStreamTransition( stream , "flv/motion.flv" ) ) ;
+            sequencer.addAction( new NetStreamTransition( stream , "flv/motion.flv" ) ) ;
+            
+            sequencer.run() ;
         }
+        
+        public var sequencer:Sequencer ;
         
         public var stream:NetStream ;
         
-        public function connectionStatus( e:NetStatusEvent ):void
+        public function keyDown( e:KeyboardEvent ):void
         {
-            trace( "statusConnection : " + eden.serialize( e.info ) ) ;
-        }
-        
-        public function imageData( data:Object ):void
-        {
-            trace( "metaData : " + eden.serialize( data ) ) ;
-        }
-        
-        public function metaData( metaData:FLVMetaData ):void
-        {
-            trace( "metaData duration:" + metaData.duration ) ;
-        }
-        
-        public function playStatus( info:Object ):void
-        {
-            trace( "playStatus : " + eden.serialize( info ) ) ;
-        }
-        
-        public function streamStatus( info:Object ):void
-        {
-            trace( "streamStatus : " + eden.serialize( info ) ) ;
-            switch( info.code )
+            var code:uint = e.keyCode ;
+            switch( code )
             {
-                case "NetStream.Play.Stop" :
+                case Keyboard.UP :
                 {
-                    stream.seek( 0 ) ;
+                    stream.play( "flv/video.flv" ) ;
                     break ;
                 }
-                default :
+                case Keyboard.DOWN :
                 {
+                    stream.play( "flv/motion.flv" ) ;
+                    break ;
+                }
+                case Keyboard.SPACE :
+                {
+                    stream.close() ;
                     break ;
                 }
             }
+        }
+        
+        protected function finish():void
+        {
+            trace( "finish" ) ;
+        }
+        
+        protected function progress():void
+        {
+            trace( "progress : " + (sequencer.current as NetStreamTransition).uri  ) ;
+        }
+        
+        protected function start():void
+        {
+            trace( "start" ) ;
+        }
+        
+        /**
+         * @private
+         */
+        protected function status( info:Object ):void
+        {
+            trace( "status : " + eden.serialize( info ) ) ;
         }
     }
 }
