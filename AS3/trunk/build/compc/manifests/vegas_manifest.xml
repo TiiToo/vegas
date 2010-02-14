@@ -164,7 +164,6 @@
     
     <!-- vegas.managers -->  
 
-    <component id="vegas.managers:BitmapFilterManager" class="vegas.managers.BitmapFilterManager" />
     <component id="vegas.managers:ProtectorManager"    class="vegas.managers.ProtectorManager" />
     <component id="vegas.managers:TabManager"          class="vegas.managers.TabManager"  />
     
