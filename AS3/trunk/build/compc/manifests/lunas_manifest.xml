@@ -40,6 +40,9 @@
     <component id="lunas.components.buttons:BackgroundButton"             class="lunas.components.buttons.BackgroundButton" />
     <component id="lunas.components.buttons:BackgroundButtonBuilder"      class="lunas.components.buttons.BackgroundButtonBuilder" />
     <component id="lunas.components.buttons:BackgroundButtonStyle"        class="lunas.components.buttons.BackgroundButtonStyle" />
+    <component id="lunas.components.buttons:BitmapFilterButton"           class="lunas.components.buttons.BitmapFilterButton" />
+    <component id="lunas.components.buttons:BitmapFilterButtonBuilder"    class="lunas.components.buttons.BitmapFilterButtonBuilder" />
+    <component id="lunas.components.buttons:BitmapFilterButtonStyle"      class="lunas.components.buttons.BitmapFilterButtonStyle" />
     <component id="lunas.components.buttons:CoreButton"                   class="lunas.components.buttons.CoreButton" />
     <component id="lunas.components.buttons:CoreButtonBuilder"            class="lunas.components.buttons.CoreButtonBuilder" />
     <component id="lunas.components.buttons:DashboardButton"              class="lunas.components.buttons.DashboardButton" />
