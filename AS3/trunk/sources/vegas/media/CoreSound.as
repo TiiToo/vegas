@@ -418,7 +418,7 @@ package vegas.media
             {
                 dispatchEvent( new ActionEvent( ActionEvent.FINISH , this ) ) ;
             }
-            _finishIt.emit() ;
+            _finishIt.emit( this ) ;
         }
         
         /**
@@ -427,7 +427,7 @@ package vegas.media
         public function notifyStarted():void
         {
             _isRunning = true ;
-            _startIt.emit() ;
+            _startIt.emit( this ) ;
             if ( hasEventListener( ActionEvent.START ) )
             {
                 dispatchEvent( new ActionEvent( ActionEvent.START , this ) ) ;
