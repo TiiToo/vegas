@@ -264,6 +264,7 @@
     <component id="vegas.process.display:FiltersDisplay"                class="vegas.process.display.FiltersDisplay" />
     <component id="vegas.process.display:HideDisplay"                   class="vegas.process.display.HideDisplay"    />
     <component id="vegas.process.display:RemoveChild"                   class="vegas.process.display.RemoveChild"    />
+    <component id="vegas.process.display:RemoveChildAt"                 class="vegas.process.display.RemoveChildAt"  />
     <component id="vegas.process.display:ShowDisplay"                   class="vegas.process.display.ShowDisplay"    />
     <component id="vegas.process.display:SwitchBackgroundGradientColor" class="vegas.process.display.SwitchBackgroundGradientColor" />
     
