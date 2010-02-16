@@ -67,6 +67,15 @@ package vegas.process.display
         public var filters:Array ;
         
         /**
+         * Returns a shallow copy of this object.
+         * @return a shallow copy of this object.
+         */
+        public override function clone():*
+        {
+            return new FiltersDisplay( display , filters ) ;
+        }
+        
+        /**
          * Run the process.
          */
         public override function run( ...arguments:Array ):void 

@@ -69,6 +69,15 @@ package vegas.process.display
         public var target:DisplayObjectContainer ;
         
         /**
+         * Returns a shallow copy of this object.
+         * @return a shallow copy of this object.
+         */
+        public override function clone():*
+        {
+            return new AddChild( target , child ) ;
+        }
+        
+        /**
          * Run the process.
          */
         public override function run( ...arguments:Array ):void 

@@ -61,6 +61,15 @@ package vegas.process.display
         public var display:DisplayObject ;
         
         /**
+         * Returns a shallow copy of this object.
+         * @return a shallow copy of this object.
+         */
+        public override function clone():*
+        {
+            return new ShowDisplay( display ) ;
+        }
+        
+        /**
          * Run the process.
          */
         public override function run( ...arguments:Array ):void 

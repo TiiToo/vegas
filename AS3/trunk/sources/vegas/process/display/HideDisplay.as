@@ -38,9 +38,9 @@
 package vegas.process.display 
 {
     import system.process.Task;
-    
+
     import flash.display.DisplayObject;
-    
+
     /**
      * This process hide a DisplayObject.
      */
@@ -59,6 +59,15 @@ package vegas.process.display
          * The DisplayObject reference.
          */
         public var display:DisplayObject ;
+        
+        /**
+         * Returns a shallow copy of this object.
+         * @return a shallow copy of this object.
+         */
+        public override function clone():*
+        {
+            return new HideDisplay( display ) ;
+        }
         
         /**
          * Run the process.
