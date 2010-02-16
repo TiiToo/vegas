@@ -49,7 +49,7 @@ package vegas.process.display
     {
         /**
          * Creates a new AddChild instance.
-         * @param display The DisplayObjectContainer reference.
+         * @param target The DisplayObjectContainer reference.
          * @param child The child to remove in the target.
          */
         public function AddChild( target:DisplayObjectContainer = null , child:DisplayObject = null )
