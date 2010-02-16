@@ -35,14 +35,14 @@
 package examples 
 {
     import system.events.ActionEvent;
-
+    
     import vegas.date.Time;
     import vegas.events.SoundEvent;
     import vegas.media.CoreSound;
-
+    
     import flash.display.MovieClip;
     import flash.events.Event;
-
+    
     public dynamic class CoreSound01Example extends MovieClip 
     {
         public function CoreSound01Example()

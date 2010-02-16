@@ -59,7 +59,8 @@ package vegas.media
     import flash.media.SoundTransform;
     import flash.net.URLRequest;
     import flash.utils.Timer;
-    
+    import flash.utils.getDefinitionByName;
+
     /**
      * The CoreSound class extends the flash.media.Sound class and implements the IConfigurable, Identifiable, Lockable and ILogable interfaces.
      * <p><b>Example :</b></p>
@@ -365,7 +366,8 @@ package vegas.media
          */
         public function clone():*
         {
-            return new CoreSound() ;
+            var clazz:Class = getDefinitionByName( Reflection.getClassPath( this ) ) as Class ;
+            return new clazz() ;
         }
         
         /**
