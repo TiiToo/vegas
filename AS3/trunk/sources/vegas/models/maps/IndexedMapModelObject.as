@@ -178,6 +178,30 @@ package vegas.models.maps
         }
         
         /**
+         * Returns the ValueObject registerd in the model at the specified numeric index (int).
+         * <p><b>Example :</b></p>
+         * <pre class="prettyprint">
+         * import vegas.models.maps.IndexedMapModelObject;
+         * import vegas.vo.FilterVO;
+         * 
+         * var model:IndexedMapModelObject = new IndexedMapModelObject() ;
+         *  
+         * for (var i:int ; i<4 ; i++ ) 
+         * {
+         *     model.addVO( new FilterVO( { id : i , filter : i << 1 } ) ) ;
+         * }
+         * 
+         * trace( "model.getAt(1) : " + model.getAt(1) ) ; // model.getAt(1) : [FilterVO:2]
+         * trace( "model.getAt(9) : " + model.getAt(9) ) ; // model.getAt(9) : null
+         * </pre>
+         * @return the ValueObject registerd in the model at the specified numeric index (int).
+         */
+        public function getAt( index:uint ):ValueObject
+        {
+            return (_map as ArrayMap).getValueAt( index ) as ValueObject ;
+        }
+        
+        /**
          * Initialize the internal Map instance in the constructor of the class.
          */
         public override function initializeMap():Map

@@ -58,6 +58,9 @@ package examples
                 model.addVO( new FilterVO( { id : i , filter : i << 1 } ) ) ;
             }
             
+            trace( "model.getAt(1) : " + model.getAt(1) ) ; // model.getAt(1) : [FilterVO:2]
+            trace( "model.getAt(9) : " + model.getAt(9) ) ; // model.getAt(9) : null
+            
             model.index = 0 ;
             
             stage.addEventListener( KeyboardEvent.KEY_DOWN , keyDown ) ;
