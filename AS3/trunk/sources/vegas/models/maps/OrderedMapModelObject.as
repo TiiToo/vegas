@@ -37,12 +37,81 @@
 
 package vegas.models.maps 
 {
+    import system.data.Map;
     import system.data.ValueObject;
     import system.data.iterators.PageByPageIterator;
     import system.data.maps.ArrayMap;
     
     /**
      * This map model object is ordered with a previous and next methods inside.
+     * <p><b>Example :</b></p>
+     * <pre class="prettyprint">
+     * package examples
+     * {
+     *     import vegas.events.ModelObjectEvent;
+     *     import vegas.models.maps.OrderedMapModelObject;
+     *     import vegas.vo.FilterVO;
+     *     
+     *     import flash.display.Sprite;
+     *     import flash.events.KeyboardEvent;
+     *     import flash.ui.Keyboard;
+     *     
+     *     public class OrderedMapModelObjectExample extends Sprite 
+     *     {
+     *         public function OrderedMapModelObjectExample()
+     *         {
+     *             model = new OrderedMapModelObject() ;
+     *             
+     *             model.addEventListener( ModelObjectEvent.ADD_VO    , debug ) ;
+     *             model.addEventListener( ModelObjectEvent.CHANGE_VO , debug ) ;
+     *             
+     *             var count:uint = 4 ;
+     *             
+     *             for (var i:int ; i<count ; i++ ) 
+     *             {
+     *                 model.addVO( new FilterVO( { id : i , filter : i << 1 } ) ) ;
+     *             }
+     *             
+     *             model.run() ;
+     *             
+     *             stage.addEventListener( KeyboardEvent.KEY_DOWN , keyDown ) ;
+     *         }
+     *         
+     *         public var model:OrderedMapModelObject ;
+     *         
+     *         public function debug( e:ModelObjectEvent ):void
+     *         {
+     *             trace( "# type:" + e.type + " vo:" + e.getVO() ) ;
+     *         }
+     *         
+     *         public function keyDown( e:KeyboardEvent ):void
+     *         {
+     *             var code:uint = e.keyCode ;
+     *             switch( code )
+     *             {
+     *                 case Keyboard.LEFT :
+     *                 {
+     *                     model.previous() ;
+     *                     trace( "> hasPrevious:" + model.hasPrevious() ) ;
+     *                     break ;
+     *                 }
+     *                 case Keyboard.RIGHT :
+     *                 {
+     *                     model.next() ;
+     *                     trace( "> hasNext:" + model.hasNext() ) ;
+     *                     break ;
+     *                 }
+     *                 case Keyboard.SPACE :
+     *                 {
+     *                     model.loop = !model.loop ;
+     *                     trace( "> loop:" + model.loop ) ;
+     *                     break ;
+     *                 }
+     *             }
+     *         }
+     *     }
+     * }
+     * </pre>
      */
     public class OrderedMapModelObject extends MapModelObject
     {
@@ -115,6 +184,14 @@ package vegas.models.maps
             {
                 return false ;
             }
+        }
+        
+        /**
+         * Initialize the internal Map instance in the constructor of the class.
+         */
+        public override function initializeMap():Map
+        {
+            return new ArrayMap() ;
         }
         
         /**
