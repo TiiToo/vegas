@@ -188,23 +188,23 @@ package vegas.display
          */
         private function _refreshCursor():void
         {
-            if ( cursor != null && contains(cursor) )
+            Mouse.show() ;
+            if ( cursor )
             {
-                if ( _magnetic )
+                cursor.stopDrag() ;
+                if ( contains(cursor) )
                 {
-                    cursor.startDrag(true) ;
-                    Mouse.hide() ;
+                    if ( _magnetic )
+                    {
+                        cursor.startDrag(true) ;
+                        Mouse.hide() ;
+                    }
+                    else
+                    {
+                        cursor.x = w / 2 ;
+                        cursor.y = h / 2 ;
+                    }
                 }
-                else
-                {
-                    Mouse.show() ;
-                    cursor.stopDrag() ;
-                }
-            }
-            if ( cursor != null && _magnetic == false )
-            {
-                cursor.x = w / 2 ;
-                cursor.y = h / 2 ;
             }
         }
     }
