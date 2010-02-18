@@ -40,9 +40,70 @@ package vegas.models.maps
     import system.data.Map;
     import system.data.ValueObject;
     import system.data.maps.ArrayMap;
+    import system.numeric.Mathematics;
     
     /**
-     * This map model object is indexed and you can select all value objects register in it with the basic <code>index</code> property.
+     * This map model is indexed and you can select all value objects register with the basic <code>index</code> (int) property.
+     * <p><b>Example :</b></p>
+     * <pre class="prettyprint">
+     * package examples
+     * {
+     *     import vegas.events.ModelObjectEvent;
+     *     import vegas.models.maps.IndexedMapModelObject;
+     *     import vegas.vo.FilterVO;
+     *     
+     *     import flash.display.Sprite;
+     *     import flash.events.KeyboardEvent;
+     *     import flash.ui.Keyboard;
+     *     
+     *     public class IndexedMapModelObjectExample extends Sprite 
+     *     {
+     *         public function IndexedMapModelObjectExample()
+     *         {
+     *             model = new IndexedMapModelObject() ;
+     *             
+     *             model.addEventListener( ModelObjectEvent.ADD_VO    , debug ) ;
+     *             model.addEventListener( ModelObjectEvent.CHANGE_VO , debug ) ;
+     *             
+     *             var count:uint = 4 ;
+     *             
+     *             for (var i:int ; i<count ; i++ ) 
+     *             {
+     *                 model.addVO( new FilterVO( { id : i , filter : i << 1 } ) ) ;
+     *             }
+     *             
+     *             model.index = 0 ;
+     *             
+     *             stage.addEventListener( KeyboardEvent.KEY_DOWN , keyDown ) ;
+     *         }
+     *         
+     *         public var model:IndexedMapModelObject ;
+     *         
+     *         public function debug( e:ModelObjectEvent ):void
+     *         {
+     *             trace( "# type:" + e.type + " vo:" + e.getVO() + " index:" + model.index ) ;
+     *         }
+     *         
+     *         public function keyDown( e:KeyboardEvent ):void
+     *         {
+     *             var code:uint = e.keyCode ;
+     *             switch( code )
+     *             {
+     *                 case Keyboard.LEFT :
+     *                 {
+     *                     model.index -- ;
+     *                     break ;
+     *                 }
+     *                 case Keyboard.RIGHT :
+     *                 {
+     *                     model.index ++ ;
+     *                     break ;
+     *                 }
+     *             }
+     *         }
+     *     }
+     * }
+     * </pre>
      */
     public class IndexedMapModelObject extends MapModelObject 
     {
@@ -70,9 +131,10 @@ package vegas.models.maps
          */
         public function set index( value:int ):void
         {
-            if( value < 0 || value >= size() )
+            value = Mathematics.clamp( value , 0 , _map.size() - 1 ) ;
+            if ( value == _index )
             {
-                return;
+                return ;
             }
             var m:ArrayMap    = getMap() as ArrayMap ;
             var v:ValueObject = m.getValueAt( value ) as ValueObject ;
