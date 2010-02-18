@@ -131,7 +131,21 @@ package vegas.models.maps
          */
         public function set index( value:int ):void
         {
-            value = Mathematics.clamp( value , 0 , _map.size() - 1 ) ;
+            if ( loop )
+            {
+                if ( value < 0 )
+                {
+                    value = _map.size() - 1 ;
+                }
+                else if ( value > _map.size() - 1 )
+                {
+                    value = 0 ;
+                }
+            }
+            else
+            {
+                value = Mathematics.clamp( value , 0 , _map.size() - 1 ) ;
+            }
             if ( value == _index )
             {
                 return ;
@@ -148,6 +162,11 @@ package vegas.models.maps
                 _index = -1 ;
             }
         }
+        
+        /**
+         * Indicates if index attribute loop when this value is out of the range (between 0 and the size()-1).
+         */
+        public var loop:Boolean = false ;
         
         /**
          * Clear the model.

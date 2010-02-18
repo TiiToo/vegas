@@ -85,6 +85,10 @@ package examples
                     model.index ++ ;
                     break ;
                 }
+                case Keyboard.SPACE :
+                {
+                    model.loop = !model.loop ;
+                }
             }
         }
     }
