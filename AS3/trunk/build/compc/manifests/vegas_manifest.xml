@@ -206,9 +206,10 @@
     
     <!-- vegas.models.maps -->
     
-    <component id="vegas.models.maps:InitMapModelObject" class="vegas.models.maps.InitMapModelObject" />
-    <component id="vegas.models.maps:MapModel"           class="vegas.models.maps.MapModel" />
-    <component id="vegas.models.maps:MapModelObject"     class="vegas.models.maps.MapModelObject" />
+    <component id="vegas.models.maps:InitMapModelObject"    class="vegas.models.maps.InitMapModelObject" />
+    <component id="vegas.models.maps:MapModel"              class="vegas.models.maps.MapModel" />
+    <component id="vegas.models.maps:MapModelObject"        class="vegas.models.maps.MapModelObject" />
+    <component id="vegas.models.maps:OrderedMapModelObject" class="vegas.models.maps.OrderedMapModelObject" />
     
     <!-- vegas.models.queues -->
     
