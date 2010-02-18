@@ -336,7 +336,7 @@ package vegas.models.maps
         
         /**
          * Update a value object in the model.
-         * @throws Warning if the value object passed-in argument don't exist.
+         * @throws ArgumentError if the value object passed-in argument don't exist.
          */
         public function updateVO( vo:ValueObject ):void
         {

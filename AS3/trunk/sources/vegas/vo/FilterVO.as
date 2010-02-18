@@ -110,7 +110,7 @@ package vegas.vo
         public function contains( value:Number ) : Boolean
         {
             return Boolean( value & getFilter() ) ;
-        }    
+        }
         
         /**
          * Returns the current filter value of this object.
