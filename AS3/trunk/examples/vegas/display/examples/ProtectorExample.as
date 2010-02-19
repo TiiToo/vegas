@@ -36,15 +36,15 @@
 package examples 
 {
     import graphics.FillStyle;
-
+    
     import vegas.display.Protector;
-
+    
     import flash.display.MovieClip;
     import flash.display.StageAlign;
     import flash.display.StageScaleMode;
     import flash.events.KeyboardEvent;
     import flash.ui.Keyboard;
-
+    
     /**
      * Example to test the Protector class.
      */
@@ -55,13 +55,11 @@ package examples
             stage.align     = StageAlign.TOP_LEFT ;
             stage.scaleMode = StageScaleMode.NO_SCALE ;
             
-            protect = new Protector() ;
-            
+            protect        = new Protector() ;
             protect.cursor = new Cursor() ;
+            protect.fill   = new FillStyle( 0xD97BD0 , 0.2 ) ;
             
             addChild( protect ) ;
-            
-            protect.fill = new FillStyle( 0xD97BD0 , 0.2 ) ;
             
             stage.addEventListener( KeyboardEvent.KEY_DOWN , keyDown ) ;
         }
@@ -76,6 +74,11 @@ package examples
                 case Keyboard.SPACE :
                 {
                     protect.magnetic = !protect.magnetic ;
+                    if ( contains(protect) )
+                    {
+                        removeChild( protect ) ;
+                    }
+                    addChild( protect ) ;
                     break ;
                 }
             }

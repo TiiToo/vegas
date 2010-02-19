@@ -75,14 +75,18 @@ package vegas.display
     {
         /**
          * Creates a new Protector instance.
-         * @param id Indicates the id of the object.
-         * @param isFull Indicates if the display is full size or not (default <code class="prettyprint">true</code>).
-         * @param name Indicates the instance name of the object.
+         * @param cursor The optional cursor reference.
+         * @param magnetic Indicates the magnetic state value of the cursor.
          */
-        public function Protector(id:* = null, isFull:Boolean = true, name:String = null)
+        public function Protector( cursor:Sprite = null , magnetic:Boolean = false )
         {
-            super(id, isFull, name);
-            autoSize = true ; // default
+            lock() ;
+            super( null , true );
+            this.cursor   = cursor ;
+            this.magnetic = magnetic ;
+            autoSize      = true ;
+            unlock() ;
+            update() ;
         }
         
         /**
@@ -112,29 +116,18 @@ package vegas.display
         /**
          * Indicates the magnetic state value of the cursor.
          */
-        public function get magnetic():Boolean
-        {
-            return _magnetic ;
-        }
-        
-        /**
-         * @private
-         */
-        public function set magnetic( b:Boolean ):void
-        {
-            _magnetic = b ;
-            _refreshCursor() ;
-        }
+        public var magnetic:Boolean ;
         
         /**
          * This method is invoked after the draw() method in the update() method.
          */
         public override function viewChanged():void
         {
-            if ( cursor != null && _magnetic == false )
+            if ( cursor )
             {
                 cursor.x = w / 2 ;
                 cursor.y = h / 2 ;
+                trace(cursor.x + " :: " + cursor.y ) ;
             }
         }
         
@@ -144,15 +137,17 @@ package vegas.display
         protected override function addedToStage( e:Event = null ):void
         {
             super.addedToStage(e) ;
-            if ( cursor != null )
+            Mouse.hide() ;
+            if ( cursor )
             {
-               addChild( cursor ) ;
-               if( cursor is MovieClip )
-               {
-                   (cursor as MovieClip).play() ;
-               }
-               _refreshCursor() ;
-            }
+                addChild( cursor ) ;
+                update() ;
+                if( cursor is MovieClip )
+                {
+                    ( cursor as MovieClip ).play() ;
+                }
+                stage.addEventListener( Event.ENTER_FRAME , refreshCursor ) ;
+            } 
         }
         
         /**
@@ -162,49 +157,38 @@ package vegas.display
         {
             super.removedFromStage(e) ;
             Mouse.show() ;
-            if ( cursor != null && contains(cursor) )
+            if( cursor )
             {
-               if( cursor is MovieClip )
-               {
-                   (cursor as MovieClip).stop() ;
-               }
-               removeChild( cursor ) ;
-               _refreshCursor() ;
+                if( cursor is MovieClip )
+                {
+                    (cursor as MovieClip).stop() ;
+                }
+                if( contains( cursor ) )
+                {
+                    removeChild( cursor ) ;
+                }
             }
+            stage.removeEventListener( Event.ENTER_FRAME , refreshCursor ) ;
         }
         
         /**
          * @private
          */
-        private var _cursor:Sprite ;
+        protected var _cursor:Sprite ;
         
         /**
          * @private
          */
-        private var _magnetic:Boolean ;
-        
-        /**
-         * @private
-         */
-        private function _refreshCursor():void
+        protected function refreshCursor( e:Event = null ):void
         {
-            Mouse.show() ;
-            if ( cursor )
+            if ( cursor && magnetic )
             {
-                cursor.stopDrag() ;
-                if ( contains(cursor) )
-                {
-                    if ( _magnetic )
-                    {
-                        cursor.startDrag(true) ;
-                        Mouse.hide() ;
-                    }
-                    else
-                    {
-                        cursor.x = w / 2 ;
-                        cursor.y = h / 2 ;
-                    }
-                }
+                cursor.x = mouseX ;
+                cursor.y = mouseY ;
+            }
+            else
+            {
+                //
             }
         }
     }

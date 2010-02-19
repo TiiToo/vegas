@@ -107,7 +107,7 @@ package vegas.managers
         public function set cursorPolicy( b:Boolean ):void
         {
             _cursorPolicy = b ;
-            if ( protector != null && protector.cursor != null )
+            if ( protector  && protector.cursor )
             {
             	protector.cursor.visible = _cursorPolicy ;
             }
@@ -131,7 +131,7 @@ package vegas.managers
             {
                 _enabled = 0 ;
             }
-            if ( root != null && protector != null )
+            if ( root && protector )
             {
                 if ( enabled )
                 {
@@ -171,9 +171,9 @@ package vegas.managers
             _protector = display ;
             if ( _protector != null && _protector.cursor != null )
             {
-            	_protector.cursor.visible = _cursorPolicy ;
+                _protector.cursor.visible = _cursorPolicy ;
             }
-        }        
+        }
         
         /**
          * The root reference of the manager.
