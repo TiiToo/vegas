@@ -41,7 +41,7 @@ package vegas.display
     import flash.display.Sprite;
     import flash.events.Event;
     import flash.ui.Mouse;
-    
+
     /**
      * This display protect the application with a stage.align mode "top left".
      * <p><b>Example :</b></p>
@@ -116,7 +116,26 @@ package vegas.display
         /**
          * Indicates the magnetic state value of the cursor.
          */
-        public var magnetic:Boolean ;
+        public function get magnetic():Boolean
+        {
+            return _magnetic ; 
+        }
+        
+        /**
+         * @private
+         */
+        public function set magnetic( b:Boolean ):void
+        {
+            if (_magnetic == b)
+            {
+                return ;
+            }
+            _magnetic = b ;
+            if ( !_magnetic )
+            {
+                viewChanged() ;
+            }
+        }
         
         /**
          * This method is invoked after the draw() method in the update() method.
@@ -127,7 +146,6 @@ package vegas.display
             {
                 cursor.x = w / 2 ;
                 cursor.y = h / 2 ;
-                trace(cursor.x + " :: " + cursor.y ) ;
             }
         }
         
@@ -175,6 +193,11 @@ package vegas.display
          * @private
          */
         protected var _cursor:Sprite ;
+        
+        /**
+         * @private
+         */
+        protected var _magnetic:Boolean ;
         
         /**
          * @private

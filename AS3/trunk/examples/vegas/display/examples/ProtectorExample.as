@@ -74,11 +74,6 @@ package examples
                 case Keyboard.SPACE :
                 {
                     protect.magnetic = !protect.magnetic ;
-                    if ( contains(protect) )
-                    {
-                        removeChild( protect ) ;
-                    }
-                    addChild( protect ) ;
                     break ;
                 }
             }
