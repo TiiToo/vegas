@@ -49,16 +49,6 @@ package vegas.net.remoting
     public interface IRemotingServiceListener 
     {
         /**
-         * The RemotingService reference of this listener.
-         */
-        function get service():RemotingService ;
-        
-        /**
-         * @private
-         */
-        function set service( service:RemotingService ):void ;
-        
-        /**
          * Invoked when the service notify an error.
          */
         function error( e:RemotingEvent ):void ;
@@ -74,9 +64,10 @@ package vegas.net.remoting
         function finish( e:ActionEvent ):void ;
         
         /**
-         * Registers the specified service.
+         * Registers the specific remoting service.
+         * @return True if the service is registered.
          */
-        function registerService( service:RemotingService ):void ;
+        function registerService( service:RemotingService ):Boolean ;
         
         /**
          * Invoked when the service notify a success.
@@ -94,9 +85,9 @@ package vegas.net.remoting
         function timeout( e:ActionEvent ):void ;
         
         /**
-         * Unregister the service register in this listener.
-         * @return True if the unregister is success.
+         * Unregister the passed-in service.
+         * @return True if the service is unregister with success.
          */
-        function unregisterService():Boolean ;
+        function unregisterService( service:RemotingService ):Boolean ;
     }
 }

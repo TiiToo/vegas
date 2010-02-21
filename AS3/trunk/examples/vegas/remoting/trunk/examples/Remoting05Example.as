@@ -61,7 +61,7 @@ package examples
             
             //////////////
             
-            var gatewayUrl:String  = "http://localhost/vegas/php/gateway.php" ;
+            var gatewayUrl:String  = "http://localhost:8888/vegas/php/gateway.php" ;
             var serviceName:String = "Test"  ;
             
             var service:RemotingService = new RemotingService( gatewayUrl , serviceName ) ;

@@ -280,12 +280,12 @@ package vegas.net.remoting
          */
         public function set listener( listener:IRemotingServiceListener ):void
         {
-            if ( _listener != null )
+            if ( _listener )
             {
-                _listener.unregisterService() ;
+                _listener.unregisterService(this) ;
             }
             _listener = listener ;
-            if ( _listener != null )
+            if ( _listener )
             {
                 _listener.registerService(this) ;
             }
