@@ -24,11 +24,11 @@
 package observer.model
 {
     import observer.events.PictureModelEvent;
-    
+
+    import system.broadcasters.MessageBroadcaster;
     import system.data.Iterator;
     import system.data.Set;
     import system.data.sets.HashSet;
-    import system.events.MessageBroadcaster;
     import system.process.Runnable;
     
     /**

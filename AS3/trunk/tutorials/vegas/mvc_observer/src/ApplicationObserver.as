@@ -131,7 +131,7 @@ package
                         break ;
                     }
                     case Keyboard.DELETE :
-                        {
+                    {
                         model.clear() ;
                         break ;
                     }
