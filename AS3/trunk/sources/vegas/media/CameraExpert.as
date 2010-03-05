@@ -50,12 +50,12 @@ package vegas.media
          * @param setting The CameraVO reference to set the current Camera object.
          * @param name Specifies which camera to get, as determined from the array returned by the names property. For most applications, get the default camera by omitting this parameter.
          * @param id the id of the model.
-         * @param bGlobal the flag to use a global event flow or a local event flow.
-         * @param sChannel the name of the global event flow if the <code class="prettyprint">bGlobal</code> argument is <code class="prettyprint">true</code>.
+         * @param global the flag to use a global event flow or a local event flow.
+         * @param channel the name of the global event flow if the <code class="prettyprint">global</code> argument is <code class="prettyprint">true</code>.
          */
-        public function CameraExpert( setting:CameraVO = null , name:*=null , id:* = null , bGlobal:Boolean = false, sChannel:String = null )
+        public function CameraExpert( setting:CameraVO = null , name:*=null , id:* = null , global:Boolean = false, channel:String = null )
         {
-            super( id , bGlobal, sChannel );
+            super( id , global, channel );
             this.setting = setting || DEFAULT_SETTING ;
             setCamera(name) ;
         }

@@ -61,7 +61,7 @@ package vegas.media
         /**
          * The NellyMoser audio codec value.
          */
-        public static const NELLY_MOSER:Number = 6 ;        
+        public static const NELLY_MOSER:Number = 6 ;
         
         /**
          * The Nellymoser, 8kHz mono audio codec value.
@@ -71,12 +71,12 @@ package vegas.media
         /**
          * The Nellymoser @ 16 kHz mono audio codec value.
          */
-        public static const NELLY_MOSER_16:Number = 4 ;        
-
+        public static const NELLY_MOSER_16:Number = 4 ;
+        
         /**
          * The Speex audio codec value.
          */
-        public static const SPEEX:Number = 11 ;         
+        public static const SPEEX:Number = 11 ;
         
         /**
          * The Uncompressed audio codec value.
