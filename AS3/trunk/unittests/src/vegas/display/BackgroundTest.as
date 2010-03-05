@@ -101,26 +101,26 @@ package vegas.display
             assertFalse( background.autoSize ) ; 
         }
         
-        public function testRadius():void
+        public function testSetCornerRadius():void
         {
-            background.radius = -10 ;
+            background.setCornerRadius( -10 ) ;
             assertEquals( 0 , background.bottomLeftRadius ) ;
             assertEquals( 0 , background.bottomRightRadius ) ;
             assertEquals( 0 , background.topLeftRadius ) ;
             assertEquals( 0 , background.topRightRadius ) ;
-            background.radius = 0 ;
+            background.setCornerRadius( 0 ) ;
             assertEquals( 0 , background.bottomLeftRadius ) ;
             assertEquals( 0 , background.bottomRightRadius ) ;
             assertEquals( 0 , background.topLeftRadius ) ;
             assertEquals( 0 , background.topRightRadius ) ;
-            background.radius = 20 ;
+            background.setCornerRadius( 20 ) ;
             assertEquals( 20 , background.bottomLeftRadius ) ;
             assertEquals( 20 , background.bottomRightRadius ) ;
             assertEquals( 20 , background.topLeftRadius ) ;
             assertEquals( 20 , background.topRightRadius ) ;
-            background.radius = 10 ;
+            background.setCornerRadius( 10 ) ;
             assertEquals( 10 , background.bottomLeftRadius ) ;            assertEquals( 10 , background.bottomRightRadius ) ;            assertEquals( 10 , background.topLeftRadius ) ;            assertEquals( 10 , background.topRightRadius ) ;
-            background.radius = 20 ;
+            background.setCornerRadius( 20 ) ;
             assertEquals( 20 , background.bottomLeftRadius ) ;
             assertEquals( 20 , background.bottomRightRadius ) ;
             assertEquals( 20 , background.topLeftRadius ) ;

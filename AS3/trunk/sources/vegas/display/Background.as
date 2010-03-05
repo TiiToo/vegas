@@ -442,18 +442,6 @@ package vegas.display
         }
         
         /**
-         * Defines all corner radius (upper-left, upper-right, bottom-left and bottom-right). 
-         */
-        public function set radius( n:Number ):void
-        {
-            _bottomLeftRadius = 
-                _bottomRightRadius = 
-                    _topLeftRadius = 
-                        _topRightRadius = n > 0 ? n : 0 ;
-            update() ;
-        }
-        
-        /**
          * The radius of the upper-left corner, in pixels.
          */
         public function get topLeftRadius():Number
@@ -606,6 +594,18 @@ package vegas.display
          */
         public function resize( e:Event = null ):void
         {
+            update() ;
+        }
+        
+        /**
+         * Defines all corner radius of the background (upper-left, upper-right, bottom-left and bottom-right). 
+         */
+        public function setCornerRadius( n:Number ):void
+        {
+            _bottomLeftRadius  = 
+            _bottomRightRadius = 
+            _topLeftRadius     = 
+            _topRightRadius    = n > 0 ? n : 0 ;
             update() ;
         }
         
