@@ -343,7 +343,7 @@ package vegas.net
         
         addMimeType("text/calendar", "ics", "ifb") ;
         addMimeType("text/css", "css") ;
-        addMimeType("text/ecmascript" , "eden" ) ;
+        addMimeType("text/ecmascript" , "es" , "eden" ) ;
         addMimeType("text/javascript" , "js" ) ;
         addMimeType("text/html", "html", "htm") ;
         addMimeType("text/plain", "txt", "asc", "m", "hh", "h", "f", "f90", "cc", "c", "asc txt") ;
