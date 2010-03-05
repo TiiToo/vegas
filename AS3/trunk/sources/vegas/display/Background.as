@@ -421,7 +421,7 @@ package vegas.display
         }
         
         /**
-         * This property defined the maximum width of this display.
+         * Defines the maximum width of this display.
          */
         public function get maxWidth():Number
         {
@@ -438,6 +438,18 @@ package vegas.display
             {
                 _maxWidth = _minWidth ;
             }
+            update() ;
+        }
+        
+        /**
+         * Defines all corner radius (upper-left, upper-right, bottom-left and bottom-right). 
+         */
+        public function set radius( n:Number ):void
+        {
+            _bottomLeftRadius = 
+                _bottomRightRadius = 
+                    _topLeftRadius = 
+                        _topRightRadius = n > 0 ? n : 0 ;
             update() ;
         }
         
