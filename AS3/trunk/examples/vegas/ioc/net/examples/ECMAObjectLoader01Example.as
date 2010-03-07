@@ -53,6 +53,8 @@ package examples
         {
             var loader:ECMAObjectLoader = new ECMAObjectLoader( "hello_world.eden" , "context/" ) ;
             
+            loader.verbose = true ;
+            
             loader.root = this ;
             
             loader.addEventListener( ActionEvent.START  , debug ) ;

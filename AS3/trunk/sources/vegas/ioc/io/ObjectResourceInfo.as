@@ -156,7 +156,7 @@ package vegas.ioc.io
         hack function registerLoader( loader:CoreActionLoader ):void
         {
             unregisterLoader() ;
-            if ( loader != null )
+            if ( loader )
             {
                 _loader = loader ; 
                 _loader.addEventListener( Event.COMPLETE                    , fireEvent , false, 9999, true ) ;
@@ -174,7 +174,7 @@ package vegas.ioc.io
          */
         hack function unregisterLoader():void
         {
-            if ( _loader != null )
+            if ( _loader )
             { 
                 _loader.removeEventListener( Event.COMPLETE                    , fireEvent , false ) ;
                 _loader.removeEventListener( HTTPStatusEvent.HTTP_STATUS       , fireEvent , false) ;

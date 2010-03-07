@@ -40,9 +40,10 @@ package vegas.ioc.net
     import system.data.maps.HashMap;
     import system.events.ActionEvent;
     import system.hack;
+    import system.process.Action;
     import system.process.ActionURLLoader;
+    import system.process.Chain;
     import system.process.CoreActionLoader;
-    import system.process.Sequencer;
     import system.process.Task;
     
     import vegas.Factory;
@@ -79,11 +80,12 @@ package vegas.ioc.net
             _info      = new ObjectResourceInfo() ;
             _resources = new HashMap() ; 
             
-            sequencer = new Sequencer() ;
+            sequencer      = new Chain() ;
+            sequencer.mode = Chain.TRANSIENT ;
             
-            sequencer.addEventListener( ActionEvent.FINISH   , _finishSequencer   , false, 0 , true ) ;
-            sequencer.addEventListener( ActionEvent.PROGRESS , _progressSequencer , false, 0 , true ) ;
-            sequencer.addEventListener( ActionEvent.START    , _startSequencer    , false, 0 , true ) ;
+            sequencer.finishIt.connect( finish ) ;
+            sequencer.progressIt.connect( progress ) ;
+            sequencer.startIt.connect( start ) ;
         }
         
         /**
@@ -148,7 +150,6 @@ package vegas.ioc.net
             return _info ;
         }
         
-        
         /**
          * The root reference of the application. 
          * This property is optional and can be target in the IoC factory with the "ref" attribute with the value "#root".
@@ -196,7 +197,7 @@ package vegas.ioc.net
             objects  = [] ;
             _first   = true ;
             _resources.clear() ;
-            sequencer.clear() ;
+            sequencer.length = 0 ;
         }
         
         /**
@@ -235,15 +236,15 @@ package vegas.ioc.net
             }
             addResource( new ContextResource( { resource:context } ) ) ;
             notifyStarted() ;
-            _runSequencer() ;
+            execute() ;
         }
         
         /**
-         * Register the current factory referenceof this loader. 
+         * Register the current factory reference of this loader. 
          */
         public function registerFactory():void
         {
-            if ( _factory != null && _isRegister == false )
+            if ( _factory && !_isRegister )
             {
                 _isRegister = true ;
                 _factory.addEventListener( ActionEvent.FINISH , complete ) ;
@@ -255,7 +256,7 @@ package vegas.ioc.net
          */
         public function unregisterFactory():void
         {
-            if ( _factory != null && _isRegister )
+            if ( _factory && _isRegister )
             {
                 _isRegister = false  ;
                 _factory.removeEventListener( ActionEvent.FINISH , complete ) ;
@@ -265,14 +266,19 @@ package vegas.ioc.net
         ///////// protected
         
         /**
-         * The array representation of the object definitions to insert in the IOC factory container.
+         * The array representation of the object definitions to insert in the IoC factory container.
+         */
+        protected var current:CoreActionLoader ;
+        
+        /**
+         * The array representation of the object definitions to insert in the IoC factory container.
          */
         protected var objects:Array ;
         
         /**
          * The internal sequencer of the factory loader. (Use it to load multiple context files).
          */
-        protected var sequencer:Sequencer ;
+        protected var sequencer:Chain ;
         
         /**
          * This method is the strategy to insert a new ObjectResource in the sequencer. 
@@ -283,7 +289,7 @@ package vegas.ioc.net
             if ( resource != null && resource.type != null )
             {
                 var loader:CoreActionLoader = resource.create() as CoreActionLoader ;
-                if ( loader != null )
+                if ( loader )
                 {
                     _resources.put( loader , resource ) ;
                     return sequencer.addAction( loader ) ;
@@ -312,8 +318,125 @@ package vegas.ioc.net
             notifyFinished() ;
         }
         
+        /**
+         * @private
+         */
+        protected function execute():void
+        {
+            var loader:CoreActionLoader = sequencer.element() as CoreActionLoader ; 
+            _info.registerLoader( loader ) ;
+            _info.resource = _resources.get( loader ) as ObjectResource ;
+            sequencer.run() ;
+        }
+        
+        /**
+         * @private
+         */
+        protected function finish( action:Action ):void
+        {
+            if ( current )
+            {
+                var resource:ObjectResource = _resources.remove( current ) ;
+                initResource( resource , current ) ;
+                current = null ;
+            }
+            
+            if ( verbose )
+            {
+                logger.debug(this + " finish : " + action ) ;
+            }
+            
+            // imports
+            
+            if ( _imports != null && _imports.length > 0 )
+            {
+                var i:int ;
+                var size:int = _imports.length ;
+                for ( ; i<size ; i++ )
+                {
+                    addResource( _imports[i] as ObjectResource ) ;
+                }
+                _imports = [] ;
+            }
+            
+            // next
+            
+            if ( sequencer.length > 0 )
+            {
+                execute() ;
+            }
+            else
+            {
+                _info.unregisterLoader() ;
+                _info.resource = null ;
+                create() ;
+            }
+        }
+        
+        /**
+         * @private
+         */
+        protected function initResource( resource:ObjectResource , action:CoreActionLoader ):void
+        {
+            // trace(this + " init resource :: + " + action.request.url + " :: " + resource ) ;
+            if ( resource )
+            {
+                try
+                {
+                    if ( resource is ContextResource )
+                    {
+                        _checkContext( ( action as ActionURLLoader ).data ) ;
+                    }
+                    else
+                    {
+                        resource.initialize() ;
+                    }
+                }
+                catch( e:Error )
+                {
+                    if ( verbose )
+                    {
+                        logger.error( this + " init resource failed : " + resource ) ;
+                    }
+                }
+            }
+        }
+        
+        /**
+         * @private
+         */
+        protected function progress( action:Action ):void
+        {
+            if ( current )
+            {
+                var resource:ObjectResource = _resources.remove( current ) ;
+                initResource( resource , current ) ;
+            }
+            if ( verbose )
+            {
+                logger.debug( this + " progress : " + action ) ;
+            }
+            current = sequencer.current as CoreActionLoader ;
+            _info.registerLoader( current ) ;
+            _info.resource = _resources.get( current ) as ObjectResource ;
+        }
+        
+        /**
+         * @private
+         */
+        protected function start( action:Action ):void
+        {
+            if ( verbose )
+            {
+                logger.debug(this + " start : " + action) ;
+            }
+            current  = null ;
+            _imports = [] ;
+            registerFactory() ;
+        }
+        
         ///////// private
-           
+        
         /**
          * @private
          */
@@ -393,114 +516,6 @@ package vegas.ioc.net
                     }
                 }
             }
-        }
-        
-        /**
-         * @private
-         */
-        private function _finishSequencer( e:ActionEvent ):void
-        {
-            
-            if ( verbose )
-            {
-                logger.debug(this + " finish sequencer : " + e) ;
-            }
-            
-            // imports
-            
-            if ( _imports != null && _imports.length > 0 )
-            {
-                var i:int ;
-                var size:int = _imports.length ;
-                for ( ; i<size ; i++ )
-                {
-                    addResource( _imports[i] as ObjectResource ) ;
-                }
-                _imports = [] ;
-            }
-            
-            // next
-            
-            if ( sequencer.size() > 0 )
-            {
-                _runSequencer() ;
-            }
-            else
-            {
-                _info.unregisterLoader() ;
-                _info.resource = null ;
-                create() ;
-            }
-        }
-        
-        /**
-         * @private
-         */
-        private function _initResource( resource:ObjectResource , action:CoreActionLoader ):void
-        {
-            // trace(this + " progress :: + " + action.request.url + " :: " + resource ) ;
-            if ( resource != null  )
-            {
-                try
-                {
-                    if ( resource is ContextResource )
-                    {
-                        _checkContext( ( action as ActionURLLoader ).data ) ;
-                    }
-                    else
-                    {
-                        resource.initialize() ;
-                    }
-                }
-                catch( e:Error )
-                {
-                    if ( verbose )
-                    {
-                        logger.error( this + " init resource failed : " + resource ) ;
-                    }
-                }
-            }
-        }
-        
-        /**
-         * @private
-         */
-        private function _progressSequencer( e:ActionEvent ):void
-        {
-            if ( verbose )
-            {
-                logger.debug(this + " progress sequencer : " + e) ;
-            }
-            var action:CoreActionLoader = sequencer.current as CoreActionLoader ;
-            var resource:ObjectResource = _resources.remove( action ) ;
-            _initResource( resource , action ) ;
-            var loader:CoreActionLoader = sequencer.element() as CoreActionLoader ; 
-            _info.registerLoader( loader ) ;
-            _info.resource = _resources.get( loader ) as ObjectResource ;
-        }
-        
-        /**
-         * @private
-         */
-        private function _runSequencer():void
-        {
-            var loader:CoreActionLoader = sequencer.element() as CoreActionLoader ; 
-            _info.registerLoader( loader ) ;
-            _info.resource = _resources.get( loader ) as ObjectResource ;
-            sequencer.run() ;
-        }
-        
-        /**
-         * @private
-         */
-        private function _startSequencer( e:ActionEvent ):void
-        {
-            if ( verbose )
-            {
-                logger.debug(this + " start sequencer : " + e) ;
-            }
-            _imports = [] ;
-            registerFactory() ;
         }
     }
 }
