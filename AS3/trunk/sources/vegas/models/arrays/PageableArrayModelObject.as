@@ -61,7 +61,7 @@ package vegas.models.arrays
      *     {
      *         case e is ArrayEvent :
      *         {
-     *             trace( e + " : " + (e as ArrayEvent).getArray() ) ;
+     *             trace( e + " : " + (e as ArrayEvent).array ) ;
      *             break ;
      *         }
      *         case e is ModelObjectEvent :
@@ -214,8 +214,8 @@ package vegas.models.arrays
         }
         
         /**
-         * Returns the event name use in the <code class="prettyprint">addVO</code> method.
-         * @return the event name use in the <code class="prettyprint">addVO</code> method.
+         * Returns the event name use in the <code class="prettyprint">notifyUpdate</code> method.
+         * @return the event name use in the <code class="prettyprint">notifyUpdate</code> method.
          */
         public function getEventTypeUPDATE():String
         {
@@ -291,7 +291,7 @@ package vegas.models.arrays
         }
         
         /**
-         * Notify an <code class="prettyprint">Event</code> when a <code class="prettyprint">IValueObject</code> is inserted in the model. 
+         * Notify an <code class="prettyprint">Event</code> when a <code class="prettyprint">ValueObject</code> is inserted in the model. 
          * If the model countVO value is > 1 notify an ArrayEvent else if the coutVO value is 1 notify a ModelObjectEvent. 
          */ 
         public function notifyUpdate( value:* ):*
@@ -395,7 +395,7 @@ package vegas.models.arrays
         }
         
         /**
-         * Sets the event name use in the <code class="prettyprint">addVO</code> method.
+         * Sets the event name use in the <code class="prettyprint">notifyUpdate</code> method.
          */
         public function setEventTypeUPDATE( type:String ):void
         {
@@ -403,8 +403,8 @@ package vegas.models.arrays
         }
         
         /**
-         * Returns the number of <code class="prettyprint">IValueObject</code> in this model.
-         * @return the number of <code class="prettyprint">IValueObject</code> in this model.
+         * Returns the number of <code class="prettyprint">ValueObject</code> in this model.
+         * @return the number of <code class="prettyprint">ValueObject</code> in this model.
          */
         public function size():uint
         {
