@@ -170,10 +170,10 @@ package vegas.models.maps
                 else if ( model.containsByID( first ) )
                 {
                     model.setCurrentVO( model.getVO( first )  ) ;
-                    if ( cleanFirst )
-                    {
-                        first = null ;
-                    }
+                }
+                if ( cleanFirst )
+                {
+                    first = null ;
                 }
             }
             notifyFinished() ;
