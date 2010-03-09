@@ -131,7 +131,7 @@ package vegas.models.maps
          */
         public function set index( value:int ):void
         {
-            if ( loop )
+            if ( looping )
             {
                 if ( value < 0 )
                 {
@@ -166,7 +166,7 @@ package vegas.models.maps
         /**
          * Indicates if index attribute loop when this value is out of the range (between 0 and the size()-1).
          */
-        public var loop:Boolean = false ;
+        public var looping:Boolean = false ;
         
         /**
          * Clear the model.

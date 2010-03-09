@@ -65,6 +65,11 @@ package vegas.models.maps
         public var autoSelect:Boolean ;
         
         /**
+         * Indicates if the first attribute must be autocleared when the process is finished.
+         */
+        public var cleanFirst:Boolean ;
+        
+        /**
          * The Array representation of all value object. 
          */
         public var datas:Array ;
@@ -165,6 +170,10 @@ package vegas.models.maps
                 else if ( model.containsByID( first ) )
                 {
                     model.setCurrentVO( model.getVO( first )  ) ;
+                    if ( cleanFirst )
+                    {
+                        first = null ;
+                    }
                 }
             }
             notifyFinished() ;

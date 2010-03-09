@@ -88,9 +88,25 @@ package examples
                     model.index ++ ;
                     break ;
                 }
+                case Keyboard.UP :
+                {
+                    model.clear() ;
+                    trace( model.size() ) ;
+                    var count:uint = 4 ; 
+                    for (var i:int ; i<count ; i++ ) 
+                    {
+                        model.addVO( new FilterVO( { id : i , filter : i << 1 } ) ) ;
+                    }
+                    
+                    trace( "model.getAt(1) : " + model.getAt(1) ) ; // model.getAt(1) : [FilterVO:2]
+                    trace( "model.getAt(9) : " + model.getAt(9) ) ; // model.getAt(9) : null
+                    
+                    model.index = 0 ;
+                    break ;
+                }
                 case Keyboard.SPACE :
                 {
-                    model.loop = !model.loop ;
+                    model.looping = !model.looping ;
                 }
             }
         }
