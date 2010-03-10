@@ -75,7 +75,14 @@ package vegas.process.display
         public override function run( ...arguments:Array ):void 
         {
             notifyStarted() ;
-            display.visible = true ;
+            try
+            {
+               display.visible = true ;
+            }
+            catch( e:Error )
+            {
+                logger.warn(this + " run failed, " + e.toString() ) ;
+            }
             notifyFinished() ;
         }
     }

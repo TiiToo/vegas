@@ -77,16 +77,13 @@ package vegas.process.display
         public override function run( ...arguments:Array ):void 
         {
             notifyStarted() ;
-            if ( target != null && child != null && !target.contains( child ) )
+            try
             {
-                try
-                {
-                    target.addChildAt( child , at ) ;
-                }
-                catch( e:Error )
-                {
-                    logger.warn(this + " run failed, " + e.toString() ) ;
-                }
+                target.addChildAt( child , at ) ;
+            }
+            catch( e:Error )
+            {
+                logger.warn(this + " run failed, " + e.toString() ) ;
             }
             notifyFinished() ;
         }

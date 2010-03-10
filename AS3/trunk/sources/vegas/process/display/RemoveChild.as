@@ -83,9 +83,13 @@ package vegas.process.display
         public override function run( ...arguments:Array ):void 
         {
             notifyStarted() ;
-            if ( target != null && target.contains( child ) )
+            try
             {
-                target.removeChild( child ) ;
+               target.removeChild( child ) ;
+            }
+            catch( e:Error )
+            {
+                logger.warn(this + " run failed, " + e.toString() ) ;
             }
             notifyFinished() ;
         }

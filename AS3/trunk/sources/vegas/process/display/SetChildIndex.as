@@ -90,16 +90,13 @@ package vegas.process.display
         public override function run( ...arguments:Array ):void 
         {
             notifyStarted() ;
-            if ( target)
+            try
             {
-                try
-                {
-                    target.setChildIndex( child , index ) ;
-                }
-                catch( e:Error )
-                {
-                    logger.warn(this + " run failed, " + e.toString() ) ;
-                }
+                target.setChildIndex( child , index ) ;
+            }
+            catch( e:Error )
+            {
+                logger.warn(this + " run failed, " + e.toString() ) ;
             }
             notifyFinished() ;
         }
