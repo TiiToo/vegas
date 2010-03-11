@@ -605,9 +605,9 @@ package vegas.ioc.factory
         protected function populateProperties( o:* , definition:IObjectDefinition ):void 
         {
             var properties:Array = definition.getProperties() ;
-            if (properties != null && properties.length > 0)
+            if ( properties && properties.length > 0 )
             {
-                var id:*             = definition.id ;
+                var id:* = definition.id ;
                 var size:int = properties.length ;
                 for( var i:int ; i < size ; i++ )
                 {
@@ -629,14 +629,13 @@ package vegas.ioc.factory
                 warn( this + " populate a new property failed, the object not must be 'null' or 'undefined', see the factory with the object definition '" + id + "'." ) ;
                 return ;
             }
-            var name:String  = prop.name ;
+            var name:String = prop.name ;
             if ( !( name in o ) )
             {
                 warn( this + " populate a new property failed with the name:" + name + ", this property don't exist in the object:" + o + ", see the factory with the object definition '" + id + "'." ) ;
                 return ;
             }
             var value:* = prop.value ;
-            
             if ( o[name] is Function )
             {
                 if( prop.policy == ObjectAttribute.ARGUMENTS )
@@ -669,7 +668,7 @@ package vegas.ioc.factory
                     o[ name ] = value ;
                 }
                 
-                if ( prop.evaluators != null && prop.evaluators.length > 0 )
+                if ( prop.evaluators && prop.evaluators.length > 0 )
                 {
                     o[ name ] = eval( o[ name ] , prop.evaluators ) ;
                 }
