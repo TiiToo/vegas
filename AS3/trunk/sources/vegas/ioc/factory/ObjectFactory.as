@@ -44,7 +44,7 @@ package vegas.ioc.factory
     import system.evaluators.MultiEvaluator;
     import system.events.EventListener;
     import system.process.Lockable;
-
+    
     import vegas.Factory;
     import vegas.ioc.IObjectDefinition;
     import vegas.ioc.IObjectFactory;
@@ -62,9 +62,9 @@ package vegas.ioc.factory
     import vegas.ioc.factory.strategy.ObjectFactoryValue;
     import vegas.ioc.factory.strategy.ObjectStaticFactoryMethod;
     import vegas.ioc.factory.strategy.ObjectStaticFactoryProperty;
-
+    
     import flash.events.IEventDispatcher;
-
+    
     /**
      * The basic Inversion of Control container/factory class.
      * <p><b>Example :</b></p>
@@ -491,8 +491,8 @@ package vegas.ioc.factory
             }
             _e.clear() ;
             var o:* ;
-            var a:Array = [] ;
             var s:int   = evaluators.length ;
+            var a:Array = [] ;
             for ( var i:int = 0 ; i < s ; i++ )
             {
                 o = evaluators[i] ;
@@ -567,7 +567,7 @@ package vegas.ioc.factory
          */
         protected function invokeInitMethod( o:* , definition:IObjectDefinition=null ):void
         {
-            var name:String     = definition.getInitMethodName();
+            var name:String = definition.getInitMethodName();
             if ( name == null && config != null )
             {
                 name = config.defaultInitMethod ;
@@ -768,7 +768,7 @@ package vegas.ioc.factory
          * @private
          */
         private var _e:MultiEvaluator = new MultiEvaluator() ;
-                
+        
         /**
          * @private
          */
