@@ -88,7 +88,7 @@ package vegas.process.display
             }
             catch( e:Error )
             {
-                logger.warn(this + " run failed, " + e.toString() ) ;
+                logger.warn(this + " run failed with the target:" + target + " at:" + at + ", " + e.toString() ) ;
             }
             notifyFinished() ;
         }

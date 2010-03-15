@@ -96,7 +96,7 @@ package vegas.process.display
             }
             catch( e:Error )
             {
-                logger.warn(this + " run failed, " + e.toString() ) ;
+                logger.warn(this + " run failed with the target:" + target + " and to swap the child in the index1:" + index1 + " to the index2:" + index2 + ", " + e.toString() ) ;
             }
             notifyFinished() ;
         }
