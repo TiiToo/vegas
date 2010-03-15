@@ -44,10 +44,11 @@ package vegas.ioc.factory
     import system.evaluators.MultiEvaluator;
     import system.events.EventListener;
     import system.process.Lockable;
-    
+
     import vegas.Factory;
     import vegas.ioc.IObjectDefinition;
     import vegas.ioc.IObjectFactory;
+    import vegas.ioc.MagicReference;
     import vegas.ioc.ObjectArgument;
     import vegas.ioc.ObjectAttribute;
     import vegas.ioc.ObjectDefinitionContainer;
@@ -61,9 +62,9 @@ package vegas.ioc.factory
     import vegas.ioc.factory.strategy.ObjectFactoryValue;
     import vegas.ioc.factory.strategy.ObjectStaticFactoryMethod;
     import vegas.ioc.factory.strategy.ObjectStaticFactoryProperty;
-    
+
     import flash.events.IEventDispatcher;
-    
+
     /**
      * The basic Inversion of Control container/factory class.
      * <p><b>Example :</b></p>
@@ -167,8 +168,8 @@ package vegas.ioc.factory
         /**
          * Indicates if a singleton reference is register in the factory with the specified id. 
          * @param The 'id' of the singleton.
-         * @return <code class="prettyprint">true</code> if the singleton reference exist in the factory. 
-         */     
+         * @return <code class="prettyprint">true</code> if the singleton reference exist in the factory.
+         */
         public function containsSingleton( id:String ):Boolean 
         {
             return singletons.containsKey(id) ;
@@ -629,13 +630,44 @@ package vegas.ioc.factory
                 warn( this + " populate a new property failed, the object not must be 'null' or 'undefined', see the factory with the object definition '" + id + "'." ) ;
                 return ;
             }
+            
             var name:String = prop.name ;
+            var value:*     = prop.value ;
+            
+            //////////// #init magic strategy to populate the property
+            
+            if( name == MagicReference.INIT )
+            {
+                if ( prop.policy == ObjectAttribute.REFERENCE && value is String )
+                {
+                    value = _config.referenceEvaluator.eval( value as String ) ;
+                }
+                else if ( prop.policy == ObjectAttribute.CONFIG )
+                {
+                    value = config.configEvaluator.eval( value as String ) ;
+                }
+                else if ( prop.policy == ObjectAttribute.LOCALE )
+                {
+                    value = config.localeEvaluator.eval( value as String ) ;
+                }
+                if ( prop.evaluators && prop.evaluators.length > 0 )
+                {
+                    value = eval( value , prop.evaluators ) ;
+                }
+                for( var member:String in value )
+                {
+                    o[member] = value[member] ;
+                }
+                return ;
+            }
+            
+            //////////// default strategy to populate the property
+            
             if ( !( name in o ) )
             {
                 warn( this + " populate a new property failed with the name:" + name + ", this property don't exist in the object:" + o + ", see the factory with the object definition '" + id + "'." ) ;
                 return ;
             }
-            var value:* = prop.value ;
             if ( o[name] is Function )
             {
                 if( prop.policy == ObjectAttribute.ARGUMENTS )
@@ -653,25 +685,21 @@ package vegas.ioc.factory
             {
                 if ( prop.policy == ObjectAttribute.REFERENCE && value is String )
                 {
-                    o[ name ] = _config.referenceEvaluator.eval( value as String ) ;
+                    value = _config.referenceEvaluator.eval( value as String ) ;
                 }
                 else if ( prop.policy == ObjectAttribute.CONFIG )
                 {
-                    o[ name ] = config.configEvaluator.eval( value as String ) ;
+                    value = config.configEvaluator.eval( value as String ) ;
                 }
                 else if ( prop.policy == ObjectAttribute.LOCALE )
                 {
-                    o[ name ] = config.localeEvaluator.eval( value as String ) ;
+                    value = config.localeEvaluator.eval( value as String ) ;
                 }
-                else
-                {
-                    o[ name ] = value ;
-                }
-                
                 if ( prop.evaluators && prop.evaluators.length > 0 )
                 {
-                    o[ name ] = eval( o[ name ] , prop.evaluators ) ;
+                    value = eval( value , prop.evaluators ) ;
                 }
+                o[ name ] = value ;
             }
             catch( e:Error )
             {
@@ -751,18 +779,18 @@ package vegas.ioc.factory
             {
                 var clazz:Class  = config.typeEvaluator.eval( definition.getType() ) as Class ;
                 var strategy:IObjectFactoryStrategy = definition.getFactoryStrategy() ;
-                if ( strategy == null )
+                if ( strategy )
                 {
-                    instance = Reflection.invokeClass( clazz , createArguments( definition.getConstructorArguments() ) ) as clazz ;
+                    instance = createObjectWithStrategy( strategy ) as clazz ;
                 }
                 else
                 {
-                    instance = createObjectWithStrategy( strategy ) as clazz ;
+                    instance = Reflection.invokeClass( clazz , createArguments( definition.getConstructorArguments() ) ) as clazz ;
                 }
             }
             catch( e:TypeError )
             {
-                warn(this + " createObject failed, can't convert the instance with the specified type \"" + definition.getType() + "\" in the object definition \"" + definition.id + "\", this type don't exist in the application.") ;   
+                warn(this + " createObject failed, can't convert the instance with the specified type \"" + definition.getType() + "\" in the object definition \"" + definition.id + "\", this type don't exist in the application.") ;
             }
             return instance ;
         } 

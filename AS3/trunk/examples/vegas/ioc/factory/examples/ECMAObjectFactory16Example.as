@@ -35,10 +35,10 @@
 package examples 
 {
     import vegas.ioc.factory.ECMAObjectFactory;
-
+    
     import flash.display.Sprite;
     import flash.events.Event;
-
+    
     public class ECMAObjectFactory16Example extends Sprite 
     {
         public function ECMAObjectFactory16Example()
