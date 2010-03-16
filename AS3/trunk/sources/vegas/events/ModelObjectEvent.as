@@ -49,7 +49,6 @@ package vegas.events
      */
     public class ModelObjectEvent extends BasicEvent
     {
-        
         /**
          * Creates a new ModelObjectEvent instance.
          * @param type the type of the event.
@@ -70,7 +69,7 @@ package vegas.events
         }
         
         /**
-         * Default event type when an <code class="prettyprint">IValueObject</code> is inserted in a model.
+         * Default event type when the <code class="prettyprint">ValueObject</code> is inserted in a model.
          */
         public static var ADD_VO:String = "addVO" ;
         
@@ -80,7 +79,7 @@ package vegas.events
         public static var BEFORE_CHANGE_VO:String = "beforeChangeVO" ;
         
         /**
-         * Default event type when all <code class="prettyprint">IValueObject</code> in a model are deleted.
+         * Default event type when all <code class="prettyprint">ValueObject</code> in a model are deleted.
          */
         public static var CLEAR_VO:String = "clearVO" ;
             
@@ -90,12 +89,12 @@ package vegas.events
         public static var CHANGE_VO:String = "changeVO" ;
         
         /**
-         * Default event type when an <code class="prettyprint">ValueObject</code> is removed in a model.
+         * Default event type when the <code class="prettyprint">ValueObject</code> is removed in a model.
          */
         public static var REMOVE_VO:String = "removeVO" ;
-            
+        
         /**
-         * Default event type when the an <code class="prettyprint">ValueObject</code> in the model is updated.
+         * Default event type when the <code class="prettyprint">ValueObject</code> in the model is updated.
          */
         public static var UPDATE_VO:String = "updateVO" ;
         

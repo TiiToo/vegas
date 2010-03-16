@@ -41,10 +41,12 @@ package vegas.models.arrays
     import system.data.ValueObject;
     import system.data.iterators.PageByPageIterator;
     import system.events.ArrayEvent;
-    
+
     import vegas.events.ModelObjectEvent;
     import vegas.models.CoreModelObject;
-    
+
+    import flash.events.Event;
+
     /**
      * Defines an <code class="prettyprint">Array</code> model with a 'page by page' iterator.
      * <p><b>Example :</b>>/p>
@@ -54,6 +56,11 @@ package vegas.models.arrays
      * import vegas.vo.SimpleValueObject ;
      * 
      * import system.events.ArrayEvent ;
+     * 
+     * var init:Function = function( e:Event ):void
+     * {
+     *     trace( "init" ) ;
+     * }
      * 
      * var update:Function = function( e:Event ):void
      * {
@@ -80,6 +87,7 @@ package vegas.models.arrays
      * 
      * model.count =  2 ;
      * 
+     * model.addEventListener( Event.INIT                 , init   ) ;
      * model.addEventListener( ModelObjectEvent.UPDATE_VO , update ) ;
      * 
      * var datas:Array  = [] ;
@@ -214,6 +222,15 @@ package vegas.models.arrays
         }
         
         /**
+         * Returns the event name use in the <code class="prettyprint">notifyInit</code> method.
+         * @return the event name use in the <code class="prettyprint">notifyInit</code> method.
+         */
+        public function getEventTypeINIT():String
+        {
+            return _sInitType || Event.INIT ;
+        }
+        
+        /**
          * Returns the event name use in the <code class="prettyprint">notifyUpdate</code> method.
          * @return the event name use in the <code class="prettyprint">notifyUpdate</code> method.
          */
@@ -243,12 +260,12 @@ package vegas.models.arrays
         /**
          * Fill and initialize the model with an Array of ValueObject.
          * @param datas The array of all value objects to insert in the model.
-         * @param noClear (optional) If this argument is <code class="prettyprint">true</code> the clear method isn't called when this process begin.
-         * @param noRefresh (optional) If this argument is <code class="prettyprint">true</code> the refresh method isn't called when this process is finish.
+         * @param autoClear (optional) If this argument is <code class="prettyprint">true</code> the clear method is invoked when the initialization begin.
+         * @param noRefresh (optional) If this argument is <code class="prettyprint">true</code> the refresh method isn't called when this initialization is finished.
          */
-        public function init( datas:Array , noClear:Boolean=false , noRefresh:Boolean=false ):void
+        public function init( datas:Array , autoClear:Boolean=true , noRefresh:Boolean=false ):void
         {
-            if ( !noClear )
+            if ( autoClear )
             {
                 clear() ;
             }
@@ -260,8 +277,9 @@ package vegas.models.arrays
                 if ( supports( vo ) )
                 {
                     _a.push( vo ) ;
-                }    
+                }
             }
+            notifyInit() ;
             if ( noRefresh == true )
             {
                 return ;
@@ -291,15 +309,26 @@ package vegas.models.arrays
         }
         
         /**
+         * Notify an <code class="prettyprint">Event</code> object when the model is initialized.
+         */ 
+        public function notifyInit():void
+        {
+            if ( !isLocked() )
+            {
+                dispatchEvent( new Event( getEventTypeINIT() ) ) ;
+            }
+        }
+        
+        /**
          * Notify an <code class="prettyprint">Event</code> when a <code class="prettyprint">ValueObject</code> is inserted in the model. 
          * If the model countVO value is > 1 notify an ArrayEvent else if the coutVO value is 1 notify a ModelObjectEvent. 
          */ 
         public function notifyUpdate( value:* ):*
         {
-            if ( isLocked() == false )
+            if ( !isLocked() )
             {
                 if ( count > 1 )
-                {    
+                {
                     dispatchEvent( new ArrayEvent( getEventTypeUPDATE() , value as Array ) ) ;
                 }
                 else
@@ -395,6 +424,14 @@ package vegas.models.arrays
         }
         
         /**
+         * Sets the event name use in the <code class="prettyprint">notifyInit</code> method.
+         */
+        public function setEventTypeINIT( type:String ):void
+        {
+            _sInitType = type ;
+        }
+        
+        /**
          * Sets the event name use in the <code class="prettyprint">notifyUpdate</code> method.
          */
         public function setEventTypeUPDATE( type:String ):void
@@ -434,6 +471,11 @@ package vegas.models.arrays
          * @private
          */
         private var _itPage:PageByPageIterator ;
+        
+        /**
+         * @private
+         */
+        private var _sInitType:String ;
         
         /**
          * @private

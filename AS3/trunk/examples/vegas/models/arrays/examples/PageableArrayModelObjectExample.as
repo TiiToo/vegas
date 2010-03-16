@@ -54,6 +54,7 @@ package examples
             model.count =  1 ;
             model.count =  2 ;
             
+            model.addEventListener( Event.INIT                 , init   ) ;
             model.addEventListener( ModelObjectEvent.UPDATE_VO , update ) ;
             
             var datas:Array = [] ;
@@ -75,6 +76,11 @@ package examples
         }
         
         public var model:PageableArrayModelObject ;
+        
+        public function init( e:Event ):void
+        {
+            trace( e ) ;
+        }
         
         public function keyDown( e:KeyboardEvent ):void
         {
