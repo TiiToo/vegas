@@ -654,9 +654,16 @@ package vegas.ioc.factory
                 {
                     value = eval( value , prop.evaluators ) ;
                 }
-                for( var member:String in value )
+                if ( value )
                 {
-                    o[member] = value[member] ;
+                    for( var member:String in value )
+                    {
+                        o[member] = value[member] ;
+                    }
+                }
+                else
+                {
+                    warn( this + " populate a new property failed with the magic name #init, the object to enumerate not must be null, see the factory with the object definition '" + id + "'." ) ;
                 }
                 return ;
             }

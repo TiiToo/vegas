@@ -35,7 +35,7 @@
 
 package examples 
 {
-    import vegas.strings.HTMLStringFormatter;
+    import vegas.strings.HTMLFormatter;
     import vegas.text.CoreTextField;
     import vegas.text.StyleSheetLoader;
     
@@ -59,7 +59,7 @@ package examples
             field.styleSheet        = style ;
             field.x                 = 25 ;
             field.y                 = 25 ;
-            field.htmlText          = HTMLStringFormatter.paragraph("hello world" , "my_style" ) ; 
+            field.htmlText          = HTMLFormatter.paragraph("hello world" , "my_style" ) ; 
             
             addChild(field) ;
             
