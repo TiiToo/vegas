@@ -279,12 +279,19 @@ package vegas.models.arrays
                     _a.push( vo ) ;
                 }
             }
+            if (size() > 0)
+            {
+                _itPage = new PageByPageIterator ( _a , _count ) ;
+            }
+            else
+            {
+                _itPage = null ;
+            }
             notifyInit() ;
             if ( noRefresh == true )
             {
-                return ;
+                run() ;
             }
-            refresh() ;
         }
         
         /**
