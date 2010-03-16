@@ -269,9 +269,9 @@ package vegas.models.arrays
          * Fill and initialize the model with an Array of ValueObject.
          * @param datas The array of all value objects to insert in the model.
          * @param autoClear (optional) If this argument is <code class="prettyprint">true</code> the clear method is invoked when the initialization begin.
-         * @param noRefresh (optional) If this argument is <code class="prettyprint">true</code> the refresh method isn't called when this initialization is finished.
+         * @param autoRefresh (optional) If this argument is <code class="prettyprint">true</code> the model is running when this initialization is finished.
          */
-        public function init( datas:Array , autoClear:Boolean=true , noRefresh:Boolean=false ):void
+        public function init( datas:Array , autoClear:Boolean=true , autoRefresh:Boolean=true ):void
         {
             if ( autoClear )
             {
@@ -296,7 +296,7 @@ package vegas.models.arrays
                 _itPage = null ;
             }
             notifyInit() ;
-            if ( noRefresh == true )
+            if ( autoRefresh )
             {
                 run() ;
             }
