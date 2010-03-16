@@ -41,12 +41,12 @@ package vegas.models.arrays
     import system.data.ValueObject;
     import system.data.iterators.PageByPageIterator;
     import system.events.ArrayEvent;
-
+    
     import vegas.events.ModelObjectEvent;
     import vegas.models.CoreModelObject;
-
+    
     import flash.events.Event;
-
+    
     /**
      * Defines an <code class="prettyprint">Array</code> model with a 'page by page' iterator.
      * <p><b>Example :</b>>/p>
@@ -177,18 +177,22 @@ package vegas.models.arrays
          */
         public function get currentPage():Number
         {
-            return _itPage.currentPage() ;
-        }        
+            return _itPage ? _itPage.currentPage() : 0 ;
+        }
         
         /**
          * Indicates the current page selected in the model.
          */
         public function set currentPage( n:Number ):void
         {
-            if ( _itPage != null )
+            if ( _itPage )
             {
                 _itPage.seek(n) ;
                 notifyUpdate( _itPage.current() ) ;
+            }
+            else
+            {
+                // TODO throw error ?
             }
         }
         
@@ -197,7 +201,7 @@ package vegas.models.arrays
          */
         public function get pageCount():Number
         {
-            return _itPage.pageCount() ;
+            return _itPage ? _itPage.pageCount() : 0 ;
         }
         
         /**
@@ -214,10 +218,14 @@ package vegas.models.arrays
          */
         public function firstPage():void
         {
-            if ( _itPage != null )
+            if ( _itPage )
             {
                 _itPage.firstPage() ;
                 notifyUpdate( _itPage.current() ) ;
+            }
+            else
+            {
+                // TODO throw error ?
             }
         }
         
@@ -245,7 +253,7 @@ package vegas.models.arrays
          */
         public function hasNext():Boolean
         {
-            return  _itPage.hasNext() ;
+            return  _itPage ? _itPage.hasNext() : false ;
         }
             
         /**
@@ -254,7 +262,7 @@ package vegas.models.arrays
          */
         public function hasPrevious():Boolean
         {
-            return _itPage.hasPrevious() ;
+            return _itPage ? _itPage.hasPrevious() : true ;
         }
         
         /**
@@ -308,10 +316,14 @@ package vegas.models.arrays
          */
         public function lastPage():void
         {
-            if ( _itPage != null )
+            if ( _itPage )
             {
                 _itPage.lastPage() ;
                 notifyUpdate( _itPage.current() ) ;
+            }
+            else
+            {
+                // TODO throw error ?
             }
         }
         
@@ -355,6 +367,10 @@ package vegas.models.arrays
             {
                 return notifyUpdate( _itPage.next() ) ;
             }
+            else
+            {
+                return null ;
+            }
         }
         
         /**
@@ -365,6 +381,10 @@ package vegas.models.arrays
             if ( hasPrevious() )
             {
                 return notifyUpdate( _itPage.previous() ) ;
+            }
+            else
+            {
+                return null ;
             }
         }
         
@@ -389,9 +409,13 @@ package vegas.models.arrays
          */
         public function reset():void 
         {
-            if ( _itPage != null )
+            if ( _itPage )
             {
                 _itPage.reset() ;
+            }
+            else
+            {
+                // TODO throw error ?
             }
         }
         
