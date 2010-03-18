@@ -69,7 +69,6 @@ package vegas.display
      */
     public class CoreSimpleButton extends SimpleButton implements IDisplayObject
     {
-
         /**
          * Creates a new CoreSimpleButton instance.
          * @param id Indicates the id of the object.
@@ -106,7 +105,7 @@ package vegas.display
         {
             return _id ;
         }
-    
+        
         /**
          * Returns the <code class="prettyprint">String</code> representation of this object.
          * @return the <code class="prettyprint">String</code> representation of this object.
@@ -121,7 +120,7 @@ package vegas.display
          */
         public function get logger():Logger
         {
-            return _logger ;     
+            return _logger ;
         }
         
         /**
@@ -158,15 +157,15 @@ package vegas.display
         }
         
         /**
-          * Returns the <code class="prettyprint">String</code> representation of this object.
-          * @return the <code class="prettyprint">String</code> representation of this object.
-          */
+         * Returns the <code class="prettyprint">String</code> representation of this object.
+         * @return the <code class="prettyprint">String</code> representation of this object.
+         */
         public override function toString():String
         {
             var str:String = "[" + Reflection.getClassName(this) ;
             if ( this.id != null )
             {
-                str += " " + this.id ;    
+                str += " " + this.id ;
             } 
             str += "]" ;
             return str ;

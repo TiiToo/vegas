@@ -40,9 +40,6 @@
     <component id="lunas.components.buttons:BackgroundButton"             class="lunas.components.buttons.BackgroundButton" />
     <component id="lunas.components.buttons:BackgroundButtonBuilder"      class="lunas.components.buttons.BackgroundButtonBuilder" />
     <component id="lunas.components.buttons:BackgroundButtonStyle"        class="lunas.components.buttons.BackgroundButtonStyle" />
-    <component id="lunas.components.buttons:BitmapFilterButton"           class="lunas.components.buttons.BitmapFilterButton" />
-    <component id="lunas.components.buttons:BitmapFilterButtonBuilder"    class="lunas.components.buttons.BitmapFilterButtonBuilder" />
-    <component id="lunas.components.buttons:BitmapFilterButtonStyle"      class="lunas.components.buttons.BitmapFilterButtonStyle" />
     <component id="lunas.components.buttons:CoreButton"                   class="lunas.components.buttons.CoreButton" />
     <component id="lunas.components.buttons:CoreButtonBuilder"            class="lunas.components.buttons.CoreButtonBuilder" />
     <component id="lunas.components.buttons:DashboardButton"              class="lunas.components.buttons.DashboardButton" />
@@ -71,13 +68,13 @@
     <component id="lunas.components.buttons:SwitchLabelButtonStyle"       class="lunas.components.buttons.SwitchLabelButtonStyle" />
     <component id="lunas.components.buttons:ThumbButton"                  class="lunas.components.buttons.ThumbButton" />
     
-    <!-- labels -->
+    <!-- lunas.components.labels -->
     
     <component id="lunas.components.labels:IconLabel"        class="lunas.components.labels.IconLabel"        />
     <component id="lunas.components.labels:IconLabelBuilder" class="lunas.components.labels.IconLabelBuilder" />
     <component id="lunas.components.labels:IconLabelStyle"   class="lunas.components.labels.IconLabelStyle"   />
-    <component id="lunas.components.labels:PaginationLabel" class="lunas.components.labels.PaginationLabel" />
-    <component id="lunas.components.labels:Label"           class="lunas.components.labels.Label"           />
+    <component id="lunas.components.labels:PaginationLabel"  class="lunas.components.labels.PaginationLabel" />
+    <component id="lunas.components.labels:Label"            class="lunas.components.labels.Label"           />
     
     <!-- lunas.components.textinputs -->
     
@@ -89,14 +86,14 @@
     <component id="lunas.components.textinputs:VisualTextInputStyle" class="lunas.components.textinputs.VisualTextInputStyle" />
     
     <!-- lunas.containers -->
-
+    
     <component id="lunas.containers:AutoScrollContainer" class="lunas.containers.AutoScrollContainer"  />
     <component id="lunas.containers:CircleContainer"     class="lunas.containers.CircleContainer"  />
     <component id="lunas.containers:Container"           class="lunas.containers.Container"  />
     <component id="lunas.containers:ListContainer"       class="lunas.containers.ListContainer"  />
     <component id="lunas.containers:MatrixContainer"     class="lunas.containers.MatrixContainer"  />
     <component id="lunas.containers:ScrollContainer"     class="lunas.containers.ScrollContainer"  />
-
+    
     <!-- lunas.events -->
     
     <component id="lunas.events:ButtonEvent"    class="lunas.events.ButtonEvent"     />
@@ -107,6 +104,12 @@
     
     <component id="lunas.groups:CoreGroup"        class="lunas.groups.CoreGroup"        />
     <component id="lunas.groups:RadioButtonGroup" class="lunas.groups.RadioButtonGroup" />
+    
+    <!-- lunas.layouts -->
+    
+    <component id="lunas.layouts:CircleLayout" class="lunas.layouts.CircleLayout" />
+    <component id="lunas.layouts:CoreLayout"   class="lunas.layouts.CoreLayout"   />
+    <component id="lunas.layouts:Layout"       class="lunas.layouts.Layout"       />
     
     <!-- lunas.logging -->
     

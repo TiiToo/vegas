@@ -152,11 +152,11 @@ package vegas.display
             var str:String = "[" + Reflection.getClassName(this) ;
             if ( this.id != null )
             {
-                str += " " + this.id ;    
+                str += " " + this.id ;
             } 
             str += "]" ;
             return str ;
-        }    
+        }
         
         /**
          * Unlocks the display.

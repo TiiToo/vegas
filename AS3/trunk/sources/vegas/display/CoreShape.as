@@ -94,7 +94,7 @@ package vegas.display
         {
             return _id ;
         }
-    
+        
         /**
           * Returns the <code class="prettyprint">String</code> representation of this object.
           * @return the <code class="prettyprint">String</code> representation of this object.
@@ -154,7 +154,7 @@ package vegas.display
             var str:String = "[" + Reflection.getClassName(this) ;
             if ( this.id != null )
             {
-                str += " " + this.id ;    
+                str += " " + this.id ;
             } 
             str += "]" ;
             return str ;
@@ -183,7 +183,7 @@ package vegas.display
         {
             //
         }
-                
+        
         /**
          * @private
          */
