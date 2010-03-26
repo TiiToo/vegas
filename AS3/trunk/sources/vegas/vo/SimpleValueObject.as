@@ -118,7 +118,7 @@ package vegas.vo
             } 
             str += "]" ;
             return str ;
-        }    
+        }
         
         /**
          * @private
