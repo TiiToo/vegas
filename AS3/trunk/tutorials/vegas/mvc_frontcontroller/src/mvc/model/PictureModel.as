@@ -24,14 +24,12 @@ package mvc.model
 {
     import mvc.vo.PictureVO;
     
-    import system.data.iterators.PageByPageIterator;
-    
-    import vegas.models.maps.MapModelObject;
+    import vegas.models.maps.OrderedMapModelObject;
     
     /**
      * The model of all pictures.
      */
-    public final class PictureModel extends MapModelObject
+    public final class PictureModel extends OrderedMapModelObject
     {
         /**
          * Creates a new PictureModel instance.
@@ -43,69 +41,6 @@ package mvc.model
         }
         
         /**
-         * Clear the model.
-         */
-        public override function clear():void
-        {
-            _it = null ;
-            super.clear() ;
-        }
-        
-        /**
-         * Sets the next PictureVO in the model.
-         */
-        public function next():void
-        {
-            if ( !_it.hasNext() )
-            {
-                _it.reset() ;
-            }
-            setCurrentVO( getVO( _it.next() ) ) ;
-        }
-        
-        /**
-         * Sets the previous PictureVO in the model.
-         */
-        public function previous():void
-        {
-            var prev:* ;
-            if ( !_it.hasPrevious() )
-            {
-                _it.lastPage() ;
-                prev = _it.current() ;
-            }
-            else
-            {
-                prev = _it.previous() ; 
-            }
-            setCurrentVO( getVO( prev ) ) ;
-        }
-        
-        /**
-         * Reset the iterator of the Gallery.
-         */
-        public function reset():void
-        {
-            if (size() > 0)
-            {
-                _it = new PageByPageIterator( getMap().getKeys() )  ;
-            }
-            else
-            {
-                _it = null ;
-            }
-        }
-        
-        /**
-         * Run the model to launch the next picture in the Picture display.
-         */
-        public override function run( ...arguments:Array ):void
-        {
-            reset() ;
-            next() ;
-        }
-        
-        /**
          * Returns <code>true</code> if the <code>IValidator</code> object validate the value. Overrides this method in your concrete IModelObject class.
          * @param value the object to test.
          * @return <code>true</code> is this specific value is valid.
@@ -114,10 +49,5 @@ package mvc.model
         {
             return value is PictureVO ;
         }
-        
-        /**
-         * @private
-         */
-        private var _it:PageByPageIterator ;
     }
 }
