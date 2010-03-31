@@ -41,7 +41,7 @@ package mvc.model
         }
         
         /**
-         * Returns <code>true</code> if the <code>IValidator</code> object validate the value. Overrides this method in your concrete IModelObject class.
+         * Returns <code>true</code> if the <code>Validator</code> object validate the value. Overrides this method in your concrete IModelObject class.
          * @param value the object to test.
          * @return <code>true</code> is this specific value is valid.
          */
