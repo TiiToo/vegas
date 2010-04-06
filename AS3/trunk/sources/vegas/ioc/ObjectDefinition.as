@@ -37,10 +37,10 @@
 
 package vegas.ioc 
 {
-    import vegas.ioc.IObjectDefinition;
+    import vegas.ioc.factory.ObjectBuilder;
     import vegas.ioc.factory.strategy.IObjectFactoryStrategy;
     import vegas.ioc.factory.strategy.ObjectFactoryBuilder;
-    
+
     /**
      * The concrete implementation of the IObjectDefinition interface.
      * <p><b>Example :</b></p>
@@ -165,8 +165,8 @@ package vegas.ioc
             definition.setFactoryStrategy      ( ObjectFactoryBuilder.create( o ) ) ;
             
             definition.setConstructorArguments ( ObjectArgument.create ( o[ ObjectAttribute.ARGUMENTS         ] as Array ) ) ;
-            definition.setListeners            ( ObjectListener.create ( o[ ObjectAttribute.OBJECT_LISTENERS  ] as Array ) ) ;
-            definition.setProperties           ( ObjectProperty.create ( o[ ObjectAttribute.OBJECT_PROPERTIES ] as Array ) ) ;
+            definition.setListeners            ( ObjectBuilder.createListeners ( o ) ) ;
+            definition.setProperties           ( ObjectBuilder.createProperties ( o ) ) ;
             
             definition.setDestroyMethodName    ( o[ ObjectAttribute.OBJECT_DESTROY_METHOD_NAME ] as String ) ;
             definition.setInitMethodName       ( o[ ObjectAttribute.OBJECT_INIT_METHOD_NAME    ] as String ) ;

@@ -35,7 +35,7 @@
 
 package examples 
 {
-    import vegas.ioc.ObjectListener;
+    import vegas.ioc.factory.ObjectBuilder;
     
     import flash.display.Sprite;
     
@@ -50,7 +50,7 @@ package examples
                 { dispatcher:"dispatcher3" , type:"change" } 
             ] ;
                 
-            var listeners:Array = ObjectListener.create( init ) ;
+            var listeners:Array = ObjectBuilder.createListeners( init ) ;
             
             trace( listeners ) ;
         }

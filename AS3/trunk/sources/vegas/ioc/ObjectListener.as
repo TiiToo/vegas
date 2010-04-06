@@ -37,10 +37,6 @@
 
 package vegas.ioc 
 {
-    import system.eden;
-    
-    import vegas.logging.logger;
-    
     /**
      * This object defines a listener definition in an object definition.
      * <p><b>Example :</b></p>
@@ -227,58 +223,6 @@ package vegas.ioc
          * Indicates if the listener is a weak reference.
          */
         public var useWeakReference:Boolean ;
-        
-        /**
-         * Creates the Array definition of all listeners defines in the passed-in array.
-         * @return the Array definition of all listeners defines in the passed-in array.
-         */
-        public static function create( a:Array = null ):Array
-        {
-            if ( a == null || a.length == 0 )
-            {
-                return null ;
-            }
-            var def:Object ;
-            var listeners:Array = [] ;
-            var len:int = a.length ;
-            var dispatcher:String ;
-            var type:String ;
-            for ( var i:int ; i<len ; i++)
-            {
-                def  = a[i] as Object ;
-                if ( def != null && ( DISPATCHER in def ) && ( TYPE in def ) )
-                { 
-                    dispatcher = def[ DISPATCHER ] as String ;
-                    if ( dispatcher == null || dispatcher.length == 0 )
-                    {
-                        continue ;
-                    }
-                    type  = def[ TYPE ] as String ;
-                    if ( type == null || type.length == 0 )
-                    {
-                        continue ;
-                    }
-                    listeners.push
-                    ( 
-                        new ObjectListener
-                        ( 
-                            dispatcher                                          , 
-                            type                                                , 
-                            def[ METHOD ] as String                             , 
-                            def[ USE_CAPTURE ] == true                          , 
-                            def[ PRIORITY ] is int ? def[ PRIORITY ] as int : 0 , 
-                            def[ USE_WEAK_REFERENCE ] == true                   ,
-                            ( def[ ORDER ] == ObjectOrder.BEFORE ) ? ObjectOrder.BEFORE : ObjectOrder.AFTER
-                        ) 
-                    ) ;
-                }
-                else
-                {
-                    logger.warn( "ObjectListener.create failed, a property definition is invalid at {" + i + "} with the value : " + eden.serialize(def) ) ; 
-                }
-            }
-            return ( listeners.length > 0 ) ? listeners : null ;
-        }
         
         /**
          * Returns the String representation of the object.

@@ -37,10 +37,6 @@
 
 package vegas.ioc 
 {
-    import system.eden;
-    
-    import vegas.logging.logger;
-    
     /**
      * This object defines a property definition and this value in an object definition.
      */
@@ -84,7 +80,7 @@ package vegas.ioc
          */
         public function set policy( str:String ):void
         {
-            switch (str)
+            switch( str )
             {
                 case ObjectAttribute.ARGUMENTS :
                 case ObjectAttribute.REFERENCE :
@@ -107,80 +103,8 @@ package vegas.ioc
         public var value:* ;
         
         /**
-         * Creates the Array definition of all properties defines in the passed-in array.
-         * @return the Array definition of all properties defines in the passed-in array.
-         */
-        public static function create( a:Array = null ):Array
-        {
-            
-            if ( a == null || a.length == 0 )
-            {
-                return null ;
-            }
-            
-            var properties:Array = [] ;
-            
-            var args:Array  ;
-            var conf:String ;
-            var i18n:String ;
-            var prop:Object ;
-            var name:String ;
-            var ref:String  ;
-            var value:* ; 
-            
-            var evaluators:Array ;
-            
-            var len:int = a.length ;
-            for ( var i:int ; i<len ; i++ )
-            {
-                prop = a[i] as Object ;
-                
-                if ( prop != null && ( ObjectAttribute.NAME in prop ) )
-                { 
-                    name  = prop[ ObjectAttribute.NAME ] as String ;
-                    if ( name == null || name.length == 0 )
-                    {
-                        continue ;
-                    }
-                    args       = prop[ ObjectAttribute.ARGUMENTS  ] as Array  ;
-                    evaluators = prop[ ObjectAttribute.EVALUATORS ] as Array  ;
-                    conf       = prop[ ObjectAttribute.CONFIG     ] as String ;
-                    i18n       = prop[ ObjectAttribute.LOCALE     ] as String ;
-                    ref        = prop[ ObjectAttribute.REFERENCE  ] as String ;
-                    value      = prop[ ObjectAttribute.VALUE      ] ;
-                    
-                    if ( args != null )
-                    {
-                        properties.push( new ObjectProperty( name , ObjectArgument.create( args ) , ObjectAttribute.ARGUMENTS ) ) ; // arguments property
-                    }
-                    else if ( ref != null ) 
-                    {
-                        properties.push( new ObjectProperty( name , ref , ObjectAttribute.REFERENCE , evaluators ) ) ; // ref property
-                    }
-                    else if ( conf != null && conf.length > 0 )
-                    {
-                        properties.push( new ObjectProperty( name, conf , ObjectAttribute.CONFIG , evaluators ) ) ; // config property
-                    }
-                    else if ( i18n != null && i18n.length > 0 )
-                    {
-                        properties.push( new ObjectProperty( name, i18n , ObjectAttribute.LOCALE , evaluators ) ) ; // locale property
-                    }
-                    else 
-                    {
-                        properties.push( new ObjectProperty( name , value , ObjectAttribute.VALUE , evaluators ) ) ; // value property
-                    }
-                }
-                else
-                {
-                    logger.warn( "ObjectProperty.create failed, a property definition is invalid at {" + i + "} with the value : " + eden.serialize(prop) ) ;
-                }
-            }
-            return ( properties.length > 0 ) ? properties : null ;
-        }
-        
-        /**
          * @private
          */
-        private var _policy:String ;
+        protected var _policy:String ;
     }
 }
