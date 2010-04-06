@@ -23,9 +23,9 @@
 package examples 
 {
     import vegas.ioc.factory.ECMAObjectFactory;
-
+    
     import flash.display.Sprite;
-
+    
     public class ECMAObjectFactory00Example extends Sprite 
     {
         public function ECMAObjectFactory00Example()
@@ -52,7 +52,7 @@ package examples
                     { name : "defaultTextFormat" , ref    : "my_format"    } ,
                     { name : "text"              , value  : "HELLO WORLD"  } ,
                     { name : "x"                 , value  : 20             } ,
-                    { name : "y"                 , value  : 20             }
+                    { name : "y"                 , value  : 20             } 
                 ]
             }
             ,
