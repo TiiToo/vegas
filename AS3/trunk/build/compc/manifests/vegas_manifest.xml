@@ -119,7 +119,8 @@
     
     <!-- vegas.ioc.factory -->
     
-    <component id="vegas.ioc.factory:ECMAObjectFactory" class="vegas.ioc.factory.ECMAObjectFactory" /> 
+    <component id="vegas.ioc.factory:ECMAObjectFactory" class="vegas.ioc.factory.ECMAObjectFactory" />
+    <component id="vegas.ioc.factory:ObjectBuilder"     class="vegas.ioc.factory.ObjectBuilder"     /> 
     <component id="vegas.ioc.factory:ObjectConfig"      class="vegas.ioc.factory.ObjectConfig"      />
     <component id="vegas.ioc.factory:ObjectFactory"     class="vegas.ioc.factory.ObjectFactory"     />
     
