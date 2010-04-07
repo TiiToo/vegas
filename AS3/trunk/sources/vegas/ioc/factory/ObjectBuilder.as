@@ -52,6 +52,16 @@ package vegas.ioc.factory
     public class ObjectBuilder
     {
         /**
+         * This message pattern is used when the createListeners method log a warning message.
+         */
+        public static var LISTENERS_WARN:String = "ObjectBuilder.createListeners failed, a listener definition is invalid in the object definition \"{0}\" at \"{1}\" with the value : {2}" ; 
+        
+        /**
+         * This message pattern is used when the createProperties method log a warning message.
+         */
+        public static var PROPERTIES_WARN:String = "ObjectBuilder.createProperties failed, a property definition is invalid in the object definition \"{0}\" at \"{1}\" with the value : {2}" ; 
+        
+        /**
          * Creates the Array of all listeners defines in the passed-in factory object definition.
          * @return the Array of all listeners defines in the passed-in factory object definition.
          */
@@ -108,7 +118,7 @@ package vegas.ioc.factory
                 }
                 else
                 {
-                    logger.warn( "ObjectBuilder.createListeners failed, a property definition is invalid in th object definition with the id " + id + " at {" + i + "} with the value : " + eden.serialize(def) ) ; 
+                    logger.warn( LISTENERS_WARN , id , i , eden.serialize( def ) ) ; 
                 }
             }
             return ( listeners.length > 0 ) ? listeners : null ;
@@ -188,7 +198,7 @@ package vegas.ioc.factory
                 }
                 else
                 {
-                    logger.warn( "ObjectBuilder.createProperties failed, a property definition is invalid in the object definition with the id " + id  + " at {" + i + "} with the value : " + eden.serialize(prop) ) ;
+                    logger.warn( PROPERTIES_WARN , id , i , eden.serialize( prop ) ) ; 
                 }
             }
             return ( properties.length > 0 ) ? properties : null ;

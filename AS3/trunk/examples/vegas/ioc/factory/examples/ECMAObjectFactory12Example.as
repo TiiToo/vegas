@@ -35,13 +35,13 @@
 package examples 
 {
     import examples.core.Listener;
-
+    
     import vegas.ioc.factory.ECMAObjectFactory;
-
+    
     import flash.display.Sprite;
     import flash.events.Event;
     import flash.events.EventDispatcher;
-
+    
     public dynamic class ECMAObjectFactory12Example extends Sprite 
     {
         public function ECMAObjectFactory12Example()
@@ -103,7 +103,7 @@ package examples
                 [
                     { dispatcher:"dispatcher1" , type:"change" , method:"change" , useCapture:false, priority:0 , useWeakReference:true } , 
                     { dispatcher:"dispatcher2" , type:"change" } ,
-                    { dispatcher:"dispatcher3" , type:"change" , order : "before" } ,
+                    { dispatcher:"dispatcher3" , type:"change" , order : "before" }
                 ]
             }
         ] ;
