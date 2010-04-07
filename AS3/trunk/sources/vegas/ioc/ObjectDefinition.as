@@ -164,7 +164,7 @@ package vegas.ioc
             
             definition.setFactoryStrategy      ( ObjectFactoryBuilder.create( o ) ) ;
             
-            definition.setConstructorArguments ( ObjectArgument.create ( o[ ObjectAttribute.ARGUMENTS         ] as Array ) ) ;
+            definition.setConstructorArguments ( ObjectBuilder.createArguments ( o[ ObjectAttribute.ARGUMENTS  ] as Array ) ) ;
             definition.setListeners            ( ObjectBuilder.createListeners ( o ) ) ;
             definition.setProperties           ( ObjectBuilder.createProperties ( o ) ) ;
             

@@ -37,10 +37,10 @@
 
 package vegas.ioc.factory.strategy 
 {
-    import vegas.ioc.ObjectArgument;
     import vegas.ioc.ObjectAttribute;
     import vegas.ioc.ObjectMethod;
-    
+    import vegas.ioc.factory.ObjectBuilder;
+
     /**
      * This object create a delegate factory configured in the IObjectDefinition and replace the natural factory of the ObjectFactory.
      */
@@ -79,7 +79,7 @@ package vegas.ioc.factory.strategy
                 ( 
                     o[ ObjectAttribute.FACTORY   ] as String , 
                     o[ ObjectAttribute.NAME      ] as String , 
-                    ObjectArgument.create( o[ ObjectAttribute.ARGUMENTS ] as Array )  
+                    ObjectBuilder.createArguments( o[ ObjectAttribute.ARGUMENTS ] as Array ) 
                 ) ;
             }
             else

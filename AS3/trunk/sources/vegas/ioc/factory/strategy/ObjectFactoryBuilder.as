@@ -44,7 +44,6 @@ package vegas.ioc.factory.strategy
      */
     public class ObjectFactoryBuilder 
     {
-    	
         /**
          * Creates the IObjectFactoryStrategy object with the specified generic object.
          * @param o The object definition to create an IObjectFactoryStrategy instance.

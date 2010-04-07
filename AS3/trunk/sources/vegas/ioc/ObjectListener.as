@@ -131,6 +131,7 @@ package vegas.ioc
          * @param useCapture Determinates if the event flow use capture or not.
          * @param priority Determines the priority level of the event listener.
          * @param useWeakReference Indicates if the listener is a weak reference.
+         * @param order Indicates the order to register the listener "after" or "before" (see the vegas.ioc.ObjectOrder enumeration class).
          */
         public function ObjectListener( dispatcher:String , type:String , method:String=null , useCapture:Boolean = false, priority:int = 0, useWeakReference:Boolean = false , order:String = "after" )
         {

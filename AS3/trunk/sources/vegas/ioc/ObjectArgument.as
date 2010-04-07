@@ -95,60 +95,6 @@ package vegas.ioc
         public var value:* ;
         
         /**
-         * Creates the Array definition of all arguments defines in the passed-in array.
-         * @return the Array definition of all arguments defines in the passed-in array.
-         */
-        public static function create( a:Array = null ):Array
-        {
-            if ( a == null || a.length == 0 )
-            {
-                return null ;
-            }
-            else
-            {
-                var o:Object ;
-                var i:int ;
-                var evaluators:Array ;
-                var conf:String ;
-                var i18n:String ;
-                var ref:String  ;
-                var value:* ;
-                var args:Array  = [] ;
-                var l:int = a.length ;
-                for ( i ; i<l ; i++ )
-                {
-                    o = a[i] ;
-                    if ( o != null )
-                    {
-                        conf       = ( ObjectAttribute.CONFIG in o )     ? o[ ObjectAttribute.CONFIG ] as String    : null ;
-                        i18n       = ( ObjectAttribute.LOCALE in o )     ? o[ ObjectAttribute.LOCALE ] as String    : null ;
-                        ref        = ( ObjectAttribute.REFERENCE in o )  ? o[ ObjectAttribute.REFERENCE ] as String : null ;
-                        value      = ( ObjectAttribute.VALUE in o )      ? o[ ObjectAttribute.VALUE ]               : null ;
-                        evaluators = ( ObjectAttribute.EVALUATORS in o ) ? o[ObjectAttribute.EVALUATORS] as Array   : null ;
-                        
-                        if ( ref != null && ref.length > 0 ) 
-                        {
-                            args.push( new ObjectArgument( ref , ObjectAttribute.REFERENCE , evaluators ) ) ; // ref argument
-                        }
-                        else if ( conf != null && conf.length > 0 )
-                        {
-                            args.push( new ObjectArgument( conf , ObjectAttribute.CONFIG , evaluators ) ) ; // config argument
-                        }
-                        else if ( i18n != null && i18n.length > 0 )
-                        {
-                               args.push( new ObjectArgument( i18n , ObjectAttribute.LOCALE , evaluators ) ) ; // locale argument
-                        }
-                        else
-                        {
-                            args.push( new ObjectArgument( value , ObjectAttribute.VALUE , evaluators ) ) ; // value argument
-                        }
-                    }
-                }
-                return args.length > 0 ? args : null ;
-            }
-        }
-        
-        /**
          * @private
          */
         private var _policy:String ;

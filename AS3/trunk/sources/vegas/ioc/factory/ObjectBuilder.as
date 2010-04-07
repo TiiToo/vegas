@@ -38,14 +38,14 @@
 package vegas.ioc.factory 
 {
     import system.eden;
-    
+
     import vegas.ioc.ObjectArgument;
     import vegas.ioc.ObjectAttribute;
     import vegas.ioc.ObjectListener;
     import vegas.ioc.ObjectOrder;
     import vegas.ioc.ObjectProperty;
     import vegas.logging.logger;
-    
+
     /**
      * This object defines a property definition and this value in an object definition.
      */
@@ -60,6 +60,60 @@ package vegas.ioc.factory
          * This message pattern is used when the createProperties method log a warning message.
          */
         public static var PROPERTIES_WARN:String = "ObjectBuilder.createProperties failed, a property definition is invalid in the object definition \"{0}\" at \"{1}\" with the value : {2}" ; 
+        
+        /**
+         * Creates the Array of all arguments.
+         * @return the Array of all arguments.
+         */
+        public static function createArguments( a:Array ):Array
+        {
+            if ( a == null || a.length == 0 )
+            {
+                return null ;
+            }
+            else
+            {
+                var o:Object ;
+                var i:int ;
+                var evaluators:Array ;
+                var conf:String ;
+                var i18n:String ;
+                var ref:String  ;
+                var value:* ;
+                var args:Array  = [] ;
+                var l:int = a.length ;
+                for ( i ; i<l ; i++ )
+                {
+                    o = a[i] ;
+                    if ( o != null )
+                    {
+                        conf       = ( ObjectAttribute.CONFIG in o )     ? o[ ObjectAttribute.CONFIG ] as String    : null ;
+                        i18n       = ( ObjectAttribute.LOCALE in o )     ? o[ ObjectAttribute.LOCALE ] as String    : null ;
+                        ref        = ( ObjectAttribute.REFERENCE in o )  ? o[ ObjectAttribute.REFERENCE ] as String : null ;
+                        value      = ( ObjectAttribute.VALUE in o )      ? o[ ObjectAttribute.VALUE ]               : null ;
+                        evaluators = ( ObjectAttribute.EVALUATORS in o ) ? o[ObjectAttribute.EVALUATORS] as Array   : null ;
+                        
+                        if ( ref != null && ref.length > 0 ) 
+                        {
+                            args.push( new ObjectArgument( ref , ObjectAttribute.REFERENCE , evaluators ) ) ; // ref argument
+                        }
+                        else if ( conf != null && conf.length > 0 )
+                        {
+                            args.push( new ObjectArgument( conf , ObjectAttribute.CONFIG , evaluators ) ) ; // config argument
+                        }
+                        else if ( i18n != null && i18n.length > 0 )
+                        {
+                            args.push( new ObjectArgument( i18n , ObjectAttribute.LOCALE , evaluators ) ) ; // locale argument
+                        }
+                        else
+                        {
+                            args.push( new ObjectArgument( value , ObjectAttribute.VALUE , evaluators ) ) ; // value argument
+                        }
+                    }
+                }
+                return args.length > 0 ? args : null ;
+            }
+        }
         
         /**
          * Creates the Array of all listeners defines in the passed-in factory object definition.
@@ -177,7 +231,7 @@ package vegas.ioc.factory
                     
                     if ( args != null )
                     {
-                        properties.push( new ObjectProperty( name , ObjectArgument.create( args ) , ObjectAttribute.ARGUMENTS ) ) ; // arguments property
+                        properties.push( new ObjectProperty( name , createArguments( args ) , ObjectAttribute.ARGUMENTS ) ) ; // arguments property
                     }
                     else if ( ref != null ) 
                     {

@@ -37,6 +37,7 @@ package examples
 {
     import vegas.ioc.ObjectArgument;
     import vegas.ioc.ObjectAttribute;
+    import vegas.ioc.factory.ObjectBuilder;
     
     import flash.display.Sprite;
     
@@ -56,7 +57,7 @@ package examples
                 
             ] ;
             
-            args = ObjectArgument.create( args ) ; // transform all arguments with the ObjectArgument factory.
+            args = ObjectBuilder.createArguments( args ) ; // transform all arguments with the ObjectArgument factory.
             
             trace( args[0] is ObjectArgument ) ; // true
             
