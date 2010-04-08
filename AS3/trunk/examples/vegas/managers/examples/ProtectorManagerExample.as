@@ -57,7 +57,7 @@ package examples
             
             // manager
             
-            var protector:Protector      = new Protector() ;
+            var protector:Protector = new Protector() ;
             
             protector.cursor = new Cursor() ;
             protector.fill   = new FillStyle( 0xD97BD0 , 0.2 ) ;

@@ -37,6 +37,7 @@
 
 package vegas.managers 
 {
+    import flash.events.Event;
     import vegas.display.Protector;
     
     import flash.display.DisplayObjectContainer;
@@ -83,35 +84,14 @@ package vegas.managers
          */
         public function ProtectorManager( protector:Protector = null , root:DisplayObjectContainer = null , cursorPolicy:Boolean = true )
         {
-            this.protector    = protector    ;
-            this.root         = root         ;
-            this.cursorPolicy = cursorPolicy ;
+            this.protector    = protector ;
+            this.root         = root      ;
         }
         
         /**
          * The optional depth to insert or remove the protector.
          */
         public var depth:Number ;
-         
-        /**
-         * Indicates the cursor policy of this manager (visible or not).
-         */
-        public function get cursorPolicy():Boolean
-        {
-        	return _cursorPolicy ;
-        }
-        
-        /**
-         * Indicates the cursor policy of this manager (visible or not).
-         */
-        public function set cursorPolicy( b:Boolean ):void
-        {
-            _cursorPolicy = b ;
-            if ( protector  && protector.cursor )
-            {
-            	protector.cursor.visible = _cursorPolicy ;
-            }
-        }
          
         /**
          * Determinates if the protector display is enabled or not.
@@ -137,7 +117,7 @@ package vegas.managers
                 {
                     if ( !isNaN(depth) )
                     {
-                        depth = Math.round(depth) ;
+                        depth = int(depth) ;
                         root.addChildAt( protector , depth ) ;
                     }
                     else
@@ -168,10 +148,16 @@ package vegas.managers
          */
         public function set protector( display:Protector ):void
         {
-            _protector = display ;
-            if ( _protector != null && _protector.cursor != null )
+            if ( _protector )
             {
-                _protector.cursor.visible = _cursorPolicy ;
+                _protector.removeEventListener( Event.ADDED_TO_STAGE     , addedToStage     ) ;
+                _protector.removeEventListener( Event.REMOVED_FROM_STAGE , removedFromStage ) ;
+            }
+            _protector = display ;
+            if ( _protector )
+            {
+                _protector.addEventListener( Event.ADDED_TO_STAGE , addedToStage         , false, 0 , true ) ;
+                _protector.addEventListener( Event.REMOVED_FROM_STAGE , removedFromStage , false, 0 , true ) ;
             }
         }
         
@@ -188,20 +174,37 @@ package vegas.managers
             _enabled = -1  ;
             enabled  = true ;
         } 
-        
-        /**
-         * @private
-         */
-        private var _cursorPolicy:Boolean ;
          
         /**
          * @private
          */
-        private var _enabled:int ;
+        protected var _enabled:int ;
         
         /**
          * @private
          */
-        private var _protector:Protector ;
+        protected var _protector:Protector ;
+        
+        /**
+         * Invoked when the protector register in this manager is added to the stage.
+         */
+        protected function addedToStage( e:Event ):void 
+        {
+            if ( _protector )
+            {
+                _protector.start() ;
+            }
+        }
+        
+        /**
+         * Invoked when the protector register in this manager is removed from the stage.
+         */
+        protected function removedFromStage( e:Event ):void 
+        {
+            if ( _protector )
+            {
+                _protector.stop() ;
+            }
+        }
     }
 }

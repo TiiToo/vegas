@@ -35,34 +35,48 @@
 
 package examples 
 {
+    import graphics.Align;
     import graphics.FillStyle;
-    
+
     import vegas.display.Protector;
-    
+
     import flash.display.MovieClip;
     import flash.display.StageAlign;
     import flash.display.StageScaleMode;
     import flash.events.KeyboardEvent;
+    import flash.geom.Point;
     import flash.ui.Keyboard;
-    
+
     /**
-     * Example to test the Protector class.
+     * Example of the Protector class.
      */
     public dynamic class ProtectorExample extends MovieClip 
     {
         public function ProtectorExample()
         {
+            // stage
+            
             stage.align     = StageAlign.TOP_LEFT ;
             stage.scaleMode = StageScaleMode.NO_SCALE ;
             
-            protect        = new Protector() ;
-            protect.cursor = new Cursor() ;
-            protect.fill   = new FillStyle( 0xD97BD0 , 0.2 ) ;
+            stage.addEventListener( KeyboardEvent.KEY_DOWN , keyDown ) ;
+            
+            // protector
+            
+            cursor       = new Cursor() ; // see in the library of the fla
+            protect      = new Protector() ;
+            protect.fill = new FillStyle( 0xD97BD0 , 0.2 ) ;
+            
+            protect.cursor       = cursor ;
+            protect.magnetic     = false  ;
+            protect.mouseVisible = true   ;
             
             addChild( protect ) ;
             
-            stage.addEventListener( KeyboardEvent.KEY_DOWN , keyDown ) ;
+            protect.start() ;
         }
+        
+        public var cursor:MovieClip ;
         
         public var protect:Protector ;
         
@@ -73,8 +87,44 @@ package examples
             {
                 case Keyboard.SPACE :
                 {
-                    protect.magnetic = !protect.magnetic ;
+                    if ( protect.stopped )
+                    {
+                        protect.start() ;
+                    }
+                    else
+                    {
+                        protect.stop() ;
+                    }
+                    
                     break ;
+                }
+                case Keyboard.UP :
+                {
+                    protect.cursorAlign  = Align.TOP ;
+                    protect.cursorOffset = new Point( 0 , 0 ) ;
+                    break ;
+                }
+                case Keyboard.DOWN :
+                {
+                    protect.cursorAlign  = Align.BOTTOM ;
+                    protect.cursorOffset = new Point( 0 , cursor.height ) ;
+                    break ;
+                }
+                case Keyboard.LEFT :
+                {
+                    protect.cursorAlign  = Align.LEFT ;
+                    protect.cursorOffset = new Point( 0 , 0 ) ;
+                    break ;
+                }
+                case Keyboard.RIGHT :
+                {
+                    protect.cursorAlign  = Align.RIGHT ;
+                    protect.cursorOffset = new Point( cursor.width , 0 ) ;
+                    break ;
+                }
+                default :
+                {
+                    protect.cursorAlign = Align.CENTER ;
                 }
             }
         }

@@ -37,9 +37,16 @@
 
 package vegas.display 
 {
+    import graphics.display.DisplayObjects;
+
+    import system.process.Startable;
+    import system.process.Stoppable;
+
     import flash.display.MovieClip;
     import flash.display.Sprite;
     import flash.events.Event;
+    import flash.geom.Point;
+    import flash.geom.Rectangle;
     import flash.ui.Mouse;
 
     /**
@@ -71,20 +78,22 @@ package vegas.display
      * </pre>
      * <p><b>Note : </b> The Cursor class is a linked MovieClip symbol in your application with a little animation.</p>
      */
-    public class Protector extends Background 
+    public class Protector extends Background implements Startable, Stoppable
     {
         /**
          * Creates a new Protector instance.
          * @param cursor The optional cursor reference.
          * @param magnetic Indicates the magnetic state value of the cursor.
+         * @param cursorAlign The alignement of the cursor when is showing and not magnetic (default Align.CENTER).
          */
-        public function Protector( cursor:Sprite = null , magnetic:Boolean = false )
+        public function Protector( cursor:Sprite = null , magnetic:Boolean = false , cursorAlign:uint = 1 )
         {
             lock() ;
             super( null , true );
-            this.cursor   = cursor ;
+            autoSize         = true ;
+            this.cursor      = cursor ;
+            this.cursorAlign = cursorAlign ;
             this.magnetic = magnetic ;
-            autoSize      = true ;
             unlock() ;
             update() ;
         }
@@ -102,15 +111,51 @@ package vegas.display
          */
         public function set cursor( target:Sprite ):void
         {
-            if ( _cursor != null && _cursor is MovieClip )
+            if ( _cursor && _cursor is MovieClip )
             {
                 (cursor as MovieClip).stop() ;
             }
             _cursor = target ;
-            if ( _cursor != null && _cursor is MovieClip )
+            if ( _cursor && _cursor is MovieClip )
             {
                 (cursor as MovieClip).stop() ;
             }
+        }
+        
+        /**
+         * The alignement of the cursor when is showing and not magnetic (default Align.CENTER).
+         * @see graphics.Align
+         */
+        public function get cursorAlign():uint
+        {
+            return _cursorAlign ;
+        }
+        
+        /**
+         * @private
+         */
+        public function set cursorAlign( align:uint ):void
+        {
+            _cursorAlign = align ;
+            update() ;
+        }
+        
+        /**
+         * The offset of the cursor when is showing and not magnetic (default is new flash.geom.Point(0,0)).
+         * @see flash.geom.Point
+         */
+        public function get cursorOffset():Point
+        {
+            return _cursorOffset ;
+        }
+        
+        /**
+         * @private
+         */
+        public function set cursorOffset( offset:Point ):void
+        {
+            _cursorOffset = offset ;
+            update() ;
         }
         
         /**
@@ -138,55 +183,102 @@ package vegas.display
         }
         
         /**
-         * This method is invoked after the draw() method in the update() method.
+         * Indicates if the mouse is visible when the protector is started.
+         */
+        public function get mouseVisible():Boolean
+        {
+            return _mouseVisible ;
+        }
+        
+        /**
+         * @private
+         */
+        public function set mouseVisible( b:Boolean ):void
+        {
+            _mouseVisible = b ;
+            if ( !_stopped )
+            {
+                if ( _mouseVisible )
+                {
+                    Mouse.show() ;
+                }
+                else
+                {
+                    Mouse.hide() ;
+                }
+            }
+        }
+        
+        /**
+         * Indicates if the protector is stopped.
+         */
+        public function get stopped():Boolean
+        {
+            return _stopped ; 
+        }
+        
+        /**
+         * Start the protector.
+         */
+        public function start():void
+        {
+            if( _stopped )
+            {
+                _stopped = false ;
+                if ( _mouseVisible )
+                {
+                    Mouse.show() ;
+                }
+                else
+                {
+                    Mouse.hide() ;
+                }
+                if ( _cursor )
+                {
+                    addChild( _cursor ) ;
+                    update() ;
+                    if( _cursor is MovieClip )
+                    {
+                        ( _cursor as MovieClip ).play() ;
+                    }
+                    stage.addEventListener( Event.ENTER_FRAME , refreshCursor ) ;
+                }
+            }
+        }
+        
+        /**
+         * Stop the protector.
+         */
+        public function stop():void
+        {
+            if ( !_stopped )
+            {
+                _stopped = true ;
+                Mouse.show() ;
+                if( cursor )
+                {
+                    if( cursor is MovieClip )
+                    {
+                        (cursor as MovieClip).stop() ;
+                    }
+                    if( contains( cursor ) )
+                    {
+                        removeChild( cursor ) ;
+                    }
+                }
+                stage.removeEventListener( Event.ENTER_FRAME , refreshCursor ) ;
+            }
+        }
+        
+        /**
+         * Invoked when the view is changed.
          */
         public override function viewChanged():void
         {
-            if ( cursor )
+            if ( _cursor && !_magnetic )
             {
-                cursor.x = w / 2 ;
-                cursor.y = h / 2 ;
+                DisplayObjects.align( _cursor , new Rectangle(0,0,width,height) , _cursorAlign , _cursorOffset ) ;
             }
-        }
-        
-        /**
-         * Invoked when the display is added to the stage.
-         */
-        protected override function addedToStage( e:Event = null ):void
-        {
-            super.addedToStage(e) ;
-            Mouse.hide() ;
-            if ( cursor )
-            {
-                addChild( cursor ) ;
-                update() ;
-                if( cursor is MovieClip )
-                {
-                    ( cursor as MovieClip ).play() ;
-                }
-                stage.addEventListener( Event.ENTER_FRAME , refreshCursor ) ;
-            } 
-        }
-        
-        /**
-         * Invoked when the display is removed from the stage.
-         */
-        protected override function removedFromStage( e:Event = null ):void
-        {
-            super.removedFromStage(e) ;
-            Mouse.show() ;
-            if( cursor )
-            {
-                if( cursor is MovieClip )
-                {
-                    (cursor as MovieClip).stop() ;
-                }
-                if( contains( cursor ) )
-                {
-                    removeChild( cursor ) ;
-                }
-            }
-            stage.removeEventListener( Event.ENTER_FRAME , refreshCursor ) ;
         }
         
         /**
@@ -197,21 +289,37 @@ package vegas.display
         /**
          * @private
          */
+        protected var _cursorAlign:uint ;
+        
+        /**
+         * @private
+         */
+        protected var _cursorOffset:Point = new Point(0,0) ;
+        
+        /**
+         * @private
+         */
         protected var _magnetic:Boolean ;
+        
+        /**
+         * @private
+         */
+        protected var _mouseVisible:Boolean = true ;
+        
+        /**
+         * @private
+         */
+        protected var _stopped:Boolean = true ;
         
         /**
          * @private
          */
         protected function refreshCursor( e:Event = null ):void
         {
-            if ( cursor && magnetic )
+            if ( _cursor && _magnetic )
             {
-                cursor.x = mouseX ;
-                cursor.y = mouseY ;
-            }
-            else
-            {
-                //
+                _cursor.x = mouseX ;
+                _cursor.y = mouseY ;
             }
         }
     }
