@@ -108,13 +108,10 @@ package vegas.ioc.evaluators
             }
             else if ( o is String )
             {
-                
                 var type:String = o as String ;
-                
-                if ( config != null )
+                if ( config )
                 {
                     var policy:String = config.typePolicy ;
-                    
                     if ( policy != TypePolicy.NONE )
                     {
                         if ( policy == TypePolicy.ALL || policy == TypePolicy.EXPRESSION )
@@ -125,10 +122,9 @@ package vegas.ioc.evaluators
                                type = exp.format(type) ;
                            }
                         }
-                       
                         if ( policy == TypePolicy.ALL || policy == TypePolicy.ALIAS )
                         {
-                            var aliases:TypeAliases = (config.typeAliases as TypeAliases) ;
+                            var aliases:TypeAliases = config.typeAliases as TypeAliases ;
                             if ( aliases != null && aliases.containsAlias(type) )
                             {
                                 type = aliases.getValue(type) ;
@@ -136,7 +132,7 @@ package vegas.ioc.evaluators
                         }
                     }
                 }
-              try
+                try
                 {
                     return getDefinitionByName( type ) as Class ;
                 }

@@ -129,7 +129,7 @@ package vegas.ioc
         /**
          * Indicates if the collector contains the passed-in type value expression.
          * @return <code class="prettyprint">true</core> if the collector contains the passed-in type value expression.
-         */        
+         */
         public function containsValue( value:String ):Boolean
         {
             if ( value == null || value.length == 0)
@@ -137,7 +137,7 @@ package vegas.ioc
                 return false ;
             }
             return _map.containsValue( value ) ;  
-        }        
+        }
         
         /**
          * Returns the Array representation of all aliases registered in this collector.
@@ -165,7 +165,7 @@ package vegas.ioc
         public function getMap():Map
         {
             return _map ;
-        }        
+        }
         
         /**
          * Returns the value of the specified alias.
@@ -202,7 +202,7 @@ package vegas.ioc
         public function getValues():Array 
         {
             return _map.getValues() ;
-        }           
+        }
         
         /**
          * Returns <code class="prettyprint">true</code> if the collector is empty.
@@ -241,7 +241,7 @@ package vegas.ioc
         {
             return _map.iterator() ;
         }
-                
+        
         /**
          * Inserts an alias in the collector. If the alias already exist the value in the collector is replaced.
          * <p><b>Example</b></p>
