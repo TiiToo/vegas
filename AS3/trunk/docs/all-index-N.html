@@ -675,18 +675,25 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("NÂ
          The next entry.</td>
 </tr>
 <tr>
-<td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('system/process/class-list.html');" href="system/process/Chain.html#next()">next</a>(... rest) &mdash; Method in class system.process.<a onclick="javascript:loadClassListFrame('system/process/class-list.html');" href="system/process/Chain.html">Chain</a></td>
+<td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('system/process/class-list.html');" href="system/process/BatchTask.html#next()">next</a>(action:<a href="system/process/Action.html" onclick="javascript:loadClassListFrame('system/process./class-list.html');">system.process:Action</a>) &mdash; Method in class system.process.<a onclick="javascript:loadClassListFrame('system/process/class-list.html');" href="system/process/BatchTask.html">BatchTask</a></td>
+</tr>
+<tr>
+<td width="20"></td><td>
+         Invoked when a task process in the batch is finished.</td>
+</tr>
+<tr>
+<td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('system/process/class-list.html');" href="system/process/Chain.html#next()">next</a>(action:<a href="system/process/Action.html" onclick="javascript:loadClassListFrame('system/process./class-list.html');">system.process:Action</a>) &mdash; Method in class system.process.<a onclick="javascript:loadClassListFrame('system/process/class-list.html');" href="system/process/Chain.html">Chain</a></td>
 </tr>
 <tr>
 <td width="20"></td><td>
          Run the next action in the chain.</td>
 </tr>
 <tr>
-<td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('system/serializers/eden/class-list.html');" href="system/serializers/eden/ECMAScript.html#next()">next</a>() &mdash; Method in class system.serializers.eden.<a onclick="javascript:loadClassListFrame('system/serializers/eden/class-list.html');" href="system/serializers/eden/ECMAScript.html">ECMAScript</a></td>
+<td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('system/process/class-list.html');" href="system/process/TaskGroup.html#next()">next</a>(action:<a href="system/process/Action.html" onclick="javascript:loadClassListFrame('system/process./class-list.html');">system.process:Action</a>) &mdash; Method in class system.process.<a onclick="javascript:loadClassListFrame('system/process/class-list.html');" href="system/process/TaskGroup.html">TaskGroup</a></td>
 </tr>
 <tr>
 <td width="20"></td><td>
-         Returns the next character in the source of this parser.</td>
+         Invoked when a task is finished.</td>
 </tr>
 <tr>
 <td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('system/text/parser/class-list.html');" href="system/text/parser/GenericParser.html#next()">next</a>() &mdash; Method in class system.text.parser.<a onclick="javascript:loadClassListFrame('system/text/parser/class-list.html');" href="system/text/parser/GenericParser.html">GenericParser</a></td>
@@ -835,6 +842,13 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("NÂ
          Default filter type value.</td>
 </tr>
 <tr>
+<td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('core/strings/class-list.html');" href="core/strings/WildExp.html#NONE">NONE</a> &mdash; Constant static property in class core.strings.<a onclick="javascript:loadClassListFrame('core/strings/class-list.html');" href="core/strings/WildExp.html">WildExp</a></td>
+</tr>
+<tr>
+<td width="20"></td><td>
+         const the NONE value (0).</td>
+</tr>
+<tr>
 <td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('graphics/class-list.html');" href="graphics/Align.html#NONE">NONE</a> &mdash; Constant static property in class graphics.<a onclick="javascript:loadClassListFrame('graphics/class-list.html');" href="graphics/Align.html">Align</a></td>
 </tr>
 <tr>
@@ -940,7 +954,28 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("NÂ
          Returns the normal value of this Vector2.</td>
 </tr>
 <tr>
+<td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('system/process/class-list.html');" href="system/process/BatchTask.html#NORMAL">NORMAL</a> &mdash; Constant static property in class system.process.<a onclick="javascript:loadClassListFrame('system/process/class-list.html');" href="system/process/BatchTask.html">BatchTask</a></td>
+</tr>
+<tr>
+<td width="20"></td><td>
+         Determinates the "normal" mode of the batch.</td>
+</tr>
+<tr>
 <td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('system/process/class-list.html');" href="system/process/Chain.html#NORMAL">NORMAL</a> &mdash; Constant static property in class system.process.<a onclick="javascript:loadClassListFrame('system/process/class-list.html');" href="system/process/Chain.html">Chain</a></td>
+</tr>
+<tr>
+<td width="20"></td><td>
+         Determinates the "normal" mode of the chain.</td>
+</tr>
+<tr>
+<td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('system/process/class-list.html');" href="system/process/Sequencer.html#NORMAL">NORMAL</a> &mdash; Constant static property in class system.process.<a onclick="javascript:loadClassListFrame('system/process/class-list.html');" href="system/process/Sequencer.html">Sequencer</a></td>
+</tr>
+<tr>
+<td width="20"></td><td>
+         Determinates the "normal" mode of the chain.</td>
+</tr>
+<tr>
+<td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('system/process/class-list.html');" href="system/process/TaskGroup.html#NORMAL">NORMAL</a> &mdash; Constant static property in class system.process.<a onclick="javascript:loadClassListFrame('system/process/class-list.html');" href="system/process/TaskGroup.html">TaskGroup</a></td>
 </tr>
 <tr>
 <td width="20"></td><td>
@@ -1266,6 +1301,13 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("NÂ
          Invoked when the scroll is finished.</td>
 </tr>
 <tr>
+<td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('graphics/transitions/class-list.html');" href="graphics/transitions/TweenTo.html#notifyFinished()">notifyFinished</a>() &mdash; Method in class graphics.transitions.<a onclick="javascript:loadClassListFrame('graphics/transitions/class-list.html');" href="graphics/transitions/TweenTo.html">TweenTo</a></td>
+</tr>
+<tr>
+<td width="20"></td><td>
+         Notify an ActionEvent when the process is finished.</td>
+</tr>
+<tr>
 <td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('system/process/class-list.html');" href="system/process/Action.html#notifyFinished()">notifyFinished</a>() &mdash; Method in interface system.process.<a onclick="javascript:loadClassListFrame('system/process/class-list.html');" href="system/process/Action.html">Action</a></td>
 </tr>
 <tr>
@@ -1306,6 +1348,13 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("NÂ
 <tr>
 <td width="20"></td><td>
          Notify an ActionEvent when the process info is changed.</td>
+</tr>
+<tr>
+<td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('vegas/models/arrays/class-list.html');" href="vegas/models/arrays/PageableArrayModelObject.html#notifyInit()">notifyInit</a>() &mdash; Method in class vegas.models.arrays.<a onclick="javascript:loadClassListFrame('vegas/models/arrays/class-list.html');" href="vegas/models/arrays/PageableArrayModelObject.html">PageableArrayModelObject</a></td>
+</tr>
+<tr>
+<td width="20"></td><td>
+         Notify an <code class="prettyprint">Event</code> object when the model is initialized.</td>
 </tr>
 <tr>
 <td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('system/process/class-list.html');" href="system/process/CoreAction.html#notifyLooped()">notifyLooped</a>() &mdash; Method in class system.process.<a onclick="javascript:loadClassListFrame('system/process/class-list.html');" href="system/process/CoreAction.html">CoreAction</a></td>
@@ -1536,7 +1585,7 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("NÂ
 </tr>
 <tr>
 <td width="20"></td><td>
-         Notify an <code class="prettyprint">Event</code> when a <code class="prettyprint">IValueObject</code> is inserted in the model.</td>
+         Notify an <code class="prettyprint">Event</code> when a <code class="prettyprint">ValueObject</code> is inserted in the model.</td>
 </tr>
 <tr>
 <td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('vegas/models/maps/class-list.html');" href="vegas/models/maps/MapModel.html#notifyUpdate()">notifyUpdate</a>(entry:<a href="system/data/Entry.html" onclick="javascript:loadClassListFrame('system/data./class-list.html');">system.data:Entry</a>) &mdash; Method in class vegas.models.maps.<a onclick="javascript:loadClassListFrame('vegas/models/maps/class-list.html');" href="vegas/models/maps/MapModel.html">MapModel</a></td>
@@ -1720,7 +1769,7 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("NÂ
 </tr>
 <tr>
 <td width="20"></td><td>
-         Returns the number of children of this object.</td>
+         Indicates the number of children of this object.</td>
 </tr>
 <tr>
 <td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('lunas/containers/class-list.html');" href="lunas/containers/Container.html#numChildren">numChildren</a> &mdash; Property in class lunas.containers.<a onclick="javascript:loadClassListFrame('lunas/containers/class-list.html');" href="lunas/containers/Container.html">Container</a></td>

@@ -982,11 +982,11 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("EÂ
          Retrieves, but does not remove, the head of this queue.</td>
 </tr>
 <tr>
-<td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('system/process/class-list.html');" href="system/process/Sequencer.html#element()">element</a>() &mdash; Method in class system.process.<a onclick="javascript:loadClassListFrame('system/process/class-list.html');" href="system/process/Sequencer.html">Sequencer</a></td>
+<td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('system/process/class-list.html');" href="system/process/Chain.html#element()">element</a>() &mdash; Method in class system.process.<a onclick="javascript:loadClassListFrame('system/process/class-list.html');" href="system/process/Chain.html">Chain</a></td>
 </tr>
 <tr>
 <td width="20"></td><td>
-         Retrieves, but does not remove, the head of this sequencer.</td>
+         Retrieves the next action reference in the chain with the current position.</td>
 </tr>
 <tr>
 <td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('vegas/colors/class-list.html');" href="vegas/colors/SVGColor.html#ELEMENTS">ELEMENTS</a> &mdash; Static property in class vegas.colors.<a onclick="javascript:loadClassListFrame('vegas/colors/class-list.html');" href="vegas/colors/SVGColor.html">SVGColor</a></td>
@@ -1551,13 +1551,6 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("EÂ
      The internal Environment class.</td>
 </tr>
 <tr>
-<td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('system/class-list.html');" href="system/package.html#Environment">Environment</a> &mdash; Package constant property in <a onclick="loadClassListFrame('system/class-list.html')" href="system/package.html">system</a></td>
-</tr>
-<tr>
-<td width="20"></td><td>
-     The Environment singleton instance.</td>
-</tr>
-<tr>
 <td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('system/class-list.html');" href="system/_Environment.html#_Environment()">_Environment</a>() &mdash; Constructor in class system.<a onclick="javascript:loadClassListFrame('system/class-list.html');" href="system/_Environment.html">_Environment</a></td>
 </tr>
 <tr>
@@ -1698,13 +1691,6 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("EÂ
          Compares the specified object with this object for equality.</td>
 </tr>
 <tr>
-<td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('graphics/display/class-list.html');" href="graphics/display/ByteArrays.html#equals()">equals</a>(first, second) &mdash; Static method in class graphics.display.<a onclick="javascript:loadClassListFrame('graphics/display/class-list.html');" href="graphics/display/ByteArrays.html">ByteArrays</a></td>
-</tr>
-<tr>
-<td width="20"></td><td>
-         Indicates if two passed-in ByteArray objects are equal.</td>
-</tr>
-<tr>
 <td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('graphics/geom/class-list.html');" href="graphics/geom/AspectRatio.html#equals()">equals</a>(o) &mdash; Method in class graphics.geom.<a onclick="javascript:loadClassListFrame('graphics/geom/class-list.html');" href="graphics/geom/AspectRatio.html">AspectRatio</a></td>
 </tr>
 <tr>
@@ -1843,6 +1829,13 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("EÂ
 <tr>
 <td width="20"></td><td>
          Compares the specified object with this object for equality.</td>
+</tr>
+<tr>
+<td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('system/class-list.html');" href="system/ByteArrays.html#equals()">equals</a>(first, second) &mdash; Static method in class system.<a onclick="javascript:loadClassListFrame('system/class-list.html');" href="system/ByteArrays.html">ByteArrays</a></td>
+</tr>
+<tr>
+<td width="20"></td><td>
+         Indicates if two passed-in ByteArray objects are equal.</td>
 </tr>
 <tr>
 <td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('system/class-list.html');" href="system/Char.html#equals">equals</a> &mdash; Constant static property in class system.<a onclick="javascript:loadClassListFrame('system/class-list.html');" href="system/Char.html">Char</a></td>
@@ -2387,7 +2380,28 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("EÂ
          Creates a new EventListenerBatch instance.</td>
 </tr>
 <tr>
+<td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('system/process/class-list.html');" href="system/process/BatchTask.html#EVERLASTING">EVERLASTING</a> &mdash; Constant static property in class system.process.<a onclick="javascript:loadClassListFrame('system/process/class-list.html');" href="system/process/BatchTask.html">BatchTask</a></td>
+</tr>
+<tr>
+<td width="20"></td><td>
+         Determinates the "everlasting" mode of the batch.</td>
+</tr>
+<tr>
 <td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('system/process/class-list.html');" href="system/process/Chain.html#EVERLASTING">EVERLASTING</a> &mdash; Constant static property in class system.process.<a onclick="javascript:loadClassListFrame('system/process/class-list.html');" href="system/process/Chain.html">Chain</a></td>
+</tr>
+<tr>
+<td width="20"></td><td>
+         Determinates the "everlasting" mode of the chain.</td>
+</tr>
+<tr>
+<td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('system/process/class-list.html');" href="system/process/Sequencer.html#EVERLASTING">EVERLASTING</a> &mdash; Constant static property in class system.process.<a onclick="javascript:loadClassListFrame('system/process/class-list.html');" href="system/process/Sequencer.html">Sequencer</a></td>
+</tr>
+<tr>
+<td width="20"></td><td>
+         Determinates the "everlasting" mode of the chain.</td>
+</tr>
+<tr>
+<td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('system/process/class-list.html');" href="system/process/TaskGroup.html#EVERLASTING">EVERLASTING</a> &mdash; Constant static property in class system.process.<a onclick="javascript:loadClassListFrame('system/process/class-list.html');" href="system/process/TaskGroup.html">TaskGroup</a></td>
 </tr>
 <tr>
 <td width="20"></td><td>

@@ -571,18 +571,18 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("AÂ
          Inserts a new Action object in the batch process collection.</td>
 </tr>
 <tr>
-<td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('system/process/class-list.html');" href="system/process/Chain.html#addAction()">addAction</a>(action:<a href="system/process/Action.html" onclick="javascript:loadClassListFrame('system/process./class-list.html');">system.process:Action</a>, priority, autoRemove) &mdash; Method in class system.process.<a onclick="javascript:loadClassListFrame('system/process/class-list.html');" href="system/process/Chain.html">Chain</a></td>
+<td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('system/process/class-list.html');" href="system/process/BatchTask.html#addAction()">addAction</a>(action:<a href="system/process/Action.html" onclick="javascript:loadClassListFrame('system/process./class-list.html');">system.process:Action</a>, priority, autoRemove) &mdash; Method in class system.process.<a onclick="javascript:loadClassListFrame('system/process/class-list.html');" href="system/process/BatchTask.html">BatchTask</a></td>
 </tr>
 <tr>
 <td width="20"></td><td>
          Insert an action in thechainr.</td>
 </tr>
 <tr>
-<td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('system/process/class-list.html');" href="system/process/Sequencer.html#addAction()">addAction</a>(action:<a href="system/process/Action.html" onclick="javascript:loadClassListFrame('system/process./class-list.html');">system.process:Action</a>, isClone) &mdash; Method in class system.process.<a onclick="javascript:loadClassListFrame('system/process/class-list.html');" href="system/process/Sequencer.html">Sequencer</a></td>
+<td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('system/process/class-list.html');" href="system/process/TaskGroup.html#addAction()">addAction</a>(action:<a href="system/process/Action.html" onclick="javascript:loadClassListFrame('system/process./class-list.html');">system.process:Action</a>, priority, autoRemove) &mdash; Method in class system.process.<a onclick="javascript:loadClassListFrame('system/process/class-list.html');" href="system/process/TaskGroup.html">TaskGroup</a></td>
 </tr>
 <tr>
 <td width="20"></td><td>
-         Adds a process(Action) in the Sequencer.</td>
+         Insert an action in thechainr.</td>
 </tr>
 <tr>
 <td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('system/data/class-list.html');" href="system/data/Bag.html#addAll()">addAll</a>(c:<a href="system/data/Collection.html" onclick="javascript:loadClassListFrame('system/data./class-list.html');">system.data:Collection</a>) &mdash; Method in interface system.data.<a onclick="javascript:loadClassListFrame('system/data/class-list.html');" href="system/data/Bag.html">Bag</a></td>
@@ -674,13 +674,6 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("AÂ
 <tr>
 <td width="20"></td><td>
          Inserts the specified element at the specified position in this list (optional operation).</td>
-</tr>
-<tr>
-<td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('system/serializers/eden/class-list.html');" href="system/serializers/eden/EdenConfigurator.html#addAuthorized()">addAuthorized</a>(... rest) &mdash; Method in class system.serializers.eden.<a onclick="javascript:loadClassListFrame('system/serializers/eden/class-list.html');" href="system/serializers/eden/EdenConfigurator.html">EdenConfigurator</a></td>
-</tr>
-<tr>
-<td width="20"></td><td>
-         Inserts an authorized path in the white list of the parser.</td>
 </tr>
 <tr>
 <td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('system/serializers/eden/class-list.html');" href="system/serializers/eden/EdenSerializer.html#addAuthorized()">addAuthorized</a>(... rest) &mdash; Method in class system.serializers.eden.<a onclick="javascript:loadClassListFrame('system/serializers/eden/class-list.html');" href="system/serializers/eden/EdenSerializer.html">EdenSerializer</a></td>
@@ -816,11 +809,11 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("AÂ
          Invoked when the display is added to the stage.</td>
 </tr>
 <tr>
-<td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('vegas/display/class-list.html');" href="vegas/display/Protector.html#addedToStage()">addedToStage</a>(e) &mdash; Method in class vegas.display.<a onclick="javascript:loadClassListFrame('vegas/display/class-list.html');" href="vegas/display/Protector.html">Protector</a></td>
+<td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('vegas/managers/class-list.html');" href="vegas/managers/ProtectorManager.html#addedToStage()">addedToStage</a>(e) &mdash; Method in class vegas.managers.<a onclick="javascript:loadClassListFrame('vegas/managers/class-list.html');" href="vegas/managers/ProtectorManager.html">ProtectorManager</a></td>
 </tr>
 <tr>
 <td width="20"></td><td>
-         Invoked when the display is added to the stage.</td>
+         Invoked when the protector register in this manager is added to the stage.</td>
 </tr>
 <tr>
 <td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('vegas/text/class-list.html');" href="vegas/text/CoreTextField.html#addedToStage()">addedToStage</a>(e) &mdash; Method in class vegas.text.<a onclick="javascript:loadClassListFrame('vegas/text/class-list.html');" href="vegas/text/CoreTextField.html">CoreTextField</a></td>
@@ -1019,6 +1012,20 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("AÂ
          Adds the specified value to the next token.</td>
 </tr>
 <tr>
+<td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('core/strings/class-list.html');" href="core/strings/WildExp.html#addToQuestionMarks()">addToQuestionMarks</a>(chr) &mdash; Method in class core.strings.<a onclick="javascript:loadClassListFrame('core/strings/class-list.html');" href="core/strings/WildExp.html">WildExp</a></td>
+</tr>
+<tr>
+<td width="20"></td><td>
+         Adds a caracter in the questionMarks array, only if the array isn't empty.</td>
+</tr>
+<tr>
+<td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('core/strings/class-list.html');" href="core/strings/WildExp.html#addToWildcards()">addToWildcards</a>(chr) &mdash; Method in class core.strings.<a onclick="javascript:loadClassListFrame('core/strings/class-list.html');" href="core/strings/WildExp.html">WildExp</a></td>
+</tr>
+<tr>
+<td width="20"></td><td>
+         Adds a caracter in the wildcards array, only if the array isn't empty.</td>
+</tr>
+<tr>
 <td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('vegas/models/collections/class-list.html');" href="vegas/models/collections/CollectionModelObject.html#addVO()">addVO</a>(vo:<a href="system/data/ValueObject.html" onclick="javascript:loadClassListFrame('system/data./class-list.html');">system.data:ValueObject</a>) &mdash; Method in class vegas.models.collections.<a onclick="javascript:loadClassListFrame('vegas/models/collections/class-list.html');" href="vegas/models/collections/CollectionModelObject.html">CollectionModelObject</a></td>
 </tr>
 <tr>
@@ -1037,7 +1044,7 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("AÂ
 </tr>
 <tr>
 <td width="20"></td><td>
-         Default event type when an <code class="prettyprint">IValueObject</code> is inserted in a model.</td>
+         Default event type when the <code class="prettyprint">ValueObject</code> is inserted in a model.</td>
 </tr>
 <tr>
 <td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('calista/hash/class-list.html');" href="calista/hash/Adler32.html">Adler32</a> &mdash; Final class in package <a onclick="javascript:loadClassListFrame('calista/hash/class-list.html');" href="calista/hash/package-detail.html">calista.hash</a></td>
@@ -1162,6 +1169,20 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("AÂ
 <tr>
 <td width="20"></td><td>
          The alignement of the background.</td>
+</tr>
+<tr>
+<td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('lunas/layouts/class-list.html');" href="lunas/layouts/CoreLayout.html#align">align</a> &mdash; Property in class lunas.layouts.<a onclick="javascript:loadClassListFrame('lunas/layouts/class-list.html');" href="lunas/layouts/CoreLayout.html">CoreLayout</a></td>
+</tr>
+<tr>
+<td width="20"></td><td>
+         The alignement of the layout.</td>
+</tr>
+<tr>
+<td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('lunas/layouts/class-list.html');" href="lunas/layouts/Layout.html#align">align</a> &mdash; Property in interface lunas.layouts.<a onclick="javascript:loadClassListFrame('lunas/layouts/class-list.html');" href="lunas/layouts/Layout.html">Layout</a></td>
+</tr>
+<tr>
+<td width="20"></td><td>
+         The alignement of the layout.</td>
 </tr>
 <tr>
 <td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('vegas/display/class-list.html');" href="vegas/display/Background.html#align">align</a> &mdash; Property in class vegas.display.<a onclick="javascript:loadClassListFrame('vegas/display/class-list.html');" href="vegas/display/Background.html">Background</a></td>
@@ -1806,7 +1827,7 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("AÂ
 </tr>
 <tr>
 <td width="20"></td><td>
-         Indicates the area IPen reference of this component.</td>
+         Indicates the area Pen reference of this component.</td>
 </tr>
 <tr>
 <td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('lunas/class-list.html');" href="lunas/IContainer.html#areInaccessibleObjectsUnderPoint()">areInaccessibleObjectsUnderPoint</a>(point) &mdash; Method in interface lunas.<a onclick="javascript:loadClassListFrame('lunas/class-list.html');" href="lunas/IContainer.html">IContainer</a></td>

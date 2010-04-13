@@ -118,7 +118,7 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("CÂ
 </tr>
 <tr>
 <td width="20"></td><td>
-     Enqueue of collection of members definitions (commands) to apply or invoke with the specified target object.</td>
+     Enqueue a collection of members definitions (commands) to apply or invoke with the specified target object.</td>
 </tr>
 <tr>
 <td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('system/process/class-list.html');" href="system/process/Cache.html#Cache()">Cache</a>(target) &mdash; Constructor in class system.process.<a onclick="javascript:loadClassListFrame('system/process/class-list.html');" href="system/process/Cache.html">Cache</a></td>
@@ -238,7 +238,7 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("CÂ
      This expert manage all Camera reference in the application.</td>
 </tr>
 <tr>
-<td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('vegas/media/class-list.html');" href="vegas/media/CameraExpert.html#CameraExpert()">CameraExpert</a>(setting:<a href="vegas/media/CameraVO.html" onclick="javascript:loadClassListFrame('vegas/media./class-list.html');">vegas.media:CameraVO</a>, name, id, bGlobal, sChannel) &mdash; Constructor in class vegas.media.<a onclick="javascript:loadClassListFrame('vegas/media/class-list.html');" href="vegas/media/CameraExpert.html">CameraExpert</a></td>
+<td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('vegas/media/class-list.html');" href="vegas/media/CameraExpert.html#CameraExpert()">CameraExpert</a>(setting:<a href="vegas/media/CameraVO.html" onclick="javascript:loadClassListFrame('vegas/media./class-list.html');">vegas.media:CameraVO</a>, name, id, global, channel) &mdash; Constructor in class vegas.media.<a onclick="javascript:loadClassListFrame('vegas/media/class-list.html');" href="vegas/media/CameraExpert.html">CameraExpert</a></td>
 </tr>
 <tr>
 <td width="20"></td><td>
@@ -357,6 +357,13 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("CÂ
          Rounds and returns the ceiling of the specified number or expression.</td>
 </tr>
 <tr>
+<td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('graphics/filters/class-list.html');" href="graphics/filters/CircleSpectrumFilter.html#center">center</a> &mdash; Property in class graphics.filters.<a onclick="javascript:loadClassListFrame('graphics/filters/class-list.html');" href="graphics/filters/CircleSpectrumFilter.html">CircleSpectrumFilter</a></td>
+</tr>
+<tr>
+<td width="20"></td><td>
+         The center position of the circle (between {0,0} and {2800,2800}, default {100,100}).</td>
+</tr>
+<tr>
 <td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('graphics/filters/class-list.html');" href="graphics/filters/HoleFilter.html#center">center</a> &mdash; Property in class graphics.filters.<a onclick="javascript:loadClassListFrame('graphics/filters/class-list.html');" href="graphics/filters/HoleFilter.html">HoleFilter</a></td>
 </tr>
 <tr>
@@ -434,13 +441,6 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("CÂ
          Indicates the central angle value (in radians) of the hexagon (60 Math.PI / 180).</td>
 </tr>
 <tr>
-<td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('system/serializers/eden/class-list.html');" href="system/serializers/eden/ECMAScript.html#ch">ch</a> &mdash; Property in class system.serializers.eden.<a onclick="javascript:loadClassListFrame('system/serializers/eden/class-list.html');" href="system/serializers/eden/ECMAScript.html">ECMAScript</a></td>
-</tr>
-<tr>
-<td width="20"></td><td>
-         The current character to parse.</td>
-</tr>
-<tr>
 <td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('system/text/parser/class-list.html');" href="system/text/parser/GenericParser.html#ch">ch</a> &mdash; Property in class system.text.parser.<a onclick="javascript:loadClassListFrame('system/text/parser/class-list.html');" href="system/text/parser/GenericParser.html">GenericParser</a></td>
 </tr>
 <tr>
@@ -462,7 +462,7 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("CÂ
      A chain is a sequence with a finite or infinite number of actions.</td>
 </tr>
 <tr>
-<td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('system/process/class-list.html');" href="system/process/Chain.html#Chain()">Chain</a>(length, fixed, loop, numLoop, mode, actions) &mdash; Constructor in class system.process.<a onclick="javascript:loadClassListFrame('system/process/class-list.html');" href="system/process/Chain.html">Chain</a></td>
+<td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('system/process/class-list.html');" href="system/process/Chain.html#Chain()">Chain</a>(length, fixed, looping, numLoop, mode, actions) &mdash; Constructor in class system.process.<a onclick="javascript:loadClassListFrame('system/process/class-list.html');" href="system/process/Chain.html">Chain</a></td>
 </tr>
 <tr>
 <td width="20"></td><td>
@@ -495,6 +495,13 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("CÂ
 <tr>
 <td width="20"></td><td>
      Dispatched when a process is changed.</td>
+</tr>
+<tr>
+<td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('vegas/ioc/net/class-list.html');" href="vegas/ioc/net/ObjectFactoryLoader.html#change()">change</a>(action:<a href="system/process/Action.html" onclick="javascript:loadClassListFrame('system/process./class-list.html');">system.process:Action</a>) &mdash; Method in class vegas.ioc.net.<a onclick="javascript:loadClassListFrame('vegas/ioc/net/class-list.html');" href="vegas/ioc/net/ObjectFactoryLoader.html">ObjectFactoryLoader</a></td>
+</tr>
+<tr>
+<td width="20"></td><td>
+         Invoked when the current task in the sequencer is changed.</td>
 </tr>
 <tr>
 <td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('lunas/events/class-list.html');" href="lunas/events/ComponentEvent.html#CHANGE">CHANGE</a> &mdash; Static property in class lunas.events.<a onclick="javascript:loadClassListFrame('lunas/events/class-list.html');" href="lunas/events/ComponentEvent.html">ComponentEvent</a></td>
@@ -537,13 +544,6 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("CÂ
 <tr>
 <td width="20"></td><td>
          The name of the event when the localization is changed.</td>
-</tr>
-<tr>
-<td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('lunas/containers/class-list.html');" href="lunas/containers/CircleContainer.html#changeChildsPosition()">changeChildsPosition</a>() &mdash; Method in class lunas.containers.<a onclick="javascript:loadClassListFrame('lunas/containers/class-list.html');" href="lunas/containers/CircleContainer.html">CircleContainer</a></td>
-</tr>
-<tr>
-<td width="20"></td><td>
-         Refreshs and changes the child position of all childs in the _container.</td>
 </tr>
 <tr>
 <td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('lunas/containers/class-list.html');" href="lunas/containers/ListContainer.html#changeChildsPosition()">changeChildsPosition</a>() &mdash; Method in class lunas.containers.<a onclick="javascript:loadClassListFrame('lunas/containers/class-list.html');" href="lunas/containers/ListContainer.html">ListContainer</a></td>
@@ -784,7 +784,21 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("CÂ
          The DisplayObject reference.</td>
 </tr>
 <tr>
+<td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('vegas/process/display/class-list.html');" href="vegas/process/display/SetChildIndex.html#child">child</a> &mdash; Property in class vegas.process.display.<a onclick="javascript:loadClassListFrame('vegas/process/display/class-list.html');" href="vegas/process/display/SetChildIndex.html">SetChildIndex</a></td>
+</tr>
+<tr>
+<td width="20"></td><td>
+         The child DisplayObject instance for which you want to change the index number.</td>
+</tr>
+<tr>
 <td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('lunas/containers/class-list.html');" href="lunas/containers/CircleContainer.html#childAngle">childAngle</a> &mdash; Property in class lunas.containers.<a onclick="javascript:loadClassListFrame('lunas/containers/class-list.html');" href="lunas/containers/CircleContainer.html">CircleContainer</a></td>
+</tr>
+<tr>
+<td width="20"></td><td>
+         Indicates the angle value in degrees of the childs in the container.</td>
+</tr>
+<tr>
+<td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('lunas/layouts/class-list.html');" href="lunas/layouts/CircleLayout.html#childAngle">childAngle</a> &mdash; Property in class lunas.layouts.<a onclick="javascript:loadClassListFrame('lunas/layouts/class-list.html');" href="lunas/layouts/CircleLayout.html">CircleLayout</a></td>
 </tr>
 <tr>
 <td width="20"></td><td>
@@ -805,7 +819,21 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("CÂ
          Determinates the number of childs in this container.</td>
 </tr>
 <tr>
+<td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('lunas/layouts/class-list.html');" href="lunas/layouts/CircleLayout.html#childCount">childCount</a> &mdash; Property in class lunas.layouts.<a onclick="javascript:loadClassListFrame('lunas/layouts/class-list.html');" href="lunas/layouts/CircleLayout.html">CircleLayout</a></td>
+</tr>
+<tr>
+<td width="20"></td><td>
+         Indicates the number of childs visible in this container (minimal value is 1).</td>
+</tr>
+<tr>
 <td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('lunas/containers/class-list.html');" href="lunas/containers/CircleContainer.html#childOrientation">childOrientation</a> &mdash; Property in class lunas.containers.<a onclick="javascript:loadClassListFrame('lunas/containers/class-list.html');" href="lunas/containers/CircleContainer.html">CircleContainer</a></td>
+</tr>
+<tr>
+<td width="20"></td><td>
+         Indicates if the childs of the container use a perpendicular tangente direction.</td>
+</tr>
+<tr>
+<td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('lunas/layouts/class-list.html');" href="lunas/layouts/CircleLayout.html#childOrientation">childOrientation</a> &mdash; Property in class lunas.layouts.<a onclick="javascript:loadClassListFrame('lunas/layouts/class-list.html');" href="lunas/layouts/CircleLayout.html">CircleLayout</a></td>
 </tr>
 <tr>
 <td width="20"></td><td>
@@ -840,6 +868,20 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("CÂ
          Creates a new CircleContainer instance.</td>
 </tr>
 <tr>
+<td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('lunas/layouts/class-list.html');" href="lunas/layouts/CircleLayout.html">CircleLayout</a> &mdash; Class in package <a onclick="javascript:loadClassListFrame('lunas/layouts/class-list.html');" href="lunas/layouts/package-detail.html">lunas.layouts</a></td>
+</tr>
+<tr>
+<td width="20"></td><td>
+     This layout display all the childs elements in a specific DisplayObjectContainer with a circle trigonometric algorithm.</td>
+</tr>
+<tr>
+<td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('lunas/layouts/class-list.html');" href="lunas/layouts/CircleLayout.html#CircleLayout()">CircleLayout</a>(container) &mdash; Constructor in class lunas.layouts.<a onclick="javascript:loadClassListFrame('lunas/layouts/class-list.html');" href="lunas/layouts/CircleLayout.html">CircleLayout</a></td>
+</tr>
+<tr>
+<td width="20"></td><td>
+         Creates a new CircleLayout instance.</td>
+</tr>
+<tr>
 <td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('graphics/drawing/class-list.html');" href="graphics/drawing/CirclePen.html">CirclePen</a> &mdash; Dynamic class in package <a onclick="javascript:loadClassListFrame('graphics/drawing/class-list.html');" href="graphics/drawing/package-detail.html">graphics.drawing</a></td>
 </tr>
 <tr>
@@ -852,6 +894,20 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("CÂ
 <tr>
 <td width="20"></td><td>
          The Pen class use composition to control a Graphics reference and draw custom vector graphic shapes.</td>
+</tr>
+<tr>
+<td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('graphics/filters/class-list.html');" href="graphics/filters/CircleSpectrumFilter.html">CircleSpectrumFilter</a> &mdash; Class in package <a onclick="javascript:loadClassListFrame('graphics/filters/class-list.html');" href="graphics/filters/package-detail.html">graphics.filters</a></td>
+</tr>
+<tr>
+<td width="20"></td><td>
+     The CircleSpectrumFilter class maps a color spectrum to a circle area.</td>
+</tr>
+<tr>
+<td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('graphics/filters/class-list.html');" href="graphics/filters/CircleSpectrumFilter.html#CircleSpectrumFilter()">CircleSpectrumFilter</a>(shader, init) &mdash; Constructor in class graphics.filters.<a onclick="javascript:loadClassListFrame('graphics/filters/class-list.html');" href="graphics/filters/CircleSpectrumFilter.html">CircleSpectrumFilter</a></td>
+</tr>
+<tr>
+<td width="20"></td><td>
+         Creates a new CircleSpectrumFilter instance.</td>
 </tr>
 <tr>
 <td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('graphics/transitions/easings/class-list.html');" href="graphics/transitions/easings/Circular.html">Circular</a> &mdash; Class in package <a onclick="javascript:loadClassListFrame('graphics/transitions/easings/class-list.html');" href="graphics/transitions/easings/package-detail.html">graphics.transitions.easings</a></td>
@@ -922,6 +978,13 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("CÂ
 <tr>
 <td width="20"></td><td>
      This interface defines the object who indicates all informations about a class in the reflection pattern of system.</td>
+</tr>
+<tr>
+<td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('vegas/models/maps/class-list.html');" href="vegas/models/maps/InitMapModelObject.html#cleanFirst">cleanFirst</a> &mdash; Property in class vegas.models.maps.<a onclick="javascript:loadClassListFrame('vegas/models/maps/class-list.html');" href="vegas/models/maps/InitMapModelObject.html">InitMapModelObject</a></td>
+</tr>
+<tr>
+<td width="20"></td><td>
+         Indicates if the first attribute must be autocleared when the process is finished.</td>
 </tr>
 <tr>
 <td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('core/class-list.html');" href="core/bit.html#clear()">clear</a>() &mdash; Method in class core.<a onclick="javascript:loadClassListFrame('core/class-list.html');" href="core/bit.html">bit</a></td>
@@ -1253,13 +1316,6 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("CÂ
      Dispatched when a process is cleared.</td>
 </tr>
 <tr>
-<td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('system/process/class-list.html');" href="system/process/Sequencer.html#clear()">clear</a>() &mdash; Method in class system.process.<a onclick="javascript:loadClassListFrame('system/process/class-list.html');" href="system/process/Sequencer.html">Sequencer</a></td>
-</tr>
-<tr>
-<td width="20"></td><td>
-         Removes all action register in the Sequencer.</td>
-</tr>
-<tr>
 <td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('system/terminals/class-list.html');" href="system/terminals/InteractiveConsole.html#clear()">clear</a>() &mdash; Method in interface system.terminals.<a onclick="javascript:loadClassListFrame('system/terminals/class-list.html');" href="system/terminals/InteractiveConsole.html">InteractiveConsole</a></td>
 </tr>
 <tr>
@@ -1470,6 +1526,13 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("CÂ
           Default event type when all tween entries are removed.</td>
 </tr>
 <tr>
+<td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('system/process/class-list.html');" href="system/process/CoreAction.html#clearIt">clearIt</a> &mdash; Property in class system.process.<a onclick="javascript:loadClassListFrame('system/process/class-list.html');" href="system/process/CoreAction.html">CoreAction</a></td>
+</tr>
+<tr>
+<td width="20"></td><td>
+         This signal emit when the notifyCleared method is invoked.</td>
+</tr>
+<tr>
 <td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('vegas/ioc/class-list.html');" href="vegas/ioc/IObjectDefinitionContainer.html#clearObjectDefinition()">clearObjectDefinition</a>() &mdash; Method in interface vegas.ioc.<a onclick="javascript:loadClassListFrame('vegas/ioc/class-list.html');" href="vegas/ioc/IObjectDefinitionContainer.html">IObjectDefinitionContainer</a></td>
 </tr>
 <tr>
@@ -1495,7 +1558,7 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("CÂ
 </tr>
 <tr>
 <td width="20"></td><td>
-         Default event type when all <code class="prettyprint">IValueObject</code> in a model are deleted.</td>
+         Default event type when all <code class="prettyprint">ValueObject</code> in a model are deleted.</td>
 </tr>
 <tr>
 <td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('lunas/events/class-list.html');" href="lunas/events/ButtonEvent.html#CLICK">CLICK</a> &mdash; Static property in class lunas.events.<a onclick="javascript:loadClassListFrame('lunas/events/class-list.html');" href="lunas/events/ButtonEvent.html">ButtonEvent</a></td>
@@ -1631,13 +1694,6 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("CÂ
          Creates and returns a shallow copy of the object.</td>
 </tr>
 <tr>
-<td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('graphics/display/class-list.html');" href="graphics/display/ByteArrays.html#clone()">clone</a>(byteArray) &mdash; Static method in class graphics.display.<a onclick="javascript:loadClassListFrame('graphics/display/class-list.html');" href="graphics/display/ByteArrays.html">ByteArrays</a></td>
-</tr>
-<tr>
-<td width="20"></td><td>
-         Returns a shallow copy of the specified ByteArray object.</td>
-</tr>
-<tr>
 <td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('graphics/display/class-list.html');" href="graphics/display/TimelineTransition.html#clone()">clone</a>() &mdash; Method in class graphics.display.<a onclick="javascript:loadClassListFrame('graphics/display/class-list.html');" href="graphics/display/TimelineTransition.html">TimelineTransition</a></td>
 </tr>
 <tr>
@@ -1657,6 +1713,20 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("CÂ
 <tr>
 <td width="20"></td><td>
          Returns the shallow copy of this object.</td>
+</tr>
+<tr>
+<td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('graphics/filters/class-list.html');" href="graphics/filters/CircleSpectrumFilter.html#clone()">clone</a>() &mdash; Method in class graphics.filters.<a onclick="javascript:loadClassListFrame('graphics/filters/class-list.html');" href="graphics/filters/CircleSpectrumFilter.html">CircleSpectrumFilter</a></td>
+</tr>
+<tr>
+<td width="20"></td><td>
+         Returns a shallow copy of the object.</td>
+</tr>
+<tr>
+<td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('graphics/filters/class-list.html');" href="graphics/filters/GrayScaleFilter.html#clone()">clone</a>() &mdash; Method in class graphics.filters.<a onclick="javascript:loadClassListFrame('graphics/filters/class-list.html');" href="graphics/filters/GrayScaleFilter.html">GrayScaleFilter</a></td>
+</tr>
+<tr>
+<td width="20"></td><td>
+         Returns a shallow copy of the object.</td>
 </tr>
 <tr>
 <td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('graphics/filters/class-list.html');" href="graphics/filters/HoleFilter.html#clone()">clone</a>() &mdash; Method in class graphics.filters.<a onclick="javascript:loadClassListFrame('graphics/filters/class-list.html');" href="graphics/filters/HoleFilter.html">HoleFilter</a></td>
@@ -1953,28 +2023,14 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("CÂ
          Returns the shallow copy of this event.</td>
 </tr>
 <tr>
+<td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('system/class-list.html');" href="system/ByteArrays.html#clone()">clone</a>(byteArray) &mdash; Static method in class system.<a onclick="javascript:loadClassListFrame('system/class-list.html');" href="system/ByteArrays.html">ByteArrays</a></td>
+</tr>
+<tr>
+<td width="20"></td><td>
+         Returns a shallow copy of the specified ByteArray object.</td>
+</tr>
+<tr>
 <td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('system/class-list.html');" href="system/Cloneable.html#clone()">clone</a>() &mdash; Method in interface system.<a onclick="javascript:loadClassListFrame('system/class-list.html');" href="system/Cloneable.html">Cloneable</a></td>
-</tr>
-<tr>
-<td width="20"></td><td>
-         Creates and returns a shallow copy of the object.</td>
-</tr>
-<tr>
-<td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('system/broadcasters/class-list.html');" href="system/broadcasters/CoreBroadcaster.html#clone()">clone</a>() &mdash; Method in class system.broadcasters.<a onclick="javascript:loadClassListFrame('system/broadcasters/class-list.html');" href="system/broadcasters/CoreBroadcaster.html">CoreBroadcaster</a></td>
-</tr>
-<tr>
-<td width="20"></td><td>
-         Creates and returns a shallow copy of the object.</td>
-</tr>
-<tr>
-<td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('system/broadcasters/class-list.html');" href="system/broadcasters/FastDispatcher.html#clone()">clone</a>() &mdash; Method in class system.broadcasters.<a onclick="javascript:loadClassListFrame('system/broadcasters/class-list.html');" href="system/broadcasters/FastDispatcher.html">FastDispatcher</a></td>
-</tr>
-<tr>
-<td width="20"></td><td>
-         Creates and returns a shallow copy of the object.</td>
-</tr>
-<tr>
-<td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('system/broadcasters/class-list.html');" href="system/broadcasters/MessageBroadcaster.html#clone()">clone</a>() &mdash; Method in class system.broadcasters.<a onclick="javascript:loadClassListFrame('system/broadcasters/class-list.html');" href="system/broadcasters/MessageBroadcaster.html">MessageBroadcaster</a></td>
 </tr>
 <tr>
 <td width="20"></td><td>
@@ -2303,6 +2359,13 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("CÂ
          Returns a shallow copy of the object.</td>
 </tr>
 <tr>
+<td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('system/process/class-list.html');" href="system/process/BatchTask.html#clone()">clone</a>() &mdash; Method in class system.process.<a onclick="javascript:loadClassListFrame('system/process/class-list.html');" href="system/process/BatchTask.html">BatchTask</a></td>
+</tr>
+<tr>
+<td width="20"></td><td>
+         Returns a shallow copy of this object.</td>
+</tr>
+<tr>
 <td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('system/process/class-list.html');" href="system/process/Cache.html#clone()">clone</a>() &mdash; Method in class system.process.<a onclick="javascript:loadClassListFrame('system/process/class-list.html');" href="system/process/Cache.html">Cache</a></td>
 </tr>
 <tr>
@@ -2352,11 +2415,11 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("CÂ
          Returns a shallow copy of this object.</td>
 </tr>
 <tr>
-<td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('system/signals/class-list.html');" href="system/signals/Signal.html#clone()">clone</a>() &mdash; Method in class system.signals.<a onclick="javascript:loadClassListFrame('system/signals/class-list.html');" href="system/signals/Signal.html">Signal</a></td>
+<td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('system/process/class-list.html');" href="system/process/TaskGroup.html#clone()">clone</a>() &mdash; Method in class system.process.<a onclick="javascript:loadClassListFrame('system/process/class-list.html');" href="system/process/TaskGroup.html">TaskGroup</a></td>
 </tr>
 <tr>
 <td width="20"></td><td>
-         Creates and returns a shallow copy of the object.</td>
+         Returns a shallow copy of this object.</td>
 </tr>
 <tr>
 <td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('vegas/config/class-list.html');" href="vegas/config/CoreConfigLoader.html#clone()">clone</a>() &mdash; Method in class vegas.config.<a onclick="javascript:loadClassListFrame('vegas/config/class-list.html');" href="vegas/config/CoreConfigLoader.html">CoreConfigLoader</a></td>
@@ -2513,7 +2576,21 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("CÂ
          Returns a shallow copy of this object.</td>
 </tr>
 <tr>
+<td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('vegas/process/display/class-list.html');" href="vegas/process/display/SetChildIndex.html#clone()">clone</a>() &mdash; Method in class vegas.process.display.<a onclick="javascript:loadClassListFrame('vegas/process/display/class-list.html');" href="vegas/process/display/SetChildIndex.html">SetChildIndex</a></td>
+</tr>
+<tr>
+<td width="20"></td><td>
+         Returns a shallow copy of this object.</td>
+</tr>
+<tr>
 <td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('vegas/process/display/class-list.html');" href="vegas/process/display/ShowDisplay.html#clone()">clone</a>() &mdash; Method in class vegas.process.display.<a onclick="javascript:loadClassListFrame('vegas/process/display/class-list.html');" href="vegas/process/display/ShowDisplay.html">ShowDisplay</a></td>
+</tr>
+<tr>
+<td width="20"></td><td>
+         Returns a shallow copy of this object.</td>
+</tr>
+<tr>
+<td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('vegas/process/display/class-list.html');" href="vegas/process/display/SwapChildrenAt.html#clone()">clone</a>() &mdash; Method in class vegas.process.display.<a onclick="javascript:loadClassListFrame('vegas/process/display/class-list.html');" href="vegas/process/display/SwapChildrenAt.html">SwapChildrenAt</a></td>
 </tr>
 <tr>
 <td width="20"></td><td>
@@ -3709,7 +3786,7 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("CÂ
 </tr>
 <tr>
 <td width="20"></td><td>
-         This CoreSprite reference defines a container display.</td>
+         This Sprite reference defines a container display.</td>
 </tr>
 <tr>
 <td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('lunas/containers/class-list.html');" href="lunas/containers/ListContainer.html#_container">_container</a> &mdash; Property in class lunas.containers.<a onclick="javascript:loadClassListFrame('lunas/containers/class-list.html');" href="lunas/containers/ListContainer.html">ListContainer</a></td>
@@ -3717,6 +3794,20 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("CÂ
 <tr>
 <td width="20"></td><td>
          This CoreSprite reference defines a container display.</td>
+</tr>
+<tr>
+<td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('lunas/layouts/class-list.html');" href="lunas/layouts/CoreLayout.html#container">container</a> &mdash; Property in class lunas.layouts.<a onclick="javascript:loadClassListFrame('lunas/layouts/class-list.html');" href="lunas/layouts/CoreLayout.html">CoreLayout</a></td>
+</tr>
+<tr>
+<td width="20"></td><td>
+         Indicates the container reference to change with the layout.</td>
+</tr>
+<tr>
+<td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('lunas/layouts/class-list.html');" href="lunas/layouts/Layout.html#container">container</a> &mdash; Property in interface lunas.layouts.<a onclick="javascript:loadClassListFrame('lunas/layouts/class-list.html');" href="lunas/layouts/Layout.html">Layout</a></td>
+</tr>
+<tr>
+<td width="20"></td><td>
+         Indicates the container reference to change with the layout.</td>
 </tr>
 <tr>
 <td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('lunas/containers/class-list.html');" href="lunas/containers/Container.html">Container</a> &mdash; Class in package <a onclick="javascript:loadClassListFrame('lunas/containers/class-list.html');" href="lunas/containers/package-detail.html">lunas.containers</a></td>
@@ -4279,6 +4370,13 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("CÂ
          Determines whether the specified point is contained within the rectangular region defined by this Rectangle object.</td>
 </tr>
 <tr>
+<td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('lunas/components/buttons/class-list.html');" href="lunas/components/buttons/PictureButton.html#content">content</a> &mdash; Property in class lunas.components.buttons.<a onclick="javascript:loadClassListFrame('lunas/components/buttons/class-list.html');" href="lunas/components/buttons/PictureButton.html">PictureButton</a></td>
+</tr>
+<tr>
+<td width="20"></td><td>
+         Returns the content reference of the button.</td>
+</tr>
+<tr>
 <td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('system/process/class-list.html');" href="system/process/ActionLoader.html#content">content</a> &mdash; Property in class system.process.<a onclick="javascript:loadClassListFrame('system/process/class-list.html');" href="system/process/ActionLoader.html">ActionLoader</a></td>
 </tr>
 <tr>
@@ -4405,17 +4503,17 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("CÂ
      The <code class="prettyprint">Copier</code> utility class is an all-static class with a method to returns a copy representation of an object.</td>
 </tr>
 <tr>
-<td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('graphics/display/class-list.html');" href="graphics/display/ByteArrays.html#copy()">copy</a>(from, fromOffset, to, toOffset, length) &mdash; Static method in class graphics.display.<a onclick="javascript:loadClassListFrame('graphics/display/class-list.html');" href="graphics/display/ByteArrays.html">ByteArrays</a></td>
-</tr>
-<tr>
-<td width="20"></td><td>
-         This function can copy a ByteArray in a other ByteArray.</td>
-</tr>
-<tr>
 <td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('system/class-list.html');" href="system/Arrays.html#copy()">copy</a>(ar, shallow) &mdash; Static method in class system.<a onclick="javascript:loadClassListFrame('system/class-list.html');" href="system/Arrays.html">Arrays</a></td>
 </tr>
 <tr>
 <td width="20"></td><td></td>
+</tr>
+<tr>
+<td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('system/class-list.html');" href="system/ByteArrays.html#copy()">copy</a>(from, fromOffset, to, toOffset, length) &mdash; Static method in class system.<a onclick="javascript:loadClassListFrame('system/class-list.html');" href="system/ByteArrays.html">ByteArrays</a></td>
+</tr>
+<tr>
+<td width="20"></td><td>
+         This function can copy a ByteArray in a other ByteArray.</td>
 </tr>
 <tr>
 <td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('system/class-list.html');" href="system/Objects.html#copy()">copy</a>(o, shallow) &mdash; Static method in class system.<a onclick="javascript:loadClassListFrame('system/class-list.html');" href="system/Objects.html">Objects</a></td>
@@ -4632,6 +4730,20 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("CÂ
 <tr>
 <td width="20"></td><td>
          Creates a new CoreGroup instance.</td>
+</tr>
+<tr>
+<td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('lunas/layouts/class-list.html');" href="lunas/layouts/CoreLayout.html">CoreLayout</a> &mdash; Class in package <a onclick="javascript:loadClassListFrame('lunas/layouts/class-list.html');" href="lunas/layouts/package-detail.html">lunas.layouts</a></td>
+</tr>
+<tr>
+<td width="20"></td><td>
+     The basic implementation of the layouts.</td>
+</tr>
+<tr>
+<td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('lunas/layouts/class-list.html');" href="lunas/layouts/CoreLayout.html#CoreLayout()">CoreLayout</a>(container, init, auto) &mdash; Constructor in class lunas.layouts.<a onclick="javascript:loadClassListFrame('lunas/layouts/class-list.html');" href="lunas/layouts/CoreLayout.html">CoreLayout</a></td>
+</tr>
+<tr>
+<td width="20"></td><td>
+         Creates a new CoreLayout instance.</td>
 </tr>
 <tr>
 <td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('vegas/display/class-list.html');" href="vegas/display/CoreLoader.html">CoreLoader</a> &mdash; Class in package <a onclick="javascript:loadClassListFrame('vegas/display/class-list.html');" href="vegas/display/package-detail.html">vegas.display</a></td>
@@ -5062,6 +5174,13 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("CÂ
          Determinates the count of items in a page of this model.</td>
 </tr>
 <tr>
+<td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('lunas/components/buttons/class-list.html');" href="lunas/components/buttons/PictureButton.html#cover">cover</a> &mdash; Property in class lunas.components.buttons.<a onclick="javascript:loadClassListFrame('lunas/components/buttons/class-list.html');" href="lunas/components/buttons/PictureButton.html">PictureButton</a></td>
+</tr>
+<tr>
+<td width="20"></td><td>
+         Indicates a DisplayObject to mask the loading content of the button.</td>
+</tr>
+<tr>
 <td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('vegas/display/coverflow/class-list.html');" href="vegas/display/coverflow/Cover.html#cover">cover</a> &mdash; Property in class vegas.display.coverflow.<a onclick="javascript:loadClassListFrame('vegas/display/coverflow/class-list.html');" href="vegas/display/coverflow/Cover.html">Cover</a></td>
 </tr>
 <tr>
@@ -5160,32 +5279,11 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("CÂ
          Creates the objects.</td>
 </tr>
 <tr>
-<td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('vegas/ioc/class-list.html');" href="vegas/ioc/ObjectArgument.html#create()">create</a>(a) &mdash; Static method in class vegas.ioc.<a onclick="javascript:loadClassListFrame('vegas/ioc/class-list.html');" href="vegas/ioc/ObjectArgument.html">ObjectArgument</a></td>
-</tr>
-<tr>
-<td width="20"></td><td>
-         Creates the Array definition of all arguments defines in the passed-in array.</td>
-</tr>
-<tr>
 <td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('vegas/ioc/class-list.html');" href="vegas/ioc/ObjectDefinition.html#create()">create</a>(o) &mdash; Static method in class vegas.ioc.<a onclick="javascript:loadClassListFrame('vegas/ioc/class-list.html');" href="vegas/ioc/ObjectDefinition.html">ObjectDefinition</a></td>
 </tr>
 <tr>
 <td width="20"></td><td>
          Creates a new ObjectDefinition instance and populated it with the specified init object in argument.</td>
-</tr>
-<tr>
-<td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('vegas/ioc/class-list.html');" href="vegas/ioc/ObjectListener.html#create()">create</a>(a) &mdash; Static method in class vegas.ioc.<a onclick="javascript:loadClassListFrame('vegas/ioc/class-list.html');" href="vegas/ioc/ObjectListener.html">ObjectListener</a></td>
-</tr>
-<tr>
-<td width="20"></td><td>
-         Creates the Array definition of all listeners defines in the passed-in array.</td>
-</tr>
-<tr>
-<td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('vegas/ioc/class-list.html');" href="vegas/ioc/ObjectProperty.html#create()">create</a>(a) &mdash; Static method in class vegas.ioc.<a onclick="javascript:loadClassListFrame('vegas/ioc/class-list.html');" href="vegas/ioc/ObjectProperty.html">ObjectProperty</a></td>
-</tr>
-<tr>
-<td width="20"></td><td>
-         Creates the Array definition of all properties defines in the passed-in array.</td>
 </tr>
 <tr>
 <td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('vegas/ioc/factory/class-list.html');" href="vegas/ioc/factory/ObjectFactory.html#create()">create</a>(... rest) &mdash; Method in class vegas.ioc.factory.<a onclick="javascript:loadClassListFrame('vegas/ioc/factory/class-list.html');" href="vegas/ioc/factory/ObjectFactory.html">ObjectFactory</a></td>
@@ -5300,6 +5398,13 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("CÂ
          Creates and cache the singleton instance define with the specified id and IObjectDefinition.</td>
 </tr>
 <tr>
+<td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('vegas/ioc/factory/class-list.html');" href="vegas/ioc/factory/ObjectBuilder.html#createArguments()">createArguments</a>(a) &mdash; Static method in class vegas.ioc.factory.<a onclick="javascript:loadClassListFrame('vegas/ioc/factory/class-list.html');" href="vegas/ioc/factory/ObjectBuilder.html">ObjectBuilder</a></td>
+</tr>
+<tr>
+<td width="20"></td><td>
+         Creates the Array of all arguments.</td>
+</tr>
+<tr>
 <td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('vegas/ioc/factory/class-list.html');" href="vegas/ioc/factory/ObjectFactory.html#createArguments()">createArguments</a>(args) &mdash; Method in class vegas.ioc.factory.<a onclick="javascript:loadClassListFrame('vegas/ioc/factory/class-list.html');" href="vegas/ioc/factory/ObjectFactory.html">ObjectFactory</a></td>
 </tr>
 <tr>
@@ -5335,6 +5440,13 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("CÂ
          Creates the specific style of matrix expected by the beginGradientFill() and lineGradientStyle() methods of the Graphics class.</td>
 </tr>
 <tr>
+<td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('vegas/ioc/factory/class-list.html');" href="vegas/ioc/factory/ObjectBuilder.html#createListeners()">createListeners</a>(factory) &mdash; Static method in class vegas.ioc.factory.<a onclick="javascript:loadClassListFrame('vegas/ioc/factory/class-list.html');" href="vegas/ioc/factory/ObjectBuilder.html">ObjectBuilder</a></td>
+</tr>
+<tr>
+<td width="20"></td><td>
+         Creates the Array of all listeners defines in the passed-in factory object definition.</td>
+</tr>
+<tr>
 <td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('vegas/models/class-list.html');" href="vegas/models/CoreModelObject.html#createNewModelObjectEvent()">createNewModelObjectEvent</a>(type, vo:<a href="system/data/ValueObject.html" onclick="javascript:loadClassListFrame('system/data./class-list.html');">system.data:ValueObject</a>) &mdash; Method in class vegas.models.<a onclick="javascript:loadClassListFrame('vegas/models/class-list.html');" href="vegas/models/CoreModelObject.html">CoreModelObject</a></td>
 </tr>
 <tr>
@@ -5361,6 +5473,13 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("CÂ
 <tr>
 <td width="20"></td><td>
          Creates a pinch effect over a <code class="prettyprint">Canvas</code> object}.</td>
+</tr>
+<tr>
+<td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('vegas/ioc/factory/class-list.html');" href="vegas/ioc/factory/ObjectBuilder.html#createProperties()">createProperties</a>(factory) &mdash; Static method in class vegas.ioc.factory.<a onclick="javascript:loadClassListFrame('vegas/ioc/factory/class-list.html');" href="vegas/ioc/factory/ObjectBuilder.html">ObjectBuilder</a></td>
+</tr>
+<tr>
+<td width="20"></td><td>
+         Creates the Array of all properties defines in the passed-in factory object definition.</td>
 </tr>
 <tr>
 <td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('graphics/drawing/class-list.html');" href="graphics/drawing/CanvasTransform.html#createWaves()">createWaves</a>(area, xAmount, yAmount, xCount, yCount, xOffset, yOffset) &mdash; Static method in class graphics.drawing.<a onclick="javascript:loadClassListFrame('graphics/drawing/class-list.html');" href="graphics/drawing/CanvasTransform.html">CanvasTransform</a></td>
@@ -5496,18 +5615,18 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("CÂ
          Returns the current value.</td>
 </tr>
 <tr>
+<td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('system/process/class-list.html');" href="system/process/BatchTask.html#current">current</a> &mdash; Property in class system.process.<a onclick="javascript:loadClassListFrame('system/process/class-list.html');" href="system/process/BatchTask.html">BatchTask</a></td>
+</tr>
+<tr>
+<td width="20"></td><td>
+         Indicates the current Action reference when the batch is in progress.</td>
+</tr>
+<tr>
 <td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('system/process/class-list.html');" href="system/process/Chain.html#current">current</a> &mdash; Property in class system.process.<a onclick="javascript:loadClassListFrame('system/process/class-list.html');" href="system/process/Chain.html">Chain</a></td>
 </tr>
 <tr>
 <td width="20"></td><td>
          Indicates the current Action reference when the chain process is running.</td>
-</tr>
-<tr>
-<td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('system/process/class-list.html');" href="system/process/Sequencer.html#current">current</a> &mdash; Property in class system.process.<a onclick="javascript:loadClassListFrame('system/process/class-list.html');" href="system/process/Sequencer.html">Sequencer</a></td>
-</tr>
-<tr>
-<td width="20"></td><td>
-         Indicates the current Action reference in progress.</td>
 </tr>
 <tr>
 <td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('vegas/events/class-list.html');" href="vegas/events/LocalizationEvent.html#current">current</a> &mdash; Property in class vegas.events.<a onclick="javascript:loadClassListFrame('vegas/events/class-list.html');" href="vegas/events/LocalizationEvent.html">LocalizationEvent</a></td>
@@ -5629,11 +5748,18 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("CÂ
          The optional cursor reference.</td>
 </tr>
 <tr>
-<td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('vegas/managers/class-list.html');" href="vegas/managers/ProtectorManager.html#cursorPolicy">cursorPolicy</a> &mdash; Property in class vegas.managers.<a onclick="javascript:loadClassListFrame('vegas/managers/class-list.html');" href="vegas/managers/ProtectorManager.html">ProtectorManager</a></td>
+<td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('vegas/display/class-list.html');" href="vegas/display/Protector.html#cursorAlign">cursorAlign</a> &mdash; Property in class vegas.display.<a onclick="javascript:loadClassListFrame('vegas/display/class-list.html');" href="vegas/display/Protector.html">Protector</a></td>
 </tr>
 <tr>
 <td width="20"></td><td>
-         Indicates the cursor policy of this manager (visible or not).</td>
+         The alignement of the cursor when is showing and not magnetic (default Align.CENTER).</td>
+</tr>
+<tr>
+<td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('vegas/display/class-list.html');" href="vegas/display/Protector.html#cursorOffset">cursorOffset</a> &mdash; Property in class vegas.display.<a onclick="javascript:loadClassListFrame('vegas/display/class-list.html');" href="vegas/display/Protector.html">Protector</a></td>
+</tr>
+<tr>
+<td width="20"></td><td>
+         The offset of the cursor when is showing and not magnetic (default is new flash.geom.Point(0,0)).</td>
 </tr>
 <tr>
 <td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('graphics/drawing/class-list.html');" href="graphics/drawing/Canvas.html#curvesToLines()">curvesToLines</a>() &mdash; Method in class graphics.drawing.<a onclick="javascript:loadClassListFrame('graphics/drawing/class-list.html');" href="graphics/drawing/Canvas.html">Canvas</a></td>
