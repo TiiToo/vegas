@@ -1,9 +1,9 @@
 #labels Documentation,Phase-Requirements
-= VEGAS version 1.7.1 =
+= VEGAS version 1.7.1.2 =
 
 Vegas is an opensource framework based on ECMAScript and ActionScript.
 
- * _The latest stable release : *[http://code.google.com/p/vegas/downloads/detail?name=version%201.7.7.1555.zip 1.7.1.1555]*_
+ * _The latest stable release : *[http://code.google.com/p/vegas/downloads/detail?name=version%201.7.2.1617.zip 1.7.2.1617]*_
 
 ==Description==
 
