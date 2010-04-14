@@ -38,17 +38,32 @@
 package vegas.display 
 {
     import graphics.display.DisplayObjects;
-
+    
+    import system.events.ActionEvent;
     import system.process.Startable;
     import system.process.Stoppable;
-
+    
     import flash.display.MovieClip;
     import flash.display.Sprite;
     import flash.events.Event;
     import flash.geom.Point;
     import flash.geom.Rectangle;
     import flash.ui.Mouse;
-
+    
+    /**
+     * Dispatched when a process is started.
+     * @eventType system.events.ActionEvent.START
+     * @see #start
+     */
+    [Event(name="start", type="system.events.ActionEvent")]
+    
+    /**
+     * Dispatched when a process is stopped.
+     * @eventType system.events.ActionEvent.STOP
+     * @see #stop
+     */
+    [Event(name="stop", type="system.events.ActionEvent")]
+    
     /**
      * This display protect the application with a stage.align mode "top left".
      * <p><b>Example :</b></p>
@@ -85,15 +100,17 @@ package vegas.display
          * @param cursor The optional cursor reference.
          * @param magnetic Indicates the magnetic state value of the cursor.
          * @param cursorAlign The alignement of the cursor when is showing and not magnetic (default Align.CENTER).
+         * @param cursorAutoPlay Indicates if the cursor is a MovieClip if the play() method must be invoked when the protector start.
          */
-        public function Protector( cursor:Sprite = null , magnetic:Boolean = false , cursorAlign:uint = 1 )
+        public function Protector( cursor:Sprite = null , magnetic:Boolean = false , cursorAlign:uint = 1  , cursorAutoPlay:Boolean = true )
         {
             lock() ;
             super( null , true );
-            autoSize         = true ;
-            this.cursor      = cursor ;
-            this.cursorAlign = cursorAlign ;
-            this.magnetic = magnetic ;
+            autoSize            = true ;
+            this.cursor         = cursor ;
+            this.cursorAlign    = cursorAlign ;
+            this.cursorAutoPlay = cursorAutoPlay ;
+            this.magnetic       = magnetic ;
             unlock() ;
             update() ;
         }
@@ -138,6 +155,30 @@ package vegas.display
         {
             _cursorAlign = align ;
             update() ;
+        }
+        
+        /**
+         * Indicates if the cursor is a MovieClip if the play() method must be invoked when the protector start.
+         */
+        public function get cursorAutoPlay():Boolean
+        {
+            return _cursorAutoPlay ;
+        }
+        
+        /**
+         * @private
+         */
+        public function set cursorAutoPlay( b:Boolean ):void
+        {
+            if( !_stopped && _cursor && _cursor is MovieClip )
+            {
+                ( _cursor as MovieClip ).stop() ;
+            }
+            _cursorAutoPlay = b ;
+            if( !_stopped && _cursor && _cursor is MovieClip && _cursorAutoPlay )
+            {
+                ( _cursor as MovieClip ).play() ;
+            }
         }
         
         /**
@@ -237,12 +278,13 @@ package vegas.display
                 {
                     addChild( _cursor ) ;
                     update() ;
-                    if( _cursor is MovieClip )
+                    if( _cursor is MovieClip && _cursorAutoPlay )
                     {
                         ( _cursor as MovieClip ).play() ;
                     }
                     stage.addEventListener( Event.ENTER_FRAME , refreshCursor ) ;
                 }
+                dispatchEvent( new ActionEvent( ActionEvent.START ) ) ;
             }
         }
         
@@ -267,6 +309,7 @@ package vegas.display
                     }
                 }
                 stage.removeEventListener( Event.ENTER_FRAME , refreshCursor ) ;
+                dispatchEvent( new ActionEvent( ActionEvent.STOP ) ) ;
             }
         }
         
@@ -290,6 +333,11 @@ package vegas.display
          * @private
          */
         protected var _cursorAlign:uint ;
+        
+        /**
+         * @private
+         */
+        protected var _cursorAutoPlay:Boolean ;
         
         /**
          * @private

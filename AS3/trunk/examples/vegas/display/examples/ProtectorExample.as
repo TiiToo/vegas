@@ -64,12 +64,15 @@ package examples
             // protector
             
             cursor       = new Cursor() ; // see in the library of the fla
+            
             protect      = new Protector() ;
             protect.fill = new FillStyle( 0xD97BD0 , 0.2 ) ;
             
-            protect.cursor       = cursor ;
-            protect.magnetic     = false  ;
-            protect.mouseVisible = true   ;
+            protect.cursor         = cursor ;
+            protect.magnetic       = false  ;
+            protect.mouseVisible   = true   ;
+            
+            // protect.cursorAutoPlay = false  ;
             
             addChild( protect ) ;
             
