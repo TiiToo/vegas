@@ -282,19 +282,12 @@ package vegas.net
         }
         
         /**
-         * Determinates the parent Action reference of the current Action.
+         * The current phase of the action.
+         * @see system.process.TaskPhase
          */
-        public function get parent():Action
+        public function get phase():String
         {
-            return _parent ;
-        }
-        
-        /**
-         * @private
-         */
-        public function set parent( action:Action ):void
-        {
-            _parent = action ;
+            return _phase ;
         }
         
         /**
@@ -580,7 +573,7 @@ package vegas.net
         /**
          * @private
          */
-        private var _parent:Action ;
+        protected var _phase:String = TaskPhase.INACTIVE ;
         
         /**
          * @private

@@ -45,11 +45,12 @@ package vegas.media
     import system.numeric.Range;
     import system.process.Action;
     import system.process.Stoppable;
+    import system.process.TaskPhase;
     import system.signals.Signal;
     import system.signals.Signaler;
-
+    
     import vegas.events.SoundEvent;
-
+    
     import flash.events.Event;
     import flash.events.IOErrorEvent;
     import flash.events.TimerEvent;
@@ -60,17 +61,30 @@ package vegas.media
     import flash.net.URLRequest;
     import flash.utils.Timer;
     import flash.utils.getDefinitionByName;
-
+    
     /**
-     * The CoreSound class extends the flash.media.Sound class and implements the IConfigurable, Identifiable, Lockable and ILogable interfaces.
+     * Dispatched when a process is finished.
+     * @eventType system.events.ActionEvent.FINISH
+     * @see #notifyFinished
+     */
+    [Event(name="finish", type="system.events.ActionEvent")]
+    
+    /**
+     * Dispatched when a process is started.
+     * @eventType system.events.ActionEvent.START
+     * @see #notifyStarted
+     */
+    [Event(name="start", type="system.events.ActionEvent")]
+    
+    /**
+     * The CoreSound class extends the flash.media.Sound class and implements the Identifiable, Lockable and Logable interfaces.
      * <p><b>Example :</b></p>
      * <pre class="prettyprint">
      * // See in the library of this fla file the BipSound Sound symbol and this linkage class id.
      * 
      * import system.events.ActionEvent ;
      * 
-     * import kronos.date.Time ;
-     * 
+     * import vegas.date.Time ;
      * import vegas.events.SoundEvent ;
      * import vegas.media.CoreSound   ;
      * 
@@ -238,19 +252,12 @@ package vegas.media
         }
         
         /**
-         * Determinates the parent Action reference of the current Action.
+         * The current phase of the action.
+         * @see system.process.TaskPhase
          */
-        public function get parent():Action 
+        public function get phase():String
         {
-            return _parent ;
-        }
-        
-        /**
-         * @private
-         */
-        public function set parent( action:Action ):void 
-        {
-            _parent = action ;
+            return _phase ;
         }
         
         /**
@@ -413,12 +420,14 @@ package vegas.media
         public function notifyFinished():void 
         {
             _isRunning = false ;
+            _phase = TaskPhase.FINISHED ;
             _timer.stop() ;
             if ( hasEventListener( ActionEvent.FINISH ) )
             {
                 dispatchEvent( new ActionEvent( ActionEvent.FINISH , this ) ) ;
             }
             _finishIt.emit( this ) ;
+            _phase = TaskPhase.INACTIVE ;
         }
         
         /**
@@ -427,6 +436,7 @@ package vegas.media
         public function notifyStarted():void
         {
             _isRunning = true ;
+            _phase  = TaskPhase.RUNNING ;
             _startIt.emit( this ) ;
             if ( hasEventListener( ActionEvent.START ) )
             {
@@ -455,7 +465,7 @@ package vegas.media
                 _currentPosition = position ;
                 channel.stop() ;
                 notifyPaused() ;
-                return true ;    
+                return true ;
             }
             else
             {
@@ -505,11 +515,11 @@ package vegas.media
         {
             if( !isNaN(_currentPosition) && _isPausing )
             {
+                notifyResumed() ;
                 _isPausing = false ;
                 _registerChannel( super.play( _currentPosition ) ) ;
                 _timer.start() ;
-                notifyResumed() ;
-                return true ;    
+                return true ;
             }
             else
             {
@@ -620,6 +630,7 @@ package vegas.media
         protected function notifyPaused():void
         {
             _isRunning = false ;
+            _phase     = TaskPhase.STOPPED ;
             _timer.stop() ;
             _fireActionEvent( ActionEvent.PAUSE ) ;
         }
@@ -631,6 +642,7 @@ package vegas.media
         protected function notifyResumed():void
         {
             _isRunning = true ;
+            _phase     = TaskPhase.RUNNING ;
             _fireActionEvent( ActionEvent.RESUME ) ;
         }
         
@@ -640,6 +652,7 @@ package vegas.media
         protected function notifyStopped():void
         {
             _isRunning = false ;
+            _phase     = TaskPhase.STOPPED ;
             _timer.stop() ;
             _fireActionEvent( ActionEvent.STOP ) ;
         }
@@ -670,12 +683,12 @@ package vegas.media
          * @private
          */ 
         private var ___isLock___:Boolean ;
-
+        
         /**
          * @private
          */
         private var _isPausing:Boolean ;
-
+        
         /**
          * @private
          */
@@ -689,7 +702,7 @@ package vegas.media
         /**
          * @private
          */
-        private var _parent:Action ;
+        protected var _phase:String = TaskPhase.INACTIVE ;
         
         /**
          * @private
@@ -777,7 +790,7 @@ package vegas.media
             }
             if ( _channel != null )
             {
-                _channel.removeEventListener( Event.SOUND_COMPLETE, _onSoundComplete , false ) ;    
+                _channel.removeEventListener( Event.SOUND_COMPLETE, _onSoundComplete , false ) ;
             }
             _channel = channel ;
             if ( _channel != null )
