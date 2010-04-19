@@ -412,7 +412,7 @@ package vegas.net
         /**
          * Closes the connection that was opened locally or with the server and dispatches the netStatus event with a code property of NetConnection.Connect.Closed. 
          * @return A boolean to indicates if the connection is closed.
-         */        
+         */
         public function close( noEvent:Boolean = false ):Boolean 
         {
             _timer.stop() ;
@@ -458,11 +458,13 @@ package vegas.net
         public function notifyFinished():void 
         {
             setRunning( false ) ;
+            _phase = TaskPhase.FINISHED ;
             if ( hasEventListener( ActionEvent.FINISH ) )
             {
                 dispatchEvent( new ActionEvent( ActionEvent.FINISH , this ) ) ;
             }
             _finishIt.emit() ;
+            _phase = TaskPhase.INACTIVE ;
         }
         
         /**
@@ -479,6 +481,7 @@ package vegas.net
         public function notifyStarted():void 
         {
             setRunning( true ) ;
+            _phase  = TaskPhase.RUNNING ;
             _startIt.emit() ;
             if ( hasEventListener( ActionEvent.START ) )
             {
@@ -491,6 +494,7 @@ package vegas.net
          */
         protected function notifyTimeOut():void
         {
+            _phase  = TaskPhase.TIMEOUT ;
             dispatchEvent( new ActionEvent( ActionEvent.TIMEOUT, this) ) ;
         }
         

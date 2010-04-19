@@ -44,6 +44,8 @@ package vegas.media
     import system.logging.Logger;
     import system.numeric.Range;
     import system.process.Action;
+    import system.process.Resumable;
+    import system.process.Startable;
     import system.process.Stoppable;
     import system.process.TaskPhase;
     import system.signals.Signal;
@@ -123,7 +125,7 @@ package vegas.media
      * sound.play() ;
      * </pre>
      */
-    public class CoreSound extends Sound implements Action, ISound, Stoppable
+    public class CoreSound extends Sound implements Action, ISound, Resumable, Startable, Stoppable
     {
         /**
          * Creates a new CoreSound instance.
@@ -446,14 +448,6 @@ package vegas.media
         }
         
         /**
-         * Run the process.
-         */
-        public function run( ...arguments:Array ):void 
-        {
-            play( isNaN(_currentPosition) ? _currentPosition : 0 ) ;
-        }
-        
-        /**
          * Pauses playback of the Sound.
          * @return <code class="prettyprint">true</code> if the pause method can be use (the internal SoundChannel of this Sound object is not null and not is "pausing").
          */    
@@ -511,7 +505,7 @@ package vegas.media
          * Resumes playback of the sound that is paused (if the <code class="prettyprint">pausing</code> property is <code class="prettyprint">true</code>).
          * @return <code class="prettyprint">true</code> if the resume method is success.
          */
-        public function resume():Boolean
+        public function resume():void
         {
             if( !isNaN(_currentPosition) && _isPausing )
             {
@@ -519,12 +513,23 @@ package vegas.media
                 _isPausing = false ;
                 _registerChannel( super.play( _currentPosition ) ) ;
                 _timer.start() ;
-                return true ;
             }
-            else
-            {
-                return false ;
-            }
+        }
+        
+        /**
+         * Run the process.
+         */
+        public function run( ...arguments:Array ):void 
+        {
+            play( isNaN(_currentPosition) ? _currentPosition : 0 ) ;
+        }
+        
+        /**
+         * Stars the sound.
+         */
+        public function start():void
+        {
+            run() ;
         }
         
         /**
