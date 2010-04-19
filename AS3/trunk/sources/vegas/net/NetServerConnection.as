@@ -41,12 +41,13 @@ package vegas.net
     import system.events.ActionEvent;
     import system.events.CoreEventDispatcher;
     import system.process.Action;
+    import system.process.TaskPhase;
     import system.process.TimeoutPolicy;
     import system.signals.Signal;
     import system.signals.Signaler;
-
+    
     import vegas.events.NetServerEvent;
-
+    
     import flash.events.AsyncErrorEvent;
     import flash.events.Event;
     import flash.events.IOErrorEvent;
