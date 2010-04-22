@@ -31,6 +31,9 @@
     
     <component id="lunas.components.bars:CoreProgressbar"      class="lunas.components.bars.CoreProgressbar" />
     <component id="lunas.components.bars:CoreScrollbar"        class="lunas.components.bars.CoreScrollbar" />
+    <component id="lunas.components.bars:LevelBar"             class="lunas.components.bars.LevelBar" />
+    <component id="lunas.components.bars:LevelBarBuilder"      class="lunas.components.bars.LevelBarBuilder" />
+    <component id="lunas.components.bars:LevelBarStyle"        class="lunas.components.bars.LevelBarStyle" />
     <component id="lunas.components.bars:SimpleProgressbar"    class="lunas.components.bars.SimpleProgressbar" />
     <component id="lunas.components.bars:SimpleScrollbar"      class="lunas.components.bars.SimpleScrollbar" />
     <component id="lunas.components.bars:SimpleScrollbarStyle" class="lunas.components.bars.SimpleScrollbarStyle" />  
