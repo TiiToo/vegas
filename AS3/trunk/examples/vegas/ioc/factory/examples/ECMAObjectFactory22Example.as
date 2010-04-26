@@ -35,13 +35,13 @@
 package examples 
 {
     import examples.core.Messenger;
-    
+
     import system.signals.Signal;
-    
+
     import vegas.ioc.factory.ECMAObjectFactory;
-    
+
     import flash.display.Sprite;
-    
+
     public dynamic class ECMAObjectFactory22Example extends Sprite 
     {
         public function ECMAObjectFactory22Example()

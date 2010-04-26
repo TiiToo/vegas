@@ -56,10 +56,8 @@ package examples.core
             trace( "receive : " + Strings.format( pattern , name , message ) ) ;
         }
         
-        public function write( ...values:Array ):void
+        public function write( name:String = "" , message:String = "" ):void
         {
-            var name:String    = values[0] as String ;
-            var message:String = values[1] as String ;
             trace( "write : " + Strings.format( pattern , name , message ) ) ;
         }
     }
