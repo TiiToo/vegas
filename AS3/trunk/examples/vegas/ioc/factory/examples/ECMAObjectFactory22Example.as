@@ -34,13 +34,13 @@
 */
 package examples 
 {
-    import examples.core.Listener;
+    import examples.core.Messenger;
+    
+    import system.signals.Signal;
     
     import vegas.ioc.factory.ECMAObjectFactory;
     
     import flash.display.Sprite;
-    import flash.events.Event;
-    import flash.events.EventDispatcher;
     
     public dynamic class ECMAObjectFactory22Example extends Sprite 
     {
@@ -50,28 +50,28 @@ package examples
             
             factory.create( context ) ; 
             
-            // 1 - target the callback "handleEvent" method in the listener object (all objects with methods can be a listener)
+            // 1 - target the callback "receiver" method in the receiver object (all objects with methods can be a receiver)
             
-            var dispatcher1:EventDispatcher = factory.getObject("dispatcher1") as EventDispatcher ;
+            var signaler1:Signal = factory.getObject("signaler1") as Signal ;
             
-            dispatcher1.dispatchEvent( new Event( "change" ) ) ;
+            signaler1.emit( "signaler1" , "hello world" ) ;
             
-            // 2 - target the listener object if implements the system.events.EventListener interface.
+            // 2 - target the receiver object if implements the system.signals.Receiver interface.
             
-            var dispatcher2:EventDispatcher = factory.getObject("dispatcher2") as EventDispatcher ;
+            var signaler2:Signal = factory.getObject("signaler2") as Signal ;
             
-            dispatcher2.dispatchEvent( new Event( "change" ) ) ;
+            signaler2.emit( "signaler2" , "hello world" ) ;
             
-            // 3 - target the listener register before the properties initialization.
+            // 3 - target the receiver register before the properties initialization.
             
-            var dispatcher3:EventDispatcher = factory.getObject("dispatcher3") as EventDispatcher ;
+            var signaler3:Signal = factory.getObject("signaler3") as Signal ;
             
-            dispatcher3.dispatchEvent( new Event( "change" ) ) ;
+            signaler3.emit( "signaler3" , "hello world" ) ;
         }
         
         ////// linkage enforcer
         
-        Listener ;
+        Messenger ; Signal ;
         
         /////
         
@@ -80,30 +80,30 @@ package examples
             { 
                 id        : "signaler1" ,
                 type      : "system.signals.Signal" ,
-                singleton : true
+                singleton : true  
             }
             ,
             { 
                 id        : "signaler2" ,
                 type      : "system.signals.Signal" ,
-                singleton : true
+                singleton : true  
             }
             ,
             { 
                 id        : "signaler3" ,
                 type      : "system.signals.Signal" ,
-                singleton : true
+                singleton : true  
             }
             ,
             { 
-                id        : "receiver"   ,
-                type      : "examples.core.Listener" , // TODO fixme and finalize it
+                id        : "messenger"   ,
+                type      : "examples.core.Messenger" , 
                 singleton : true ,
                 receivers :
                 [
-                    { dispatcher:"dispatcher1" , type:"change" , method:"change" , useCapture:false, priority:0 , useWeakReference:true } , 
-                    { dispatcher:"dispatcher2" , type:"change" } ,
-                    { dispatcher:"dispatcher3" , type:"change" , order : "before" }
+                    { signal:"signaler1" } ,
+                    { signal:"signaler2" , slot : "write"} ,
+                    { signal:"signaler3" , order : "before" }
                 ]
             }
         ] ;
