@@ -48,6 +48,7 @@ package vegas.ioc
         {
             var suite:TestSuite = new TestSuite( "veags.ioc unit tests" );
             
+            suite.addTestSuite( ObjectAttributeTest ) ;
             suite.addTestSuite( ObjectOrderTest ) ;
             suite.addTestSuite( ObjectReceiverTest ) ;
             suite.addTestSuite( ObjectScopeTest ) ;

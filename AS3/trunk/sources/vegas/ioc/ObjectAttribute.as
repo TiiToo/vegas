@@ -84,9 +84,9 @@ package vegas.ioc
         
         /**
          * Defines the label of the lazyInit name property of the object.
-         */        
+         */
         public static const LAZY_INIT:String = "lazyInit" ;
-              
+        
         /**
          * Defines the attribute name of the "locale" object in the configuration of the ioc factory and the object definition "arguments" and "properties".
          */
@@ -156,6 +156,11 @@ package vegas.ioc
          * The name of the external object property to register the properties.
          */
         public static const OBJECT_PROPERTIES:String = "properties" ;
+        
+        /**
+         * Defines the label of the "receivers" name property of the object.
+         */
+        public static const OBJECT_RECEIVERS:String = "receivers" ;
         
         /**
          * The name of the external object property to define the scope flag of the object.
