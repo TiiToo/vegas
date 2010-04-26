@@ -109,7 +109,10 @@ Features :
 
  * [http://code.google.com/p/calista/ CalistA page project (Google Code)] 
 
-CalistA is a little cryptography library written in Actionscript include in the VEGAS framework with SHA256, SHA1, TEA, MD5, LZW, Base64 and Base8 algorithms.
+CalistA is a little cryptography library written in Actionscript include in the VEGAS framework with
+
+ * hash : Adler32, CRC32, Blowfish, RXOR, SHA1, SHA256, MD5, TEA, Vigenère
+ * utils : LZW, Base64, Base8
 
 ===AST'r===
 
