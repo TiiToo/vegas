@@ -48,13 +48,11 @@ package vegas.ioc
         {
             var suite:TestSuite = new TestSuite( "veags.ioc unit tests" );
             
-            // FIXME suite.addTestSuite( IObjectDefinitionTest ) ;
-            // FIXME suite.addTestSuite( IObjectDefinitionContainerTest ) ;
+            suite.addTestSuite( ObjectReceiverTest ) ;
             
             suite.addTest( vegas.ioc.evaluators.AllTests.suite() ) ;
             suite.addTest( vegas.ioc.factory.AllTests.suite() ) ;
             suite.addTest( vegas.ioc.io.AllTests.suite() ) ;
-            // FIXME suite.addTest( vegas.ioc.net.AllTests.suite() ) ;
             
             return suite;
         }

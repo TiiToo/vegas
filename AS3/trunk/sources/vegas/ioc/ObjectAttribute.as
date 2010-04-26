@@ -55,12 +55,12 @@ package vegas.ioc
         /**
          * Defines the label of the 'configuration' top-level attribute.
          */
-        public static const CONFIGURATION:String = "configuration" ;  
+        public static const CONFIGURATION:String = "configuration" ;
         
         /**
          * Defines the label of the 'evaluators' attribure.
          */
-        public static const EVALUATORS:String = "evaluators" ;  
+        public static const EVALUATORS:String = "evaluators" ;
         
         /**
          * Defines the label of the 'factory' attribure.
