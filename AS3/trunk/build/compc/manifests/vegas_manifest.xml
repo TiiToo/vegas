@@ -103,8 +103,9 @@
     <component id="vegas.ioc:ObjectDefinitionContainer"  class="vegas.ioc.ObjectDefinitionContainer"  />
     <component id="vegas.ioc:ObjectListener"             class="vegas.ioc.ObjectListener"             />
     <component id="vegas.ioc:ObjectMethod"               class="vegas.ioc.ObjectMethod"               />
-    <component id="vegas.ioc:ObjectOrder"                class="vegas.ioc.ObjectOrder"               />
+    <component id="vegas.ioc:ObjectOrder"                class="vegas.ioc.ObjectOrder"                />
     <component id="vegas.ioc:ObjectProperty"             class="vegas.ioc.ObjectProperty"             />
+    <component id="vegas.ioc:ObjectReceiver"             class="vegas.ioc.ObjectReceiver"             />
     <component id="vegas.ioc:ObjectScope"                class="vegas.ioc.ObjectScope"                />
     <component id="vegas.ioc:TypeAliases"                class="vegas.ioc.TypeAliases"                />
     <component id="vegas.ioc:TypeExpression"             class="vegas.ioc.TypeExpression"             />

@@ -37,29 +37,36 @@
 
 package vegas.ioc 
 {
-    /**
-     * Enumeration of all "orders" can be use in the object definitions.
-     */
-    public class ObjectOrder 
+    import buRRRn.ASTUce.framework.ArrayAssert;
+    import buRRRn.ASTUce.framework.TestCase;
+
+    public class ObjectScopeTest extends TestCase 
     {
-        /**
-         * The "after" order value.
-         */
-        public static const AFTER:String = "after" ;
+        public function ObjectScopeTest(name:String = "")
+        {
+            super(name);
+        }
         
-        /**
-         * The "before" order value.
-         */
-        public static const BEFORE:String = "before" ;
+        public function testPROTOTYPE():void
+        {
+            assertEquals( "prototype" , ObjectScope.PROTOTYPE ) ;
+        }
         
-        /**
-         * The "none" order value.
-         */
-        public static const NONE:String = "none" ;
+        public function testSINGLETON():void
+        {
+            assertEquals( "singleton" , ObjectScope.SINGLETON ) ;
+        }
         
-        /**
-         * The "now" order value.
-         */
-        public static const NOW:String = "now" ;
+        public function testGetScopes():void
+        {
+            ArrayAssert.assertEquals( ["prototype", "singleton"] , ObjectScope.getScopes() ) ;
+        }
+        
+        public function testValidate():void
+        {
+            assertTrue( ObjectScope.validate( "singleton") ) ;
+            assertTrue( ObjectScope.validate( "prototype") ) ;
+            assertFalse( ObjectScope.validate( "unknow") ) ;
+        }
     }
 }
