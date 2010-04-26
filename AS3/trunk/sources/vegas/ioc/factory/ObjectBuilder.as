@@ -38,14 +38,15 @@
 package vegas.ioc.factory 
 {
     import system.eden;
-
+    
     import vegas.ioc.ObjectArgument;
     import vegas.ioc.ObjectAttribute;
     import vegas.ioc.ObjectListener;
     import vegas.ioc.ObjectOrder;
     import vegas.ioc.ObjectProperty;
+    import vegas.ioc.ObjectReceiver;
     import vegas.logging.logger;
-
+    
     /**
      * This object defines a property definition and this value in an object definition.
      */
@@ -60,6 +61,11 @@ package vegas.ioc.factory
          * This message pattern is used when the createProperties method log a warning message.
          */
         public static var PROPERTIES_WARN:String = "ObjectBuilder.createProperties failed, a property definition is invalid in the object definition \"{0}\" at \"{1}\" with the value : {2}" ; 
+        
+        /**
+         * This message pattern is used when the createReceivers method log a warning message.
+         */
+        public static var RECEIVERS_WARN:String = "ObjectBuilder.createReceivers failed, a receiver definition is invalid in the object definition \"{0}\" at \"{1}\" with the value : {2}" ; 
         
         /**
          * Creates the Array of all arguments.
@@ -256,6 +262,61 @@ package vegas.ioc.factory
                 }
             }
             return ( properties.length > 0 ) ? properties : null ;
+        }
+        
+        /**
+         * Creates the Array of all receivers defines in the passed-in factory object definition.
+         * @return the Array of all receivers defines in the passed-in factory object definition.
+         */
+        public static function createReceivers( factory:* = null ):Array
+        {
+            if ( factory == null )
+            {
+                return null ;
+            }
+            
+            var a:Array = ( factory is Array ) ? factory as Array : factory[ ObjectAttribute.OBJECT_RECEIVERS  ] as Array  ;
+            
+            if ( a == null || a.length == 0 )
+            {
+                return null ;
+            }
+            
+            var def:Object ;
+            var receivers:Array = [] ;
+            var signal:String ;
+            
+            var id:String = factory[ ObjectAttribute.OBJECT_ID ] as String ;
+            var len:int   = a.length ;
+            
+            for ( var i:int ; i<len ; i++ )
+            {
+                def = a[i] as Object ;
+                if ( def != null && ( ObjectReceiver.SIGNAL in def ) )
+                { 
+                    signal = def[ ObjectReceiver.SIGNAL ] as String ;
+                    if ( signal == null || signal.length == 0 )
+                    {
+                        continue ;
+                    }
+                    receivers.push
+                    ( 
+                        new ObjectReceiver
+                        ( 
+                            signal , 
+                            def[ ObjectReceiver.SLOT ] as String ,
+                            def[ ObjectReceiver.PRIORITY ] is int ? def[ ObjectListener.PRIORITY ] as int : 0 , 
+                            def[ ObjectReceiver.AUTO_DISCONNECT ] == true ,
+                            ( def[ ObjectListener.ORDER ] == ObjectOrder.BEFORE ) ? ObjectOrder.BEFORE : ObjectOrder.AFTER
+                        ) 
+                    ) ;
+                }
+                else
+                {
+                    logger.warn( RECEIVERS_WARN , id , i , eden.serialize( def ) ) ; 
+                }
+            }
+            return ( receivers.length > 0 ) ? receivers : null ;
         }
     }
 }

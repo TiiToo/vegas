@@ -164,9 +164,10 @@ package vegas.ioc
             
             definition.setFactoryStrategy      ( ObjectFactoryBuilder.create( o ) ) ;
             
-            definition.setConstructorArguments ( ObjectBuilder.createArguments ( o[ ObjectAttribute.ARGUMENTS  ] as Array ) ) ;
-            definition.setListeners            ( ObjectBuilder.createListeners ( o ) ) ;
-            definition.setProperties           ( ObjectBuilder.createProperties ( o ) ) ;
+            definition.setConstructorArguments ( ObjectBuilder.createArguments( o[ ObjectAttribute.ARGUMENTS  ] as Array ) ) ;
+            definition.setListeners            ( ObjectBuilder.createListeners( o ) ) ;
+            definition.setProperties           ( ObjectBuilder.createProperties( o ) ) ;
+            definition.setReceivers            ( ObjectBuilder.createReceivers( o ) ) ;
             
             definition.setDestroyMethodName    ( o[ ObjectAttribute.OBJECT_DESTROY_METHOD_NAME ] as String ) ;
             definition.setInitMethodName       ( o[ ObjectAttribute.OBJECT_INIT_METHOD_NAME    ] as String ) ;
@@ -188,12 +189,30 @@ package vegas.ioc
         } 
         
         /**
+         * Returns the Array of all receiver definitions of this object definition register after the object initialization.
+         * @return the Array of all receiver definitions of this object definition register after the object initialization.
+         */
+        public function getAfterReceivers():Array
+        {
+            return _afterReceivers ;
+        }
+        
+        /**
          * Returns the Array of all listener definitions of this object definition register before the object initialization.
          * @return the Array of all listener definitions of this object definition register before the object initialization.
          */
         public function getBeforeListeners():Array
         {
             return _beforeListeners ;
+        }
+        
+        /**
+         * Returns the Array of all receiver definitions of this object definition register before the object initialization.
+         * @return the Array of all receiver definitions of this object definition register before the object initialization.
+         */
+        public function getBeforeReceivers():Array
+        {
+            return _beforeReceivers ;
         }
         
         /**
@@ -290,7 +309,7 @@ package vegas.ioc
         /**
          * Returns <code class="prettyprint">true</code> if the object in a Sigleton else the object is a prototype.
          * @return <code class="prettyprint">true</code> if the object in a Sigleton else the object is a prototype.
-         */        
+         */
         public function isSingleton():Boolean 
         {
             return _singleton ;
@@ -385,14 +404,14 @@ package vegas.ioc
         /**
          * Init the name of the method.
          * @param value the string 'init method' name.
-         */        
+         */
         public function setInitMethodName( value:String = null ):void 
         {
             _initMethodName = value;
         }
         
         /**
-         * Sets the Array of all listener definition of this Definition.
+         * Sets the Array of all listener definition of this object definition.
          * @param ar the Array of all listener definitions of the object.
          */
         public function setListeners( ar:Array = null ):void
@@ -419,6 +438,40 @@ package vegas.ioc
                         else
                         {
                             _beforeListeners.push( e ) ;
+                        }
+                    }
+                }
+            }
+        }
+        
+        /**
+         * Sets the Array of all receiver definition of this object definition.
+         * @param ar the Array of all receiver definitions of the object.
+         */
+        public function setReceivers( ar:Array = null ):void
+        {
+            _afterReceivers  = [] ;
+            _beforeReceivers = [] ;
+            if ( ar == null )
+            {
+                return ;
+            }
+            var r:ObjectReceiver ;
+            var l:int = ar.length ;
+            if ( l > 0 )
+            {
+                for( var i:int ; i < l ; i++ )
+                {
+                    r = ar[i] as ObjectReceiver ;
+                    if ( r != null )
+                    {
+                        if( r.order == ObjectOrder.AFTER )
+                        {
+                            _afterReceivers.push( r ) ;
+                        }
+                        else
+                        {
+                            _afterReceivers.push( r ) ;
                         }
                     }
                 }
@@ -463,7 +516,17 @@ package vegas.ioc
         /**
          * @private
          */
+        private var _afterReceivers:Array ;
+        
+        /**
+         * @private
+         */
         private var _beforeListeners:Array ;
+        
+        /**
+         * @private
+         */
+        private var _beforeReceivers:Array ;
         
         /**
          * @private

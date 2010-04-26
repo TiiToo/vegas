@@ -53,8 +53,8 @@ package vegas.ioc
         function get identify():* ;
         
         /**
-          * @private
-          */
+         * @private
+         */
         function set identify( value:* ):void ;
         
         /**
@@ -62,7 +62,7 @@ package vegas.ioc
          * of the properties and the initialization of the methods defines in the object definition.
          */
         function get lock():* ; 
-            
+        
         /**
          * @private
          */
@@ -75,21 +75,33 @@ package vegas.ioc
         function getAfterListeners():Array ;
         
         /**
+         * Returns the Array of all receiver definitions of this object definition register after the object initialization.
+         * @return the Array of all receiver definitions of this object definition register after the object initialization.
+         */
+        function getAfterReceivers():Array ;
+        
+        /**
          * Returns the Array of all listener definitions of this object definition register before the object initialization.
          * @return the Array of all listener definitions of this object definition register before the object initialization.
          */
         function getBeforeListeners():Array ;
         
         /**
+         * Returns the Array of all receiver definitions of this object definition register before the object initialization.
+         * @return the Array of all receiver definitions of this object definition register before the object initialization.
+         */
+        function getBeforeReceivers():Array ;
+        
+        /**
          * Returns the constructor arguments values of this object in a Array list.
          * @return the constructor arguments values of this object in a Array list.
-         */    
+         */
         function getConstructorArguments():Array ;
         
         /**
          * Returns the collection (Array) defines in the "dependsOn" attribute.
          * @return the collection (Array) defines in the "dependsOn" attribute.
-         */    
+         */
         function getDependsOn():Array ;
         
         /**
@@ -167,7 +179,7 @@ package vegas.ioc
         
         /**
          * Sets the collection (Array) defines in the "generates" attribute.
-         */    
+         */
         function setGenerates( ar:Array ):void ;
         
         /**
@@ -176,10 +188,16 @@ package vegas.ioc
         function setInitMethodName( value:String = null ):void ;
         
         /**
-         * Sets the Array of all listener definition of this definition.
+         * Sets the Array of all listener definition of this object definition.
          * @param ar the Array of all listener definitions of the object.
          */
         function setListeners( ar:Array = null ):void ;
+        
+        /**
+         * Sets the Array of all receiver definition of this object definition.
+         * @param ar the Array of all receiver definitions of the object.
+         */
+        function setReceivers( ar:Array = null ):void ;
         
         /**
          * Sets the Array of all properties of this definition.

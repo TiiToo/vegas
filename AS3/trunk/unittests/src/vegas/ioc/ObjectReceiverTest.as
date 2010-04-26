@@ -36,7 +36,7 @@
 package vegas.ioc 
 {
     import buRRRn.ASTUce.framework.TestCase;
-
+    
     public class ObjectReceiverTest extends TestCase 
     {
         public function ObjectReceiverTest(name:String = "")
@@ -54,6 +54,31 @@ package vegas.ioc
         public function tearDown():void
         {
             receiver = null ;
+        }
+        
+        public function testAUTO_DISCONNECT():void
+        {
+            assertEquals( "autoDisconnect" , ObjectReceiver.AUTO_DISCONNECT ) ;
+        }
+        
+        public function testORDER():void
+        {
+            assertEquals( "order" , ObjectReceiver.ORDER ) ;
+        }
+        
+        public function testPRIORITY():void
+        {
+            assertEquals( "priority" , ObjectReceiver.PRIORITY ) ;
+        }
+        
+        public function testSIGNAL():void
+        {
+            assertEquals( "signal" , ObjectReceiver.SIGNAL ) ;
+        }
+        
+        public function testSLOT():void
+        {
+            assertEquals( "slot" , ObjectReceiver.SLOT ) ;
         }
         
         public function testDefaultConstructor():void

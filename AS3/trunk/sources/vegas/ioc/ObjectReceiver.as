@@ -60,17 +60,17 @@ package vegas.ioc
         }
         
         /**
-         * Defines the "method" attribute in a listener object definition.
+         * Defines the "autoDisconnect" attribute in a receiver object definition.
          */
-        public static const AUTO_REMOVE:String = "autoRemove" ;
+        public static const AUTO_DISCONNECT:String = "autoDisconnect" ;
         
         /**
-         * Defines the "order" attribute in a listener object definition.
+         * Defines the "order" attribute in a receiver object definition.
          */
         public static const ORDER:String = "order" ;
         
         /**
-         * Defines the "priority" attribute in a listener object definition.
+         * Defines the "priority" attribute in a receiver object definition.
          */
         public static const PRIORITY:String = "priority" ;
         
