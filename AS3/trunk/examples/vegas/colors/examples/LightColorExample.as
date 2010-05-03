@@ -37,26 +37,24 @@
 package examples 
 {
     import vegas.colors.LightColor;
-
+    
     import flash.display.Sprite;
     import flash.events.KeyboardEvent;
     import flash.ui.Keyboard;
-
+    
     public dynamic class LightColorExample extends Sprite 
     {
         public function LightColorExample()
         {
-            color1 = new LightColor( mc1 ) ;
-            color2 = new LightColor( mc2 ) ;
+            color = new LightColor( mc ) ;
             
-            trace( "contrast:" + color1.contrast + " brightness:" + color1.brightness ) ;
+            trace( "contrast:" + color.contrast + " brightness:" + color.brightness ) ;
             
             stage.scaleMode = "noScale" ;
             stage.addEventListener( KeyboardEvent.KEY_DOWN , keyDown ) ;
         }
         
-        public var color1:LightColor ;
-        public var color2:LightColor ;
+        public var color:LightColor ;
         
         public function keyDown( e:KeyboardEvent ):void
         {
@@ -65,30 +63,30 @@ package examples
             {
                 case Keyboard.UP :
                 {
-                    //color1.brightness += 10 ;
-                    //color1.brightOffset += 10 ;
-                    color1.negative += 10 ;
+                    color.brightness += 10 ;
+                    //color.brightOffset += 10 ;
+                    //color.negative += 10 ;
                     break ;
                 }
                 case Keyboard.DOWN :
                 {
-                    //color1.brightness -= 10 ;
-                    //color1.brightOffset -= 10 ;
-                    color1.negative -= 10 ;
+                    color.brightness -= 10 ;
+                    //color.brightOffset -= 10 ;
+                    //color.negative -= 10 ;
                     break ;
                 }
                 case Keyboard.LEFT :
                 {
-                    color1.contrast += 10 ;
+                    color.contrast += 10 ;
                     break ;
                 }
                 case Keyboard.RIGHT :
                 {
-                    color1.contrast -= 10 ;
+                    color.contrast -= 10 ;
                     break ;
                 }
             }
-            trace( "contrast:" + color1.contrast + " brightness:" + color1.brightness + " negative:" + color1.negative  ) ;
+            trace( "contrast:" + color.contrast + " brightness:" + color.brightness + " negative:" + color.negative  ) ;
         }
     }
 }
