@@ -90,12 +90,12 @@ package vegas.colors
          * The html 'black' color static reference.
          */
         public static const BLACK:HTMLColor = new HTMLColor(0x000000 , "Black") ;
-
+        
         /**
          * The html 'blue' color static reference.
          */
         public static const BLUE:HTMLColor = new HTMLColor(0x0000FF , "Blue") ;
-
+        
         /**
          * The html 'fuchsia' color static reference.
          */
@@ -140,17 +140,17 @@ package vegas.colors
          * The html 'red' color static reference.
          */
         public static const RED:HTMLColor     = new HTMLColor(0xFF0000 , "Red") ;
-
+        
         /**
          * The html 'silver' color static reference.
          */
         public static const SILVER:HTMLColor  = new HTMLColor(0xC0C0C0 , "Silver") ;
-
+        
         /**
          * The html 'teal' color static reference.
          */
         public static const TEAL:HTMLColor    = new HTMLColor(0x008080 , "Teal") ;
-
+        
         /**
          * The html 'white' color static reference.
          */

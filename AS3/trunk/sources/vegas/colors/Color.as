@@ -66,7 +66,7 @@ package vegas.colors
             {
                 throw new ArgumentError( this + " constructor failed, the passed-in DisplayObject must not be null or undefined.") ;
             }
-            _display   = display ;
+            _display = display ;
         }
         
         /**
@@ -104,7 +104,7 @@ package vegas.colors
          */
         public function get rgb():* 
         {
-            return getRGB() ;
+            return _display.transform.colorTransform.color ;
         }
         
         /**

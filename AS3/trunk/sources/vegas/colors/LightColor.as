@@ -37,8 +37,11 @@
 
 package vegas.colors 
 {
+    import system.numeric.Mathematics;
+
     import flash.display.DisplayObject;
-    
+    import flash.geom.ColorTransform;
+
     /**
      * This class is the basic extension of the actionscript Color class to changed light and contrast over a MovieClip. 
      * <p><b>Example :</b></p>
@@ -64,19 +67,25 @@ package vegas.colors
          */
         public function get brightness():Number 
         {
-            var t:Object = getTransform();
-            return t.rb ? 100-t.ra : t.ra-100;
+            _ct = _display.transform.colorTransform ; 
+            var r:Number = ( _ct.redOffset ? ( 1 - _ct.redMultiplier ) : ( _ct.redMultiplier - 1 ) ) * 100 ;
+            _ct = null ;
+            return r ;
         }
         
         /**
          * @private
          */
-        public function set brightness(n:Number):void 
+        public function set brightness( n:Number ):void 
         {
-            var t:Object = getTransform() ;
-            t.ra = t.ga = t.ba = 100 - Math.abs (n) ;
-            t.rb = t.gb = t.bb = (n > 0) ? (n*2.56) : 0 ;
-            setTransform (t);
+            n = isNaN(n) ? 0 : n ;
+            n /= 100 ;
+            n  = Mathematics.clamp( n , -1 , 1 ) ;
+            _ct = _display.transform.colorTransform ;
+            _ct.redMultiplier = _ct.greenMultiplier = _ct.blueMultiplier = 1 - Math.abs (n) ;
+            _ct.redOffset     = _ct.greenOffset     = _ct.blueOffset     = (n > 0) ? ( n * 256 ) : 0 ;
+            _display.transform.colorTransform = _ct ;
+            _ct = null ;
         }
         
         /**
@@ -84,7 +93,7 @@ package vegas.colors
          */
         public function get brightOffset():Number 
         { 
-            return getTransform().rb ;
+            return _display.transform.colorTransform.redOffset ;
         }
         
         /**
@@ -92,9 +101,12 @@ package vegas.colors
          */
         public function set brightOffset(n:Number):void 
         {
-            var t:Object = getTransform();
-            t.rb = t.gb = t.bb = n ;
-            setTransform (t);
+            n = isNaN(n) ? 0 : n ;
+            n  = Mathematics.clamp( n , -255 , 255 ) ;
+            _ct = _display.transform.colorTransform ;
+            _ct.redOffset  = _ct.greenOffset = _ct.blueOffset = n ;
+            _display.transform.colorTransform = _ct ;
+            _ct = null ;
         }
         
         /**
@@ -102,18 +114,22 @@ package vegas.colors
          */
         public function get contrast():Number 
         {
-            return getTransform().ra ;
+            return _display.transform.colorTransform.redMultiplier * 100 ;
         }
         
         /**
          * @private
          */
-        public function set contrast(n:Number):void 
+        public function set contrast( n:Number ):void 
         {
-            var t:Object = {};
-            t.ra = t.ga = t.ba = n ;
-            t.rb = t.gb = t.bb = 128 - (128/100 * n);
-            setTransform(t);
+            n = isNaN(n) ? 0 : n ;
+            n /= 100 ;
+            n  = Mathematics.clamp( n , -1 , 1 ) ;
+            _ct = _display.transform.colorTransform ;
+            _ct.redMultiplier = _ct.greenMultiplier = _ct.blueMultiplier = n ;
+            _ct.redOffset     = _ct.greenOffset     = _ct.blueOffset     = 128 - ( 128 * n ) ;
+            _display.transform.colorTransform = _ct ;
+            _ct = null ;
         }
         
         /**
@@ -121,7 +137,7 @@ package vegas.colors
          */
         public function get negative():Number 
         {
-            return getTransform().rb * 2.55 ;
+            return _display.transform.colorTransform.redOffset / 255 * 100 ;
         }
         
         /**
@@ -129,10 +145,19 @@ package vegas.colors
          */
         public function set negative( n:Number ):void 
         {
-            var t:Object = {} ;
-            t.ra = t.ga = t.ba = 100 - 2 * n;
-            t.rb = t.gb = t.bb = n * (2.55) ;
-            setTransform (t);
+            n = isNaN(n) ? 0 : n ;
+            n /= 100 ;
+            n  = Mathematics.clamp( n , 0 , 100 ) ;
+            _ct = _display.transform.colorTransform ;
+            _ct.redMultiplier = _ct.greenMultiplier = _ct.blueMultiplier = 1 - 2 * n ;
+            _ct.redOffset     = _ct.greenOffset     = _ct.blueOffset     = n * 255 ;
+            _display.transform.colorTransform = _ct ;
+            _ct = null ;
         }
+        
+        /**
+         * @private
+         */
+        private var _ct:ColorTransform ;
     }
 }

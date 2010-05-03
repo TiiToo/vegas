@@ -36,28 +36,59 @@
 
 package examples 
 {
-    import graphics.transitions.Tween;
-    import graphics.transitions.easings.Bounce;
-    
     import vegas.colors.LightColor;
-    
-    import flash.display.MovieClip;
+
     import flash.display.Sprite;
-    
-    public class LightColorExample extends Sprite 
+    import flash.events.KeyboardEvent;
+    import flash.ui.Keyboard;
+
+    public dynamic class LightColorExample extends Sprite 
     {
         public function LightColorExample()
         {
-            // mc1 and mc2 are 2 MovieClip in the Stage of the application.
+            color1 = new LightColor( mc1 ) ;
+            color2 = new LightColor( mc2 ) ;
             
-            var color1:LightColor = new LightColor( getChildByName( "mc1" ) as MovieClip ) ;
-            var color2:LightColor = new LightColor( getChildByName( "mc2" ) as MovieClip ) ;
+            trace( "contrast:" + color1.contrast + " brightness:" + color1.brightness ) ;
             
-            var tween1:Tween = new Tween( color1 , "brightness" , Bounce.easeOut, 100 , 0 , 2 , true ) ;
-            var tween2:Tween = new Tween( color2 , "negative"   , Bounce.easeOut, 100 , 0 , 2 , true ) ;
-            
-            tween1.run() ;
-            tween2.run() ;
+            stage.scaleMode = "noScale" ;
+            stage.addEventListener( KeyboardEvent.KEY_DOWN , keyDown ) ;
+        }
+        
+        public var color1:LightColor ;
+        public var color2:LightColor ;
+        
+        public function keyDown( e:KeyboardEvent ):void
+        {
+            var code:uint = e.keyCode ;
+            switch( code )
+            {
+                case Keyboard.UP :
+                {
+                    //color1.brightness += 10 ;
+                    //color1.brightOffset += 10 ;
+                    color1.negative += 10 ;
+                    break ;
+                }
+                case Keyboard.DOWN :
+                {
+                    //color1.brightness -= 10 ;
+                    //color1.brightOffset -= 10 ;
+                    color1.negative -= 10 ;
+                    break ;
+                }
+                case Keyboard.LEFT :
+                {
+                    color1.contrast += 10 ;
+                    break ;
+                }
+                case Keyboard.RIGHT :
+                {
+                    color1.contrast -= 10 ;
+                    break ;
+                }
+            }
+            trace( "contrast:" + color1.contrast + " brightness:" + color1.brightness + " negative:" + color1.negative  ) ;
         }
     }
 }
