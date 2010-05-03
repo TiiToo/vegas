@@ -76,8 +76,8 @@
     <component id="lunas.components.labels:IconLabel"        class="lunas.components.labels.IconLabel"        />
     <component id="lunas.components.labels:IconLabelBuilder" class="lunas.components.labels.IconLabelBuilder" />
     <component id="lunas.components.labels:IconLabelStyle"   class="lunas.components.labels.IconLabelStyle"   />
-    <component id="lunas.components.labels:PaginationLabel"  class="lunas.components.labels.PaginationLabel" />
-    <component id="lunas.components.labels:Label"            class="lunas.components.labels.Label"           />
+    <component id="lunas.components.labels:PaginationLabel" class="lunas.components.labels.PaginationLabel" />
+    <component id="lunas.components.labels:Label"           class="lunas.components.labels.Label"           />
     
     <!-- lunas.components.textinputs -->
     
@@ -110,6 +110,7 @@
     
     <!-- lunas.layouts -->
     
+    <component id="lunas.layouts:BoxLayout"    class="lunas.layouts.BoxLayout"    />
     <component id="lunas.layouts:CircleLayout" class="lunas.layouts.CircleLayout" />
     <component id="lunas.layouts:CoreLayout"   class="lunas.layouts.CoreLayout"   />
     <component id="lunas.layouts:Layout"       class="lunas.layouts.Layout"       />
