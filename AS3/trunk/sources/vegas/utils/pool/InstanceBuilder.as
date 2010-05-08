@@ -37,14 +37,13 @@
 
 package vegas.utils.pool 
 {
-    import system.Reflection;
+    import core.reflect.invoke;
     
     /**
      * This factory object create new instances with the specified Class object.
      */
     internal class InstanceBuilder implements ObjectPoolBuilder
     {
-        
         /**
          * Creates a new InstanceBuilder instance.
          * @param The Class reference to create a new instance with this builder.
@@ -68,7 +67,7 @@ package vegas.utils.pool
             {
                return null ;
             }
-            return Reflection.invokeClass(clazz, args) ; 
+            return invoke(clazz, args) ; 
         }
     }
 }

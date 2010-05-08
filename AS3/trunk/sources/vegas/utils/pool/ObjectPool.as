@@ -319,11 +319,9 @@ package vegas.utils.pool
                         t.next    = node ;
                         t         = node ; 
                     }
-                    
                     _tail      = t ;
                     _tail.next = _empty = _head ;
                     _allocate  = n.next ;
-                    
                 }
             }
         }
