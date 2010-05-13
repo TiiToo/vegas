@@ -108,13 +108,6 @@
     <component id="lunas.groups:CoreGroup"        class="lunas.groups.CoreGroup"        />
     <component id="lunas.groups:RadioButtonGroup" class="lunas.groups.RadioButtonGroup" />
     
-    <!-- lunas.layouts -->
-    
-    <component id="lunas.layouts:BoxLayout"    class="lunas.layouts.BoxLayout"    />
-    <component id="lunas.layouts:CircleLayout" class="lunas.layouts.CircleLayout" />
-    <component id="lunas.layouts:CoreLayout"   class="lunas.layouts.CoreLayout"   />
-    <component id="lunas.layouts:Layout"       class="lunas.layouts.Layout"       />
-    
     <!-- lunas.logging -->
     
     <component id="lunas.logging:logger" class="lunas.logging.logger" />
