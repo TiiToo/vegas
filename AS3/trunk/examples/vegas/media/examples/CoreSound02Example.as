@@ -90,6 +90,9 @@ package examples
             sound.addEventListener( ActionEvent.STOP     , debug ) ;
             sound.addEventListener( ActionEvent.START    , debug ) ;
             
+            sound.muteIt.connect( soundMute ) ;
+            sound.unmuteIt.connect( soundUnmute ) ;
+            
             sound.volume = 0.6 ;
             
             // sound.looping = true ;
@@ -181,6 +184,16 @@ package examples
             txt += "\r running : " + running ;
             
             field.text = txt ;
+        }
+        
+        public function soundMute( sound:CoreSound ):void
+        {
+            trace( "mute : " + sound.isMuted() ) ;
+        }
+        
+        public function soundUnmute( sound:CoreSound ):void
+        {
+            trace( "mute : " + sound.isMuted() ) ;
         }
         
         public function soundUpdate( e:SoundEvent ):void

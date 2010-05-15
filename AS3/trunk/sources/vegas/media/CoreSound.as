@@ -232,6 +232,22 @@ package vegas.media
         public var looping:Boolean ;
         
         /**
+         * This signal emit when the sound is muted. 
+         */
+        public function get muteIt():Signaler
+        {
+            return _muteIt ;
+        }
+        
+        /**
+         * @private
+         */
+        public function set muteIt( signal:Signaler ):void
+        {
+            _muteIt = signal || new Signal() ;
+        }
+        
+        /**
          * The left-to-right panning of the sound, ranging from -1 (full pan left) to 1 (full pan right). 
          * A value of 0 represents no panning (balanced center between right and left). 
          */
@@ -349,6 +365,22 @@ package vegas.media
         }
         
         /**
+         * This signal emit when the sound is unmuted. 
+         */
+        public function get unmuteIt():Signaler
+        {
+            return _unmuteIt ;
+        }
+        
+        /**
+         * @private
+         */
+        public function set unmuteIt( signal:Signaler ):void
+        {
+            _unmuteIt = signal || new Signal() ;
+        }
+        
+        /**
          * The volume, ranging from 0 (silent) to 1 (full volume). 
          */
         public function get volume():Number
@@ -395,7 +427,7 @@ package vegas.media
          */
         public function isMuted():Boolean 
         {
-            return ___isLock___ ;
+            return ___isMute___ ;
         }
         
         /**
@@ -437,6 +469,7 @@ package vegas.media
             {
                 channel.soundTransform = _soundTransform ;
             }
+            _muteIt.emit( this ) ;
         }
         
         /**
@@ -629,6 +662,7 @@ package vegas.media
             {
                 channel.soundTransform = _soundTransform ;
             }
+            _unmuteIt.emit( this ) ;
         }
         
         /**
@@ -749,6 +783,11 @@ package vegas.media
         /**
          * @private
          */
+        private var _muteIt:Signaler = new Signal() ;
+        
+        /**
+         * @private
+         */
         protected var _phase:String = TaskPhase.INACTIVE ;
         
         /**
@@ -765,6 +804,11 @@ package vegas.media
          * @private
          */
         private var _timer:Timer ;
+        
+        /**
+         * @private
+         */
+        private var _unmuteIt:Signaler = new Signal() ;
         
         /**
          * @private
