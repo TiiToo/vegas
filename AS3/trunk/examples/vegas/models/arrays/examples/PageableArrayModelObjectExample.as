@@ -51,7 +51,9 @@ package examples
         {
             model = new PageableArrayModelObject() ;
             
-            model.count =  1 ;
+            // model.count =  1 ;
+            // model.count =  5 ;
+            
             model.count =  2 ;
             
             model.addEventListener( Event.INIT                 , init   ) ;
@@ -125,12 +127,12 @@ package examples
             {
                 case e is ArrayEvent :
                 {
-                    trace( e + " : " + (e as ArrayEvent).array ) ;
+                    trace( "page " + model.currentPage + " : " + (e as ArrayEvent).array ) ;
                     break ;
                 }
                 case e is ModelObjectEvent :
                 {
-                    trace( e + " : " + (e as ModelObjectEvent).getVO() ) ;
+                    trace( "page " + model.currentPage + " : " + (e as ModelObjectEvent).getVO() ) ;
                     break ;
                 }
                 default :

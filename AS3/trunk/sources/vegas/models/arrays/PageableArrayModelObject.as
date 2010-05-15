@@ -374,6 +374,31 @@ package vegas.models.arrays
         }
         
         /**
+         * Finds and indicates the page number of the specified value object register in the model. If the passed-in value object is not found 0 is returned.
+         */
+        public function pageOf( vo:ValueObject ):uint
+        {
+            var l:int = _a.length ;
+            var index:int = _a.indexOf( vo ) ;
+            if ( l > 0 && index > -1 )
+            {
+                var page:uint = 1 ;
+                for( var i:int = 1 ; i<l ; i++ )
+                {
+                    if ( i-1 == index )
+                    {
+                        return page ;
+                    }
+                    if ( i%_count == 0 )
+                    {
+                        page++ ;
+                    }
+                }
+            }
+            return 0 ;
+        }
+        
+        /**
          * Show in the previous page in the list or previous screen.
          */
         public function previous():*
