@@ -353,7 +353,7 @@ package vegas.media
          */
         public function get volume():Number
         {
-            return _soundTransform.volume ;
+            return _volume ;
         }
         
         /**
@@ -361,7 +361,8 @@ package vegas.media
          */
         public function set volume( value:Number ):void
         {
-            _soundTransform.volume = Range.UNITY.clamp( isNaN(value) ? 0 : value ) ; 
+            _volume = Range.UNITY.clamp( isNaN(value) ? 0 : value ) ;
+            _soundTransform.volume = ___isMute___ ? 0 : _volume ; 
             if ( channel != null )
             {
                 channel.soundTransform = _soundTransform ;
@@ -384,6 +385,15 @@ package vegas.media
          * @return <code class="prettyprint">true</code> if the object is locked.
          */
         public function isLocked():Boolean 
+        {
+            return ___isLock___ ;
+        }
+        
+        /**
+         * Returns <code class="prettyprint">true</code> if the sound is muted.
+         * @return <code class="prettyprint">true</code> if the sound is muted.
+         */
+        public function isMuted():Boolean 
         {
             return ___isLock___ ;
         }
@@ -414,6 +424,19 @@ package vegas.media
         public function lock():void 
         {
             ___isLock___ = true ;
+        }
+        
+        /**
+         * Mute the sound.
+         */
+        public function mute():void 
+        {
+            ___isMute___ = true ;
+            _soundTransform.volume = 0 ; 
+            if ( channel )
+            {
+                channel.soundTransform = _soundTransform ;
+            }
         }
         
         /**
@@ -588,11 +611,24 @@ package vegas.media
         }
         
         /**
-         * Unlocks the display.
+         * Unlocks the sound.
          */
         public function unlock():void 
         {
             ___isLock___ = false ;
+        }
+        
+        /**
+         * Unmute the sound.
+         */
+        public function unmute():void 
+        {
+            ___isMute___ = false ;
+            _soundTransform.volume = _volume ; 
+            if ( channel )
+            {
+                channel.soundTransform = _soundTransform ;
+            }
         }
         
         /**
@@ -684,10 +720,16 @@ package vegas.media
         private var _id:* ;
         
         /**
-         * The internal flag to indicates if the display is locked or not.
+         * The internal flag to indicates if the sound is locked or not.
          * @private
          */ 
         private var ___isLock___:Boolean ;
+        
+        /**
+         * The internal flag to indicates if the sound is muted or not.
+         * @private
+         */ 
+        private var ___isMute___:Boolean ;
         
         /**
          * @private
@@ -723,6 +765,11 @@ package vegas.media
          * @private
          */
         private var _timer:Timer ;
+        
+        /**
+         * @private
+         */
+        private var _volume:Number ;
         
         /**
          * @private

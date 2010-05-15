@@ -142,6 +142,16 @@ package examples
                     sound.togglePause() ;
                     break ;
                 }
+                case Keyboard.LEFT :
+                {
+                    sound.mute() ;
+                    break ;
+                }
+                case Keyboard.RIGHT :
+                {
+                    sound.unmute() ;
+                    break ;
+                }
             }
         }
         public function soundComplete( e:Event ):void
