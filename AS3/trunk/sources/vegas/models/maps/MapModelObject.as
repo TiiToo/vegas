@@ -42,10 +42,10 @@ package vegas.models.maps
     import system.data.Map;
     import system.data.ValueObject;
     import system.data.maps.HashMap;
-    
+
     import vegas.events.ModelObjectEvent;
     import vegas.models.CoreModelObject;
-    
+
     /**
      * This model use an internal <code class="prettyprint">Map</code> to register value objects with a specific key.
      */
@@ -186,6 +186,38 @@ package vegas.models.maps
         public function getVO( id:* ):ValueObject
         {
             return _map.get( id ) ;
+        }
+        
+        /**
+         * Returns a <code class="prettyprint">ValueObject</code> if the model contains a ValueObject with the specified member.
+         * @return a <code class="prettyprint">ValueObject</code> if the model contains a ValueObject with the specified member.
+         */
+        public function getVOByProperty( propName:String , value:* ):ValueObject
+        {
+            if ( propName == null )
+            {    
+                return null ;
+            }    
+            var datas:Array = _map.getValues() ;
+            var size:int    = datas.length ;
+            try
+            {
+                if (size > 0)
+                {
+                    while ( --size > -1 )
+                    {
+                        if ( datas[size][propName] == value )
+                        {
+                            return datas[size] as ValueObject ;
+                        }
+                    }
+                }
+            }
+            catch( e:Error )
+            {
+                //
+            }
+            return null ;
         }
         
         /**
