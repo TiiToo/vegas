@@ -6,8 +6,10 @@
     
     <component id="graphics:Align"             class="graphics.Align" />
     <component id="graphics:ArcType"           class="graphics.ArcType" />
+    <component id="graphics:CardinalDirection" class="graphics.CardinalDirection" />
     <component id="graphics:Corner"            class="graphics.Corner" />
     <component id="graphics:Direction"         class="graphics.Direction" />
+    <component id="graphics:DirectionOrder"    class="graphics.DirectionOrder" />
     <component id="graphics:Directionable"     class="graphics.Directionable" />
     <component id="graphics:Drawable"          class="graphics.Drawable" />
     <component id="graphics:FillBitmapStyle"   class="graphics.FillBitmapStyle" />
@@ -98,16 +100,16 @@
     <component id="graphics.filters:CircleSpectrumFilter" class="graphics.filters.CircleSpectrumFilter" />
     <component id="graphics.filters:Filters"              class="graphics.filters.Filters" />
     <component id="graphics.filters:GrayScaleFilter"      class="graphics.filters.GrayScaleFilter" />
-    <component id="graphics.filters:HoleFilter"           class="graphics.filters.HoleFilter"  />
-    <component id="graphics.filters:KnockoutFilter"       class="graphics.filters.KnockoutFilter"  />
-    <component id="graphics.filters:ReflectionFilter"     class="graphics.filters.ReflectionFilter"  />
-    <component id="graphics.filters:RGBDistortFilter"     class="graphics.filters.RGBDistortFilter"  />
-    <component id="graphics.filters:RippleBlocksFilter"   class="graphics.filters.RippleBlocksFilter"  />
-    <component id="graphics.filters:RoundPixelFilter"     class="graphics.filters.RoundPixelFilter"  />
-    <component id="graphics.filters:ShaderCustomFilter"   class="graphics.filters.ShaderCustomFilter"  />
-    <component id="graphics.filters:SharpenFilter"        class="graphics.filters.SharpenFilter"  />
-    <component id="graphics.filters:TwirlFilter"          class="graphics.filters.TwirlFilter"  />
-    <component id="graphics.filters:WaveReflectionFilter" class="graphics.filters.WaveReflectionFilter"  />
+    <component id="graphics.filters:HoleFilter"           class="graphics.filters.HoleFilter" />
+    <component id="graphics.filters:KnockoutFilter"       class="graphics.filters.KnockoutFilter" />
+    <component id="graphics.filters:ReflectionFilter"     class="graphics.filters.ReflectionFilter" />
+    <component id="graphics.filters:RGBDistortFilter"     class="graphics.filters.RGBDistortFilter" />
+    <component id="graphics.filters:RippleBlocksFilter"   class="graphics.filters.RippleBlocksFilter" />
+    <component id="graphics.filters:RoundPixelFilter"     class="graphics.filters.RoundPixelFilter" />
+    <component id="graphics.filters:ShaderCustomFilter"   class="graphics.filters.ShaderCustomFilter" />
+    <component id="graphics.filters:SharpenFilter"        class="graphics.filters.SharpenFilter" />
+    <component id="graphics.filters:TwirlFilter"          class="graphics.filters.TwirlFilter" />
+    <component id="graphics.filters:WaveReflectionFilter" class="graphics.filters.WaveReflectionFilter" />
     
     <!-- graphics.geom -->
     
@@ -146,6 +148,7 @@
     <component id="graphics.layouts:BoxLayout"    class="graphics.layouts.BoxLayout"    />
     <component id="graphics.layouts:CircleLayout" class="graphics.layouts.CircleLayout" />
     <component id="graphics.layouts:CoreLayout"   class="graphics.layouts.CoreLayout"   />
+    <component id="graphics.layouts:GridLayout"   class="graphics.layouts.GridLayout"   />
     <component id="graphics.layouts:Layout"       class="graphics.layouts.Layout"       />
     
     <!-- graphics.logging -->
