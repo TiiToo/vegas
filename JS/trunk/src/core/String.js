@@ -1,0 +1,169 @@
+/*
+
+  The contents of this file are subject to the Mozilla Public License Version
+  1.1 (the "License"); you may not use this file except in compliance with
+  the License. You may obtain a copy of the License at 
+  
+           http://www.mozilla.org/MPL/ 
+  
+  Software distributed under the License is distributed on an "AS IS" basis,
+  WITHOUT WARRANTY OF ANY KIND, either express or implied. See the License
+  for the specific language governing rights and limitations under the License. 
+  
+  The Original Code is Vegas Framework.
+  
+  The Initial Developer of the Original Code is
+  ALCARAZ Marc (aka eKameleon)  <vegas@ekameleon.net>.
+  Portions created by the Initial Developer are Copyright (C) 2004-2010
+  the Initial Developer. All Rights Reserved.
+  
+  Contributor(s) :
+  
+*/
+
+/**
+ * Returns 0 if the passed string is lower case else 1.
+ * @return 0 if the passed string is lower case else 1.
+ */
+String.prototype.caseValue = function() /*Number*/
+{
+    return ( this.toLowerCase().valueOf() == this.valueOf() ) ? 0 : 1 ;
+}
+
+
+/**
+ * Returns the center String representation of the specified String value.
+ * <p><b>Example :</b></p>
+ * {@code
+ * import vegas.util.StringUtil ;
+ * trace( "hello world".center( 0 ) )         ; // hello world
+ * trace( "hello world".center( 20 ) )        ; //     hello world
+ * trace( "hello world".center( 20 , "_" ) )  ; // ____hello world_____
+ * }
+ * @param size The number of character to center the String expression. (default 0)
+ * @param separator The optional separator character use before and after the String to center. (default " ")
+ * @return the center String representation of the specified String value.
+ */
+String.prototype.center = function( size /*Number*/ , separator /*String*/ ) /*String*/
+{
+    if ( isNaN(size) || size < 0 )
+    {
+        size = 0 ;    
+    }
+    if (separator == null)
+    {
+        separator = " " ;
+    }
+    var n /*Number*/ = this.length ;
+    if (size <= n)
+    {
+       return this.valueOf() ;
+    }
+    var m /*Number*/ = Math.floor( ( size - n ) / 2 ) ;
+    return separator.repeat(m) + this + separator.repeat(size - n - m) ;
+}
+
+/**
+ * Compares the two caracteres passed in argument for order.
+ * @return <p>
+ * <li>-1 if charA is "lower" than (less than, before, etc.) charB ;</li>
+ * <li> 1 if charA is "higher" than (greater than, after, etc.) charB ;</li>
+ * <li> 0 if charA and charB are equal.</li>
+ * </p>
+ */
+String.compareChars = function( charA /*String*/ , charB /*String*/ ) /*Number*/
+{
+    var a /*String*/ = charA.charAt(0) ;
+    var b /*String*/ = charB.charAt(0) ;
+    if ( a.caseValue() < b.caseValue() ) 
+    {
+        return -1;
+    }
+    if ( a.caseValue() > b.caseValue() ) 
+    {
+        return 1 ;
+    }
+    if ( a < b ) 
+    {
+        return -1;
+    }
+    if ( a > b ) 
+    {
+        return 1;
+    }
+    return 0 ;
+}
+
+
+
+/**
+ * Returns the first char of a string.
+ * @return the first char of a string.
+ */
+String.prototype.firstChar = function() /*String*/ 
+{
+    return this.charAt(0) ;
+}
+
+/**
+ * Returns a new String value who contains the specified String characters repeated count times.
+ * <p><b>Example :</b></p>
+ * {@code
+ * import vegas.util.StringUtil ;
+ * 
+ * trace(StringUtil.repeat("hello", 0)) ; // hello
+ * trace(StringUtil.repeat("hello", 3)) ; // hellohellohello
+ * }
+ * @return a new String value who contains the specified String characters repeated count times.
+ */
+String.prototype.repeat = function ( count /*Number*/ ) /*String*/
+{
+    var result /*String*/ = "" ;
+    if ( count > 0 )
+    {
+        for( var i /*Number*/ = 0 ; i < count ; i++)
+        {
+            result = result.concat(this) ;
+        }
+    }
+    else
+    {
+        result = str ;    
+    }
+    return  result ;
+}   
+
+/**
+ * This trim method used RegExp to apply the trim on the expression.
+ */
+String.prototype.trim2 = function () 
+{
+    var s = this ;
+    s = s.replace(/^\s*/, "") ;
+    s = s.replace(/\s*$/, "") ;
+    s = s.replace(/\n/g,  "") ;
+    s = s.replace(/\r/g,  "") ;
+    s = s.replace(/\t/g,  "") ;
+    return s ;
+}
+
+/**
+ * Capitalize the first letter of a string, like the PHP function.
+ */
+String.prototype.ucFirst = function() /*String*/ 
+{
+    return this.charAt(0).toUpperCase() + this.substring(1) ;
+}
+    
+/**
+ * Capitalize each word in a string, like the PHP function.
+ */
+String.prototype.ucWords = function() /*String*/ 
+{
+    var ar /*Array*/ = this.split(" ") ;
+    var l /*Number*/ = ar.length ;
+    while(--l > -1) {
+        ar[l] = ar[l].ucFirst() ;
+    }
+    return ar.join(" ") ;
+}
