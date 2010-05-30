@@ -67,4 +67,13 @@ if ( system.signals.SignalEntry == undefined )
      * The receiver Function reference of this entry.
      */
     system.signals.SignalEntry.prototype.receiver = null ;
+    
+    /**
+     * Returns the String representation of the object.
+     * @return the String representation of the object.
+     */
+    system.signals.SignalEntry.prototype.toString = function() /*String*/
+    {
+        return "[SignalEntry receiver:" + this.receiver + " priority:" + this.priority + " auto:" + this.auto + "]" ;
+    }
 }

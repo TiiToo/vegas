@@ -109,26 +109,55 @@ if ( system.signals.InternalSignal == undefined )
      */
     proto.connect = function ( receiver , priority /*uint*/ , autoDisconnect /*Boolean*/ ) /*uint*/ 
     {
+        if ( receiver == null )
+        {
+            return false ;
+        }
+        
         autoDisconnect = Boolean( autoDisconnect ) ;
         priority       = priority > 0 ? Math.ceil(priority) : 0 ;
-        if ( receiver && receiver instanceof system.signals.Receiver )
+        
+        if ( receiver instanceof system.signals.Receiver )
         {
-            receiver = system.signals.Receiver( receiver ).receive ;
+            receiver = receiver.receive ;
         }
-        if ( receiver && ( typeof(receiver) == "function" || ( receiver instanceof Function ) ) ) 
+        
+        if ( typeof(receiver) == "function" || ( receiver instanceof Function ) ) 
         {
+            
             if ( this.hasReceiver( receiver ) )
             {
                 return false ;
             }
+            
             this.receivers.push( new system.signals.SignalEntry( receiver , priority , autoDisconnect ) ) ;
+            
+            var sorting = function( a , b ) 
+            {
+                if ( a == b || a.priority == b.priority )
+                {
+                    return 0 ;
+                }
+                else if ( a.priority > b.priority )
+                {
+                    return 1 ;
+                }
+                else
+                {
+                    return -1 ;
+                }
+            }
+            
+            trace( "----------" ) ;
+            trace( this.receivers ) ;
+            this.receivers.sort( sorting ) ;
+            trace( this.receivers ) ;
+            trace( "----------" ) ;
             //this.shellSort( this.receivers ) ; 
             return true ;
         }
-        else
-        {
-            return false ;
-        }
+        
+        return false ;
     }
     
     /**
@@ -216,19 +245,26 @@ if ( system.signals.InternalSignal == undefined )
         {
             receiver = system.Signals.Receiver( receiver ).receive ;
         }
-        if ( ( receiver != null ) && ( receiver instanceof Function ) )
+        if ( receiver && ( typeof(receiver) == "function" || ( receiver instanceof Function ) ) ) 
         {
             if ( this.receivers.length > 0 )
             {
                 var l /*int*/ = this.receivers.length ;
                 while( --l > -1 )
                 {
-                    if ( system.signals.SignalEntry( this.receivers[l] ).receiver == receiver )
+                    try
                     {
-                        return true ;
+                        if ( this.receivers[l].receiver == receiver )
+                        {
+                            return true ;
+                        }
+                    }
+                    catch( e )
+                    {
+                        // not valid SignalEntry reference
                     }
                 }
-            }
+           }
         }
         return false ;
     }
@@ -297,21 +333,21 @@ if ( system.signals.InternalSignal == undefined )
         var i /*int*/   = 0 ;
         var j /*int*/   = 0 ;
         var n /*int*/   = data.length ;
-        var inc /*int*/ = Math.ceil( n / 2 + 0.5 ) ;
+        var inc /*int*/ = Math.abs( n / 2 + 0.5 ) ;
         while( inc ) 
         {
             for( i = inc ; i<n ; i++) 
             {
                 temp = data[i] ; 
                 j    = i ;
-                while( j >= inc && data[Math.ceil(j - inc)].priority < temp.priority ) 
+                while( j >= inc && data[Math.abs(j - inc)].priority < temp.priority ) 
                 {
-                    data[j] = data[Math.ceil(j - inc)] ;
-                    j = Math.ceil(j - inc);
+                    data[j] = data[Math.abs(j - inc)] ;
+                    j = Math.abs(j - inc);
                 }
                 data[j] = temp ;
             }
-            inc = Math.ceil(inc / 2.2 + 0.5);
+            inc = Math.abs(inc / 2.2 + 0.5);
         }
     }
     
