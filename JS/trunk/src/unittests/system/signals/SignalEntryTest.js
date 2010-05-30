@@ -37,6 +37,26 @@ system.signals.SignalEntryTest.prototype.constructor = system.signals.SignalEntr
 
 system.signals.SignalEntryTest.prototype.testConstructor = function () 
 {
-    var p = new system.signals.SignalEntry() ;
-    this.assertNotNull( p ) ; 
+    var entry = new system.signals.SignalEntry() ;
+    this.assertNotNull( entry ) ; 
+    this.assertFalse( entry.auto ) ;
+    this.assertEquals( entry.priority , 0 ) ;
+    this.assertNull( entry.receiver ) ;
+}
+
+system.signals.SignalEntryTest.prototype.testConstructorWithArguments = function () 
+{
+    var slot  = function() {} ;
+    var entry = new system.signals.SignalEntry( slot , 2 , true ) ;
+    this.assertNotNull( entry ) ;
+    this.assertTrue( entry.auto ) ;
+    this.assertEquals( entry.priority , 2 ) ;
+    this.assertEquals( entry.receiver , slot ) ;
+}
+
+system.signals.SignalEntryTest.prototype.testToString = function () 
+{
+    var slot  = function() {} ;
+    var entry = new system.signals.SignalEntry( slot , 2 , true ) ;
+    this.assertEquals( entry.toString() , "[SignalEntry [Type Function] priority:2 auto:true]" ) ;
 }
