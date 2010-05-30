@@ -1,9 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <project name="VEGAS JS runner" default="main">
+
     <target name="main">
-        <java fork="true" classname="org.mozilla.javascript.tools.shell.Main" >
+    
+        <java fork="true" classname="org.mozilla.javascript.tools.shell.Main" dir="../src/" >
             <arg line="main.js" />
         </java>
+    
     </target>
+
 </project>
