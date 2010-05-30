@@ -342,7 +342,7 @@ if ( system.signals.InternalSignal == undefined )
         return r ;
     }
         
-    ////////////////////////////////////
+    //////////////////////////////////// private
     
     /**
      * The Array representation of all receivers.
@@ -374,7 +374,7 @@ if ( system.signals.InternalSignal == undefined )
         }
     }
     
-    ////////////////////////////////////
+    //////////////////////////////////// Virtual properties
     
     proto.__defineGetter__( "length" , proto.getLength ) ;
     
