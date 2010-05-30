@@ -44,10 +44,70 @@ if ( system.signals.InternalSignal == undefined )
     /**
      * @requires system.signals.Signaler
      */
-    require("system.signals.Signaler") ;
+    require( "system.signals.Signaler" ) ;
+    
+    /**
+     * @requires system.signals.Receiver
+     */
+    require( "system.signals.Receiver" ) ;
     
     /**
      * Creates a new InternalSignal instance.
+     * <p><b>Example :</b></p>
+     * <pre>
+     * Slot = function( name )
+     * 
+     *     this.name = name ;
+     * }
+     * 
+     * Slot.extend( system.signals.Receiver ) ;
+     * 
+     * Slot.prototype.receive = function () 
+     * {
+     *     trace( this + " receive" ) ;
+     * }
+     * 
+     * Slot.prototype.toString = function () 
+     * {
+     *     return "[Slot name:" + this.name + "]" ;
+     * }
+     * 
+     * slot1 = new Slot("slot1") ;
+     * slot2 = new Slot("slot2") ;
+     * slot3 = new Slot("slot3") ;
+     * 
+     * signal = new system.signals.InternalSignal() ;
+     * 
+     * trace( signal.connect( slot1 , 0 ) ) ; // true
+     * trace( signal.length ) ; // 1
+     * 
+     * trace( "---" ) ;
+     * 
+     * trace( signal.connect( slot2 , 2 ) ) ; // true
+     * trace( signal.length ) ; // 2
+     * 
+     * trace( "---" ) ;
+     * 
+     * trace( signal.connect( slot3 , 1 ) ) ; // true
+     * trace( signal.length ) ; // 3
+     * 
+     * trace( "---" ) ;
+     * 
+     * trace( signal.connect( slot2 )  ) ; // false
+     * trace( signal.length ) ; // 3
+     * 
+     * trace( "---" ) ;
+     * 
+     * trace( signal.disconnect( slot2 )  ) ; // true
+     * trace( signal.hasReceiver( slot2 )  ) ; // false
+     * trace( signal.length ) ; // 2
+     * 
+     * trace( "---" ) ;
+     * 
+     * trace( signal.disconnect()  ) ; // true
+     * trace( signal.connected() ) ; // false
+     * trace( signal.length ) ; // 0
+     * </pre>
      * @param types An optional Array who contains any number of class references that enable type checks in the "emit" method. 
      * If this argument is null the "emit" method not check the types of the parameters in the method.
      * @param receivers The Array collection of receiver objects to connect with this signal.
@@ -117,14 +177,8 @@ if ( system.signals.InternalSignal == undefined )
         autoDisconnect = Boolean( autoDisconnect ) ;
         priority       = priority > 0 ? Math.ceil(priority) : 0 ;
         
-        if ( receiver instanceof system.signals.Receiver )
+        if ( receiver instanceof system.signals.Receiver || typeof(receiver) == "function" || ( receiver instanceof Function ) ) 
         {
-            receiver = receiver.receive ;
-        }
-        
-        if ( typeof(receiver) == "function" || ( receiver instanceof Function ) ) 
-        {
-            
             if ( this.hasReceiver( receiver ) )
             {
                 return false ;
@@ -132,28 +186,8 @@ if ( system.signals.InternalSignal == undefined )
             
             this.receivers.push( new system.signals.SignalEntry( receiver , priority , autoDisconnect ) ) ;
             
-            var sorting = function( a , b ) 
-            {
-                if ( a == b || a.priority == b.priority )
-                {
-                    return 0 ;
-                }
-                else if ( a.priority > b.priority )
-                {
-                    return 1 ;
-                }
-                else
-                {
-                    return -1 ;
-                }
-            }
+            this.receivers.sort( this.sorting ) ;
             
-            trace( "----------" ) ;
-            trace( this.receivers ) ;
-            this.receivers.sort( sorting ) ;
-            trace( this.receivers ) ;
-            trace( "----------" ) ;
-            //this.shellSort( this.receivers ) ; 
             return true ;
         }
         
@@ -187,26 +221,23 @@ if ( system.signals.InternalSignal == undefined )
                 return false ;
             }
         }
-        if ( receiver instanceof system.signals.Receiver )
+        
+        if ( this.receivers.length > 0 )
         {
-            receiver = system.signals.Receiver( receiver ).receive ;
-        }
-        var b /*Boolean*/ = false ;
-        if ( receiver && receiver instanceof Function && this.receivers.length > 0 )
-        {
-            var r /*Function*/ ;
-            var l /*int*/ = this.receivers.length ;
-            while( --l > -1 )
+            if ( typeof(receiver) == "function" || receiver instanceof Function || receiver instanceof system.signals.Receiver )
             {
-                r = system.signals.SignalEntry( this.receivers[l] ).receiver ;
-                if ( r == receiver )
+                var l /*int*/ = this.receivers.length ;
+                while( --l > -1 )
                 {
-                    this.receivers.splice( l , 1 ) ;
-                    b = true ;
+                    if ( this.receivers[l].receiver == receiver )
+                    {
+                        this.receivers.splice( l , 1 ) ;
+                        return true ;
+                    }
                 }
             }
         }
-        return b ;
+        return false ;
     }
     
     /**
@@ -241,13 +272,15 @@ if ( system.signals.InternalSignal == undefined )
      */
     proto.hasReceiver = function ( receiver ) /*Boolean*/ 
     {
-        if ( receiver instanceof system.signals.Receiver )
+        
+        if ( receiver == null )
         {
-            receiver = system.Signals.Receiver( receiver ).receive ;
+            return false ;
+            
         }
-        if ( receiver && ( typeof(receiver) == "function" || ( receiver instanceof Function ) ) ) 
+        if ( this.receivers.length > 0 )
         {
-            if ( this.receivers.length > 0 )
+            if ( receiver instanceof system.signals.Receiver || ( typeof(receiver) == "function" || ( receiver instanceof Function ) ) ) 
             {
                 var l /*int*/ = this.receivers.length ;
                 while( --l > -1 )
@@ -323,31 +356,21 @@ if ( system.signals.InternalSignal == undefined )
     proto._types /*Array*/ = null ;
     
     /**
-     * Use a shell sort algorithm to sort the Vector of ActionEntry (http://en.wikipedia.org/wiki/Shell_sort). 
-     * The sort method with a basic PriorityComparator.compare method failed ?
      * @private
      */
-    proto.shellSort = function( data /*Array*/ ) /*void*/ 
+    proto.sorting = function( a , b ) /*int*/ 
     {
-        var temp /*SignalEntry*/ ;
-        var i /*int*/   = 0 ;
-        var j /*int*/   = 0 ;
-        var n /*int*/   = data.length ;
-        var inc /*int*/ = Math.abs( n / 2 + 0.5 ) ;
-        while( inc ) 
+        if ( a == b || a.priority == b.priority )
         {
-            for( i = inc ; i<n ; i++) 
-            {
-                temp = data[i] ; 
-                j    = i ;
-                while( j >= inc && data[Math.abs(j - inc)].priority < temp.priority ) 
-                {
-                    data[j] = data[Math.abs(j - inc)] ;
-                    j = Math.abs(j - inc);
-                }
-                data[j] = temp ;
-            }
-            inc = Math.abs(inc / 2.2 + 0.5);
+            return 0 ;
+        }
+        else if ( a.priority > b.priority )
+        {
+            return -1 ;
+        }
+        else
+        {
+            return 1 ;
         }
     }
     

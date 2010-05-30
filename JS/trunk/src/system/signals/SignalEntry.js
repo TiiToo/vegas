@@ -74,6 +74,6 @@ if ( system.signals.SignalEntry == undefined )
      */
     system.signals.SignalEntry.prototype.toString = function() /*String*/
     {
-        return "[SignalEntry receiver:" + this.receiver + " priority:" + this.priority + " auto:" + this.auto + "]" ;
+        return "[SignalEntry " + this.receiver + " priority:" + this.priority + " auto:" + this.auto + "]" ;
     }
 }
