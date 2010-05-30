@@ -341,7 +341,16 @@ if ( system.signals.InternalSignal == undefined )
         }
         return r ;
     }
-        
+    
+    /**
+     * Returns the string representation of this instance.
+     * @return the string representation of this instance.
+     */
+    proto.toString = function () /*String*/ 
+    {
+        return "[" + this.getConstructorName() + "]" ;
+    }
+    
     //////////////////////////////////// private
     
     /**

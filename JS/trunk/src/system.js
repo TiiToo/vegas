@@ -67,6 +67,7 @@ catch(e)
     
     require( "system.signals.InternalSignal" ) ;
     require( "system.signals.Receiver"       ) ;
+    require( "system.signals.Signal"         ) ;
     require( "system.signals.SignalEntry"    ) ;
     require( "system.signals.Signaler"       ) ;
     require( "system.signals.SignalStrings"  ) ;
