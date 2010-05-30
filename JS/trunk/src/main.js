@@ -5,16 +5,37 @@ load("system.js") ;
 
 load("unittests/Application.js") ;
 
-slot = function( message )
+
+Slot = function( name )
 {
-    trace( "slot message:" + message ) ;
+    this.name = name ;
 }
 
-var signal = new system.signals.Signal([String]) ; 
+Slot.extend( system.signals.Receiver ) ;
 
-//var signal = new system.signals.Signal() ;
+Slot.prototype.receive = function ( message ) 
+{
+    trace( this + " : " + message ) ;
+}
 
-signal.connect( slot ) ;
+Slot.prototype.toString = function () 
+{
+    return "[Slot name:" + this.name + "]" ;
+}
+
+slot1 = new Slot("slot1") ;
+
+slot2 = function( message )
+{
+    trace( this + " : " + message ) ;
+}
+
+var signal = new system.signals.Signal() ;
+
+signal.proxy = slot1 ;
+
+signal.connect( slot1 ) ;
+signal.connect( slot2 ) ;
 
 signal.emit( "hello world" ) ;
 

@@ -67,6 +67,13 @@ if ( system.signals.Signal == undefined )
      */
     proto = system.signals.Signal.extend( system.signals.InternalSignal ) ;
     
+    ////////////////////////////////////
+    
+    /**
+     * The proxy reference of the signal to change the scope of the slot (function invoked when the signal emit a message).
+     */
+    proto.proxy = null ;
+    
     /**
      * Emit the specified values to the receivers.
      * @param ...values All values to emit to the receivers.
@@ -74,22 +81,28 @@ if ( system.signals.Signal == undefined )
     proto.emit = function( /*Arguments*/ ) /*void*/
     {
         var values = Array.fromArguments( arguments ) ;
+        
         if ( this.receivers.length == 0 )
         {
             return ;
         }
+        
         this.checkValues( values ) ;
+        
         var i /*int*/ ;
         var l /*int*/ = this.receivers.length ;
         var r /*Array*/ = [] ;
-        var v /*Array*/ = this.receivers.slice() ;
+        var a /*Array*/ = this.receivers.slice() ;
         var e /*SignalEntry*/ ;
+        
+        var slot ;
+        
         for ( i = 0 ; i < l ; i++ ) 
         {
-            e = v[i] ;
+            e = a[i] ;
             if ( e.auto )
             {
-                r[ r.length ] = e  ;
+                r.push( e )  ;
             }
         }
         if ( r.length > 0 )
@@ -104,10 +117,19 @@ if ( system.signals.Signal == undefined )
                 }
             }
         }
-        l = v.length ;
+        l = a.length ;
         for ( i = 0 ; i<l ; i++ ) 
         {
-            v[i].receiver.apply( null , values ) ;
+            slot = a[i].receiver ;
+            
+            if ( slot instanceof system.signals.Receiver )
+            {
+                slot.receive.apply( this.proxy || slot , values ) ;
+            }
+            else
+            {
+                slot.apply( this.proxy , values ) ;
+            }
         }
     }
     
