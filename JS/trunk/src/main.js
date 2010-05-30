@@ -1,10 +1,17 @@
 
-load("trace.js") ;
-load("buRRRn.js") ;
-load("system.js") ;
+///////////////////////////
+
+load( "trace.js" ) ; // Rhino hack
+
+load( "buRRRn.js" ) ;
+load( "core.js"   ) ;
+load( "system.js" ) ;
+
+///////////////////////////
 
 load("unittests/Application.js") ;
 
+///////////////////////////
 
 Slot = function( name )
 {
@@ -32,10 +39,10 @@ slot2 = function( message )
 
 var signal = new system.signals.Signal() ;
 
-signal.proxy = slot1 ;
+//signal.proxy = slot1 ;
 
-signal.connect( slot1 ) ;
-signal.connect( slot2 ) ;
+signal.connect( slot1 , 0 ) ;
+signal.connect( slot2 , 2 ) ;
 
 signal.emit( "hello world" ) ;
 
