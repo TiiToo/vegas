@@ -10,7 +10,11 @@ slot = function( message )
     trace( "slot message:" + message ) ;
 }
 
-var signal = new system.signals.Signal() ;
+var signal = new system.signals.Signal([String]) ; 
 
-trace( signal ) ;
+//var signal = new system.signals.Signal() ;
+
+signal.connect( slot ) ;
+
+signal.emit( "hello world" ) ;
 

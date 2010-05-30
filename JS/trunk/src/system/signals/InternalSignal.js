@@ -140,6 +140,8 @@ if ( system.signals.InternalSignal == undefined )
         {
             if ( values.length == this._types.length )
             {
+                var val ;
+                var tof /*String*/;
                 var l = values.length ;
                 if ( l == 0 )
                 {
@@ -147,7 +149,7 @@ if ( system.signals.InternalSignal == undefined )
                 }
                 for( var i = 0 ; i<l ; i++ )
                 {
-                    if ( !( values[i] instanceof this._types[i] ) )
+                    if ( !this.typesMatch( values[i] , this._types[i] ) )
                     {
                         throw new Error( String.format( system.signals.SignalStrings.INVALID_PARAMETER_TYPE , i, this._types[i] , getConstructorPath( values[i] ) ) ) ;
                     }
@@ -157,6 +159,29 @@ if ( system.signals.InternalSignal == undefined )
             {
                  throw new Error( String.format( system.signals.SignalStrings.INVALID_PARAMETERS_LENGTH , this._types.length , values.length ) ) ;
             }
+        }
+    }
+    
+    /**
+     * @private
+     */
+    proto.typesMatch = function( o , type ) /*Boolean*/
+    {
+        if ( type == String || type == "string" )
+        {
+            return typeof(o) == "string" || o instanceof String ;
+        }
+        else if ( type == Boolean || type == "boolean" )
+        {
+            return typeof(o) == "boolean" || o instanceof Boolean ;
+        }
+        else if ( type == Number || type == "number" )
+        {
+            return typeof(o) == "number" || o instanceof Number ;
+        }
+        else
+        {
+            return o instanceof type ; 
         }
     }
     
@@ -272,7 +297,6 @@ if ( system.signals.InternalSignal == undefined )
      */
     proto.hasReceiver = function ( receiver ) /*Boolean*/ 
     {
-        
         if ( receiver == null )
         {
             return false ;
@@ -280,7 +304,12 @@ if ( system.signals.InternalSignal == undefined )
         }
         if ( this.receivers.length > 0 )
         {
-            if ( receiver instanceof system.signals.Receiver || ( typeof(receiver) == "function" || ( receiver instanceof Function ) ) ) 
+            if 
+            ( 
+                receiver instanceof system.signals.Receiver 
+                || ( typeof(receiver) == "function" 
+                || ( receiver instanceof Function ) ) 
+            ) 
             {
                 var l /*int*/ = this.receivers.length ;
                 while( --l > -1 )
@@ -314,7 +343,13 @@ if ( system.signals.InternalSignal == undefined )
             var l /*int*/ = ar.length ;
             for( var i /*int*/ = 0 ; i<l ; i++ )
             {
-                if( ar[i] instanceof Function )
+                if
+                ( 
+                    ar[i] instanceof Function 
+                    || ar[i] == "string" 
+                    || ar[i] == "number" 
+                    || ar[i] == "boolean" 
+                )
                 {
                     continue ;
                 }
@@ -334,9 +369,9 @@ if ( system.signals.InternalSignal == undefined )
         if ( this.receivers.length > 0 )
         {
             var l /*int*/ = this.receivers.length ;
-            for( var i/*int*/=0 ; i<l ; i++ )
+            for( var i /*int*/ = 0 ; i<l ; i++ )
             {
-                r[i] = system.signals.SignalEntry( receivers[i] ).receiver ;
+                r[i] = this.receivers[i].receiver ;
             }
         }
         return r ;
