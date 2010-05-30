@@ -163,29 +163,6 @@ if ( system.signals.InternalSignal == undefined )
     }
     
     /**
-     * @private
-     */
-    proto.typesMatch = function( o , type ) /*Boolean*/
-    {
-        if ( type == String || type == "string" )
-        {
-            return typeof(o) == "string" || o instanceof String ;
-        }
-        else if ( type == Boolean || type == "boolean" )
-        {
-            return typeof(o) == "boolean" || o instanceof Boolean ;
-        }
-        else if ( type == Number || type == "number" )
-        {
-            return typeof(o) == "number" || o instanceof Number ;
-        }
-        else
-        {
-            return o instanceof type ; 
-        }
-    }
-    
-    /**
      * Connects a Function or a Receiver object.
      * @param receiver The receiver to connect : a Function reference or a Receiver object.
      * @param priority Determinates the priority level of the receiver.
@@ -415,6 +392,29 @@ if ( system.signals.InternalSignal == undefined )
         else
         {
             return 1 ;
+        }
+    }
+    
+    /**
+     * @private
+     */
+    proto.typesMatch = function( o , type ) /*Boolean*/
+    {
+        if ( type == String || type == "string" )
+        {
+            return typeof(o) == "string" || o instanceof String ;
+        }
+        else if ( type == Boolean || type == "boolean" )
+        {
+            return typeof(o) == "boolean" || o instanceof Boolean ;
+        }
+        else if ( type == Number || type == "number" )
+        {
+            return typeof(o) == "number" || o instanceof Number ;
+        }
+        else
+        {
+            return o instanceof type ; 
         }
     }
     
