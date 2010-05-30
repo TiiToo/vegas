@@ -103,9 +103,7 @@
    You will not be able to resolve path of local variable in function scope.
 */
 _global.GetObjectPath = function( /*Object*/ target, scope )
-    {
-    
-    
+{
     var name, ref, scopePath ;
     var isCoreObject /*Boolean*/
     var m, mm;
@@ -124,9 +122,9 @@ _global.GetObjectPath = function( /*Object*/ target, scope )
     /* internalFunction: getCoreObjectPath
     */
     var getCoreObjectPath = function( obj )
-        {
+    {
         switch( obj )
-            {
+        {
             case Array:    return "Array";
             case Boolean:  return "Boolean";
             case Date:     return "Date";
@@ -135,55 +133,53 @@ _global.GetObjectPath = function( /*Object*/ target, scope )
             case Number:   return "Number";
             case String:   return "String";
             case Object:   return "Object";
-            }
-        
-        return undefined;
         }
+        return undefined;
+    }
     
     if( isCoreObject != undefined )
-        {
+    {
         return isCoreObject;
-        }
+    }
     
     if( scope == null )
-        {
+    {
         scope = _global ; //by default the scope to scan is global
-        }
+    }
     else
-        {
+    {
         scopePath = getCoreObjectPath( scope );
         
         if( scopePath == undefined )
-            {
+        {
             scopePath = GetObjectPath( scope );
-            }
         }
+    }
     
     //path already found
     
     if( target.__path__ )
-        {
+    {
         return target.__path__;
-        }
+    }
     
     var list ;
     
     /* internalFunction: list
     */
     list = function()
-        {
+    {
         name = values.pop();
         ref  = refs.pop();
         
         if (ref == null)
-            {
+        {
             values.push( "" );
-            }
+        }
         else
-            {
-            
+        {
             for( m in ref )
-                {
+            {
                 /* attention:
                    if the host does not mark "prototype"
                    as DontEnum (as it should be!)
@@ -192,32 +188,31 @@ _global.GetObjectPath = function( /*Object*/ target, scope )
                 */
                 
                 if( m == "prototype" )
-                    {
+                {
                     continue;
-                    }
+                }
                 
                 /* attention:
-                   we do not want to itterate trough Array indexes,
+                   we do not want to iterate trough Array indexes,
                    especially with Mozilla JavaScript as
                    <http://developer.mozilla.org/en/docs/Core_JavaScript_1.5_Reference:Global_Objects:String>
                    indicate that string can be accessed as array
                    ex: 'cat'[1] // returns "a"
                 */
                 if( (ref[m] != null) && (ref[m].constructor == Array) )
-                    {
+                {
                     continue;
-                    }
+                }
                 
                 /**
                  * ### WARNING - not original Core2 script !!! 
                  * @see $GLOBAL_PRIVATE_POLICY in core2.asc file.
                  */
-                if ($GLOBAL_PRIVATE_POLICY && m.indexOf("_") == 0) { // fix private attributes, begin with "_"
-                    
+                if ($GLOBAL_PRIVATE_POLICY && m.indexOf("_") == 0)  // fix private attributes, begin with "_" 
+                {
                     continue ;
-                    
                 }
-                                
+                
                 /* note:
                    We want to scan only objects and functions,
                    the only type being able to contain child members.
@@ -225,40 +220,42 @@ _global.GetObjectPath = function( /*Object*/ target, scope )
                 if( 
                     ((typeof(ref[m]) == "object") 
                         || (typeof(ref[m]) == "function")) &&
-                            (ref.hasOwnProperty( m )) )
-                    {
+                            (ref.hasOwnProperty( m )) 
+                )
+                {
                     commands.push( list );
                     values.push( name + "." + m );
                     refs.push( ref[m] );
-                    }
-                
                 }
+                
             }
         }
+    }
     
     for( mm in scope )
-        {
+    {
         
         /* attention:
            We do not want to scan global reserved objects,
            especially for browsers where it cause recursion errors.
         */
         if( isGlobalReserved( mm ) )
-            {
+        {
             continue;
-            }
+        }
         
         commands.push( list );
         values.push( mm );
         refs.push( scope[mm] );
-        }
+    }
     
     if( scope == _global )
-        {
+    {
         var i /*Number*/ ;
         var coreObject;
         
-        var coreObjects /*Array*/ = [
+        var coreObjects /*Array*/ = 
+        [
             "Array",
             "Boolean",
             "Date",
@@ -270,25 +267,23 @@ _global.GetObjectPath = function( /*Object*/ target, scope )
         ]
         
         for( i=0; i<coreObjects.length; i++ )
-            {
+        {
             coreObject = coreObjects[i];
             
             commands.push( list );
             values.push( coreObject );
             refs.push( scope[coreObject] );
-            }
         }
+    }
     
     while( (commands.length != 0) && (commands.length < maxRecursion ) )
-        {
+    {
         commands.pop()();
         
         /// trace(name) ;
         
-        
-        
-        if( ref === target ) //we want to test identity!!!
-            {
+        if( ref === target ) // we want to test identity !!!
+        {
             /* note:
                Here we save the result of the path
                to not recompute it later.
@@ -298,38 +293,38 @@ _global.GetObjectPath = function( /*Object*/ target, scope )
             ///trace(">>> " + name) ;
             
             if( scope == _global )
-                {
+            {
                 target.__path__ = name;
-                }
+            }
             else
-                {
+            {
                 scopePath += ".";
-                }
+            }
             
             return scopePath + name;
-            }
         }
+    }
     
     return undefined;
-    }
+}
 
 /* GlobalFunction: GetTypeOf
    Returns the type of the passed object.
 */
 _global.GetTypeOf = function( obj )
-    {
+{
     if( obj === undefined )
-        {
+    {
         return "undefined";
-        }
+    }
     
     if( obj === null )
-        {
+    {
         return "null";
-        }
+    }
     
     switch( obj.constructor )
-        {
+    {
         case Array:    return "array";
         case Boolean:  return "boolean";
         case Date:     return "date";
@@ -339,8 +334,8 @@ _global.GetTypeOf = function( obj )
         case String:   return "string";
         case Object:   return "object";
         default:       return( typeof obj );
-        }
     }
+}
 
 /* GlobalFunction: hasOwnProperty
    _global scope does not inherit from the Object scope
@@ -381,17 +376,17 @@ _global.hasOwnProperty = Object.prototype.hasOwnProperty;
    supplied name keyword is reserved or not.
 */
 _global.isGlobalReserved = function( /*String*/ name )
-    {
+{
     for( var i=0; i < $GLOBAL_RESERVED.length; i++ )
-        {
+    {
         if( $GLOBAL_RESERVED[i] == name )
-            {
+        {
             return true;
-            }
         }
+    }
     
     return false;
-    }
+}
 
 /* GlobalFunction: isNaN
    Returns a Boolean value that indicates whether
