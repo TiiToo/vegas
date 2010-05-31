@@ -35,35 +35,34 @@
   
 */
 
-load("unittests/system/signals/InternalSignalTest.js") ;
-load("unittests/system/signals/SignalEntryTest.js") ;
-load("unittests/system/signals/SignalStringsTest.js") ;
+// ---o Constructor
 
-// ----o constructor
-
-system.signals.AllTests = function( /*String*/ name ) 
+system.signals.SignalStringsTest = function( name ) 
 {
-    buRRRn.ASTUce.TestCase.call( this, name );
+    buRRRn.ASTUce.TestCase.call( this , name ) ;
 }
 
 // ----o Inherit
 
-system.signals.AllTests.prototype             = new buRRRn.ASTUce.TestCase() ;
-system.signals.AllTests.prototype.constructor = system.signals.AllTests ;
+system.signals.SignalStringsTest.prototype             = new buRRRn.ASTUce.TestCase() ;
+system.signals.SignalStringsTest.prototype.constructor = system.signals.SignalStringsTest ;
 
 // ----o Public Methods
 
-system.signals.AllTests.suite = function() {
-    
-    var TestSuite = buRRRn.ASTUce.TestSuite;
-    
-    var suite = new TestSuite( "vegas.string" );
-    
-    //suite.simpleTrace = true;
-    
-    suite.addTest( new TestSuite( system.signals.InternalSignalTest ) ) ;
-    suite.addTest( new TestSuite( system.signals.SignalEntryTest ) ) ;
-    suite.addTest( new TestSuite( system.signals.SignalStringsTest ) ) ;
-    
-    return suite ;
+system.signals.SignalStringsTest.prototype.testINVALID_PARAMETER_TYPE = function () 
+{
+    var SignalStrings = system.signals.SignalStrings ;
+    this.assertEquals( SignalStrings.INVALID_PARAMETER_TYPE , "The parameter with the index {0} in the emit method isn't valid, must be an instance of the {1} class but is an instance of the {2} class." ) ;
+}
+
+system.signals.SignalStringsTest.prototype.testINVALID_PARAMETERS_LENGTH = function () 
+{
+    var SignalStrings = system.signals.SignalStrings ;
+    this.assertEquals( SignalStrings.INVALID_PARAMETERS_LENGTH , "The number of arguments in the emit method is not valid, must be invoked with {0} argument(s) and you call it with {1} argument(s)." ) ;
+}
+
+system.signals.SignalStringsTest.prototype.testINVALID_TYPES = function () 
+{
+    var SignalStrings = system.signals.SignalStrings ;
+    this.assertEquals( SignalStrings.INVALID_TYPES , "Invalid types representation, the Array of types failed at index {0} should be a constructor function but was:\"{1}\"." ) ;
 }
