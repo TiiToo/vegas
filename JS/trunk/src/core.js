@@ -37,7 +37,7 @@
 
 try 
 {
-    var dummy = core ;
+    dummy = core ;
 }
 catch(e) 
 {

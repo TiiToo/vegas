@@ -41,8 +41,5 @@ try
 }
 catch( e )
 {
-    trace = function( message /*String*/ )
-    {
-        print( message ) ;
-    }
+    trace = print ;
 }

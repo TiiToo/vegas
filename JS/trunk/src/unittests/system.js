@@ -37,7 +37,7 @@
 
 try 
 {
-    var dummy = system ;
+    dummy = system ;
 }
 catch(e) 
 {

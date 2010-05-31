@@ -37,7 +37,7 @@
 
 try 
 {
-    var dummy = system.signals ;
+    dummy = system.signals ;
 }
 catch(e) 
 {
