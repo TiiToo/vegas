@@ -37,9 +37,9 @@
 
 if( system.signals.samples.ReceiverClass == undefined )
 {
-    system.signals.samples.ReceiverClass = function () 
+    system.signals.samples.ReceiverClass = function ( name /*String*/ ) 
     {
-        //
+        this.name = name || "[ReceiverClass]" ;
     }
     
     ////////////////////////////////////
@@ -54,6 +54,11 @@ if( system.signals.samples.ReceiverClass == undefined )
     proto.receive = function( )
     {
         throw values[0] ;
+    }
+    
+    proto.toString = function() /*String*/
+    {
+        return this.name ;
     }
     
     ////////////////////////////////////

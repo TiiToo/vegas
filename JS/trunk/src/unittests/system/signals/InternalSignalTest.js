@@ -112,3 +112,118 @@ system.signals.InternalSignalTest.prototype.testLength = function()
     this.signal.connect( this.receiver2 ) ;
     this.assertEquals( this.signal.length , 2 , "04 - length failed.") ;
 }
+
+system.signals.InternalSignalTest.prototype.testTypes = function()
+{
+    this.signal.types = null ;
+    this.assertNull( this.signal.types , "01" ) ;
+    
+    this.signal.types = [] ;
+    this.assertNotNull( this.signal.types , "02-01" ) ;
+    this.assertEquals( this.signal.types.length , 0 , "02-02" ) ;
+    
+    this.signal.types = [String,Number,String] ;
+    this.assertEquals( this.signal.types[0] , String , "03-01" ) ;
+    this.assertEquals( this.signal.types[1] , Number , "03-01" ) ;
+    this.assertEquals( this.signal.types[2] , String , "03-01" ) ;
+}
+
+system.signals.InternalSignalTest.prototype.testBadTypes = function()
+{
+    try
+    {
+        this.signal.types = [String,"hello",Number] ;
+        this.fail( "The constructor must notify an error with a no valid Class reference in the types Array") ;
+    }
+    catch( e /*Error*/ )
+    {
+        this.assertEquals( "Invalid types representation, the Array of types failed at index 1 should be a constructor function but was:\"hello\"." , e.message ) ;
+    }
+}
+
+system.signals.InternalSignalTest.prototype.testConnect = function()
+{
+    this.assertTrue( this.signal.connect( this.receiver1 ) , "01 - The connect method failed.") ;
+    this.assertFalse( this.signal.connect( this.receiver1 ) , "02 - The connect method failed.") ;
+}
+
+system.signals.InternalSignalTest.prototype.testConnectReceiver = function()
+{
+    this.assertTrue( this.signal.connect( this.receiver2 ) , "01 - The connect method failed.") ;
+    this.assertFalse( this.signal.connect( this.receiver2 ) , "02 - The connect method failed.") ;
+}
+
+system.signals.InternalSignalTest.prototype.testConnectWithPriority = function()
+{
+    var receiver1 = new system.signals.samples.ReceiverClass("#1") ;
+    var receiver2 = new system.signals.samples.ReceiverClass("#2") ;
+    var receiver3 = new system.signals.samples.ReceiverClass("#3") ;
+    var receiver4 = new system.signals.samples.ReceiverClass("#4") ;
+    
+    this.signal.connect( receiver1 , 400 ) ;
+    this.signal.connect( receiver2 , 499 ) ;
+    this.signal.connect( receiver3 , 1 ) ;
+    this.signal.connect( receiver4 , 4 ) ;
+    
+    var ar = this.signal.toArray() ;
+    
+    this.assertEquals( ar[0] , receiver2 ) ;
+    this.assertEquals( ar[1] , receiver1 ) ;
+    this.assertEquals( ar[2] , receiver4 ) ;
+    this.assertEquals( ar[3] , receiver3 ) ;
+}
+
+system.signals.InternalSignalTest.prototype.testConnected = function()
+{
+    this.assertFalse( this.signal.connected() ) ;
+    this.signal.connect( this.receiver1 ) ;
+    this.assertTrue( this.signal.connected() ) ;
+}
+
+system.signals.InternalSignalTest.prototype.testDisconnect = function()
+{
+    this.signal.connect( this.receiver1 ) ;
+    this.assertTrue( this.signal.disconnect( this.receiver1 ) , "01 - The disconnect method failed.") ;
+    this.assertFalse( this.signal.disconnect( this.receiver1 ) , "02 - The disconnect method failed.") ;
+}
+
+system.signals.InternalSignalTest.prototype.testDisconnectReceiver = function()
+{
+    this.signal.connect( this.receiver2 ) ;
+    this.assertTrue( this.signal.disconnect( this.receiver2 ) , "01 - The disconnect method failed.") ;
+    this.assertFalse( this.signal.disconnect( this.receiver2 ) , "02 - The disconnect method failed.") ;
+}
+
+system.signals.InternalSignalTest.prototype.testHasReceiver = function()
+{
+    this.assertFalse( this.signal.hasReceiver( this.receiver1 ) , "01 - The hasReceiver method failed.") ;
+    this.signal.connect( this.receiver1 ) ;
+    this.assertTrue( this.signal.hasReceiver( this.receiver1 ) , "02 - The hasReceiver method failed.") ;
+    this.signal.disconnect() ;
+    this.assertFalse( this.signal.hasReceiver( this.receiver1 ) , "03 - The hasReceiver method failed.") ;
+}
+
+system.signals.InternalSignalTest.prototype.testHasReceiverWithReceiver = function()
+{
+    this.assertFalse( this.signal.hasReceiver( this.receiver2 ) , "01 - The hasReceiver method failed.") ;
+    this.signal.connect( this.receiver2 ) ;
+    this.assertTrue( this.signal.hasReceiver( this.receiver2 ) , "02 - The hasReceiver method failed.") ;
+    this.signal.disconnect() ;
+    this.assertFalse( this.signal.hasReceiver( this.receiver2 ) , "03 - The hasReceiver method failed.") ;
+}
+
+system.signals.InternalSignalTest.prototype.testToArray = function()
+{
+    this.signal.connect( this.receiver1 , 0 ) ;
+    this.signal.connect( this.receiver2 , 0  ) ;
+    
+    var ar = this.signal.toArray() ;
+    
+    this.assertEquals( ar[0] , this.receiver1 ) ;
+    this.assertEquals( ar[1] , this.receiver2 ) ;
+}
+
+system.signals.InternalSignalTest.prototype.testToString = function()
+{
+    this.assertEquals( this.signal.toString() , "[InternalSignal]" ) ;
+}

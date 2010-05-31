@@ -149,7 +149,7 @@ if ( system.signals.InternalSignal == undefined )
                 }
                 for( var i = 0 ; i<l ; i++ )
                 {
-                    if ( !this.typesMatch( values[i] , this._types[i] ) )
+                    if ( !this._typesMatch( values[i] , this._types[i] ) )
                     {
                         throw new Error( String.format( system.signals.SignalStrings.INVALID_PARAMETER_TYPE , i, this._types[i] , getConstructorPath( values[i] ) ) ) ;
                     }
@@ -188,7 +188,41 @@ if ( system.signals.InternalSignal == undefined )
             
             this.receivers.push( new system.signals.SignalEntry( receiver , priority , autoDisconnect ) ) ;
             
-            this.receivers.sort( this.sorting ) ;
+            /////// bubble sorting
+            
+            var i ;
+            var j ;
+            
+            var a = this.receivers ;
+            
+            var swap = function( j , k ) 
+            {
+                var temp = a[j] ;
+                a[j]     = a[k] ;
+                a[k]     = temp ;
+                return true ;
+            }
+            
+            var swapped = false;
+            
+            var l = a.length ;
+            
+            for( i = 1 ; i < l ; i++ ) 
+            {
+                for( j = 0 ; j < ( l - i ) ; j++ ) 
+                {
+                    if ( a[j+1].priority > a[j].priority ) 
+                    {
+                        swapped = swap(j, j+1) ;
+                    }
+                }
+                if ( !swapped ) 
+                {
+                    break;
+                }
+            }
+            
+            ///////
             
             return true ;
         }
@@ -348,7 +382,7 @@ if ( system.signals.InternalSignal == undefined )
             var l /*int*/ = this.receivers.length ;
             for( var i /*int*/ = 0 ; i<l ; i++ )
             {
-                r[i] = this.receivers[i].receiver ;
+                r.push( this.receivers[i].receiver ) ;
             }
         }
         return r ;
@@ -379,26 +413,7 @@ if ( system.signals.InternalSignal == undefined )
     /**
      * @private
      */
-    proto.sorting = function( a , b ) /*int*/ 
-    {
-        if ( a == b || a.priority == b.priority )
-        {
-            return 0 ;
-        }
-        else if ( a.priority > b.priority )
-        {
-            return -1 ;
-        }
-        else
-        {
-            return 1 ;
-        }
-    }
-    
-    /**
-     * @private
-     */
-    proto.typesMatch = function( o , type ) /*Boolean*/
+    proto._typesMatch = function( o , type ) /*Boolean*/
     {
         if ( type == String || type == "string" )
         {
