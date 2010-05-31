@@ -35,7 +35,7 @@
   
 */
 
-load("unittests/system/signals/InternalSignalTest.js") ;
+load("unittests/system/signals/SignalTest.js") ;
 load("unittests/system/signals/SignalEntryTest.js") ;
 load("unittests/system/signals/SignalStringsTest.js") ;
 
@@ -61,7 +61,7 @@ system.signals.AllTests.suite = function() {
     
     //suite.simpleTrace = true;
     
-    suite.addTest( new TestSuite( system.signals.InternalSignalTest ) ) ;
+    suite.addTest( new TestSuite( system.signals.SignalTest ) ) ;
     suite.addTest( new TestSuite( system.signals.SignalEntryTest ) ) ;
     suite.addTest( new TestSuite( system.signals.SignalStringsTest ) ) ;
     
