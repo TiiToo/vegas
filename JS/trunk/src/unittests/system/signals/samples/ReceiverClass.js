@@ -53,7 +53,7 @@ if( system.signals.samples.ReceiverClass == undefined )
     
     proto.receive = function( )
     {
-        throw values[0] ;
+        throw arguments[0] ;
     }
     
     proto.toString = function() /*String*/

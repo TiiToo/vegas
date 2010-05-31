@@ -194,6 +194,34 @@ system.signals.SignalTest.prototype.testDisconnectReceiver = function()
     this.assertFalse( this.signal.disconnect( this.receiver2 ) , "02 - The disconnect method failed.") ;
 }
 
+system.signals.SignalTest.prototype.testEmit = function()
+{
+    this.signal.connect( this.receiver1 ) ;
+    try
+    {
+        this.signal.emit("hello world") ;
+        this.fail( "The signal must emit a message" ) ;
+    }
+    catch( message )
+    {
+        this.assertEquals( "hello world" , message ) ;
+    }
+}
+
+system.signals.SignalTest.prototype.testEmitReceiver = function()
+{
+    this.signal.connect( this.receiver2 ) ;
+    try
+    {
+        this.signal.emit("hello world") ;
+        this.fail( "The signal must emit a message" ) ;
+    }
+    catch( message )
+    {
+        this.assertEquals( "hello world" , message ) ;
+    }
+}
+
 system.signals.SignalTest.prototype.testHasReceiver = function()
 {
     this.assertFalse( this.signal.hasReceiver( this.receiver1 ) , "01 - The hasReceiver method failed.") ;
