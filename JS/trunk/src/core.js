@@ -59,6 +59,7 @@ getPackage( "core.strings" ) ;
 
 require( "core.arrays.contains"   ) ;
 require( "core.arrays.initialize" ) ;
+require( "core.arrays.pierce"     ) ;
 require( "core.arrays.sortOn"     ) ;
 
 // core.strings
