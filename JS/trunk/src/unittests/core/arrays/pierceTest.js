@@ -35,35 +35,46 @@
   
 */
 
-load("unittests/core/arrays/containsTest.js") ;
-load("unittests/core/arrays/initializeTest.js") ;
-load("unittests/core/arrays/pierceTest.js") ;
+// ---o Constructor
 
-// ----o constructor
-
-core.arrays.AllTests = function( /*String*/ name ) 
+core.arrays.pierceTest = function( name ) 
 {
-    buRRRn.ASTUce.TestCase.call( this, name );
+    buRRRn.ASTUce.TestCase.call( this , name ) ;
 }
 
 // ----o Inherit
 
-core.arrays.AllTests.prototype             = new buRRRn.ASTUce.TestCase() ;
-core.arrays.AllTests.prototype.constructor = core.arrays.AllTests ;
+core.arrays.pierceTest.prototype             = new buRRRn.ASTUce.TestCase() ;
+core.arrays.pierceTest.prototype.constructor = core.arrays.pierceTest ;
 
 // ----o Public Methods
 
-core.arrays.AllTests.suite = function() {
+core.arrays.pierceTest.prototype.testPierce1 = function () 
+{
+    var a = [0,1,2,3] ; 
+    this.assertEquals( 0 , core.arrays.pierce( a ) ) ;
+    this.assertEquals( a.length , 3 ) ;
+    this.assertEquals( 1 , a[0] ) ;
+    this.assertEquals( 2 , a[1] ) ;
+    this.assertEquals( 3 , a[2] ) ;
+}
+
+core.arrays.pierceTest.prototype.testPierce2 = function () 
+{
+    var a = [0,1,2,3,4,5] ; 
     
-    var TestSuite = buRRRn.ASTUce.TestSuite;
+    this.assertEquals( 1 , core.arrays.pierce( a , 1 ) ) ;
+    this.assertEquals( 2 , core.arrays.pierce( a , 1 ) ) ;
     
-    var suite = new TestSuite( "core.arrays unit tests" );
+    this.assertEquals( a.length , 4 ) ;
+    this.assertEquals( 0 , a[0] ) ;
+    this.assertEquals( 3 , a[1] ) ;
+    this.assertEquals( 4 , a[2] ) ;
+    this.assertEquals( 5 , a[3] ) ;
     
-    //suite.simpleTrace = true;
-    
-    suite.addTest( new TestSuite( core.arrays.containsTest ) ) ;
-    suite.addTest( new TestSuite( core.arrays.initializeTest ) ) ;
-    suite.addTest( new TestSuite( core.arrays.pierceTest ) ) ;
-    
-    return suite ;
+    a = core.arrays.pierce( a , 1 , true )
+    this.assertEquals( a.length , 3 ) ; 
+    this.assertEquals( 0 , a[0] ) ;
+    this.assertEquals( 4 , a[1] ) ;
+    this.assertEquals( 5 , a[2] ) ;
 }
