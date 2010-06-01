@@ -35,41 +35,57 @@
   
 */
 
-package core.arrays
+/** 
+ * Splice one array into another.
+ * <p><b>Example :</b></p>
+ * <pre class="prettyprint">
+ * inserted  = [1, 2, 3, 4] ;
+ * container = [5, 6, 7, 8] ;
+ * 
+ * trace( "inserted  : " + inserted  ) ;
+ * trace( "container : " + container ) ;
+ * 
+ * trace("---") ;
+ * 
+ * inserted  = [1, 2, 3, 4] ;
+ * container = [5, 6, 7, 8] ;
+ * 
+ * core.arrays.spliceInto( inserted, container ) ;
+ * 
+ * trace( "spliceInto( inserted, container, 0 , 0 ) : " + container ) ; // 1,2,3,4,5,6,7,8
+ * 
+ * trace("---") ;
+ * 
+ * inserted  = [1, 2, 3, 4] ;
+ * container = [5, 6, 7, 8] ;
+ * 
+ * core.arrays.spliceInto( inserted, container, 0 , 4 ) ;
+ * 
+ * trace( "spliceInto( inserted, container, 0 , 4 ) : " + container ) ; // 1,2,3,4
+ * 
+ * trace("---") ;
+ * 
+ * inserted  = [1, 2, 3, 4] ;
+ * container = [5, 6, 7, 8] ;
+ * 
+ * core.arrays.spliceInto( inserted, container, 0 , 2 ) ;
+ * 
+ * trace( "spliceInto( inserted, container, 0 , 2 ) : " + container ) ; // 1,2,3,4,7,8
+ * </pre>
+ * @param inserted The Array of values inserted in the Array container.
+ * @param container The container modified in place.
+ * @param position The position in the container to inserted the Array of chars.
+ * @param count The count value to replaced values.
+ */
+core.arrays.spliceInto = function( inserted /*Array*/ , container /*Array*/ , position /*Number*/ , count /*Number*/ )
 {
-    /**
-     * Shuffles an array.
-     * <p><b>Example :</b></p>
-     * <pre class="prettyprint">
-     * import core.arrays.shuffle ;
-     * 
-     * var ar:Array = [0,1,2,3,4,5,6,7,8,9] ;
-     * 
-     * trace( ar ) ;
-     * shuffle( ar ) ;
-     * trace( ar ) ;
-     * </pre>
-     * @return the shuffled array.
-     */
-    public const shuffle:Function = function( ar:Array ):Array 
+    inserted.unshift( isNaN(position) ? 0 : position , isNaN(count) ? 0 : count ) ;
+    try 
     {
-        var item:* ;
-        var rdm:int ;
-        var tmp:Array = [] ;
-        var len:int   = ar.length;
-        var index:int = len - 1 ;
-        for ( var i:int ; i < len ; i++ ) 
-        {
-            rdm  = Math.round( Math.random() * index ) ;
-            item = ar[ rdm ] ;
-            ar.splice( rdm , 1 ) ;
-            tmp[tmp.length] = item ;
-            index-- ;
-        }
-        while(--len > -1) 
-        {
-            ar[len] = tmp[len] ;
-        }
-        return ar ;
-    };
+        container.splice.apply( container , inserted ) ;
+    } 
+    finally 
+    {
+        inserted.splice(0, 2) ;
+    }
 }
