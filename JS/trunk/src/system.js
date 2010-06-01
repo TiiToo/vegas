@@ -43,20 +43,8 @@ catch(e)
 {
     // constants
     
-    LIBRARY = "../library" ;
     SRC     = "./" ;
     SUFFIX  = ".js" ;
-    
-    // libraries
-    
-    load("./core/SSASSetPropFlags.js") ;
-    load("./core/Array.js") ;
-    load("./core/encapsulate.js") ;
-    load("./core/Function.js") ;
-    load("./core/getPackage.js") ;
-    load("./core/require.js") ;
-    load("./core/requirePackage.js") ;
-    load("./core/String.js") ;
     
     // packages
     

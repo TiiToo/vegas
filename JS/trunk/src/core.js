@@ -35,20 +35,30 @@
   
 */
 
-try 
-{
-    dummy = core ;
-}
-catch(e) 
-{
-    core = {} ;
-    
-    load("./core/SSASSetPropFlags.js") ;
-    load("./core/Array.js") ;
-    load("./core/encapsulate.js") ;
-    load("./core/Function.js") ;
-    load("./core/getPackage.js") ;
-    load("./core/require.js") ;
-    load("./core/requirePackage.js") ;
-    load("./core/String.js") ;
-}
+load("./core/SSASSetPropFlags.js") ;
+
+load("./core/encapsulate.js") ;
+load("./core/Function.js") ;
+load("./core/getPackage.js") ;
+load("./core/require.js") ;
+load("./core/requirePackage.js") ;
+load("./core/String.js") ;
+
+// constants
+
+SRC     = "./" ;
+SUFFIX  = ".js" ;
+
+// packages
+
+getPackage( "core") ;
+getPackage( "core.arrays"  ) ;
+getPackage( "core.strings" ) ;
+
+// core.arrays
+
+require( "core.arrays.contains"   ) ;
+require( "core.arrays.initialize" ) ;
+require( "core.arrays.sortOn"     ) ;
+
+// core.strings
