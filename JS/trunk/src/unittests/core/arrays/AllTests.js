@@ -42,6 +42,7 @@ load("unittests/core/arrays/reduceTest.js") ;
 load("unittests/core/arrays/reduceRightTest.js") ;
 load("unittests/core/arrays/repeatTest.js") ;
 load("unittests/core/arrays/shuffleTest.js") ;
+load("unittests/core/arrays/spliceIntoTest.js") ;
 
 // ----o constructor
 
@@ -72,6 +73,7 @@ core.arrays.AllTests.suite = function() {
     suite.addTest( new TestSuite( core.arrays.reduceRightTest ) ) ;
     suite.addTest( new TestSuite( core.arrays.repeatTest ) ) ;
     suite.addTest( new TestSuite( core.arrays.shuffleTest ) ) ;
+    suite.addTest( new TestSuite( core.arrays.spliceIntoTest ) ) ;
     
     return suite ;
 }

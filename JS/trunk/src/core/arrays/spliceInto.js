@@ -79,7 +79,7 @@
  */
 core.arrays.spliceInto = function( inserted /*Array*/ , container /*Array*/ , position /*Number*/ , count /*Number*/ )
 {
-    inserted.unshift( isNaN(position) ? 0 : position , isNaN(count) ? 0 : count ) ;
+    inserted.unshift( position , count ) ;
     try 
     {
         container.splice.apply( container , inserted ) ;
