@@ -62,6 +62,7 @@ require( "core.arrays.initialize"  ) ;
 require( "core.arrays.pierce"      ) ;
 require( "core.arrays.reduce"      ) ;
 require( "core.arrays.reduceRight" ) ;
+require( "core.arrays.repeat" ) ;
 require( "core.arrays.shuffle"     ) ;
 require( "core.arrays.sortOn"      ) ;
 require( "core.arrays.spliceInto" ) ;

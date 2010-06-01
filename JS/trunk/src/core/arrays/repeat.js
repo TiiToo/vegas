@@ -46,8 +46,9 @@
  */
 core.arrays.repeat = function( ar /*Array*/ , count /*uint*/ ) /*Array*/
 {
+    count = isNaN(count) ? 0 : count ;
     count = count > 0 ? Math.abs(count) : 0 ;
-    result /*Array*/ ;
+    var result /*Array*/ ;
     if ( count > 0 )
     {
         result = [] ;

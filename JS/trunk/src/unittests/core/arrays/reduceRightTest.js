@@ -49,7 +49,7 @@ core.arrays.reduceRightTest.prototype.constructor = core.arrays.reduceRightTest 
 
 // ----o Public Methods
 
-core.arrays.reduceRightTest.prototype.testReduce1 = function () 
+core.arrays.reduceRightTest.prototype.testReduceRight1 = function () 
 {
     var a = [0,1,2,3,4] ;
     
@@ -62,7 +62,7 @@ core.arrays.reduceRightTest.prototype.testReduce1 = function ()
     this.assertEquals( 20 , core.arrays.reduceRight( a , callback , 10 ) , "#2" ) ;
 }
 
-core.arrays.reduceRightTest.prototype.testReduce2 = function () 
+core.arrays.reduceRightTest.prototype.testReduceRight2 = function () 
 {
     var a = [[0,1], [2,3], [4,5]] ;
     
