@@ -35,39 +35,49 @@
   
 */
 
-load("unittests/core/arrays/containsTest.js") ;
-load("unittests/core/arrays/initializeTest.js") ;
-load("unittests/core/arrays/pierceTest.js") ;
-load("unittests/core/arrays/reduceTest.js") ;
-load("unittests/core/arrays/reduceRightTest.js") ;
+// ---o Constructor
 
-// ----o constructor
-
-core.arrays.AllTests = function( /*String*/ name ) 
+core.arrays.reduceRightTest = function( name ) 
 {
-    buRRRn.ASTUce.TestCase.call( this, name );
+    buRRRn.ASTUce.TestCase.call( this , name ) ;
 }
 
 // ----o Inherit
 
-core.arrays.AllTests.prototype             = new buRRRn.ASTUce.TestCase() ;
-core.arrays.AllTests.prototype.constructor = core.arrays.AllTests ;
+core.arrays.reduceRightTest.prototype             = new buRRRn.ASTUce.TestCase() ;
+core.arrays.reduceRightTest.prototype.constructor = core.arrays.reduceRightTest ;
 
 // ----o Public Methods
 
-core.arrays.AllTests.suite = function() {
+core.arrays.reduceRightTest.prototype.testReduce1 = function () 
+{
+    var a = [0,1,2,3,4] ;
     
-    var TestSuite = buRRRn.ASTUce.TestSuite;
+    var callback = function( previousValue , currentValue , index , array )
+    {
+        return previousValue + currentValue ;
+    };
     
-    var suite = new TestSuite( "core.arrays unit tests" );
+    this.assertEquals( 10 , core.arrays.reduceRight( a , callback )      , "#1" ) ;
+    this.assertEquals( 20 , core.arrays.reduceRight( a , callback , 10 ) , "#2" ) ;
+}
+
+core.arrays.reduceRightTest.prototype.testReduce2 = function () 
+{
+    var a = [[0,1], [2,3], [4,5]] ;
     
-    //suite.simpleTrace = true;
+    var callback = function( previousValue , currentValue , index , array )
+    {
+        return previousValue.concat( currentValue ) ;
+    };
     
-    suite.addTest( new TestSuite( core.arrays.containsTest ) ) ;
-    suite.addTest( new TestSuite( core.arrays.initializeTest ) ) ;
-    suite.addTest( new TestSuite( core.arrays.pierceTest ) ) ;
-    suite.addTest( new TestSuite( core.arrays.reduceTest ) ) ;
-    suite.addTest( new TestSuite( core.arrays.reduceRightTest ) ) ;
+    a = core.arrays.reduceRight( a , callback , [] ) ;
     
-    return suite ;
+    this.assertEquals( a.length , 6 ) ;
+    this.assertEquals( 4 , a[0] ) ;
+    this.assertEquals( 5 , a[1] ) ;
+    this.assertEquals( 2 , a[2] ) ;
+    this.assertEquals( 3 , a[3] ) ;
+    this.assertEquals( 0 , a[4] ) ;
+    this.assertEquals( 1 , a[5] ) ;
 }
