@@ -35,33 +35,48 @@
   
 */
 
-load("unittests/core/arrays/containsTest.js") ;
-load("unittests/core/arrays/initializeTest.js") ;
+// ---o Constructor
 
-// ----o constructor
-
-core.arrays.AllTests = function( /*String*/ name ) 
+core.arrays.initializeTest = function( name ) 
 {
-    buRRRn.ASTUce.TestCase.call( this, name );
+    buRRRn.ASTUce.TestCase.call( this , name ) ;
 }
 
 // ----o Inherit
 
-core.arrays.AllTests.prototype             = new buRRRn.ASTUce.TestCase() ;
-core.arrays.AllTests.prototype.constructor = core.arrays.AllTests ;
+core.arrays.initializeTest.prototype             = new buRRRn.ASTUce.TestCase() ;
+core.arrays.initializeTest.prototype.constructor = core.arrays.initializeTest ;
 
 // ----o Public Methods
 
-core.arrays.AllTests.suite = function() {
+core.arrays.initializeTest.prototype.testInitialize = function () 
+{
+    var a ;
     
-    var TestSuite = buRRRn.ASTUce.TestSuite;
+    a = core.arrays.initialize() ;
+    this.assertEquals( a.length , 0 ) ;
     
-    var suite = new TestSuite( "core.arrays unit tests" );
+    a = core.arrays.initialize(3) ;
+    this.assertEquals( a.length , 3 ) ;
+    this.assertNull( a[0] ) ;
+    this.assertNull( a[1] ) ;
+    this.assertNull( a[2] ) ;
     
-    //suite.simpleTrace = true;
+    a = core.arrays.initialize(3,0) ;
+    this.assertEquals( a.length , 3 ) ;
+    this.assertEquals( 0 , a[0] ) ;
+    this.assertEquals( 0 , a[1] ) ;
+    this.assertEquals( 0 , a[2] ) ;
     
-    suite.addTest( new TestSuite( core.arrays.containsTest ) ) ;
-    suite.addTest( new TestSuite( core.arrays.initializeTest ) ) ;
+    a = core.arrays.initialize(3,true) ;
+    this.assertEquals( a.length , 3 ) ;
+    this.assertTrue( a[0] ) ;
+    this.assertTrue( a[1] ) ;
+    this.assertTrue( a[2] ) ;
     
-    return suite ;
+    a = core.arrays.initialize(4,"test") ;
+    this.assertEquals( a.length , 4 ) ;
+    this.assertEquals( "test" , a[0] ) ;
+    this.assertEquals( "test" , a[1] ) ;
+    this.assertEquals( "test" , a[2] ) ;
 }
