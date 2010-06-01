@@ -57,9 +57,11 @@ getPackage( "core.strings" ) ;
 
 // core.arrays
 
-require( "core.arrays.contains"   ) ;
-require( "core.arrays.initialize" ) ;
-require( "core.arrays.pierce"     ) ;
-require( "core.arrays.sortOn"     ) ;
+require( "core.arrays.contains"    ) ;
+require( "core.arrays.initialize"  ) ;
+require( "core.arrays.pierce"      ) ;
+require( "core.arrays.reduce"      ) ;
+require( "core.arrays.reduceRight" ) ;
+require( "core.arrays.sortOn"      ) ;
 
 // core.strings
