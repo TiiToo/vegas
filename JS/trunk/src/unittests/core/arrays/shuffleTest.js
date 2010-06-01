@@ -35,43 +35,30 @@
   
 */
 
-load("unittests/core/arrays/containsTest.js") ;
-load("unittests/core/arrays/initializeTest.js") ;
-load("unittests/core/arrays/pierceTest.js") ;
-load("unittests/core/arrays/reduceTest.js") ;
-load("unittests/core/arrays/reduceRightTest.js") ;
-load("unittests/core/arrays/repeatTest.js") ;
-load("unittests/core/arrays/shuffleTest.js") ;
+// ---o Constructor
 
-// ----o constructor
-
-core.arrays.AllTests = function( /*String*/ name ) 
+core.arrays.shuffleTest = function( name ) 
 {
-    buRRRn.ASTUce.TestCase.call( this, name );
+    buRRRn.ASTUce.TestCase.call( this , name ) ;
 }
 
 // ----o Inherit
 
-core.arrays.AllTests.prototype             = new buRRRn.ASTUce.TestCase() ;
-core.arrays.AllTests.prototype.constructor = core.arrays.AllTests ;
+core.arrays.shuffleTest.prototype             = new buRRRn.ASTUce.TestCase() ;
+core.arrays.shuffleTest.prototype.constructor = core.arrays.shuffleTest ;
 
 // ----o Public Methods
 
-core.arrays.AllTests.suite = function() {
+core.arrays.shuffleTest.prototype.testContains = function () 
+{
+    var ar = [0,1,2,3,4,5,6,7,8,9] ;
+    var sh = core.arrays.shuffle( ar ) ;
     
-    var TestSuite = buRRRn.ASTUce.TestSuite;
+    this.assertEquals( sh.length , ar.length ) ;
     
-    var suite = new TestSuite( "core.arrays unit tests" );
-    
-    //suite.simpleTrace = true;
-    
-    suite.addTest( new TestSuite( core.arrays.containsTest ) ) ;
-    suite.addTest( new TestSuite( core.arrays.initializeTest ) ) ;
-    suite.addTest( new TestSuite( core.arrays.pierceTest ) ) ;
-    suite.addTest( new TestSuite( core.arrays.reduceTest ) ) ;
-    suite.addTest( new TestSuite( core.arrays.reduceRightTest ) ) ;
-    suite.addTest( new TestSuite( core.arrays.repeatTest ) ) ;
-    suite.addTest( new TestSuite( core.arrays.shuffleTest ) ) ;
-    
-    return suite ;
+    var l /*int*/ = ar.length ;
+    for( var i /*int*/ = 0 ; i<l ; i++ )
+    {
+         this.assertTrue( sh.indexOf(ar[i]) > -1 ) ;
+    }
 }
