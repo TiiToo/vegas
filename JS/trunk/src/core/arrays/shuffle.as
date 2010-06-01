@@ -1,4 +1,4 @@
-/*
+﻿/*
 
   Version: MPL 1.1/GPL 2.0/LGPL 2.1
  
@@ -35,31 +35,41 @@
   
 */
 
-/**
- * Splices an array (removes an element) and returns either the entire array or the removed element.
- * <p><b>Example :</b></p>
- * <pre class="prettyprint">
- * var ar = [0,1,2,3,4,5] ;
- *  
- * trace( ar ) ; // 0,1,2,3,4,5
- * 
- * trace( "pierce( ar, 1 ) : " + core.arrays.pierce( ar, 1 ) ) ; // pierce(ar,1) : 1
- * trace( "pierce( ar, 1 ) : " + core.arrays.pierce( ar, 1 ) ) ; // pierce(ar,1) : 2
- * 
- * trace( ar ) ; // 0,3,4,5
- * 
- * trace( pierce( ar, 1 , true ) ) ; // 0,4,5
- * </pre>
- * @param ar the array.
- * @param index the index of the array element to remove from the array (default 0).
- * @param flag a boolean <code>true</code> to return a new spliced array of false to return the removed element.
- * @return The newly spliced array or the removed element in function of the flag parameter.
- */
-core.arrays.pierce = function( ar /*Array*/ , index /*uint*/ , flag /*Boolean*/ )
+package core.arrays
 {
-    index = index > 0 ? Math.abs(index) : 0 ;
-    flag  = Boolean( flag ) ;
-    var item = ar[index] ;
-    ar.splice( index , 1 ) ;
-    return flag ? ar : item ;
+    /**
+     * Shuffles an array.
+     * <p><b>Example :</b></p>
+     * <pre class="prettyprint">
+     * import core.arrays.shuffle ;
+     * 
+     * var ar:Array = [0,1,2,3,4,5,6,7,8,9] ;
+     * 
+     * trace( ar ) ;
+     * shuffle( ar ) ;
+     * trace( ar ) ;
+     * </pre>
+     * @return the shuffled array.
+     */
+    public const shuffle:Function = function( ar:Array ):Array 
+    {
+        var item:* ;
+        var rdm:int ;
+        var tmp:Array = [] ;
+        var len:int   = ar.length;
+        var index:int = len - 1 ;
+        for ( var i:int ; i < len ; i++ ) 
+        {
+            rdm  = Math.round( Math.random() * index ) ;
+            item = ar[ rdm ] ;
+            ar.splice( rdm , 1 ) ;
+            tmp[tmp.length] = item ;
+            index-- ;
+        }
+        while(--len > -1) 
+        {
+            ar[len] = tmp[len] ;
+        }
+        return ar ;
+    };
 }
