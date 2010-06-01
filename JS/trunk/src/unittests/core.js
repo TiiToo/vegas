@@ -35,27 +35,13 @@
   
 */
 
-load("unittests/core.js") ;
-load("unittests/system.js") ;
-
-AllTests = function( /*String*/ name ) 
+try 
 {
-    buRRRn.ASTUce.TestCase.call( this, name );
+    dummy = core ;
+}
+catch(e) 
+{
+    core = {};
 }
 
-AllTests.prototype = new buRRRn.ASTUce.TestCase() ;
-AllTests.prototype.constructor = AllTests ;
-
-AllTests.suite = function() 
-{
-    var TestSuite = buRRRn.ASTUce.TestSuite ;
-    
-    var suite = new TestSuite( "VEGAS Javascript version unit tests." ) ;
-    
-    // suite.simpleTrace = true;
-    
-    suite.addTest( core.AllTests.suite() ) ;
-    suite.addTest( system.AllTests.suite() ) ;
-    
-    return suite ;
-}
+load("unittests/core/AllTests.js") ;

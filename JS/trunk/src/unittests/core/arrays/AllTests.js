@@ -35,35 +35,31 @@
   
 */
 
-load("./core/SSASSetPropFlags.js") ;
+load("unittests/core/arrays/containsTest.js") ;
 
-load("./core/encapsulate.js") ;
-load("./core/Function.js") ;
-load("./core/getPackage.js") ;
-load("./core/require.js") ;
-load("./core/requirePackage.js") ;
-load("./core/String.js") ;
+// ----o constructor
 
-// constants
+core.arrays.AllTests = function( /*String*/ name ) 
+{
+    buRRRn.ASTUce.TestCase.call( this, name );
+}
 
-SRC     = "./" ;
-SUFFIX  = ".js" ;
+// ----o Inherit
 
-// packages
+core.arrays.AllTests.prototype             = new buRRRn.ASTUce.TestCase() ;
+core.arrays.AllTests.prototype.constructor = core.arrays.AllTests ;
 
-getPackage( "core") ;
-getPackage( "core.arrays"  ) ;
-getPackage( "core.strings" ) ;
+// ----o Public Methods
 
-// core.arrays
-
-require( "core.arrays.contains"    ) ;
-require( "core.arrays.initialize"  ) ;
-require( "core.arrays.pierce"      ) ;
-require( "core.arrays.reduce"      ) ;
-require( "core.arrays.reduceRight" ) ;
-require( "core.arrays.shuffle"     ) ;
-require( "core.arrays.sortOn"      ) ;
-require( "core.arrays.spliceInto" ) ;
-
-// core.strings
+core.arrays.AllTests.suite = function() {
+    
+    var TestSuite = buRRRn.ASTUce.TestSuite;
+    
+    var suite = new TestSuite( "core.arrays unit tests" );
+    
+    //suite.simpleTrace = true;
+    
+    suite.addTest( new TestSuite( core.arrays.containsTest ) ) ;
+    
+    return suite ;
+}

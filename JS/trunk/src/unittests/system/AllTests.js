@@ -52,7 +52,7 @@ system.AllTests = function( /*String*/ name )
 }
 
 system.AllTests.prototype = new buRRRn.ASTUce.TestCase() ;
-system.AllTests.prototype.constructor = system.signals.AllTests ;
+system.AllTests.prototype.constructor = system.AllTests ;
 
 system.AllTests.suite = function() 
 {

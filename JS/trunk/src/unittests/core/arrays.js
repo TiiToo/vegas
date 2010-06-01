@@ -35,35 +35,13 @@
   
 */
 
-load("./core/SSASSetPropFlags.js") ;
+try 
+{
+    dummy = core.arrays ;
+}
+catch(e) 
+{
+    core.arrays = {};
+}
 
-load("./core/encapsulate.js") ;
-load("./core/Function.js") ;
-load("./core/getPackage.js") ;
-load("./core/require.js") ;
-load("./core/requirePackage.js") ;
-load("./core/String.js") ;
-
-// constants
-
-SRC     = "./" ;
-SUFFIX  = ".js" ;
-
-// packages
-
-getPackage( "core") ;
-getPackage( "core.arrays"  ) ;
-getPackage( "core.strings" ) ;
-
-// core.arrays
-
-require( "core.arrays.contains"    ) ;
-require( "core.arrays.initialize"  ) ;
-require( "core.arrays.pierce"      ) ;
-require( "core.arrays.reduce"      ) ;
-require( "core.arrays.reduceRight" ) ;
-require( "core.arrays.shuffle"     ) ;
-require( "core.arrays.sortOn"      ) ;
-require( "core.arrays.spliceInto" ) ;
-
-// core.strings
+load("unittests/core/arrays/AllTests.js") ;
