@@ -35,37 +35,49 @@
   
 */
 
-load("unittests/core/arrays/containsTest.js") ;
-load("unittests/core/arrays/initializeTest.js") ;
-load("unittests/core/arrays/pierceTest.js") ;
-load("unittests/core/arrays/reduceTest.js") ;
+// ---o Constructor
 
-// ----o constructor
-
-core.arrays.AllTests = function( /*String*/ name ) 
+core.arrays.reduceTest = function( name ) 
 {
-    buRRRn.ASTUce.TestCase.call( this, name );
+    buRRRn.ASTUce.TestCase.call( this , name ) ;
 }
 
 // ----o Inherit
 
-core.arrays.AllTests.prototype             = new buRRRn.ASTUce.TestCase() ;
-core.arrays.AllTests.prototype.constructor = core.arrays.AllTests ;
+core.arrays.reduceTest.prototype             = new buRRRn.ASTUce.TestCase() ;
+core.arrays.reduceTest.prototype.constructor = core.arrays.reduceTest ;
 
 // ----o Public Methods
 
-core.arrays.AllTests.suite = function() {
+core.arrays.reduceTest.prototype.testReduce1 = function () 
+{
+    var a = [0,1,2,3,4] ;
     
-    var TestSuite = buRRRn.ASTUce.TestSuite;
+    var callback = function( previousValue , currentValue , index , array )
+    {
+        return previousValue + currentValue ;
+    };
     
-    var suite = new TestSuite( "core.arrays unit tests" );
+    this.assertEquals( 10 , core.arrays.reduce( a , callback )      , "#1" ) ;
+    this.assertEquals( 20 , core.arrays.reduce( a , callback , 10 ) , "#2" ) ;
+}
+
+core.arrays.reduceTest.prototype.testReduce2 = function () 
+{
+    var a = [[0,1], [2,3], [4,5]] ;
     
-    //suite.simpleTrace = true;
+    var callback = function( previousValue , currentValue , index , array )
+    {
+        return previousValue.concat( currentValue ) ;
+    };
     
-    suite.addTest( new TestSuite( core.arrays.containsTest ) ) ;
-    suite.addTest( new TestSuite( core.arrays.initializeTest ) ) ;
-    suite.addTest( new TestSuite( core.arrays.pierceTest ) ) ;
-    suite.addTest( new TestSuite( core.arrays.reduceTest ) ) ;
+    a = core.arrays.reduce( a , callback , [] ) ;
     
-    return suite ;
+    this.assertEquals( a.length , 6 ) ;
+    this.assertEquals( 0 , a[0] ) ;
+    this.assertEquals( 1 , a[1] ) ;
+    this.assertEquals( 2 , a[2] ) ;
+    this.assertEquals( 3 , a[3] ) ;
+    this.assertEquals( 4 , a[4] ) ;
+    this.assertEquals( 5 , a[5] ) ;
 }
