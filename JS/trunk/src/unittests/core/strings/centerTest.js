@@ -35,30 +35,24 @@
   
 */
 
-/////////////////
+// ---o Constructor
 
-load("unittests/core/arrays.js") ;
-load("unittests/core/strings.js") ;
-
-/////////////////
-
-core.AllTests = function( /*String*/ name ) 
+core.strings.centerTest = function( name ) 
 {
-    buRRRn.ASTUce.TestCase.call( this, name );
+    buRRRn.ASTUce.TestCase.call( this , name ) ;
 }
 
-core.AllTests.prototype = new buRRRn.ASTUce.TestCase() ;
-core.AllTests.prototype.constructor = core.AllTests ;
+// ----o Inherit
 
-core.AllTests.suite = function() 
+core.strings.centerTest.prototype             = new buRRRn.ASTUce.TestCase() ;
+core.strings.centerTest.prototype.constructor = core.strings.centerTest ;
+
+// ----o Public Methods
+
+core.strings.centerTest.prototype.testContains = function () 
 {
-    
-    var TestSuite = buRRRn.ASTUce.TestSuite;
-    
-    var suite = new TestSuite( "core unit tests" );
-    
-    suite.addTest( core.arrays.AllTests.suite() );
-    suite.addTest( core.strings.AllTests.suite() );
-    
-    return suite;
+    this.assertEquals( ""                     , core.strings.center( null          ,  0 )       , "test 1" ) ;
+    this.assertEquals( "hello world"          , core.strings.center( "hello world" ,  0       ) , "test 2" ) ;
+    this.assertEquals( "    hello world     " , core.strings.center( "hello world" , 20       ) , "test 3" ) ;
+    this.assertEquals( "____hello world_____" , core.strings.center( "hello world" , 20 , "_" ) , "test 4" ) ;
 }

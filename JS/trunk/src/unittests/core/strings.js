@@ -35,30 +35,13 @@
   
 */
 
-/////////////////
-
-load("unittests/core/arrays.js") ;
-load("unittests/core/strings.js") ;
-
-/////////////////
-
-core.AllTests = function( /*String*/ name ) 
+try 
 {
-    buRRRn.ASTUce.TestCase.call( this, name );
+    dummy = core.strings ;
+}
+catch(e) 
+{
+    core.strings = {};
 }
 
-core.AllTests.prototype = new buRRRn.ASTUce.TestCase() ;
-core.AllTests.prototype.constructor = core.AllTests ;
-
-core.AllTests.suite = function() 
-{
-    
-    var TestSuite = buRRRn.ASTUce.TestSuite;
-    
-    var suite = new TestSuite( "core unit tests" );
-    
-    suite.addTest( core.arrays.AllTests.suite() );
-    suite.addTest( core.strings.AllTests.suite() );
-    
-    return suite;
-}
+load("unittests/core/strings/AllTests.js") ;

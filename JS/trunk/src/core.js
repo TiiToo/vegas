@@ -68,3 +68,6 @@ require( "core.arrays.sortOn"      ) ;
 require( "core.arrays.spliceInto" ) ;
 
 // core.strings
+
+require( "core.strings.center" ) ;
+

@@ -35,30 +35,31 @@
   
 */
 
-/////////////////
+load("unittests/core/strings/centerTest.js") ;
 
-load("unittests/core/arrays.js") ;
-load("unittests/core/strings.js") ;
+// ----o constructor
 
-/////////////////
-
-core.AllTests = function( /*String*/ name ) 
+core.strings.AllTests = function( /*String*/ name ) 
 {
     buRRRn.ASTUce.TestCase.call( this, name );
 }
 
-core.AllTests.prototype = new buRRRn.ASTUce.TestCase() ;
-core.AllTests.prototype.constructor = core.AllTests ;
+// ----o Inherit
 
-core.AllTests.suite = function() 
-{
+core.strings.AllTests.prototype             = new buRRRn.ASTUce.TestCase() ;
+core.strings.AllTests.prototype.constructor = core.strings.AllTests ;
+
+// ----o Public Methods
+
+core.strings.AllTests.suite = function() {
     
     var TestSuite = buRRRn.ASTUce.TestSuite;
     
-    var suite = new TestSuite( "core unit tests" );
+    var suite = new TestSuite( "core.strings unit tests" );
     
-    suite.addTest( core.arrays.AllTests.suite() );
-    suite.addTest( core.strings.AllTests.suite() );
+    //suite.simpleTrace = true;
     
-    return suite;
+    suite.addTest( new TestSuite( core.strings.centerTest ) ) ;
+    
+    return suite ;
 }
