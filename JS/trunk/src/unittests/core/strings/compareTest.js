@@ -35,33 +35,32 @@
   
 */
 
-load("unittests/core/strings/centerTest.js") ;
-load("unittests/core/strings/compareTest.js") ;
+// ---o Constructor
 
-// ----o constructor
-
-core.strings.AllTests = function( /*String*/ name ) 
+core.strings.compareTest = function( name ) 
 {
-    buRRRn.ASTUce.TestCase.call( this, name );
+    buRRRn.ASTUce.TestCase.call( this , name ) ;
 }
 
 // ----o Inherit
 
-core.strings.AllTests.prototype             = new buRRRn.ASTUce.TestCase() ;
-core.strings.AllTests.prototype.constructor = core.strings.AllTests ;
+core.strings.compareTest.prototype             = new buRRRn.ASTUce.TestCase() ;
+core.strings.compareTest.prototype.constructor = core.strings.compareTest ;
 
 // ----o Public Methods
 
-core.strings.AllTests.suite = function() {
+core.strings.compareTest.prototype.testCompare = function () 
+{
+    var s0 = "HELLO";
+    var s1 = "hello";
+    var s2 = "welcome";
+    var s3 = "world";
     
-    var TestSuite = buRRRn.ASTUce.TestSuite;
-    
-    var suite = new TestSuite( "core.strings unit tests" );
-    
-    //suite.simpleTrace = true;
-    
-    suite.addTest( new TestSuite( core.strings.centerTest ) ) ;
-    suite.addTest( new TestSuite( core.strings.compareTest ) ) ;
-    
-    return suite ;
+    this.assertEquals( -1 , core.strings.compare( s1, s2 ) , "#1" );
+    this.assertEquals(  1 , core.strings.compare( s2, s1 ) , "#2" );
+    this.assertEquals(  1 , core.strings.compare( s1, s3 ) , "#3" );
+    this.assertEquals(  0 , core.strings.compare( s1, s1 ) , "#4" );
+    this.assertEquals(  0 , core.strings.compare( s1, s0 ) , "#5" );
+    this.assertEquals(  1 , core.strings.compare( s1, s0, true ) , "#6" );
+    this.assertEquals( -1 , core.strings.compare( s0, s1, true ) , "#7" );
 }

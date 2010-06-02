@@ -70,4 +70,5 @@ require( "core.arrays.spliceInto" ) ;
 // core.strings
 
 require( "core.strings.center" ) ;
+require( "core.strings.compare" ) ;
 
