@@ -35,47 +35,22 @@
   
 */
 
-load("./core/SSASSetPropFlags.js") ;
+// ---o Constructor
 
-load("./core/encapsulate.js") ;
-load("./core/Function.js") ;
-load("./core/getPackage.js") ;
-load("./core/require.js") ;
-load("./core/requirePackage.js") ;
-load("./core/String.js") ;
+core.strings.repeatTest = function( name ) 
+{
+    buRRRn.ASTUce.TestCase.call( this , name ) ;
+}
 
-// constants
+// ----o Inherit
 
-SRC     = "./" ;
-SUFFIX  = ".js" ;
+core.strings.repeatTest.prototype             = new buRRRn.ASTUce.TestCase() ;
+core.strings.repeatTest.prototype.constructor = core.strings.repeatTest ;
 
-// packages
+// ----o Public Methods
 
-getPackage( "core") ;
-getPackage( "core.arrays"  ) ;
-getPackage( "core.strings" ) ;
-
-// core.arrays
-
-require( "core.arrays.contains"    ) ;
-require( "core.arrays.initialize"  ) ;
-require( "core.arrays.pierce"      ) ;
-require( "core.arrays.reduce"      ) ;
-require( "core.arrays.reduceRight" ) ;
-require( "core.arrays.repeat" ) ;
-require( "core.arrays.shuffle"     ) ;
-require( "core.arrays.sortOn"      ) ;
-require( "core.arrays.spliceInto" ) ;
-
-// core.strings
-
-require( "core.strings.center"              ) ;
-require( "core.strings.compare"             ) ;
-require( "core.strings.endWith"             ) ;
-require( "core.strings.fastformat"          ) ;
-require( "core.strings.indexOfAny"          ) ;
-require( "core.strings.insert"              ) ;
-require( "core.strings.lastIndexOfAny"      ) ;
-require( "core.strings.lineTerminatorChars" ) ;
-require( "core.strings.pad"                 ) ;
-require( "core.strings.repeat"              ) ;
+core.strings.repeatTest.prototype.testCenter = function () 
+{
+    this.assertEquals("hello", core.strings.repeat( "hello" , 0 ) ) ;
+    this.assertEquals("hellohellohello", core.strings.repeat( "hello" , 3 ) ) ;
+}
