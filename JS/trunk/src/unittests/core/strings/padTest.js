@@ -35,46 +35,32 @@
   
 */
 
-load("./core/SSASSetPropFlags.js") ;
+// ---o Constructor
 
-load("./core/encapsulate.js") ;
-load("./core/Function.js") ;
-load("./core/getPackage.js") ;
-load("./core/require.js") ;
-load("./core/requirePackage.js") ;
-load("./core/String.js") ;
+core.strings.padTest = function( name ) 
+{
+    buRRRn.ASTUce.TestCase.call( this , name ) ;
+}
 
-// constants
+// ----o Inherit
 
-SRC     = "./" ;
-SUFFIX  = ".js" ;
+core.strings.padTest.prototype             = new buRRRn.ASTUce.TestCase() ;
+core.strings.padTest.prototype.constructor = core.strings.padTest ;
 
-// packages
+// ----o Public Methods
 
-getPackage( "core") ;
-getPackage( "core.arrays"  ) ;
-getPackage( "core.strings" ) ;
+core.strings.padTest.prototype.testPadPositive = function () 
+{
+    this.assertEquals("        " , core.strings.pad("", 8));
+    this.assertEquals("   hello" , core.strings.pad("hello", 8));
+    this.assertEquals("...hello" , core.strings.pad("hello", 8, "."));
+    this.assertEquals("***hello" , core.strings.pad("hello", 8, "*.!"));
+}
 
-// core.arrays
-
-require( "core.arrays.contains"    ) ;
-require( "core.arrays.initialize"  ) ;
-require( "core.arrays.pierce"      ) ;
-require( "core.arrays.reduce"      ) ;
-require( "core.arrays.reduceRight" ) ;
-require( "core.arrays.repeat" ) ;
-require( "core.arrays.shuffle"     ) ;
-require( "core.arrays.sortOn"      ) ;
-require( "core.arrays.spliceInto" ) ;
-
-// core.strings
-
-require( "core.strings.center"              ) ;
-require( "core.strings.compare"             ) ;
-require( "core.strings.endWith"             ) ;
-require( "core.strings.fastformat"          ) ;
-require( "core.strings.indexOfAny"          ) ;
-require( "core.strings.insert"              ) ;
-require( "core.strings.lastIndexOfAny"      ) ;
-require( "core.strings.lineTerminatorChars" ) ;
-require( "core.strings.pad"                 ) ;
+core.strings.padTest.prototype.testPadNegative = function () 
+{
+    this.assertEquals("        " , core.strings.pad("", -8));
+    this.assertEquals("hello   " , core.strings.pad("hello", -8));
+    this.assertEquals("hello..." , core.strings.pad("hello", -8, "."));
+    this.assertEquals("hello***" , core.strings.pad("hello", -8, "*.!"));
+}

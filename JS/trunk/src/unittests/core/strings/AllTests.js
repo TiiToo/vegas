@@ -43,6 +43,7 @@ load("unittests/core/strings/indexOfAnyTest.js"          ) ;
 load("unittests/core/strings/insertTest.js"              ) ;
 load("unittests/core/strings/lastIndexOfAnyTest.js"      ) ;
 load("unittests/core/strings/lineTerminatorCharsTest.js" ) ;
+load("unittests/core/strings/padTest.js"                 ) ;
 
 // ----o constructor
 
@@ -74,6 +75,7 @@ core.strings.AllTests.suite = function() {
     suite.addTest( new TestSuite( core.strings.insertTest              ) ) ;
     suite.addTest( new TestSuite( core.strings.lastIndexOfAnyTest      ) ) ;
     suite.addTest( new TestSuite( core.strings.lineTerminatorCharsTest ) ) ;
+    suite.addTest( new TestSuite( core.strings.padTest                 ) ) ;
     
     return suite ;
 }
