@@ -35,42 +35,37 @@
   
 */
 
-/////////////////
+// ---o Constructor
 
-load("unittests/core/arrays.js") ;
-load("unittests/core/strings.js") ;
-
-load("unittests/core/dumpTest.js"       ) ;
-load("unittests/core/dumpArrayTest.js"  ) ;
-load("unittests/core/dumpDateTest.js"   ) ;
-load("unittests/core/dumpObjectTest.js" ) ;
-load("unittests/core/dumpStringTest.js" ) ;
-
-/////////////////
-
-core.AllTests = function( /*String*/ name ) 
+core.dumpObjectTest = function( name ) 
 {
-    buRRRn.ASTUce.TestCase.call( this, name );
+    buRRRn.ASTUce.TestCase.call( this , name ) ;
 }
 
-core.AllTests.prototype = new buRRRn.ASTUce.TestCase() ;
-core.AllTests.prototype.constructor = core.AllTests ;
+// ----o Inherit
 
-core.AllTests.suite = function() 
+core.dumpObjectTest.prototype             = new buRRRn.ASTUce.TestCase() ;
+core.dumpObjectTest.prototype.constructor = core.dumpObjectTest ;
+
+// ----o Public Methods
+
+core.dumpObjectTest.prototype.testBasic = function () 
 {
-    
-    var TestSuite = buRRRn.ASTUce.TestSuite;
-    
-    var suite = new TestSuite( "core unit tests" );
-    
-    suite.addTest( core.arrays.AllTests.suite() );
-    suite.addTest( core.strings.AllTests.suite() );
-    
-    suite.addTest( new TestSuite( core.dumpTest       ) ) ;
-    suite.addTest( new TestSuite( core.dumpArrayTest  ) ) ;
-    suite.addTest( new TestSuite( core.dumpDateTest   ) ) ;
-    suite.addTest( new TestSuite( core.dumpObjectTest ) ) ;
-    suite.addTest( new TestSuite( core.dumpStringTest ) ) ;
-    
-    return suite;
+    this.assertEquals( "{}" , core.dumpObject( {} ) ) ;
+    this.assertEquals( "{prop:1}" , core.dumpObject( { prop:1 } ) ) ;
+    this.assertEquals( "{prop1:1,prop2:2}" , core.dumpObject( { prop1:1 , prop2:2 } ) ) ;
+    this.assertEquals( "{prop1:\"hello\",prop2:\"world\"}" , core.dumpObject( { prop1:"hello", prop2:"world"} ) ) ;
 }
+
+core.dumpObjectTest.prototype.testPrettyprint = function () 
+{
+    this.assertEquals( "\n{\n    \n}" , core.dumpObject( {} , true ) ) ;
+    this.assertEquals( "\n{\n    prop1:1\n}" , core.dumpObject( {prop1:1} , true ) ) ;
+    this.assertEquals( "\n{\n    prop1:1,\n    prop2:2\n}" , core.dumpObject( {prop1:1,prop2:2} , true ) ) ;
+}
+
+//FIXME 
+//core.dumpObjectTest.prototype.testIndent = function () 
+//{
+    //this.assertEquals( "\n    {\n        \n    }" , core.dumpObject( {} , true , 1 ) ) ;
+//}

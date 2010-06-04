@@ -35,60 +35,26 @@
   
 */
 
-load("./core/SSASSetPropFlags.js") ;
+// ---o Constructor
 
-load("./core/encapsulate.js") ;
-load("./core/Function.js") ;
-load("./core/getPackage.js") ;
-load("./core/require.js") ;
-load("./core/requirePackage.js") ;
-load("./core/String.js") ;
+core.dumpDateTest = function( name ) 
+{
+    buRRRn.ASTUce.TestCase.call( this , name ) ;
+}
 
-// constants
+// ----o Inherit
 
-SRC     = "./" ;
-SUFFIX  = ".js" ;
+core.dumpDateTest.prototype             = new buRRRn.ASTUce.TestCase() ;
+core.dumpDateTest.prototype.constructor = core.dumpDateTest ;
 
-// packages
+// ----o Public Methods
 
-getPackage( "core") ;
-getPackage( "core.arrays"  ) ;
-getPackage( "core.strings" ) ;
+core.dumpDateTest.prototype.testBasic = function () 
+{
+    this.assertEquals( "new Date(2010,4,5,8,23,50,10)" , core.dumpDate( new Date( 2010, 4, 5, 8, 23, 50, 10 ) ) ) ;
+}
 
-// core
-
-require( "core.dump"       ) ;
-require( "core.dumpArray"  ) ;
-require( "core.dumpDate"   ) ;
-require( "core.dumpObject" ) ;
-require( "core.dumpString" ) ;
-
-// core.arrays
-
-require( "core.arrays.contains"    ) ;
-require( "core.arrays.initialize"  ) ;
-require( "core.arrays.pierce"      ) ;
-require( "core.arrays.reduce"      ) ;
-require( "core.arrays.reduceRight" ) ;
-require( "core.arrays.repeat"      ) ;
-require( "core.arrays.shuffle"     ) ;
-require( "core.arrays.sortOn"      ) ;
-require( "core.arrays.spliceInto"  ) ;
-
-// core.strings
-
-require( "core.strings.center"              ) ;
-require( "core.strings.compare"             ) ;
-require( "core.strings.endsWith"            ) ;
-require( "core.strings.fastformat"          ) ;
-require( "core.strings.indexOfAny"          ) ;
-require( "core.strings.insert"              ) ;
-require( "core.strings.lastIndexOfAny"      ) ;
-require( "core.strings.lineTerminatorChars" ) ;
-require( "core.strings.pad"                 ) ;
-require( "core.strings.repeat"              ) ;
-require( "core.strings.startsWith"          ) ;
-require( "core.strings.trim"                ) ;
-require( "core.strings.trimEnd"             ) ;
-require( "core.strings.trimStart"           ) ;
-require( "core.strings.whiteSpaceChars"     ) ;
+core.dumpDateTest.prototype.testTimestamp = function () 
+{
+    this.assertEquals( "new Date(1273040630010)" , core.dumpDate( new Date( 2010, 4, 5, 8, 23, 50, 10 ) , true ) ) ;
+}

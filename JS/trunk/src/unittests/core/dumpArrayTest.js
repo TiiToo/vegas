@@ -35,42 +35,31 @@
   
 */
 
-/////////////////
+// ---o Constructor
 
-load("unittests/core/arrays.js") ;
-load("unittests/core/strings.js") ;
-
-load("unittests/core/dumpTest.js"       ) ;
-load("unittests/core/dumpArrayTest.js"  ) ;
-load("unittests/core/dumpDateTest.js"   ) ;
-load("unittests/core/dumpObjectTest.js" ) ;
-load("unittests/core/dumpStringTest.js" ) ;
-
-/////////////////
-
-core.AllTests = function( /*String*/ name ) 
+core.dumpArrayTest = function( name ) 
 {
-    buRRRn.ASTUce.TestCase.call( this, name );
+    buRRRn.ASTUce.TestCase.call( this , name ) ;
 }
 
-core.AllTests.prototype = new buRRRn.ASTUce.TestCase() ;
-core.AllTests.prototype.constructor = core.AllTests ;
+// ----o Inherit
 
-core.AllTests.suite = function() 
+core.dumpArrayTest.prototype             = new buRRRn.ASTUce.TestCase() ;
+core.dumpArrayTest.prototype.constructor = core.dumpArrayTest ;
+
+// ----o Public Methods
+
+core.dumpArrayTest.prototype.testBasic = function () 
 {
-    
-    var TestSuite = buRRRn.ASTUce.TestSuite;
-    
-    var suite = new TestSuite( "core unit tests" );
-    
-    suite.addTest( core.arrays.AllTests.suite() );
-    suite.addTest( core.strings.AllTests.suite() );
-    
-    suite.addTest( new TestSuite( core.dumpTest       ) ) ;
-    suite.addTest( new TestSuite( core.dumpArrayTest  ) ) ;
-    suite.addTest( new TestSuite( core.dumpDateTest   ) ) ;
-    suite.addTest( new TestSuite( core.dumpObjectTest ) ) ;
-    suite.addTest( new TestSuite( core.dumpStringTest ) ) ;
-    
-    return suite;
+    this.assertEquals( "[]"                    , core.dumpArray( [] ) ) ;
+    this.assertEquals( "[1]"                   , core.dumpArray( [1] ) ) ;
+    this.assertEquals( "[1,2,3]"               , core.dumpArray( [1,2,3] ) ) ;
+    this.assertEquals( "[\"hello\",\"world\"]" , core.dumpArray( ["hello","world"] ) ) ;
+    this.assertEquals( "[\"hello\",1,true]"    , core.dumpArray( ["hello",1,true] ) ) ;
+}
+
+core.dumpArrayTest.prototype.testPrettyprint = function () 
+{
+    this.assertEquals( "\n[\n    \n]"  , core.dumpArray( [] , true ) ) ;
+    this.assertEquals( "\n[\n    1\n]" , core.dumpArray( [1] , true ) ) ;
 }

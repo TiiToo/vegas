@@ -35,42 +35,67 @@
   
 */
 
-/////////////////
-
-load("unittests/core/arrays.js") ;
-load("unittests/core/strings.js") ;
-
-load("unittests/core/dumpTest.js"       ) ;
-load("unittests/core/dumpArrayTest.js"  ) ;
-load("unittests/core/dumpDateTest.js"   ) ;
-load("unittests/core/dumpObjectTest.js" ) ;
-load("unittests/core/dumpStringTest.js" ) ;
-
-/////////////////
-
-core.AllTests = function( /*String*/ name ) 
+/**
+ * Dumps a string representation of any Array reference.
+ * @param value an Array to dump.
+ * @param prettyprint (optional) boolean option to output a pretty printed string
+ * @param indent (optional) initial indentation
+ * @param indentor (optional) initial string used for the indent
+ * @return The dump string representation of any Array reference.
+ */
+core.dump = function( o , prettyprint /*Boolean*/ , indent /*int*/ , indentor /*String*/  ) /*String*/
 {
-    buRRRn.ASTUce.TestCase.call( this, name );
-}
-
-core.AllTests.prototype = new buRRRn.ASTUce.TestCase() ;
-core.AllTests.prototype.constructor = core.AllTests ;
-
-core.AllTests.suite = function() 
-{
+    ///////////
     
-    var TestSuite = buRRRn.ASTUce.TestSuite;
+    indent = isNaN(indent) ? 0 : indent ;
     
-    var suite = new TestSuite( "core unit tests" );
+    prettyprint = Boolean( prettyprint ) ;
     
-    suite.addTest( core.arrays.AllTests.suite() );
-    suite.addTest( core.strings.AllTests.suite() );
+    if( indentor == null )
+    {
+        indentor = "    " ;
+    }
     
-    suite.addTest( new TestSuite( core.dumpTest       ) ) ;
-    suite.addTest( new TestSuite( core.dumpArrayTest  ) ) ;
-    suite.addTest( new TestSuite( core.dumpDateTest   ) ) ;
-    suite.addTest( new TestSuite( core.dumpObjectTest ) ) ;
-    suite.addTest( new TestSuite( core.dumpStringTest ) ) ;
+    ///////////
     
-    return suite;
+    if( o === undefined ) 
+    {
+        return "undefined"; 
+    }
+    else if( o === null ) 
+    { 
+        return "null"; 
+    }
+    else if( typeof(o) == "string" || o instanceof String ) 
+    { 
+        return core.dumpString( o ); 
+    }
+    else if ( typeof(o) == "boolean" || o instanceof Boolean  ) 
+    { 
+        return o ? "true" : "false"; 
+    }
+    else if( typeof(o) == "number" || o instanceof Number ) 
+    { 
+        return o.toString() ; 
+    }
+    else if( o instanceof Date ) 
+    { 
+        return core.dumpDate( o ); 
+    }
+    else if( o instanceof Array ) 
+    { 
+        return core.dumpArray( o , prettyprint, indent, indentor ); 
+    }
+    //else if( "toSource" in o ) // FIXME with Serializable interface ?
+    //{ 
+    //    return o.toSource( indent ); 
+    //}
+    else if( o instanceof Object ) 
+    { 
+        return core.dumpObject( o , prettyprint, indent, indentor ); 
+    }
+    else
+    {
+        return "<unknown>";
+    }
 }

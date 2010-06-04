@@ -35,42 +35,62 @@
   
 */
 
-/////////////////
-
-load("unittests/core/arrays.js") ;
-load("unittests/core/strings.js") ;
-
-load("unittests/core/dumpTest.js"       ) ;
-load("unittests/core/dumpArrayTest.js"  ) ;
-load("unittests/core/dumpDateTest.js"   ) ;
-load("unittests/core/dumpObjectTest.js" ) ;
-load("unittests/core/dumpStringTest.js" ) ;
-
-/////////////////
-
-core.AllTests = function( /*String*/ name ) 
+/**
+ * Dumps a string representation of any Array reference.
+ * @param value an Array to dump.
+ * @param prettyprint (optional) boolean option to output a pretty printed string
+ * @param indent (optional) initial indentation
+ * @param indentor (optional) initial string used for the indent
+ * @return The dump string representation of any Array reference.
+ */
+core.dumpArray = function( value /*Array*/ , prettyprint /*Boolean*/ , indent /*int*/ , indentor /*String*/  ) /*String*/
 {
-    buRRRn.ASTUce.TestCase.call( this, name );
-}
-
-core.AllTests.prototype = new buRRRn.ASTUce.TestCase() ;
-core.AllTests.prototype.constructor = core.AllTests ;
-
-core.AllTests.suite = function() 
-{
+    indent = isNaN(indent) ? 0 : indent ;
+    prettyprint = Boolean( prettyprint ) ;
+    if( indentor == null )
+    {
+        indentor = "    " ;
+    }
     
-    var TestSuite = buRRRn.ASTUce.TestSuite;
+    var source /*Array*/ = [];
     
-    var suite = new TestSuite( "core unit tests" );
+    var i /*int*/ ;
+    var l /*int*/ = value.length ;
     
-    suite.addTest( core.arrays.AllTests.suite() );
-    suite.addTest( core.strings.AllTests.suite() );
-    
-    suite.addTest( new TestSuite( core.dumpTest       ) ) ;
-    suite.addTest( new TestSuite( core.dumpArrayTest  ) ) ;
-    suite.addTest( new TestSuite( core.dumpDateTest   ) ) ;
-    suite.addTest( new TestSuite( core.dumpObjectTest ) ) ;
-    suite.addTest( new TestSuite( core.dumpStringTest ) ) ;
-    
-    return suite;
+    for( i = 0 ; i < l ; i++ )
+    {
+        if( value[i] === undefined )
+        {
+            source.push( "undefined" );
+            continue;
+        }
+        if( value[i] === null )
+        {
+            source.push( "null" );
+            continue;
+        }
+        if( prettyprint ) 
+        { 
+            indent++ ; 
+        }
+        source.push( core.dump( value[i], prettyprint, indent, indentor ) ) ;
+        if( prettyprint ) 
+        { 
+            indent-- ; 
+        }
+    }
+    if( prettyprint ) 
+    { 
+        var spaces /*Array*/ = [] ;
+        for( i=0 ; i < indent ; i++ )
+        {
+            spaces.push( indentor );
+        }
+        var decal /*String*/ = "\n" + spaces.join( "" ) ;
+        return decal + "[" + decal + indentor + source.join( "," + decal + indentor ) + decal + "]" ;
+    }
+    else
+    {
+        return "[" + source.join( "," ) + "]" ; 
+    }
 }

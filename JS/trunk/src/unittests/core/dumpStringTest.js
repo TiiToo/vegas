@@ -35,42 +35,34 @@
   
 */
 
-/////////////////
+// ---o Constructor
 
-load("unittests/core/arrays.js") ;
-load("unittests/core/strings.js") ;
-
-load("unittests/core/dumpTest.js"       ) ;
-load("unittests/core/dumpArrayTest.js"  ) ;
-load("unittests/core/dumpDateTest.js"   ) ;
-load("unittests/core/dumpObjectTest.js" ) ;
-load("unittests/core/dumpStringTest.js" ) ;
-
-/////////////////
-
-core.AllTests = function( /*String*/ name ) 
+core.dumpStringTest = function( name ) 
 {
-    buRRRn.ASTUce.TestCase.call( this, name );
+    buRRRn.ASTUce.TestCase.call( this , name ) ;
 }
 
-core.AllTests.prototype = new buRRRn.ASTUce.TestCase() ;
-core.AllTests.prototype.constructor = core.AllTests ;
+// ----o Inherit
 
-core.AllTests.suite = function() 
+core.dumpStringTest.prototype             = new buRRRn.ASTUce.TestCase() ;
+core.dumpStringTest.prototype.constructor = core.dumpStringTest ;
+
+// ----o Public Methods
+
+core.dumpStringTest.prototype.testBasic = function () 
 {
-    
-    var TestSuite = buRRRn.ASTUce.TestSuite;
-    
-    var suite = new TestSuite( "core unit tests" );
-    
-    suite.addTest( core.arrays.AllTests.suite() );
-    suite.addTest( core.strings.AllTests.suite() );
-    
-    suite.addTest( new TestSuite( core.dumpTest       ) ) ;
-    suite.addTest( new TestSuite( core.dumpArrayTest  ) ) ;
-    suite.addTest( new TestSuite( core.dumpDateTest   ) ) ;
-    suite.addTest( new TestSuite( core.dumpObjectTest ) ) ;
-    suite.addTest( new TestSuite( core.dumpStringTest ) ) ;
-    
-    return suite;
+    this.assertEquals( "\"hello world\"" , core.dumpString( "hello world" ) ) ;
+}
+
+core.dumpStringTest.prototype.testTimestamp = function () 
+{
+    this.assertEquals( "\"hello\\bworld\""  , core.dumpString( "hello\bworld" ) ) ;
+    this.assertEquals( "\"hello\\tworld\""  , core.dumpString( "hello\tworld" ) ) ;
+    this.assertEquals( "\"hello\\nworld\""  , core.dumpString( "hello\nworld" ) ) ;
+    this.assertEquals( "\"hello\\vworld\""  , core.dumpString( "hello\vworld" ) ) ;
+    this.assertEquals( "\"hello\\fworld\""  , core.dumpString( "hello\fworld" ) ) ;
+    this.assertEquals( "\"hello\\rworld\""  , core.dumpString( "hello\rworld" ) ) ;
+    this.assertEquals( "\"hello\\\"world\"" , core.dumpString( "hello\"world" ) ) ;
+    this.assertEquals( "\"hello\\\'world\"" , core.dumpString( "hello'world"  ) ) ;
+    this.assertEquals( "\"hello\\\\world\"" , core.dumpString( "hello\\world" ) ) ;
 }
