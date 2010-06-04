@@ -35,8 +35,9 @@
   
 */
 
-load("unittests/core/strings/centerTest.js") ;
+load("unittests/core/strings/centerTest.js" ) ;
 load("unittests/core/strings/compareTest.js") ;
+load("unittests/core/strings/endWithTest.js") ;
 
 // ----o constructor
 
@@ -60,8 +61,9 @@ core.strings.AllTests.suite = function() {
     
     //suite.simpleTrace = true;
     
-    suite.addTest( new TestSuite( core.strings.centerTest ) ) ;
+    suite.addTest( new TestSuite( core.strings.centerTest  ) ) ;
     suite.addTest( new TestSuite( core.strings.compareTest ) ) ;
+    suite.addTest( new TestSuite( core.strings.endWithTest ) ) ;
     
     return suite ;
 }
