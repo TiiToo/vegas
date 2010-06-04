@@ -52,7 +52,7 @@ core.strings.indexOfAnyTest.prototype.constructor = core.strings.indexOfAnyTest 
 core.strings.indexOfAnyTest.prototype.testIndexOfAny = function () 
 {
     this.assertEquals( 1 , core.strings.indexOfAny("hello world", [2, "hello", 5])     , "#1" );
-    this.assertEquals( 2 , core.strings.indexOfAny("Five = 5", [2, "hello", 5])        , "#2"  );
+    this.assertEquals( 2 , core.strings.indexOfAny("Five = 5", [2, "hello", 5])        , "#2" );
     this.assertEquals( 1 , core.strings.indexOfAny("hello world", ["2", "hello", "5"]) , "#3" );
     this.assertEquals( 2 , core.strings.indexOfAny("Five = 5", ["2", "hello", "5"])    , "#4" );
     this.assertEquals( 1 , core.strings.indexOfAny("hello world", [2, "hello", 5], 1)  , "#5" );
