@@ -47,7 +47,8 @@ load("unittests/core/strings/padTest.js"                 ) ;
 load("unittests/core/strings/repeatTest.js"              ) ;
 load("unittests/core/strings/startsWithTest.js"          ) ;
 load("unittests/core/strings/trimTest.js"                ) ;
-
+load("unittests/core/strings/trimEndTest.js"             ) ;
+load("unittests/core/strings/trimStartTest.js"           ) ;
 load("unittests/core/strings/whiteSpaceCharsTest.js"     ) ;
 
 // ----o constructor
@@ -84,7 +85,8 @@ core.strings.AllTests.suite = function() {
     suite.addTest( new TestSuite( core.strings.repeatTest              ) ) ;
     suite.addTest( new TestSuite( core.strings.startsWithTest          ) ) ;
     suite.addTest( new TestSuite( core.strings.trimTest                ) ) ;
-    
+    suite.addTest( new TestSuite( core.strings.trimEndTest             ) ) ;
+    suite.addTest( new TestSuite( core.strings.trimStartTest           ) ) ;
     suite.addTest( new TestSuite( core.strings.whiteSpaceCharsTest     ) ) ;
     
     return suite ;
