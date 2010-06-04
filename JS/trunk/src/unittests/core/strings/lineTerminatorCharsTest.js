@@ -35,45 +35,29 @@
   
 */
 
-load("unittests/core/strings/centerTest.js"              ) ;
-load("unittests/core/strings/compareTest.js"             ) ;
-load("unittests/core/strings/endWithTest.js"             ) ;
-load("unittests/core/strings/fastformatTest.js"          ) ;
-load("unittests/core/strings/indexOfAnyTest.js"          ) ;
-load("unittests/core/strings/insertTest.js"              ) ;
-load("unittests/core/strings/lastIndexOfAnyTest.js"      ) ;
-load("unittests/core/strings/lineTerminatorCharsTest.js" ) ;
+// ---o Constructor
 
-// ----o constructor
-
-core.strings.AllTests = function( /*String*/ name ) 
+core.strings.centerTest = function( name ) 
 {
-    buRRRn.ASTUce.TestCase.call( this, name );
+    buRRRn.ASTUce.TestCase.call( this , name ) ;
 }
 
 // ----o Inherit
 
-core.strings.AllTests.prototype             = new buRRRn.ASTUce.TestCase() ;
-core.strings.AllTests.prototype.constructor = core.strings.AllTests ;
+core.strings.centerTest.prototype             = new buRRRn.ASTUce.TestCase() ;
+core.strings.centerTest.prototype.constructor = core.strings.centerTest ;
 
 // ----o Public Methods
 
-core.strings.AllTests.suite = function() {
-    
-    var TestSuite = buRRRn.ASTUce.TestSuite;
-    
-    var suite = new TestSuite( "core.strings unit tests" );
-    
-    //suite.simpleTrace = true;
-    
-    suite.addTest( new TestSuite( core.strings.centerTest              ) ) ;
-    suite.addTest( new TestSuite( core.strings.compareTest             ) ) ;
-    suite.addTest( new TestSuite( core.strings.endWithTest             ) ) ;
-    suite.addTest( new TestSuite( core.strings.fastformatTest          ) ) ;
-    suite.addTest( new TestSuite( core.strings.indexOfAnyTest          ) ) ;
-    suite.addTest( new TestSuite( core.strings.insertTest              ) ) ;
-    suite.addTest( new TestSuite( core.strings.lastIndexOfAnyTest      ) ) ;
-    suite.addTest( new TestSuite( core.strings.lineTerminatorCharsTest ) ) ;
-    
-    return suite ;
+core.strings.centerTest.prototype.testLineTerminatorCharsLength = function () 
+{
+    this.assertEquals( 4 , core.strings.lineTerminatorChars.length , "The length of the lineTerminatorChars array is not good.") ;
+}
+
+core.strings.centerTest.prototype.testLineTerminatorCharsContent = function () 
+{
+    this.assertTrue( core.strings.lineTerminatorChars.indexOf("\u000A") > -1 ) ;
+    this.assertTrue( core.strings.lineTerminatorChars.indexOf("\u000D") > -1 ) ;
+    this.assertTrue( core.strings.lineTerminatorChars.indexOf("\u2028") > -1 ) ;
+    this.assertTrue( core.strings.lineTerminatorChars.indexOf("\u2929") > -1 ) ;
 }
