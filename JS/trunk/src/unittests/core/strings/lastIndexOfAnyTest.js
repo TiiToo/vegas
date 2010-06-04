@@ -35,43 +35,29 @@
   
 */
 
-load("unittests/core/strings/centerTest.js"         ) ;
-load("unittests/core/strings/compareTest.js"        ) ;
-load("unittests/core/strings/endWithTest.js"        ) ;
-load("unittests/core/strings/fastformatTest.js"     ) ;
-load("unittests/core/strings/indexOfAnyTest.js"     ) ;
-load("unittests/core/strings/insertTest.js"         ) ;
-load("unittests/core/strings/lastIndexOfAnyTest.js" ) ;
+// ---o Constructor
 
-// ----o constructor
-
-core.strings.AllTests = function( /*String*/ name ) 
+core.strings.lastIndexOfAnyTest = function( name ) 
 {
-    buRRRn.ASTUce.TestCase.call( this, name );
+    buRRRn.ASTUce.TestCase.call( this , name ) ;
 }
 
 // ----o Inherit
 
-core.strings.AllTests.prototype             = new buRRRn.ASTUce.TestCase() ;
-core.strings.AllTests.prototype.constructor = core.strings.AllTests ;
+core.strings.lastIndexOfAnyTest.prototype             = new buRRRn.ASTUce.TestCase() ;
+core.strings.lastIndexOfAnyTest.prototype.constructor = core.strings.lastIndexOfAnyTest ;
 
 // ----o Public Methods
 
-core.strings.AllTests.suite = function() {
-    
-    var TestSuite = buRRRn.ASTUce.TestSuite;
-    
-    var suite = new TestSuite( "core.strings unit tests" );
-    
-    //suite.simpleTrace = true;
-    
-    suite.addTest( new TestSuite( core.strings.centerTest         ) ) ;
-    suite.addTest( new TestSuite( core.strings.compareTest        ) ) ;
-    suite.addTest( new TestSuite( core.strings.endWithTest        ) ) ;
-    suite.addTest( new TestSuite( core.strings.fastformatTest     ) ) ;
-    suite.addTest( new TestSuite( core.strings.indexOfAnyTest     ) ) ;
-    suite.addTest( new TestSuite( core.strings.insertTest         ) ) ;
-    suite.addTest( new TestSuite( core.strings.lastIndexOfAnyTest ) ) ;
-    
-    return suite ;
+core.strings.lastIndexOfAnyTest.prototype.testLastIndexOfAny = function () 
+{
+    this.assertEquals( 0  , core.strings.lastIndexOfAny("hello world", ["2", "hello", "5"]) , "#1" );
+    this.assertEquals( 19 , core.strings.lastIndexOfAny("Five 5 = 5 and not 2", ["2", "hello", "5"]) , "#2" );
+}
+
+core.strings.lastIndexOfAnyTest.prototype.testLastIndexOfAnyNotFound = function () 
+{
+    this.assertEquals( -1 , core.strings.lastIndexOfAny(null, ["hello"]));
+    this.assertEquals( -1 , core.strings.lastIndexOfAny("", ["hello"]));
+    this.assertEquals( -1 , core.strings.lastIndexOfAny("hello world", null));
 }

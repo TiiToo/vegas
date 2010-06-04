@@ -69,10 +69,10 @@ require( "core.arrays.spliceInto" ) ;
 
 // core.strings
 
-require( "core.strings.center"     ) ;
-require( "core.strings.compare"    ) ;
-require( "core.strings.endWith"    ) ;
-require( "core.strings.fastformat" ) ;
-require( "core.strings.indexOfAny" ) ;
-require( "core.strings.insert"     ) ;
-
+require( "core.strings.center"         ) ;
+require( "core.strings.compare"        ) ;
+require( "core.strings.endWith"        ) ;
+require( "core.strings.fastformat"     ) ;
+require( "core.strings.indexOfAny"     ) ;
+require( "core.strings.insert"         ) ;
+require( "core.strings.lastIndexOfAny" ) ;
