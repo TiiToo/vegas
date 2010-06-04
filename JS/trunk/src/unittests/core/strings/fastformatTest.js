@@ -35,37 +35,27 @@
   
 */
 
-load("unittests/core/strings/centerTest.js"     ) ;
-load("unittests/core/strings/compareTest.js"    ) ;
-load("unittests/core/strings/endWithTest.js"    ) ;
-load("unittests/core/strings/fastformatTest.js" ) ;
+// ---o Constructor
 
-// ----o constructor
-
-core.strings.AllTests = function( /*String*/ name ) 
+core.strings.fastformatTest = function( name ) 
 {
-    buRRRn.ASTUce.TestCase.call( this, name );
+    buRRRn.ASTUce.TestCase.call( this , name ) ;
 }
 
 // ----o Inherit
 
-core.strings.AllTests.prototype             = new buRRRn.ASTUce.TestCase() ;
-core.strings.AllTests.prototype.constructor = core.strings.AllTests ;
+core.strings.fastformatTest.prototype             = new buRRRn.ASTUce.TestCase() ;
+core.strings.fastformatTest.prototype.constructor = core.strings.fastformatTest ;
 
 // ----o Public Methods
 
-core.strings.AllTests.suite = function() {
-    
-    var TestSuite = buRRRn.ASTUce.TestSuite;
-    
-    var suite = new TestSuite( "core.strings unit tests" );
-    
-    //suite.simpleTrace = true;
-    
-    suite.addTest( new TestSuite( core.strings.centerTest     ) ) ;
-    suite.addTest( new TestSuite( core.strings.compareTest    ) ) ;
-    suite.addTest( new TestSuite( core.strings.endWithTest    ) ) ;
-    suite.addTest( new TestSuite( core.strings.fastformatTest ) ) ;
-    
-    return suite ;
+core.strings.fastformatTest.prototype.testFastformat = function () 
+{
+    this.assertEquals( "hello world" , core.strings.fastformat( "hello {0}", "world" ) , "#1" ) ;
+    this.assertEquals( "hello world" , core.strings.fastformat( "{0} {1}", "hello" , "world" ) , "#2" ) ;
+}
+
+core.strings.fastformatTest.prototype.testFastformatWithArray = function () 
+{
+    this.assertEquals( "hello the big world" , core.strings.fastformat( "hello {0} {1} {2}", [ "the", "big", "world" ] ) ) ;
 }

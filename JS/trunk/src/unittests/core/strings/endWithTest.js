@@ -49,7 +49,7 @@ core.strings.endWithTest.prototype.constructor = core.strings.endWithTest ;
 
 // ----o Public Methods
 
-core.strings.endWithTest.prototype.testContains = function () 
+core.strings.endWithTest.prototype.testEndWith = function () 
 {
     this.assertTrue( core.strings.endsWith( "hello.txt"  , "txt" ) , "#1" ) ;
     this.assertTrue( core.strings.endsWith( "hello.txt"  , ".txt" ) , "#2" ) ;

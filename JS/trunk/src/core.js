@@ -69,7 +69,8 @@ require( "core.arrays.spliceInto" ) ;
 
 // core.strings
 
-require( "core.strings.center"  ) ;
-require( "core.strings.compare" ) ;
-require( "core.strings.endWith" ) ;
+require( "core.strings.center"     ) ;
+require( "core.strings.compare"    ) ;
+require( "core.strings.endWith"    ) ;
+require( "core.strings.fastformat" ) ;
 

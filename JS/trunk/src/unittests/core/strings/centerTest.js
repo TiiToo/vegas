@@ -49,7 +49,7 @@ core.strings.centerTest.prototype.constructor = core.strings.centerTest ;
 
 // ----o Public Methods
 
-core.strings.centerTest.prototype.testContains = function () 
+core.strings.centerTest.prototype.testCenter = function () 
 {
     this.assertEquals( ""                     , core.strings.center( null          ,  0 )       , "test 1" ) ;
     this.assertEquals( "hello world"          , core.strings.center( "hello world" ,  0       ) , "test 2" ) ;
