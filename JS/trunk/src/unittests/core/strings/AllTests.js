@@ -39,6 +39,7 @@ load("unittests/core/strings/centerTest.js"     ) ;
 load("unittests/core/strings/compareTest.js"    ) ;
 load("unittests/core/strings/endWithTest.js"    ) ;
 load("unittests/core/strings/fastformatTest.js" ) ;
+load("unittests/core/strings/indexOfAnyTest.js" ) ;
 
 // ----o constructor
 
@@ -66,6 +67,7 @@ core.strings.AllTests.suite = function() {
     suite.addTest( new TestSuite( core.strings.compareTest    ) ) ;
     suite.addTest( new TestSuite( core.strings.endWithTest    ) ) ;
     suite.addTest( new TestSuite( core.strings.fastformatTest ) ) ;
+    suite.addTest( new TestSuite( core.strings.indexOfAnyTest ) ) ;
     
     return suite ;
 }

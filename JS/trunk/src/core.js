@@ -73,4 +73,5 @@ require( "core.strings.center"     ) ;
 require( "core.strings.compare"    ) ;
 require( "core.strings.endWith"    ) ;
 require( "core.strings.fastformat" ) ;
+require( "core.strings.indexOfAny" ) ;
 

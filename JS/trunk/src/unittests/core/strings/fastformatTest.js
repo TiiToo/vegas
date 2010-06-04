@@ -49,6 +49,12 @@ core.strings.fastformatTest.prototype.constructor = core.strings.fastformatTest 
 
 // ----o Public Methods
 
+core.strings.fastformatTest.prototype.testEmpty = function () 
+{
+    this.assertEquals( "" , core.strings.fastformat( ""   ) , "#1" ) ;
+    this.assertEquals( "" , core.strings.fastformat( null ) , "#2" ) ;
+}
+
 core.strings.fastformatTest.prototype.testFastformat = function () 
 {
     this.assertEquals( "hello world" , core.strings.fastformat( "hello {0}", "world" ) , "#1" ) ;
