@@ -35,48 +35,24 @@
   
 */
 
-load("./core/SSASSetPropFlags.js") ;
+// ---o Constructor
 
-load("./core/encapsulate.js") ;
-load("./core/Function.js") ;
-load("./core/getPackage.js") ;
-load("./core/require.js") ;
-load("./core/requirePackage.js") ;
-load("./core/String.js") ;
+core.strings.startsWithTest = function( name ) 
+{
+    buRRRn.ASTUce.TestCase.call( this , name ) ;
+}
 
-// constants
+// ----o Inherit
 
-SRC     = "./" ;
-SUFFIX  = ".js" ;
+core.strings.startsWithTest.prototype             = new buRRRn.ASTUce.TestCase() ;
+core.strings.startsWithTest.prototype.constructor = core.strings.startsWithTest ;
 
-// packages
+// ----o Public Methods
 
-getPackage( "core") ;
-getPackage( "core.arrays"  ) ;
-getPackage( "core.strings" ) ;
-
-// core.arrays
-
-require( "core.arrays.contains"    ) ;
-require( "core.arrays.initialize"  ) ;
-require( "core.arrays.pierce"      ) ;
-require( "core.arrays.reduce"      ) ;
-require( "core.arrays.reduceRight" ) ;
-require( "core.arrays.repeat" ) ;
-require( "core.arrays.shuffle"     ) ;
-require( "core.arrays.sortOn"      ) ;
-require( "core.arrays.spliceInto" ) ;
-
-// core.strings
-
-require( "core.strings.center"              ) ;
-require( "core.strings.compare"             ) ;
-require( "core.strings.endsWith"            ) ;
-require( "core.strings.fastformat"          ) ;
-require( "core.strings.indexOfAny"          ) ;
-require( "core.strings.insert"              ) ;
-require( "core.strings.lastIndexOfAny"      ) ;
-require( "core.strings.lineTerminatorChars" ) ;
-require( "core.strings.pad"                 ) ;
-require( "core.strings.repeat"              ) ;
-require( "core.strings.startsWith"          ) ;
+core.strings.startsWithTest.prototype.testStartsWith = function () 
+{
+    this.assertTrue( core.strings.startsWith( "hello.txt"  , "hello" ) , "#1" ) ;
+    this.assertTrue( core.strings.startsWith( "*.txt"      , "*"     ) , "#2" ) ;
+    this.assertTrue( core.strings.startsWith( "*.txt"      , "*."    ) , "#3" ) ;
+    this.assertFalse( core.strings.startsWith( "txt.hello" , "hello" ) , "#4" ) ;
+}

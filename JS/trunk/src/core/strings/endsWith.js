@@ -60,4 +60,4 @@ core.strings.endsWith = function( source /*String*/ , value/*String*/ ) /*Boolea
         return false;
     }
     return source.lastIndexOf(value) == ( source.length - value.length ) ;
-};
+}

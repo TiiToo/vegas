@@ -37,7 +37,7 @@
 
 load("unittests/core/strings/centerTest.js"              ) ;
 load("unittests/core/strings/compareTest.js"             ) ;
-load("unittests/core/strings/endWithTest.js"             ) ;
+load("unittests/core/strings/endsWithTest.js"            ) ;
 load("unittests/core/strings/fastformatTest.js"          ) ;
 load("unittests/core/strings/indexOfAnyTest.js"          ) ;
 load("unittests/core/strings/insertTest.js"              ) ;
@@ -45,6 +45,7 @@ load("unittests/core/strings/lastIndexOfAnyTest.js"      ) ;
 load("unittests/core/strings/lineTerminatorCharsTest.js" ) ;
 load("unittests/core/strings/padTest.js"                 ) ;
 load("unittests/core/strings/repeatTest.js"              ) ;
+load("unittests/core/strings/startsWithTest.js"          ) ;
 
 // ----o constructor
 
@@ -70,7 +71,7 @@ core.strings.AllTests.suite = function() {
     
     suite.addTest( new TestSuite( core.strings.centerTest              ) ) ;
     suite.addTest( new TestSuite( core.strings.compareTest             ) ) ;
-    suite.addTest( new TestSuite( core.strings.endWithTest             ) ) ;
+    suite.addTest( new TestSuite( core.strings.endsWithTest            ) ) ;
     suite.addTest( new TestSuite( core.strings.fastformatTest          ) ) ;
     suite.addTest( new TestSuite( core.strings.indexOfAnyTest          ) ) ;
     suite.addTest( new TestSuite( core.strings.insertTest              ) ) ;
@@ -78,6 +79,7 @@ core.strings.AllTests.suite = function() {
     suite.addTest( new TestSuite( core.strings.lineTerminatorCharsTest ) ) ;
     suite.addTest( new TestSuite( core.strings.padTest                 ) ) ;
     suite.addTest( new TestSuite( core.strings.repeatTest              ) ) ;
+    suite.addTest( new TestSuite( core.strings.startsWithTest          ) ) ;
     
     return suite ;
 }

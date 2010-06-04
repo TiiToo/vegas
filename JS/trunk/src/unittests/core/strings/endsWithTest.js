@@ -37,19 +37,19 @@
 
 // ---o Constructor
 
-core.strings.endWithTest = function( name ) 
+core.strings.endsWithTest = function( name ) 
 {
     buRRRn.ASTUce.TestCase.call( this , name ) ;
 }
 
 // ----o Inherit
 
-core.strings.endWithTest.prototype             = new buRRRn.ASTUce.TestCase() ;
-core.strings.endWithTest.prototype.constructor = core.strings.endWithTest ;
+core.strings.endsWithTest.prototype             = new buRRRn.ASTUce.TestCase() ;
+core.strings.endsWithTest.prototype.constructor = core.strings.endsWithTest ;
 
 // ----o Public Methods
 
-core.strings.endWithTest.prototype.testEndWith = function () 
+core.strings.endsWithTest.prototype.testEndWith = function () 
 {
     this.assertTrue( core.strings.endsWith( "hello.txt"  , "txt" ) , "#1" ) ;
     this.assertTrue( core.strings.endsWith( "hello.txt"  , ".txt" ) , "#2" ) ;
