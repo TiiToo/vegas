@@ -57,7 +57,7 @@ system.signals.AllTests.suite = function() {
     
     var TestSuite = buRRRn.ASTUce.TestSuite;
     
-    var suite = new TestSuite( "vegas.string" );
+    var suite = new TestSuite( "system.signals unit tests" );
     
     //suite.simpleTrace = true;
     

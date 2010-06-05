@@ -17,7 +17,7 @@
   
   Contributor(s):
   
-    - eKameleon - SSAS version <vegas@ekameleon.net>
+    - eKameleon - SSAS version <ekameleon@gmail.com>
   
 */
 

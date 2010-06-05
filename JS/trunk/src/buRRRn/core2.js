@@ -18,7 +18,7 @@
   
   Contributor(s):
   
-    - eKameleon (vegas@ekameleon.net) [2006-06-13]
+    - eKameleon (ekameleon@gmail.com) [2006-06-13]
     
         in SSAS version, add _global.$GLOBAL_PRIVATE_POLICY property.
         I use this hack in _global.GetObjectPath method with FCS(1). 
