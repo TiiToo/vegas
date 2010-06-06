@@ -35,43 +35,40 @@
   
 */
 
-load("unittests/system/data/DataTest.js") ;
-load("unittests/system/data/IdentifiableTest.js") ;
-load("unittests/system/data/IterableTest.js") ;
-load("unittests/system/data/IteratorTest.js") ;
-load("unittests/system/data/MapTest.js") ;
-load("unittests/system/data/OrderedIteratorTest.js") ;
-load("unittests/system/data/ValueObjectTest.js") ;
+// ---o Constructor
 
-// ----o constructor
-
-system.data.AllTests = function( /*String*/ name ) 
+system.data.ValueObjectTest = function( name ) 
 {
-    buRRRn.ASTUce.TestCase.call( this, name );
+    buRRRn.ASTUce.TestCase.call( this , name ) ;
 }
 
 // ----o Inherit
 
-system.data.AllTests.prototype             = new buRRRn.ASTUce.TestCase() ;
-system.data.AllTests.prototype.constructor = system.data.AllTests ;
+system.data.ValueObjectTest.prototype             = new buRRRn.ASTUce.TestCase() ;
+system.data.ValueObjectTest.prototype.constructor = system.data.ValueObjectTest ;
 
 // ----o Public Methods
 
-system.data.AllTests.suite = function() {
-    
-    var TestSuite = buRRRn.ASTUce.TestSuite;
-    
-    var suite = new TestSuite( "system.data unit tests" );
-    
-    //suite.simpleTrace = true;
-    
-    suite.addTest( new TestSuite( system.data.DataTest            ) ) ;
-    suite.addTest( new TestSuite( system.data.IdentifiableTest    ) ) ;
-    suite.addTest( new TestSuite( system.data.IterableTest        ) ) ;
-    suite.addTest( new TestSuite( system.data.IteratorTest        ) ) ;
-    suite.addTest( new TestSuite( system.data.MapTest             ) ) ;
-    suite.addTest( new TestSuite( system.data.OrderedIteratorTest ) ) ;
-    suite.addTest( new TestSuite( system.data.ValueObjectTest     ) ) ;
-    
-    return suite ;
+system.data.ValueObjectTest.prototype.testConstructor = function () 
+{
+    var vo = new system.data.ValueObject() ;
+    this.assertNotNull( vo ) ;
+    this.assertTrue( "getID" in vo ) ;
+    this.assertTrue( "setID" in vo ) ;
+}
+
+system.data.ValueObjectTest.prototype.testInherit = function () 
+{
+    var vo = new system.data.ValueObject() ;
+    this.assertTrue( vo instanceof system.data.Identifiable ) ;
+}
+
+system.data.ValueObjectTest.prototype.testId = function () 
+{
+    var vo = new system.data.ValueObject() ;
+    this.assertNull( vo.id ) ;
+    vo.id = 100 ;
+    this.assertEquals( 100 , vo.id ) ;
+    vo.id = "my_id" ;
+    this.assertEquals( "my_id" , vo.id ) ;
 }

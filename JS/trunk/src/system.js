@@ -64,6 +64,7 @@ catch(e)
     require( "system.data.Iterator"        ) ;
     require( "system.data.Map"             ) ;
     require( "system.data.OrderedIterator" ) ;
+    require( "system.data.ValueObject"     ) ;
     
     // system.data.iterators
     
