@@ -86,6 +86,15 @@ if ( system.data.Iterator == undefined )
      */
     proto.seek = function ( position ) {}
     
+    /**
+     * Returns the string representation of this instance.
+     * @return the string representation of this instance.
+     */
+    proto.toString = function () /*String*/ 
+    {
+        return "[" + this.getConstructorName() + "]" ;
+    }
+    
     // encapsulate
     
     delete proto ;

@@ -47,10 +47,36 @@ system.data.iterators.ArrayIteratorTest = function( name )
 system.data.iterators.ArrayIteratorTest.prototype             = new buRRRn.ASTUce.TestCase() ;
 system.data.iterators.ArrayIteratorTest.prototype.constructor = system.data.iterators.ArrayIteratorTest ;
 
+// ----o Initialize
+
+system.data.iterators.ArrayIteratorTest.prototype.setUp = function()
+{
+    this.ar = ["item1", "item2", "item3"] ;
+    this.it = new system.data.iterators.ArrayIterator( this.ar ) ;
+}
+
+system.data.iterators.ArrayIteratorTest.prototype.tearDown = function()
+{
+    this.ar = undefined ;
+    this.it = undefined ;
+}
+
 // ----o Public Methods
 
 system.data.iterators.ArrayIteratorTest.prototype.testConstructor = function () 
 {
-    var i = new system.data.iterators.ArrayIterator( [1,2,3] ) ;
-    this.assertNotNull( i ) ;
+    this.assertNotNull( this.it ) ;
+}
+
+system.data.iterators.ArrayIteratorTest.prototype.testConstructorWithEmptyArrayArgument = function () 
+{
+    try
+    {
+        var i = new system.data.iterators.ArrayIterator(null) ;
+        this.fail( this + " test constructor failed if the passed-in Array is a null object.") ;
+    }
+    catch( e )
+    {
+        this.assertEquals( e.message , "[ArrayIterator] constructor failed, the passed-in Array argument not must be 'null'." );
+    }
 }
