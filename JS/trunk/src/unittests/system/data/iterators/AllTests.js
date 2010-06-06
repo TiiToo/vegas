@@ -36,6 +36,7 @@
 */
 
 load("unittests/system/data/iterators/ArrayIteratorTest.js") ;
+load("unittests/system/data/iterators/MapIteratorTest.js") ;
 
 // ----o constructor
 
@@ -60,6 +61,7 @@ system.data.iterators.AllTests.suite = function() {
     //suite.simpleTrace = true;
     
     suite.addTest( new TestSuite( system.data.iterators.ArrayIteratorTest ) ) ;
+    suite.addTest( new TestSuite( system.data.iterators.MapIteratorTest   ) ) ;
     
     return suite ;
 }

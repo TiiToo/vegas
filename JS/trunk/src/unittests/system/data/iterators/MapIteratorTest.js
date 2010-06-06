@@ -35,47 +35,35 @@
   
 */
 
-try 
+// ---o Constructor
+
+system.data.iterators.MapIteratorTest = function( name ) 
 {
-    dummy = system ;
+    buRRRn.ASTUce.TestCase.call( this , name ) ;
 }
-catch(e) 
+
+// ----o Inherit
+
+system.data.iterators.MapIteratorTest.prototype             = new buRRRn.ASTUce.TestCase() ;
+system.data.iterators.MapIteratorTest.prototype.constructor = system.data.iterators.MapIteratorTest ;
+
+// ----o Initialize
+
+system.data.iterators.MapIteratorTest.prototype.setUp = function()
 {
-    // constants
-    
-    SRC     = "./" ;
-    SUFFIX  = ".js" ;
-    
-    // packages
-    
-    getPackage("system") ;
-    
-    getPackage("system.data") ;
-    getPackage("system.data.iterators") ;
-    getPackage("system.data.maps") ;
-    
-    getPackage("system.signals") ;
-    
-    // system.data
-    
-    require( "system.data.Data"            ) ;
-    require( "system.data.Identifiable"    ) ;
-    require( "system.data.Iterable"        ) ;
-    require( "system.data.Iterator"        ) ;
-    require( "system.data.Map"             ) ;
-    require( "system.data.OrderedIterator" ) ;
-    require( "system.data.ValueObject"     ) ;
-    
-    // system.data.iterators
-    
-    require( "system.data.iterators.ArrayIterator" ) ;
-    require( "system.data.iterators.MapIterator"   ) ;
-    
-    // system.signals
-    
-    require( "system.signals.Receiver"       ) ;
-    require( "system.signals.Signal"         ) ;
-    require( "system.signals.SignalEntry"    ) ;
-    require( "system.signals.Signaler"       ) ;
-    require( "system.signals.SignalStrings"  ) ;
+    //this.ma = new system.data.Map() ;
+    //this.it = new system.data.iterators.MapIterator( this.ma ) ;
+}
+
+system.data.iterators.MapIteratorTest.prototype.tearDown = function()
+{
+    //this.ma = undefined ;
+    //this.it = undefined ;
+}
+
+// ----o Public Methods
+
+system.data.iterators.MapIteratorTest.prototype.testConstructor = function () 
+{
+    // FIXME this.assertNotNull( this.it ) ;
 }
