@@ -58,6 +58,7 @@ catch(e)
     
     // system.data
     
+    require( "system.data.Data"            ) ;
     require( "system.data.Iterable"        ) ;
     require( "system.data.Iterator"        ) ;
     require( "system.data.Map"             ) ;
