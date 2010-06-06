@@ -94,7 +94,7 @@ if ( system.data.iterators.ArrayIterator == undefined)
     /**
      * Returns {@code true} if the iteration has more elements.
      * @return {@code true} if the iteration has more elements.
-     */    
+     */
     proto.hasNext = function () 
     {
         return (this._k < this._a.length -1) ;
@@ -123,13 +123,13 @@ if ( system.data.iterators.ArrayIterator == undefined)
      */
     proto.remove = function() 
     {
-        this._a.splice(this._k--, 1) ;
+        return this._a.splice(this._k--, 1)[0] ;
     }
     
     /**
      * Reset the internal pointer of the iterator (optional operation).
      */
-    proto.reset = function() 
+    proto.reset = function() /*void*/
     {
         this._k = -1 ;
     }
@@ -137,19 +137,13 @@ if ( system.data.iterators.ArrayIterator == undefined)
     /**
      * Changes the position of the internal pointer of the iterator (optional operation).
      */
-    proto.seek = function (n) 
+    proto.seek = function ( position ) /*void*/
     {
-        var l = this._a.length ;
-        if ( n <-1 ) 
-        {
-            n = -1 ;
-        }
-        else if ( n > l ) 
-        {
-            n = l ;
-        }
-        this._k = n ;
+        position = Math.max( Math.min( position - 1 , this._a.length ) , -1 ) ;
+        this._k = isNaN(position) ? -1 : position ;
     }
+    
+    /////////// encapsulate
     
     delete proto ;
 }

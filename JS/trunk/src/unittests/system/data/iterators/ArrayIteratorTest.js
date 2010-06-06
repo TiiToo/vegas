@@ -80,3 +80,58 @@ system.data.iterators.ArrayIteratorTest.prototype.testConstructorWithEmptyArrayA
         this.assertEquals( e.message , "[ArrayIterator] constructor failed, the passed-in Array argument not must be 'null'." );
     }
 }
+
+system.data.iterators.ArrayIteratorTest.prototype.testHasNext = function () 
+{
+    this.assertTrue( this.it.hasNext(), "#01") ;
+    this.it.next() ; // item1
+    this.assertTrue( this.it.hasNext(), "#02") ;
+    this.it.next() ; // item2
+    this.assertTrue( this.it.hasNext(), "#03") ;
+    this.it.next() ; // item3
+    this.assertFalse( this.it.hasNext(), "#04") ;
+}
+
+system.data.iterators.ArrayIteratorTest.prototype.testKey = function () 
+{
+    this.assertEquals(this.it.key(), -1, "#01") ;
+    this.it.next() ; // item1
+    this.assertEquals(this.it.key(), 0, "#02") ;
+    this.it.next() ; // item2
+    this.assertEquals(this.it.key(), 1, "#03") ;
+    this.it.next() ; // item3
+    this.assertEquals(this.it.key(), 2, "#04") ;
+}
+
+system.data.iterators.ArrayIteratorTest.prototype.testNext = function () 
+{
+    this.assertEquals( this.it.next() , "item1" , "01 next() method failed" ) ;
+    this.assertEquals( this.it.next() , "item2" , "02 next() method failed" ) ;
+    this.assertEquals( this.it.next() , "item3" , "03 next() method failed" ) ;
+}
+
+system.data.iterators.ArrayIteratorTest.prototype.testRemove = function () 
+{
+    this.it.next() ;
+    var result = this.it.remove() ; 
+    this.assertEquals( result , "item1" , "#01" ) ;
+    this.assertEquals( this.it.next()   , "item2" , "#02" ) ;
+    this.it.reset() ;
+    this.assertEquals( this.it.next() , "item2" , "#03" ) ;
+}
+
+system.data.iterators.ArrayIteratorTest.prototype.testReset = function () 
+{
+    this.it.next() ;
+    this.it.next() ;
+    this.it.reset() ;
+    this.assertEquals( this.it.next() , "item1" ) ;
+}
+
+
+system.data.iterators.ArrayIteratorTest.prototype.testSeek = function () 
+{
+    this.it.seek(1) ;
+    this.it.next() ;
+    this.assertEquals( this.it.next() , "item3" , "seek(1) method failed" ) ;
+}
