@@ -35,29 +35,23 @@
   
 */
 
-/////////////////
+// ---o Constructor
 
-load("unittests/system/data.js"    ) ;
-load("unittests/system/signals.js" ) ;
-
-/////////////////
-
-system.AllTests = function( /*String*/ name ) 
+system.data.IterableTest = function( name ) 
 {
-    buRRRn.ASTUce.TestCase.call( this, name );
+    buRRRn.ASTUce.TestCase.call( this , name ) ;
 }
 
-system.AllTests.prototype = new buRRRn.ASTUce.TestCase() ;
-system.AllTests.prototype.constructor = system.AllTests ;
+// ----o Inherit
 
-system.AllTests.suite = function() 
+system.data.IterableTest.prototype             = new buRRRn.ASTUce.TestCase() ;
+system.data.IterableTest.prototype.constructor = system.data.IterableTest ;
+
+// ----o Public Methods
+
+system.data.IterableTest.prototype.testConstructor = function () 
 {
-    var TestSuite = buRRRn.ASTUce.TestSuite;
-    
-    var suite = new TestSuite( "system unit tests" );
-    
-    suite.addTest( system.data.AllTests.suite()    );
-    suite.addTest( system.signals.AllTests.suite() );
-    
-    return suite;
+    var i = new system.data.Iterable() ;
+    this.assertNotNull( i ) ;
+    this.assertTrue( "iterator" in i ) ;
 }

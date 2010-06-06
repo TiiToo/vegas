@@ -35,13 +35,10 @@
   
 */
 
-try 
-{
-    dummy = system.signals ;
-}
-catch(e) 
-{
-    system.signals = {};
-}
+getPackage("system.signals") ;
+getPackage("system.signals.samples" ) ;
+
+load("unittests/system/signals/samples/ReceiverClass.js") ;
+load("unittests/system/signals/samples/SignalerClass.js") ;
 
 load("unittests/system/signals/AllTests.js") ;

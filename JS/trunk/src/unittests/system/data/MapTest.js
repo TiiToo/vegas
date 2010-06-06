@@ -35,29 +35,45 @@
   
 */
 
-/////////////////
+// ---o Constructor
 
-load("unittests/system/data.js"    ) ;
-load("unittests/system/signals.js" ) ;
-
-/////////////////
-
-system.AllTests = function( /*String*/ name ) 
+system.data.MapTest = function( name ) 
 {
-    buRRRn.ASTUce.TestCase.call( this, name );
+    buRRRn.ASTUce.TestCase.call( this , name ) ;
 }
 
-system.AllTests.prototype = new buRRRn.ASTUce.TestCase() ;
-system.AllTests.prototype.constructor = system.AllTests ;
+// ----o Inherit
 
-system.AllTests.suite = function() 
+system.data.MapTest.prototype             = new buRRRn.ASTUce.TestCase() ;
+system.data.MapTest.prototype.constructor = system.data.MapTest ;
+
+// ----o Public Methods
+
+system.data.MapTest.prototype.testConstructor = function () 
 {
-    var TestSuite = buRRRn.ASTUce.TestSuite;
-    
-    var suite = new TestSuite( "system unit tests" );
-    
-    suite.addTest( system.data.AllTests.suite()    );
-    suite.addTest( system.signals.AllTests.suite() );
-    
-    return suite;
+    var i = new system.data.Map() ;
+    this.assertNotNull( i ) ;
+}
+
+system.data.MapTest.prototype.testMethods = function()
+{
+    var i = new system.data.Map() ;
+    this.assertTrue( "clear" in i ) ;
+    this.assertTrue( "clone" in i ) ;
+    this.assertTrue( "containsKey" in i ) ;
+    this.assertTrue( "containsValue" in i ) ;
+    this.assertTrue( "get" in i ) ;
+    this.assertTrue( "getKeys" in i ) ;
+    this.assertTrue( "getValues" in i ) ;
+    this.assertTrue( "indexOfKey" in i ) ;
+    this.assertTrue( "indexOfValue" in i ) ;
+    this.assertTrue( "isEmpty" in i ) ;
+    this.assertTrue( "iterator" in i ) ;
+    this.assertTrue( "keyIterator" in i ) ;
+    this.assertTrue( "put" in i ) ;
+    this.assertTrue( "putAll" in i ) ;
+    this.assertTrue( "remove" in i ) ;
+    this.assertTrue( "size" in i ) ;
+    this.assertTrue( "toSource" in i ) ;
+    this.assertTrue( "toString" in i ) ;
 }

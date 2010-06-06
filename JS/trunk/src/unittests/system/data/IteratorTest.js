@@ -35,29 +35,33 @@
   
 */
 
-/////////////////
+// ---o Constructor
 
-load("unittests/system/data.js"    ) ;
-load("unittests/system/signals.js" ) ;
-
-/////////////////
-
-system.AllTests = function( /*String*/ name ) 
+system.data.IteratorTest = function( name ) 
 {
-    buRRRn.ASTUce.TestCase.call( this, name );
+    buRRRn.ASTUce.TestCase.call( this , name ) ;
 }
 
-system.AllTests.prototype = new buRRRn.ASTUce.TestCase() ;
-system.AllTests.prototype.constructor = system.AllTests ;
+// ----o Inherit
 
-system.AllTests.suite = function() 
+system.data.IteratorTest.prototype             = new buRRRn.ASTUce.TestCase() ;
+system.data.IteratorTest.prototype.constructor = system.data.IteratorTest ;
+
+// ----o Public Methods
+
+system.data.IteratorTest.prototype.testConstructor = function () 
 {
-    var TestSuite = buRRRn.ASTUce.TestSuite;
-    
-    var suite = new TestSuite( "system unit tests" );
-    
-    suite.addTest( system.data.AllTests.suite()    );
-    suite.addTest( system.signals.AllTests.suite() );
-    
-    return suite;
+    var i = new system.data.Iterator() ;
+    this.assertNotNull( i ) ;
+}
+
+system.data.IteratorTest.prototype.testMethods = function()
+{
+    var i = new system.data.Iterator() ;
+    this.assertTrue( "hasNext" in i ) ;
+    this.assertTrue( "key" in i ) ;
+    this.assertTrue( "next" in i ) ;
+    this.assertTrue( "remove" in i ) ;
+    this.assertTrue( "reset" in i ) ;
+    this.assertTrue( "seek" in i ) ;
 }

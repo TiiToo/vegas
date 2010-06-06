@@ -91,7 +91,8 @@ if ( system.data.Map == undefined )
     /**
      * Returns the value to which this map maps the specified key.
      */
-    proto.get = function (key) {
+    proto.get = function (key) 
+    {
         //
     }
     
@@ -194,7 +195,7 @@ if ( system.data.Map == undefined )
      * Returns the eden string representation of this instance.
      * @return the eden string representation of this instance
      */
-    proto.toSource = function (indent, indentor) /*String*/ 
+    proto.toSource = function () /*String*/ 
     {
         //
     }

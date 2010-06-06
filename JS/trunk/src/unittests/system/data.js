@@ -35,29 +35,6 @@
   
 */
 
-/////////////////
+getPackage("system.data") ;
 
-load("unittests/system/data.js"    ) ;
-load("unittests/system/signals.js" ) ;
-
-/////////////////
-
-system.AllTests = function( /*String*/ name ) 
-{
-    buRRRn.ASTUce.TestCase.call( this, name );
-}
-
-system.AllTests.prototype = new buRRRn.ASTUce.TestCase() ;
-system.AllTests.prototype.constructor = system.AllTests ;
-
-system.AllTests.suite = function() 
-{
-    var TestSuite = buRRRn.ASTUce.TestSuite;
-    
-    var suite = new TestSuite( "system unit tests" );
-    
-    suite.addTest( system.data.AllTests.suite()    );
-    suite.addTest( system.signals.AllTests.suite() );
-    
-    return suite;
-}
+load("unittests/system/data/AllTests.js") ;

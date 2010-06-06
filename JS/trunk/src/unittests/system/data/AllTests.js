@@ -35,29 +35,37 @@
   
 */
 
-/////////////////
+load("unittests/system/data/IterableTest.js") ;
+load("unittests/system/data/IteratorTest.js") ;
+load("unittests/system/data/MapTest.js") ;
+load("unittests/system/data/OrderedIteratorTest.js") ;
 
-load("unittests/system/data.js"    ) ;
-load("unittests/system/signals.js" ) ;
+// ----o constructor
 
-/////////////////
-
-system.AllTests = function( /*String*/ name ) 
+system.data.AllTests = function( /*String*/ name ) 
 {
     buRRRn.ASTUce.TestCase.call( this, name );
 }
 
-system.AllTests.prototype = new buRRRn.ASTUce.TestCase() ;
-system.AllTests.prototype.constructor = system.AllTests ;
+// ----o Inherit
 
-system.AllTests.suite = function() 
-{
+system.data.AllTests.prototype             = new buRRRn.ASTUce.TestCase() ;
+system.data.AllTests.prototype.constructor = system.data.AllTests ;
+
+// ----o Public Methods
+
+system.data.AllTests.suite = function() {
+    
     var TestSuite = buRRRn.ASTUce.TestSuite;
     
-    var suite = new TestSuite( "system unit tests" );
+    var suite = new TestSuite( "system.data unit tests" );
     
-    suite.addTest( system.data.AllTests.suite()    );
-    suite.addTest( system.signals.AllTests.suite() );
+    //suite.simpleTrace = true;
     
-    return suite;
+    suite.addTest( new TestSuite( system.data.IterableTest        ) ) ;
+    suite.addTest( new TestSuite( system.data.IteratorTest        ) ) ;
+    suite.addTest( new TestSuite( system.data.MapTest             ) ) ;
+    suite.addTest( new TestSuite( system.data.OrderedIteratorTest ) ) ;
+    
+    return suite ;
 }

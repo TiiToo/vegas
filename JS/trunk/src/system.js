@@ -49,7 +49,23 @@ catch(e)
     // packages
     
     getPackage("system") ;
+    
+    getPackage("system.data") ;
+    getPackage("system.data.iterators") ;
+    getPackage("system.data.maps") ;
+    
     getPackage("system.signals") ;
+    
+    // system.data
+    
+    require( "system.data.Iterable"        ) ;
+    require( "system.data.Iterator"        ) ;
+    require( "system.data.Map"             ) ;
+    require( "system.data.OrderedIterator" ) ;
+    
+    // system.data.iterators
+    
+    require( "system.data.iterators.ArrayIterator" ) ;
     
     // system.signals
     

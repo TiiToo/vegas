@@ -35,29 +35,46 @@
   
 */
 
-/////////////////
+// ---o Constructor
 
-load("unittests/system/data.js"    ) ;
-load("unittests/system/signals.js" ) ;
-
-/////////////////
-
-system.AllTests = function( /*String*/ name ) 
+system.data.OrderedIteratorTest = function( name ) 
 {
-    buRRRn.ASTUce.TestCase.call( this, name );
+    buRRRn.ASTUce.TestCase.call( this , name ) ;
 }
 
-system.AllTests.prototype = new buRRRn.ASTUce.TestCase() ;
-system.AllTests.prototype.constructor = system.AllTests ;
+// ----o Inherit
 
-system.AllTests.suite = function() 
+system.data.OrderedIteratorTest.prototype             = new buRRRn.ASTUce.TestCase() ;
+system.data.OrderedIteratorTest.prototype.constructor = system.data.OrderedIteratorTest ;
+
+// ----o Public Methods
+
+system.data.OrderedIteratorTest.prototype.testConstructor = function () 
 {
-    var TestSuite = buRRRn.ASTUce.TestSuite;
-    
-    var suite = new TestSuite( "system unit tests" );
-    
-    suite.addTest( system.data.AllTests.suite()    );
-    suite.addTest( system.signals.AllTests.suite() );
-    
-    return suite;
+    var i = new system.data.OrderedIterator() ;
+    this.assertNotNull( i ) ;
+}
+
+system.data.OrderedIteratorTest.prototype.testInherit = function () 
+{
+    var i = new system.data.OrderedIterator() ;
+    this.assertTrue( i instanceof system.data.Iterator ) ;
+}
+
+system.data.OrderedIteratorTest.prototype.testMethods = function()
+{
+    var i = new system.data.OrderedIterator() ;
+    this.assertTrue( "hasPrevious" in i ) ;
+    this.assertTrue( "previous" in i ) ;
+}
+
+system.data.OrderedIteratorTest.prototype.testSuperMethods = function()
+{
+    var i = new system.data.OrderedIterator() ;
+    this.assertTrue( "hasNext" in i ) ;
+    this.assertTrue( "key" in i ) ;
+    this.assertTrue( "next" in i ) ;
+    this.assertTrue( "remove" in i ) ;
+    this.assertTrue( "reset" in i ) ;
+    this.assertTrue( "seek" in i ) ;
 }
