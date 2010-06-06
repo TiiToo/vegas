@@ -35,41 +35,34 @@
   
 */
 
-load("unittests/system/data/DataTest.js") ;
-load("unittests/system/data/IdentifiableTest.js") ;
-load("unittests/system/data/IterableTest.js") ;
-load("unittests/system/data/IteratorTest.js") ;
-load("unittests/system/data/MapTest.js") ;
-load("unittests/system/data/OrderedIteratorTest.js") ;
+// ---o Constructor
 
-// ----o constructor
-
-system.data.AllTests = function( /*String*/ name ) 
+system.data.IdentifiableTest = function( name ) 
 {
-    buRRRn.ASTUce.TestCase.call( this, name );
+    buRRRn.ASTUce.TestCase.call( this , name ) ;
 }
 
 // ----o Inherit
 
-system.data.AllTests.prototype             = new buRRRn.ASTUce.TestCase() ;
-system.data.AllTests.prototype.constructor = system.data.AllTests ;
+system.data.IdentifiableTest.prototype             = new buRRRn.ASTUce.TestCase() ;
+system.data.IdentifiableTest.prototype.constructor = system.data.IdentifiableTest ;
 
 // ----o Public Methods
 
-system.data.AllTests.suite = function() {
-    
-    var TestSuite = buRRRn.ASTUce.TestSuite;
-    
-    var suite = new TestSuite( "system.data unit tests" );
-    
-    //suite.simpleTrace = true;
-    
-    suite.addTest( new TestSuite( system.data.DataTest            ) ) ;
-    suite.addTest( new TestSuite( system.data.IdentifiableTest    ) ) ;
-    suite.addTest( new TestSuite( system.data.IterableTest        ) ) ;
-    suite.addTest( new TestSuite( system.data.IteratorTest        ) ) ;
-    suite.addTest( new TestSuite( system.data.MapTest             ) ) ;
-    suite.addTest( new TestSuite( system.data.OrderedIteratorTest ) ) ;
-    
-    return suite ;
+system.data.IdentifiableTest.prototype.testConstructor = function () 
+{
+    var i = new system.data.Identifiable() ;
+    this.assertNotNull( i ) ;
+    this.assertTrue( "getID" in i ) ;
+    this.assertTrue( "setID" in i ) ;
+}
+
+system.data.IdentifiableTest.prototype.testId = function () 
+{
+    var i = new system.data.Identifiable() ;
+    this.assertNull( i.id ) ;
+    i.id = 100 ;
+    this.assertEquals( 100 , i.id ) ;
+    i.id = "my_id" ;
+    this.assertEquals( "my_id" , i.id ) ;
 }
