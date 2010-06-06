@@ -37,8 +37,16 @@
 
 /////////////////
 
-load("unittests/system/data.js"    ) ;
-load("unittests/system/signals.js" ) ;
+getPackage("system.data") ;
+getPackage("system.signals") ;
+getPackage("system.signals.samples" ) ;
+
+
+load("unittests/system/data/AllTests.js") ;
+
+load("unittests/system/signals/samples/ReceiverClass.js") ;
+load("unittests/system/signals/samples/SignalerClass.js") ;
+load("unittests/system/signals/AllTests.js") ;
 
 /////////////////
 

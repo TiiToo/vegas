@@ -35,6 +35,22 @@
   
 */
 
-getPackage("system.data") ;
+// ---o Constructor
 
-load("unittests/system/data/AllTests.js") ;
+system.data.iterators.ArrayIteratorTest = function( name ) 
+{
+    buRRRn.ASTUce.TestCase.call( this , name ) ;
+}
+
+// ----o Inherit
+
+system.data.iterators.ArrayIteratorTest.prototype             = new buRRRn.ASTUce.TestCase() ;
+system.data.iterators.ArrayIteratorTest.prototype.constructor = system.data.iterators.ArrayIteratorTest ;
+
+// ----o Public Methods
+
+system.data.iterators.ArrayIteratorTest.prototype.testConstructor = function () 
+{
+    var i = new system.data.iterators.ArrayIterator( [1,2,3] ) ;
+    this.assertNotNull( i ) ;
+}

@@ -35,10 +35,31 @@
   
 */
 
-getPackage("system.signals") ;
-getPackage("system.signals.samples" ) ;
+load("unittests/system/data/iterators/ArrayIteratorTest.js") ;
 
-load("unittests/system/signals/samples/ReceiverClass.js") ;
-load("unittests/system/signals/samples/SignalerClass.js") ;
+// ----o constructor
 
-load("unittests/system/signals/AllTests.js") ;
+system.data.iterators.AllTests = function( /*String*/ name ) 
+{
+    buRRRn.ASTUce.TestCase.call( this, name );
+}
+
+// ----o Inherit
+
+system.data.iterators.AllTests.prototype             = new buRRRn.ASTUce.TestCase() ;
+system.data.iterators.AllTests.prototype.constructor = system.data.iterators.AllTests ;
+
+// ----o Public Methods
+
+system.data.iterators.AllTests.suite = function() {
+    
+    var TestSuite = buRRRn.ASTUce.TestSuite;
+    
+    var suite = new TestSuite( "system.data.iterators unit tests" );
+    
+    //suite.simpleTrace = true;
+    
+    suite.addTest( new TestSuite( system.data.iterators.ArrayIteratorTest ) ) ;
+    
+    return suite ;
+}

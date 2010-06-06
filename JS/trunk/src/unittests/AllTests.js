@@ -35,8 +35,15 @@
   
 */
 
-load("unittests/core.js") ;
-load("unittests/system.js") ;
+/////////
+
+getPackage("core") ;
+getPackage("system") ;
+
+load("unittests/core/AllTests.js") ;
+load("unittests/system/AllTests.js") ;
+
+/////////
 
 AllTests = function( /*String*/ name ) 
 {

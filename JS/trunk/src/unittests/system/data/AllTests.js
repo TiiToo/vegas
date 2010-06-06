@@ -43,6 +43,10 @@ load("unittests/system/data/MapTest.js") ;
 load("unittests/system/data/OrderedIteratorTest.js") ;
 load("unittests/system/data/ValueObjectTest.js") ;
 
+getPackage("system.data.iterators") ;
+
+load("unittests/system/data/iterators/AllTests.js") ;
+
 // ----o constructor
 
 system.data.AllTests = function( /*String*/ name ) 
@@ -72,6 +76,8 @@ system.data.AllTests.suite = function() {
     suite.addTest( new TestSuite( system.data.MapTest             ) ) ;
     suite.addTest( new TestSuite( system.data.OrderedIteratorTest ) ) ;
     suite.addTest( new TestSuite( system.data.ValueObjectTest     ) ) ;
+    
+    suite.addTest( system.data.iterators.AllTests.suite() );
     
     return suite ;
 }
