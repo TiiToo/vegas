@@ -65,3 +65,9 @@ system.data.maps.MapFormatterTest.prototype.testConstructor = function ()
 {
     this.assertNotNull( this.formatter ) ;
 }
+
+system.data.maps.MapFormatterTest.prototype.testSingleton = function () 
+{
+    this.assertNotNull( system.data.maps.formatter ) ;
+    this.assertTrue( system.data.maps.formatter instanceof system.data.maps.MapFormatter ) ;
+}

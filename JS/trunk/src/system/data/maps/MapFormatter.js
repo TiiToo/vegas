@@ -84,4 +84,8 @@ if ( system.data.maps.MapFormatter == undefined)
     /////////// encapsulate
     
     delete proto ;
+    
+    /////////// singleton
+    
+    system.data.maps.formatter = new system.data.maps.MapFormatter() ;
 }
