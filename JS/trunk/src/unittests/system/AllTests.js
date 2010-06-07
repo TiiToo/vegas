@@ -38,14 +38,11 @@
 /////////////////
 
 getPackage("system.data") ;
+getPackage("system.formatters" ) ;
 getPackage("system.signals") ;
-getPackage("system.signals.samples" ) ;
-
 
 load("unittests/system/data/AllTests.js") ;
-
-load("unittests/system/signals/samples/ReceiverClass.js") ;
-load("unittests/system/signals/samples/SignalerClass.js") ;
+load("unittests/system/formatters/AllTests.js") ;
 load("unittests/system/signals/AllTests.js") ;
 
 /////////////////
@@ -64,8 +61,9 @@ system.AllTests.suite = function()
     
     var suite = new TestSuite( "system unit tests" );
     
-    suite.addTest( system.data.AllTests.suite()    );
-    suite.addTest( system.signals.AllTests.suite() );
+    suite.addTest( system.data.AllTests.suite()       );
+    suite.addTest( system.formatters.AllTests.suite() );
+    suite.addTest( system.signals.AllTests.suite()    );
     
     return suite;
 }

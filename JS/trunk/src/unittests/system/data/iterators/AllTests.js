@@ -53,8 +53,8 @@ system.data.iterators.AllTests.prototype.constructor = system.data.iterators.All
 
 // ----o Public Methods
 
-system.data.iterators.AllTests.suite = function() {
-    
+system.data.iterators.AllTests.suite = function() 
+{
     var TestSuite = buRRRn.ASTUce.TestSuite;
     
     var suite = new TestSuite( "system.data.iterators unit tests" );

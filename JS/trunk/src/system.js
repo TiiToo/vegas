@@ -53,7 +53,7 @@ catch(e)
     getPackage("system.data") ;
     getPackage("system.data.iterators") ;
     getPackage("system.data.maps") ;
-    
+    getPackage("system.formatters") ;
     getPackage("system.signals") ;
     
     // system.data
@@ -75,6 +75,10 @@ catch(e)
     // system.data.maps
     
     require( "system.data.maps.MapEntry" ) ;
+    
+    // system.data.formatters
+    
+    require( "system.formatters.Formattable" ) ;
     
     // system.signals
     

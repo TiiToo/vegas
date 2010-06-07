@@ -51,8 +51,8 @@ system.data.maps.AllTests.prototype.constructor = system.data.maps.AllTests ;
 
 // ----o Public Methods
 
-system.data.maps.AllTests.suite = function() {
-    
+system.data.maps.AllTests.suite = function() 
+{
     var TestSuite = buRRRn.ASTUce.TestSuite;
     
     var suite = new TestSuite( "system.data.maps unit tests" );

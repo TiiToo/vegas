@@ -35,40 +35,23 @@
   
 */
 
-getPackage("system.signals.samples" ) ;
+// ---o Constructor
 
-load("unittests/system/signals/samples/ReceiverClass.js") ;
-load("unittests/system/signals/samples/SignalerClass.js") ;
-
-load("unittests/system/signals/SignalTest.js") ;
-load("unittests/system/signals/SignalEntryTest.js") ;
-load("unittests/system/signals/SignalStringsTest.js") ;
-
-// ----o constructor
-
-system.signals.AllTests = function( /*String*/ name ) 
+system.formatters.FormattableTest = function( name ) 
 {
-    buRRRn.ASTUce.TestCase.call( this, name );
+    buRRRn.ASTUce.TestCase.call( this , name ) ;
 }
 
 // ----o Inherit
 
-system.signals.AllTests.prototype             = new buRRRn.ASTUce.TestCase() ;
-system.signals.AllTests.prototype.constructor = system.signals.AllTests ;
+system.formatters.FormattableTest.prototype             = new buRRRn.ASTUce.TestCase() ;
+system.formatters.FormattableTest.prototype.constructor = system.formatters.FormattableTest ;
 
 // ----o Public Methods
 
-system.signals.AllTests.suite = function() 
+system.formatters.FormattableTest.prototype.testInterface = function () 
 {
-    var TestSuite = buRRRn.ASTUce.TestSuite;
-    
-    var suite = new TestSuite( "system.signals unit tests" );
-    
-    //suite.simpleTrace = true;
-    
-    suite.addTest( new TestSuite( system.signals.SignalTest ) ) ;
-    suite.addTest( new TestSuite( system.signals.SignalEntryTest ) ) ;
-    suite.addTest( new TestSuite( system.signals.SignalStringsTest ) ) ;
-    
-    return suite ;
+    var formatter = new system.formatters.Formattable() ;
+    this.assertNotNull( formatter ) ; 
+    this.assertTrue( "format" in formatter ) ;
 }

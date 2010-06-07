@@ -63,8 +63,8 @@ system.data.AllTests.prototype.constructor = system.data.AllTests ;
 
 // ----o Public Methods
 
-system.data.AllTests.suite = function() {
-    
+system.data.AllTests.suite = function() 
+{
     var TestSuite = buRRRn.ASTUce.TestSuite;
     
     var suite = new TestSuite( "system.data unit tests" );
