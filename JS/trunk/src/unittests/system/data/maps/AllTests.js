@@ -36,6 +36,7 @@
 */
 
 load("unittests/system/data/maps/MapEntryTest.js") ;
+load("unittests/system/data/maps/MapFormatterTest.js") ;
 
 // ----o constructor
 
@@ -60,6 +61,7 @@ system.data.maps.AllTests.suite = function()
     //suite.simpleTrace = true;
     
     suite.addTest( new TestSuite( system.data.maps.MapEntryTest ) ) ;
+    suite.addTest( new TestSuite( system.data.maps.MapFormatterTest ) ) ;
     
     return suite ;
 }
