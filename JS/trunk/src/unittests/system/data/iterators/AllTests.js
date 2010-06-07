@@ -37,6 +37,7 @@
 
 load("unittests/system/data/iterators/ArrayIteratorTest.js") ;
 load("unittests/system/data/iterators/MapIteratorTest.js") ;
+load("unittests/system/data/iterators/PageByPageIteratorTest.js") ;
 
 // ----o constructor
 
@@ -60,8 +61,9 @@ system.data.iterators.AllTests.suite = function() {
     
     //suite.simpleTrace = true;
     
-    suite.addTest( new TestSuite( system.data.iterators.ArrayIteratorTest ) ) ;
-    suite.addTest( new TestSuite( system.data.iterators.MapIteratorTest   ) ) ;
+    suite.addTest( new TestSuite( system.data.iterators.ArrayIteratorTest      ) ) ;
+    suite.addTest( new TestSuite( system.data.iterators.MapIteratorTest        ) ) ;
+    suite.addTest( new TestSuite( system.data.iterators.PageByPageIteratorTest ) ) ;
     
     return suite ;
 }

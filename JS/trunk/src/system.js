@@ -68,8 +68,9 @@ catch(e)
     
     // system.data.iterators
     
-    require( "system.data.iterators.ArrayIterator" ) ;
-    require( "system.data.iterators.MapIterator"   ) ;
+    require( "system.data.iterators.ArrayIterator"      ) ;
+    require( "system.data.iterators.MapIterator"        ) ;
+    require( "system.data.iterators.PageByPageIterator" ) ;
     
     // system.data.maps
     
