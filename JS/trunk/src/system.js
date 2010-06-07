@@ -71,6 +71,10 @@ catch(e)
     require( "system.data.iterators.ArrayIterator" ) ;
     require( "system.data.iterators.MapIterator"   ) ;
     
+    // system.data.maps
+    
+    require( "system.data.maps.MapEntry" ) ;
+    
     // system.signals
     
     require( "system.signals.Receiver"       ) ;

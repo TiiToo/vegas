@@ -35,52 +35,48 @@
   
 */
 
-load("unittests/system/data/DataTest.js") ;
-load("unittests/system/data/IdentifiableTest.js") ;
-load("unittests/system/data/IterableTest.js") ;
-load("unittests/system/data/IteratorTest.js") ;
-load("unittests/system/data/MapTest.js") ;
-load("unittests/system/data/OrderedIteratorTest.js") ;
-load("unittests/system/data/ValueObjectTest.js") ;
+// ---o Constructor
 
-getPackage("system.data.iterators") ;
-getPackage("system.data.maps") ;
-
-load("unittests/system/data/iterators/AllTests.js") ;
-load("unittests/system/data/maps/AllTests.js") ;
-
-// ----o constructor
-
-system.data.AllTests = function( /*String*/ name ) 
+system.data.maps.MapEntryTest = function( name ) 
 {
-    buRRRn.ASTUce.TestCase.call( this, name );
+    buRRRn.ASTUce.TestCase.call( this , name ) ;
 }
 
 // ----o Inherit
 
-system.data.AllTests.prototype             = new buRRRn.ASTUce.TestCase() ;
-system.data.AllTests.prototype.constructor = system.data.AllTests ;
+system.data.maps.MapEntryTest.prototype             = new buRRRn.ASTUce.TestCase() ;
+system.data.maps.MapEntryTest.prototype.constructor = system.data.maps.MapEntryTest ;
+
+// ----o Initialize
+
+system.data.maps.MapEntryTest.prototype.setUp = function()
+{
+    this.entry = new system.data.maps.MapEntry( "key", "value" );
+}
+
+system.data.maps.MapEntryTest.prototype.tearDown = function()
+{
+    this.entry = undefined ;
+}
 
 // ----o Public Methods
 
-system.data.AllTests.suite = function() {
-    
-    var TestSuite = buRRRn.ASTUce.TestSuite;
-    
-    var suite = new TestSuite( "system.data unit tests" );
-    
-    //suite.simpleTrace = true;
-    
-    suite.addTest( new TestSuite( system.data.DataTest            ) ) ;
-    suite.addTest( new TestSuite( system.data.IdentifiableTest    ) ) ;
-    suite.addTest( new TestSuite( system.data.IterableTest        ) ) ;
-    suite.addTest( new TestSuite( system.data.IteratorTest        ) ) ;
-    suite.addTest( new TestSuite( system.data.MapTest             ) ) ;
-    suite.addTest( new TestSuite( system.data.OrderedIteratorTest ) ) ;
-    suite.addTest( new TestSuite( system.data.ValueObjectTest     ) ) ;
-    
-    suite.addTest( system.data.iterators.AllTests.suite() );
-    suite.addTest( system.data.maps.AllTests.suite() );
-    
-    return suite ;
+system.data.maps.MapEntryTest.prototype.testConstructor = function () 
+{
+    this.assertNotNull( this.entry , "#1" ) ;
+    this.assertEquals( this.entry.key   , "key" , "#2") ;
+    this.assertEquals( this.entry.value , "value" , "#3") ;
+}
+
+system.data.maps.MapEntryTest.prototype.testClone = function () 
+{
+    var clone /*MapEntry*/ = this.entry.clone() ;
+    this.assertNotNull( clone , "#1" ) ;
+    this.assertEquals( this.entry.key   , clone.key  , "#2") ;
+    this.assertEquals( this.entry.value , clone.value , "#3") ;
+}
+
+system.data.maps.MapEntryTest.prototype.testToString = function () 
+{
+    this.assertEquals( "[MapEntry key:key value:value]" , this.entry.toString() ) ;
 }
