@@ -1,3 +1,4 @@
+
 /*
 
   Version: MPL 1.1/GPL 2.0/LGPL 2.1
@@ -35,6 +36,7 @@
   
 */
 
+load("unittests/system/data/maps/ArrayMapTest.js") ;
 load("unittests/system/data/maps/MapEntryTest.js") ;
 load("unittests/system/data/maps/MapFormatterTest.js") ;
 
@@ -60,6 +62,7 @@ system.data.maps.AllTests.suite = function()
     
     //suite.simpleTrace = true;
     
+    suite.addTest( new TestSuite( system.data.maps.ArrayMapTest ) ) ;
     suite.addTest( new TestSuite( system.data.maps.MapEntryTest ) ) ;
     suite.addTest( new TestSuite( system.data.maps.MapFormatterTest ) ) ;
     
