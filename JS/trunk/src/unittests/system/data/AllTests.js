@@ -43,6 +43,7 @@ load("unittests/system/data/IterableTest.js") ;
 load("unittests/system/data/IteratorTest.js") ;
 load("unittests/system/data/MapTest.js") ;
 load("unittests/system/data/OrderedIteratorTest.js") ;
+load("unittests/system/data/QueueTest.js") ;
 load("unittests/system/data/SetTest.js") ;
 load("unittests/system/data/ValueObjectTest.js") ;
 
@@ -75,13 +76,14 @@ system.data.AllTests.suite = function()
     //suite.simpleTrace = true;
     
     suite.addTest( new TestSuite( system.data.BoundableTest       ) ) ;
-    suite.addTest( new TestSuite( system.data.CollectionTest      ) ) 
+    suite.addTest( new TestSuite( system.data.CollectionTest      ) ) ;
     suite.addTest( new TestSuite( system.data.DataTest            ) ) ;
     suite.addTest( new TestSuite( system.data.IdentifiableTest    ) ) ;
     suite.addTest( new TestSuite( system.data.IterableTest        ) ) ;
     suite.addTest( new TestSuite( system.data.IteratorTest        ) ) ;
     suite.addTest( new TestSuite( system.data.MapTest             ) ) ;
     suite.addTest( new TestSuite( system.data.OrderedIteratorTest ) ) ;
+    suite.addTest( new TestSuite( system.data.QueueTest           ) ) ;
     suite.addTest( new TestSuite( system.data.SetTest             ) ) ;
     suite.addTest( new TestSuite( system.data.ValueObjectTest     ) ) ;
     
