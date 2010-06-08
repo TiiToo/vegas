@@ -218,7 +218,7 @@ if ( system.data.maps.ArrayMap == undefined )
      */
     proto.isEmpty = function () /*Boolean*/ 
     {
-        return this._keys.length > 0 ;
+        return this._keys.length == 0 ;
     }
     
     /**
@@ -320,6 +320,8 @@ if ( system.data.maps.ArrayMap == undefined )
             return null ;   
         }
         var v = this._values[index] ; 
+        
+        
         this._keys[index] = key ;
         return new system.data.maps.MapEntry( k , v ) ;
     }
