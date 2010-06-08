@@ -35,60 +35,39 @@
   
 */
 
-try 
+// ---o Constructor
+
+system.data.CollectionTest = function( name ) 
 {
-    dummy = system ;
+    buRRRn.ASTUce.TestCase.call( this , name ) ;
 }
-catch(e) 
+
+// ----o Inherit
+
+system.data.CollectionTest.prototype             = new buRRRn.ASTUce.TestCase() ;
+system.data.CollectionTest.prototype.constructor = system.data.CollectionTest ;
+
+// ----o Public Methods
+
+system.data.CollectionTest.prototype.testInterface = function () 
 {
-    // constants
-    
-    SRC     = "./" ;
-    SUFFIX  = ".js" ;
-    
-    // packages
-    
-    getPackage("system") ;
-    
-    getPackage("system.data") ;
-    getPackage("system.data.iterators") ;
-    getPackage("system.data.maps") ;
-    getPackage("system.formatters") ;
-    getPackage("system.signals") ;
-    
-    // system.data
-    
-    require( "system.data.Boundable"       ) ;
-    require( "system.data.Collection"      ) ;
-    require( "system.data.Data"            ) ;
-    require( "system.data.Identifiable"    ) ;
-    require( "system.data.Iterable"        ) ;
-    require( "system.data.Iterator"        ) ;
-    require( "system.data.Map"             ) ;
-    require( "system.data.OrderedIterator" ) ;
-    require( "system.data.ValueObject"     ) ;
-    
-    // system.data.iterators
-    
-    require( "system.data.iterators.ArrayIterator"      ) ;
-    require( "system.data.iterators.MapIterator"        ) ;
-    require( "system.data.iterators.PageByPageIterator" ) ;
-    
-    // system.data.maps
-    
-    require( "system.data.maps.ArrayMap"     ) ;
-    require( "system.data.maps.MapEntry"     ) ;
-    require( "system.data.maps.MapFormatter" ) ;
-    
-    // system.data.formatters
-    
-    require( "system.formatters.Formattable" ) ;
-    
-    // system.signals
-    
-    require( "system.signals.Receiver"       ) ;
-    require( "system.signals.Signal"         ) ;
-    require( "system.signals.SignalEntry"    ) ;
-    require( "system.signals.Signaler"       ) ;
-    require( "system.signals.SignalStrings"  ) ;
+    var c = new system.data.Collection() ;
+    this.assertNotNull( c ) ;
+}
+
+system.data.CollectionTest.prototype.testMethods = function () 
+{
+    var c = new system.data.Collection() ;
+    this.assertTrue( "add" in c      ,  "#0" ) ;
+    this.assertTrue( "clear" in c    ,  "#1" ) ;
+    this.assertTrue( "clone" in c    ,  "#2" ) ;
+    this.assertTrue( "contains" in c ,  "#3" ) ;
+    this.assertTrue( "get" in c      ,  "#4" ) ;
+    this.assertTrue( "indexOf" in c  ,  "#5" ) ;
+    this.assertTrue( "isEmpty" in c  ,  "#6" ) ;
+    this.assertTrue( "iterator" in c ,  "#7" ) ;
+    this.assertTrue( "remove" in c   ,  "#8" ) ;
+    this.assertTrue( "size" in c     , " #9" ) ;
+    this.assertTrue( "toArray" in c  , "#10" ) ;
+    this.assertTrue( "toString" in c , "#11" ) ;
 }

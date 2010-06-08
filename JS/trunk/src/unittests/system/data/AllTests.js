@@ -36,6 +36,7 @@
 */
 
 load("unittests/system/data/BoundableTest.js") ;
+load("unittests/system/data/CollectionTest.js") ;
 load("unittests/system/data/DataTest.js") ;
 load("unittests/system/data/IdentifiableTest.js") ;
 load("unittests/system/data/IterableTest.js") ;
@@ -73,6 +74,7 @@ system.data.AllTests.suite = function()
     //suite.simpleTrace = true;
     
     suite.addTest( new TestSuite( system.data.BoundableTest       ) ) ;
+    suite.addTest( new TestSuite( system.data.CollectionTest      ) ) 
     suite.addTest( new TestSuite( system.data.DataTest            ) ) ;
     suite.addTest( new TestSuite( system.data.IdentifiableTest    ) ) ;
     suite.addTest( new TestSuite( system.data.IterableTest        ) ) ;
