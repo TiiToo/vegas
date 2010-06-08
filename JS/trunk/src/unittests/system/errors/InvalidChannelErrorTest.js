@@ -35,35 +35,42 @@
   
 */
 
-load("unittests/system/errors/ConcurrencyErrorTest.js") ;
-load("unittests/system/errors/InvalidChannelErrorTest.js") ;
-load("unittests/system/errors/NoSuchElementErrorTest.js") ;
+// ---o Constructor
 
-// ----o costructor
-
-system.errors.AllTests = function( /*String*/ name ) 
+system.errors.InvalidChannelErrorTest = function( name ) 
 {
-    buRRRn.ASTUce.TestCase.call( this, name );
+    buRRRn.ASTUce.TestCase.call( this , name ) ;
 }
 
 // ----o Inherit
 
-system.errors.AllTests.prototype             = new buRRRn.ASTUce.TestCase() ;
-system.errors.AllTests.prototype.constructor = system.errors.AllTests ;
+system.errors.InvalidChannelErrorTest.prototype             = new buRRRn.ASTUce.TestCase() ;
+system.errors.InvalidChannelErrorTest.prototype.constructor = system.errors.InvalidChannelErrorTest ;
 
 // ----o Public Methods
 
-system.errors.AllTests.suite = function() 
+system.errors.InvalidChannelErrorTest.prototype.testContructor = function () 
 {
-    var TestSuite = buRRRn.ASTUce.TestSuite;
-    
-    var suite = new TestSuite( "system.errors unit tests" );
-    
-    //suite.simpleTrace = true;
-    
-    suite.addTest( new TestSuite( system.errors.ConcurrencyErrorTest    ) ) ;
-    suite.addTest( new TestSuite( system.errors.InvalidChannelErrorTest ) ) ;
-    suite.addTest( new TestSuite( system.errors.NoSuchElementErrorTest  ) ) ;
-    
-    return suite ;
+    var e = new system.errors.InvalidChannelError("message") ;
+    this.assertNotNull( e ) ;
+    this.assertEquals( "message" , e.message ) ; 
+    this.assertEquals( "InvalidChannelError" , e.name ) ; 
+}
+
+system.errors.InvalidChannelErrorTest.prototype.testInherit = function () 
+{
+    var e = new system.errors.InvalidChannelError("message") ;
+    this.assertTrue( e instanceof Error ) ;
+}
+
+system.errors.InvalidChannelErrorTest.prototype.testToSource = function () 
+{
+    var e = new system.errors.InvalidChannelError("message") ;
+    this.assertEquals( "new system.errors.InvalidChannelError(\"message\")" , e.toSource() ) ;
+}
+
+system.errors.InvalidChannelErrorTest.prototype.testToString = function () 
+{
+    var e = new system.errors.InvalidChannelError("message") ;
+    this.assertEquals( "## InvalidChannelError : message ##" , e.toString() ) ;
 }
