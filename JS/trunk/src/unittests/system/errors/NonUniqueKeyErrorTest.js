@@ -53,10 +53,10 @@ system.errors.NonUniqueKeyErrorTest.prototype.testContructor = function ()
 {
     var e = new system.errors.NonUniqueKeyError("key") ;
     this.assertNotNull( e ) ;
-    this.assertEquals( "attempting to insert 'key'" , e.message ) ; 
+    this.assertEquals( "attempting to insert 'key'" , e.message ) ;
     this.assertEquals( "NonUniqueKeyError"          , e.name    ) ;
-    this.assertEquals( "key"                        , e.key     ) ;  
-    this.assertEquals( "attempting to insert '{0}'" , e.pattern     ) ;  
+    this.assertEquals( "key"                        , e.key     ) ;
+    this.assertEquals( "attempting to insert '{0}'" , e.pattern ) ;
 }
 
 system.errors.NonUniqueKeyErrorTest.prototype.testPATTERN = function () 
