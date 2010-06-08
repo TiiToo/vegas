@@ -35,38 +35,31 @@
   
 */
 
-/////////////////
+load("unittests/system/errors/NoSuchElementErrorTest.js") ;
 
-getPackage("system.data") ;
-getPackage("system.errors") ;
-getPackage("system.formatters") ;
-getPackage("system.signals") ;
+// ----o costructor
 
-load("unittests/system/data/AllTests.js") ;
-load("unittests/system/errors/AllTests.js") ;
-load("unittests/system/formatters/AllTests.js") ;
-load("unittests/system/signals/AllTests.js") ;
-
-/////////////////
-
-system.AllTests = function( /*String*/ name ) 
+system.errors.AllTests = function( /*String*/ name ) 
 {
     buRRRn.ASTUce.TestCase.call( this, name );
 }
 
-system.AllTests.prototype = new buRRRn.ASTUce.TestCase() ;
-system.AllTests.prototype.constructor = system.AllTests ;
+// ----o Inherit
 
-system.AllTests.suite = function() 
+system.errors.AllTests.prototype             = new buRRRn.ASTUce.TestCase() ;
+system.errors.AllTests.prototype.constructor = system.errors.AllTests ;
+
+// ----o Public Methods
+
+system.errors.AllTests.suite = function() 
 {
     var TestSuite = buRRRn.ASTUce.TestSuite;
     
-    var suite = new TestSuite( "system unit tests" );
+    var suite = new TestSuite( "system.errors unit tests" );
     
-    suite.addTest( system.data.AllTests.suite()       );
-    suite.addTest( system.errors.AllTests.suite()     );
-    suite.addTest( system.formatters.AllTests.suite() );
-    suite.addTest( system.signals.AllTests.suite()    );
+    //suite.simpleTrace = true;
     
-    return suite;
+    suite.addTest( new TestSuite( system.errors.NoSuchElementErrorTest ) ) ;
+    
+    return suite ;
 }

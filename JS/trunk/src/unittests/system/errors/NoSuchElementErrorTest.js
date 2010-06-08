@@ -35,38 +35,42 @@
   
 */
 
-/////////////////
+// ---o Constructor
 
-getPackage("system.data") ;
-getPackage("system.errors") ;
-getPackage("system.formatters") ;
-getPackage("system.signals") ;
-
-load("unittests/system/data/AllTests.js") ;
-load("unittests/system/errors/AllTests.js") ;
-load("unittests/system/formatters/AllTests.js") ;
-load("unittests/system/signals/AllTests.js") ;
-
-/////////////////
-
-system.AllTests = function( /*String*/ name ) 
+system.errors.NoSuchElementErrorTest = function( name ) 
 {
-    buRRRn.ASTUce.TestCase.call( this, name );
+    buRRRn.ASTUce.TestCase.call( this , name ) ;
 }
 
-system.AllTests.prototype = new buRRRn.ASTUce.TestCase() ;
-system.AllTests.prototype.constructor = system.AllTests ;
+// ----o Inherit
 
-system.AllTests.suite = function() 
+system.errors.NoSuchElementErrorTest.prototype             = new buRRRn.ASTUce.TestCase() ;
+system.errors.NoSuchElementErrorTest.prototype.constructor = system.errors.NoSuchElementErrorTest ;
+
+// ----o Public Methods
+
+system.errors.NoSuchElementErrorTest.prototype.testContructor = function () 
 {
-    var TestSuite = buRRRn.ASTUce.TestSuite;
-    
-    var suite = new TestSuite( "system unit tests" );
-    
-    suite.addTest( system.data.AllTests.suite()       );
-    suite.addTest( system.errors.AllTests.suite()     );
-    suite.addTest( system.formatters.AllTests.suite() );
-    suite.addTest( system.signals.AllTests.suite()    );
-    
-    return suite;
+    var e = new system.errors.NoSuchElementError("message") ;
+    this.assertNotNull( e ) ;
+    this.assertEquals( "message" , e.message ) ; 
+    this.assertEquals( "NoSuchElementError" , e.name ) ; 
+}
+
+system.errors.NoSuchElementErrorTest.prototype.testInherit = function () 
+{
+    var e = new system.errors.NoSuchElementError("message") ;
+    this.assertTrue( e instanceof Error ) ;
+}
+
+system.errors.NoSuchElementErrorTest.prototype.testToSource = function () 
+{
+    var e = new system.errors.NoSuchElementError("message") ;
+    this.assertEquals( "new system.errors.NoSuchElementError(\"message\")" , e.toSource() ) ;
+}
+
+system.errors.NoSuchElementErrorTest.prototype.testToString = function () 
+{
+    var e = new system.errors.NoSuchElementError("message") ;
+    this.assertEquals( "## NoSuchElementError : message ##" , e.toString() ) ;
 }

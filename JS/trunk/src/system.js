@@ -53,6 +53,7 @@ catch(e)
     getPackage("system.data") ;
     getPackage("system.data.iterators") ;
     getPackage("system.data.maps") ;
+    getPackage("system.errors") ;
     getPackage("system.formatters") ;
     getPackage("system.signals") ;
     
@@ -85,6 +86,10 @@ catch(e)
     // system.data.formatters
     
     require( "system.formatters.Formattable" ) ;
+    
+    // system.errors
+    
+    require( "system.errors.NoSuchElementError" ) ;
     
     // system.signals
     
