@@ -35,61 +35,28 @@
   
 */
 
-try 
+// ---o Constructor
+
+system.data.SetTest = function( name ) 
 {
-    dummy = system ;
+    buRRRn.ASTUce.TestCase.call( this , name ) ;
 }
-catch(e) 
+
+// ----o Inherit
+
+system.data.SetTest.prototype             = new buRRRn.ASTUce.TestCase() ;
+system.data.SetTest.prototype.constructor = system.data.SetTest ;
+
+// ----o Public Methods
+
+system.data.SetTest.prototype.testInterface = function () 
 {
-    // constants
-    
-    SRC     = "./" ;
-    SUFFIX  = ".js" ;
-    
-    // packages
-    
-    getPackage("system") ;
-    
-    getPackage("system.data") ;
-    getPackage("system.data.iterators") ;
-    getPackage("system.data.maps") ;
-    getPackage("system.formatters") ;
-    getPackage("system.signals") ;
-    
-    // system.data
-    
-    require( "system.data.Boundable"       ) ;
-    require( "system.data.Collection"      ) ;
-    require( "system.data.Data"            ) ;
-    require( "system.data.Identifiable"    ) ;
-    require( "system.data.Iterable"        ) ;
-    require( "system.data.Iterator"        ) ;
-    require( "system.data.Map"             ) ;
-    require( "system.data.OrderedIterator" ) ;
-    require( "system.data.Set"             ) ;
-    require( "system.data.ValueObject"     ) ;
-    
-    // system.data.iterators
-    
-    require( "system.data.iterators.ArrayIterator"      ) ;
-    require( "system.data.iterators.MapIterator"        ) ;
-    require( "system.data.iterators.PageByPageIterator" ) ;
-    
-    // system.data.maps
-    
-    require( "system.data.maps.ArrayMap"     ) ;
-    require( "system.data.maps.MapEntry"     ) ;
-    require( "system.data.maps.MapFormatter" ) ;
-    
-    // system.data.formatters
-    
-    require( "system.formatters.Formattable" ) ;
-    
-    // system.signals
-    
-    require( "system.signals.Receiver"       ) ;
-    require( "system.signals.Signal"         ) ;
-    require( "system.signals.SignalEntry"    ) ;
-    require( "system.signals.Signaler"       ) ;
-    require( "system.signals.SignalStrings"  ) ;
+    var s = new system.data.Set() ;
+    this.assertNotNull( s ) ;
+}
+
+system.data.SetTest.prototype.testInherit = function () 
+{
+    var s = new system.data.Set() ;
+    this.assertTrue( s instanceof system.data.Collection ) ;
 }

@@ -43,6 +43,7 @@ load("unittests/system/data/IterableTest.js") ;
 load("unittests/system/data/IteratorTest.js") ;
 load("unittests/system/data/MapTest.js") ;
 load("unittests/system/data/OrderedIteratorTest.js") ;
+load("unittests/system/data/SetTest.js") ;
 load("unittests/system/data/ValueObjectTest.js") ;
 
 getPackage("system.data.iterators") ;
@@ -81,6 +82,7 @@ system.data.AllTests.suite = function()
     suite.addTest( new TestSuite( system.data.IteratorTest        ) ) ;
     suite.addTest( new TestSuite( system.data.MapTest             ) ) ;
     suite.addTest( new TestSuite( system.data.OrderedIteratorTest ) ) ;
+    suite.addTest( new TestSuite( system.data.SetTest             ) ) ;
     suite.addTest( new TestSuite( system.data.ValueObjectTest     ) ) ;
     
     suite.addTest( system.data.iterators.AllTests.suite() );
