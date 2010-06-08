@@ -35,37 +35,42 @@
   
 */
 
-load("unittests/system/errors/ConcurrencyErrorTest.js") ;
-load("unittests/system/errors/InvalidChannelErrorTest.js") ;
-load("unittests/system/errors/InvalidFilterErrorTest.js") ;
-load("unittests/system/errors/NoSuchElementErrorTest.js") ;
+// ---o Constructor
 
-// ----o costructor
-
-system.errors.AllTests = function( /*String*/ name ) 
+system.errors.InvalidFilterErrorTest = function( name ) 
 {
-    buRRRn.ASTUce.TestCase.call( this, name );
+    buRRRn.ASTUce.TestCase.call( this , name ) ;
 }
 
 // ----o Inherit
 
-system.errors.AllTests.prototype             = new buRRRn.ASTUce.TestCase() ;
-system.errors.AllTests.prototype.constructor = system.errors.AllTests ;
+system.errors.InvalidFilterErrorTest.prototype             = new buRRRn.ASTUce.TestCase() ;
+system.errors.InvalidFilterErrorTest.prototype.constructor = system.errors.InvalidFilterErrorTest ;
 
 // ----o Public Methods
 
-system.errors.AllTests.suite = function() 
+system.errors.InvalidFilterErrorTest.prototype.testContructor = function () 
 {
-    var TestSuite = buRRRn.ASTUce.TestSuite;
-    
-    var suite = new TestSuite( "system.errors unit tests" );
-    
-    //suite.simpleTrace = true;
-    
-    suite.addTest( new TestSuite( system.errors.ConcurrencyErrorTest    ) ) ;
-    suite.addTest( new TestSuite( system.errors.InvalidChannelErrorTest ) ) ;
-    suite.addTest( new TestSuite( system.errors.InvalidFilterErrorTest  ) ) ;
-    suite.addTest( new TestSuite( system.errors.NoSuchElementErrorTest  ) ) ;
-    
-    return suite ;
+    var e = new system.errors.InvalidFilterError("message") ;
+    this.assertNotNull( e ) ;
+    this.assertEquals( "message" , e.message ) ; 
+    this.assertEquals( "InvalidFilterError" , e.name ) ; 
+}
+
+system.errors.InvalidFilterErrorTest.prototype.testInherit = function () 
+{
+    var e = new system.errors.InvalidFilterError("message") ;
+    this.assertTrue( e instanceof Error ) ;
+}
+
+system.errors.InvalidFilterErrorTest.prototype.testToSource = function () 
+{
+    var e = new system.errors.InvalidFilterError("message") ;
+    this.assertEquals( "new system.errors.InvalidFilterError(\"message\")" , e.toSource() ) ;
+}
+
+system.errors.InvalidFilterErrorTest.prototype.testToString = function () 
+{
+    var e = new system.errors.InvalidFilterError("message") ;
+    this.assertEquals( "## InvalidFilterError : message ##" , e.toString() ) ;
 }
