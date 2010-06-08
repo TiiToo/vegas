@@ -35,39 +35,49 @@
   
 */
 
-load("unittests/system/errors/ConcurrencyErrorTest.js") ;
-load("unittests/system/errors/InvalidChannelErrorTest.js") ;
-load("unittests/system/errors/InvalidFilterErrorTest.js") ;
-load("unittests/system/errors/NonUniqueKeyErrorTest.js") ;
-load("unittests/system/errors/NoSuchElementErrorTest.js") ;
+// ---o Constructor
 
-// ----o costructor
-
-system.errors.AllTests = function( /*String*/ name ) 
+system.errors.NonUniqueKeyErrorTest = function( name ) 
 {
-    buRRRn.ASTUce.TestCase.call( this, name );
+    buRRRn.ASTUce.TestCase.call( this , name ) ;
 }
 
 // ----o Inherit
 
-system.errors.AllTests.prototype             = new buRRRn.ASTUce.TestCase() ;
-system.errors.AllTests.prototype.constructor = system.errors.AllTests ;
+system.errors.NonUniqueKeyErrorTest.prototype             = new buRRRn.ASTUce.TestCase() ;
+system.errors.NonUniqueKeyErrorTest.prototype.constructor = system.errors.NonUniqueKeyErrorTest ;
 
 // ----o Public Methods
 
-system.errors.AllTests.suite = function() 
+system.errors.NonUniqueKeyErrorTest.prototype.testContructor = function () 
 {
-    var TestSuite = buRRRn.ASTUce.TestSuite;
-    
-    var suite = new TestSuite( "system.errors unit tests" );
-    
-    //suite.simpleTrace = true;
-    
-    suite.addTest( new TestSuite( system.errors.ConcurrencyErrorTest    ) ) ;
-    suite.addTest( new TestSuite( system.errors.InvalidChannelErrorTest ) ) ;
-    suite.addTest( new TestSuite( system.errors.InvalidFilterErrorTest  ) ) ;
-    suite.addTest( new TestSuite( system.errors.NonUniqueKeyErrorTest   ) ) ;
-    suite.addTest( new TestSuite( system.errors.NoSuchElementErrorTest  ) ) ;
-    
-    return suite ;
+    var e = new system.errors.NonUniqueKeyError("key") ;
+    this.assertNotNull( e ) ;
+    this.assertEquals( "attempting to insert 'key'" , e.message ) ; 
+    this.assertEquals( "NonUniqueKeyError"          , e.name    ) ;
+    this.assertEquals( "key"                        , e.key     ) ;  
+    this.assertEquals( "attempting to insert '{0}'" , e.pattern     ) ;  
+}
+
+system.errors.NonUniqueKeyErrorTest.prototype.testPATTERN = function () 
+{
+    this.assertEquals( "attempting to insert '{0}'" , system.errors.NonUniqueKeyError.PATTERN ) ;
+}
+
+system.errors.NonUniqueKeyErrorTest.prototype.testInherit = function () 
+{
+    var e = new system.errors.NonUniqueKeyError("key") ;
+    this.assertTrue( e instanceof Error ) ;
+}
+
+system.errors.NonUniqueKeyErrorTest.prototype.testToSource = function () 
+{
+    var e = new system.errors.NonUniqueKeyError("key") ;
+    this.assertEquals( "new system.errors.NonUniqueKeyError(\"key\",\"attempting to insert \\'{0}\\'\")" , e.toSource() ) ;
+}
+
+system.errors.NonUniqueKeyErrorTest.prototype.testToString = function () 
+{
+    var e = new system.errors.NonUniqueKeyError("key") ;
+    this.assertEquals( "## NonUniqueKeyError : attempting to insert 'key' ##" , e.toString() ) ;
 }
