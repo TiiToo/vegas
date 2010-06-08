@@ -62,8 +62,8 @@ if ( system.data.maps.MapFormatter == undefined)
         if ( value != null && value instanceof system.data.Map )
         {
             var r = "{";
-            var vIterator = new system.data.iterators.ArrayIterator( m.getValues() ) ;
-            var kIterator = new system.data.iterators.ArrayIterator( m.getKeys()   ) ;
+            var vIterator = new system.data.iterators.ArrayIterator( value.getValues() ) ;
+            var kIterator = new system.data.iterators.ArrayIterator( value.getKeys()   ) ;
             while( kIterator.hasNext() ) 
             {
                 r += kIterator.next() + ":" + vIterator.next() ;

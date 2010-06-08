@@ -74,6 +74,7 @@ catch(e)
     
     // system.data.maps
     
+    require( "system.data.maps.ArrayMap"     ) ;
     require( "system.data.maps.MapEntry"     ) ;
     require( "system.data.maps.MapFormatter" ) ;
     
