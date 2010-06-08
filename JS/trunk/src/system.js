@@ -89,6 +89,7 @@ catch(e)
     
     // system.errors
     
+    require( "system.errors.ConcurrencyError"   ) ;
     require( "system.errors.NoSuchElementError" ) ;
     
     // system.signals
