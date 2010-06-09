@@ -1,4 +1,4 @@
-VEGAS AS3 - version 1.7.3.1671
+VEGAS AS3 - version 1.7.3.1747
     
 The "vegas.swc" library contains all the AS3 source code of the VEGAS project with all this extensions.
     
