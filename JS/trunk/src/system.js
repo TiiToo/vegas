@@ -59,7 +59,14 @@ catch(e)
     
     // system
     
+    require( "system.Cloneable" ) ;
+    require( "system.Comparable" ) ;
+    require( "system.Comparator" ) ;
     require( "system.Enum" ) ;
+    require( "system.Equatable" ) ;
+    require( "system.Serializable" ) ;
+    require( "system.Serializer" ) ;
+    require( "system.Sortable" ) ;
     
     // system.data
     
