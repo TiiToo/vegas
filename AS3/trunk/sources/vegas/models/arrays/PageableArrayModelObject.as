@@ -248,6 +248,29 @@ package vegas.models.arrays
         }
         
         /**
+         * Returns the ValueObject defined by the id passed in argument register in the model.
+         * @return the ValueObject defined by the id passed in argument register in the model.
+         */
+        public function getVO( id:* ):ValueObject
+        {
+            if ( id == null || _a.length == 0 )
+            {
+                return null ;
+            }
+            var l:int = _a.length ;
+            var vo:ValueObject ;
+            for( var i:int = 0 ; i<l ; i++ )
+            {
+                 vo = _a[i] as ValueObject ;
+                 if ( vo.id == id )
+                 {
+                    return vo ;
+                 }
+            }
+            return null ;
+        }
+        
+        /**
          * Returns <code class="prettyprint">true</code> if the list has a next page.
          * @return <code class="prettyprint">true</code> if the list has a next page.
          */
