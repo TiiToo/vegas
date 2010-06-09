@@ -48,6 +48,7 @@ load("unittests/system/ComparatorTest.js") ;
 load("unittests/system/EnumTest.js") ;
 load("unittests/system/EquatableTest.js") ;
 load("unittests/system/SerializableTest.js") ;
+load("unittests/system/SerializerTest.js") ;
 
 load("unittests/system/data/AllTests.js") ;
 load("unittests/system/errors/AllTests.js") ;
@@ -70,12 +71,13 @@ system.AllTests.suite = function()
     
     var suite = new TestSuite( "system unit tests" );
     
-    suite.addTest( new TestSuite( system.CloneableTest  ) );
-    suite.addTest( new TestSuite( system.ComparableTest ) );
-    suite.addTest( new TestSuite( system.ComparatorTest ) );
-    suite.addTest( new TestSuite( system.EnumTest       ) );
-    suite.addTest( new TestSuite( system.EquatableTest  ) );
-    suite.addTest( new TestSuite( system.SerializableTest  ) );
+    suite.addTest( new TestSuite( system.CloneableTest    ) );
+    suite.addTest( new TestSuite( system.ComparableTest   ) );
+    suite.addTest( new TestSuite( system.ComparatorTest   ) );
+    suite.addTest( new TestSuite( system.EnumTest         ) );
+    suite.addTest( new TestSuite( system.EquatableTest    ) );
+    suite.addTest( new TestSuite( system.SerializableTest ) );
+    suite.addTest( new TestSuite( system.SerializerTest   ) );
     
     suite.addTest( system.data.AllTests.suite()       );
     suite.addTest( system.errors.AllTests.suite()     );
