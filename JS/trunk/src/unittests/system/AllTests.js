@@ -49,6 +49,7 @@ load("unittests/system/EnumTest.js") ;
 load("unittests/system/EquatableTest.js") ;
 load("unittests/system/SerializableTest.js") ;
 load("unittests/system/SerializerTest.js") ;
+load("unittests/system/SortableTest.js") ;
 
 load("unittests/system/data/AllTests.js") ;
 load("unittests/system/errors/AllTests.js") ;
@@ -78,6 +79,7 @@ system.AllTests.suite = function()
     suite.addTest( new TestSuite( system.EquatableTest    ) );
     suite.addTest( new TestSuite( system.SerializableTest ) );
     suite.addTest( new TestSuite( system.SerializerTest   ) );
+    suite.addTest( new TestSuite( system.SortableTest     ) );
     
     suite.addTest( system.data.AllTests.suite()       );
     suite.addTest( system.errors.AllTests.suite()     );
