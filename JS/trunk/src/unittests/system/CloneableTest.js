@@ -35,44 +35,22 @@
   
 */
 
-/////////////////
+// ---o Constructor
 
-getPackage("system.data") ;
-getPackage("system.errors") ;
-getPackage("system.formatters") ;
-getPackage("system.signals") ;
-
-load("unittests/system/CloneableTest.js") ;
-load("unittests/system/EnumTest.js") ;
-
-load("unittests/system/data/AllTests.js") ;
-load("unittests/system/errors/AllTests.js") ;
-load("unittests/system/formatters/AllTests.js") ;
-load("unittests/system/signals/AllTests.js") ;
-
-/////////////////
-
-system.AllTests = function( /*String*/ name ) 
+system.CloneableTest = function( name ) 
 {
-    buRRRn.ASTUce.TestCase.call( this, name );
+    buRRRn.ASTUce.TestCase.call( this , name ) ;
 }
 
-system.AllTests.prototype = new buRRRn.ASTUce.TestCase() ;
-system.AllTests.prototype.constructor = system.AllTests ;
+// ----o Inherit
 
-system.AllTests.suite = function() 
+system.CloneableTest.prototype             = new buRRRn.ASTUce.TestCase() ;
+system.CloneableTest.prototype.constructor = system.CloneableTest ;
+
+// ----o Public Methods
+
+system.CloneableTest.prototype.testInterface = function () 
 {
-    var TestSuite = buRRRn.ASTUce.TestSuite;
-    
-    var suite = new TestSuite( "system unit tests" );
-    
-    suite.addTest( new TestSuite( system.CloneableTest ) );
-    suite.addTest( new TestSuite( system.EnumTest      ) );
-    
-    suite.addTest( system.data.AllTests.suite()       );
-    suite.addTest( system.errors.AllTests.suite()     );
-    suite.addTest( system.formatters.AllTests.suite() );
-    suite.addTest( system.signals.AllTests.suite()    );
-    
-    return suite;
+    var o = new system.Cloneable();
+    this.assertTrue( "clone" in o ) ;
 }
