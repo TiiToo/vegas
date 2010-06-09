@@ -35,46 +35,22 @@
   
 */
 
-/////////////////
+// ---o Constructor
 
-getPackage("system.data") ;
-getPackage("system.errors") ;
-getPackage("system.formatters") ;
-getPackage("system.signals") ;
-
-load("unittests/system/CloneableTest.js") ;
-load("unittests/system/ComparableTest.js") ;
-load("unittests/system/EnumTest.js") ;
-
-load("unittests/system/data/AllTests.js") ;
-load("unittests/system/errors/AllTests.js") ;
-load("unittests/system/formatters/AllTests.js") ;
-load("unittests/system/signals/AllTests.js") ;
-
-/////////////////
-
-system.AllTests = function( /*String*/ name ) 
+system.ComparableTest = function( name ) 
 {
-    buRRRn.ASTUce.TestCase.call( this, name );
+    buRRRn.ASTUce.TestCase.call( this , name ) ;
 }
 
-system.AllTests.prototype = new buRRRn.ASTUce.TestCase() ;
-system.AllTests.prototype.constructor = system.AllTests ;
+// ----o Inherit
 
-system.AllTests.suite = function() 
+system.ComparableTest.prototype             = new buRRRn.ASTUce.TestCase() ;
+system.ComparableTest.prototype.constructor = system.ComparableTest ;
+
+// ----o Public Methods
+
+system.ComparableTest.prototype.testInterface = function () 
 {
-    var TestSuite = buRRRn.ASTUce.TestSuite;
-    
-    var suite = new TestSuite( "system unit tests" );
-    
-    suite.addTest( new TestSuite( system.CloneableTest  ) );
-    suite.addTest( new TestSuite( system.ComparableTest ) );
-    suite.addTest( new TestSuite( system.EnumTest       ) );
-    
-    suite.addTest( system.data.AllTests.suite()       );
-    suite.addTest( system.errors.AllTests.suite()     );
-    suite.addTest( system.formatters.AllTests.suite() );
-    suite.addTest( system.signals.AllTests.suite()    );
-    
-    return suite;
+    var o = new system.Comparable();
+    this.assertTrue( "compareTo" in o ) ;
 }
