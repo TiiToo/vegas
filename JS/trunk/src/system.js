@@ -57,6 +57,10 @@ catch(e)
     getPackage("system.formatters") ;
     getPackage("system.signals") ;
     
+    // system
+    
+    require( "system.Enum" ) ;
+    
     // system.data
     
     require( "system.data.Boundable"       ) ;

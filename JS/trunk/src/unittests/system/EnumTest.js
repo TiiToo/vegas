@@ -35,42 +35,48 @@
   
 */
 
-/////////////////
+// ---o Constructor
 
-getPackage("system.data") ;
-getPackage("system.errors") ;
-getPackage("system.formatters") ;
-getPackage("system.signals") ;
-
-load("unittests/system/EnumTest.js") ;
-
-load("unittests/system/data/AllTests.js") ;
-load("unittests/system/errors/AllTests.js") ;
-load("unittests/system/formatters/AllTests.js") ;
-load("unittests/system/signals/AllTests.js") ;
-
-/////////////////
-
-system.AllTests = function( /*String*/ name ) 
+system.EnumTest = function( name ) 
 {
-    buRRRn.ASTUce.TestCase.call( this, name );
+    buRRRn.ASTUce.TestCase.call( this , name ) ;
 }
 
-system.AllTests.prototype = new buRRRn.ASTUce.TestCase() ;
-system.AllTests.prototype.constructor = system.AllTests ;
+// ----o Inherit
 
-system.AllTests.suite = function() 
+system.EnumTest.prototype             = new buRRRn.ASTUce.TestCase() ;
+system.EnumTest.prototype.constructor = system.EnumTest ;
+
+// ----o Public Methods
+
+system.EnumTest.prototype.testConstructor = function () 
 {
-    var TestSuite = buRRRn.ASTUce.TestSuite;
+    var none = new system.Enum(0 , "NONE");
+    this.assertNotNull( none ) ;
+    this.assertEquals( 0      , none.valueOf() ) ;
+    this.assertEquals( "NONE" , none.toString() ) ; 
+}
+
+system.EnumTest.prototype.testToSource = function () 
+{
+    var none = new system.Enum(0 , "NONE");
+    this.assertEquals( "system.Enum.NONE" , none.toSource() ) ; 
+}
+
+system.EnumTest.prototype.testToSourceWithInheritedConstructor = function () 
+{
+    _global.tests = {} ;
     
-    var suite = new TestSuite( "system unit tests" );
+    tests.Color = function( value , name ) 
+    {
+        system.Enum.call( this , value , name ) ;
+    }
     
-    suite.addTest( new TestSuite( system.EnumTest ) );
+    tests.Color.extend( system.Enum ) ;
     
-    suite.addTest( system.data.AllTests.suite()       );
-    suite.addTest( system.errors.AllTests.suite()     );
-    suite.addTest( system.formatters.AllTests.suite() );
-    suite.addTest( system.signals.AllTests.suite()    );
+    var red = new tests.Color( 0xFF0000 , "RED" );
     
-    return suite;
+    this.assertEquals( "tests.Color.RED" , red.toSource() ) ;
+    
+    delete _global.tests ; 
 }
