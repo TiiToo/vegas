@@ -36,6 +36,7 @@
 */
 
 load("unittests/system/logging/LoggerTest.js") ;
+load("unittests/system/logging/LoggerLevelTest.js") ;
 load("unittests/system/logging/LoggerStringsTest.js") ;
 
 // ----o constructor
@@ -61,6 +62,7 @@ system.logging.AllTests.suite = function()
     //suite.simpleTrace = true;
     
     suite.addTest( new TestSuite( system.logging.LoggerTest ) ) ;
+    suite.addTest( new TestSuite( system.logging.LoggerLevelTest ) ) ;
     suite.addTest( new TestSuite( system.logging.LoggerStringsTest ) ) ;
     
     return suite ;
