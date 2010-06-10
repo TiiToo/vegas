@@ -54,7 +54,7 @@ package examples
             // model.count =  1 ;
             // model.count =  5 ;
             
-            model.count =  2 ;
+            model.count =  4 ;
             
             model.addEventListener( Event.INIT                 , init   ) ;
             model.addEventListener( ModelObjectEvent.UPDATE_VO , update ) ;
@@ -74,7 +74,14 @@ package examples
             trace( "Press Keyboard.LEFT and Keyboard.RIGHT keys to test this model" ) ;
             trace( "Press Keyboard.SPACE to use a page with 4 items inside (change count of items)." ) ;
             
-            model.currentPage = 2 ;
+            trace("--------") ;
+            
+            var vo:SimpleValueObject ;
+            
+            vo = model.getVO( 4 ) as SimpleValueObject ;
+            model.currentPage = model.pageOf(vo) ;
+            
+            trace("--------") ;
         }
         
         public var model:PageableArrayModelObject ;
