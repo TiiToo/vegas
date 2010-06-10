@@ -37,7 +37,7 @@
 
 package vegas.net.remoting 
 {
-    import system.Strings;
+    import core.strings.format;
     
     import vegas.net.FlashVars;
     
@@ -61,14 +61,14 @@ package vegas.net.remoting
         public var flashVars:FlashVars ;
         
         /**
-         * The name "gatewayUrl" of the flashVars passed-in. 
-         */
-        public var urlName:String = "gatewayUrl" ;
-        
-        /**
-         * The name "httpHost" of the flashVars passed-in. 
+         * The name "httpHost" of the member in the flashVars to defines the optional http host. 
          */
         public var httpHostName:String = "httpHost" ;
+        
+        /**
+         * The name "member" in the flashVars to defines the url pattern of the factory. 
+         */
+        public var urlName:String = "gatewayUrl" ;
         
         /**
          * Creates the url with the specified parameters.
@@ -89,7 +89,7 @@ package vegas.net.remoting
             {
                 httpHost = flashVars.getValue( httpHostName ) ;
             }
-            return Strings.format( url, httpHost ) ;
+            return format( url, httpHost ) ;
         }
     }
 }
