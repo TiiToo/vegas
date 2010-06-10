@@ -55,6 +55,7 @@ catch(e)
     getPackage("system.data.maps") ;
     getPackage("system.errors") ;
     getPackage("system.formatters") ;
+    getPackage("system.logging") ;
     getPackage("system.signals") ;
     
     // system
@@ -94,10 +95,6 @@ catch(e)
     require( "system.data.maps.MapEntry"     ) ;
     require( "system.data.maps.MapFormatter" ) ;
     
-    // system.data.formatters
-    
-    require( "system.formatters.Formattable" ) ;
-    
     // system.errors
     
     require( "system.errors.ConcurrencyError"    ) ;
@@ -105,6 +102,21 @@ catch(e)
     require( "system.errors.InvalidFilterError"  ) ;
     require( "system.errors.NonUniqueKeyError"   ) ;
     require( "system.errors.NoSuchElementError"  ) ;
+    
+    // system.data.formatters
+    
+    require( "system.formatters.Formattable" ) ;
+    
+    // system.logging
+    
+    // require( "system.logging.Loggable"     ) ;
+    require( "system.logging.Logger"       ) ;
+    // require( "system.logging.LoggerEntry"  ) ;
+    // require( "system.logging.LoggerFactory"  ) ;
+    // require( "system.logging.LoggerLevel"  ) ;
+    // require( "system.logging.LoggerStrings"  ) ;
+    require( "system.logging.Logger"       ) ;
+    // require( "system.logging.LoggerTarget" ) ;
     
     // system.signals
     

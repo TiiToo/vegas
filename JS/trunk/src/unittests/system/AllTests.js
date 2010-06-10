@@ -40,6 +40,7 @@
 getPackage("system.data") ;
 getPackage("system.errors") ;
 getPackage("system.formatters") ;
+getPackage("system.logging") ;
 getPackage("system.signals") ;
 
 load("unittests/system/CloneableTest.js") ;
@@ -54,6 +55,7 @@ load("unittests/system/SortableTest.js") ;
 load("unittests/system/data/AllTests.js") ;
 load("unittests/system/errors/AllTests.js") ;
 load("unittests/system/formatters/AllTests.js") ;
+load("unittests/system/logging/AllTests.js") ;
 load("unittests/system/signals/AllTests.js") ;
 
 /////////////////
@@ -84,6 +86,7 @@ system.AllTests.suite = function()
     suite.addTest( system.data.AllTests.suite()       );
     suite.addTest( system.errors.AllTests.suite()     );
     suite.addTest( system.formatters.AllTests.suite() );
+    suite.addTest( system.logging.AllTests.suite()    );
     suite.addTest( system.signals.AllTests.suite()    );
     
     return suite;
