@@ -63,7 +63,7 @@ package vegas.net.remoting
         /**
          * The name "gatewayUrl" of the flashVars passed-in. 
          */
-        public var gatewayUrlName:String = "gatewayUrl" ;
+        public var urlName:String = "gatewayUrl" ;
         
         /**
          * The name "httpHost" of the flashVars passed-in. 
@@ -79,17 +79,17 @@ package vegas.net.remoting
          * trace(url) ; // http://localhost/php/gateway.php
          * </pre>
          */
-        public function create( gatewayUrl:String=null , httpHost:String=null ):String
+        public function create( url:String=null , httpHost:String=null ):String
         {
-            if ( flashVars && flashVars.contains( gatewayUrlName ) )
+            if ( flashVars && flashVars.contains( urlName ) )
             {
-                gatewayUrl = flashVars.getValue( gatewayUrlName ) ;
+                url = flashVars.getValue( urlName ) ;
             }
             if ( flashVars && flashVars.contains( httpHostName ) )
             {
                 httpHost = flashVars.getValue( httpHostName ) ;
             }
-            return Strings.format( gatewayUrl, httpHost ) ;
+            return Strings.format( url, httpHost ) ;
         }
     }
 }
