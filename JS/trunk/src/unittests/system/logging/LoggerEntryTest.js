@@ -35,37 +35,37 @@
   
 */
 
-load("unittests/system/logging/LoggerTest.js") ;
-load("unittests/system/logging/LoggerEntryTest.js") ;
-load("unittests/system/logging/LoggerLevelTest.js") ;
-load("unittests/system/logging/LoggerStringsTest.js") ;
+// ---o Constructor
 
-// ----o constructor
-
-system.logging.AllTests = function( /*String*/ name ) 
+system.logging.LoggerEntryTest = function( name ) 
 {
-    buRRRn.ASTUce.TestCase.call( this, name );
+    buRRRn.ASTUce.TestCase.call( this , name ) ;
 }
 
 // ----o Inherit
 
-system.logging.AllTests.prototype             = new buRRRn.ASTUce.TestCase() ;
-system.logging.AllTests.prototype.constructor = system.logging.AllTests ;
+system.logging.LoggerEntryTest.prototype             = new buRRRn.ASTUce.TestCase() ;
+system.logging.LoggerEntryTest.prototype.constructor = system.logging.LoggerEntryTest ;
 
 // ----o Public Methods
 
-system.logging.AllTests.suite = function() 
+system.logging.LoggerEntryTest.prototype.testConstructor = function () 
 {
-    var TestSuite = buRRRn.ASTUce.TestSuite;
-    
-    var suite = new TestSuite( "system.logging unit tests" );
-    
-    //suite.simpleTrace = true;
-    
-    suite.addTest( new TestSuite( system.logging.LoggerTest ) ) ;
-    suite.addTest( new TestSuite( system.logging.LoggerEntryTest ) ) ;
-    suite.addTest( new TestSuite( system.logging.LoggerLevelTest ) ) ;
-    suite.addTest( new TestSuite( system.logging.LoggerStringsTest ) ) ;
-    
-    return suite ;
+    var entry = new system.logging.LoggerEntry( "test", system.logging.LoggerLevel.WARN, "channel" ) ;
+    this.assertNotNull( entry , "#1" ) ; 
+    this.assertEquals( entry.channel , "channel" , "#02") ;
+    this.assertEquals( entry.message , "test" , "#03") ;
+    this.assertEquals( entry.level   , system.logging.LoggerLevel.WARN , "#04") ;
+}
+
+system.logging.LoggerEntryTest.prototype.testLevel = function () 
+{
+    var entry = new system.logging.LoggerEntry( "test", system.logging.LoggerLevel.INFO ) ;
+    this.assertEquals( entry.level , system.logging.LoggerLevel.INFO ) ;
+}
+
+system.logging.LoggerEntryTest.prototype.testMessage = function () 
+{
+    var entry = new system.logging.LoggerEntry( "test", system.logging.LoggerLevel.INFO ) ;
+    this.assertEquals(entry.message , "test" , "message property failed.") ;
 }
