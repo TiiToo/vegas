@@ -282,7 +282,7 @@ package vegas.strings.json
                                 default:
                                 {
                                     var code:Number = c.charCodeAt() ;
-                                    s += '\\u00' + (Math.floor(code / 16).toString(16)) + ((code % 16).toString(16)) ;
+                                    s += '\\u00' + String(Math.floor(code / 16).toString(16)) + ((code % 16).toString(16)) ;
                                 }
                             }
                         }
