@@ -112,7 +112,7 @@ catch(e)
     // require( "system.logging.Loggable"     ) ;
     require( "system.logging.Logger"       ) ;
     require( "system.logging.LoggerEntry"  ) ;
-    // require( "system.logging.LoggerFactory"  ) ;
+    require( "system.logging.LoggerFactory"  ) ;
     require( "system.logging.LoggerLevel"  ) ;
     require( "system.logging.LoggerStrings"  ) ;
     // require( "system.logging.LoggerTarget" ) ;

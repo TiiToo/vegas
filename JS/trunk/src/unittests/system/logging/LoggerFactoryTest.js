@@ -35,43 +35,31 @@
   
 */
 
-getPackage("system.logging.mocks" ) ;
+// ---o Constructor
 
-load("unittests/system/logging/mocks/LoggerReceiver.js") ;
-
-load("unittests/system/logging/LoggerTest.js") ;
-load("unittests/system/logging/LoggerEntryTest.js") ;
-load("unittests/system/logging/LoggerFactoryTest.js") ;
-load("unittests/system/logging/LoggerLevelTest.js") ;
-load("unittests/system/logging/LoggerStringsTest.js") ;
-
-// ----o constructor
-
-system.logging.AllTests = function( /*String*/ name ) 
+system.logging.LoggerFactoryTest = function( name ) 
 {
-    buRRRn.ASTUce.TestCase.call( this, name );
+    buRRRn.ASTUce.TestCase.call( this , name ) ;
 }
 
 // ----o Inherit
 
-system.logging.AllTests.prototype             = new buRRRn.ASTUce.TestCase() ;
-system.logging.AllTests.prototype.constructor = system.logging.AllTests ;
+system.logging.LoggerFactoryTest.prototype             = new buRRRn.ASTUce.TestCase() ;
+system.logging.LoggerFactoryTest.prototype.constructor = system.logging.LoggerFactoryTest ;
 
 // ----o Public Methods
 
-system.logging.AllTests.suite = function() 
+system.logging.LoggerFactoryTest.prototype.setUp = function()
 {
-    var TestSuite = buRRRn.ASTUce.TestSuite;
-    
-    var suite = new TestSuite( "system.logging unit tests" );
-    
-    //suite.simpleTrace = true;
-    
-    suite.addTest( new TestSuite( system.logging.LoggerTest        ) ) ;
-    suite.addTest( new TestSuite( system.logging.LoggerEntryTest   ) ) ;
-    suite.addTest( new TestSuite( system.logging.LoggerFactoryTest ) ) ;
-    suite.addTest( new TestSuite( system.logging.LoggerLevelTest   ) ) ;
-    suite.addTest( new TestSuite( system.logging.LoggerStringsTest ) ) ;
-    
-    return suite ;
+    this.factory = new system.logging.LoggerFactory() ;
+}
+
+system.logging.LoggerFactoryTest.prototype.tearDown = function()
+{
+    this.factory = undefined ;
+}
+
+system.logging.LoggerFactoryTest.prototype.testConstructor = function () 
+{
+    this.assertNotNull( this.factory) ; 
 }

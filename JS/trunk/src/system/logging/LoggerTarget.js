@@ -36,7 +36,8 @@
 */
 
 /**
- * The <code class="prettyprint">Receiver</code> interface is the primary method for receiving values from Signal objects. 
+ * This class provides the basic functionality required by the logging framework for a logger target implementation. 
+ * It handles the validation of filter expressions and provides a default level property. 
  */
 if ( system.logging.LoggerTarget == undefined ) 
 {
@@ -52,67 +53,5 @@ if ( system.logging.LoggerTarget == undefined )
      * @extends Object
      */
     proto = system.logging.LoggerTarget.extend( system.signals.Receiver ) ;
-    
-    /**
-     * Indicates the channel value for the logger.
-     */
-    proto.channel = null ;
-    
-    /**
-     * Logs the specified data using the LogEventLevel.DEBUG level.
-     */
-    proto.debug = function ( context ) /*void*/ 
-    {
-        // 
-    }
-    
-    /**
-     * Logs the specified data using the LogEventLevel.ERROR level.
-     */
-    proto.error = function ( context ) /*void*/ 
-    {
-        // 
-    }
-    
-    /**
-     * Logs the specified data using the LogEventLevel.FATAL level.
-     */
-    proto.fatal = function ( context ) /*void*/ 
-    {
-        // 
-    }
-    
-    /**
-     * Logs the specified data using the LogEvent.INFO level.
-     */
-    proto.info = function ( context ) /*void*/ 
-    {
-        // 
-    }
-    
-    /**
-     * Logs the specified data using the LogEvent.ALL level.
-     * @param context The information to log. This string can contain special marker characters of the form {x}, where x is a zero based index that will be replaced with the additional parameters found at that index if specified.
-     * @param ... Additional parameters that can be subsituted in the str parameter at each "{x}" location, where x is an integer (zero based) index value into the Array of values specified.
-     */
-    proto.log = function ( context ) /*void*/ 
-    {
-        // 
-    }
-    
-    /**
-     * Logs the specified data using the LogEventLevel.WARN level.
-     */
-    proto.warn = function ( context ) /*void*/ 
-    {
-        // 
-    }
-    
-    /**
-     * What a Terrible Failure: Report an exception that should never happen.
-     */
-    proto.wtf = function ( context ) /*void*/ 
-    {
-        // 
-    }
+
 }
