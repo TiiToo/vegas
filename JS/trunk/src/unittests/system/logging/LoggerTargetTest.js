@@ -35,45 +35,36 @@
   
 */
 
-getPackage("system.logging.mocks" ) ;
+// ---o Constructor
 
-load("unittests/system/logging/mocks/LoggerReceiver.js") ;
-
-load("unittests/system/logging/LoggerTest.js") ;
-load("unittests/system/logging/LoggerEntryTest.js") ;
-load("unittests/system/logging/LoggerFactoryTest.js") ;
-load("unittests/system/logging/LoggerLevelTest.js") ;
-load("unittests/system/logging/LoggerStringsTest.js") ;
-load("unittests/system/logging/LoggerTargetTest.js") ;
-
-// ----o constructor
-
-system.logging.AllTests = function( /*String*/ name ) 
+system.logging.LoggerTargetTest = function( name ) 
 {
-    buRRRn.ASTUce.TestCase.call( this, name );
+    buRRRn.ASTUce.TestCase.call( this , name ) ;
 }
 
 // ----o Inherit
 
-system.logging.AllTests.prototype             = new buRRRn.ASTUce.TestCase() ;
-system.logging.AllTests.prototype.constructor = system.logging.AllTests ;
+system.logging.LoggerTargetTest.prototype             = new buRRRn.ASTUce.TestCase() ;
+system.logging.LoggerTargetTest.prototype.constructor = system.logging.LoggerTargetTest ;
 
 // ----o Public Methods
 
-system.logging.AllTests.suite = function() 
+system.logging.LoggerTargetTest.prototype.setUp = function()
 {
-    var TestSuite = buRRRn.ASTUce.TestSuite;
-    
-    var suite = new TestSuite( "system.logging unit tests" );
-    
-    //suite.simpleTrace = true;
-    
-    suite.addTest( new TestSuite( system.logging.LoggerTest        ) ) ;
-    suite.addTest( new TestSuite( system.logging.LoggerEntryTest   ) ) ;
-    suite.addTest( new TestSuite( system.logging.LoggerFactoryTest ) ) ;
-    suite.addTest( new TestSuite( system.logging.LoggerLevelTest   ) ) ;
-    suite.addTest( new TestSuite( system.logging.LoggerStringsTest ) ) ;
-    suite.addTest( new TestSuite( system.logging.LoggerTargetTest  ) ) ;
-    
-    return suite ;
+    this.target = new system.logging.LoggerTarget() ;
+}
+
+system.logging.LoggerTargetTest.prototype.tearDown = function()
+{
+    this.target = undefined ;
+}
+
+system.logging.LoggerTargetTest.prototype.testConstructor = function () 
+{
+    this.assertNotNull( this.target ) ; 
+}
+
+system.logging.LoggerTargetTest.prototype.testInherit = function () 
+{
+    this.assertTrue( this.target instanceof system.signals.Receiver ) ; 
 }

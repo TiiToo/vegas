@@ -115,7 +115,7 @@ catch(e)
     require( "system.logging.LoggerFactory"  ) ;
     require( "system.logging.LoggerLevel"  ) ;
     require( "system.logging.LoggerStrings"  ) ;
-    // require( "system.logging.LoggerTarget" ) ;
+    require( "system.logging.LoggerTarget" ) ;
     
     // system.signals
     
