@@ -49,23 +49,93 @@ system.logging.LoggerTest.prototype.constructor = system.logging.LoggerTest ;
 
 // ----o Public Methods
 
-system.logging.LoggerTest.prototype.testInherit = function () 
+system.logging.LoggerTest.prototype.setUp = function()
 {
-    var logger = new system.logging.Logger() ;
-    this.assertTrue( logger instanceof system.signals.Signal ) ; 
+    this.logger   = new system.logging.Logger( "channel" ) ;
+    this.listener = new system.logging.mocks.LoggerReceiver( this.logger ) ;
 }
 
-system.logging.LoggerTest.prototype.testMembers = function () 
+system.logging.LoggerTest.prototype.tearDown = function()
 {
-    var logger = new system.logging.Logger() ;
-    
-    this.assertTrue( "channel" in logger ) ;
-    
-    this.assertTrue( "debug" in logger ) ;
-    this.assertTrue( "error" in logger ) ;
-    this.assertTrue( "fatal" in logger ) ;
-    this.assertTrue( "info"  in logger ) ;
-    this.assertTrue( "log"   in logger ) ;
-    this.assertTrue( "warn"  in logger ) ;
-    this.assertTrue( "wtf"   in logger ) ;
+    this.logger   = undefined ;
+    this.listener = undefined ;
+}
+
+system.logging.LoggerTest.prototype.testConstructor = function () 
+{
+    this.assertNotNull( this.logger ) ; 
+}
+
+system.logging.LoggerTest.prototype.testInherit = function () 
+{
+    this.assertTrue( this.logger instanceof system.signals.Signal ) ; 
+}
+
+system.logging.LoggerTest.prototype.testChannel = function () 
+{
+    this.assertEquals( "channel" , this.logger.getChannel() ) ; 
+    this.assertEquals( "channel" , this.logger.channel ) ; 
+}
+
+system.logging.LoggerTest.prototype.testLog = function () 
+{
+    this.logger.log( "hello {0}" , "world" ) ;
+    this.assertTrue( this.listener.called    , "01" ) ;
+    this.assertEquals( this.listener.channel , "channel" , "02" ) ;
+    this.assertEquals( this.listener.message , "hello world"     , "03" );
+    this.assertEquals( this.listener.level   , system.logging.LoggerLevel.ALL , "04" );
+}
+
+system.logging.LoggerTest.prototype.testDebug = function () 
+{
+    this.logger.debug( "hello {0}" , "world" ) ;
+    this.assertTrue( this.listener.called    , "01" ) ;
+    this.assertEquals( this.listener.channel , "channel" , "02" ) ;
+    this.assertEquals( this.listener.message , "hello world"     , "03" );
+    this.assertEquals( this.listener.level   , system.logging.LoggerLevel.DEBUG , "04" );
+}
+
+system.logging.LoggerTest.prototype.testError = function () 
+{
+    this.logger.error( "hello {0}" , "world" ) ;
+    this.assertTrue( this.listener.called    , "01" ) ;
+    this.assertEquals( this.listener.channel , "channel" , "02" ) ;
+    this.assertEquals( this.listener.message , "hello world"     , "03" );
+    this.assertEquals( this.listener.level   , system.logging.LoggerLevel.ERROR , "04" );
+}
+
+system.logging.LoggerTest.prototype.testFatal = function () 
+{
+    this.logger.fatal( "hello {0}" , "world" ) ;
+    this.assertTrue( this.listener.called    , "01" ) ;
+    this.assertEquals( this.listener.channel , "channel" , "02" ) ;
+    this.assertEquals( this.listener.message , "hello world"     , "03" );
+    this.assertEquals( this.listener.level   , system.logging.LoggerLevel.FATAL , "04" );
+}
+
+system.logging.LoggerTest.prototype.testInfo = function () 
+{
+    this.logger.info( "hello {0}" , "world" ) ;
+    this.assertTrue( this.listener.called    , "01" ) ;
+    this.assertEquals( this.listener.channel , "channel" , "02" ) ;
+    this.assertEquals( this.listener.message , "hello world"     , "03" );
+    this.assertEquals( this.listener.level   , system.logging.LoggerLevel.INFO , "04" );
+}
+
+system.logging.LoggerTest.prototype.testWarn = function () 
+{
+    this.logger.warn( "hello {0}" , "world" ) ;
+    this.assertTrue( this.listener.called    , "01" ) ;
+    this.assertEquals( this.listener.channel , "channel" , "02" ) ;
+    this.assertEquals( this.listener.message , "hello world"     , "03" );
+    this.assertEquals( this.listener.level   , system.logging.LoggerLevel.WARN , "04" );
+}
+
+system.logging.LoggerTest.prototype.testWtf = function () 
+{
+    this.logger.wtf( "hello {0}" , "world" ) ;
+    this.assertTrue( this.listener.called    , "01" ) ;
+    this.assertEquals( this.listener.channel , "channel" , "02" ) ;
+    this.assertEquals( this.listener.message , "hello world"     , "03" );
+    this.assertEquals( this.listener.level   , system.logging.LoggerLevel.WTF , "04" );
 }

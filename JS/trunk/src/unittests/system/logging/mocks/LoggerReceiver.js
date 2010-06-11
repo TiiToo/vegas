@@ -35,47 +35,65 @@
   
 */
 
-/**
- * Represents the log information for a single logging notification. 
- * The loging system dispatches a single message each time a process requests information be logged.
- * This entry can be captured by any object for storage or formatting.
- */
-if ( system.logging.LoggerEntry == undefined ) 
+if( system.logging.mocks.LoggerReceiver == undefined )
 {
-    /**
-     * Creates a new LoggerEntry.
-     * @param message The context or message of the log.
-     * @param level The level of the log.
-     * @param logger The Logger reference of this entry.
-     */
-    system.logging.LoggerEntry = function ( message , level /*LoggerLevel*/ , logger /*Logger*/ ) 
+    system.logging.mocks.LoggerReceiver = function ( logger /*Logger*/ ) 
     {
-        this.message = message ;
-        this.level   = (level == null) ? system.logging.LoggerLevel.ALL : level ;
-        this.logger  = logger ;
+        if ( logger )
+        {
+            this.register( logger ) ;
+        }
     }
+    
+    ////////////////////////////////////
     
     /**
      * @extends Object
      */
-    proto = system.logging.LoggerEntry.extend( Object ) ;
+    proto = system.logging.mocks.LoggerReceiver.extend( system.signals.Receiver ) ;
     
-    /**
-     * Provides access to the level for this log entry.
-     */
+    ////////////////////////////////////
+    
+    proto.called /*Boolean*/ = false ;
+    
+    proto.channel /*String*/ = null ;
+    
     proto.level /*String*/ = null ;
     
-    /**
-     * Provides access to the logger reference for this log entry.
-     */
-    proto.logger /*Logger*/ = null ;
+    proto.message /*String*/ = null ;
     
-    /**
-     * Provides access to the message that was entry.
-     */
-    proto.message = null ;
+    ////////////////////////////////////
     
-    //////////////
+    proto.receive = function( e /*LoggerEntry*/ )
+    {
+        this.called  = true      ;
+        this.channel = e.logger.channel ;
+        this.level   = e.level   ;
+        this.message = e.message ;
+    }
+    
+    proto.register = function( logger /*Logger*/ ) /*void*/
+    {
+        if ( this.logger )
+        {
+            this.logger.disconnect( this ) ;
+        }
+        this.logger = logger ;
+        if ( this.logger )
+        {
+            this.logger.connect( this ) ;
+        }
+    }
+    
+    proto.unregister = function() /*void*/
+    {
+        if ( this.logger )
+        {
+            this.logger.disconnect( this.logEntry ) ;
+        }
+    }
+    
+    ////////////////////////////////////
     
     delete proto ;
 }

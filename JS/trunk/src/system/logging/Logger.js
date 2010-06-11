@@ -36,7 +36,7 @@
 */
 
 /**
- * All loggers within the logging framework must implement this interface. 
+ * API for sending log output.
  */
 if ( system.logging.Logger == undefined ) 
 {
@@ -47,10 +47,13 @@ if ( system.logging.Logger == undefined )
     
     /**
      * Creates a new Logger instance.
+     * @param channel The channel value of the logger.
      */
-    system.logging.Logger = function () 
+    system.logging.Logger = function ( channel /*String*/ ) 
     {
-        //
+        system.signals.Signal.call( this ) ; // super()
+        this._channel = channel ;
+        this._entry   = new system.logging.LoggerEntry( null , null , this ) ;
     }
     
     /**
@@ -59,16 +62,11 @@ if ( system.logging.Logger == undefined )
     proto = system.logging.Logger.extend( system.signals.Signal ) ;
     
     /**
-     * Indicates the channel value for the logger.
-     */
-    proto.channel = null ;
-    
-    /**
      * Logs the specified data using the LogEventLevel.DEBUG level.
      */
     proto.debug = function ( context ) /*void*/ 
     {
-        // 
+        this._log.apply( this , [ system.logging.LoggerLevel.DEBUG ].concat( Array.fromArguments( arguments ) ) ) ;
     }
     
     /**
@@ -76,7 +74,7 @@ if ( system.logging.Logger == undefined )
      */
     proto.error = function ( context ) /*void*/ 
     {
-        // 
+        this._log.apply( this , [ system.logging.LoggerLevel.ERROR ].concat( Array.fromArguments( arguments ) ) ) ;
     }
     
     /**
@@ -84,7 +82,16 @@ if ( system.logging.Logger == undefined )
      */
     proto.fatal = function ( context ) /*void*/ 
     {
-        // 
+        this._log.apply( this , [ system.logging.LoggerLevel.FATAL ].concat( Array.fromArguments( arguments ) ) ) ;
+    }
+    
+    
+    /**
+     * Indicates the channel value for the logger.
+     */
+    proto.getChannel = function() /*String*/
+    {
+        return this._channel ;
     }
     
     /**
@@ -92,7 +99,7 @@ if ( system.logging.Logger == undefined )
      */
     proto.info = function ( context ) /*void*/ 
     {
-        // 
+        this._log.apply( this , [ system.logging.LoggerLevel.INFO ].concat( Array.fromArguments( arguments ) ) ) ;
     }
     
     /**
@@ -102,7 +109,7 @@ if ( system.logging.Logger == undefined )
      */
     proto.log = function ( context ) /*void*/ 
     {
-        // 
+        this._log.apply( this , [ system.logging.LoggerLevel.ALL ].concat( Array.fromArguments( arguments ) ) ) ;
     }
     
     /**
@@ -110,7 +117,7 @@ if ( system.logging.Logger == undefined )
      */
     proto.warn = function ( context ) /*void*/ 
     {
-        // 
+        this._log.apply( this , [ system.logging.LoggerLevel.WARN ].concat( Array.fromArguments( arguments ) ) ) ;
     }
     
     /**
@@ -118,6 +125,37 @@ if ( system.logging.Logger == undefined )
      */
     proto.wtf = function ( context ) /*void*/ 
     {
-        // 
+        this._log.apply( this , [ system.logging.LoggerLevel.WTF ].concat( Array.fromArguments( arguments ) ) ) ;
     }
+    
+    /**
+     * What a Terrible Failure: Report an exception that should never happen.
+     */
+    proto._log = function ( level /*LoggerLevel*/ , context ) /*void*/ 
+    {
+        if( this.connected() )
+        {
+            if ( ( typeof(context) == "string" || context instanceof String ) && arguments.length > 2 )
+            {
+                var options /*Array*/ = Array.fromArguments( arguments ).slice(2) ;
+                var len /*int*/       = options.length ;
+                for( var i /*int*/ = 0 ; i<len ; i++ )
+                {
+                    context = context.replace( new RegExp( "\\{" + i + "\\}" , "g" ) , options[i] ) ;
+                }
+            }
+            this._entry.message = context ;
+            this._entry.level   = level ;
+            this.emit( this._entry ) ;
+        }
+    }
+    
+    
+    //////////////////////////////////// Virtual properties
+    
+    proto.__defineGetter__( "channel" , proto.getChannel ) ;
+    
+    ////////////////////////////////////
+    
+    delete proto ;
 }

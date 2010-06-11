@@ -51,7 +51,7 @@ if ( system.logging.LoggerTarget == undefined )
     /**
      * @extends Object
      */
-    proto = system.logging.LoggerTarget.extend( Object ) ;
+    proto = system.logging.LoggerTarget.extend( system.signals.Receiver ) ;
     
     /**
      * Indicates the channel value for the logger.

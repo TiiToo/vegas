@@ -49,13 +49,25 @@ system.logging.LoggerEntryTest.prototype.constructor = system.logging.LoggerEntr
 
 // ----o Public Methods
 
+system.logging.LoggerEntryTest.prototype.setUp = function()
+{
+    this.logger = new system.logging.Logger( "channel" ) ;
+    this.entry  = new system.logging.LoggerEntry( "test", system.logging.LoggerLevel.WARN, this.logger ) ;
+}
+
+system.logging.LoggerEntryTest.prototype.tearDown = function()
+{
+    this.logger = undefined ;
+    this.entry  = undefined ;
+}
+
 system.logging.LoggerEntryTest.prototype.testConstructor = function () 
 {
-    var entry = new system.logging.LoggerEntry( "test", system.logging.LoggerLevel.WARN, "channel" ) ;
-    this.assertNotNull( entry , "#1" ) ; 
-    this.assertEquals( entry.channel , "channel" , "#02") ;
-    this.assertEquals( entry.message , "test" , "#03") ;
-    this.assertEquals( entry.level   , system.logging.LoggerLevel.WARN , "#04") ;
+    this.assertNotNull( this.entry , "#1" ) ; 
+    this.assertEquals( this.entry.logger , this.logger , "#02") ;
+    this.assertEquals( this.entry.logger.channel , "channel" , "#03") ;
+    this.assertEquals( this.entry.message , "test" , "#04") ;
+    this.assertEquals( this.entry.level   , system.logging.LoggerLevel.WARN , "#05") ;
 }
 
 system.logging.LoggerEntryTest.prototype.testLevel = function () 

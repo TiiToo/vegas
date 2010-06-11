@@ -35,6 +35,10 @@
   
 */
 
+getPackage("system.logging.mocks" ) ;
+
+load("unittests/system/logging/mocks/LoggerReceiver.js") ;
+
 load("unittests/system/logging/LoggerTest.js") ;
 load("unittests/system/logging/LoggerEntryTest.js") ;
 load("unittests/system/logging/LoggerLevelTest.js") ;
