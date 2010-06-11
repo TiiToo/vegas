@@ -47,6 +47,11 @@ if ( system.logging.LoggerFactory == undefined )
     require( "system.errors.InvalidChannelError" ) ;
     
     /**
+     * @requires system.logging.LoggerLevel
+     */
+    require( "system.logging.LoggerLevel" ) ;
+    
+    /**
      * Creates a new LoggerFactory instance.
      */
     system.logging.LoggerFactory = function () 
@@ -336,4 +341,8 @@ if ( system.logging.LoggerFactory == undefined )
     /////////
     
     delete proto ;
+    
+    /////////
+    
+    system.logging.Log = new system.logging.LoggerFactory() ;
 }
