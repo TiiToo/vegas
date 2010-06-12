@@ -35,49 +35,34 @@
   
 */
 
-getPackage("system.logging.mocks" ) ;
+// ---o Constructor
 
-load("unittests/system/logging/mocks/LoggerReceiver.js") ;
-
-load("unittests/system/logging/LoggableTest.js") ;
-load("unittests/system/logging/LoggerTest.js") ;
-load("unittests/system/logging/LoggerEntryTest.js") ;
-load("unittests/system/logging/LoggerFactoryTest.js") ;
-load("unittests/system/logging/LoggerLevelTest.js") ;
-load("unittests/system/logging/LoggerStringsTest.js") ;
-load("unittests/system/logging/LoggerTargetTest.js") ;
-load("unittests/system/logging/LogTest.js") ;
-
-// ----o constructor
-
-system.logging.AllTests = function( /*String*/ name ) 
+system.logging.LoggableTest = function( name ) 
 {
-    buRRRn.ASTUce.TestCase.call( this, name );
+    buRRRn.ASTUce.TestCase.call( this , name ) ;
 }
 
 // ----o Inherit
 
-system.logging.AllTests.prototype             = new buRRRn.ASTUce.TestCase() ;
-system.logging.AllTests.prototype.constructor = system.logging.AllTests ;
+system.logging.LoggableTest.prototype             = new buRRRn.ASTUce.TestCase() ;
+system.logging.LoggableTest.prototype.constructor = system.logging.LoggableTest ;
 
 // ----o Public Methods
 
-system.logging.AllTests.suite = function() 
+system.logging.LoggableTest.prototype.testConstructor = function () 
 {
-    var TestSuite = buRRRn.ASTUce.TestSuite;
+    var loggable = new system.logging.Loggable() ;
+    this.assertNotNull( loggable ) ; 
+}
+
+system.logging.LoggableTest.prototype.testLogger = function () 
+{
+    var logger   = system.logging.Log.getLogger("channel") ;
+    var loggable = new system.logging.Loggable() ;
     
-    var suite = new TestSuite( "system.logging unit tests" );
+    this.assertNull( loggable.logger ) ;
     
-    //suite.simpleTrace = true;
+    loggable.logger = logger ;
     
-    suite.addTest( new TestSuite( system.logging.LogTest           ) ) ;
-    suite.addTest( new TestSuite( system.logging.LoggableTest      ) ) ;
-    suite.addTest( new TestSuite( system.logging.LoggerTest        ) ) ;
-    suite.addTest( new TestSuite( system.logging.LoggerEntryTest   ) ) ;
-    suite.addTest( new TestSuite( system.logging.LoggerFactoryTest ) ) ;
-    suite.addTest( new TestSuite( system.logging.LoggerLevelTest   ) ) ;
-    suite.addTest( new TestSuite( system.logging.LoggerStringsTest ) ) ;
-    suite.addTest( new TestSuite( system.logging.LoggerTargetTest  ) ) ;
-    
-    return suite ;
+    this.assertEquals( logger , loggable.logger ) ;
 }

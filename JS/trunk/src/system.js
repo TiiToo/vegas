@@ -109,7 +109,7 @@ catch(e)
     
     // system.logging
     
-    // require( "system.logging.Loggable"     ) ;
+    require( "system.logging.Loggable"     ) ;
     require( "system.logging.Logger"       ) ;
     require( "system.logging.LoggerEntry"  ) ;
     require( "system.logging.LoggerFactory"  ) ;

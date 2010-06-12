@@ -173,7 +173,7 @@ if ( system.logging.LoggerTarget == undefined )
     {
         if ( logger )
         {
-            _count-- ;
+            this._count-- ;
             logger.disconnect( this ) ;
         }
     }
