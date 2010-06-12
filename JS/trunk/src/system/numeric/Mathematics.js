@@ -36,8 +36,8 @@
 */
 
 /**
- * The <code class="prettyprint">Receiver</code> interface is the primary method for receiving values from Signal objects. 
- */
+ * The <code class="prettyprint">Mathematics</code> utility singleton is an all-static sigleton with methods for working with numbers.
+ */ 
 if ( system.numeric.Mathematics == undefined ) 
 {
     /**
