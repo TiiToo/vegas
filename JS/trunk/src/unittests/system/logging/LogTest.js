@@ -35,47 +35,38 @@
   
 */
 
-getPackage("system.logging.mocks" ) ;
+// ---o Constructor
 
-load("unittests/system/logging/mocks/LoggerReceiver.js") ;
-
-load("unittests/system/logging/LogTest.js") ;
-load("unittests/system/logging/LoggerTest.js") ;
-load("unittests/system/logging/LoggerEntryTest.js") ;
-load("unittests/system/logging/LoggerFactoryTest.js") ;
-load("unittests/system/logging/LoggerLevelTest.js") ;
-load("unittests/system/logging/LoggerStringsTest.js") ;
-load("unittests/system/logging/LoggerTargetTest.js") ;
-
-// ----o constructor
-
-system.logging.AllTests = function( /*String*/ name ) 
+system.logging.LogTest = function( name ) 
 {
-    buRRRn.ASTUce.TestCase.call( this, name );
+    buRRRn.ASTUce.TestCase.call( this , name ) ;
 }
 
 // ----o Inherit
 
-system.logging.AllTests.prototype             = new buRRRn.ASTUce.TestCase() ;
-system.logging.AllTests.prototype.constructor = system.logging.AllTests ;
+system.logging.LogTest.prototype             = new buRRRn.ASTUce.TestCase() ;
+system.logging.LogTest.prototype.constructor = system.logging.LogTest ;
 
 // ----o Public Methods
 
-system.logging.AllTests.suite = function() 
+system.logging.LogTest.prototype.setUp = function()
 {
-    var TestSuite = buRRRn.ASTUce.TestSuite;
-    
-    var suite = new TestSuite( "system.logging unit tests" );
-    
-    //suite.simpleTrace = true;
-    
-    suite.addTest( new TestSuite( system.logging.LogTest           ) ) ;
-    suite.addTest( new TestSuite( system.logging.LoggerTest        ) ) ;
-    suite.addTest( new TestSuite( system.logging.LoggerEntryTest   ) ) ;
-    suite.addTest( new TestSuite( system.logging.LoggerFactoryTest ) ) ;
-    suite.addTest( new TestSuite( system.logging.LoggerLevelTest   ) ) ;
-    suite.addTest( new TestSuite( system.logging.LoggerStringsTest ) ) ;
-    suite.addTest( new TestSuite( system.logging.LoggerTargetTest  ) ) ;
-    
-    return suite ;
+    this.logger = new system.logging.Logger( "channel" ) ;
+    this.entry  = new system.logging.LoggerEntry( "test", system.logging.LoggerLevel.WARN, this.logger ) ;
+}
+
+system.logging.LogTest.prototype.tearDown = function()
+{
+    this.logger = undefined ;
+    this.entry  = undefined ;
+}
+
+system.logging.LogTest.prototype.testSingleton = function () 
+{
+    this.assertNotNull( system.logging.Log ) ; 
+}
+
+system.logging.LogTest.prototype.testConstructor = function () 
+{
+    this.assertTrue( system.logging.Log instanceof system.logging.LoggerFactory ) ; 
 }
