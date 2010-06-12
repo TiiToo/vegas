@@ -56,6 +56,7 @@ catch(e)
     getPackage("system.errors") ;
     getPackage("system.formatters") ;
     getPackage("system.logging") ;
+    getPackage("system.logging.targets") ;
     getPackage("system.signals") ;
     
     // system
@@ -116,6 +117,11 @@ catch(e)
     require( "system.logging.LoggerLevel"  ) ;
     require( "system.logging.LoggerStrings"  ) ;
     require( "system.logging.LoggerTarget" ) ;
+    
+    // system.logging.targets
+    
+    // require( "system.logging.targets.LineFormattedTarget" ) ;
+    // require( "system.logging.targets.TraceTarget" ) ;
     
     // system.signals
     
