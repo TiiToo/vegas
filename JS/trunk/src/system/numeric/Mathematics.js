@@ -206,7 +206,7 @@ if ( system.numeric.Mathematics == undefined )
      */
     system.numeric.Mathematics.map = function( value /*Number*/, minimum1 /*Number*/, maximum1 /*Number*/, minimum2 /*Number*/, maximum2 /*Number*/) /*Number*/
     {
-        return interpolate( normalize( value, minimum1, maximum1 ), minimum2, maximum2 );
+        return system.numeric.Mathematics.interpolate( system.numeric.Mathematics.normalize( value, minimum1, maximum1 ), minimum2, maximum2 );
     }
     
     /**
@@ -285,13 +285,13 @@ if ( system.numeric.Mathematics == undefined )
      * </pre>
      * @param n the number to defined this sign.
      * @return 1 if the value is positive or -1.
-     * @throws IllegalOperationError if the passed-in value is NaN.
+     * @throws Error if the passed-in value is NaN.
      */
     system.numeric.Mathematics.sign = function( n /*Number*/ ) /*Number*/ 
     {
         if (isNaN( n )) 
         {
-            throw new IllegalOperationError( "Mathematics.sign, the passed-in value not must be NaN." ) ;
+            throw new Error( "Mathematics.sign, the passed-in value not must be NaN." ) ;
         }
         return ( n < 0 ) ? - 1 : 1 ;
     }

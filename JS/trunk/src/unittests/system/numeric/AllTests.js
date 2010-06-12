@@ -35,31 +35,31 @@
   
 */
 
-load("unittests/system/formatters/FormattableTest.js") ;
+load("unittests/system/numeric/MathematicsTest.js") ;
 
 // ----o constructor
 
-system.formatters.AllTests = function( /*String*/ name ) 
+system.numeric.AllTests = function( /*String*/ name ) 
 {
     buRRRn.ASTUce.TestCase.call( this, name );
 }
 
 // ----o Inherit
 
-system.formatters.AllTests.prototype             = new buRRRn.ASTUce.TestCase() ;
-system.formatters.AllTests.prototype.constructor = system.formatters.AllTests ;
+system.numeric.AllTests.prototype             = new buRRRn.ASTUce.TestCase() ;
+system.numeric.AllTests.prototype.constructor = system.numeric.AllTests ;
 
 // ----o Public Methods
 
-system.formatters.AllTests.suite = function() 
+system.numeric.AllTests.suite = function() 
 {
     var TestSuite = buRRRn.ASTUce.TestSuite;
     
-    var suite = new TestSuite( "system.formatters unit tests" );
+    var suite = new TestSuite( "system.numeric unit tests" );
     
     //suite.simpleTrace = true;
     
-    suite.addTest( new TestSuite( system.formatters.FormattableTest ) ) ;
+    suite.addTest( new TestSuite( system.numeric.MathematicsTest ) ) ;
     
     return suite ;
 }
