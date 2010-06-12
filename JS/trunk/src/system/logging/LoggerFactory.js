@@ -134,10 +134,10 @@ if ( system.logging.LoggerFactory == undefined )
             this._loggers.put( channel , result ) ;
         }
         var target /*LoggerTarget*/ ;
-        var len /*int*/ = _targets.length ;
+        var len /*int*/ = this._targets.length ;
         for( var i /*int*/ = 0 ; i<len ; i++ )
         {
-            target = _targets[i] ;
+            target = this._targets[i] ;
             if( this._channelMatchInFilterList( channel , target.filters ) )
             {
                 target.addLogger( result ) ;

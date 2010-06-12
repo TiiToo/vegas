@@ -47,19 +47,105 @@ system.logging.LoggerFactoryTest = function( name )
 system.logging.LoggerFactoryTest.prototype             = new buRRRn.ASTUce.TestCase() ;
 system.logging.LoggerFactoryTest.prototype.constructor = system.logging.LoggerFactoryTest ;
 
+proto = system.logging.LoggerFactoryTest.prototype ;
+
 // ----o Public Methods
 
-system.logging.LoggerFactoryTest.prototype.setUp = function()
+proto.setUp = function()
 {
     this.factory = new system.logging.LoggerFactory() ;
 }
 
-system.logging.LoggerFactoryTest.prototype.tearDown = function()
+proto.tearDown = function()
 {
     this.factory = undefined ;
 }
 
-system.logging.LoggerFactoryTest.prototype.testConstructor = function () 
+proto.testConstructor = function () 
 {
     this.assertNotNull( this.factory) ; 
 }
+
+proto.testGetLogger = function () 
+{
+    var logger1 = this.factory.getLogger("channel1") ;
+    var logger2 = this.factory.getLogger("channel1") ;
+    var logger3 = this.factory.getLogger("channel2") ;
+    this.assertEquals( logger1 , logger2 , "The getLogger() method failed." ) ;
+    this.assertNotSame( logger1 , logger3 , "The getLogger() method failed." ) ;
+}
+
+proto.testGetLoggerWithNullChannel = function () 
+{
+    try
+    {
+        this.factory.getLogger( null ) ;
+        this.fail("01 - The getLogger() method must throw an InvalidChannelError error.") ;
+    }
+    catch( e )
+    {
+        this.assertTrue( e instanceof system.errors.InvalidChannelError , "02 - The getLogger() method must throw an InvalidChannelError error.") ;
+        this.assertEquals( e.message , "Channels must be at least one character in length." , "03 - The getLogger() method must throw an InvalidChannelError error." ) ;
+    }
+}
+
+proto.testGetLoggerWithEmptyChannel = function () 
+{
+    try
+    {
+        this.factory.getLogger( "" ) ;
+        this.fail("01 - The getLogger() method must throw an InvalidChannelError error.") ;
+    }
+    catch( e )
+    {
+        this.assertTrue( e instanceof system.errors.InvalidChannelError , "02 - The getLogger() method must throw an InvalidChannelError error.") ;
+        this.assertEquals( e.message , "Channels must be at least one character in length." , "03 - The getLogger() method must throw an InvalidChannelError error." ) ;
+    }
+}
+
+proto.testGetLoggerWithIllegalCharacters = function () 
+{
+    var chars /*String*/ = system.logging.LoggerStrings.ILLEGALCHARACTERS ;
+    var a /*Array*/      = chars.split("") ;
+    var l /*int*/        = a.length ;
+    while( --l > -1 ) 
+    {
+        this._isIllegalCharacters( a[l] ) ;
+    }
+}
+
+proto.testGetLoggerWithWildCard = function () 
+{
+    try
+    {
+        this.factory.getLogger( "*" ) ;
+        this.fail("01 - The getLogger() method must throw an InvalidChannelError error.") ;
+    }
+    catch( e )
+    {
+        this.assertTrue( e instanceof system.errors.InvalidChannelError , "02 - The getLogger() method must throw an InvalidChannelError error.") ;
+        this.assertEquals( e.message , "Channels can not contain any of the following characters : []~$^&/\\(){}<>+=`!#%?,:;'\"@" , "03 - The getLogger() method must throw an InvalidChannelError error." ) ;
+    }
+}
+
+// TODO More unit tests
+
+//////// private
+
+proto._isIllegalCharacters = function ( c /*String*/ ) /*void*/
+{
+    try
+    {
+        this.factory.getLogger( c ) ;
+        this.fail("The getLogger() method must throw an InvalidChannelError error with the character : " + c ) ;
+    }
+    catch( e )
+    {
+        this.assertTrue( e instanceof system.errors.InvalidChannelError , "02 - The getLogger() method must throw an InvalidChannelError error with the character : " + c ) ;
+        this.assertEquals( e.message , "Channels can not contain any of the following characters : []~$^&/\\(){}<>+=`!#%?,:;'\"@" , "03 - The getLogger() method must throw an InvalidChannelError error with the character : " + c ) ;
+    }
+}
+
+///////
+
+delete proto ;

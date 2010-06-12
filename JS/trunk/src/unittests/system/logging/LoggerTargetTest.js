@@ -177,3 +177,7 @@ proto.testRemoveFilter = function ()
     this.assertEquals( 1 , this.target.filters.length , "1-3" ) ;
     this.assertEquals( "*" , this.target.filters[0] , "1-4") ;
 }
+
+///////
+
+delete proto ;
