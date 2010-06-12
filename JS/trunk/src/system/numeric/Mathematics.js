@@ -98,15 +98,15 @@ if ( system.numeric.Mathematics == undefined )
      */
     system.numeric.Mathematics.clamp = function(value /*Number*/, min /*Number*/, max /*Number*/) /*Number*/ 
     {
-        if (isNaN( value )) 
+        if ( isNaN( value ) ) 
         {
             return NaN ;
         }
-        if (isNaN( min )) 
+        if ( isNaN( min ) ) 
         {
             min = value ;
         }
-        if (isNaN( max )) 
+        if ( isNaN( max ) ) 
         {
             max = value ;
         }

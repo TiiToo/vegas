@@ -35,33 +35,39 @@
   
 */
 
-load("unittests/system/numeric/MathematicsTest.js") ;
-load("unittests/system/numeric/RangeTest.js") ;
+// ---o Constructor
 
-// ----o constructor
-
-system.numeric.AllTests = function( /*String*/ name ) 
+system.numeric.RangeTest = function( name ) 
 {
-    buRRRn.ASTUce.TestCase.call( this, name );
+    buRRRn.ASTUce.TestCase.call( this , name ) ;
 }
 
 // ----o Inherit
 
-system.numeric.AllTests.prototype             = new buRRRn.ASTUce.TestCase() ;
-system.numeric.AllTests.prototype.constructor = system.numeric.AllTests ;
+system.numeric.RangeTest.prototype             = new buRRRn.ASTUce.TestCase() ;
+system.numeric.RangeTest.prototype.constructor = system.numeric.RangeTest ;
+
+proto = system.numeric.RangeTest.prototype ;
 
 // ----o Public Methods
 
-system.numeric.AllTests.suite = function() 
+proto.setUp = function()
 {
-    var TestSuite = buRRRn.ASTUce.TestSuite;
-    
-    var suite = new TestSuite( "system.numeric unit tests" );
-    
-    //suite.simpleTrace = true;
-    
-    suite.addTest( new TestSuite( system.numeric.MathematicsTest ) ) ;
-    suite.addTest( new TestSuite( system.numeric.RangeTest       ) ) ;
-    
-    return suite ;
+    this.range = new system.numeric.Range(100,200) ;
 }
+
+proto.tearDown = function()
+{
+    this.range = undefined ;
+}
+
+proto.testConstructor = function () 
+{
+    this.assertNotNull( this.range ) ; 
+}
+
+
+
+//////////
+
+delete proto ;
