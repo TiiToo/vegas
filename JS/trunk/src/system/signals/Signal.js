@@ -157,7 +157,7 @@ if ( system.signals.Signal == undefined )
      * @param autoDisconnect Apply a disconnect after the first trigger
      * @return <code>true</code> If the receiver is connected with the signal emitter.
      */
-    proto.connect = function ( receiver , priority /*uint*/ , autoDisconnect /*Boolean*/ ) /*uint*/ 
+    proto.connect = function ( receiver , priority /*uint*/ , autoDisconnect /*Boolean*/ ) /*Boolean*/ 
     {
         if ( receiver == null )
         {
@@ -167,7 +167,7 @@ if ( system.signals.Signal == undefined )
         autoDisconnect = Boolean( autoDisconnect ) ;
         priority       = priority > 0 ? Math.ceil(priority) : 0 ;
         
-        if ( receiver instanceof system.signals.Receiver || typeof(receiver) == "function" || ( receiver instanceof Function ) ) 
+        if ( ( typeof(receiver) == "function" ) || ( receiver instanceof Function ) || ( receiver instanceof system.signals.Receiver ) || ( "receive" in receiver ) ) 
         {
             if ( this.hasReceiver( receiver ) )
             {
@@ -245,19 +245,15 @@ if ( system.signals.Signal == undefined )
                 return false ;
             }
         }
-        
         if ( this.receivers.length > 0 )
         {
-            if ( typeof(receiver) == "function" || receiver instanceof Function || receiver instanceof system.signals.Receiver )
+            var l /*int*/ = this.receivers.length ;
+            while( --l > -1 )
             {
-                var l /*int*/ = this.receivers.length ;
-                while( --l > -1 )
+                if ( this.receivers[l].receiver == receiver )
                 {
-                    if ( this.receivers[l].receiver == receiver )
-                    {
-                        this.receivers.splice( l , 1 ) ;
-                        return true ;
-                    }
+                    this.receivers.splice( l , 1 ) ;
+                    return true ;
                 }
             }
         }
@@ -312,13 +308,13 @@ if ( system.signals.Signal == undefined )
         {
             slot = a[i].receiver ;
             
-            if ( slot instanceof system.signals.Receiver )
-            {
-                slot.receive.apply( this.proxy || slot , values ) ;
-            }
-            else
+            if( slot instanceof Function || typeof(receiver) == "function" )
             {
                 slot.apply( this.proxy , values ) ;
+            }
+            else if ( slot instanceof system.signals.Receiver || "receive" in slot )
+            {
+                slot.receive.apply( this.proxy || slot , values ) ;
             }
         }
     }
@@ -354,29 +350,14 @@ if ( system.signals.Signal == undefined )
         }
         if ( this.receivers.length > 0 )
         {
-            if 
-            ( 
-                receiver instanceof system.signals.Receiver 
-                || ( typeof(receiver) == "function" 
-                || ( receiver instanceof Function ) ) 
-            ) 
+            var l /*int*/ = this.receivers.length ;
+            while( --l > -1 )
             {
-                var l /*int*/ = this.receivers.length ;
-                while( --l > -1 )
+                if ( this.receivers[l].receiver == receiver )
                 {
-                    try
-                    {
-                        if ( this.receivers[l].receiver == receiver )
-                        {
-                            return true ;
-                        }
-                    }
-                    catch( e )
-                    {
-                        // not valid SignalEntry reference
-                    }
+                    return true ;
                 }
-           }
+            }
         }
         return false ;
     }

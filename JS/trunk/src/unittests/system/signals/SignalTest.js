@@ -52,11 +52,19 @@ system.signals.SignalTest.prototype.constructor = system.signals.SignalTest ;
 system.signals.SignalTest.prototype.setUp = function()
 {
     this.signal     = new system.signals.Signal() ;
+    
     this.receiver1  = function( message ) 
     { 
         throw message ;
     };
+    
     this.receiver2 = new system.signals.samples.ReceiverClass() ;
+    
+    this.receiver3 = {} ;
+    this.receiver3.receive = function( message )
+    {
+        throw message ;
+    }
 }
 
 system.signals.SignalTest.prototype.tearDown = function()
@@ -64,6 +72,7 @@ system.signals.SignalTest.prototype.tearDown = function()
     this.signal    = undefined ;
     this.receiver1 = undefined ;
     this.receiver2 = undefined ;
+    this.receiver3 = undefined ;
 }
 
 system.signals.SignalTest.prototype.testInterface = function () 
@@ -111,6 +120,9 @@ system.signals.SignalTest.prototype.testLength = function()
     this.assertEquals( this.signal.length , 2 , "03 - length failed.") ;
     this.signal.connect( this.receiver2 ) ;
     this.assertEquals( this.signal.length , 2 , "04 - length failed.") ;
+    
+    this.assertTrue( this.signal.connect( this.receiver3 ) ,  "05 - length failed." ) ;
+    this.assertEquals( this.signal.length , 3 , "06 - length failed.") ;
 }
 
 system.signals.SignalTest.prototype.testTypes = function()
@@ -151,6 +163,12 @@ system.signals.SignalTest.prototype.testConnectReceiver = function()
 {
     this.assertTrue( this.signal.connect( this.receiver2 ) , "01 - The connect method failed.") ;
     this.assertFalse( this.signal.connect( this.receiver2 ) , "02 - The connect method failed.") ;
+}
+
+system.signals.SignalTest.prototype.testConnectObjectWithReceiveMethod = function()
+{
+    this.assertTrue( this.signal.connect( this.receiver3 ) , "01 - The connect method failed.") ;
+    this.assertFalse( this.signal.connect( this.receiver3 ) , "02 - The connect method failed.") ;
 }
 
 system.signals.SignalTest.prototype.testConnectWithPriority = function()
@@ -194,6 +212,14 @@ system.signals.SignalTest.prototype.testDisconnectReceiver = function()
     this.assertFalse( this.signal.disconnect( this.receiver2 ) , "02 - The disconnect method failed.") ;
 }
 
+system.signals.SignalTest.prototype.testDisconnectObjectWithReceiveMethod = function()
+{
+    this.signal.connect( this.receiver3 ) ;
+    this.assertTrue( this.signal.hasReceiver( this.receiver3 ) , "00 - The disconnect method failed.") ;
+    this.assertTrue( this.signal.disconnect( this.receiver3 ) , "01 - The disconnect method failed.") ;
+    this.assertFalse( this.signal.disconnect( this.receiver3 ) , "02 - The disconnect method failed.") ;
+}
+
 system.signals.SignalTest.prototype.testEmit = function()
 {
     this.signal.connect( this.receiver1 ) ;
@@ -211,6 +237,20 @@ system.signals.SignalTest.prototype.testEmit = function()
 system.signals.SignalTest.prototype.testEmitReceiver = function()
 {
     this.signal.connect( this.receiver2 ) ;
+    try
+    {
+        this.signal.emit("hello world") ;
+        this.fail( "The signal must emit a message" ) ;
+    }
+    catch( message )
+    {
+        this.assertEquals( "hello world" , message ) ;
+    }
+}
+
+system.signals.SignalTest.prototype.testEmitWithObjectAndReceiveMethod = function()
+{
+    this.signal.connect( this.receiver3 ) ;
     try
     {
         this.signal.emit("hello world") ;
@@ -240,15 +280,26 @@ system.signals.SignalTest.prototype.testHasReceiverWithReceiver = function()
     this.assertFalse( this.signal.hasReceiver( this.receiver2 ) , "03 - The hasReceiver method failed.") ;
 }
 
+system.signals.SignalTest.prototype.testHasReceiverWithObjectAndReceiveMethod = function()
+{
+    this.assertFalse( this.signal.hasReceiver( this.receiver3 ) , "01 - The hasReceiver method failed.") ;
+    this.signal.connect( this.receiver3 ) ;
+    this.assertTrue( this.signal.hasReceiver( this.receiver3 ) , "02 - The hasReceiver method failed.") ;
+    this.signal.disconnect() ;
+    this.assertFalse( this.signal.hasReceiver( this.receiver3 ) , "03 - The hasReceiver method failed.") ;
+}
+
 system.signals.SignalTest.prototype.testToArray = function()
 {
     this.signal.connect( this.receiver1 , 0 ) ;
     this.signal.connect( this.receiver2 , 0  ) ;
+    this.signal.connect( this.receiver3 , 0  ) ;
     
     var ar = this.signal.toArray() ;
     
     this.assertEquals( ar[0] , this.receiver1 ) ;
     this.assertEquals( ar[1] , this.receiver2 ) ;
+    this.assertEquals( ar[2] , this.receiver3 ) ;
 }
 
 system.signals.SignalTest.prototype.testToString = function()
