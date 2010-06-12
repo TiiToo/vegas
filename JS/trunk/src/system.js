@@ -121,7 +121,7 @@ catch(e)
     // system.logging.targets
     
     require( "system.logging.targets.LineFormattedTarget" ) ;
-    // require( "system.logging.targets.TraceTarget" ) ;
+    require( "system.logging.targets.TraceTarget" ) ;
     
     // system.signals
     

@@ -91,7 +91,7 @@ if ( system.logging.LoggerFactory == undefined )
                 }
             }
             this._targets.push( target );
-            if ( ( this._targetLevel == system.logging.LoggerLevel.NONE ) || ( target.level.valueOf() < _targetLevel.valueOf() ) )
+            if ( ( this._targetLevel == system.logging.LoggerLevel.NONE ) || ( target.level.valueOf() < this._targetLevel.valueOf() ) )
             {
                 this._targetLevel = target.level ;
             }
@@ -329,7 +329,7 @@ if ( system.logging.LoggerFactory == undefined )
         var len /*int*/ = this._targets.length ;
         for ( var i /*int*/ = 0 ; i < len ; i++ )
         {
-            t = _targets[i] ;
+            t = this._targets[i] ;
             if ( ( min == system.logging.LoggerLevel.NONE ) || ( t.level.valueOf() < min.valueOf() ) )
             {
                 min = t.level ;
