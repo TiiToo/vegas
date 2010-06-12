@@ -35,53 +35,35 @@
   
 */
 
-getPackage("system.logging.mocks" ) ;
+getPackage("system.logging.targets" ) ;
 
-load("unittests/system/logging/mocks/LoggerReceiver.js") ;
-
-load("unittests/system/logging/LoggableTest.js") ;
-load("unittests/system/logging/LoggerTest.js") ;
-load("unittests/system/logging/LoggerEntryTest.js") ;
-load("unittests/system/logging/LoggerFactoryTest.js") ;
-load("unittests/system/logging/LoggerLevelTest.js") ;
-load("unittests/system/logging/LoggerStringsTest.js") ;
-load("unittests/system/logging/LoggerTargetTest.js") ;
-load("unittests/system/logging/LogTest.js") ;
-
-load("unittests/system/logging/targets/AllTests.js") ;
+load("unittests/system/logging/targets/LineFormattedTargetTest.js") ;
+load("unittests/system/logging/targets/TraceTargetTest.js") ;
 
 // ----o constructor
 
-system.logging.AllTests = function( /*String*/ name ) 
+system.logging.targets.AllTests = function( /*String*/ name ) 
 {
     buRRRn.ASTUce.TestCase.call( this, name );
 }
 
 // ----o Inherit
 
-system.logging.AllTests.prototype             = new buRRRn.ASTUce.TestCase() ;
-system.logging.AllTests.prototype.constructor = system.logging.AllTests ;
+system.logging.targets.AllTests.prototype             = new buRRRn.ASTUce.TestCase() ;
+system.logging.targets.AllTests.prototype.constructor = system.logging.targets.AllTests ;
 
 // ----o Public Methods
 
-system.logging.AllTests.suite = function() 
+system.logging.targets.AllTests.suite = function() 
 {
     var TestSuite = buRRRn.ASTUce.TestSuite;
     
-    var suite = new TestSuite( "system.logging unit tests" );
+    var suite = new TestSuite( "system.logging.targets unit tests" );
     
     //suite.simpleTrace = true;
     
-    suite.addTest( new TestSuite( system.logging.LogTest           ) ) ;
-    suite.addTest( new TestSuite( system.logging.LoggableTest      ) ) ;
-    suite.addTest( new TestSuite( system.logging.LoggerTest        ) ) ;
-    suite.addTest( new TestSuite( system.logging.LoggerEntryTest   ) ) ;
-    suite.addTest( new TestSuite( system.logging.LoggerFactoryTest ) ) ;
-    suite.addTest( new TestSuite( system.logging.LoggerLevelTest   ) ) ;
-    suite.addTest( new TestSuite( system.logging.LoggerStringsTest ) ) ;
-    suite.addTest( new TestSuite( system.logging.LoggerTargetTest  ) ) ;
-    
-    suite.addTest( system.logging.targets.AllTests.suite() );
+    suite.addTest( new TestSuite( system.logging.targets.LineFormattedTargetTest ) ) ;
+    suite.addTest( new TestSuite( system.logging.targets.TraceTargetTest         ) ) ;
     
     return suite ;
 }
