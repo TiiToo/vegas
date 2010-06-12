@@ -54,3 +54,9 @@ system.logging.targets.TraceTargetTest.prototype.testConstructor = function ()
     var target = new system.logging.targets.TraceTarget() ;
     this.assertNotNull( target ) ; 
 }
+
+system.logging.targets.TraceTargetTest.prototype.testInherit = function () 
+{
+    var target = new system.logging.targets.TraceTarget() ;
+    this.assertTrue( target instanceof system.logging.targets.LineFormattedTarget , "The class must inherit the LineFormattedTarget class.") ;
+}
