@@ -47,24 +47,133 @@ system.logging.LoggerTargetTest = function( name )
 system.logging.LoggerTargetTest.prototype             = new buRRRn.ASTUce.TestCase() ;
 system.logging.LoggerTargetTest.prototype.constructor = system.logging.LoggerTargetTest ;
 
+proto = system.logging.LoggerTargetTest.prototype ;
+
 // ----o Public Methods
 
-system.logging.LoggerTargetTest.prototype.setUp = function()
+proto.setUp = function()
 {
     this.target = new system.logging.LoggerTarget() ;
 }
 
-system.logging.LoggerTargetTest.prototype.tearDown = function()
+proto.tearDown = function()
 {
     this.target = undefined ;
 }
 
-system.logging.LoggerTargetTest.prototype.testConstructor = function () 
+proto.testConstructor = function () 
 {
     this.assertNotNull( this.target ) ; 
 }
 
-system.logging.LoggerTargetTest.prototype.testInherit = function () 
+proto.testInherit = function () 
 {
     this.assertTrue( this.target instanceof system.signals.Receiver ) ; 
+}
+
+proto.testFactory = function () 
+{
+    this.assertEquals( this.target.factory , system.logging.Log , "01 - The factory property failed.") ;
+    
+    var factory = new system.logging.LoggerFactory() ;
+    
+    this.target.factory = factory ;
+    
+    this.assertEquals( this.target.factory , factory , "02 - The factory property failed.") ;
+}
+
+proto.testFiltersDefault = function () 
+{
+    this.assertNotNull( this.target.filters , "1") ;
+    this.assertTrue( this.target.filters instanceof Array , "2") ;
+    this.assertEquals( 1 , this.target.filters.length , "3") ;
+    this.assertEquals( "*" , this.target.filters[0] , "4") ;
+}
+
+proto.testFiltersNormal = function () 
+{
+    this.target.filters = ["test", "system.*"] ;
+    this.assertNotNull( this.target.filters , "1") ;
+    this.assertTrue( this.target.filters instanceof Array , "2") ;
+    this.assertEquals( 2 , this.target.filters.length , "3" ) ;
+    this.assertEquals( "test" , this.target.filters[0] , "4") ;
+    this.assertEquals( "system.*" , this.target.filters[1] , "5") ;
+}
+
+proto.testFiltersNull = function () 
+{
+    this.target.filters = null ;
+    this.assertNotNull( this.target.filters , "1") ;
+    this.assertTrue( this.target.filters instanceof Array , "2") ;
+    this.assertEquals( 1 , this.target.filters.length , "3") ;
+    this.assertEquals( "*" , this.target.filters[0] , "4") ;
+}
+
+proto.testFiltersRepeatFilter = function () 
+{
+    this.target.filters = ["test" , "test" , "system.*" ] ;
+    this.assertNotNull( this.target.filters , "1") ;
+    this.assertTrue( this.target.filters instanceof Array , "2") ;
+    this.assertEquals( 2 , this.target.filters.length , "3" ) ;
+    this.assertEquals( "test" , this.target.filters[0] , "4") ;
+    this.assertEquals( "system.*" , this.target.filters[1] , "5") ;
+}
+
+proto.testFiltersWithNullFilter = function () 
+{
+    try
+    {
+        this.target.filters = [ null ] ;
+        this.fail("01") ;
+    }
+    catch( e )
+    {
+        this.assertTrue( e instanceof system.errors.InvalidFilterError , "02") ;
+        this.assertEquals( e.message , "filter must not be null or empty." , "03") ;
+    }
+}
+
+// TODO finalize the tests when the filters are invalid !!
+
+proto.testLevel = function () 
+{
+    this.assertEquals( system.logging.LoggerLevel.ALL , this.target.level , "1") ;
+    
+    this.target.level = system.logging.LoggerLevel.DEBUG ;
+    
+    this.assertEquals( system.logging.LoggerLevel.DEBUG , this.target.level , "2") ;
+}
+
+proto.testAddFilter = function () 
+{
+    this.assertFalse( this.target.addFilter( "*" ) , "1-0" ) ;
+    this.assertNotNull( this.target.filters , "1-1") ;
+    this.assertTrue( this.target.filters instanceof Array , "1-2") ;
+    this.assertEquals( 1 , this.target.filters.length , "1-3" ) ;
+    this.assertEquals( "*" , this.target.filters[0] , "1-4") ;
+    
+    this.assertTrue( this.target.addFilter( "test" ) , "2-0" ) ;
+    this.assertNotNull( this.target.filters , "2-1") ;
+    this.assertTrue( this.target.filters instanceof Array , "2-2") ;
+    this.assertEquals( 2 , this.target.filters.length , "2-3" ) ;
+    this.assertEquals( "*" , this.target.filters[0] , "2-4") ;
+    this.assertEquals( "test" , this.target.filters[1] , "2-4") ;
+    
+    this.assertFalse( this.target.addFilter( "test" ) , "3-0" ) ;
+    this.assertNotNull( this.target.filters , "3-1") ;
+    this.assertTrue( this.target.filters instanceof Array , "3-2") ;
+    this.assertEquals( 2 , this.target.filters.length , "3-3" ) ;
+    this.assertEquals( "*" , this.target.filters[0] , "3-4") ;
+    this.assertEquals( "test" , this.target.filters[1] , "3-4") ;
+}
+
+proto.testRemoveFilter = function () 
+{
+    this.target.addFilter( "test" ) ;
+    
+    this.assertTrue( this.target.removeFilter( "test" ) , "1-0" ) ;
+    this.assertNotNull( this.target.filters , "1-1") ;
+    this.assertTrue( this.target.filters instanceof Array , "1-2") ;
+    this.assertEquals( 1 , this.target.filters.length , "1-3" ) ;
+    this.assertEquals( "*" , this.target.filters[0] , "1-4") ;
 }

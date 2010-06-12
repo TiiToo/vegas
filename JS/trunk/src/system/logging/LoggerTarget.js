@@ -197,17 +197,25 @@ if ( system.logging.LoggerTarget == undefined )
      */
     proto.setFilters = function( value /*Array*/ ) /*void*/
     {
+        var filters /*Array*/ = [] ;
+        
         if ( value != null && value.length > 0 )
         {
-            var len /*int*/ = value.length ;
-            for ( var i /*int*/ = 0 ; i<len ; i++ )
+            var filter /*String*/ ;
+            var length  /*int*/ = value.length ;
+            for ( var i /*int*/ = 0 ; i < length ; i++ )
             {
-                this._checkFilter( String(value[i]) ) ;
+                filter = value[i] ;
+                if ( filters.indexOf( filter ) == -1 )
+                {
+                    this._checkFilter( filter ) ;
+                    filters.push( filter ) ;
+                }
             }
         }
         else
         {
-            value = ["*"] ;
+            filters.push( "*" ) ;
         }
         
         if ( this._count > 0 )
@@ -215,7 +223,7 @@ if ( system.logging.LoggerTarget == undefined )
             this._factory.removeTarget( this ) ;
         }
         
-        this._filters = value ;
+        this._filters = filters ;
         
         if ( this._count > 0 )
         {

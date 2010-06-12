@@ -91,14 +91,14 @@ if ( system.logging.LoggerFactory == undefined )
                 }
             }
             this._targets.push( target );
-            if ( ( this._targetLevel == LoggerLevel.NONE ) || ( target.level.valueOf() < _targetLevel.valueOf() ) )
+            if ( ( this._targetLevel == system.logging.LoggerLevel.NONE ) || ( target.level.valueOf() < _targetLevel.valueOf() ) )
             {
                 this._targetLevel = target.level ;
             }
         }
         else
         {
-            throw new Error( LoggerStrings.INVALID_TARGET );
+            throw new Error( system.logging.LoggerStrings.INVALID_TARGET );
         }
     }
     
@@ -253,7 +253,7 @@ if ( system.logging.LoggerFactory == undefined )
         }
         else
         {
-            throw new Error( LoggerStrings.INVALID_TARGET );
+            throw new Error( system.logging.LoggerStrings.INVALID_TARGET );
         }
     }
     
