@@ -57,6 +57,7 @@ catch(e)
     getPackage("system.formatters") ;
     getPackage("system.logging") ;
     getPackage("system.logging.targets") ;
+    getPackage("system.numeric") ;
     getPackage("system.signals") ;
     
     // system
@@ -122,6 +123,10 @@ catch(e)
     
     require( "system.logging.targets.LineFormattedTarget" ) ;
     require( "system.logging.targets.TraceTarget" ) ;
+    
+    // system.numeric
+    
+    require( "system.numeric.Mathematics" ) ;
     
     // system.signals
     
