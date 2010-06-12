@@ -110,17 +110,17 @@ catch(e)
     
     // system.logging
     
-    require( "system.logging.Loggable"     ) ;
-    require( "system.logging.Logger"       ) ;
-    require( "system.logging.LoggerEntry"  ) ;
-    require( "system.logging.LoggerFactory"  ) ;
-    require( "system.logging.LoggerLevel"  ) ;
-    require( "system.logging.LoggerStrings"  ) ;
-    require( "system.logging.LoggerTarget" ) ;
+    require( "system.logging.Loggable"      ) ;
+    require( "system.logging.Logger"        ) ;
+    require( "system.logging.LoggerEntry"   ) ;
+    require( "system.logging.LoggerFactory" ) ;
+    require( "system.logging.LoggerLevel"   ) ;
+    require( "system.logging.LoggerStrings" ) ;
+    require( "system.logging.LoggerTarget"  ) ;
     
     // system.logging.targets
     
-    // require( "system.logging.targets.LineFormattedTarget" ) ;
+    require( "system.logging.targets.LineFormattedTarget" ) ;
     // require( "system.logging.targets.TraceTarget" ) ;
     
     // system.signals
