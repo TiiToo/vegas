@@ -55,7 +55,7 @@ system.process.StartableTest.prototype.testConstructor = function ()
     this.assertNotNull( command ) ;
 }
 
-system.process.StartableTest.prototype.testData = function () 
+system.process.StartableTest.prototype.testStart = function () 
 {
     var command = new system.process.Startable() ;
     this.assertTrue( "start" in command ) ;

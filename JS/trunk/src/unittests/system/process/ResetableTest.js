@@ -55,7 +55,7 @@ system.process.ResetableTest.prototype.testConstructor = function ()
     this.assertNotNull( command ) ;
 }
 
-system.process.ResetableTest.prototype.testData = function () 
+system.process.ResetableTest.prototype.testReset = function () 
 {
     var command = new system.process.Resetable() ;
     this.assertTrue( "reset" in command ) ;

@@ -55,7 +55,7 @@ system.process.StoppableTest.prototype.testConstructor = function ()
     this.assertNotNull( command ) ;
 }
 
-system.process.StoppableTest.prototype.testData = function () 
+system.process.StoppableTest.prototype.testStop = function () 
 {
     var command = new system.process.Stoppable() ;
     this.assertTrue( "stop" in command ) ;

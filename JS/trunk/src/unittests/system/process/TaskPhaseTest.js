@@ -37,26 +37,48 @@
 
 // ---o Constructor
 
-system.process.RunnableTest = function( name ) 
+system.process.TaskPhaseTest = function( name ) 
 {
     buRRRn.ASTUce.TestCase.call( this , name ) ;
 }
 
 // ----o Inherit
 
-system.process.RunnableTest.prototype             = new buRRRn.ASTUce.TestCase() ;
-system.process.RunnableTest.prototype.constructor = system.process.RunnableTest ;
+system.process.TaskPhaseTest.prototype             = new buRRRn.ASTUce.TestCase() ;
+system.process.TaskPhaseTest.prototype.constructor = system.process.TaskPhaseTest ;
+
+proto = system.process.TaskPhaseTest.prototype ;
 
 // ----o Public Methods
 
-system.process.RunnableTest.prototype.testConstructor = function () 
+proto.testDELAYED = function()
 {
-    var command = new system.process.Runnable() ;
-    this.assertNotNull( command ) ;
+    this.assertEquals( "delayed" , system.process.TaskPhase.DELAYED ) ;
 }
 
-system.process.RunnableTest.prototype.testRun = function () 
+proto.testFINISHED = function()
 {
-    var command = new system.process.Runnable() ;
-    this.assertTrue( "run" in command ) ;
+    this.assertEquals( "finished" , system.process.TaskPhase.FINISHED ) ;
 }
+
+proto.testINACTIVE = function()
+{
+    this.assertEquals( "inactive" , system.process.TaskPhase.INACTIVE ) ;
+}
+
+proto.testRUNNING = function()
+{
+    this.assertEquals( "running" , system.process.TaskPhase.RUNNING ) ;
+}
+
+proto.testSTOPPED = function()
+{
+    this.assertEquals( "stopped" , system.process.TaskPhase.STOPPED ) ;
+}
+
+proto.testTIMEOUT = function()
+{
+    this.assertEquals( "timeout" , system.process.TaskPhase.TIMEOUT ) ;
+}
+
+delete proto ;

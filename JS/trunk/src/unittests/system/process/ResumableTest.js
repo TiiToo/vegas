@@ -55,7 +55,7 @@ system.process.ResumableTest.prototype.testConstructor = function ()
     this.assertNotNull( command ) ;
 }
 
-system.process.ResumableTest.prototype.testData = function () 
+system.process.ResumableTest.prototype.testResume = function () 
 {
     var command = new system.process.Resumable() ;
     this.assertTrue( "resume" in command ) ;

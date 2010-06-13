@@ -141,6 +141,7 @@ catch(e)
     require( "system.process.Runnable"  ) ;
     require( "system.process.Startable" ) ;
     require( "system.process.Stoppable" ) ;
+    require( "system.process.TaskPhase" ) ;
     
     // system.signals
     
