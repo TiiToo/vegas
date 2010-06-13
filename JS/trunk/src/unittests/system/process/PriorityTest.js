@@ -35,21 +35,57 @@
   
 */
 
-load("unittests/system/process/RunnableTest.js") ;
-load("unittests/system/process/PriorityTest.js") ;
+// ---o Constructor
 
-system.process.AllTests = {} ;
-
-system.process.AllTests.suite = function() 
+system.process.PriorityTest = function( name ) 
 {
-    var TestSuite = buRRRn.ASTUce.TestSuite;
-    
-    var suite = new TestSuite( "system.process unit tests" );
-    
-    //suite.simpleTrace = true;
-    
-    suite.addTest( new TestSuite( system.process.RunnableTest ) ) ;
-    suite.addTest( new TestSuite( system.process.PriorityTest ) ) ;
-    
-    return suite ;
+    buRRRn.ASTUce.TestCase.call( this , name ) ;
 }
+
+// ----o Inherit
+
+system.process.PriorityTest.prototype             = new buRRRn.ASTUce.TestCase() ;
+system.process.PriorityTest.prototype.constructor = system.process.PriorityTest ;
+
+proto = system.process.PriorityTest.prototype ;
+
+// ----o Public Methods
+
+proto.setUp = function()
+{
+    this.p = new system.process.Priority() ; 
+}
+
+proto.tearDown = function()
+{
+    this.p = undefined ;
+}
+
+proto.testConstructor = function () 
+{
+    this.assertNotNull( this.p ) ;
+}
+
+proto.testPriority = function () 
+{
+    this.assertEquals( 0 , this.p.priority , "#1" ) ;
+    this.p.priority = 25 ;
+    this.assertEquals( 25 , this.p.priority , "#2" ) ;
+}
+
+proto.testGetPriority = function () 
+{
+    this.assertEquals( 0 , this.p.getPriority() , "#1" ) ;
+    this.p.priority = 9999 ;
+    this.assertEquals( 9999 , this.p.getPriority() , "#2" ) ;
+}
+
+proto.testSetPriority = function () 
+{
+    this.p.setPriority( 25 ) ;
+    this.assertEquals( 25 , this.p.priority ) ;
+}
+
+////////
+
+delete proto ;
