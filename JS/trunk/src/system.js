@@ -58,6 +58,7 @@ catch(e)
     getPackage("system.logging") ;
     getPackage("system.logging.targets") ;
     getPackage("system.numeric") ;
+    getPackage("system.process") ;
     getPackage("system.signals") ;
     
     // system
@@ -130,6 +131,10 @@ catch(e)
     require( "system.numeric.PRNG"        ) ;
     require( "system.numeric.Range"       ) ;
     require( "system.numeric.RomanNumber" ) ;
+    
+    // system.process
+    
+    require( "system.process.Runnable" ) ;
     
     // system.signals
     
