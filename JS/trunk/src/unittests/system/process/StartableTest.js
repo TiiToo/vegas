@@ -35,25 +35,28 @@
   
 */
 
-load("unittests/system/process/LockableTest.js") ;
-load("unittests/system/process/RunnableTest.js") ;
-load("unittests/system/process/PriorityTest.js") ;
-load("unittests/system/process/StartableTest.js") ;
+// ---o Constructor
 
-system.process.AllTests = {} ;
-
-system.process.AllTests.suite = function() 
+system.process.StartableTest = function( name ) 
 {
-    var TestSuite = buRRRn.ASTUce.TestSuite;
-    
-    var suite = new TestSuite( "system.process unit tests" );
-    
-    //suite.simpleTrace = true;
-    
-    suite.addTest( new TestSuite( system.process.LockableTest  ) ) ;
-    suite.addTest( new TestSuite( system.process.RunnableTest  ) ) ;
-    suite.addTest( new TestSuite( system.process.PriorityTest  ) ) ;
-    suite.addTest( new TestSuite( system.process.StartableTest ) ) ;
-    
-    return suite ;
+    buRRRn.ASTUce.TestCase.call( this , name ) ;
+}
+
+// ----o Inherit
+
+system.process.StartableTest.prototype             = new buRRRn.ASTUce.TestCase() ;
+system.process.StartableTest.prototype.constructor = system.process.StartableTest ;
+
+// ----o Public Methods
+
+system.process.StartableTest.prototype.testConstructor = function () 
+{
+    var command = new system.process.Startable() ;
+    this.assertNotNull( command ) ;
+}
+
+system.process.StartableTest.prototype.testData = function () 
+{
+    var command = new system.process.Startable() ;
+    this.assertTrue( "start" in command ) ;
 }

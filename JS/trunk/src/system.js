@@ -134,9 +134,10 @@ catch(e)
     
     // system.process
     
-    require( "system.process.Lockable" ) ;
-    require( "system.process.Priority" ) ;
-    require( "system.process.Runnable" ) ;
+    require( "system.process.Lockable"  ) ;
+    require( "system.process.Priority"  ) ;
+    require( "system.process.Runnable"  ) ;
+    require( "system.process.Startable" ) ;
     
     // system.signals
     
