@@ -127,6 +127,7 @@ catch(e)
     // system.numeric
     
     require( "system.numeric.Mathematics" ) ;
+    require( "system.numeric.PRNG"        ) ;
     require( "system.numeric.Range"       ) ;
     
     // system.signals

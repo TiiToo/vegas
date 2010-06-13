@@ -35,35 +35,66 @@
   
 */
 
-load("unittests/system/numeric/MathematicsTest.js") ;
-load("unittests/system/numeric/PRNGTest.js") ;
-load("unittests/system/numeric/RangeTest.js") ;
+// ---o Constructor
 
-// ----o constructor
-
-system.numeric.AllTests = function( /*String*/ name ) 
+system.numeric.PRNGTest = function( name ) 
 {
-    buRRRn.ASTUce.TestCase.call( this, name );
+    buRRRn.ASTUce.TestCase.call( this , name ) ;
 }
 
 // ----o Inherit
 
-system.numeric.AllTests.prototype             = new buRRRn.ASTUce.TestCase() ;
-system.numeric.AllTests.prototype.constructor = system.numeric.AllTests ;
+system.numeric.PRNGTest.prototype             = new buRRRn.ASTUce.TestCase() ;
+system.numeric.PRNGTest.prototype.constructor = system.numeric.PRNGTest ;
+
+proto = system.numeric.PRNGTest.prototype ;
 
 // ----o Public Methods
 
-system.numeric.AllTests.suite = function() 
+proto.setUp = function()
 {
-    var TestSuite = buRRRn.ASTUce.TestSuite;
-    
-    var suite = new TestSuite( "system.numeric unit tests" );
-    
-    //suite.simpleTrace = true;
-    
-    suite.addTest( new TestSuite( system.numeric.MathematicsTest ) ) ;
-    suite.addTest( new TestSuite( system.numeric.PRNGTest        ) ) ;
-    suite.addTest( new TestSuite( system.numeric.RangeTest       ) ) ;
-    
-    return suite ;
+    this.random = new system.numeric.PRNG( 1 ) ;
 }
+
+proto.tearDown = function()
+{
+    this.random = undefined ;
+}
+
+proto.testConstructor = function()
+{
+    this.assertNotNull( this.random , "Constructor failed." ) ;
+}
+
+// test random methods (the prng algo is linear, the random value is alway the same (except if we use a random.value = Math.random() * X)
+
+proto.testValue = function()
+{
+    this.assertEquals( this.random.value , 1 , "value failed." ) ;
+}
+
+proto.testValueMax = function()
+{
+    this.random.value = 0X7FFFFFFE + 1 ;
+    this.assertEquals( this.random.value , 0X7FFFFFFE , "max value failed." ) ;
+}
+
+proto.testValueMin = function()
+{
+    this.random.value = 0 ;
+    this.assertEquals( this.random.value , 1 , "min value failed." ) ;
+}
+
+proto.testToString = function()
+{
+    this.assertEquals( this.random.toString() , "1" ) ;
+}
+
+proto.testValueOf = function()
+{
+    this.assertEquals( this.random.valueOf() , 1 ) ;
+}
+
+//////////
+
+delete proto ;
