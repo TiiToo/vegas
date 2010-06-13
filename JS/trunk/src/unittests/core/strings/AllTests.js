@@ -51,22 +51,10 @@ load("unittests/core/strings/trimEndTest.js"             ) ;
 load("unittests/core/strings/trimStartTest.js"           ) ;
 load("unittests/core/strings/whiteSpaceCharsTest.js"     ) ;
 
-// ----o constructor
+core.strings.AllTests = {} ;
 
-core.strings.AllTests = function( /*String*/ name ) 
+core.strings.AllTests.suite = function() 
 {
-    buRRRn.ASTUce.TestCase.call( this, name );
-}
-
-// ----o Inherit
-
-core.strings.AllTests.prototype             = new buRRRn.ASTUce.TestCase() ;
-core.strings.AllTests.prototype.constructor = core.strings.AllTests ;
-
-// ----o Public Methods
-
-core.strings.AllTests.suite = function() {
-    
     var TestSuite = buRRRn.ASTUce.TestSuite;
     
     var suite = new TestSuite( "core.strings unit tests" );

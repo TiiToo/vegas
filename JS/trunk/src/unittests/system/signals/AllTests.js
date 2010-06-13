@@ -46,17 +46,7 @@ load("unittests/system/signals/SignalStringsTest.js") ;
 
 // ----o constructor
 
-system.signals.AllTests = function( /*String*/ name ) 
-{
-    buRRRn.ASTUce.TestCase.call( this, name );
-}
-
-// ----o Inherit
-
-system.signals.AllTests.prototype             = new buRRRn.ASTUce.TestCase() ;
-system.signals.AllTests.prototype.constructor = system.signals.AllTests ;
-
-// ----o Public Methods
+system.signals.AllTests = {} ;
 
 system.signals.AllTests.suite = function() 
 {

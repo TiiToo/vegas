@@ -44,22 +44,10 @@ load("unittests/core/arrays/repeatTest.js") ;
 load("unittests/core/arrays/shuffleTest.js") ;
 load("unittests/core/arrays/spliceIntoTest.js") ;
 
-// ----o constructor
+core.arrays.AllTests = {} ;
 
-core.arrays.AllTests = function( /*String*/ name ) 
+core.arrays.AllTests.suite = function() 
 {
-    buRRRn.ASTUce.TestCase.call( this, name );
-}
-
-// ----o Inherit
-
-core.arrays.AllTests.prototype             = new buRRRn.ASTUce.TestCase() ;
-core.arrays.AllTests.prototype.constructor = core.arrays.AllTests ;
-
-// ----o Public Methods
-
-core.arrays.AllTests.suite = function() {
-    
     var TestSuite = buRRRn.ASTUce.TestSuite;
     
     var suite = new TestSuite( "core.arrays unit tests" );

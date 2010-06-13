@@ -40,19 +40,7 @@ load("unittests/system/data/maps/ArrayMapTest.js") ;
 load("unittests/system/data/maps/MapEntryTest.js") ;
 load("unittests/system/data/maps/MapFormatterTest.js") ;
 
-// ----o constructor
-
-system.data.maps.AllTests = function( /*String*/ name ) 
-{
-    buRRRn.ASTUce.TestCase.call( this, name );
-}
-
-// ----o Inherit
-
-system.data.maps.AllTests.prototype             = new buRRRn.ASTUce.TestCase() ;
-system.data.maps.AllTests.prototype.constructor = system.data.maps.AllTests ;
-
-// ----o Public Methods
+system.data.maps.AllTests = {} ;
 
 system.data.maps.AllTests.suite = function() 
 {

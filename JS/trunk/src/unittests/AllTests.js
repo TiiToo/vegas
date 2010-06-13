@@ -45,13 +45,7 @@ load("unittests/system/AllTests.js") ;
 
 /////////
 
-AllTests = function( /*String*/ name ) 
-{
-    buRRRn.ASTUce.TestCase.call( this, name );
-}
-
-AllTests.prototype = new buRRRn.ASTUce.TestCase() ;
-AllTests.prototype.constructor = AllTests ;
+AllTests = {} ;
 
 AllTests.suite = function() 
 {

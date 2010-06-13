@@ -53,19 +53,7 @@ getPackage("system.data.maps") ;
 load("unittests/system/data/iterators/AllTests.js") ;
 load("unittests/system/data/maps/AllTests.js") ;
 
-// ----o constructor
-
-system.data.AllTests = function( /*String*/ name ) 
-{
-    buRRRn.ASTUce.TestCase.call( this, name );
-}
-
-// ----o Inherit
-
-system.data.AllTests.prototype             = new buRRRn.ASTUce.TestCase() ;
-system.data.AllTests.prototype.constructor = system.data.AllTests ;
-
-// ----o Public Methods
+system.data.AllTests = {} ;
 
 system.data.AllTests.suite = function() 
 {

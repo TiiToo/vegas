@@ -43,17 +43,7 @@ load("unittests/system/errors/NoSuchElementErrorTest.js") ;
 
 // ----o costructor
 
-system.errors.AllTests = function( /*String*/ name ) 
-{
-    buRRRn.ASTUce.TestCase.call( this, name );
-}
-
-// ----o Inherit
-
-system.errors.AllTests.prototype             = new buRRRn.ASTUce.TestCase() ;
-system.errors.AllTests.prototype.constructor = system.errors.AllTests ;
-
-// ----o Public Methods
+system.errors.AllTests = {} ;
 
 system.errors.AllTests.suite = function() 
 {

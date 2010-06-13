@@ -48,17 +48,10 @@ load("unittests/core/dumpStringTest.js" ) ;
 
 /////////////////
 
-core.AllTests = function( /*String*/ name ) 
-{
-    buRRRn.ASTUce.TestCase.call( this, name );
-}
-
-core.AllTests.prototype = new buRRRn.ASTUce.TestCase() ;
-core.AllTests.prototype.constructor = core.AllTests ;
+core.AllTests = {} ;
 
 core.AllTests.suite = function() 
 {
-    
     var TestSuite = buRRRn.ASTUce.TestSuite;
     
     var suite = new TestSuite( "core unit tests" );

@@ -39,17 +39,7 @@ load("unittests/system/formatters/FormattableTest.js") ;
 
 // ----o constructor
 
-system.formatters.AllTests = function( /*String*/ name ) 
-{
-    buRRRn.ASTUce.TestCase.call( this, name );
-}
-
-// ----o Inherit
-
-system.formatters.AllTests.prototype             = new buRRRn.ASTUce.TestCase() ;
-system.formatters.AllTests.prototype.constructor = system.formatters.AllTests ;
-
-// ----o Public Methods
+system.formatters.AllTests = {} ;
 
 system.formatters.AllTests.suite = function() 
 {

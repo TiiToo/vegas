@@ -41,17 +41,7 @@ load("unittests/system/numeric/RangeTest.js") ;
 
 // ----o constructor
 
-system.numeric.AllTests = function( /*String*/ name ) 
-{
-    buRRRn.ASTUce.TestCase.call( this, name );
-}
-
-// ----o Inherit
-
-system.numeric.AllTests.prototype             = new buRRRn.ASTUce.TestCase() ;
-system.numeric.AllTests.prototype.constructor = system.numeric.AllTests ;
-
-// ----o Public Methods
+system.numeric.AllTests = {} ;
 
 system.numeric.AllTests.suite = function() 
 {

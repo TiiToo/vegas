@@ -40,19 +40,7 @@ getPackage("system.logging.targets" ) ;
 load("unittests/system/logging/targets/LineFormattedTargetTest.js") ;
 load("unittests/system/logging/targets/TraceTargetTest.js") ;
 
-// ----o constructor
-
-system.logging.targets.AllTests = function( /*String*/ name ) 
-{
-    buRRRn.ASTUce.TestCase.call( this, name );
-}
-
-// ----o Inherit
-
-system.logging.targets.AllTests.prototype             = new buRRRn.ASTUce.TestCase() ;
-system.logging.targets.AllTests.prototype.constructor = system.logging.targets.AllTests ;
-
-// ----o Public Methods
+system.logging.targets.AllTests = {} ;
 
 system.logging.targets.AllTests.suite = function() 
 {

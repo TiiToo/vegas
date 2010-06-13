@@ -39,19 +39,7 @@ load("unittests/system/data/iterators/ArrayIteratorTest.js") ;
 load("unittests/system/data/iterators/MapIteratorTest.js") ;
 load("unittests/system/data/iterators/PageByPageIteratorTest.js") ;
 
-// ----o constructor
-
-system.data.iterators.AllTests = function( /*String*/ name ) 
-{
-    buRRRn.ASTUce.TestCase.call( this, name );
-}
-
-// ----o Inherit
-
-system.data.iterators.AllTests.prototype             = new buRRRn.ASTUce.TestCase() ;
-system.data.iterators.AllTests.prototype.constructor = system.data.iterators.AllTests ;
-
-// ----o Public Methods
+system.data.iterators.AllTests = {} ;
 
 system.data.iterators.AllTests.suite = function() 
 {

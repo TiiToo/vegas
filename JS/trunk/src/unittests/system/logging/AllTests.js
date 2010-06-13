@@ -50,19 +50,7 @@ load("unittests/system/logging/LogTest.js") ;
 
 load("unittests/system/logging/targets/AllTests.js") ;
 
-// ----o constructor
-
-system.logging.AllTests = function( /*String*/ name ) 
-{
-    buRRRn.ASTUce.TestCase.call( this, name );
-}
-
-// ----o Inherit
-
-system.logging.AllTests.prototype             = new buRRRn.ASTUce.TestCase() ;
-system.logging.AllTests.prototype.constructor = system.logging.AllTests ;
-
-// ----o Public Methods
+system.logging.AllTests = {} ;
 
 system.logging.AllTests.suite = function() 
 {
