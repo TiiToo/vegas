@@ -35,31 +35,28 @@
   
 */
 
-load("unittests/system/process/LockableTest.js") ;
-load("unittests/system/process/PriorityTest.js") ;
-load("unittests/system/process/ResetableTest.js") ;
-load("unittests/system/process/ResumableTest.js") ;
-load("unittests/system/process/RunnableTest.js") ;
-load("unittests/system/process/StartableTest.js") ;
-load("unittests/system/process/StoppableTest.js") ;
+// ---o Constructor
 
-system.process.AllTests = {} ;
-
-system.process.AllTests.suite = function() 
+system.process.ResumableTest = function( name ) 
 {
-    var TestSuite = buRRRn.ASTUce.TestSuite;
-    
-    var suite = new TestSuite( "system.process unit tests" );
-    
-    //suite.simpleTrace = true;
-    
-    suite.addTest( new TestSuite( system.process.LockableTest  ) ) ;
-    suite.addTest( new TestSuite( system.process.PriorityTest  ) ) ;
-    suite.addTest( new TestSuite( system.process.ResetableTest ) ) ;
-    suite.addTest( new TestSuite( system.process.ResumableTest ) ) ;
-    suite.addTest( new TestSuite( system.process.RunnableTest  ) ) ;
-    suite.addTest( new TestSuite( system.process.StartableTest ) ) ;
-    suite.addTest( new TestSuite( system.process.StoppableTest ) ) ;
-    
-    return suite ;
+    buRRRn.ASTUce.TestCase.call( this , name ) ;
+}
+
+// ----o Inherit
+
+system.process.ResumableTest.prototype             = new buRRRn.ASTUce.TestCase() ;
+system.process.ResumableTest.prototype.constructor = system.process.ResumableTest ;
+
+// ----o Public Methods
+
+system.process.ResumableTest.prototype.testConstructor = function () 
+{
+    var command = new system.process.Resumable() ;
+    this.assertNotNull( command ) ;
+}
+
+system.process.ResumableTest.prototype.testData = function () 
+{
+    var command = new system.process.Resumable() ;
+    this.assertTrue( "resume" in command ) ;
 }
