@@ -123,6 +123,104 @@ proto.testParseBasic = function()
     this.assertEquals( "",  rn.parse(    0 ) );
 }
 
+proto.testParseAdditionRule = function()
+{
+    var rn = new system.numeric.RomanNumber();
+    
+    this.assertEquals( "MI", rn.parse( 1001 ) );
+    this.assertEquals( "MD", rn.parse( 1500 ) );
+    this.assertEquals( "MDC", rn.parse( 1600 ) );
+    this.assertEquals( "CCLXVII", rn.parse( 267 ) );
+}
+
+proto.testParseShortestNotationRule = function()
+{
+    var rn = new system.numeric.RomanNumber();
+    
+    this.assertEquals( "LV",   rn.parse( 55 ) );
+    this.assertEquals( "LXVI", rn.parse( 66 ) );
+}
+
+proto.testParseSubstractionRule = function()
+{
+    var rn = new system.numeric.RomanNumber();
+    
+    this.assertEquals( "XL",   rn.parse(   40 ) );
+    this.assertEquals( "XLIV", rn.parse(   44 ) );
+    this.assertEquals( "XLIX", rn.parse(   49 ) );
+    this.assertEquals( "XCIX", rn.parse(   99 ) );
+    this.assertEquals( "CM",   rn.parse(  900 ) );
+    this.assertEquals( "MCM",  rn.parse( 1900 ) );
+}
+
+proto.testParseSpecialCase = function()
+{
+    var rn = new system.numeric.RomanNumber();
+    
+    this.assertEquals( "DCLXVI",   rn.parse(  666 ) ); //Using every symbol except M in descending order gives the beast number.
+    this.assertEquals( "MCDXLIV",  rn.parse( 1444 ) ); //Smallest pandigital number (each symbol is used)
+    this.assertEquals( "MDCLXVI",  rn.parse( 1666 ) ); //Largest efficient pandigital number (each symbol occurs exactly once)
+    this.assertEquals( "MCMXLV",   rn.parse( 1945 ) );
+    this.assertEquals( "MCMXCVII", rn.parse( 1997 ) );
+    this.assertEquals( "MCMXCIX",  rn.parse( 1999 ) );
+}
+
+// parseRomanString 
+ 
+proto.testParseRomanStringBasic = function()
+{
+    this.assertEquals( 1000, system.numeric.RomanNumber.parseRomanString( "M" ) );
+    this.assertEquals(  500, system.numeric.RomanNumber.parseRomanString( "D" ) );
+    this.assertEquals(  100, system.numeric.RomanNumber.parseRomanString( "C" ) );
+    this.assertEquals(   50, system.numeric.RomanNumber.parseRomanString( "L" ) );
+    this.assertEquals(   10, system.numeric.RomanNumber.parseRomanString( "X" ) );
+    this.assertEquals(    5, system.numeric.RomanNumber.parseRomanString( "V" ) );
+    this.assertEquals(    1, system.numeric.RomanNumber.parseRomanString( "I" ) );
+    this.assertEquals(    0, system.numeric.RomanNumber.parseRomanString( ""  ) );
+}
+
+proto.testParseRomanStringAdditionRule = function()
+{
+    this.assertEquals( 1001, system.numeric.RomanNumber.parseRomanString( "MI" ) );
+    this.assertEquals( 1500, system.numeric.RomanNumber.parseRomanString( "MD" ) );
+    this.assertEquals( 1600, system.numeric.RomanNumber.parseRomanString( "MDC" ) );
+    this.assertEquals( 267,  system.numeric.RomanNumber.parseRomanString( "CCLXVII" ) );
+}
+
+proto.testParseRomanStringShortestNotationRule = function()
+{
+    this.assertEquals( 55, system.numeric.RomanNumber.parseRomanString( "LV" ) );
+    this.assertEquals( 66, system.numeric.RomanNumber.parseRomanString( "LXVI" ) );
+}
+
+proto.testParseRomanStringSubstractionRule = function()
+{
+    this.assertEquals( 40,   system.numeric.RomanNumber.parseRomanString( "XL" ) );
+    this.assertEquals( 44,   system.numeric.RomanNumber.parseRomanString( "XLIV" ) );
+    this.assertEquals( 49,   system.numeric.RomanNumber.parseRomanString( "XLIX" ) );
+    this.assertEquals( 99,   system.numeric.RomanNumber.parseRomanString( "XCIX" ) );
+    this.assertEquals( 900,  system.numeric.RomanNumber.parseRomanString( "CM" ) );
+    this.assertEquals( 1900, system.numeric.RomanNumber.parseRomanString( "MCM" ) );
+}
+
+proto.testParseRomanStringSpecialCase = function()
+{
+    this.assertEquals(  666, system.numeric.RomanNumber.parseRomanString( "DCLXVI"   )) ; //Using every symbol except M in descending order gives the beast number.
+    this.assertEquals( 1444, system.numeric.RomanNumber.parseRomanString( "MCDXLIV"  )) ; //Smallest pandigital number (each symbol is used)
+    this.assertEquals( 1666, system.numeric.RomanNumber.parseRomanString( "MDCLXVI"  )) ; //Largest efficient pandigital number (each symbol occurs exactly once)
+    this.assertEquals( 1945, system.numeric.RomanNumber.parseRomanString( "MCMXLV"   )) ;
+    this.assertEquals( 1997, system.numeric.RomanNumber.parseRomanString( "MCMXCVII" )) ;
+    this.assertEquals( 1999, system.numeric.RomanNumber.parseRomanString( "MCMXCIX"  )) ;
+}  
+
+proto.testParseRomanStringBadChars = function()
+{
+    this.assertEquals(  0, system.numeric.RomanNumber.parseRomanString( "A" ) );
+    this.assertEquals(  0, system.numeric.RomanNumber.parseRomanString( "DCA" ) );  
+    this.assertEquals(  0, system.numeric.RomanNumber.parseRomanString( "MCMXCIA" ) );
+    this.assertEquals(  0, system.numeric.RomanNumber.parseRomanString( "MCMXCAI" ) );
+}
+
 //////////
 
 delete proto ;
