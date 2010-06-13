@@ -169,7 +169,14 @@ if (system.numeric.Range == undefined)
      */
     proto.equals = function (o) /*Boolean*/ 
     {
-        return (o instanceof system.numeric.Range) && (o.min == this.min) && (o.max == this.max) ; 
+        if ( o instanceof system.numeric.Range )
+        {
+            return  ( o.min == this.min ) && ( o.max == this.max ) ;
+        }
+        else
+        {
+            return false ;
+        } 
     }
     
     /**
@@ -182,9 +189,17 @@ if (system.numeric.Range == undefined)
      */
     proto.expand = function ( lowerMargin /*Number*/, upperMargin/*Number*/ ) /*Range*/
     {
-        var size  /*Number*/ = this.size() ;
-        var lower /*Number*/ = size * lowerMargin ;
-        var upper /*Number*/ = size * upperMargin ;
+        if ( isNaN(lowerMargin) )
+        {
+            lowerMargin = 1 ;
+        }
+        if ( isNaN(upperMargin) )
+        {
+            upperMargin = 1 ;
+        }
+        var l  /*Number*/ = this.max - this.min ;
+        var lower /*Number*/ = l * lowerMargin ;
+        var upper /*Number*/ = l * upperMargin ;
         return new system.numeric.Range( this.min - lower , this.max + upper ) ;
     }
     
@@ -245,7 +260,7 @@ if (system.numeric.Range == undefined)
      */
     proto.overlap = function ( r /*Range*/ ) /*Boolean*/ 
     {
-        return (this.max > r.min) && (r.max > this.min) ;
+        return ( (this.max >= r.min) && (r.max >= this.min) ) ;
     }
     
     /**
@@ -261,7 +276,7 @@ if (system.numeric.Range == undefined)
      * Returns the source represensation of the object.
      * @return the source represensation of the object.
      */
-    proto.toSource = function (indent/*Number*/, indentor/*String*/)/*String*/ 
+    proto.toSource = function ( indent/*Number*/, indentor/*String*/ )/*String*/ 
     {
         return "new system.numeric.Range(" + this.min + "," + this.max + ")";
     }
