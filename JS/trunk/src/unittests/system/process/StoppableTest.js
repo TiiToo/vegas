@@ -35,27 +35,28 @@
   
 */
 
-load("unittests/system/process/LockableTest.js") ;
-load("unittests/system/process/RunnableTest.js") ;
-load("unittests/system/process/PriorityTest.js") ;
-load("unittests/system/process/StartableTest.js") ;
-load("unittests/system/process/StoppableTest.js") ;
+// ---o Constructor
 
-system.process.AllTests = {} ;
-
-system.process.AllTests.suite = function() 
+system.process.StoppableTest = function( name ) 
 {
-    var TestSuite = buRRRn.ASTUce.TestSuite;
-    
-    var suite = new TestSuite( "system.process unit tests" );
-    
-    //suite.simpleTrace = true;
-    
-    suite.addTest( new TestSuite( system.process.LockableTest  ) ) ;
-    suite.addTest( new TestSuite( system.process.RunnableTest  ) ) ;
-    suite.addTest( new TestSuite( system.process.PriorityTest  ) ) ;
-    suite.addTest( new TestSuite( system.process.StartableTest ) ) ;
-    suite.addTest( new TestSuite( system.process.StoppableTest ) ) ;
-    
-    return suite ;
+    buRRRn.ASTUce.TestCase.call( this , name ) ;
+}
+
+// ----o Inherit
+
+system.process.StoppableTest.prototype             = new buRRRn.ASTUce.TestCase() ;
+system.process.StoppableTest.prototype.constructor = system.process.StoppableTest ;
+
+// ----o Public Methods
+
+system.process.StoppableTest.prototype.testConstructor = function () 
+{
+    var command = new system.process.Stoppable() ;
+    this.assertNotNull( command ) ;
+}
+
+system.process.StoppableTest.prototype.testData = function () 
+{
+    var command = new system.process.Stoppable() ;
+    this.assertTrue( "stop" in command ) ;
 }
