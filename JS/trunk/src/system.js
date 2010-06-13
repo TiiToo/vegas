@@ -136,6 +136,7 @@ catch(e)
     
     require( "system.process.Lockable"  ) ;
     require( "system.process.Priority"  ) ;
+    require( "system.process.Resetable" ) ;
     require( "system.process.Runnable"  ) ;
     require( "system.process.Startable" ) ;
     require( "system.process.Stoppable" ) ;
