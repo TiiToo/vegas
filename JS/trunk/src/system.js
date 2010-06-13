@@ -134,6 +134,7 @@ catch(e)
     
     // system.process
     
+    require( "system.process.Lockable" ) ;
     require( "system.process.Priority" ) ;
     require( "system.process.Runnable" ) ;
     

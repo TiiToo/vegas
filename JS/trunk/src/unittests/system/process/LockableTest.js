@@ -35,23 +35,50 @@
   
 */
 
-load("unittests/system/process/LockableTest.js") ;
-load("unittests/system/process/RunnableTest.js") ;
-load("unittests/system/process/PriorityTest.js") ;
+// ---o Constructor
 
-system.process.AllTests = {} ;
-
-system.process.AllTests.suite = function() 
+system.process.LockableTest = function( name ) 
 {
-    var TestSuite = buRRRn.ASTUce.TestSuite;
-    
-    var suite = new TestSuite( "system.process unit tests" );
-    
-    //suite.simpleTrace = true;
-    
-    suite.addTest( new TestSuite( system.process.LockableTest ) ) ;
-    suite.addTest( new TestSuite( system.process.RunnableTest ) ) ;
-    suite.addTest( new TestSuite( system.process.PriorityTest ) ) ;
-    
-    return suite ;
+    buRRRn.ASTUce.TestCase.call( this , name ) ;
 }
+
+// ----o Inherit
+
+system.process.LockableTest.prototype             = new buRRRn.ASTUce.TestCase() ;
+system.process.LockableTest.prototype.constructor = system.process.LockableTest ;
+
+proto = system.process.LockableTest.prototype ;
+
+// ----o Public Methods
+
+proto.setUp = function()
+{
+    this.bolt = new system.process.Lockable() ; 
+}
+
+proto.tearDown = function()
+{
+    this.bolt = undefined ;
+}
+
+proto.testConstructor = function () 
+{
+    this.assertNotNull( this.bolt ) ;
+}
+
+proto.testIsLocked = function () 
+{
+    this.assertFalse( this.bolt.isLocked() , "#1" ) ;
+}
+
+proto.testLockUnLock = function () 
+{
+    this.bolt.lock() ;
+    this.assertTrue( this.bolt.isLocked() , "#1" ) ;
+    this.bolt.unlock() ;
+    this.assertFalse( this.bolt.isLocked() , "#2" ) ;
+}
+
+////////
+
+delete proto ;
