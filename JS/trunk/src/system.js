@@ -129,6 +129,7 @@ catch(e)
     require( "system.numeric.Mathematics" ) ;
     require( "system.numeric.PRNG"        ) ;
     require( "system.numeric.Range"       ) ;
+    require( "system.numeric.RomanNumber" ) ;
     
     // system.signals
     
