@@ -186,11 +186,16 @@ if ( system.data.collections.TypedCollection == undefined)
     proto.toSource = function () /*String*/ 
     {
         var source /*String*/ = "new " + this.getConstructorPath() + "(" ;
-        source = this._type.toSource() ;
-        if ( this._a.length > 0 )
+        if ( typeof(this._type) == "string" || this._type instanceof String )
         {
-            source += "," + core.dump( this._co ) ;
-        } 
+            source += this._type.toSource() ;
+        }
+        else if ( this._type instanceof Function )
+        {
+            source += (new this._type()).getConstructorPath() ;
+        }
+        source += "," ;
+        source += core.dump( this._co ) ;
         source += ")" ;
         return source ;
     }

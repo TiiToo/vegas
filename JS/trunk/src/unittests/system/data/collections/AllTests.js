@@ -38,6 +38,7 @@
 
 load("unittests/system/data/collections/ArrayCollectionTest.js") ;
 load("unittests/system/data/collections/CollectionFormatterTest.js") ;
+load("unittests/system/data/collections/TypedCollectionTest.js") ;
 
 system.data.collections.AllTests = {} ;
 
@@ -51,6 +52,7 @@ system.data.collections.AllTests.suite = function()
     
     suite.addTest( new TestSuite( system.data.collections.ArrayCollectionTest     ) ) ;
     suite.addTest( new TestSuite( system.data.collections.CollectionFormatterTest ) ) ;
+    suite.addTest( new TestSuite( system.data.collections.TypedCollectionTest     ) ) ;
     
     return suite ;
 }

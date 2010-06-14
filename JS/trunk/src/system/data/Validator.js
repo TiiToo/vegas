@@ -70,7 +70,7 @@ if ( system.data.Validator == undefined )
     {
         if ( !this.supports(value) ) 
         {
-            throw new TypeError( this + " validate('" + value + "') failed, the type is mismatch.")
+            throw new TypeError( "[" + this.getConstructorName() + "] validate('" + value + "') failed, the type is mismatch.")
         }
     }
     

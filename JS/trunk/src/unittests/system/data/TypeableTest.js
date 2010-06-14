@@ -189,7 +189,7 @@ proto.testValidate = function ()
     catch( e )
     {
         this.assertTrue( e instanceof TypeError , "#2" ) ;
-        this.assertEquals( "[Typeable] validate('2') failed, the type is mismatch."  , e.message , "#3" ) ; 
+        this.assertEquals( "[Typeable] validate('2') failed, the type is mismatch." , e.message , "#3" ) ; 
     }
 }
 
