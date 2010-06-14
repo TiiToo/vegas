@@ -52,7 +52,7 @@ if ( system.data.maps.MapEntry == undefined)
     }
     
     /**
-     * @extends system.data.Iterator
+     * @extends Object
      */
     proto = system.data.maps.MapEntry.extend( Object ) ;
     

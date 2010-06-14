@@ -36,21 +36,21 @@
 */
 
 /**
- * Converts a Map to a custom string representation.
+ * Converts a Collection to a custom string representation.
  */
-if ( system.data.maps.MapFormatter == undefined) 
+if ( system.data.collections.CollectionFormatter == undefined) 
 {
     /**
-     * Creates a new MapFormatter instance.
+     * Creates a new CollectionFormatter instance.
      */
-    system.data.maps.MapFormatter = function () 
+    system.data.collections.CollectionFormatter = function () 
     { 
     }
     
     /**
      * @extends Object
      */
-    proto = system.data.maps.MapFormatter.extend( Object ) ;
+    proto = system.data.collections.CollectionFormatter.extend( Object ) ;
     
     /**
      * Formats the specified value.
@@ -59,26 +59,25 @@ if ( system.data.maps.MapFormatter == undefined)
      */
     proto.format = function( value ) /*String*/ 
     {
-        if ( value != null && value instanceof system.data.Map )
+        var r = "{";
+        if ( value != null && value instanceof system.data.Collection )
         {
-            var r = "{";
-            var vIterator = new system.data.iterators.ArrayIterator( value.getValues() ) ;
-            var kIterator = new system.data.iterators.ArrayIterator( value.getKeys()   ) ;
-            while( kIterator.hasNext() ) 
+            if ( value.size() > 0 ) 
             {
-                r += kIterator.next() + ":" + vIterator.next() ;
-                if ( kIterator.hasNext() ) 
+                var ar /*Array*/ = value.toArray() ;
+                var l /*int*/    = ar.length   ;
+                for ( var i /*int*/ = 0 ; i < l ; i++ ) 
                 {
-                    r += "," ;
+                    r += ar[i] ;
+                    if (i < (l-1)) 
+                    {
+                        r += "," ;
+                    }
                 }
             }
-            r += "}" ;
-            return r ;
         }
-        else
-        {
-            return "{}" ;
-        }
+        r += "}";
+        return r ;
     }
     
     /////////// encapsulate
@@ -87,5 +86,5 @@ if ( system.data.maps.MapFormatter == undefined)
     
     /////////// singleton
     
-    system.data.maps.formatter = new system.data.maps.MapFormatter() ;
+    system.data.collections.formatter = new system.data.collections.CollectionFormatter() ;
 }

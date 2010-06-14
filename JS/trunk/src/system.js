@@ -51,6 +51,7 @@ catch(e)
     getPackage("system") ;
     
     getPackage("system.data") ;
+    getPackage("system.data.collections") ;
     getPackage("system.data.iterators") ;
     getPackage("system.data.maps") ;
     getPackage("system.errors") ;
@@ -85,6 +86,10 @@ catch(e)
     require( "system.data.Queue"           ) ;
     require( "system.data.Set"             ) ;
     require( "system.data.ValueObject"     ) ;
+    
+    // system.data.collections
+    
+    require( "system.data.collections.CollectionFormatter" ) ;
     
     // system.data.iterators
     

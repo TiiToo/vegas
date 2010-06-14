@@ -50,6 +50,7 @@ load("unittests/system/data/ValueObjectTest.js") ;
 getPackage("system.data.iterators") ;
 getPackage("system.data.maps") ;
 
+load("unittests/system/data/collections/AllTests.js") ;
 load("unittests/system/data/iterators/AllTests.js") ;
 load("unittests/system/data/maps/AllTests.js") ;
 
@@ -75,6 +76,7 @@ system.data.AllTests.suite = function()
     suite.addTest( new TestSuite( system.data.SetTest             ) ) ;
     suite.addTest( new TestSuite( system.data.ValueObjectTest     ) ) ;
     
+    suite.addTest( system.data.collections.AllTests.suite() );
     suite.addTest( system.data.iterators.AllTests.suite() );
     suite.addTest( system.data.maps.AllTests.suite() );
     
