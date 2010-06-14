@@ -115,7 +115,7 @@ if ( system.data.collections.ArrayCollection == undefined)
             var it /*Iterator*/ = c.iterator() ;
             while( it.hasNext() ) 
             {
-                add( it.next() ) ;
+                this.add( it.next() ) ;
             }
             return true ;
         }
@@ -157,7 +157,11 @@ if ( system.data.collections.ArrayCollection == undefined)
      */
     proto.containsAll = function( c /*Collection*/ ) /*Boolean*/ 
     {
-        if ( c == null || !( c instanceof system.data.Collection ) )
+        if ( c == this )
+        {
+            return true ;
+        }
+        else if ( c == null || !( c instanceof system.data.Collection ) )
         {
             return false ;
         }
@@ -186,7 +190,7 @@ if ( system.data.collections.ArrayCollection == undefined)
         {
             return false ;
         }
-        return this.containsAll(c) ;
+        return this.containsAll( o ) ;
     }
     
     /**

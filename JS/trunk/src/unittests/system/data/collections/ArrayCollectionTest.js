@@ -47,9 +47,11 @@ system.data.collections.ArrayCollectionTest = function( name )
 system.data.collections.ArrayCollectionTest.prototype             = new buRRRn.ASTUce.TestCase() ;
 system.data.collections.ArrayCollectionTest.prototype.constructor = system.data.collections.ArrayCollectionTest ;
 
+proto = system.data.collections.ArrayCollectionTest.prototype ;
+
 // ----o Public Methods
 
-system.data.collections.ArrayCollectionTest.prototype.testConstructor = function () 
+proto.testConstructor = function () 
 {
     var c = new system.data.collections.ArrayCollection() ;
     this.assertNotNull( c ) ;
@@ -57,7 +59,7 @@ system.data.collections.ArrayCollectionTest.prototype.testConstructor = function
     this.assertEquals( 0 , a.length ) ;
 }
 
-system.data.collections.ArrayCollectionTest.prototype.testConstructorWithArray = function () 
+proto.testConstructorWithArray = function () 
 {
     var c = new system.data.collections.ArrayCollection([2,3,4]) ; 
     
@@ -72,7 +74,7 @@ system.data.collections.ArrayCollectionTest.prototype.testConstructorWithArray =
     this.assertEquals( 4 , a[2] ) ;
 }
 
-system.data.collections.ArrayCollectionTest.prototype.testConstructorWithIterableObject = function () 
+proto.testConstructorWithIterableObject = function () 
 {
     var init = new system.data.collections.ArrayCollection([2,3,4]) ;
     var c    = new system.data.collections.ArrayCollection( init ) ; 
@@ -87,3 +89,169 @@ system.data.collections.ArrayCollectionTest.prototype.testConstructorWithIterabl
     this.assertEquals( 3 , a[1] ) ;
     this.assertEquals( 4 , a[2] ) ;
 }
+
+proto.testAdd = function () 
+{
+    var c = new system.data.collections.ArrayCollection() ; 
+    
+    this.assertTrue( c.add(2)          , "#01" ) ;
+    this.assertTrue( c.add(null)       , "#02" ) ;
+    this.assertFalse( c.add(undefined) , "#03" ) ;
+}
+
+proto.testAddAll = function () 
+{
+    var ArrayCollection = system.data.collections.ArrayCollection ; 
+    
+    var co1 = new ArrayCollection([2,3,4]) ; 
+    var co2 = new ArrayCollection() ;
+    
+    var co = new ArrayCollection() ;
+    
+    this.assertTrue( co.addAll(co1) , "#01" ) ;
+    this.assertEquals( 3 , co.size() , "#02" ) ;
+    this.assertEquals( 2 , co.get(0) , "#03" ) ;
+    this.assertEquals( 3 , co.get(1) , "#04" ) ;
+    this.assertEquals( 4 , co.get(2) , "#05" ) ;
+    
+    this.assertFalse( co.addAll(co2), "#06" ) ;
+}
+
+proto.testClear = function () 
+{
+    var ArrayCollection = system.data.collections.ArrayCollection ; 
+    
+    var co = new ArrayCollection([2,3,4]) ; 
+    
+    co.clear() ; 
+    
+    this.assertEquals( 0 , co.size() ) ;
+}
+
+proto.testClone = function () 
+{
+    var ArrayCollection = system.data.collections.ArrayCollection ; 
+    
+    var co = new ArrayCollection([2,3,4]) ;
+    var cl = co.clone() ;
+    
+    this.assertNotNull( cl, "#01") ;
+    this.assertTrue( cl instanceof ArrayCollection , "#02" ) ;
+    this.assertFalse( cl == co , "#03" ) ;
+    this.assertEquals( cl.size() , co.size() , "#04" ) ;
+}
+
+proto.testContains = function () 
+{
+    var ArrayCollection = system.data.collections.ArrayCollection ; 
+    
+    var co = new ArrayCollection() ;
+    
+    co.add("item") ;
+    
+    this.assertTrue( co.contains("item")    ,  "#01" ) ;
+    this.assertFalse( co.contains("unknow") ,  "#02" ) ;
+}
+
+proto.testContainsAll = function () 
+{
+    var ArrayCollection = system.data.collections.ArrayCollection ; 
+    
+    var c1 = new ArrayCollection([1,2,3,4]) ;
+    var c2 = new ArrayCollection([2,3]) ;
+    var c3 = new ArrayCollection() ;
+    
+    this.assertTrue( c1.containsAll(c2) , "#01") ;
+    this.assertTrue( c1.containsAll(c3) , "#02") ;
+    
+    this.assertFalse( c2.containsAll(c1) , "#03") ;
+}
+
+proto.testEquals = function () 
+{
+    var ArrayCollection = system.data.collections.ArrayCollection ; 
+    
+    var c1 = new ArrayCollection([1,2,3,4]) ;
+    var c2 = new ArrayCollection([1,2,3,4]) ;
+    var c3 = new ArrayCollection([2,3]) ;
+    var c4 = new ArrayCollection([5,6,7,8]) ;
+    
+    this.assertTrue  ( c1.equals(c1) , "01-01" ) ;
+    this.assertTrue  ( c1.equals(c2) , "01-02" ) ;
+    this.assertFalse ( c1.equals(c3) , "01-03" ) ;
+    this.assertFalse ( c1.equals(c4) , "01-04" ) ; // same size
+    
+    this.assertTrue  ( c2.equals(c1) , "02-01" ) ;
+    this.assertTrue  ( c2.equals(c2) , "02-02" ) ;
+    this.assertFalse ( c2.equals(c3) , "02-03" ) ;
+    
+    this.assertFalse ( c3.equals(c1) , "03-01" ) ;
+    this.assertFalse ( c3.equals(c2) , "03-02" ) ;
+    this.assertTrue  ( c3.equals(c3) , "03-03" ) ;
+}
+
+proto.testGet = function () 
+{
+    var ArrayCollection = system.data.collections.ArrayCollection ;
+    
+    var co = new ArrayCollection() ;
+    
+    co.add("test") ;
+    
+    this.assertEquals( co.get(0) , "test" ,  "01") ;
+    this.assertUndefined( co.get(1)       ,  "02" ) ;
+}
+
+proto.testIndexOf = function () 
+{
+    var ArrayCollection = system.data.collections.ArrayCollection ;
+    
+    var co = new ArrayCollection() ;
+    
+    co.add("item1") ;
+    co.add("item2") ;
+    co.add("item3") ;
+    
+    this.assertEquals( co.indexOf("item4") , -1 ,  "#01" ) ;
+    this.assertEquals( co.indexOf("item1") ,  0 ,  "#02" ) ;
+    this.assertEquals( co.indexOf("item3") ,  2 ,  "#03" ) ;
+    
+    this.assertEquals( co.indexOf("item3", 1) , 2  , "#04" ) ;
+}
+
+proto.testIsEmpty = function () 
+{
+    var ArrayCollection = system.data.collections.ArrayCollection ;
+    
+    var co = new ArrayCollection() ;
+    
+    this.assertTrue( co.isEmpty() , "#01" ) ;
+    
+    co.add("test") ;
+    
+    this.assertFalse( co.isEmpty() , "#02" ) ;
+    
+    co.remove("test") ;
+    
+    this.assertTrue( co.isEmpty() , "#03" ) ;
+}
+
+proto.testIterator = function () 
+{
+    var co = new system.data.collections.ArrayCollection( [2,3,4] ) ;
+    
+    var it = co.iterator() ;
+    
+    this.assertTrue ( it instanceof system.data.iterators.ArrayIterator , "#01" ) ;
+    
+    var count = 0 ;
+    while( it.hasNext() )
+    {
+        count += it.next() ;
+    }
+    this.assertEquals( 9 , count , "#02" ) ;
+}
+
+///////
+
+delete proto ;
