@@ -90,3 +90,16 @@ core.dumpTest.prototype.testDate = function ()
     this.assertEquals( "\"hello\\\'world\"" , core.dump( "hello'world" ) ) ;
     this.assertEquals( "\"hello\\\\world\"" , core.dump( "hello\\world" ) ) ;
 }
+
+core.dumpTest.prototype.testCustomObjectWithToSource = function () 
+{
+    var MyClass = function( value )
+    {
+        this.value = value ;
+    } ;
+    MyClass.prototype.toSource = function() /*String*/
+    {
+        return "new MyClass(" + core.dump(this.value) + ")" ;
+    }
+    this.assertEquals( "new MyClass(\"hello world\")" , core.dump( new MyClass("hello world") ) ) ;
+}

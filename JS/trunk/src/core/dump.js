@@ -86,13 +86,13 @@ core.dump = function( o , prettyprint /*Boolean*/ , indent /*int*/ , indentor /*
     { 
         return core.dumpArray( o , prettyprint, indent, indentor ); 
     }
-    //else if( "toSource" in o ) // FIXME with Serializable interface ?
-    //{ 
-    //    return o.toSource( indent ); 
-    //}
-    else if( o instanceof Object ) 
+    else if( o.constructor == Object ) 
     { 
         return core.dumpObject( o , prettyprint, indent, indentor ); 
+    }
+    else if( "toSource" in o ) // FIXME with Serializable interface ?
+    { 
+        return o.toSource( indent ); 
     }
     else
     {
