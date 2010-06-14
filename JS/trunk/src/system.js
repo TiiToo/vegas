@@ -144,6 +144,7 @@ catch(e)
     // system.process
     
     require( "system.process.Action"    ) ;
+    require( "system.process.Batch"     ) ;
     require( "system.process.Lockable"  ) ;
     require( "system.process.Priority"  ) ;
     require( "system.process.Resetable" ) ;

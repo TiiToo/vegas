@@ -35,47 +35,34 @@
   
 */
 
-if( system.process.mocks.TaskReceiver == undefined )
+if( system.process.mocks.MockCommand == undefined )
 {
-    system.process.mocks.TaskReceiver = function ( task /*Task*/ ) 
+    system.process.mocks.MockCommand = function () 
     {
-        if ( task )
-        {
-            this.register( task ) ;
-        }
-        this.called  = false ;
-        this.phase   = null ;
-        this.running = false ;
+        //
+    }
+    
+    ////////////////////////////////////
+    
+    system.process.mocks.MockCommand.COUNT = 0 ;
+    
+    system.process.mocks.MockCommand.reset = function() /*void*/
+    {
+        system.process.mocks.MockCommand.COUNT = 0 ;
     }
     
     ////////////////////////////////////
     
     /**
-     * @extends Object
+     * @extends system.process.Runnable
      */
-    proto = system.process.mocks.TaskReceiver.extend( system.process.Receiver ) ;
+    proto = system.process.mocks.MockCommand.extend( system.process.Runnable ) ;
     
     ////////////////////////////////////
     
-    proto.receive = function( task /*Task*/ )
+    proto.run = function() /*void*/
     {
-        this.called  = true ;
-        this.phase   = task.phase   ;
-        this.running = task.running ;
-    }
-    
-    proto.register = function( task /*Task*/ ) /*void*/
-    {
-        this.task = task ;
-        this.task.finishIt.connect( this ) ;
-        this.task.startIt.connect( this ) ;
-    }
-    
-    proto.unregister = function() /*void*/
-    {
-        this.task.finishIt.disconnect( this ) ;
-        this.task.startIt.disconnect( this ) ;
-        this.task = null  ;
+        system.process.mocks.MockCommand.COUNT ++ ;
     }
     
     ////////////////////////////////////

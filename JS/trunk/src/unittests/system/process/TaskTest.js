@@ -54,7 +54,7 @@ proto = system.process.TaskTest.prototype ;
 proto.setUp = function()
 {
     this.task     = new system.process.Task() ; 
-    this.receiver = new system.process.mocks.TaskReceiver( this.task ) ;
+    this.receiver = new system.process.mocks.MockTaskReceiver( this.task ) ;
 }
 
 proto.tearDown = function()
