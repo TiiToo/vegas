@@ -85,6 +85,7 @@ catch(e)
     require( "system.data.OrderedIterator" ) ;
     require( "system.data.Queue"           ) ;
     require( "system.data.Set"             ) ;
+    require( "system.data.Typeable"        ) ;
     require( "system.data.ValueObject"     ) ;
     
     // system.data.collections
