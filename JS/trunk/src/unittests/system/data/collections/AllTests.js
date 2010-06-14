@@ -36,7 +36,7 @@
   
 */
 
-// load("unittests/system/data/collections/ArrayCollectionTest.js") ;
+load("unittests/system/data/collections/ArrayCollectionTest.js") ;
 load("unittests/system/data/collections/CollectionFormatterTest.js") ;
 
 system.data.collections.AllTests = {} ;
@@ -49,7 +49,7 @@ system.data.collections.AllTests.suite = function()
     
     //suite.simpleTrace = true;
     
-    // suite.addTest( new TestSuite( system.data.collections.ArrayCollectionTest     ) ) ;
+    suite.addTest( new TestSuite( system.data.collections.ArrayCollectionTest     ) ) ;
     suite.addTest( new TestSuite( system.data.collections.CollectionFormatterTest ) ) ;
     
     return suite ;

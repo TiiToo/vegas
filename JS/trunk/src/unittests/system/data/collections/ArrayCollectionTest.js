@@ -47,21 +47,43 @@ system.data.collections.ArrayCollectionTest = function( name )
 system.data.collections.ArrayCollectionTest.prototype             = new buRRRn.ASTUce.TestCase() ;
 system.data.collections.ArrayCollectionTest.prototype.constructor = system.data.collections.ArrayCollectionTest ;
 
-// ----o Initialize
-
-system.data.collections.ArrayCollectionTest.prototype.setUp = function()
-{
-    this.collection = new system.data.collections.ArrayCollection();
-}
-
-system.data.collections.ArrayCollectionTest.prototype.tearDown = function()
-{
-    this.collection = undefined ;
-}
-
 // ----o Public Methods
 
 system.data.collections.ArrayCollectionTest.prototype.testConstructor = function () 
 {
-    this.assertNotNull( this.collection ) ;
+    var c = new system.data.collections.ArrayCollection() ;
+    this.assertNotNull( c ) ;
+    var a = c.toArray() ;
+    this.assertEquals( 0 , a.length ) ;
+}
+
+system.data.collections.ArrayCollectionTest.prototype.testConstructorWithArray = function () 
+{
+    var c = new system.data.collections.ArrayCollection([2,3,4]) ; 
+    
+    this.assertNotNull( c ) ;
+    
+    var a = c.toArray() ;
+    
+    this.assertEquals( 3 , a.length ) ;
+    
+    this.assertEquals( 2 , a[0] ) ;
+    this.assertEquals( 3 , a[1] ) ;
+    this.assertEquals( 4 , a[2] ) ;
+}
+
+system.data.collections.ArrayCollectionTest.prototype.testConstructorWithIterableObject = function () 
+{
+    var init = new system.data.collections.ArrayCollection([2,3,4]) ;
+    var c    = new system.data.collections.ArrayCollection( init ) ; 
+    
+    this.assertNotNull( c ) ;
+    
+    var a = c.toArray() ;
+    
+    this.assertEquals( 3 , a.length ) ;
+    
+    this.assertEquals( 2 , a[0] ) ;
+    this.assertEquals( 3 , a[1] ) ;
+    this.assertEquals( 4 , a[2] ) ;
 }

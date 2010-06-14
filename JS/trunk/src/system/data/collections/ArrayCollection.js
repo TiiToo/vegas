@@ -55,21 +55,23 @@ if ( system.data.collections.ArrayCollection == undefined)
      */
     system.data.collections.ArrayCollection = function ( init ) 
     {
-        if ( init instanceof system.data.Collection )
+        if ( init != null )
         {
-            init = init.toArray() ;
-        }
-        else if ( "iterator" in init && init.iterator instanceof Function )
-        {
-            var ar /*Array*/    = [] ;
-            var it /*Iterator*/ = init.iterator() ;
-            while( it.hasNext() )
+            if ( init instanceof system.data.Collection )
             {
-                ar.push( it.next() ) ;
+                init = init.toArray() ;
             }
-            init = ar ;
+            else if ( "iterator" in init && ( init["iterator"] instanceof Function ) )
+            {
+                var ar /*Array*/    = [] ;
+                var it /*Iterator*/ = init.iterator() ;
+                while( it.hasNext() )
+                {
+                    ar.push( it.next() ) ;
+                }
+                init = ar ;
+            }
         }
-        
         if ( init != null && init instanceof Array && init.length > 0 )
         {
             this._a = init.slice() ;
