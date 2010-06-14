@@ -47,18 +47,152 @@ system.data.TypeableTest = function( name )
 system.data.TypeableTest.prototype             = new buRRRn.ASTUce.TestCase() ;
 system.data.TypeableTest.prototype.constructor = system.data.TypeableTest ;
 
+proto = system.data.TypeableTest.prototype ;
+
 // ----o Public Methods
 
-system.data.TypeableTest.prototype.testConstructor = function () 
+proto.testConstructor = function () 
 {
     var t = new system.data.Typeable() ;
     this.assertNotNull( t ) ;
 }
 
-system.data.TypeableTest.prototype.testType = function () 
+proto.testInherit = function () 
+{
+    var t = new system.data.Typeable() ;
+    this.assertTrue( t instanceof system.data.Validator ) ;
+}
+
+proto.testType = function () 
 {
     var t = new system.data.Typeable() ;
     this.assertNull( t.type ) ;
     t.type = String ;
     this.assertEquals( String , t.type ) ;
 }
+
+proto.testSupportsPrimitiveString = function () 
+{
+    var check = new system.data.Typeable() ;
+    
+    check.type = "string" ;
+    
+    this.assertTrue( check.supports("hello") , "#1" ) ;
+    this.assertTrue( check.supports(new String("hello")) , "#2" ) ;
+    this.assertFalse( check.supports( 2 ) , "#3" ) ;
+    this.assertFalse( check.supports( check ) , "#4" ) ;
+}
+
+proto.testSupportsCompositeString = function () 
+{
+    var check = new system.data.Typeable() ;
+    
+    check.type = String ;
+    
+    this.assertTrue( check.supports("hello") , "#1" ) ;
+    this.assertTrue( check.supports(new String("hello")) , "#2" ) ;
+    this.assertFalse( check.supports( 2 ) , "#3" ) ;
+    this.assertFalse( check.supports( check ) , "#4" ) ;
+}
+
+proto.testSupportsPrimitiveNumber = function () 
+{
+    var check = new system.data.Typeable() ;
+    
+    check.type = "number" ;
+    
+    this.assertTrue( check.supports( 2 ) , "#1" ) ;
+    this.assertTrue( check.supports( new Number(2) ) , "#2" ) ;
+    this.assertFalse( check.supports( "hello" ) , "#3" ) ;
+    this.assertFalse( check.supports( check ) , "#4" ) ;
+}
+
+proto.testSupportsCompositeNumber = function () 
+{
+    var check = new system.data.Typeable() ;
+    
+    check.type = Number ;
+    
+    this.assertTrue( check.supports( 2 ) , "#1" ) ;
+    this.assertTrue( check.supports( new Number(2) ) , "#2" ) ;
+    this.assertFalse( check.supports( "hello" ) , "#3" ) ;
+    this.assertFalse( check.supports( check ) , "#4" ) ;
+}
+
+proto.testSupportsPrimitiveBoolean = function () 
+{
+    var check = new system.data.Typeable() ;
+    
+    check.type = "boolean" ;
+    
+    this.assertTrue( check.supports( true ) , "#1" ) ;
+    this.assertTrue( check.supports( new Boolean(true) ) , "#2" ) ;
+    this.assertFalse( check.supports( "hello" ) , "#3" ) ;
+    this.assertFalse( check.supports( check ) , "#4" ) ;
+}
+
+proto.testSupportsCompositeBoolean = function () 
+{
+    var check = new system.data.Typeable() ;
+    
+    check.type = Boolean ;
+    
+    this.assertTrue( check.supports( true ) , "#1" ) ;
+    this.assertTrue( check.supports( new Boolean(true) ) , "#2" ) ;
+    this.assertFalse( check.supports( "hello" ) , "#3" ) ;
+    this.assertFalse( check.supports( check ) , "#4" ) ;
+}
+
+proto.testSupportsCustomTypeFunction = function () 
+{
+    var check = new system.data.Typeable() ;
+    
+    check.type = system.data.Typeable ;
+    
+    this.assertFalse( check.supports( 1 ) , "#1" ) ;
+    this.assertFalse( check.supports( true ) , "#2" ) ;
+    this.assertFalse( check.supports( "hello" ) , "#3" ) ;
+    this.assertTrue( check.supports( check ) , "#4" ) ;
+}
+
+proto.testSupportsNull = function () 
+{
+    var check = new system.data.Typeable() ;
+    
+    check.type = "string" ;
+    
+    this.assertFalse( check.supports( null ) , "#1" ) ;
+    this.assertFalse( check.supports( undefined ) , "#2" ) ;
+    
+    check.type = String ;
+    
+    this.assertFalse( check.supports( null ) , "#3" ) ;
+    this.assertFalse( check.supports( undefined ) , "#4" ) ;
+    
+    check.type = system.data.Typeable ;
+    
+    this.assertFalse( check.supports( null ) , "#5" ) ;
+    this.assertFalse( check.supports( undefined ) , "#6" ) ;
+}
+
+proto.testValidate = function () 
+{
+    var check = new system.data.Typeable() ;
+    
+    check.type = "string" ;
+    
+    try
+    {
+        check.validate( 2 ) ;
+        this.fail( "#1" ) ;
+    }
+    catch( e )
+    {
+        this.assertTrue( e instanceof TypeError , "#2" ) ;
+        this.assertEquals( "[Typeable] validate('2') failed, the type is mismatch."  , e.message , "#3" ) ; 
+    }
+}
+
+////////
+
+delete proto ;

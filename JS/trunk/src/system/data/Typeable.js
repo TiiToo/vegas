@@ -41,6 +41,11 @@
 if ( system.data.Typeable == undefined ) 
 {
     /**
+     * @requires system.data.Validator
+     */
+    require( "system.data.Validator" ) ;
+    
+    /**
      * Creates a new Typeable instance.
      */
     system.data.Typeable = function () 
@@ -51,7 +56,7 @@ if ( system.data.Typeable == undefined )
     /**
      * @extends Object
      */
-    proto = system.data.Typeable.extend( Object ) ;
+    proto = system.data.Typeable.extend( system.data.Validator ) ;
     
     /**
      * Indicates the specified type of the Typeable object.
@@ -67,6 +72,37 @@ if ( system.data.Typeable == undefined )
     proto.setType = function( type )
     {
         this._type = type ;
+    }
+    
+    /**
+     * Returns <code class="prettyprint">true</code> if the specific value is valid.
+     * @return <code class="prettyprint">true</code> if the specific value is valid.
+     */
+    proto.supports = function( value ) /*Boolean*/
+    {
+        switch ( true )
+        {
+            case ( this._type == "string" || this._type == String  ) :
+            {
+                return ( value instanceof String ) || ( typeof(value) == "string" )  ;
+            }
+            case ( this._type == "number" || this._type == Number  ) :
+            {
+                return ( value instanceof Number ) || ( typeof(value) == "number" )  ;
+            }
+            case ( this._type == "boolean" || this._type == Boolean  ) :
+            {
+                return ( value instanceof Boolean ) || ( typeof(value) == "boolean" )  ;
+            }
+            case ( typeof( this._type ) == "function" ) :
+            {
+                return ( value instanceof this._type ) ;
+            }
+            default :
+            {
+                return false ;
+            }
+        }
     }
     
     //////////////////////////////////// Virtual properties
