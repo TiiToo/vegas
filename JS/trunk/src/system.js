@@ -134,6 +134,7 @@ catch(e)
     
     // system.process
     
+    require( "system.process.Action"    ) ;
     require( "system.process.Lockable"  ) ;
     require( "system.process.Priority"  ) ;
     require( "system.process.Resetable" ) ;
@@ -141,6 +142,7 @@ catch(e)
     require( "system.process.Runnable"  ) ;
     require( "system.process.Startable" ) ;
     require( "system.process.Stoppable" ) ;
+    require( "system.process.Task"      ) ;
     require( "system.process.TaskPhase" ) ;
     
     // system.signals

@@ -35,35 +35,62 @@
   
 */
 
-load("unittests/system/process/ActionTest.js") ;
-load("unittests/system/process/LockableTest.js") ;
-load("unittests/system/process/PriorityTest.js") ;
-load("unittests/system/process/ResetableTest.js") ;
-load("unittests/system/process/ResumableTest.js") ;
-load("unittests/system/process/RunnableTest.js") ;
-load("unittests/system/process/StartableTest.js") ;
-load("unittests/system/process/StoppableTest.js") ;
-load("unittests/system/process/TaskPhaseTest.js") ;
+// ---o Constructor
 
-system.process.AllTests = {} ;
-
-system.process.AllTests.suite = function() 
+system.process.ActionTest = function( name ) 
 {
-    var TestSuite = buRRRn.ASTUce.TestSuite;
-    
-    var suite = new TestSuite( "system.process unit tests" );
-    
-    //suite.simpleTrace = true;
-    
-    suite.addTest( new TestSuite( system.process.ActionTest    ) ) ;
-    suite.addTest( new TestSuite( system.process.LockableTest  ) ) ;
-    suite.addTest( new TestSuite( system.process.PriorityTest  ) ) ;
-    suite.addTest( new TestSuite( system.process.ResetableTest ) ) ;
-    suite.addTest( new TestSuite( system.process.ResumableTest ) ) ;
-    suite.addTest( new TestSuite( system.process.RunnableTest  ) ) ;
-    suite.addTest( new TestSuite( system.process.StartableTest ) ) ;
-    suite.addTest( new TestSuite( system.process.StoppableTest ) ) ;
-    suite.addTest( new TestSuite( system.process.TaskPhaseTest ) ) ;
-    
-    return suite ;
+    buRRRn.ASTUce.TestCase.call( this , name ) ;
 }
+
+// ----o Inherit
+
+system.process.ActionTest.prototype             = new buRRRn.ASTUce.TestCase() ;
+system.process.ActionTest.prototype.constructor = system.process.ActionTest ;
+
+proto = system.process.ActionTest.prototype ;
+
+// ----o Public Methods
+
+proto.setUp = function()
+{
+    this.action = new system.process.Action() ; 
+}
+
+proto.tearDown = function()
+{
+    this.action = undefined ;
+}
+
+proto.testConstructor = function () 
+{
+    this.assertNotNull( this.action ) ;
+}
+
+proto.testMethods = function () 
+{
+    this.assertTrue( "clone" in this.action ) ;
+    
+    this.assertTrue( "getFinishIt" in this.action ) ;
+    this.assertTrue( "setFinishIt" in this.action ) ;
+    
+    this.assertTrue( "getStartIt" in this.action ) ;
+    this.assertTrue( "setStartIt" in this.action ) ;
+    
+    this.assertTrue( "getPhase" in this.action ) ;
+    this.assertTrue( "getRunning" in this.action ) ;
+    
+    this.assertTrue( "notifyFinished" in this.action ) ;
+    this.assertTrue( "notifyStarted" in this.action ) ;
+}
+
+proto.testClone = function () 
+{
+    var clone = this.action.clone() ;
+    this.assertNotNull( clone ) ;
+    this.assertNotSame( clone , this.action ) ;
+    this.assertTrue( clone instanceof system.process.Action ) ;
+}
+
+////////
+
+delete proto ;
