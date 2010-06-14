@@ -47,27 +47,50 @@ system.data.collections.CollectionFormatterTest = function( name )
 system.data.collections.CollectionFormatterTest.prototype             = new buRRRn.ASTUce.TestCase() ;
 system.data.collections.CollectionFormatterTest.prototype.constructor = system.data.collections.CollectionFormatterTest ;
 
+proto = system.data.collections.CollectionFormatterTest.prototype ;
+
 // ----o Initialize
 
-system.data.collections.CollectionFormatterTest.prototype.setUp = function()
+proto.setUp = function()
 {
     this.formatter = new system.data.collections.CollectionFormatter();
 }
 
-system.data.collections.CollectionFormatterTest.prototype.tearDown = function()
+proto.tearDown = function()
 {
     this.formatter = undefined ;
 }
 
 // ----o Public Methods
 
-system.data.collections.CollectionFormatterTest.prototype.testConstructor = function () 
+proto.testConstructor = function () 
 {
     this.assertNotNull( this.formatter ) ;
 }
 
-system.data.collections.CollectionFormatterTest.prototype.testSingleton = function () 
+proto.testFormat = function () 
+{
+    var result ;
+    
+    result = this.formatter.format() ;
+    this.assertEquals(result, "{}", "#1") ;
+    
+    result = this.formatter.format( new system.data.collections.ArrayCollection() ) ;
+    
+    this.assertEquals(result, "{}" , "#2") ;
+    
+    result = this.formatter.format(new system.data.collections.ArrayCollection(["value1", "value2"])) ;
+    
+    this.assertEquals(result, "{value1,value2}" , "#3") ;
+}
+
+
+proto.testSingleton = function () 
 {
     this.assertNotNull( system.data.collections.formatter ) ;
     this.assertTrue( system.data.collections.formatter instanceof system.data.collections.CollectionFormatter ) ;
 }
+
+/////////
+
+delete proto ;
