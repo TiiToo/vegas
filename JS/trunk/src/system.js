@@ -93,6 +93,7 @@ catch(e)
     
     require( "system.data.collections.ArrayCollection"     ) ;
     require( "system.data.collections.CollectionFormatter" ) ;
+    require( "system.data.collections.TypedCollection"     ) ;
     
     // system.data.iterators
     
