@@ -295,7 +295,7 @@ if ( system.data.collections.ArrayCollection == undefined)
             return false ;
         }
         var b /*Boolean*/ = false ;
-        var it /*Iterator*/ = iterator() ;
+        var it /*Iterator*/ = this.iterator() ;
         while ( it.hasNext() ) 
         {
             if ( !c.contains( it.next() ) ) 

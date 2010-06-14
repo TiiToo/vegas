@@ -252,6 +252,125 @@ proto.testIterator = function ()
     this.assertEquals( 9 , count , "#02" ) ;
 }
 
+proto.testRemove = function () 
+{
+    var co = new system.data.collections.ArrayCollection() ;
+    
+    co.add("item1") ;
+    co.add("item2") ;
+    
+    this.assertTrue  ( co.remove("item1") , "#01" ) ;
+    this.assertFalse ( co.remove("item1") , "#02" ) ;
+    this.assertFalse ( co.remove("item5") , "#03" ) ;
+}
+
+proto.testRemoveAll = function () 
+{
+    var ArrayCollection = system.data.collections.ArrayCollection ;
+    
+    var c1 = new ArrayCollection([1,2,3,4]) ;
+    var c2 = new ArrayCollection([2,3]) ;
+    var c3 = new ArrayCollection() ;
+    
+    this.assertTrue( c1.removeAll( c2 ) , "#01") ;
+    
+    this.assertEquals( 2 , c1.size() , "#03" ) ;
+    this.assertEquals( 1 , c1.get(0) , "#04" ) ;
+    this.assertEquals( 4 , c1.get(1) , "#05" ) ;
+    
+    this.assertFalse( c1.removeAll(c3) , "#06") ;
+}
+
+proto.testRetainAll = function () 
+{
+    var ArrayCollection = system.data.collections.ArrayCollection ;
+    
+    var c1 = new ArrayCollection([1,2,3,4]) ;
+    var c2 = new ArrayCollection([2,3]) ;
+    var c3 = new ArrayCollection() ;
+    var c4 = new ArrayCollection([5,6]) ;
+    
+    this.assertTrue( c1.retainAll(c2) , "#01") ;
+    
+    this.assertEquals( 2 , c1.size() , "#02" ) ;
+    this.assertEquals( 2 , c1.get(0) , "#03" ) ;
+    this.assertEquals( 3 , c1.get(1) , "#04" ) ;
+    
+    this.assertTrue( c1.retainAll(c3) , "#05") ;
+    this.assertEquals( c1.toString(), "{}" , "#06") ;
+    
+    this.assertFalse( c1.retainAll(c4) , "#07") ;
+}
+
+proto.testSize = function () 
+{
+    var co = new system.data.collections.ArrayCollection() ;
+    
+    this.assertEquals( 0 , co.size() ,  "#01") ;
+    
+    co.add("test") ;
+    
+    this.assertEquals( 1 , co.size() ,  "#01") ;
+}
+
+proto.testToArray = function () 
+{
+    var ArrayCollection = system.data.collections.ArrayCollection ;
+    
+    var c /*ArrayCollection*/ ;
+    var a /*Array*/
+    
+    c = new ArrayCollection() ;
+    a = c.toArray() ;
+    
+    this.assertNotNull( a , "#01" ) ;
+    this.assertEquals( 0 , a.length , "#02" ) ;
+    
+    c.add(2) ;
+    c.add(3) ;
+    c.add(4) ; 
+    
+    a = c.toArray() ;
+    
+    this.assertNotNull( a , "#03" ) ;
+    
+    this.assertEquals( 3 , a.length , "#04" ) ;
+    
+    this.assertEquals( 2 , a[0] , "#05" ) ;
+    this.assertEquals( 3 , a[1] , "#06" ) ;
+    this.assertEquals( 4 , a[2] , "#07" ) ;
+}
+
+proto.testToSource = function () 
+{
+    var ArrayCollection = system.data.collections.ArrayCollection ;
+    
+    var co ;
+    
+    co = new ArrayCollection() ;
+    
+    this.assertEquals(co.toSource() , "new system.data.collections.ArrayCollection()" , "#01") ;
+    
+    co = new ArrayCollection( ["item1", "item2"] ) ;
+    
+    this.assertEquals(co.toSource() , "new system.data.collections.ArrayCollection([\"item1\",\"item2\"])" , "#02") ;
+}
+
+proto.testToString = function () 
+{
+    var ArrayCollection = system.data.collections.ArrayCollection ;
+    
+    var co ;
+    
+    co = new ArrayCollection() ;
+    
+    this.assertEquals(co.toString() , "{}" , "#01") ;
+    
+    co = new ArrayCollection( ["item1", "item2"] ) ;
+    
+    this.assertEquals(co.toString() , "{item1,item2}" , "#02") ;
+}
+
 ///////
 
 delete proto ;
