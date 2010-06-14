@@ -37,28 +37,33 @@
 
 // ---o Constructor
 
-system.data.TypeableTest = function( name ) 
+system.data.ValidatorTest = function( name ) 
 {
     buRRRn.ASTUce.TestCase.call( this , name ) ;
 }
 
 // ----o Inherit
 
-system.data.TypeableTest.prototype             = new buRRRn.ASTUce.TestCase() ;
-system.data.TypeableTest.prototype.constructor = system.data.TypeableTest ;
+system.data.ValidatorTest.prototype             = new buRRRn.ASTUce.TestCase() ;
+system.data.ValidatorTest.prototype.constructor = system.data.ValidatorTest ;
 
 // ----o Public Methods
 
-system.data.TypeableTest.prototype.testConstructor = function () 
+system.data.ValidatorTest.prototype.testConstructor = function () 
 {
-    var t = new system.data.Typeable() ;
-    this.assertNotNull( t ) ;
+    var v = new system.data.Validator() ;
+    this.assertNotNull( v ) ;
 }
 
-system.data.TypeableTest.prototype.testType = function () 
+system.data.ValidatorTest.prototype.testInterface = function () 
 {
-    var t = new system.data.Typeable() ;
-    this.assertNull( t.type ) ;
-    t.type = String ;
-    this.assertEquals( String , t.type ) ;
+    var v = new system.data.Validator() ;
+    this.assertTrue( "supports" in v ) ;
+    this.assertTrue( "validate" in v ) ;
+}
+
+system.data.ValidatorTest.prototype.testToString = function () 
+{
+    var v = new system.data.Validator() ;
+    this.assertEquals( "[Validator]" , v.toString() ) ;
 }
