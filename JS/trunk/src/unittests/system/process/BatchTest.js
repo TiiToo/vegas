@@ -70,7 +70,7 @@ proto.testConstructor = function ()
 
 proto.testInherit = function () 
 {
-    this.assertTrue( this.batch instanceof system.data.collections.TypedCollection ) ;
+    this.assertTrue( this.batch instanceof system.process.Runnable ) ;
 }
 
 ////////

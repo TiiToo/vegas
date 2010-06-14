@@ -56,7 +56,7 @@ if ( system.data.Collection == undefined )
     proto = system.data.Collection.extend( Object ) ;
     
     /**
-     * Ensures that this collection contains the specified element (optional operation).
+     * Adds the specified element in the collection (optional operation).
      */
     proto.add = function( o ) /*Boolean*/ 
     {

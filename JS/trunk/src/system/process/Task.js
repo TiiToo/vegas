@@ -143,15 +143,6 @@ if ( system.process.Task == undefined)
         this._startIt = signal || new system.signals.Signal() ;
     }
     
-    /**
-     * Returns the string representation of this instance.
-     * @return the string representation of this instance.
-     */
-    proto.toString = function () /*String*/ 
-    {
-        return "[" + this.getConstructorName() + "]" ;
-    }
-    
     ////////////////////////////////////
     
     proto.__defineGetter__( "finishIt" , proto.getFinishIt ) ;

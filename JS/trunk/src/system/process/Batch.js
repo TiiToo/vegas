@@ -36,8 +36,8 @@
 */
 
 /**
- * A batch is a collection of <code class="prettyprint">Action</code> objects. All <code class="prettyprint">Action</code> objects are processed as a single unit.
- * <p>This class extends a TypedCollection class to register all <code class="prettyprint">Action</code> objects.</p>
+ * A batch is a collection of <code class="prettyprint">Runnable</code> objects. 
+ * All <code class="prettyprint">Runnable</code> objects are processed as a single unit.
  */
 if ( system.process.Batch == undefined) 
 {
@@ -46,13 +46,34 @@ if ( system.process.Batch == undefined)
      */
     system.process.Batch = function () 
     { 
-        system.data.collections.TypedCollection.call( this , system.process.Runnable , new system.data.collections.ArrayCollection() ) ;
+        this._a = [] ;
     }
     
     /**
-     * @extends system.data.collections.TypedCollection
+     * @extends system.process.Runnable
      */
-    proto = system.process.Batch.extend( system.data.collections.TypedCollection ) ;
+    proto = system.process.Batch.extend( system.process.Runnable ) ;
+    
+    /**
+     * Adds the specified Runnable object in batch.
+     */
+    proto.add = function( command /*Runnable*/ ) /*Boolean*/ 
+    {
+        if ( command != null && ( "run" in command ) && ( command["run"] instanceof Function ) ) 
+        {
+            this._a.push( command ) ;
+            return true ;
+        }
+        return false ;
+    }
+    
+    /**
+     * Removes all of the elements from this batch.
+     */
+    proto.clear = function() /*void*/ 
+    {
+        this._a.splice(0) ;
+    }
     
     /**
      * Returns a shallow copy of the object.
@@ -61,13 +82,73 @@ if ( system.process.Batch == undefined)
     proto.clone = function()
     {
         var c = new system.process.Batch() ;
-        var a = this._co._a ; // hack :: this.toArray()
-        var l = a.length ;
+        var l = this._a.length ;
         for( var i = 0 ; i < l ; i++ )
         {
-            c.add( a[i] ) ;
+            c._a.push( this._a[i] ) ;
         }
         return c ;
+    }
+    
+    /**
+     * Returns {@code true} if this batch contains the specified element.
+     * @return {@code true} if this batch contains the specified element.
+     */
+    proto.contains = function( command /*Runnable*/ ) /*Boolean*/ 
+    {
+        return this._a.indexOf( command ) >- 1  ;
+    }
+    
+    /**
+     * Returns the command from this batch at the passed index.
+     * @return the command from this batch at the passed index.
+     */
+    proto.get = function( key ) 
+    {
+        return this._a[ key ] ;
+    }
+    
+    /**
+     * Returns the position of the passed object in the batch.
+     * @param command the Runnable object to search in the collection.
+     * @param fromIndex the index to begin the search in the collection.
+     * @return the index of the object or -1 if the object isn't find in the batch.
+     */
+    proto.indexOf = function( command , fromIndex /*uint*/ ) /*Boolean*/ 
+    {
+        return this._a.indexOf( command , fromIndex ) ;
+    }
+    
+    /**
+     * Returns {@code true} if this batch contains no elements.
+     * @return {@code true} if this batch is empty else {@code false}.
+     */
+    proto.isEmpty = function () /*Boolean*/ 
+    {
+        return this._a.length == 0 ;
+    }
+    
+    /**
+     * Returns the iterator reference of the object.
+     * @return the iterator reference of the object.
+     */
+    proto.iterator = function() /*Iterator*/ 
+    {
+        return new system.data.iterators.ArrayIterator( this._a ) ;
+    }
+    
+    /**
+     * Removes a single instance of the specified element from this collection, if it is present (optional operation).
+     */
+    proto.remove = function ( command /*Runnable*/ ) /*Boolean*/ 
+    {
+        var index = this._a.indexOf( command , fromIndex ) ;
+        if ( index > -1 )
+        {
+            this._a.splice( index , 1 ) ;
+            return true ;
+        }
+        return false ;
     }
     
     /**
@@ -75,16 +156,24 @@ if ( system.process.Batch == undefined)
      */
     proto.run = function() /*void*/
     {
-        var a = this._co._a ; // hack :: this.toArray()
-        var i = -1 ;
-        var l = a.length ;
+        var l = this._a.length ;
         if ( l > 0 ) 
         {
+            var i = -1 ;
             while (++i < l) 
             { 
-                a[i].run() ; 
+                this._a[i].run() ; 
             }
         }
+    }
+    
+    /**
+     * Retrieves the number of elements in this batch.
+     * @return the number of elements in this batch.
+     */
+    proto.size = function () /*Number*/ 
+    {
+        return this._a.length ;
     }
     
     /**
@@ -92,20 +181,29 @@ if ( system.process.Batch == undefined)
      */
     proto.stop = function() /*void*/
     {
-        var a = this._co._a ; // hack :: this.toArray()
-        var i = -1 ;
-        var l = a.length ;
+        var l = this._a.length ;
         if (l > 0) 
         {
+            var i = -1 ;
             while (++i < l) 
-            { 
-                if ( ( "stop" in a[i] ) && ( a[i]["stop"] instanceof Function ) )
+            {
+                if ( ( "stop" in this._a[i] ) && ( this._a[i]["stop"] instanceof Function ) )
                 {
-                    a[i].stop() ;
+                    this._a[i].stop() ;
                 }
             } 
         }
     }
+    
+    /**
+     * Returns an array containing all of the elements in this batch.
+     * @return an array containing all of the elements in this batch.
+     */
+    proto.toArray = function () /*Array*/ 
+    {
+        return this._a ;
+    }
+    
     // encapsulate
     
     delete proto ;

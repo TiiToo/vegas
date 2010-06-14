@@ -88,7 +88,7 @@ if ( system.data.collections.ArrayCollection == undefined)
     proto = system.data.collections.ArrayCollection.extend( system.data.Collection ) ;
     
     /**
-     * Ensures that this collection contains the specified element (optional operation).
+     * Adds the specified element in the collection (optional operation).
      */
     proto.add = function( o ) /*Boolean*/ 
     {
