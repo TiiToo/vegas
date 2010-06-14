@@ -123,7 +123,7 @@ if ( system.process.Task == undefined)
     proto.notifyStarted = function() /*void*/
     {
         this._running = true ;
-        this._phase  = TaskPhase.RUNNING ;
+        this._phase  = system.process.TaskPhase.RUNNING ;
         this._startIt.emit( this ) ;
     }
     
@@ -143,14 +143,23 @@ if ( system.process.Task == undefined)
         this._startIt = signal || new system.signals.Signal() ;
     }
     
+    /**
+     * Returns the string representation of this instance.
+     * @return the string representation of this instance.
+     */
+    proto.toString = function () /*String*/ 
+    {
+        return "[" + this.getConstructorName() + "]" ;
+    }
+    
     ////////////////////////////////////
     
     proto.__defineGetter__( "finishIt" , proto.getFinishIt ) ;
     proto.__defineSetter__( "finishIt" , proto.setFinishIt ) ;
     
-    proto.__defineGetter__( "phase" , proto.getRunning ) ;
+    proto.__defineGetter__( "phase" , proto.getPhase ) ;
     
-    proto.__defineGetter__( "running" , proto.getPhase ) ;
+    proto.__defineGetter__( "running" , proto.getRunning ) ;
     
     proto.__defineGetter__( "startIt" , proto.getStartIt ) ;
     proto.__defineSetter__( "startIt" , proto.setStartIt ) ;
