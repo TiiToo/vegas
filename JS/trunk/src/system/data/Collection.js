@@ -73,7 +73,7 @@ if ( system.data.Collection == undefined )
     
     /**
      * Returns a shallow copy of this collection (optional operation)
-     * @return )
+     * @return a shallow copy of this collection (optional operation)
      */
     proto.clone = function() 
     {
@@ -126,7 +126,7 @@ if ( system.data.Collection == undefined )
     {
         //
     }
-
+    
     /**
      * Removes a single instance of the specified element from this collection, if it is present (optional operation).
      */
@@ -152,7 +152,7 @@ if ( system.data.Collection == undefined )
     {
         //
     }
-
+    
     /**
      * Returns the string representation of this instance.
      * @return the string representation of this instance

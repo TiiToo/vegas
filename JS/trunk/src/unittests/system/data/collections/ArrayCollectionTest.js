@@ -1,4 +1,3 @@
-
 /*
 
   Version: MPL 1.1/GPL 2.0/LGPL 2.1
@@ -36,21 +35,33 @@
   
 */
 
-// load("unittests/system/data/collections/ArrayCollectionTest.js") ;
-load("unittests/system/data/collections/CollectionFormatterTest.js") ;
+// ---o Constructor
 
-system.data.collections.AllTests = {} ;
-
-system.data.collections.AllTests.suite = function() 
+system.data.collections.ArrayCollectionTest = function( name ) 
 {
-    var TestSuite = buRRRn.ASTUce.TestSuite;
-    
-    var suite = new TestSuite( "system.data.collections unit tests" );
-    
-    //suite.simpleTrace = true;
-    
-    // suite.addTest( new TestSuite( system.data.collections.ArrayCollectionTest     ) ) ;
-    suite.addTest( new TestSuite( system.data.collections.CollectionFormatterTest ) ) ;
-    
-    return suite ;
+    buRRRn.ASTUce.TestCase.call( this , name ) ;
+}
+
+// ----o Inherit
+
+system.data.collections.ArrayCollectionTest.prototype             = new buRRRn.ASTUce.TestCase() ;
+system.data.collections.ArrayCollectionTest.prototype.constructor = system.data.collections.ArrayCollectionTest ;
+
+// ----o Initialize
+
+system.data.collections.ArrayCollectionTest.prototype.setUp = function()
+{
+    this.collection = new system.data.collections.ArrayCollection();
+}
+
+system.data.collections.ArrayCollectionTest.prototype.tearDown = function()
+{
+    this.collection = undefined ;
+}
+
+// ----o Public Methods
+
+system.data.collections.ArrayCollectionTest.prototype.testConstructor = function () 
+{
+    this.assertNotNull( this.collection ) ;
 }
