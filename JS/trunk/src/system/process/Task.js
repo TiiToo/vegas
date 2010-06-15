@@ -107,9 +107,26 @@ if ( system.process.Task == undefined)
     }
     
     /**
+     * Returns <code class="prettyprint">true</code> if the object is locked.
+     * @return <code class="prettyprint">true</code> if the object is locked.
+     */
+    proto.isLocked = function() /*Boolean*/
+    {
+        return this.__lock__ ;
+    }
+    
+    /**
+     * Locks the object.
+     */
+    proto.lock = function() /*void*/
+    {
+        this.__lock__ = true ;
+    }
+    
+    /**
      * Notify when the process is finished.
      */
-    proto.notifyFinished = function() /*Boolean*/
+    proto.notifyFinished = function() /*void*/
     {
         this._running = false ;
         this._phase = system.process.TaskPhase.FINISHED ;
@@ -141,6 +158,14 @@ if ( system.process.Task == undefined)
     proto.setStartIt = function( signal /*Signaler*/ ) /*void*/
     {
         this._startIt = signal || new system.signals.Signal() ;
+    }
+    
+    /**
+     * Unlocks the object.
+     */
+    proto.unlock = function() /*void*/
+    {
+        this.__lock__ = false ;
     }
     
     ////////////////////////////////////

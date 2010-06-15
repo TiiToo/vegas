@@ -150,6 +150,18 @@ proto.testNotifyStarted = function()
     this.assertEquals( system.process.TaskPhase.RUNNING , this.receiver.phase ) ;
 }
 
+proto.testIsLocked = function () 
+{
+    this.assertFalse( this.task.isLocked() , "#1" ) ;
+}
+
+proto.testLockUnLock = function () 
+{
+    this.task.lock() ;
+    this.assertTrue( this.task.isLocked() , "#1" ) ;
+    this.task.unlock() ;
+    this.assertFalse( this.task.isLocked() , "#2" ) ;
+}
 
 ////////
 
