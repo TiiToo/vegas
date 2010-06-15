@@ -60,10 +60,8 @@ proto.setUp = function()
     this.command3 = new MockCommand() ;
     this.command4 = new MockCommand() ;
     
-    this.batch = new system.process.Batch() ;
+    this.batch = new system.process.Batch( [this.command1,this.command2] ) ;
     
-    this.batch.add( this.command1 ) ;
-    this.batch.add( this.command2 ) ;
     this.batch.add( this.command3 ) ;
     this.batch.add( this.command4 ) ;
 }
@@ -132,6 +130,99 @@ proto.testContains = function ()
     this.assertFalse( this.batch.contains( null ) ) ;
     this.assertFalse( this.batch.contains( "hello" ) ) ;
     this.assertFalse( this.batch.contains( new MockCommand() ) ) ;
+}
+
+proto.testGet = function () 
+{
+    this.assertEquals( this.batch.get(0) , this.command1 ) ;
+    this.assertEquals( this.batch.get(1) , this.command2 ) ;
+    this.assertEquals( this.batch.get(2) , this.command3 ) ;
+    this.assertEquals( this.batch.get(3) , this.command4 ) ;
+    
+    this.assertUndefined( this.batch.get(4) ) ;
+    this.assertUndefined( this.batch.get(null) ) ;
+    this.assertUndefined( this.batch.get("hello") ) ;
+}
+
+proto.testIndexOf = function () 
+{
+    var MockCommand = system.process.mocks.MockCommand ;
+    
+    this.assertEquals( 0 , this.batch.indexOf( this.command1 ) ) ;
+    this.assertEquals( 1 , this.batch.indexOf( this.command2 ) ) ;
+    this.assertEquals( 2 , this.batch.indexOf( this.command3 ) ) ;
+    this.assertEquals( 3 , this.batch.indexOf( this.command4 ) ) ;
+    
+    this.assertEquals(  2 , this.batch.indexOf( this.command3 , 1 ) ) ;
+    this.assertEquals(  2 , this.batch.indexOf( this.command3 , 2 ) ) ;
+    this.assertEquals( -1 , this.batch.indexOf( this.command3 , 3 ) ) ;
+    
+    this.assertEquals( -1 , this.batch.indexOf( null ) ) ;
+    this.assertEquals( -1 , this.batch.indexOf( "hello" ) ) ;
+    this.assertEquals( -1 , this.batch.indexOf( new MockCommand() ) ) ;
+}
+
+proto.testIsEmpty = function () 
+{
+    this.assertFalse( this.batch.isEmpty() ) ;
+    this.batch.clear() ;
+    this.assertTrue( this.batch.isEmpty() ) ;
+}
+
+proto.testIterator = function () 
+{
+   var it = this.batch.iterator() ;
+   this.assertTrue( it instanceof system.data.iterators.ArrayIterator ) ;
+   this.assertTrue( it.hasNext() ) ;
+   this.assertEquals( this.command1 , it.next() ) ;
+   this.assertEquals( this.command2 , it.next() ) ;
+   this.assertEquals( this.command3 , it.next() ) ;
+   this.assertEquals( this.command4 , it.next() ) ;
+}
+
+proto.testRemove = function () 
+{
+    this.assertTrue( this.batch.remove( this.command1 ) ) ;
+    this.assertFalse( this.batch.remove( this.command1 ) ) ;
+    this.assertEquals( 3 , this.batch.size() ) ;
+}
+
+proto.testRun = function () 
+{
+    var MockCommand = system.process.mocks.MockCommand ;
+    MockCommand.reset() ;
+    this.batch.run() ;
+    this.assertEquals( MockCommand.COUNT , this.batch.size() ) ;
+}
+
+proto.testSize = function () 
+{
+    this.assertEquals( this.batch.size() , 4 ) ;
+    this.batch.clear() ;
+    this.assertEquals( this.batch.size() , 0 ) ;
+}
+
+proto.testToArray = function () 
+{
+    var ar = this.batch.toArray() ;
+    this.assertTrue( ar instanceof Array ) ;
+    this.assertEquals( 4 , ar.length ) ;
+    this.assertEquals( this.command1 , ar[0] ) ;
+    this.assertEquals( this.command2 , ar[1] ) ;
+    this.assertEquals( this.command3 , ar[2] ) ;
+    this.assertEquals( this.command4 , ar[3] ) ;
+}
+
+proto.testToArray = function () 
+{
+    this.assertEquals( "new system.process.Batch([new system.process.mocks.MockCommand(),new system.process.mocks.MockCommand(),new system.process.mocks.MockCommand(),new system.process.mocks.MockCommand()])" , this.batch.toSource() ) ;
+}
+
+proto.testToString = function () 
+{
+    this.assertEquals( "{[object MockCommand],[object MockCommand],[object MockCommand],[object MockCommand]}" , this.batch.toString() ) ;
+    this.batch.clear() ;
+    this.assertEquals( "{}" , this.batch.toString() ) ;
 }
 
 ////////

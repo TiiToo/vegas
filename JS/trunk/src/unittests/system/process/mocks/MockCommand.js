@@ -70,6 +70,11 @@ if( system.process.mocks.MockCommand == undefined )
         return "new system.process.mocks.MockCommand()" ;
     }
     
+    proto.toString = function() /*String*/
+    {
+        return "[object MockCommand]" ;
+    }
+    
     ////////////////////////////////////
     
     delete proto ;

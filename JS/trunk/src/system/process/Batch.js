@@ -48,12 +48,12 @@ if ( system.process.Batch == undefined)
     system.process.Batch = function ( init /*Array*/ ) 
     { 
         this._a = [] ;
-        if ( init != null && init instanceof Array && init.length > 0 )
+        if ( init instanceof Array && init.length > 0 )
         {
             var l /*int*/ = init.length ;
-            for( var i /*int*/ ; i<l ; i++ )
+            for( var i /*int*/ = 0 ; i<l ; i++ )
             {
-                if ( init[i] instanceof Runnable )
+                if ( init[i] instanceof system.process.Runnable )
                 {
                     this.add( init[i] ) ;
                 }
@@ -141,13 +141,26 @@ if ( system.process.Batch == undefined)
      * @param fromIndex the index to begin the search in the collection.
      * @return the index of the object or -1 if the object isn't find in the batch.
      */
-    proto.indexOf = function( command , fromIndex /*uint*/ ) /*Boolean*/ 
+    proto.indexOf = function( command , fromIndex /*uint*/ ) /*int*/ 
     {
         if ( isNaN( fromIndex ) )
         {
             fromIndex = 0 ;
         }
-        return this._a.indexOf( command , fromIndex ) ;
+        fromIndex = ( fromIndex > 0 ) ? Math.round(fromIndex) : 0 ;
+        if ( command instanceof system.process.Runnable )
+        {
+            var l = this._a.length ;
+            var i = fromIndex ;
+            for( i ; i < l ; i++ )
+            {
+                if ( this._a[i] == command )
+                {
+                    return i ;
+                }
+            }
+        }
+        return -1 ;
     }
     
     /**
@@ -173,7 +186,7 @@ if ( system.process.Batch == undefined)
      */
     proto.remove = function ( command /*Runnable*/ ) /*Boolean*/ 
     {
-        var index = this._a.indexOf( command ) ;
+        var index = this.indexOf( command ) ;
         if ( index > -1 )
         {
             this._a.splice( index , 1 ) ;
@@ -258,9 +271,23 @@ if ( system.process.Batch == undefined)
      * Returns the source code string representation of the object.
      * @return the source code string representation of the object.
      */
-    proto.toSource = function () /*Array*/ 
+    proto.toString = function () /*Array*/ 
     {
-        return system.data.collections.formatter.format(this) ;
+        var r = "{";
+        if ( this._a.length > 0 ) 
+        {
+            var l /*int*/    = this._a.length   ;
+            for ( var i /*int*/ = 0 ; i < l ; i++ ) 
+            {
+                r += this._a[i] ;
+                if (i < (l-1)) 
+                {
+                    r += "," ;
+                }
+            }
+        }
+        r += "}";
+        return r ;
     }
     
     // encapsulate
