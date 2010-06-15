@@ -41,13 +41,13 @@ package vegas.process.display
     import graphics.transitions.CoreTransition;
     import graphics.transitions.TweenArray;
     import graphics.transitions.TweenUnit;
-    
+
     import system.events.ActionEvent;
     import system.numeric.Mathematics;
-    import system.process.BatchProcess;
-    
+    import system.process.BatchTask;
+
     import vegas.display.Background;
-    
+
     /**
      * This process switch the fill gradient color of the specified background.     */    public class SwitchBackgroundGradientColor extends CoreTransition 
     {        /**
@@ -79,7 +79,7 @@ package vegas.process.display
             this.duration   = duration   ;
             this.useSeconds = useSeconds ;
             
-            _batch = new BatchProcess() ;
+            _batch = new BatchTask() ;
             _batch.addEventListener(ActionEvent.FINISH, _finish) ;
         }
         
@@ -220,7 +220,7 @@ package vegas.process.display
                 _batch.stop() ;
             }
             
-            _batch.clear() ;
+            _batch.length = 0 ;
             
             if ( background != null )
             {
@@ -242,7 +242,7 @@ package vegas.process.display
                         _tweenRatios.begin = gradient.ratios ;
                         _batch.addAction(_tweenRatios) ;
                     }
-                    if ( _batch.size() > 0)
+                    if ( _batch.length > 0)
                     {
                         _batch.run() ;
                         return ;
@@ -280,7 +280,7 @@ package vegas.process.display
         /**
          * @private
          */
-        private var _batch:BatchProcess ;
+        private var _batch:BatchTask ;
         
         /**
          * @private
