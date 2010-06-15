@@ -53,11 +53,28 @@ proto = system.process.BatchTest.prototype ;
 
 proto.setUp = function()
 {
-    this.batch = new system.process.Batch() ; 
+    var MockCommand = system.process.mocks.MockCommand ;
+    
+    this.command1 = new MockCommand() ;
+    this.command2 = new MockCommand() ;
+    this.command3 = new MockCommand() ;
+    this.command4 = new MockCommand() ;
+    
+    this.batch = new system.process.Batch() ;
+    
+    this.batch.add( this.command1 ) ;
+    this.batch.add( this.command2 ) ;
+    this.batch.add( this.command3 ) ;
+    this.batch.add( this.command4 ) ;
 }
 
 proto.tearDown = function()
 {
+    this.command1 = undefined ;
+    this.command2 = undefined ;
+    this.command3 = undefined ;
+    this.command4 = undefined ;
+    
     this.batch = undefined ;
 }
 
@@ -71,6 +88,50 @@ proto.testConstructor = function ()
 proto.testInherit = function () 
 {
     this.assertTrue( this.batch instanceof system.process.Runnable ) ;
+}
+
+proto.testAdd = function () 
+{
+    var MockCommand = system.process.mocks.MockCommand ;
+    
+    this.assertTrue( this.batch.add( new MockCommand() ) , "#1" ) ;
+    
+    var command = {} ;
+    command.run = function() {} ;
+    
+    this.assertFalse( this.batch.add( command ) , "#2" ) ;
+    
+    this.assertFalse( this.batch.add( 2 ) ) ;
+    
+    this.assertFalse( this.batch.add( "hello world" ) ) ;
+}
+
+proto.testClear = function () 
+{
+    this.batch.clear() ;
+    this.assertEquals( this.batch.size() , 0 ) ;
+}
+
+proto.testClone = function () 
+{
+    var clone = this.batch.clone() ;
+    this.assertNotNull( clone , "#1" ) ;
+    this.assertNotSame( clone , this.batch , "#2" ) ;
+    this.assertEquals( clone.size() , this.batch.size() , "#3" ) ;
+}
+
+proto.testContains = function () 
+{
+    var MockCommand = system.process.mocks.MockCommand ;
+    
+    this.assertTrue( this.batch.contains( this.command1 ) ) ;
+    this.assertTrue( this.batch.contains( this.command2 ) ) ;
+    this.assertTrue( this.batch.contains( this.command3 ) ) ;
+    this.assertTrue( this.batch.contains( this.command4 ) ) ;
+    
+    this.assertFalse( this.batch.contains( null ) ) ;
+    this.assertFalse( this.batch.contains( "hello" ) ) ;
+    this.assertFalse( this.batch.contains( new MockCommand() ) ) ;
 }
 
 ////////

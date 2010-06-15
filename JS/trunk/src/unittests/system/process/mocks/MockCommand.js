@@ -65,6 +65,11 @@ if( system.process.mocks.MockCommand == undefined )
         system.process.mocks.MockCommand.COUNT ++ ;
     }
     
+    proto.toSource = function() /*String*/
+    {
+        return "new system.process.mocks.MockCommand()" ;
+    }
+    
     ////////////////////////////////////
     
     delete proto ;

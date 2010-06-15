@@ -43,10 +43,22 @@ if ( system.process.Batch == undefined)
 {
     /**
      * Creates a new Batch instance.
+     * @param init The optional Array of Runnable objects to fill the batch.
      */
-    system.process.Batch = function () 
+    system.process.Batch = function ( init /*Array*/ ) 
     { 
         this._a = [] ;
+        if ( init != null && init instanceof Array && init.length > 0 )
+        {
+            var l /*int*/ = init.length ;
+            for( var i /*int*/ ; i<l ; i++ )
+            {
+                if ( init[i] instanceof Runnable )
+                {
+                    this.add( init[i] ) ;
+                }
+            }
+        }
     }
     
     /**
@@ -59,7 +71,11 @@ if ( system.process.Batch == undefined)
      */
     proto.add = function( command /*Runnable*/ ) /*Boolean*/ 
     {
-        if ( command != null && ( "run" in command ) && ( command["run"] instanceof Function ) ) 
+        if ( command == null )
+        {
+            return false ;
+        }
+        if ( command instanceof system.process.Runnable )
         {
             this._a.push( command ) ;
             return true ;
@@ -72,7 +88,7 @@ if ( system.process.Batch == undefined)
      */
     proto.clear = function() /*void*/ 
     {
-        this._a.splice(0) ;
+        this._a.length = 0 ;
     }
     
     /**
@@ -81,13 +97,13 @@ if ( system.process.Batch == undefined)
      */
     proto.clone = function()
     {
-        var c = new system.process.Batch() ;
+        var b = new system.process.Batch() ;
         var l = this._a.length ;
         for( var i = 0 ; i < l ; i++ )
         {
-            c._a.push( this._a[i] ) ;
+            b.add( this._a[i] ) ;
         }
-        return c ;
+        return b ;
     }
     
     /**
@@ -96,7 +112,18 @@ if ( system.process.Batch == undefined)
      */
     proto.contains = function( command /*Runnable*/ ) /*Boolean*/ 
     {
-        return this._a.indexOf( command ) >- 1  ;
+        if ( command instanceof system.process.Runnable )
+        {
+            var l = this._a.length ;
+            while( --l > -1 )
+            {
+                if ( this._a[l] == command )
+                {
+                    return true ;
+                }
+            }
+        }
+        return false ;
     }
     
     /**
@@ -116,6 +143,10 @@ if ( system.process.Batch == undefined)
      */
     proto.indexOf = function( command , fromIndex /*uint*/ ) /*Boolean*/ 
     {
+        if ( isNaN( fromIndex ) )
+        {
+            fromIndex = 0 ;
+        }
         return this._a.indexOf( command , fromIndex ) ;
     }
     
@@ -142,7 +173,7 @@ if ( system.process.Batch == undefined)
      */
     proto.remove = function ( command /*Runnable*/ ) /*Boolean*/ 
     {
-        var index = this._a.indexOf( command , fromIndex ) ;
+        var index = this._a.indexOf( command ) ;
         if ( index > -1 )
         {
             this._a.splice( index , 1 ) ;
@@ -160,7 +191,7 @@ if ( system.process.Batch == undefined)
         if ( l > 0 ) 
         {
             var i = -1 ;
-            while (++i < l) 
+            while ( ++i < l ) 
             { 
                 this._a[i].run() ; 
             }
@@ -185,9 +216,11 @@ if ( system.process.Batch == undefined)
         if (l > 0) 
         {
             var i = -1 ;
+            var s ;
             while (++i < l) 
             {
-                if ( ( "stop" in this._a[i] ) && ( this._a[i]["stop"] instanceof Function ) )
+                s = this._a[i] ;
+                if ( ( "stop" in s ) && ( s["stop"] instanceof Function ) )
                 {
                     this._a[i].stop() ;
                 }
@@ -202,6 +235,32 @@ if ( system.process.Batch == undefined)
     proto.toArray = function () /*Array*/ 
     {
         return this._a ;
+    }
+    
+    /**
+     * Returns the source code string representation of the object.
+     * @return the source code string representation of the object.
+     */
+    proto.toSource = function () /*Array*/ 
+    {
+        var ar /*Array*/ = this.toArray() ;
+        var source /*String*/ = "new " + this.getConstructorPath() ;
+        source += "(" ;
+        if ( ar.length > 0 )
+        {
+            source += core.dump( ar ) ;
+        } 
+        source += ")" ;
+        return source ;
+    }
+    
+    /**
+     * Returns the source code string representation of the object.
+     * @return the source code string representation of the object.
+     */
+    proto.toSource = function () /*Array*/ 
+    {
+        return system.data.collections.formatter.format(this) ;
     }
     
     // encapsulate
