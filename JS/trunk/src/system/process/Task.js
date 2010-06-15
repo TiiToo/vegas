@@ -59,7 +59,7 @@ if ( system.process.Task == undefined)
     ////////////////////////////////////
     
     /**
-     * @extends Object
+     * @extends system.process.Action
      */
     proto = system.process.Task.extend( system.process.Action ) ;
     

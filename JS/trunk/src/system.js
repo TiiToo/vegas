@@ -143,17 +143,18 @@ catch(e)
     
     // system.process
     
-    require( "system.process.Action"    ) ;
-    require( "system.process.Batch"     ) ;
-    require( "system.process.Lockable"  ) ;
-    require( "system.process.Priority"  ) ;
-    require( "system.process.Resetable" ) ;
-    require( "system.process.Resumable" ) ;
-    require( "system.process.Runnable"  ) ;
-    require( "system.process.Startable" ) ;
-    require( "system.process.Stoppable" ) ;
-    require( "system.process.Task"      ) ;
-    require( "system.process.TaskPhase" ) ;
+    require( "system.process.Action"      ) ;
+    require( "system.process.Batch"       ) ;
+    require( "system.process.Initializer" ) ;
+    require( "system.process.Lockable"    ) ;
+    require( "system.process.Priority"    ) ;
+    require( "system.process.Resetable"   ) ;
+    require( "system.process.Resumable"   ) ;
+    require( "system.process.Runnable"    ) ;
+    require( "system.process.Startable"   ) ;
+    require( "system.process.Stoppable"   ) ;
+    require( "system.process.Task"        ) ;
+    require( "system.process.TaskPhase"   ) ;
     
     // system.signals
     

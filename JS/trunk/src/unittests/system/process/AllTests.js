@@ -42,6 +42,7 @@ load("unittests/system/process/mocks/MockTaskReceiver.js") ;
 
 load("unittests/system/process/ActionTest.js") ;
 load("unittests/system/process/BatchTest.js") ;
+load("unittests/system/process/InitializerTest.js") ;
 load("unittests/system/process/LockableTest.js") ;
 load("unittests/system/process/PriorityTest.js") ;
 load("unittests/system/process/ResetableTest.js") ;
@@ -62,17 +63,18 @@ system.process.AllTests.suite = function()
     
     //suite.simpleTrace = true;
     
-    suite.addTest( new TestSuite( system.process.ActionTest    ) ) ;
-    suite.addTest( new TestSuite( system.process.BatchTest     ) ) ;
-    suite.addTest( new TestSuite( system.process.LockableTest  ) ) ;
-    suite.addTest( new TestSuite( system.process.PriorityTest  ) ) ;
-    suite.addTest( new TestSuite( system.process.ResetableTest ) ) ;
-    suite.addTest( new TestSuite( system.process.ResumableTest ) ) ;
-    suite.addTest( new TestSuite( system.process.RunnableTest  ) ) ;
-    suite.addTest( new TestSuite( system.process.StartableTest ) ) ;
-    suite.addTest( new TestSuite( system.process.StoppableTest ) ) ;
-    suite.addTest( new TestSuite( system.process.TaskTest      ) ) ;
-    suite.addTest( new TestSuite( system.process.TaskPhaseTest ) ) ;
+    suite.addTest( new TestSuite( system.process.ActionTest      ) ) ;
+    suite.addTest( new TestSuite( system.process.BatchTest       ) ) ;
+    suite.addTest( new TestSuite( system.process.InitializerTest ) ) ;
+    suite.addTest( new TestSuite( system.process.LockableTest    ) ) ;
+    suite.addTest( new TestSuite( system.process.PriorityTest    ) ) ;
+    suite.addTest( new TestSuite( system.process.ResetableTest   ) ) ;
+    suite.addTest( new TestSuite( system.process.ResumableTest   ) ) ;
+    suite.addTest( new TestSuite( system.process.RunnableTest    ) ) ;
+    suite.addTest( new TestSuite( system.process.StartableTest   ) ) ;
+    suite.addTest( new TestSuite( system.process.StoppableTest   ) ) ;
+    suite.addTest( new TestSuite( system.process.TaskTest        ) ) ;
+    suite.addTest( new TestSuite( system.process.TaskPhaseTest   ) ) ;
     
     return suite ;
 }

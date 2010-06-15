@@ -36,41 +36,60 @@
 */
 
 /**
- * This interface should be implemented by any class whose instances are intended to be executed.
+ * A simple representation of the <code class="prettyprint">Action</code> interface.
  */
-if ( system.process.Runnable == undefined) 
+if ( system.process.Initializer == undefined) 
 {
     /**
-     * Creates a new Runnable instance.
+     * @requires system.process.Action
      */
-    system.process.Runnable = function () 
+    require( "system.process.Task" ) ;
+    
+    /**
+     * Creates a new Initializer instance.
+     */
+    system.process.Initializer = function () 
     { 
-        
+        system.process.Task.call( this ) ;
+    }
+    
+    ////////////////////////////////////
+    
+    /**
+     * @extends system.process.Task
+     */
+    proto = system.process.Initializer.extend( system.process.Task ) ;
+    
+    ////////////////////////////////////
+    
+    /**
+     * Returns a shallow copy of this object.
+     * @return a shallow copy of this object.
+     */
+    proto.clone = function()
+    {
+        return new system.process.Initializer() ;
     }
     
     /**
-     * @extends Object
+     * The initialize method.
      */
-    proto = system.process.Runnable.extend( Object ) ;
+    proto.initialize = function()
+    {
+        // override
+    }
     
     /**
      * Run the process.
      */
     proto.run = function() /*void*/
     {
-        //
+        this.notifyStarted() ;
+        this.initialize() ;
+        this.notifyFinished() ;
     }
     
-    /**
-     * Returns the string representation of this instance.
-     * @return the string representation of this instance.
-     */
-    proto.toString = function () /*String*/ 
-    {
-        return "[" + this.getConstructorName() + "]" ;
-    }
-    
-    // encapsulate
+    ////////////////////////////////////
     
     delete proto ;
 }
