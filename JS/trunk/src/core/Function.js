@@ -36,6 +36,60 @@
 */
 
 /**
+ * Wraps the function in another, locking its execution scope to an object specified by the specified first argument.
+ * <pre>
+ * var action = function()
+ * {
+ *     trace( this + " :: " + core.dump(Array.fromArguments(arguments)) ) ;
+ * }
+ * 
+ * var proxy ;
+ * 
+ * var scope = {} ;
+ * scope.toString = function()
+ * {
+ *     return "scope" ;
+ * }
+ * 
+ * action( 1 , 2 , 3 ) ; // [object global] :: [1,2,3]
+ * 
+ * proxy = action.bind( scope ) ;
+ * proxy( 1 , 2 , 3 ) ; //  scope :: [1,2,3]
+ * 
+ * proxy = action.bind( scope , 4, 5, 6) ;
+ * proxy( 1 , 2 , 3 ) ; //  scope :: [4,5,6,1,2,3]
+ */
+if ( Function.prototype.bind == undefined )
+{
+    Function.prototype.bind = function( o )
+    {
+        var self      = this ;
+        var boundArgs = arguments ;
+        return function()
+        {
+            var i ;
+            var l ;
+            
+            var args = [] ;
+            
+            l = boundArgs.length ;
+            for( i = 1 ; i<l ; i++ )
+            {
+                args.push( boundArgs[i] ) ;
+            }
+            
+            l = arguments.length ;
+            for( i = 0 ; i<l ; i++ )
+            {
+                args.push( arguments[i] ) ;
+            }
+            
+            return self.apply( o , args ) ;
+        }
+    }
+}
+
+/**
  * This function apply an inherit of the current constructor with the constructor passed in argument.
  * <p><b>Example :</b></p>
  * {@code
