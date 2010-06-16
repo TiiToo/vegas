@@ -103,8 +103,36 @@ proto.testInherit = function ()
 proto.testLength = function () 
 {
     this.assertEquals( 4 , this.group.length ) ;
+    this.group.length = 10 ;
+    this.assertEquals( 10 , this.group.length ) ;
+    this.group.length = 2 ;
+    this.assertEquals( 2 , this.group.length ) ;
+    this.group.length = 0 ;
+    this.assertEquals( 0 , this.group.length ) ;
 }
 
+proto.testMode = function () 
+{
+    this.assertEquals( system.process.TaskGroup.NORMAL , this.group.mode ) ; 
+    
+    this.group.mode = null ;
+    this.assertEquals( system.process.TaskGroup.NORMAL , this.group.mode ) ; 
+    
+    this.group.mode = 2 ;
+    this.assertEquals( system.process.TaskGroup.NORMAL , this.group.mode ) ; 
+    
+    this.group.mode = "hello" ;
+    this.assertEquals( system.process.TaskGroup.NORMAL , this.group.mode ) ; 
+    
+    this.group.mode = "normal" ;
+    this.assertEquals( system.process.TaskGroup.NORMAL , this.group.mode ) ;
+    
+    this.group.mode = system.process.TaskGroup.TRANSIENT ;
+    this.assertEquals( system.process.TaskGroup.TRANSIENT , this.group.mode ) ;
+    
+    this.group.mode = system.process.TaskGroup.EVERLASTING ;
+    this.assertEquals( system.process.TaskGroup.EVERLASTING , this.group.mode ) ;
+}
 ////////
 
 delete proto ;
