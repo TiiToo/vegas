@@ -45,6 +45,7 @@ if( system.process.mocks.MockTaskReceiver == undefined )
         }
         this.finishCalled  = false ;
         this.startCalled   = false ;
+        
         this.phase         = null ;
         this.running       = false ;
     }

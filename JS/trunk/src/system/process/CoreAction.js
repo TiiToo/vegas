@@ -56,6 +56,7 @@ if ( system.process.CoreAction == undefined)
         this._clearIt    = new Signal() ;
         this._infoIt     = new Signal() ;
         this._loopIt     = new Signal() ;
+        this._pauseIt    = new Signal() ;
         this._progressIt = new Signal() ;
         this._resumeIt   = new Signal() ;
         this._stopIt     = new Signal() ;
@@ -114,6 +115,14 @@ if ( system.process.CoreAction == undefined)
     proto.getLoopIt = function() /*Signaler*/
     {
         return this._loopIt ;
+    }
+    
+    /**
+     * This signal emit when the notifyPaused method is invoked. 
+     */
+    proto.getPauseIt = function() /*Signaler*/
+    {
+        return this._pauseIt ;
     }
     
     /**
@@ -194,6 +203,19 @@ if ( system.process.CoreAction == undefined)
     }
     
     /**
+     * Notify when the process is paused.
+     */
+    proto.notifyPaused = function() /*void*/
+    {
+        this._running = false ;
+        this._phase = system.process.TaskPhase.STOPPED ;
+        if ( !this.isLocked() )
+        {
+            this._pauseIt.emit( this ) ;
+        }
+    }
+    
+    /**
      * Notify when the process is progress.
      */
     proto.notifyProgress = function() /*void*/
@@ -222,7 +244,7 @@ if ( system.process.CoreAction == undefined)
     proto.notifyStopped = function() /*void*/
     {
         this._running = false ;
-        this._phase = system.process.TaskPhase.RUNNING ;
+        this._phase = system.process.TaskPhase.STOPPED ;
         if ( !this.isLocked() )
         {
             this._stopIt.emit( this ) ;
@@ -275,6 +297,14 @@ if ( system.process.CoreAction == undefined)
     }
     
     /**
+     * Sets the signal who emit when the notifyPaused method is invoked.
+     */
+    proto.setPauseIt = function( signal /*Signaler*/ ) /*void*/
+    {
+        this._pauseIt = signal || new system.signals.Signal() ;
+    }
+    
+    /**
      * Sets the signal who emit when the notifyProgress method is invoked.
      */
     proto.setProgressIt = function( signal /*Signaler*/ ) /*void*/
@@ -319,6 +349,9 @@ if ( system.process.CoreAction == undefined)
     
     proto.__defineGetter__( "loopIt" , proto.getLoopIt ) ;
     proto.__defineSetter__( "loopIt" , proto.setLoopIt ) ;
+    
+    proto.__defineGetter__( "pauseIt" , proto.getPauseIt ) ;
+    proto.__defineSetter__( "pauseIt" , proto.setPauseIt ) ;
     
     proto.__defineGetter__( "progressIt" , proto.getProgressIt ) ;
     proto.__defineSetter__( "progressIt" , proto.setProgressIt ) ;
