@@ -85,8 +85,8 @@ proto.testInitialize = function ()
     
     this.assertTrue( this.action.initialized ) ;
     
-    this.assertTrue( this.receiver.called ) ;
-    this.assertFalse( this.receiver.running ) ;
+    this.assertTrue( this.receiver.finishCalled ) ;
+    this.assertTrue( this.receiver.startCalled ) ;
     
     this.assertEquals( system.process.TaskPhase.FINISHED , this.receiver.phase ) ;
     this.assertEquals( system.process.TaskPhase.INACTIVE , this.action.phase ) ;

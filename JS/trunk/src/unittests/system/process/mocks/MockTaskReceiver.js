@@ -43,9 +43,10 @@ if( system.process.mocks.MockTaskReceiver == undefined )
         {
             this.register( task ) ;
         }
-        this.called  = false ;
-        this.phase   = null ;
-        this.running = false ;
+        this.finishCalled  = false ;
+        this.startCalled   = false ;
+        this.phase         = null ;
+        this.running       = false ;
     }
     
     ////////////////////////////////////
@@ -57,25 +58,35 @@ if( system.process.mocks.MockTaskReceiver == undefined )
     
     ////////////////////////////////////
     
-    proto.receive = function( task /*Task*/ )
+    proto.finish = function( task /*Task*/ )
     {
-        this.called  = true ;
-        this.phase   = task.phase   ;
-        this.running = task.running ;
+        this.finishCalled = true ;
+        this.phase        = task.phase   ;
+        this.runnin       = task.running ;
     }
     
+    proto.start = function( task /*Task*/ )
+    {
+        this.startCalled = true ;
+        this.phase       = task.phase   ;
+        this.running     = task.running ;
+    }
+        
     proto.register = function( task /*Task*/ ) /*void*/
     {
         this.task = task ;
-        this.task.finishIt.connect( this ) ;
-        this.task.startIt.connect( this ) ;
+        this.task.finishIt.connect( this.finish.bind( this ) ) ;
+        this.task.startIt.connect( this.start.bind( this ) ) ;
     }
     
     proto.unregister = function() /*void*/
     {
-        this.task.finishIt.disconnect( this ) ;
-        this.task.startIt.disconnect( this ) ;
-        this.task = null  ;
+        if (this.task)
+        {
+            this.task.finishIt.disconnect() ;
+            this.task.startIt.disconnect() ;
+            this.task = null  ;
+        }
     }
     
     ////////////////////////////////////

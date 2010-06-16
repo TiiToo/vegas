@@ -136,7 +136,7 @@ proto.testToString = function ()
 proto.testNotifyFinished = function()
 {
     this.task.notifyFinished() ;
-    this.assertTrue( this.receiver.called ) ;
+    this.assertTrue( this.receiver.finishCalled ) ;
     this.assertFalse( this.receiver.running ) ;
     this.assertEquals( system.process.TaskPhase.FINISHED , this.receiver.phase ) ;
     this.assertEquals( system.process.TaskPhase.INACTIVE , this.task.phase ) ;
@@ -145,7 +145,7 @@ proto.testNotifyFinished = function()
 proto.testNotifyStarted = function()
 {
     this.task.notifyStarted() ;
-    this.assertTrue( this.receiver.called ) ;
+    this.assertTrue( this.receiver.startCalled ) ;
     this.assertTrue( this.receiver.running ) ;
     this.assertEquals( system.process.TaskPhase.RUNNING , this.receiver.phase ) ;
 }
