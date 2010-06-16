@@ -133,7 +133,7 @@ Function.prototype.extend = function ( superConstructor )
         this.prototype.__proto__ = superConstructor.prototype ;
         this.prototype.__constructor__ = superConstructor ;
     }
-    SSASSetPropFlags(this.prototype, ["__proto__", "__constructor__" ], false , null , null  ) ; 
+    setPropFlags(this.prototype, ["__proto__", "__constructor__" ], false , null , null  ) ; 
     return this.prototype ;
 }
 
@@ -148,4 +148,4 @@ Function.prototype.toString = function ()
 
 // encapsulate
 
-SSASSetPropFlags( Function.prototype, ["bind", "extend", "toString" ], false , null , null  ) ;
+setPropFlags( Function.prototype, ["bind", "extend", "toString" ], false , null , null  ) ;

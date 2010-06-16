@@ -37,7 +37,7 @@
 
 try
 {
-    dummy = SSASSetPropFlags ;
+    dummy = setPropFlags ;
 }
 catch( e )
 {
@@ -56,7 +56,7 @@ catch( e )
      * permanent (nondeletable) if true or deletable if false; a null value leaves this attribute 
      * unchanged. Any attempt to delete a permanent property (by calling delete obj.prop) is ignored.
      */
-    SSASSetPropFlags = function( obj /*Object*/ , props /*Array*/ , enumerable /*Boolean*/ , readonly /*Boolean*/ , permanent /*Boolean*/ ) /*void*/
+    setPropFlags = function( obj /*Object*/ , props /*Array*/ , enumerable /*Boolean*/ , readonly /*Boolean*/ , permanent /*Boolean*/ ) /*void*/
     {
         try
         {    

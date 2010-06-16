@@ -35,7 +35,7 @@
   
 */
 
-load("./core/SSASSetPropFlags.js") ;
+load("./core/setPropFlags.js") ;
 
 load("./core/encapsulate.js") ;
 load("./core/Function.js") ;
