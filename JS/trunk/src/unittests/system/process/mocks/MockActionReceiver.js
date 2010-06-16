@@ -62,9 +62,9 @@ if( system.process.mocks.MockActionReceiver == undefined )
     ////////////////////////////////////
     
     /**
-     * @extends system.process.Receiver
+     * @extends Object
      */
-    proto = system.process.mocks.MockActionReceiver.extend( system.process.Receiver ) ;
+    proto = system.process.mocks.MockActionReceiver.extend( Object ) ;
     
     ////////////////////////////////////
     
