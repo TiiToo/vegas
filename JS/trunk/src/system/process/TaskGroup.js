@@ -114,6 +114,7 @@ if ( system.process.TaskGroup == undefined)
             priority   = ( priority > 0 ) ? Math.round(priority) : 0 ;
             
             var entry = new system.process.ActionEntry( action , priority , autoRemove ) ;
+            
             var slot  = this.next.bind( this ) ;
             
             action.finishIt.connect( slot ) ;
@@ -156,7 +157,7 @@ if ( system.process.TaskGroup == undefined)
                 }
             }
             
-            ///////
+            //////
             
             return true ;
         }
@@ -247,6 +248,14 @@ if ( system.process.TaskGroup == undefined)
     proto.isEmpty = function() /*Boolean*/
     {
         return this._actions.length == 0 ;
+    }
+    
+    /**
+     * Invoked when a task is finished.
+     */
+    proto.next = function( action /*Action*/ ) /*void*/
+    {
+        //
     }
     
     /**

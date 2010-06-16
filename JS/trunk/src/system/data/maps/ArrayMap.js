@@ -135,7 +135,7 @@ if ( system.data.maps.ArrayMap == undefined )
      */
     proto.containsKey = function ( key ) /*Boolean*/ 
     {
-        return this._keys.indexOf(key) > -1 ;
+        return this.indexOfKey(key) > -1 ;
     }
     
     /**
@@ -144,7 +144,7 @@ if ( system.data.maps.ArrayMap == undefined )
      */
     proto.containsValue = function ( value ) /*Boolean*/ 
     {
-        return this._values.indexOf( value ) > -1 ;
+        return this.indexOfValue( value ) > -1 ;
     }
     
     /**
@@ -153,7 +153,7 @@ if ( system.data.maps.ArrayMap == undefined )
      */
     proto.get = function (key) 
     {
-        return this._values[ this._keys.indexOf( key ) ] ;
+        return this._values[ this.indexOfKey( key ) ] ;
     }
     
     /**
@@ -199,7 +199,15 @@ if ( system.data.maps.ArrayMap == undefined )
      */
     proto.indexOfKey = function (key) /*int*/ 
     {
-        return this._keys.indexOf(key) ;
+        var l = this._keys.length ;
+        while( --l > -1 )
+        {
+            if ( this._keys[l] == key )
+            {
+                return l ;
+            }
+        }
+        return -1 ;
     }
     
     /**
@@ -209,7 +217,15 @@ if ( system.data.maps.ArrayMap == undefined )
      */
     proto.indexOfValue = function (value) /*int*/ 
     {
-        return this._values.indexOf(value) ;
+        var l = this._values.length ;
+        while( --l > -1 )
+        {
+            if ( this._values[l] == value )
+            {
+                return l ;
+            }
+        }
+        return -1 ;
     }
     
     /**
@@ -247,11 +263,11 @@ if ( system.data.maps.ArrayMap == undefined )
     proto.put = function ( key , value ) 
     {
         var r = null ;
-        var i /*Number*/ = this._keys.indexOf( key ) ;
+        var i /*Number*/ = this.indexOfKey( key ) ;
         if ( i < 0 ) 
         {
-            this._keys.push(key) ;
-            this._values.push(value) ;
+            this._keys.push( key ) ;
+            this._values.push( value ) ;
         } 
         else 
         {
@@ -287,7 +303,7 @@ if ( system.data.maps.ArrayMap == undefined )
     proto.remove = function ( key ) 
     {
         var v = null ;
-        var i = this._keys.indexOf( key ) ;
+        var i = this.indexOfKey( key ) ;
         if ( i > -1 ) 
         {
             v = this._values[i] ;
@@ -317,10 +333,9 @@ if ( system.data.maps.ArrayMap == undefined )
         var k = this._keys[index] ;
         if (k === undefined)
         {
-            return null ;   
+            return null ;
         }
         var v = this._values[index] ; 
-        
         
         this._keys[index] = key ;
         return new system.data.maps.MapEntry( k , v ) ;

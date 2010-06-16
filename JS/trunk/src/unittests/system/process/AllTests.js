@@ -56,6 +56,7 @@ load("unittests/system/process/RunnableTest.js") ;
 load("unittests/system/process/StartableTest.js") ;
 load("unittests/system/process/StoppableTest.js") ;
 load("unittests/system/process/TaskTest.js") ;
+load("unittests/system/process/TaskGroupTest.js") ;
 load("unittests/system/process/TaskPhaseTest.js") ;
 
 system.process.AllTests = {} ;
@@ -81,6 +82,7 @@ system.process.AllTests.suite = function()
     suite.addTest( new TestSuite( system.process.StartableTest   ) ) ;
     suite.addTest( new TestSuite( system.process.StoppableTest   ) ) ;
     suite.addTest( new TestSuite( system.process.TaskTest        ) ) ;
+    suite.addTest( new TestSuite( system.process.TaskGroupTest   ) ) ;
     suite.addTest( new TestSuite( system.process.TaskPhaseTest   ) ) ;
     
     return suite ;
