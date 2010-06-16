@@ -35,42 +35,48 @@
   
 */
 
-// ---o Constructor
+// ---o constructor
 
-system.signals.SignalEntryTest = function( name ) 
+system.process.ActionEntryTest = function( name ) 
 {
     buRRRn.ASTUce.TestCase.call( this , name ) ;
 }
 
-// ----o Inherit
+// ----o inherit
 
-system.signals.SignalEntryTest.prototype             = new buRRRn.ASTUce.TestCase() ;
-system.signals.SignalEntryTest.prototype.constructor = system.signals.SignalEntryTest ;
+system.process.ActionEntryTest.prototype             = new buRRRn.ASTUce.TestCase() ;
+system.process.ActionEntryTest.prototype.constructor = system.process.ActionEntryTest ;
 
-// ----o Public Methods
+proto = system.process.ActionEntryTest.prototype ;
 
-system.signals.SignalEntryTest.prototype.testConstructor = function () 
+// ----o methods
+
+proto.testConstructor = function () 
 {
-    var entry = new system.signals.SignalEntry() ;
+    var entry = new system.process.ActionEntry() ;
     this.assertNotNull( entry ) ; 
     this.assertFalse( entry.auto ) ;
     this.assertEquals( entry.priority , 0 ) ;
-    this.assertNull( entry.receiver ) ;
+    this.assertNull( entry.action ) ;
 }
 
-system.signals.SignalEntryTest.prototype.testConstructorWithArguments = function () 
+proto.testConstructorWithArguments = function () 
 {
-    var slot  = function() {} ;
-    var entry = new system.signals.SignalEntry( slot , 2 , true ) ;
+    var action = new system.process.Task() ; 
+    var entry  = new system.process.ActionEntry( action , 2 , true ) ;
     this.assertNotNull( entry ) ;
+    this.assertEquals( entry.action , action ) ;
     this.assertTrue( entry.auto ) ;
     this.assertEquals( entry.priority , 2 ) ;
-    this.assertEquals( entry.receiver , slot ) ;
 }
 
-system.signals.SignalEntryTest.prototype.testToString = function () 
+proto.testToString = function () 
 {
-    var slot  = function() {} ;
-    var entry = new system.signals.SignalEntry( slot , 2 , true ) ;
-    this.assertEquals( entry.toString() , "[SignalEntry receiver:[Type Function] priority:2 auto:true]" ) ;
+    var action = new system.process.Task() ; 
+    var entry  = new system.process.ActionEntry( action , 2 , true ) ;
+    this.assertEquals( entry.toString() , "[ActionEntry action:[Task] priority:2 auto:true]" ) ;
 }
+
+// ----o encapsulate
+
+delete proto ;

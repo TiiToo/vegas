@@ -36,44 +36,53 @@
 */
 
 /**
- * A SignalEntry object contains all informations about a receiver entry in a Signal collection.
+ * Contains all informations about an Action in a TaskGroup.
  */
-if ( system.signals.SignalEntry == undefined ) 
+if ( system.process.ActionEntry == undefined ) 
 {
     /**
-     * Creates a new SignalEntry instance.
-     * @param receiver The receiver reference.
+     * Creates a new ActionEntry instance.
+     * @param action The Action reference.
      * @param priority The priority value of the entry.
      * @param auto This flag indicates if the receiver must be disconnected when handle the first time a signal. 
      */
-    system.signals.SignalEntry = function ( receiver , priority /*uint*/ , auto /*Boolean*/ ) 
+    system.process.ActionEntry = function ( action , priority /*uint*/ , auto /*Boolean*/ ) 
     {
+        this.action   = action ;
         this.auto     = Boolean( auto ) ;
-        this.receiver = receiver ;
         this.priority = priority > 0 ? Math.ceil( priority ) : 0 ;
     }
     
     /**
-     * Indicates if the receiver must be disconnected when handle the first time a signal.
+     * @extends Object
      */
-    system.signals.SignalEntry.prototype.auto = false ;
+    proto = system.process.ActionEntry.extend( Object ) ;
     
     /**
-     * Determinates the priority value of the object.
+     * The Action reference of this entry.
      */
-    system.signals.SignalEntry.prototype.priority =  0 ;
+    proto.action = null ;
     
     /**
-     * The receiver Function reference of this entry.
+     * Indicates if the action must be removed when handle the first the finish phase of the process.
      */
-    system.signals.SignalEntry.prototype.receiver = null ;
+    proto.auto = false ;
+    
+    /**
+     * Determinates the priority value of the entry.
+     */
+    proto.priority =  0 ;
     
     /**
      * Returns the String representation of the object.
      * @return the String representation of the object.
      */
-    system.signals.SignalEntry.prototype.toString = function() /*String*/
+    proto.toString = function() /*String*/
     {
-        return "[SignalEntry receiver:" + this.receiver + " priority:" + this.priority + " auto:" + this.auto + "]" ;
+        return "[ActionEntry action:" + this.action + " priority:" + this.priority + " auto:" + this.auto + "]" ;
     }
+    
+    ////////
+    
+    delete proto ;
 }
