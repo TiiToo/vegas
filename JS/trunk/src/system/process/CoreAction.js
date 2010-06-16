@@ -254,7 +254,7 @@ if ( system.process.CoreAction == undefined)
     /**
      * Notify when the process is out of time.
      */
-    proto.notifyTimeOut = function() /*void*/
+    proto.notifyTimeout = function() /*void*/
     {
         this._running = false ;
         this._phase = system.process.TaskPhase.TIMEOUT ;

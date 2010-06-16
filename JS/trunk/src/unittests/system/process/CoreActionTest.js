@@ -53,12 +53,14 @@ proto = system.process.CoreActionTest.prototype ;
 
 proto.setUp = function()
 {
-    this.action = new system.process.CoreAction() ; 
+    this.action   = new system.process.CoreAction() ; 
+    this.receiver = new system.process.mocks.MockActionReceiver( this.action ) ;
 }
 
 proto.tearDown = function()
 {
-    this.action = undefined ;
+    this.action   = undefined ;
+    this.receiver = undefined ;
 }
 
 proto.testConstructor = function () 
@@ -85,6 +87,75 @@ proto.testLooping = function ()
     this.action.looping = true ;
     this.assertTrue( this.action.looping ) ;
 }
+
+proto.testNotifyChanged = function () 
+{
+    this.action.notifyChanged() ;
+    this.assertTrue( this.receiver.changeCalled ) ;
+}
+
+proto.testNotifyCleared = function () 
+{
+    this.action.notifyCleared() ;
+    this.assertTrue( this.receiver.clearCalled ) ;
+}
+
+proto.testNotifyFinished = function () 
+{
+    this.action.notifyFinished() ;
+    this.assertTrue( this.receiver.finishCalled ) ;
+}
+
+proto.testNotifyInfo = function () 
+{
+    this.action.notifyInfo("hello world") ;
+    this.assertTrue( this.receiver.infoCalled ) ;
+    this.assertEquals( "hello world" , this.receiver.infoObject ) ;
+}
+
+proto.testNotifyLooped = function () 
+{
+    this.action.notifyLooped() ;
+    this.assertTrue( this.receiver.loopCalled ) ;
+}
+
+proto.testNotifyPause = function () 
+{
+    this.action.notifyPaused() ;
+    this.assertTrue( this.receiver.pauseCalled ) ;
+}
+
+proto.testNotifyProgress = function () 
+{
+    this.action.notifyProgress() ;
+    this.assertTrue( this.receiver.progressCalled ) ;
+}
+
+proto.testNotifyResumed = function () 
+{
+    this.action.notifyResumed() ;
+    this.assertTrue( this.receiver.resumeCalled ) ;
+}
+
+proto.testNotifyStarted = function () 
+{
+    this.action.notifyStarted() ;
+    this.assertTrue( this.receiver.startCalled ) ;
+}
+
+proto.testNotifyStopped = function () 
+{
+    this.action.notifyStopped() ;
+    this.assertTrue( this.receiver.stopCalled ) ;
+}
+
+proto.testNotifyTimeout = function () 
+{
+    this.action.notifyTimeout() ;
+    this.assertTrue( this.receiver.timeoutCalled ) ;
+}
+
+// TODO test the virtual properties changeIt, clearIt, infoIt, etc.
 
 ////////
 

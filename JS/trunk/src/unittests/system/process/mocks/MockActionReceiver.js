@@ -37,6 +37,11 @@
 
 if( system.process.mocks.MockActionReceiver == undefined )
 {
+    /**
+     * @requires system.process.mocks.MockTaskReceiver
+     */
+    require( "system.process.mocks.MockTaskReceiver" ) ;
+    
     system.process.mocks.MockActionReceiver = function ( action /*CoreAction*/ ) 
     {
         this.changeCalled   = false ;
@@ -50,122 +55,116 @@ if( system.process.mocks.MockActionReceiver == undefined )
         this.stopCalled     = false ;
         this.timeoutCalled  = false ;
         
-        this.phase          = null ;
-        this.running        = false ;
-        
-        if ( action )
-        {
-            this.register( action ) ;
-        }
+        system.process.mocks.MockTaskReceiver.call( this , action ) ;
     }
     
     ////////////////////////////////////
     
     /**
-     * @extends Object
+     * @extends system.process.mocks.MockTaskReceiver
      */
-    proto = system.process.mocks.MockActionReceiver.extend( Object ) ;
+    proto = system.process.mocks.MockActionReceiver.extend( system.process.mocks.MockTaskReceiver ) ;
     
     ////////////////////////////////////
     
     proto.change = function( action /*CoreAction*/ )
     {
         this.changeCalled = true ;
-        this.phase        = task.phase   ;
-        this.runnin       = task.running ;
+        this.phase        = action.phase   ;
+        this.runnin       = action.running ;
     }
     
     proto.clear = function( action /*CoreAction*/ )
     {
         this.clearCalled = true ;
-        this.phase       = task.phase   ;
-        this.running     = task.running ;
+        this.phase       = action.phase   ;
+        this.running     = action.running ;
     }
     
     proto.info = function( action /*CoreAction*/ , info )
     {
         this.infoCalled = true ;
         this.infoObject = info ;
-        this.phase      = task.phase   ;
-        this.running    = task.running ;
+        this.phase      = action.phase   ;
+        this.running    = action.running ;
     }
     
     proto.loop = function( action /*CoreAction*/ )
     {
         this.loopCalled = true ;
-        this.phase      = task.phase   ;
-        this.running    = task.running ;
+        this.phase      = action.phase   ;
+        this.running    = action.running ;
     }
     
     proto.pause = function( action /*CoreAction*/ )
     {
         this.pauseCalled = true ;
-        this.phase       = task.phase   ;
-        this.running     = task.running ;
+        this.phase       = action.phase   ;
+        this.running     = action.running ;
     }
     
     proto.progress = function( action /*CoreAction*/ )
     {
         this.progressCalled = true ;
-        this.phase          = task.phase   ;
-        this.running        = task.running ;
+        this.phase          = action.phase   ;
+        this.running        = action.running ;
     }
     
     proto.resume = function( action /*CoreAction*/ )
     {
         this.resumeCalled = true ;
-        this.phase        = task.phase   ;
-        this.running      = task.running ;
+        this.phase        = action.phase   ;
+        this.running      = action.running ;
     }
     
     proto.stop = function( action /*CoreAction*/ )
     {
         this.stopCalled = true ;
-        this.phase      = task.phase   ;
-        this.running    = task.running ;
+        this.phase      = action.phase   ;
+        this.running    = action.running ;
     }
     
     proto.timeout = function( action /*CoreAction*/ )
     {
         this.timeoutCalled = true ;
-        this.phase         = task.phase   ;
-        this.running       = task.running ;
+        this.phase         = action.phase   ;
+        this.running       = action.running ;
     }
     
     ////////////////////////////////////
     
     proto.register = function( action /*CoreAction*/ ) /*void*/
     {
-        this.action = action ;
-        if ( this.action )
+        system.process.mocks.MockTaskReceiver.prototype.register.call(this, action) ;
+        if ( this.task )
         {
-            this.action.changeIt.connect( this.change.bind( this ) ) ;
-            this.action.clearIt.connect( this.clear.bind( this ) ) ;
-            this.action.infoIt.connect( this.info.bind( this ) ) ;
-            this.action.loopIt.connect( this.loop.bind( this ) ) ;
-            this.action.pauseIt.connect( this.pause.bind( this ) ) ;
-            this.action.progressIt.connect( this.progress.bind( this ) ) ;
-            this.action.resumeIt.connect( this.resume.bind( this ) ) ;
-            this.action.stopIt.connect( this.stop.bind( this ) ) ;
-            this.action.timeoutIt.connect( this.timeout.bind( this ) ) ;
+            this.task.changeIt.connect( this.change.bind( this ) ) ;
+            this.task.clearIt.connect( this.clear.bind( this ) ) ;
+            this.task.infoIt.connect( this.info.bind( this ) ) ;
+            this.task.loopIt.connect( this.loop.bind( this ) ) ;
+            this.task.pauseIt.connect( this.pause.bind( this ) ) ;
+            this.task.progressIt.connect( this.progress.bind( this ) ) ;
+            this.task.resumeIt.connect( this.resume.bind( this ) ) ;
+            this.task.stopIt.connect( this.stop.bind( this ) ) ;
+            this.task.timeoutIt.connect( this.timeout.bind( this ) ) ;
         }
     }
     
     proto.unregister = function() /*void*/
     {
-        if ( this.action )
+        if ( this.task )
         {
-            this.action.changeIt.disconnect() ;
-            this.action.clearIt.disconnect() ;
-            this.action.infoIt.disconnect() ;
-            this.action.loopIt.disconnect() ;
-            this.action.pauseIt.disconnect() ;
-            this.action.progressIt.disconnect() ;
-            this.action.resumeIt.disconnect() ;
-            this.action.stopIt.disconnect() ;
-            this.action.timeoutIt.disconnect() ;
-            this.action = null  ;
+            this.task.changeIt.disconnect() ;
+            this.task.clearIt.disconnect() ;
+            this.task.infoIt.disconnect() ;
+            this.task.loopIt.disconnect() ;
+            this.task.pauseIt.disconnect() ;
+            this.task.progressIt.disconnect() ;
+            this.task.resumeIt.disconnect() ;
+            this.task.stopIt.disconnect() ;
+            this.task.timeoutIt.disconnect() ;
         }
+        system.process.mocks.MockTaskReceiver.prototype.unregister.call(this) ;
     }
     
     ////////////////////////////////////

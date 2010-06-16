@@ -38,9 +38,9 @@
 getPackage("system.process.mocks" ) ;
 
 load("unittests/system/process/mocks/MockAction.js") ;
+load("unittests/system/process/mocks/MockTaskReceiver.js") ;
 load("unittests/system/process/mocks/MockActionReceiver.js") ;
 load("unittests/system/process/mocks/MockCommand.js") ;
-load("unittests/system/process/mocks/MockTaskReceiver.js") ;
 
 load("unittests/system/process/ActionTest.js") ;
 load("unittests/system/process/BatchTest.js") ;

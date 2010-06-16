@@ -39,15 +39,16 @@ if( system.process.mocks.MockTaskReceiver == undefined )
 {
     system.process.mocks.MockTaskReceiver = function ( task /*Task*/ ) 
     {
-        if ( task )
-        {
-            this.register( task ) ;
-        }
         this.finishCalled  = false ;
         this.startCalled   = false ;
         
         this.phase         = null ;
         this.running       = false ;
+        
+        if ( task )
+        {
+            this.register( task ) ;
+        }
     }
     
     ////////////////////////////////////
