@@ -222,7 +222,7 @@ if ( system.process.TaskGroup == undefined)
      */
     proto.hasAction = function( action /*Action*/ ) /*Action*/
     {
-        if ( action && action instanceof system.procss.Action )
+        if ( action && action instanceof system.process.Action )
         {
             if ( this._actions.length > 0 )
             {
@@ -280,7 +280,7 @@ if ( system.process.TaskGroup == undefined)
                         slot = this._buffer.get( e ) ;
                         if ( slot )
                         {
-                            entry.action.finishIt.disconnect( slot ) ;
+                            e.action.finishIt.disconnect( slot ) ;
                             this._buffer.remove( e ) ;
                         }
                         this._actions.splice( l , 1 ) ;
@@ -368,7 +368,7 @@ if ( system.process.TaskGroup == undefined)
                 var e /*ActionEntry*/ ;
                 var l /*int*/ = this._actions.length ;
                 var r /*Array*/ = [] ;
-                for( i ; i < l ; i++ )
+                for( i = 0 ; i < l ; i++ )
                 {
                     e = this._actions[i] ;
                     r.push( ( e && e.action ) ? e.action : null ) ;

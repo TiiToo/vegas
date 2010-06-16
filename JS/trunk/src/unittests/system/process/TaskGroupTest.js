@@ -133,6 +133,86 @@ proto.testMode = function ()
     this.group.mode = system.process.TaskGroup.EVERLASTING ;
     this.assertEquals( system.process.TaskGroup.EVERLASTING , this.group.mode ) ;
 }
+
+proto.testAddAction = function () 
+{
+    this.group.length = 0 ;
+    this.assertFalse( this.group.addAction( null ) ) ;
+    this.assertTrue( this.group.addAction( this.task1 ) ) ;
+    this.assertTrue( this.group.addAction( this.task1 ) ) ;
+}
+
+proto.testGetActionAt = function () 
+{
+    this.assertEquals( this.task1 , this.group.getActionAt( 0 ) ) ;
+    this.assertEquals( this.task2 , this.group.getActionAt( 1 ) ) ;
+    this.assertEquals( this.task3 , this.group.getActionAt( 2 ) ) ;
+    this.assertEquals( this.task4 , this.group.getActionAt( 3 ) ) ;
+    this.assertNull( this.group.getActionAt( 4 ) ) ;
+}
+
+proto.testHasAction = function () 
+{
+    this.assertTrue( this.group.hasAction( this.task1 ) ) ;
+    this.group.removeAction( this.task1 ) ;
+    this.assertFalse( this.group.hasAction( this.task1 ) ) ;
+}
+
+proto.testIsEmpty = function () 
+{
+    this.assertFalse( this.group.isEmpty() ) ;
+    this.group.removeAction() ;
+    this.assertTrue( this.group.isEmpty() ) ;
+}
+
+proto.testRemoveAction = function () 
+{
+    this.assertTrue( this.group.hasAction( this.task2 ) ) ;
+    this.assertTrue( this.group.removeAction( this.task2 ) ) ;
+    this.assertFalse( this.group.hasAction( this.task2 ) ) ;
+    this.assertFalse( this.group.removeAction( this.task2 ) ) ;
+    this.assertEquals( 3 , this.group.length ) ;
+}
+
+proto.testRemoveActionClear = function () 
+{
+    this.assertTrue( this.group.removeAction() ) ;
+    this.assertEquals( 0 , this.group.length ) ;
+    this.assertFalse( this.group.removeAction() ) ;
+}
+
+proto.testToArray = function () 
+{
+    var ar /*Array*/ ;
+    
+    ar = this.group.toArray() ;
+    
+    this.assertEquals( 4 , ar.length ) ;
+    this.assertEquals( this.task1 , ar[0] ) ;
+    this.assertEquals( this.task2 , ar[1] ) ;
+    this.assertEquals( this.task3 , ar[2] ) ;
+    this.assertEquals( this.task4 , ar[3] ) ;
+    
+    this.group.length = 10 ;
+    
+    ar = this.group.toArray() ;
+    
+    this.assertEquals( 4 , ar.length ) ;
+    this.assertEquals( this.task1 , ar[0] ) ;
+    this.assertEquals( this.task2 , ar[1] ) ;
+    this.assertEquals( this.task3 , ar[2] ) ;
+    this.assertEquals( this.task4 , ar[3] ) ;
+}
+
+proto.testToString = function () 
+{
+    this.assertEquals( this.group.toString() , "[TaskGroup]" ) ;
+    this.assertEquals( this.group.toString(true) , "[TaskGroup<[MockTask],[MockTask],[MockTask],[MockTask]>]" ) ;
+    this.group.length = 6 ;
+    this.assertEquals( this.group.toString(true) , "[TaskGroup<[MockTask],[MockTask],[MockTask],[MockTask],,>]" ) ;
+    this.group.length = 2 ;
+    this.assertEquals( this.group.toString(true) , "[TaskGroup<[MockTask],[MockTask]>]" ) ;
+}
 ////////
 
 delete proto ;
