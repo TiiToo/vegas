@@ -148,4 +148,4 @@ Function.prototype.toString = function ()
 
 // encapsulate
 
-SSASSetPropFlags( Function.prototype, ["extend", "toString" ], false , null , null  ) ;
+SSASSetPropFlags( Function.prototype, ["bind", "extend", "toString" ], false , null , null  ) ;

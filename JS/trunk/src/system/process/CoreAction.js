@@ -51,6 +51,15 @@ if ( system.process.CoreAction == undefined)
     system.process.CoreAction = function () 
     { 
         system.process.Task.call( this ) ;
+        var Signal = system.signals.Signal ;
+        this._changeIt   = new Signal() ;
+        this._clearIt    = new Signal() ;
+        this._infoIt     = new Signal() ;
+        this._loopIt     = new Signal() ;
+        this._progressIt = new Signal() ;
+        this._resumeIt   = new Signal() ;
+        this._stopIt     = new Signal() ;
+        this._timeoutIt  = new Signal() ;
     }
     
     ////////////////////////////////////
