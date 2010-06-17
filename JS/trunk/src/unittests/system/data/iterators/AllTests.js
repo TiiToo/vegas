@@ -38,6 +38,7 @@
 load("unittests/system/data/iterators/ArrayIteratorTest.js") ;
 load("unittests/system/data/iterators/MapIteratorTest.js") ;
 load("unittests/system/data/iterators/PageByPageIteratorTest.js") ;
+load("unittests/system/data/iterators/ProtectedIteratorTest.js") ;
 
 system.data.iterators.AllTests = {} ;
 
@@ -52,6 +53,7 @@ system.data.iterators.AllTests.suite = function()
     suite.addTest( new TestSuite( system.data.iterators.ArrayIteratorTest      ) ) ;
     suite.addTest( new TestSuite( system.data.iterators.MapIteratorTest        ) ) ;
     suite.addTest( new TestSuite( system.data.iterators.PageByPageIteratorTest ) ) ;
+    suite.addTest( new TestSuite( system.data.iterators.ProtectedIteratorTest  ) ) ;
     
     return suite ;
 }

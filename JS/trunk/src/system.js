@@ -101,6 +101,7 @@ catch(e)
     require( "system.data.iterators.ArrayIterator"      ) ;
     require( "system.data.iterators.MapIterator"        ) ;
     require( "system.data.iterators.PageByPageIterator" ) ;
+    require( "system.data.iterators.ProtectedIterator"  ) ;
     
     // system.data.maps
     
