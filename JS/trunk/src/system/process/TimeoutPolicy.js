@@ -87,7 +87,7 @@ if ( system.process.TimeoutPolicy == undefined )
     //////////////
     
     /**
-     * Designates the infinty timeout policy (0).
+     * Designates the infinity timeout policy (0).
      */
     system.process.TimeoutPolicy.INFINITY /*TimeoutPolicy*/ = new system.process.TimeoutPolicy( 0 , "INFINITY" ) ;
     

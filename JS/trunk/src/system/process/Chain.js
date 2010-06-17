@@ -98,6 +98,7 @@ if ( system.process.Chain == undefined)
     proto.numLoop /*uint*/ = 0 ;
     
     ////////////////////////////////////
+    
     /**
      * Returns a shallow copy of this object.
      * @return a shallow copy of this object.

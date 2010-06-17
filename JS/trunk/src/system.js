@@ -146,6 +146,7 @@ catch(e)
     require( "system.process.Action"        ) ;
     require( "system.process.ActionEntry"   ) ;
     require( "system.process.Batch"         ) ;
+    require( "system.process.BatchTask"     ) ;
     require( "system.process.Chain"         ) ;
     require( "system.process.CoreAction"    ) ;
     require( "system.process.Initializer"   ) ;
