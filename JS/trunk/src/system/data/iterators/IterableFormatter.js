@@ -36,9 +36,9 @@
 */
 
 /**
- * Converts a Collection to a custom string representation.
+ * Converts an Iterable object to a custom string representation.
  */
-if ( system.data.collections.CollectionFormatter == undefined) 
+if ( system.data.iterators.IterableFormatter == undefined) 
 {
     /**
      * @requires system.formatters.Formattable
@@ -46,16 +46,16 @@ if ( system.data.collections.CollectionFormatter == undefined)
     require( "system.formatters.Formattable" ) ;
     
     /**
-     * Creates a new CollectionFormatter instance.
+     * Creates a new IterableFormatter instance.
      */
-    system.data.collections.CollectionFormatter = function () 
+    system.data.iterators.IterableFormatter = function () 
     { 
     }
     
     /**
      * @extends system.formatters.Formattable
      */
-    proto = system.data.collections.CollectionFormatter.extend( system.formatters.Formattable ) ;
+    proto = system.data.iterators.IterableFormatter.extend( system.formatters.Formattable ) ;
     
     /**
      * Formats the specified value.
@@ -65,19 +65,15 @@ if ( system.data.collections.CollectionFormatter == undefined)
     proto.format = function( value ) /*String*/ 
     {
         var r = "{";
-        if ( value != null && value instanceof system.data.Collection )
+        if ( value && "iterator" in value )
         {
-            if ( value.size() > 0 ) 
+            var it = value.iterator() ; 
+            while( it.hasNext() )
             {
-                var ar /*Array*/ = value.toArray() ;
-                var l /*int*/    = ar.length   ;
-                for ( var i /*int*/ = 0 ; i < l ; i++ ) 
+                r += it.next() ;
+                if ( it.hasNext() )
                 {
-                    r += ar[i] ;
-                    if (i < (l-1)) 
-                    {
-                        r += "," ;
-                    }
+                    r += "," ;
                 }
             }
         }
@@ -91,5 +87,5 @@ if ( system.data.collections.CollectionFormatter == undefined)
     
     /////////// singleton
     
-    system.data.collections.formatter = new system.data.collections.CollectionFormatter() ;
+    system.data.iterators.formatter = new system.data.iterators.IterableFormatter() ;
 }

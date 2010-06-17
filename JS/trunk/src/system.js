@@ -99,6 +99,7 @@ catch(e)
     // system.data.iterators
     
     require( "system.data.iterators.ArrayIterator"      ) ;
+    require( "system.data.iterators.IterableFormatter"  ) ;
     require( "system.data.iterators.MapIterator"        ) ;
     require( "system.data.iterators.PageByPageIterator" ) ;
     require( "system.data.iterators.ProtectedIterator"  ) ;
@@ -111,7 +112,8 @@ catch(e)
     
     // system.data.queues
     
-    require( "system.data.queues.LinearQueue" ) ;
+    require( "system.data.queues.CircularQueue" ) ;
+    require( "system.data.queues.LinearQueue"   ) ;
     
     // system.errors
     

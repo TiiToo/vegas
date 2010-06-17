@@ -326,8 +326,8 @@ if ( system.data.collections.ArrayCollection == undefined)
     }
     
     /**
-     * Returns the string representation of this instance.
-     * @return the string representation of this instance
+     * Returns the source representation of this instance.
+     * @return the source representation of this instance
      */
     proto.toSource = function () /*String*/ 
     {

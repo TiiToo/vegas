@@ -68,6 +68,11 @@ proto.testConstructor = function ()
     this.assertNotNull( this.formatter ) ;
 }
 
+proto.testInherit = function()
+{
+    this.assertTrue( this.formatter instanceof system.formatters.Formattable ) ;
+}
+
 proto.testFormat = function () 
 {
     var result ;
@@ -83,7 +88,6 @@ proto.testFormat = function ()
     
     this.assertEquals(result, "{value1,value2}" , "#3") ;
 }
-
 
 proto.testSingleton = function () 
 {

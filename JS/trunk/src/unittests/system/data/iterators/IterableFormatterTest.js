@@ -1,4 +1,3 @@
-
 /*
 
   Version: MPL 1.1/GPL 2.0/LGPL 2.1
@@ -36,21 +35,58 @@
   
 */
 
-load("unittests/system/data/queues/CircularQueueTest.js") ;
-load("unittests/system/data/queues/LinearQueueTest.js") ;
+// ---o Constructor
 
-system.data.queues.AllTests = {} ;
-
-system.data.queues.AllTests.suite = function() 
+system.data.iterators.IterableFormatterTest = function( name ) 
 {
-    var TestSuite = buRRRn.ASTUce.TestSuite;
-    
-    var suite = new TestSuite( "system.data.queues unit tests" );
-    
-    //suite.simpleTrace = true;
-    
-    // TODO suite.addTest( new TestSuite( system.data.queues.CircularQueueTest ) ) ;
-    suite.addTest( new TestSuite( system.data.queues.LinearQueueTest ) ) ;
-    
-    return suite ;
+    buRRRn.ASTUce.TestCase.call( this , name ) ;
 }
+
+// ----o Inherit
+
+system.data.iterators.IterableFormatterTest.prototype             = new buRRRn.ASTUce.TestCase() ;
+system.data.iterators.IterableFormatterTest.prototype.constructor = system.data.iterators.IterableFormatterTest ;
+
+proto = system.data.iterators.IterableFormatterTest.prototype ;
+
+// ----o Initialize
+
+proto.setUp = function()
+{
+    this.formatter = new system.data.iterators.IterableFormatter();
+}
+
+proto.tearDown = function()
+{
+    this.formatter = undefined ;
+}
+
+// ----o Public Methods
+
+proto.testConstructor = function () 
+{
+    this.assertNotNull( this.formatter ) ;
+}
+
+proto.testInherit = function()
+{
+    this.assertTrue( this.formatter instanceof system.formatters.Formattable ) ;
+}
+
+proto.testFormat = function () 
+{
+    var result ;
+    
+    result = this.formatter.format() ;
+    this.assertEquals(result, "{}", "#1") ;
+    
+    result = this.formatter.format( new system.data.collections.ArrayCollection() ) ;
+    this.assertEquals(result, "{}" , "#2") ;
+    
+    result = this.formatter.format(new system.data.collections.ArrayCollection(["value1", "value2"])) ;
+    this.assertEquals(result, "{value1,value2}" , "#3") ;
+}
+
+/////////
+
+delete proto ;
