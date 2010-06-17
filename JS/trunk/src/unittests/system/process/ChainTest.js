@@ -51,11 +51,6 @@ proto = system.process.ChainTest.prototype ;
 
 // ----o Public Methods
 
-/**
- * Enable the verbose mode in this unit test.
- */
-proto.verbose = false ;
-
 proto.setUp = function()
 {
     this.chain = new system.process.Chain() ; 
@@ -235,10 +230,19 @@ proto.testRun = function()
 
 proto.testNotification = function() 
 {
+    this.chain.length = 0 ;
+    
+    this.chain.mode =  "everlasting" ; // everlasting , normal , transient
+    
     this.task1 = new system.process.mocks.MockTask(1, this.verbose) ;
     this.task2 = new system.process.mocks.MockTask(2, this.verbose) ;
     this.task3 = new system.process.mocks.MockTask(3, this.verbose) ;
     this.task4 = new system.process.mocks.MockTask(4, this.verbose) ;
+    
+    this.chain.addAction( this.task1 , 0 , true ) ;
+    this.chain.addAction( this.task2 , 9999 , true ) ;
+    this.chain.addAction( this.task3 , 99 ) ;
+    this.chain.addAction( this.task4 , 999 ) ;
     
     var receiver = new system.process.mocks.MockTaskReceiver( this.chain ) ;
     
@@ -249,7 +253,15 @@ proto.testNotification = function()
     
     this.assertTrue( receiver.startCalled  , "#3-1" ) ;
     this.assertTrue( receiver.finishCalled  , "#3-2" ) ;
+    
+    this.chain.run() ;
 }
+
+
+/**
+ * Enable the verbose mode in this unit test.
+ */
+proto.verbose = false ;
 
 // TODO finalize all unit tests (see if the elements are unregister when the mode change, etc.)
 
