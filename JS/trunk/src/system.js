@@ -54,6 +54,7 @@ catch(e)
     getPackage("system.data.collections") ;
     getPackage("system.data.iterators") ;
     getPackage("system.data.maps") ;
+    getPackage("system.data.queues") ;
     getPackage("system.errors") ;
     getPackage("system.formatters") ;
     getPackage("system.logging") ;
@@ -106,6 +107,10 @@ catch(e)
     require( "system.data.maps.ArrayMap"     ) ;
     require( "system.data.maps.MapEntry"     ) ;
     require( "system.data.maps.MapFormatter" ) ;
+    
+    // system.data.queues
+    
+    require( "system.data.queues.LinearQueue" ) ;
     
     // system.errors
     
