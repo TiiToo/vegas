@@ -74,19 +74,19 @@ if ( system.process.TaskGroup == undefined)
     ////////////////////////////////////
     
     /**
-     * Determinates the "everlasting" mode of the chain. 
+     * Determinates the "everlasting" mode of the group. 
      * In this mode the action register in the task-group can't be auto-remove.
      */
     system.process.TaskGroup.EVERLASTING /*String*/ = "everlasting" ;
     
     /**
-     * Determinates the "normal" mode of the chain. 
+     * Determinates the "normal" mode of the group. 
      * In this mode the task-group has a normal life cycle.
      */
     system.process.TaskGroup.NORMAL /*String*/ = "normal" ;
     
     /**
-     * Determinates the "transient" mode of the chain. 
+     * Determinates the "transient" mode of the group. 
      * In this mode all actions are strictly auto-remove in the task-group when are invoked.
      */
     system.process.TaskGroup.TRANSIENT /*String*/ = "transient" ;
