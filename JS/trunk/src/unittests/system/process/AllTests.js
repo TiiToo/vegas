@@ -59,6 +59,7 @@ load("unittests/system/process/StoppableTest.js") ;
 load("unittests/system/process/TaskTest.js") ;
 load("unittests/system/process/TaskGroupTest.js") ;
 load("unittests/system/process/TaskPhaseTest.js") ;
+load("unittests/system/process/TimeoutPolicyTest.js") ;
 
 system.process.AllTests = {} ;
 
@@ -70,22 +71,23 @@ system.process.AllTests.suite = function()
     
     //suite.simpleTrace = true;
     
-    suite.addTest( new TestSuite( system.process.ActionTest      ) ) ;
-    suite.addTest( new TestSuite( system.process.ActionEntryTest ) ) ;
-    suite.addTest( new TestSuite( system.process.BatchTest       ) ) ;
-    suite.addTest( new TestSuite( system.process.ChainTest       ) ) ;
-    suite.addTest( new TestSuite( system.process.CoreActionTest  ) ) ;
-    suite.addTest( new TestSuite( system.process.InitializerTest ) ) ;
-    suite.addTest( new TestSuite( system.process.LockableTest    ) ) ;
-    suite.addTest( new TestSuite( system.process.PriorityTest    ) ) ;
-    suite.addTest( new TestSuite( system.process.ResetableTest   ) ) ;
-    suite.addTest( new TestSuite( system.process.ResumableTest   ) ) ;
-    suite.addTest( new TestSuite( system.process.RunnableTest    ) ) ;
-    suite.addTest( new TestSuite( system.process.StartableTest   ) ) ;
-    suite.addTest( new TestSuite( system.process.StoppableTest   ) ) ;
-    suite.addTest( new TestSuite( system.process.TaskTest        ) ) ;
-    suite.addTest( new TestSuite( system.process.TaskGroupTest   ) ) ;
-    suite.addTest( new TestSuite( system.process.TaskPhaseTest   ) ) ;
+    suite.addTest( new TestSuite( system.process.ActionTest        ) ) ;
+    suite.addTest( new TestSuite( system.process.ActionEntryTest   ) ) ;
+    suite.addTest( new TestSuite( system.process.BatchTest         ) ) ;
+    suite.addTest( new TestSuite( system.process.ChainTest         ) ) ;
+    suite.addTest( new TestSuite( system.process.CoreActionTest    ) ) ;
+    suite.addTest( new TestSuite( system.process.InitializerTest   ) ) ;
+    suite.addTest( new TestSuite( system.process.LockableTest      ) ) ;
+    suite.addTest( new TestSuite( system.process.PriorityTest      ) ) ;
+    suite.addTest( new TestSuite( system.process.ResetableTest     ) ) ;
+    suite.addTest( new TestSuite( system.process.ResumableTest     ) ) ;
+    suite.addTest( new TestSuite( system.process.RunnableTest      ) ) ;
+    suite.addTest( new TestSuite( system.process.StartableTest     ) ) ;
+    suite.addTest( new TestSuite( system.process.StoppableTest     ) ) ;
+    suite.addTest( new TestSuite( system.process.TaskTest          ) ) ;
+    suite.addTest( new TestSuite( system.process.TaskGroupTest     ) ) ;
+    suite.addTest( new TestSuite( system.process.TaskPhaseTest     ) ) ;
+    suite.addTest( new TestSuite( system.process.TimeoutPolicyTest ) ) ;
     
     return suite ;
 }

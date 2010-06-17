@@ -56,7 +56,7 @@ if ( system.logging.LoggerLevel == undefined )
     }
     
     /**
-     * @extends system.signals.Signal
+     * @extends system.Enum
      */
     proto = system.logging.LoggerLevel.extend( system.Enum ) ;
     
