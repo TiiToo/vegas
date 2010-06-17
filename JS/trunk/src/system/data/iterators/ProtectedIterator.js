@@ -40,7 +40,7 @@ if ( system.data.iterators.ProtectedIterator == undefined)
 {
     /**
      * Creates a new ProtectedIterator instance.
-     * @param iterator the Iterator to protect.
+     * @param i the Iterator to protect.
      */
     system.data.iterators.ProtectedIterator = function ( i /*Iterator*/ ) 
     {
@@ -85,7 +85,7 @@ if ( system.data.iterators.ProtectedIterator == undefined)
     
     /**
      * Unsupported method in all ProtectedIterator.
-     * @throws Error the remove method is unsupported in a ProtectedIterator instance.
+     * @throws Error the remove() method is unsupported in a ProtectedIterator instance.
      */
     proto.remove = function() 
     {
@@ -94,7 +94,7 @@ if ( system.data.iterators.ProtectedIterator == undefined)
     
     /**
      * Unsupported method in all ProtectedIterator.
-     * @throws Error the reset method is unsupported in a ProtectedIterator instance.
+     * @throws Error the reset() method is unsupported in a ProtectedIterator instance.
      */
     proto.reset = function() 
     {
