@@ -64,16 +64,15 @@ if( system.process.mocks.MockTaskReceiver == undefined )
     {
         this.finishCalled = true ;
         this.phase        = task.phase   ;
-        this.runnin       = task.running ;
     }
     
     proto.start = function( task /*Task*/ )
     {
         this.startCalled = true ;
         this.phase       = task.phase   ;
-        this.running     = task.running ;
+        this.running     = true ;
     }
-        
+    
     proto.register = function( task /*Task*/ ) /*void*/
     {
         this.task = task ;
@@ -83,7 +82,7 @@ if( system.process.mocks.MockTaskReceiver == undefined )
     
     proto.unregister = function() /*void*/
     {
-        if (this.task)
+        if ( this.task )
         {
             this.task.finishIt.disconnect() ;
             this.task.startIt.disconnect() ;
