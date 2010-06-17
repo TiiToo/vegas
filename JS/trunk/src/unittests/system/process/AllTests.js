@@ -46,6 +46,7 @@ load("unittests/system/process/mocks/MockCommand.js") ;
 load("unittests/system/process/ActionTest.js") ;
 load("unittests/system/process/ActionEntryTest.js") ;
 load("unittests/system/process/BatchTest.js") ;
+load("unittests/system/process/BatchTaskTest.js") ;
 load("unittests/system/process/ChainTest.js") ;
 load("unittests/system/process/CoreActionTest.js") ;
 load("unittests/system/process/InitializerTest.js") ;
@@ -74,6 +75,7 @@ system.process.AllTests.suite = function()
     suite.addTest( new TestSuite( system.process.ActionTest        ) ) ;
     suite.addTest( new TestSuite( system.process.ActionEntryTest   ) ) ;
     suite.addTest( new TestSuite( system.process.BatchTest         ) ) ;
+    suite.addTest( new TestSuite( system.process.BatchTaskTest     ) ) ;
     suite.addTest( new TestSuite( system.process.ChainTest         ) ) ;
     suite.addTest( new TestSuite( system.process.CoreActionTest    ) ) ;
     suite.addTest( new TestSuite( system.process.InitializerTest   ) ) ;
