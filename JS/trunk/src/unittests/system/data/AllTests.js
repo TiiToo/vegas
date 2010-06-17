@@ -55,6 +55,7 @@ getPackage("system.data.maps") ;
 load("unittests/system/data/collections/AllTests.js") ;
 load("unittests/system/data/iterators/AllTests.js") ;
 load("unittests/system/data/maps/AllTests.js") ;
+load("unittests/system/data/queues/AllTests.js") ;
 
 system.data.AllTests = {} ;
 
@@ -83,6 +84,7 @@ system.data.AllTests.suite = function()
     suite.addTest( system.data.collections.AllTests.suite() );
     suite.addTest( system.data.iterators.AllTests.suite() );
     suite.addTest( system.data.maps.AllTests.suite() );
+    suite.addTest( system.data.queues.AllTests.suite() );
     
     return suite ;
 }
