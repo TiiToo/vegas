@@ -115,63 +115,38 @@ if ( system.events.Event == undefined)
     }
     
     /**
-     * Returns {@code true} if the event is bubbling.
-     * @return {@code true} if the event is bubbling.
+     * A utility function for implementing the toString() method in custom Event classes. 
+     * Overriding the toString() method is recommended, but not required.
      */
-    proto.getBubbles = function () /*Boolean*/ 
+    proto.formatToString = function( className /*String*/ /* , ... arguments */ ) /*String*/
     {
-        return this._bubbles ;
-    }
-    
-    /**
-     * Returns the optional context of this event.
-     * @return an object, corresponding the optional context of this event.
-     */
-    proto.getContext = function () /*Object*/ 
-    {
-        return this._context ;
-    }
-    
-    /**
-     * The object that is actively processing the Event object with an event listener.
-     */
-    proto.getCurrentTarget = function () /*Object*/ 
-    {
-        return this._currentTarget ;
-    }
-    
-    /**
-     * Returns the current phase in the event flow.
-     * @return the current phase in the event flow.
-     * @see EventPhase
-     */
-    proto.getEventPhase = function () /*Number*/ 
-    {
-        return this._eventPhase ;
-    }
-    
-    /**
-     * The event target.
-     */
-    proto.getTarget = function () /*Object*/ 
-    {
-        return this._target ;
-    }
-    
-    /**
-     * Indicates the timestamp of the event.
-     */
-    proto.getTimeStamp = function () /*Number*/ 
-    {
-        return this._time ;
-    }
-    
-    /**
-     * The type of event.
-     */
-    proto.getType = function () /*String*/ 
-    {
-        return this._type ;
+        var args /*Array*/ = Array.fromArguments(arguments) ;
+        
+        args.shift() ;
+        
+        var source /*String*/ ;
+        
+        source = "[" ;
+        
+        source += className || this.getConstructorName() ;
+        
+        if ( args.length > 0 )
+        {
+            var m ; var i ;
+            var l = args.length ;
+            for( i = 0 ; i<l ; i++ )
+            {
+                m = args[i] ;
+                if ( m in this )
+                {
+                    source += " " + m + ":" + this[m] ;
+                }
+            }
+        }
+        
+        source += "]" ;
+        
+        return source ;
     }
     
     /**
@@ -215,54 +190,6 @@ if ( system.events.Event == undefined)
     }
     
     /**
-     * Sets if the event is bubbling.
-     */
-    proto.setBubbles = function ( b /*Boolean*/ ) /*void*/ 
-    {
-        this._bubbles = b ;
-    }
-    
-    /**
-     * Sets the optional context object of this event. 
-     */
-    proto.setContext = function ( context /*Object*/ ) /*void*/ 
-    {
-        this._context = context || null ;
-    }
-    
-    /**
-     * Sets the optional context object of this event. 
-     */
-    proto.setCurrentTarget = function ( target /*Object*/ ) /*void*/ 
-    {
-        this._currentTarget = target ;
-    }
-    
-    /**
-     * Sets the current phase in the event flow.
-     */
-    proto.setEventPhase = function ( n /*Number*/ ) /*void*/ 
-    {
-        this._eventPhase = n ;
-    }
-    
-    /**
-     * Sets the event target.
-     */
-    proto.setTarget = function ( target /*Object*/ ) /*void*/ 
-    {
-        this._target = target || null ;
-    }
-    
-    /**
-     * Sets the event type.
-     */
-     proto.setType = function ( type /*String*/ ) /*void*/ 
-     {
-        this._type = type || null ;
-    }
-    
-    /**
      * Prevents processing of any event listeners in the current node and any subsequent nodes in the event flow.
      */
     proto.stopImmediatePropagation = function () /*void*/ 
@@ -279,7 +206,7 @@ if ( system.events.Event == undefined)
     }
     
     /**
-     * Returns a Eden representation of the object.
+     * Returns a string representing the source code of the object.
      * @return a string representing the source code of the object.
      */
     proto.toSource = function () /*String*/ 
@@ -304,54 +231,140 @@ if ( system.events.Event == undefined)
      */
     proto.toString = function () /*String*/ 
     {
-        var EventPhase = system.events.EventPhase ;
-        var phase /*Number*/ = this._eventPhase ;
-        var name /*String*/ = this.getConstructorName() ;
-        var txt /*String*/ = "[" + name ;
-        
-        if (this._type) 
-        {
-            txt += " " + this._type ;
-        }
-        
-        switch (phase) 
-        {
-            case EventPhase.CAPTURING_PHASE :
-            {
-                txt += ", CAPTURING" ;
-                break;
-            }
-            case EventPhase.AT_TARGET:
-            {
-                txt += ", AT TARGET" ;
-                break ;
-            }
-            case EventPhase.BUBBLING_PHASE:
-            {
-                txt += ", BUBBLING" ;
-                break ;
-            }
-            default :
-            {
-                txt += ", (inactive)" ;
-                break;
-            }
-        }
-        
-        if ( this._bubbles && phase != EventPhase.BUBBLING_PHASE ) 
-        {
-            txt += ", bubbles" ;
-        }
-        
-        if ( this.isCancelled() ) 
-        {
-            txt += ", can cancel" ;
-        }
-        
-        txt += "]" ;
-        
-        return txt ;
+        return this.formatToString( null, "type", "target", "context", "bubbles", "cancelable", "eventPhase" );
     }
+    
+    //////////////
+    
+    /**
+     * Returns {@code true} if the event is bubbling.
+     * @return {@code true} if the event is bubbling.
+     */
+    proto.getBubbles = function () /*Boolean*/ 
+    {
+        return this._bubbles ;
+    }
+    
+    /**
+     * Sets if the event is bubbling.
+     */
+    proto.setBubbles = function ( b /*Boolean*/ ) /*void*/ 
+    {
+        this._bubbles = b ;
+    }
+    
+    /**
+     * Returns the optional context of this event.
+     * @return an object, corresponding the optional context of this event.
+     */
+    proto.getContext = function () /*Object*/ 
+    {
+        return this._context ;
+    }
+    
+    /**
+     * Sets the optional context object of this event. 
+     */
+    proto.setContext = function ( context /*Object*/ ) /*void*/ 
+    {
+        this._context = context || null ;
+    }
+    
+    /**
+     * The object that is actively processing the Event object with an event listener.
+     */
+    proto.getCurrentTarget = function () /*Object*/ 
+    {
+        return this._currentTarget ;
+    }
+    
+    /**
+     * Sets the optional context object of this event. 
+     */
+    proto.setCurrentTarget = function ( target /*Object*/ ) /*void*/ 
+    {
+        this._currentTarget = target ;
+    }
+    
+    /**
+     * Returns the current phase in the event flow.
+     * @return the current phase in the event flow.
+     * @see system.events.EventPhase
+     */
+    proto.getEventPhase = function () /*uint*/ 
+    {
+        return this._eventPhase ;
+    }
+    
+    /**
+     * Sets the current phase in the event flow.
+     */
+    proto.setEventPhase = function ( n /*uint*/ ) /*void*/ 
+    {
+        this._eventPhase = n ;
+    }
+    
+    /**
+     * The event target.
+     */
+    proto.getTarget = function () /*Object*/ 
+    {
+        return this._target ;
+    }
+    
+    /**
+     * Sets the event target.
+     */
+    proto.setTarget = function ( target /*Object*/ ) /*void*/ 
+    {
+        this._target = target || null ;
+    }
+    
+    /**
+     * Indicates the timestamp of the event.
+     */
+    proto.getTimeStamp = function () /*Number*/ 
+    {
+        return this._time ;
+    }
+    
+    /**
+     * The type of event.
+     */
+    proto.getType = function () /*String*/ 
+    {
+        return this._type ;
+    }
+    
+    /**
+     * Sets the event type.
+     */
+    proto.setType = function ( type /*String*/ ) /*void*/ 
+    {
+        this._type = type || null ;
+    }
+    
+    //////////////
+    
+    proto.__defineGetter__( "bubbles" , proto.getBubbles ) ;
+    proto.__defineSetter__( "bubbles" , proto.setBubbles ) ;
+    
+    proto.__defineGetter__( "context" , proto.getContext ) ;
+    proto.__defineSetter__( "context" , proto.setContext ) ;
+    
+    proto.__defineGetter__( "currentTarget" , proto.getCurrentTarget ) ;
+    proto.__defineSetter__( "currentTarget" , proto.setCurrentTarget ) ;
+    
+    proto.__defineGetter__( "eventPhase" , proto.getEventPhase ) ;
+    proto.__defineSetter__( "eventPhase" , proto.setEventPhase ) ;
+    
+    proto.__defineGetter__( "target" , proto.getTarget ) ;
+    proto.__defineSetter__( "target" , proto.setTarget ) ;
+    
+    proto.__defineGetter__( "timeStamp" , proto.getTimeStamp ) ;
+    
+    proto.__defineGetter__( "type" , proto.getType ) ;
+    proto.__defineSetter__( "type" , proto.setType ) ;
     
     //////////////
     

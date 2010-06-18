@@ -61,7 +61,7 @@ proto.setUp = function()
     {
         toString : function() { return "context" ; }
     } ;
-    this.event = new system.events.Event( "type" , this.scope , this.context ) ;
+    this.event = new system.events.Event( "change" , this.scope , this.context ) ;
 }
 
 proto.tearDown = function()
@@ -76,6 +76,29 @@ proto.tearDown = function()
 proto.testConstructor = function () 
 {
     this.assertNotNull( this.event ) ; 
+}
+
+proto.testClone = function () 
+{
+    var clone = this.event.clone() ;
+    
+    this.assertNotNull( clone ) ;
+    this.assertTrue( clone instanceof system.events.Event ) ;
+    this.assertEquals( clone.context , this.event.context ) ;
+    this.assertEquals( clone.target  , this.event.target  ) ;
+    this.assertEquals( clone.type    , this.event.type    ) ;
+}
+
+
+proto.testFormatToString = function() 
+{
+    this.assertEquals( "[Event]" , this.event.formatToString() ) ;
+    this.assertEquals( "[Event type:change]" , this.event.formatToString(null,"type") ) ;
+}
+
+proto.testToString = function() 
+{
+    this.assertEquals( "[Event type:change target:scope context:context bubbles:false eventPhase:2]" , this.event.toString() ) ;
 }
 
 
