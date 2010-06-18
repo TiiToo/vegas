@@ -56,6 +56,7 @@ catch(e)
     getPackage("system.data.maps") ;
     getPackage("system.data.queues") ;
     getPackage("system.errors") ;
+    getPackage("system.events") ;
     getPackage("system.formatters") ;
     getPackage("system.logging") ;
     getPackage("system.logging.targets") ;
@@ -122,6 +123,10 @@ catch(e)
     require( "system.errors.InvalidFilterError"  ) ;
     require( "system.errors.NonUniqueKeyError"   ) ;
     require( "system.errors.NoSuchElementError"  ) ;
+    
+    // system.events
+     
+    require( "system.events.EventListener" ) ;
     
     // system.data.formatters
     
