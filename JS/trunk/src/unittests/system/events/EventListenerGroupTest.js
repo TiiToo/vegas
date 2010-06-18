@@ -141,6 +141,12 @@ proto.testToArray = function ()
     this.assertEquals( listener3 , ar[3].listener ) ;
 }
 
+proto.testToString = function () 
+{
+    var group = new system.events.EventListenerGroup() ;
+    this.assertEquals( "[EventListenerGroup]" , group.toString() ) ;
+}
+
 //////////
 
 delete proto ;

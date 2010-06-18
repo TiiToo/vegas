@@ -212,6 +212,15 @@ if (system.events.EventListenerGroup == undefined)
         return this._listeners ;
     }
     
+    /**
+     * Returns the String representation of the group.
+     * @return the String representation of the group.
+     */
+    proto.toString = function () /*uint*/ 
+    {
+        return "[EventListenerGroup]" ;
+    }
+    
     ///////////////////
     
     delete proto ;
