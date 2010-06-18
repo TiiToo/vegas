@@ -35,25 +35,48 @@
   
 */
 
-load("unittests/system/events/EventTest.js") ;
-load("unittests/system/events/EventListenerTest.js") ;
-load("unittests/system/events/EventPhaseTest.js") ;
+// ---o Constructor
 
-// ----o constructor
-
-system.events.AllTests = {} ;
-
-system.events.AllTests.suite = function() 
+system.events.EventTest = function( name ) 
 {
-    var TestSuite = buRRRn.ASTUce.TestSuite;
-    
-    var suite = new TestSuite( "system.events unit tests" );
-    
-    //suite.simpleTrace = true;
-    
-    suite.addTest( new TestSuite( system.events.EventTest         ) ) ;
-    suite.addTest( new TestSuite( system.events.EventListenerTest ) ) ;
-    suite.addTest( new TestSuite( system.events.EventPhaseTest    ) ) ;
-    
-    return suite ;
+    buRRRn.ASTUce.TestCase.call( this , name ) ;
 }
+
+// ----o Inherit
+
+system.events.EventTest.prototype             = new buRRRn.ASTUce.TestCase() ;
+system.events.EventTest.prototype.constructor = system.events.EventTest ;
+
+proto = system.events.EventTest.prototype ;
+
+// ----o Initialize
+
+proto.setUp = function()
+{
+    this.scope = 
+    {
+        toString : function() { return "scope" ; }
+    } ;
+    this.context = 
+    {
+        toString : function() { return "context" ; }
+    } ;
+    this.event = new system.events.Event( "type" , this.scope , this.context ) ;
+}
+
+proto.tearDown = function()
+{
+    this.scope   = undefined ;
+    this.context = undefined ;
+    this.event   = undefined ;
+}
+
+// ----o Public Methods
+
+proto.testConstructor = function () 
+{
+    this.assertNotNull( this.event ) ; 
+}
+
+
+delete proto ;

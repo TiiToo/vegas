@@ -126,8 +126,9 @@ catch(e)
     
     // system.events
      
+    require( "system.events.Event"         ) ;
     require( "system.events.EventListener" ) ;
-    require( "system.events.EventPhase" ) ;
+    require( "system.events.EventPhase"    ) ;
     
     // system.data.formatters
     
