@@ -69,7 +69,7 @@ if (system.events.EventListenerGroup == undefined)
         {
             var entry /*EventListenerEntry*/ = new system.events.EventListenerEntry( listener , priority , autoRemove ) ;
             
-            this._listeners.push( container ) ;
+            this._listeners.push( entry ) ;
             
             /////// bubble sorting
             
@@ -175,7 +175,8 @@ if (system.events.EventListenerGroup == undefined)
     
     /**
      * Removes an {@code EventListener} in the group.
-     * @return the EventListenerEntry of the listener removed in the group.
+     * @param listener An EventListener to remove in the group of all EventListener objects if this argument is null.
+     * @return true if the specific listener or all listeners are removed.
      */
     proto.removeListener = function ( listener ) /*Boolean*/ 
     {
@@ -192,8 +193,23 @@ if (system.events.EventListenerGroup == undefined)
                     return true ;
                 }
             }
-        } 
+            return false ;
+        }
+        else if ( listener == null && this._listeners.length > 0 )
+        {
+            this._listeners = [] ; // remove all
+            return true ;
+        }
         return false ;
+    }
+    
+    /**
+     * Returns the Array representation of the group.
+     * @return the Array representation of the group.
+     */
+    proto.toArray = function () /*uint*/ 
+    {
+        return this._listeners ;
     }
     
     ///////////////////

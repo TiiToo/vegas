@@ -37,6 +37,7 @@
 
 load("unittests/system/events/EventTest.js") ;
 load("unittests/system/events/EventListenerEntryTest.js") ;
+load("unittests/system/events/EventListenerGroupTest.js") ;
 load("unittests/system/events/EventListenerTest.js") ;
 load("unittests/system/events/EventPhaseTest.js") ;
 load("unittests/system/events/EventTargetTest.js") ;
@@ -55,6 +56,7 @@ system.events.AllTests.suite = function()
     
     suite.addTest( new TestSuite( system.events.EventTest              ) ) ;
     suite.addTest( new TestSuite( system.events.EventListenerEntryTest ) ) ;
+    suite.addTest( new TestSuite( system.events.EventListenerGroupTest ) ) ;
     suite.addTest( new TestSuite( system.events.EventListenerTest      ) ) ;
     suite.addTest( new TestSuite( system.events.EventPhaseTest         ) ) ;
     suite.addTest( new TestSuite( system.events.EventTargetTest        ) ) ;
