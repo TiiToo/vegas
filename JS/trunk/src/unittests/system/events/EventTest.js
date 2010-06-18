@@ -78,6 +78,12 @@ proto.testConstructor = function ()
     this.assertNotNull( this.event ) ; 
 }
 
+proto.testCancel = function() 
+{
+    this.event.cancel() ;
+    this.assertTrue( this.event.cancelable ) ;
+}
+
 proto.testClone = function () 
 {
     var clone = this.event.clone() ;
@@ -89,6 +95,27 @@ proto.testClone = function ()
     this.assertEquals( clone.type    , this.event.type    ) ;
 }
 
+proto.testInitEvent = function () 
+{
+    this.event.initEvent( "start" , true , true ) ;
+    
+    this.assertEquals( "start" , this.event.type ) ;
+    this.assertTrue( this.event.bubbles ) ;
+    this.assertTrue( this.event.cancelable ) ;
+    
+    this.event.initEvent( "finish" , false , false ) ;
+    
+    this.assertEquals( "finish" , this.event.type ) ;
+    this.assertFalse( this.event.bubbles ) ;
+    this.assertFalse( this.event.cancelable ) ;
+}
+
+proto.testIsQueued = function() 
+{
+    this.assertFalse( this.event.isQueued() ) ;
+    this.event.queueEvent() ;
+    this.assertTrue( this.event.isQueued() ) ;
+}
 
 proto.testFormatToString = function() 
 {
@@ -96,10 +123,29 @@ proto.testFormatToString = function()
     this.assertEquals( "[Event type:change]" , this.event.formatToString(null,"type") ) ;
 }
 
-proto.testToString = function() 
+proto.stopImmediatePropagation = function() 
 {
-    this.assertEquals( "[Event type:change target:scope context:context bubbles:false eventPhase:2]" , this.event.toString() ) ;
+    this.assertEquals( 0 , this.event.stop ) ;
+    
+    this.event.stopImmediatePropagation() ;
+    
+    this.assertEquals( system.events.EventPhase.STOP_IMMEDIATE , this.event.stop ) ;
 }
 
+proto.stopPropagation = function() 
+{
+    this.assertEquals( 0 , this.event.stop ) ;
+    
+    this.event.stopPropagation() ;
+    
+    this.assertEquals( system.events.EventPhase.STOP , this.event.stop ) ;
+}
+
+proto.testToString = function() 
+{
+    this.assertEquals( "[Event type:change target:scope context:context bubbles:false cancelable:false eventPhase:2]" , this.event.toString() ) ;
+}
+
+//////////
 
 delete proto ;

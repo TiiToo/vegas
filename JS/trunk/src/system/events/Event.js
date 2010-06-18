@@ -78,7 +78,9 @@ if ( system.events.Event == undefined)
         this._type    = type    || null ;
         
         this._bubbles    = Boolean( bubbles ) ;
+        this._cancelled  = false ;
         this._eventPhase = isNaN( eventPhase ) ? EventPhase.AT_TARGET : eventPhase ;
+        this._inQueue    = false ;
         this._time       = ( time > 0 ) ? time : ( ( new Date()).valueOf() ) ;
         this.stop        = isNaN( stop ) ? EventPhase.NONE : stop ;
     }
@@ -95,7 +97,7 @@ if ( system.events.Event == undefined)
     /**
      * This property indicated in the event model if this event is stopped.
      */
-    proto.stop /*uint*/ = null ;
+    proto.stop /*uint*/ = 0 ;
      
     /**
      * Indicates whether the behavior associated with the event can be prevented.
@@ -155,10 +157,10 @@ if ( system.events.Event == undefined)
      * @param bubbles a boolean to indicate if the event is a bubbling event.
      * @param cancelable a boolean to indicate if the event is a capturing event.
      */
-    proto.initEvent = function (type /*String*/ , bubbles /*Boolean*/, cancelable /*Boolean*/ ) /*void*/ 
+    proto.initEvent = function ( type /*String*/ , bubbles /*Boolean*/ , cancelable /*Boolean*/ ) /*void*/ 
     {
-        this._type = type ;
-        this._bubbles = bubbles ;
+        this._type      = type ;
+        this._bubbles   = bubbles ;
         this._cancelled = cancelable ;
         this._time = (new Date()).valueOf() ;
     }
@@ -251,6 +253,14 @@ if ( system.events.Event == undefined)
     proto.setBubbles = function ( b /*Boolean*/ ) /*void*/ 
     {
         this._bubbles = b ;
+    }
+    
+    /**
+     * Indicates if the event is cancelable.
+     */
+    proto.getCancelable = function () /*Boolean*/ 
+    {
+        return this._cancelled ;
     }
     
     /**
@@ -349,6 +359,8 @@ if ( system.events.Event == undefined)
     proto.__defineGetter__( "bubbles" , proto.getBubbles ) ;
     proto.__defineSetter__( "bubbles" , proto.setBubbles ) ;
     
+    proto.__defineGetter__( "cancelable" , proto.getCancelable ) ;
+    
     proto.__defineGetter__( "context" , proto.getContext ) ;
     proto.__defineSetter__( "context" , proto.setContext ) ;
     
@@ -411,7 +423,7 @@ if ( system.events.Event == undefined)
     /**
      * Sets the timestamp of the event (used this method only in internal in the Event class).
      */
-    proto._setTimeStamp = function ( t/*Number*/ ) 
+    proto._setTimeStamp = function ( t /*Number*/ ) 
     {
         this._time = t ;
     }
