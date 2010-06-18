@@ -84,7 +84,7 @@ proto.testClear = function ()
 {
     var CircularQueue = system.data.queues.CircularQueue ; 
     
-    var q = new CircularQueue([2,3,4]) ; 
+    var q = new CircularQueue( NaN , [2,3,4]) ; 
     
     q.clear() ; 
     
@@ -95,7 +95,7 @@ proto.testClone = function ()
 {
     var CircularQueue = system.data.queues.CircularQueue ; 
     
-    var q = new CircularQueue([2,3,4]) ;
+    var q = new CircularQueue( NaN , [2,3,4] ) ;
     var c = q.clone() ;
     
     this.assertNotNull( c, "#01") ;
@@ -106,11 +106,9 @@ proto.testClone = function ()
 
 proto.testContains = function () 
 {
-    var CircularQueue = system.data.queues.CircularQueue ; 
+    var q = new system.data.queues.CircularQueue() ;
     
-    var q = new CircularQueue() ;
-    
-    q.add("item") ;
+    q.enqueue("item") ;
     
     this.assertTrue( q.contains("item")    ,  "#01" ) ;
     this.assertFalse( q.contains("unknow") ,  "#02" ) ;
@@ -118,11 +116,7 @@ proto.testContains = function ()
 
 proto.testDequeue = function () 
 {
-    var CircularQueue = system.data.queues.CircularQueue ;
-    
-    var q ;
-    
-    q = new CircularQueue([1,2,3,4]) ;
+    var q = new system.data.queues.CircularQueue( NaN , [1,2,3,4] ) ;
     
     this.assertTrue( q.dequeue() , "01-01" ) ;
     this.assertEquals( q.size()  , 3 , "01-02" ) ;
@@ -146,7 +140,7 @@ proto.testEnqueue = function ()
     
     var q ;
     
-    q = new CircularQueue([1,2,3,4]) ;
+    q = new CircularQueue(NaN, [1,2,3,4]) ;
     this.assertEquals( q.element() , 1 , "The CircularQueue element method failed." ) ;
     
     q = new CircularQueue() ;
@@ -176,26 +170,26 @@ proto.testIsEmpty = function ()
 {
     var CircularQueue = system.data.queues.CircularQueue ;
     
-    var co = new CircularQueue() ;
+    var q = new CircularQueue() ;
     
-    this.assertTrue( co.isEmpty() , "#01" ) ;
+    this.assertTrue( q.isEmpty() , "#01" ) ;
     
-    co.add("test") ;
+    q.enqueue("test") ;
     
-    this.assertFalse( co.isEmpty() , "#02" ) ;
+    this.assertFalse( q.isEmpty() , "#02" ) ;
     
-    co.remove("test") ;
+    q.clear() ;
     
-    this.assertTrue( co.isEmpty() , "#03" ) ;
+    this.assertTrue( q.isEmpty() , "#03" ) ;
 }
 
 proto.testIterator = function () 
 {
-    var co = new system.data.queues.CircularQueue( [2,3,4] ) ;
+    var q = new system.data.queues.CircularQueue( NaN , [2,3,4] ) ;
     
-    var it = co.iterator() ;
+    var it = q.iterator() ;
     
-    this.assertTrue ( it instanceof system.data.iterators.ArrayIterator , "#01" ) ;
+    this.assertTrue ( it instanceof system.data.iterators.ProtectedIterator , "#01" ) ;
     
     var count = 0 ;
     while( it.hasNext() )
@@ -209,7 +203,7 @@ proto.testPeek = function ()
 {
     var q ;
     
-    q = new system.data.queues.CircularQueue([1,2,3,4]) ;
+    q = new system.data.queues.CircularQueue( NaN , [1,2,3,4] ) ;
     this.assertEquals( q.peek() , 1 , "The CircularQueue peek method failed." ) ;
     
     q = new system.data.queues.CircularQueue() ;
@@ -220,7 +214,7 @@ proto.testPoll = function ()
 {
     var q ;
     
-    q = new system.data.queues.CircularQueue([1,2,3,4]) ;
+    q = new system.data.queues.CircularQueue( NaN , [1,2,3,4] ) ;
     
     this.assertEquals( q.poll() , 1 , "01-01" ) ;
     this.assertEquals( q.size() , 3 , "01-02" ) ;
@@ -237,33 +231,33 @@ proto.testPoll = function ()
 
 proto.testSize = function () 
 {
-    var co = new system.data.queues.CircularQueue() ;
+    var q = new system.data.queues.CircularQueue() ;
     
-    this.assertEquals( 0 , co.size() ,  "#01") ;
+    this.assertEquals( 0 , q.size() ,  "#01") ;
     
-    co.add("test") ;
+    q.enqueue("test") ;
     
-    this.assertEquals( 1 , co.size() ,  "#01") ;
+    this.assertEquals( 1 , q.size() ,  "#01") ;
 }
 
 proto.testToArray = function () 
 {
     var CircularQueue = system.data.queues.CircularQueue ;
     
-    var c ;
+    var q ;
     var a ;
     
-    c = new CircularQueue() ;
-    a = c.toArray() ;
+    q = new CircularQueue() ;
+    a = q.toArray() ;
     
     this.assertNotNull( a , "#01" ) ;
     this.assertEquals( 0 , a.length , "#02" ) ;
     
-    c.add(2) ;
-    c.add(3) ;
-    c.add(4) ; 
+    q.enqueue(2) ;
+    q.enqueue(3) ;
+    q.enqueue(4) ; 
     
-    a = c.toArray() ;
+    a = q.toArray() ;
     
     this.assertNotNull( a , "#03" ) ;
     
@@ -277,13 +271,13 @@ proto.testToSource = function ()
 {
     var q ;
     
-    q = new system.data.queues.CircularQueue() ;
+    q = new system.data.queues.CircularQueue(99999) ;
     
-    this.assertEquals(q.toSource() , "new system.data.queues.CircularQueue()" , "#01") ;
+    this.assertEquals(q.toSource() , "new system.data.queues.CircularQueue(99999)" , "#01") ;
     
-    q = new system.data.queues.CircularQueue( ["item1", "item2"] ) ;
+    q = new system.data.queues.CircularQueue( 5 , ["item1", "item2"] ) ;
     
-    this.assertEquals(q.toSource() , "new system.data.queues.CircularQueue([\"item1\",\"item2\"])" , "#02") ;
+    this.assertEquals(q.toSource() , "new system.data.queues.CircularQueue(5,[\"item1\",\"item2\"])" , "#02") ;
 }
 
 proto.testToString = function () 
@@ -294,7 +288,7 @@ proto.testToString = function ()
     
     this.assertEquals( q.toString() , "{}" , "#01") ;
     
-    q = new system.data.queues.CircularQueue( ["item1", "item2"] ) ;
+    q = new system.data.queues.CircularQueue( 4 , ["item1", "item2"] ) ;
     
     this.assertEquals( q.toString() , "{item1,item2}" , "#02" ) ;
 }

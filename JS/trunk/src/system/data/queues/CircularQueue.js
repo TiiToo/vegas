@@ -95,12 +95,9 @@ if ( system.data.queues.CircularQueue == undefined )
     system.data.queues.CircularQueue = function ( length /*Number*/ , elements /*Array*/ ) 
     { 
         this._queue = [] ;
-        
-        this._length = isNaN(length) ? system.data.queues.CircularQueue.MAX_CAPACITY : length + 1 ;
-        
+        this._length = ( isNaN(length) ? system.data.queues.CircularQueue.MAX_CAPACITY : length ) + 1 ;
         this.clear() ;
-        
-        if ( elements != null && elements instanceof Array && elements.length > 0 ) 
+        if ( elements && elements instanceof Array && elements.length > 0 ) 
         {
             var l /*int*/ = elements.length ;
             if ( l > 0 )
@@ -160,7 +157,7 @@ if ( system.data.queues.CircularQueue == undefined )
      * Returns {@code true} if the queue contains the object passed in argument.
      * @return {@code true} if the queue contains the object passed in argument.
      */
-    proto.contains = function (o) /*Boolean*/ 
+    proto.contains = function( o ) /*Boolean*/ 
     {
         return this._queue.indexOf(o) != -1 ;
     }
@@ -197,7 +194,7 @@ if ( system.data.queues.CircularQueue == undefined )
         {
             this._queue[this._rear++] = o ;
             this._count ++ ;
-            if (this._rear == this._length) 
+            if ( this._rear == this._length ) 
             {
                 this._rear = 0 ;
             }
@@ -257,11 +254,11 @@ if ( system.data.queues.CircularQueue == undefined )
      */
     proto.poll = function () 
     {
-        if (this._front == this._length) 
+        if ( this._front == this._length ) 
         {
             this._front = 0 ; // loop back
         }
-        if (this._front == this._rear) 
+        if ( this._front == this._rear ) 
         {
             return null ;  // queue is empty
         }
@@ -317,9 +314,23 @@ if ( system.data.queues.CircularQueue == undefined )
      */
     proto.toSource = function (indent /*Number*/, indentor/*String*/ ) /*String*/ 
     {
-        var sourceA /*String*/ = this.maxSize().toSource() ;
-        var sourceB /*String*/ = (this.toArray()).toSource() ;
-        return "new " + this.getConstructorPath() + "(" + sourceA + "," + sourceB + ")" ;
+            var source = "new " + this.getConstructorPath() ;
+            
+            source += "(" ;
+            
+            source += this.maxSize() ;
+            
+            var ar = this.toArray() ;
+            
+            if ( ar.length > 0 )
+            {
+                source += "," ;
+                source += core.dump( ar ) ;
+            } 
+            
+            source += ")" ;
+            
+            return source ;
     }
     
     /**

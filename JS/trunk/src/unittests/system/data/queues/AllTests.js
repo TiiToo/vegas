@@ -49,7 +49,7 @@ system.data.queues.AllTests.suite = function()
     
     //suite.simpleTrace = true;
     
-    // TODO suite.addTest( new TestSuite( system.data.queues.CircularQueueTest ) ) ;
+    suite.addTest( new TestSuite( system.data.queues.CircularQueueTest ) ) ;
     suite.addTest( new TestSuite( system.data.queues.LinearQueueTest ) ) ;
     
     return suite ;
