@@ -35,7 +35,12 @@
   
 */
 
+getPackage("system.events.mocks" ) ;
+
+load("unittests/system/events/mocks/MockEventListener.js") ;
+
 load("unittests/system/events/EventTest.js") ;
+load("unittests/system/events/EventListenerBatchTest.js") ;
 load("unittests/system/events/EventListenerEntryTest.js") ;
 load("unittests/system/events/EventListenerGroupTest.js") ;
 load("unittests/system/events/EventListenerTest.js") ;
@@ -55,6 +60,7 @@ system.events.AllTests.suite = function()
     //suite.simpleTrace = true;
     
     suite.addTest( new TestSuite( system.events.EventTest              ) ) ;
+    suite.addTest( new TestSuite( system.events.EventListenerBatchTest ) ) ;
     suite.addTest( new TestSuite( system.events.EventListenerEntryTest ) ) ;
     suite.addTest( new TestSuite( system.events.EventListenerGroupTest ) ) ;
     suite.addTest( new TestSuite( system.events.EventListenerTest      ) ) ;

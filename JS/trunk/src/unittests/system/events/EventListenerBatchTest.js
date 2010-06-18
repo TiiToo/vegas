@@ -37,41 +37,41 @@
 
 // ---o Constructor
 
-system.process.BatchTest = function( name ) 
+system.events.EventListenerBatchTest = function( name ) 
 {
     buRRRn.ASTUce.TestCase.call( this , name ) ;
 }
 
 // ----o Inherit
 
-system.process.BatchTest.prototype             = new buRRRn.ASTUce.TestCase() ;
-system.process.BatchTest.prototype.constructor = system.process.BatchTest ;
+system.events.EventListenerBatchTest.prototype             = new buRRRn.ASTUce.TestCase() ;
+system.events.EventListenerBatchTest.prototype.constructor = system.events.EventListenerBatchTest ;
 
-proto = system.process.BatchTest.prototype ;
+proto = system.events.EventListenerBatchTest.prototype ;
 
 // ----o Initialize
 
 proto.setUp = function()
 {
-    var MockCommand = system.process.mocks.MockCommand ;
+    var EventListener = system.events.EventListener ;
     
-    this.command1 = new MockCommand() ;
-    this.command2 = new MockCommand() ;
-    this.command3 = new MockCommand() ;
-    this.command4 = new MockCommand() ;
+    this.listener1 = new system.events.mocks.MockEventListener() ;
+    this.listener2 = new system.events.mocks.MockEventListener() ;
+    this.listener3 = new system.events.mocks.MockEventListener() ;
+    this.listener4 = new system.events.mocks.MockEventListener() ;
     
-    this.batch = new system.process.Batch( [this.command1,this.command2] ) ;
+    this.batch = new system.events.EventListenerBatch( [this.listener1,this.listener2] ) ;
     
-    this.batch.add( this.command3 ) ;
-    this.batch.add( this.command4 ) ;
+    this.batch.add( this.listener3 ) ;
+    this.batch.add( this.listener4 ) ;
 }
 
 proto.tearDown = function()
 {
-    this.command1 = undefined ;
-    this.command2 = undefined ;
-    this.command3 = undefined ;
-    this.command4 = undefined ;
+    this.listener1 = undefined ;
+    this.listener2 = undefined ;
+    this.listener3 = undefined ;
+    this.listener4 = undefined ;
     
     this.batch = undefined ;
 }
@@ -85,19 +85,19 @@ proto.testConstructor = function ()
 
 proto.testInherit = function () 
 {
-    this.assertTrue( this.batch instanceof system.process.Runnable ) ;
+    this.assertTrue( this.batch instanceof system.events.EventListener ) ;
 }
 
 proto.testAdd = function () 
 {
-    var MockCommand = system.process.mocks.MockCommand ;
+    var EventListener = system.events.EventListener ;
     
-    this.assertTrue( this.batch.add( new MockCommand() ) , "#1" ) ;
+    this.assertTrue( this.batch.add( new EventListener() ) , "#1" ) ;
     
-    var command = {} ;
-    command.run = function() {} ;
+    var listener = {} ;
+    listener.handleEvent = function() {} ;
     
-    this.assertFalse( this.batch.add( command ) , "#2" ) ;
+    this.assertFalse( this.batch.add( listener ) , "#2" ) ;
     
     this.assertFalse( this.batch.add( 2 ) ) ;
     
@@ -120,46 +120,55 @@ proto.testClone = function ()
 
 proto.testContains = function () 
 {
-    var MockCommand = system.process.mocks.MockCommand ;
+    var EventListener = system.events.EventListener ;
     
-    this.assertTrue( this.batch.contains( this.command1 ) ) ;
-    this.assertTrue( this.batch.contains( this.command2 ) ) ;
-    this.assertTrue( this.batch.contains( this.command3 ) ) ;
-    this.assertTrue( this.batch.contains( this.command4 ) ) ;
+    this.assertTrue( this.batch.contains( this.listener1 ) ) ;
+    this.assertTrue( this.batch.contains( this.listener2 ) ) ;
+    this.assertTrue( this.batch.contains( this.listener3 ) ) ;
+    this.assertTrue( this.batch.contains( this.listener4 ) ) ;
     
     this.assertFalse( this.batch.contains( null ) ) ;
     this.assertFalse( this.batch.contains( "hello" ) ) ;
-    this.assertFalse( this.batch.contains( new MockCommand() ) ) ;
+    this.assertFalse( this.batch.contains( new EventListener() ) ) ;
 }
 
 proto.testGet = function () 
 {
-    this.assertEquals( this.batch.get(0) , this.command1 ) ;
-    this.assertEquals( this.batch.get(1) , this.command2 ) ;
-    this.assertEquals( this.batch.get(2) , this.command3 ) ;
-    this.assertEquals( this.batch.get(3) , this.command4 ) ;
+    this.assertEquals( this.batch.get(0) , this.listener1 ) ;
+    this.assertEquals( this.batch.get(1) , this.listener2 ) ;
+    this.assertEquals( this.batch.get(2) , this.listener3 ) ;
+    this.assertEquals( this.batch.get(3) , this.listener4 ) ;
     
     this.assertUndefined( this.batch.get(4) ) ;
     this.assertUndefined( this.batch.get(null) ) ;
     this.assertUndefined( this.batch.get("hello") ) ;
 }
 
+proto.testHandleEvent = function () 
+{
+    var MockEventListener = system.events.mocks.MockEventListener ;
+    MockEventListener.reset() ;
+    var event = new system.events.Event( "test" ) ;
+    this.batch.handleEvent( event ) ;
+    this.assertEquals( MockEventListener.COUNT , this.batch.size() ) ;
+}
+
 proto.testIndexOf = function () 
 {
-    var MockCommand = system.process.mocks.MockCommand ;
+    var EventListener = system.events.EventListener ;
     
-    this.assertEquals( 0 , this.batch.indexOf( this.command1 ) ) ;
-    this.assertEquals( 1 , this.batch.indexOf( this.command2 ) ) ;
-    this.assertEquals( 2 , this.batch.indexOf( this.command3 ) ) ;
-    this.assertEquals( 3 , this.batch.indexOf( this.command4 ) ) ;
+    this.assertEquals( 0 , this.batch.indexOf( this.listener1 ) ) ;
+    this.assertEquals( 1 , this.batch.indexOf( this.listener2 ) ) ;
+    this.assertEquals( 2 , this.batch.indexOf( this.listener3 ) ) ;
+    this.assertEquals( 3 , this.batch.indexOf( this.listener4 ) ) ;
     
-    this.assertEquals(  2 , this.batch.indexOf( this.command3 , 1 ) ) ;
-    this.assertEquals(  2 , this.batch.indexOf( this.command3 , 2 ) ) ;
-    this.assertEquals( -1 , this.batch.indexOf( this.command3 , 3 ) ) ;
+    this.assertEquals(  2 , this.batch.indexOf( this.listener3 , 1 ) ) ;
+    this.assertEquals(  2 , this.batch.indexOf( this.listener3 , 2 ) ) ;
+    this.assertEquals( -1 , this.batch.indexOf( this.listener3 , 3 ) ) ;
     
     this.assertEquals( -1 , this.batch.indexOf( null ) ) ;
     this.assertEquals( -1 , this.batch.indexOf( "hello" ) ) ;
-    this.assertEquals( -1 , this.batch.indexOf( new MockCommand() ) ) ;
+    this.assertEquals( -1 , this.batch.indexOf( new EventListener() ) ) ;
 }
 
 proto.testIsEmpty = function () 
@@ -174,25 +183,17 @@ proto.testIterator = function ()
    var it = this.batch.iterator() ;
    this.assertTrue( it instanceof system.data.iterators.ArrayIterator ) ;
    this.assertTrue( it.hasNext() ) ;
-   this.assertEquals( this.command1 , it.next() ) ;
-   this.assertEquals( this.command2 , it.next() ) ;
-   this.assertEquals( this.command3 , it.next() ) ;
-   this.assertEquals( this.command4 , it.next() ) ;
+   this.assertEquals( this.listener1 , it.next() ) ;
+   this.assertEquals( this.listener2 , it.next() ) ;
+   this.assertEquals( this.listener3 , it.next() ) ;
+   this.assertEquals( this.listener4 , it.next() ) ;
 }
 
 proto.testRemove = function () 
 {
-    this.assertTrue( this.batch.remove( this.command1 ) ) ;
-    this.assertFalse( this.batch.remove( this.command1 ) ) ;
+    this.assertTrue( this.batch.remove( this.listener1 ) ) ;
+    this.assertFalse( this.batch.remove( this.listener1 ) ) ;
     this.assertEquals( 3 , this.batch.size() ) ;
-}
-
-proto.testRun = function () 
-{
-    var MockCommand = system.process.mocks.MockCommand ;
-    MockCommand.reset() ;
-    this.batch.run() ;
-    this.assertEquals( MockCommand.COUNT , this.batch.size() ) ;
 }
 
 proto.testSize = function () 
@@ -207,20 +208,20 @@ proto.testToArray = function ()
     var ar = this.batch.toArray() ;
     this.assertTrue( ar instanceof Array ) ;
     this.assertEquals( 4 , ar.length ) ;
-    this.assertEquals( this.command1 , ar[0] ) ;
-    this.assertEquals( this.command2 , ar[1] ) ;
-    this.assertEquals( this.command3 , ar[2] ) ;
-    this.assertEquals( this.command4 , ar[3] ) ;
+    this.assertEquals( this.listener1 , ar[0] ) ;
+    this.assertEquals( this.listener2 , ar[1] ) ;
+    this.assertEquals( this.listener3 , ar[2] ) ;
+    this.assertEquals( this.listener4 , ar[3] ) ;
 }
 
 proto.testToSource = function () 
 {
-    this.assertEquals( "new system.process.Batch([new system.process.mocks.MockCommand(),new system.process.mocks.MockCommand(),new system.process.mocks.MockCommand(),new system.process.mocks.MockCommand()])" , this.batch.toSource() ) ;
+    this.assertEquals( "new system.events.EventListenerBatch([new system.events.mocks.MockEventListener(),new system.events.mocks.MockEventListener(),new system.events.mocks.MockEventListener(),new system.events.mocks.MockEventListener()])" , this.batch.toSource() ) ;
 }
 
 proto.testToString = function () 
 {
-    this.assertEquals( "{[object MockCommand],[object MockCommand],[object MockCommand],[object MockCommand]}" , this.batch.toString() ) ;
+    this.assertEquals( "{[MockEventListener],[MockEventListener],[MockEventListener],[MockEventListener]}" , this.batch.toString() ) ;
     this.batch.clear() ;
     this.assertEquals( "{}" , this.batch.toString() ) ;
 }
