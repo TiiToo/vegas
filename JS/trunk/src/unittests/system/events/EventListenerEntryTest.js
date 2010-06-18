@@ -63,7 +63,7 @@ proto.testConstructor = function ()
 proto.testConstructorWithArguments = function () 
 {
     var listener = new system.events.EventListener() ;
-    var entry    = new system.events.EventListenerEntry(listener,true,999,true) ;
+    var entry    = new system.events.EventListenerEntry(listener,999,true,true) ;
     this.assertEquals( listener , entry.listener ) ;
     this.assertEquals( 999      , entry.priority ) ;
     this.assertTrue( entry.capture ) ;
@@ -78,7 +78,7 @@ proto.testToString = function ()
     entry = new system.events.EventListenerEntry() ;
     this.assertEquals( "[EventListenerEntry listener:null capture:false priority:0 autoRemove:false]" , entry.toString() ) ;
     
-    entry = new system.events.EventListenerEntry(listener,true,999,true) ;
+    entry = new system.events.EventListenerEntry(listener,999,true,true) ;
     this.assertEquals( "[EventListenerEntry listener:[EventListener] capture:true priority:999 autoRemove:true]" , entry.toString() ) ;
 }
 

@@ -47,7 +47,7 @@ if (system.events.EventListenerEntry == undefined)
      * @param priority The priority value of the entry.
      * @param autoRemove Indicates if the listener must be removed when the listener handle the first time an event.
      */
-    system.events.EventListenerEntry = function ( listener /*EventListener*/ , capture /*Boolean*/ , priority /*uint*/ , autoRemove /*Boolean*/ ) 
+    system.events.EventListenerEntry = function ( listener /*EventListener*/ , priority /*uint*/ , autoRemove /*Boolean*/ , capture /*Boolean*/  ) 
     {
         this.listener   = listener ;
         this.autoRemove = Boolean( autoRemove ) ;
