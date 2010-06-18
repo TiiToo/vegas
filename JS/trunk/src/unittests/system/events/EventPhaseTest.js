@@ -35,23 +35,50 @@
   
 */
 
-load("unittests/system/events/EventListenerTest.js") ;
-load("unittests/system/events/EventPhaseTest.js") ;
+// ---o Constructor
 
-// ----o constructor
-
-system.events.AllTests = {} ;
-
-system.events.AllTests.suite = function() 
+system.events.EventPhaseTest = function( name ) 
 {
-    var TestSuite = buRRRn.ASTUce.TestSuite;
-    
-    var suite = new TestSuite( "system.events unit tests" );
-    
-    //suite.simpleTrace = true;
-    
-    suite.addTest( new TestSuite( system.events.EventListenerTest ) ) ;
-    suite.addTest( new TestSuite( system.events.EventPhaseTest    ) ) ;
-    
-    return suite ;
+    buRRRn.ASTUce.TestCase.call( this , name ) ;
 }
+
+// ----o Inherit
+
+system.events.EventPhaseTest.prototype             = new buRRRn.ASTUce.TestCase() ;
+system.events.EventPhaseTest.prototype.constructor = system.events.EventPhaseTest ;
+
+proto = system.events.EventPhaseTest.prototype ;
+
+// ----o Public Methods
+
+proto.testAT_TARGET = function () 
+{
+    this.assertEquals( 2 , system.events.EventPhase.AT_TARGET ) ; 
+}
+
+proto.testBUBBLING_PHASE = function () 
+{
+    this.assertEquals( 3 , system.events.EventPhase.BUBBLING_PHASE ) ; 
+}
+
+proto.testCAPTURING_PHASE = function () 
+{
+    this.assertEquals( 1 , system.events.EventPhase.CAPTURING_PHASE ) ; 
+}
+
+proto.testNONE = function () 
+{
+    this.assertEquals( 0 , system.events.EventPhase.NONE ) ; 
+}
+
+proto.testSTOP = function () 
+{
+    this.assertEquals( 8 , system.events.EventPhase.STOP ) ; 
+}
+
+proto.testSTOP_IMMEDIATE = function () 
+{
+    this.assertEquals( 10 , system.events.EventPhase.STOP_IMMEDIATE ) ; 
+}
+
+delete proto ;
