@@ -35,27 +35,30 @@
   
 */
 
-load("unittests/system/events/EventTest.js") ;
-load("unittests/system/events/EventListenerTest.js") ;
-load("unittests/system/events/EventPhaseTest.js") ;
-load("unittests/system/events/EventTargetTest.js") ;
+// ---o Constructor
 
-// ----o constructor
-
-system.events.AllTests = {} ;
-
-system.events.AllTests.suite = function() 
+system.events.EventTargetTest = function( name ) 
 {
-    var TestSuite = buRRRn.ASTUce.TestSuite;
-    
-    var suite = new TestSuite( "system.events unit tests" );
-    
-    //suite.simpleTrace = true;
-    
-    suite.addTest( new TestSuite( system.events.EventTest         ) ) ;
-    suite.addTest( new TestSuite( system.events.EventListenerTest ) ) ;
-    suite.addTest( new TestSuite( system.events.EventPhaseTest    ) ) ;
-    suite.addTest( new TestSuite( system.events.EventTargetTest   ) ) ;
-    
-    return suite ;
+    buRRRn.ASTUce.TestCase.call( this , name ) ;
+}
+
+// ----o Inherit
+
+system.events.EventTargetTest.prototype             = new buRRRn.ASTUce.TestCase() ;
+system.events.EventTargetTest.prototype.constructor = system.events.EventTargetTest ;
+
+// ----o Public Methods
+
+system.events.EventTargetTest.prototype.testConstructor = function () 
+{
+    var target = new system.events.EventTarget() ;
+    this.assertNotNull( target ) ; 
+}
+
+system.events.EventTargetTest.prototype.testInterface = function () 
+{
+    var target = new system.events.EventTarget() ;
+    this.assertTrue( "addEventListener"    in target ) ;
+    this.assertTrue( "removeEventListener" in target ) ;
+    this.assertTrue( "dispatchEvent"       in target ) ; 
 }

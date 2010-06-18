@@ -64,6 +64,7 @@ if ( system.events.EventListener == undefined )
     {
         // override this method
     }
+    
     /**
      * Returns the string representation of this instance.
      * @return the string representation of this instance.
