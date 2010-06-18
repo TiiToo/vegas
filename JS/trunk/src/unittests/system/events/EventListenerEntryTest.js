@@ -37,46 +37,51 @@
 
 // ---o Constructor
 
-system.signals.SignalEntryTest = function( name ) 
+system.events.EventListenerEntryTest = function( name ) 
 {
     buRRRn.ASTUce.TestCase.call( this , name ) ;
 }
 
 // ----o Inherit
 
-system.signals.SignalEntryTest.prototype             = new buRRRn.ASTUce.TestCase() ;
-system.signals.SignalEntryTest.prototype.constructor = system.signals.SignalEntryTest ;
+system.events.EventListenerEntryTest.prototype             = new buRRRn.ASTUce.TestCase() ;
+system.events.EventListenerEntryTest.prototype.constructor = system.events.EventListenerEntryTest ;
 
-proto = system.signals.SignalEntryTest.prototype ;
+proto = system.events.EventListenerEntryTest.prototype ;
 
 // ----o Public Methods
 
 proto.testConstructor = function () 
 {
-    var entry = new system.signals.SignalEntry() ;
-    this.assertNotNull( entry ) ; 
-    this.assertFalse( entry.auto ) ;
-    this.assertEquals( entry.priority , 0 ) ;
-    this.assertNull( entry.receiver ) ;
+    var entry = new system.events.EventListenerEntry() ;
+    this.assertNull( entry.listener ) ;
+    this.assertEquals( 0 , entry.priority ) ;
+    this.assertFalse( entry.capture ) ;
+    this.assertFalse( entry.autoRemove ) ;
 }
 
 proto.testConstructorWithArguments = function () 
 {
-    var slot  = function() {} ;
-    var entry = new system.signals.SignalEntry( slot , 2 , true ) ;
-    this.assertNotNull( entry ) ;
-    this.assertTrue( entry.auto ) ;
-    this.assertEquals( entry.priority , 2 ) ;
-    this.assertEquals( entry.receiver , slot ) ;
+    var listener = new system.events.EventListener() ;
+    var entry    = new system.events.EventListenerEntry(listener,true,999,true) ;
+    this.assertEquals( listener , entry.listener ) ;
+    this.assertEquals( 999      , entry.priority ) ;
+    this.assertTrue( entry.capture ) ;
+    this.assertTrue( entry.autoRemove ) ;
 }
 
 proto.testToString = function () 
 {
-    var slot  = function() {} ;
-    var entry = new system.signals.SignalEntry( slot , 2 , true ) ;
-    this.assertEquals( entry.toString() , "[SignalEntry receiver:[Type Function] priority:2 auto:true]" ) ;
+    var entry ;
+    var listener = new system.events.EventListener() ;
+    
+    entry = new system.events.EventListenerEntry() ;
+    this.assertEquals( "[EventListenerEntry listener:null capture:false priority:0 autoRemove:false]" , entry.toString() ) ;
+    
+    entry = new system.events.EventListenerEntry(listener,true,999,true) ;
+    this.assertEquals( "[EventListenerEntry listener:[EventListener] capture:true priority:999 autoRemove:true]" , entry.toString() ) ;
 }
 
-///////
+//////////
 
 delete proto ;

@@ -36,45 +36,53 @@
 */
 
 /**
- * A SignalEntry object contains all informations about a receiver entry in a Signal collection.
+ * Internal class in the {@code EventDispatcher} class to register in an {@code EventCollection} an {@code EventListener}.
  */
-if ( system.signals.SignalEntry == undefined ) 
+if (system.events.EventListenerEntry == undefined) 
 {
     /**
-     * Creates a new SignalEntry instance.
-     * @param receiver The receiver reference.
+     * Creates a new EventListenerEntry instance.
+     * @param listener The EventListener reference.
+     * @param capture Indicates if the listener use capture flow event or not.
      * @param priority The priority value of the entry.
-     * @param auto This flag indicates if the receiver must be disconnected when handle the first time a signal. 
+     * @param autoRemove Indicates if the listener must be removed when the listener handle the first time an event.
      */
-    system.signals.SignalEntry = function ( receiver , priority /*uint*/ , auto /*Boolean*/ ) 
+    system.events.EventListenerEntry = function ( listener /*EventListener*/ , capture /*Boolean*/ , priority /*uint*/ , autoRemove /*Boolean*/ ) 
     {
-        this.auto     = Boolean( auto ) ;
-        this.receiver = receiver ;
-        this.priority = priority > 0 ? Math.ceil( priority ) : 0 ;
+        this.listener   = listener ;
+        this.autoRemove = Boolean( autoRemove ) ;
+        this.capture    = Boolean( capture ) ;
+        this.priority   = priority > 0 ? Math.ceil( priority ) : 0 ;
     }
+    
     ///////////////////
     
     /**
      * @extends Object
      */
-    proto = system.signals.SignalEntry.extend( Object ) ;
+    proto = system.events.EventListenerEntry.extend( Object ) ;
     
     ///////////////////
     
     /**
-     * Indicates if the receiver must be disconnected when handle the first time a signal.
+     * Indicates if the listener must be removed when the listener handle the first time an event.
      */
-    proto.auto = false ;
+    proto.autoRemove /*Boolean*/ = false ;
     
     /**
-     * Determinates the priority value of the object.
+     * Determinates if the listener use capture flow event or not.
      */
-    proto.priority = 0 ;
+    proto.capture /*Boolean*/ = false ;
     
     /**
-     * The receiver reference of this entry.
+     * The listener reference of this entry.
      */
-    proto.receiver = null ;
+    proto.listener /*EventListener*/ ;
+    
+    /**
+     * Determinates the priority value of the entry.
+     */
+    proto.priority /*uint*/ =  0 ;
     
     ///////////////////
     
@@ -84,7 +92,7 @@ if ( system.signals.SignalEntry == undefined )
      */
     proto.toString = function() /*String*/
     {
-        return "[SignalEntry receiver:" + this.receiver + " priority:" + this.priority + " auto:" + this.auto + "]" ;
+        return "[EventListenerEntry listener:" + (this.listener || "null") + " capture:" + this.capture + " priority:" + this.priority + " autoRemove:" + this.autoRemove + "]" ;
     }
     
     ///////////////////
