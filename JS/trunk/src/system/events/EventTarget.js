@@ -86,7 +86,7 @@ if ( system.events.EventTarget == undefined )
      * @param listener the class name(string) or a EventListener object.
      * @param useCapture Indicates if the register listener use capture or not.
      */
-    proto.removeEventListener = function (eventName/*String*/, listener, useCapture/*Boolean*/) /*EventListener*/ 
+    proto.removeEventListener = function ( type /*String*/ , listener, useCapture/*Boolean*/ ) /*void*/ 
     {
         // override this method.
     }

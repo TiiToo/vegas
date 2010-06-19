@@ -35,41 +35,45 @@
   
 */
 
-getPackage("system.events.mocks" ) ;
+// ---o Constructor
 
-load("unittests/system/events/mocks/MockEventListener.js") ;
-
-load("unittests/system/events/EventTest.js") ;
-load("unittests/system/events/EventListenerBatchTest.js") ;
-load("unittests/system/events/EventListenerEntryTest.js") ;
-load("unittests/system/events/EventListenerGroupTest.js") ;
-load("unittests/system/events/EventListenerTest.js") ;
-load("unittests/system/events/EventPhaseTest.js") ;
-load("unittests/system/events/EventQueueTest.js") ;
-load("unittests/system/events/EventTargetTest.js") ;
-load("unittests/system/events/IEventDispatcherTest.js") ;
-
-// ----o constructor
-
-system.events.AllTests = {} ;
-
-system.events.AllTests.suite = function() 
+system.events.EventQueueTest = function( name ) 
 {
-    var TestSuite = buRRRn.ASTUce.TestSuite;
-    
-    var suite = new TestSuite( "system.events unit tests" );
-    
-    //suite.simpleTrace = true;
-    
-    suite.addTest( new TestSuite( system.events.EventTest              ) ) ;
-    suite.addTest( new TestSuite( system.events.EventListenerBatchTest ) ) ;
-    suite.addTest( new TestSuite( system.events.EventListenerEntryTest ) ) ;
-    suite.addTest( new TestSuite( system.events.EventListenerGroupTest ) ) ;
-    suite.addTest( new TestSuite( system.events.EventListenerTest      ) ) ;
-    suite.addTest( new TestSuite( system.events.EventPhaseTest         ) ) ;
-    suite.addTest( new TestSuite( system.events.EventQueueTest         ) ) ;
-    suite.addTest( new TestSuite( system.events.EventTargetTest        ) ) ;
-    suite.addTest( new TestSuite( system.events.IEventDispatcherTest   ) ) ;
-    
-    return suite ;
+    buRRRn.ASTUce.TestCase.call( this , name ) ;
 }
+
+// ----o Inherit
+
+system.events.EventQueueTest.prototype             = new buRRRn.ASTUce.TestCase() ;
+system.events.EventQueueTest.prototype.constructor = system.events.EventQueueTest ;
+
+proto = system.events.EventQueueTest.prototype ;
+
+// ----o Public Methods
+
+proto.testConstructor = function () 
+{
+    var queue = new system.events.EventQueue() ;
+    this.assertNotNull( queue ) ; 
+}
+
+proto.testSize = function () 
+{
+    var queue = new system.events.EventQueue() ;
+    
+    this.assertTrue( queue.enqueue( new system.events.Event("type") ) ) ;
+    this.assertFalse( queue.enqueue( "type" ) ) ;
+}
+
+proto.testSize = function () 
+{
+    var queue = new system.events.EventQueue() ;
+    
+    this.assertEquals( 0 , queue.size() ) ;
+    
+    queue.enqueue( new system.events.Event("type") ) ;
+    
+    this.assertEquals( 1 , queue.size() ) ; 
+}
+
+delete proto ;

@@ -71,19 +71,19 @@ if ( system.events.IEventDispatcher == undefined )
     }
     
     /**
-     * Returns the {@code EventListenerGroup} of the specified event name.
-     * @return the {@code EventListenerGroup} of the specified event name.
+     * Returns the {@code Array} representation of all EventListener objects register with the specified event type.
+     * @return the {@code Array} representation of all EventListener objects register with the specified event type.
      */
-    proto.getEventListeners = function( type /*String*/ ) /*EventListenerGroup*/ 
+    proto.getEventListeners = function( type /*String*/ ) /*Array*/ 
     {
         // override this method.
     }
     
     /**
-     * Returns the global {@code EventListenerGroup} of this EventDispatcher.
-     * @return the global {@code EventListenerGroup} of this EventDispatcher.
+     * Returns the {@code Array} representation of all global EventListener objects.
+     * @return the {@code Array} representation of all global EventListener objects.
      */
-    proto.getGlobalEventListeners = function() /*EventListenerGroup*/ 
+    proto.getGlobalEventListeners = function() /*Array*/ 
     {
         // override this method.
     }
@@ -111,7 +111,7 @@ if ( system.events.IEventDispatcher == undefined )
      * If there is no matching listener registered with the EventDispatcher object, then calling this method has no effect.
      * @param the string representation of the class name of the EventListener or a EventListener object.
      */
-    proto.removeGlobalEventListener = function( listener ) /*EventListener*/ 
+    proto.removeGlobalEventListener = function( listener ) /*void*/ 
     {
         // override this method.
     }

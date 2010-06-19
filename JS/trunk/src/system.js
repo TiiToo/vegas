@@ -132,6 +132,7 @@ catch(e)
     require( "system.events.EventListenerEntry" ) ;
     require( "system.events.EventListenerGroup" ) ;
     require( "system.events.EventPhase"         ) ;
+    require( "system.events.EventQueue"         ) ;
     require( "system.events.EventTarget"        ) ;
     require( "system.events.IEventDispatcher"   ) ;
     
