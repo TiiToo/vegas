@@ -75,12 +75,18 @@ proto.testToString = function ()
     this.assertEquals( "[EventDispatcher]", dispatcher.toString() ) ;
 }
 
-proto.testAddChild = function () 
+proto.testChild = function () 
 {
     var d1 = new system.events.EventDispatcher() ;
     var d2 = new system.events.EventDispatcher() ;
+    
     d1.addChild(d2) ;
+    
     this.assertEquals( d2.parent , d1 ) ;
+    
+    d1.removeChild( d2 ) ;
+    
+    this.assertNull( d2.parent ) ;
 }
 
 proto.testAddEventListener = function () 
@@ -122,6 +128,110 @@ proto.testDispatchEvent = function ()
     this.assertEquals( dispatcher , listener.event.target ) ;
 }
 
+proto.testGetEventListeners = function () 
+{
+    var dispatcher = new system.events.EventDispatcher() ;
+    
+    var listener1   = new system.events.mocks.MockEventListener() ;
+    var listener2   = new system.events.mocks.MockEventListener() ;
+    var listener3   = new system.events.mocks.MockEventListener() ;
+    
+    dispatcher.addEventListener( "type1" , listener1 ) ;
+    dispatcher.addEventListener( "type1" , listener2 ) ;
+    dispatcher.addEventListener( "type2" , listener3 ) ;
+    
+    var listeners /*Array*/ ;
+    
+    listeners = dispatcher.getEventListeners( "type1" ) ;
+    this.assertTrue( listeners instanceof Array ) ;
+    this.assertEquals( 2 , listeners.length ) ;
+    this.assertTrue( listener1 == listeners[0] ) ;
+    this.assertTrue( listener2 == listeners[1] ) ;
+    
+    listeners = dispatcher.getEventListeners( "type2" ) ;
+    this.assertTrue( listeners instanceof Array ) ;
+    this.assertEquals( 1 , listeners.length ) ;
+    this.assertTrue( listener3 == listeners[0] ) ;
+    
+    listeners = dispatcher.getEventListeners( "type3" ) ;
+    this.assertTrue( listeners instanceof Array ) ;
+    this.assertEquals( 0 , listeners.length ) ;
+}
+
+proto.testGetGlobalEventListeners = function () 
+{
+    var dispatcher = new system.events.EventDispatcher() ;
+    
+    var listener1   = new system.events.mocks.MockEventListener() ;
+    var listener2   = new system.events.mocks.MockEventListener() ;
+    var listener3   = new system.events.mocks.MockEventListener() ;
+    
+    dispatcher.addGlobalEventListener( listener1 ) ;
+    dispatcher.addGlobalEventListener( listener2 ) ;
+    dispatcher.addGlobalEventListener( listener3 ) ;
+    
+    var listeners /*Array*/ = dispatcher.getGlobalEventListeners() ;
+    
+    this.assertTrue( listeners instanceof Array ) ;
+    this.assertEquals( 3 , listeners.length ) ;
+    this.assertTrue( listener1 == listeners[0] ) ;
+    this.assertTrue( listener2 == listeners[1] ) ;
+    this.assertTrue( listener3 == listeners[2] ) ;
+}
+
+proto.testGetRegisteredTypes = function () 
+{
+    var dispatcher = new system.events.EventDispatcher() ;
+    
+    var listener1   = new system.events.mocks.MockEventListener() ;
+    var listener2   = new system.events.mocks.MockEventListener() ;
+    var listener3   = new system.events.mocks.MockEventListener() ;
+    
+    dispatcher.addEventListener( "type1" , listener1 ) ;
+    dispatcher.addEventListener( "type1" , listener2 ) ;
+    dispatcher.addEventListener( "type2" , listener3 ) ;
+    
+    var types /*Array*/ = dispatcher.getRegisteredTypes() ;
+    
+    this.assertEquals( 2 , types.length ) ;
+    this.assertTrue( "type1" == types[0] ) ;
+    this.assertTrue( "type2" == types[1] ) ;
+}
+
+proto.testGetTarget = function () 
+{
+    var dispatcher1 = new system.events.EventDispatcher() ;
+    
+    var dispatcher2 = new system.events.EventDispatcher( dispatcher1 ) ;
+    
+    this.assertTrue( dispatcher2.getTarget() == dispatcher1 ) ;
+    this.assertTrue( dispatcher2.target      == dispatcher1 ) ;
+}
+
+proto.testName = function () 
+{
+    var dispatcher = new system.events.EventDispatcher() ;
+    
+    this.assertNull( dispatcher.name ) ;
+    
+    dispatcher.name = "test" ;
+    
+    this.assertEquals( "test" , dispatcher.name ) ;
+    this.assertEquals( "test" , dispatcher.getName() ) ;
+}
+
+proto.testHasEventListener = function () 
+{
+    var dispatcher = new system.events.EventDispatcher() ;
+    var listener   = new system.events.mocks.MockEventListener() ;
+    
+    dispatcher.addEventListener( "type" , listener ) ;
+    
+    this.assertTrue( dispatcher.hasEventListener("type") ) ;
+    
+    this.assertFalse( dispatcher.hasEventListener("unknow") ) ;
+}
+
 /*
 
 proto.testFlush = function () 
@@ -137,28 +247,6 @@ proto.testFlush = function ()
     }
 }
 
-proto.testGetEventListeners = function () 
-{
-    var dispatcher = new system.events.EventDispatcher() ;
-    
-    dispatcher.addEventListener("MY_EVENT", this) ;
-    
-    var listeners = dispatcher.getEventListeners("MY_EVENT") ;
-    
-    this.assertTrue( listeners instanceof system.events.EventListenerGroup ) ;
-}
-
-proto.testGetGlobalEventListener = function () 
-{
-    var dispatcher = new system.events.EventDispatcher() ;
-    
-    dispatcher.addGlobalEventListener(this) ;
-    
-    var listeners = dispatcher.getGlobalEventListeners() ;
-    
-    this.assertTrue( listeners instanceof system.events.EventListenerGroup ) ;
-}
-
 proto.testGetInstance = function () 
 {
     var dispatcher;
@@ -172,31 +260,6 @@ proto.testGetInstance = function ()
     system.events.EventDispatcher.flush() ;
 }
 
-proto.testGetRegisteredTypes = function () 
-{
-    var dispatcher = new system.events.EventDispatcher() ;
-    
-    dispatcher.addEventListener("MY_EVENT", this) ;
-    
-    var set = dispatcher.getRegisteredEventTypes() ;
-    
-    this.assertTrue( set ) ;
-}
-
-proto.testGetTarget = function () 
-{
-    var dispatcher = new system.events.EventDispatcher(this) ;
-    var target = dispatcher.getTarget() ;
-    this.assertEquals( target, this,  "ED_13 : getTarget() failed." ) ;
-}
-
-proto.testHasEventListener = function () 
-{
-    var dispatcher = new system.events.EventDispatcher() ;
-    dispatcher.addEventListener("MY_EVENT", this) ;
-    var b = dispatcher.hasEventListener("MY_EVENT") ;
-    this.assertTrue( b , "ED_11 : hasEventListener failed." ) ;
-}
 
 proto.testParent = function () 
 {

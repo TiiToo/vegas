@@ -213,11 +213,20 @@ if (system.events.EventDispatcher == undefined)
      */
     proto.getEventListeners = function( type/*String*/ ) /*Array*/ 
     {
+        var result = [] ;
         if ( this._listeners.containsKey(type) ) 
         {
-            return this._listeners.get(type).toArray() ;
+            var listeners /*Array*/ = this._listeners.get(type).toArray() ;
+            if ( listeners.length > 0 )
+            {
+                var l /*int*/ = listeners.length ;
+                for( var i /*int*/ = 0 ; i<l ; i++ )
+                {
+                    result.push( listeners[i].listener ) ;
+                }
+            }
         }
-        return [] ;
+        return result ;
     }
     
     /**
@@ -226,7 +235,17 @@ if (system.events.EventDispatcher == undefined)
      */
     proto.getGlobalEventListeners = function() /*Array*/ 
     {
-        return this._globalListeners.toArray() ;
+        var result = [] ;
+        var listeners /*Array*/ = this._globalListeners.toArray() ;
+        if ( listeners.length > 0 )
+        {
+            var l /*int*/ = listeners.length ;
+            for( var i /*int*/ = 0 ; i<l ; i++ )
+            {
+                result.push( listeners[i].listener ) ;
+            }
+        }
+        return result ;
     }
     
     /**
@@ -296,13 +315,8 @@ if (system.events.EventDispatcher == undefined)
     {
         if ( listener instanceof system.events.EventListener )
         {
-            var container /*EventListenerContainer*/ = this._globalListeners.removeListener(listener) ;
-            if (container != null) 
-            {
-                return container.getListener() ;
-            }
+            this._globalListeners.removeListener(listener) ;
         }
-        return null ;
     }
     
     /**
@@ -336,6 +350,9 @@ if (system.events.EventDispatcher == undefined)
     ////////////////////
     
     proto.__defineGetter__( "name" , proto.getName ) ;
+    proto.__defineSetter__( "name" , proto.setName ) ;
+    
+    proto.__defineGetter__( "target" , proto.getTarget ) ;
     
     ////////////////////
     
