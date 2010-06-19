@@ -80,9 +80,9 @@ proto.testConstructor = function ()
         result = Array.fromArguments( arguments ) ;
     }
     
-    var listener = new system.events.Delegate( this.scope , action , "arg3" ) ;
+    var dispatcher = new system.events.Delegate( this.scope , action , "arg3" ) ;
     
-    listener.run("arg1","arg2") ;
+    dispatcher.run("arg1","arg2") ;
     
     this.assertEquals( target , this.scope ) ;
     this.assertEquals( "arg3,arg1,arg2" , result.toString() ) ;
@@ -93,7 +93,7 @@ proto.testConstructorWithNullScopeReference = function ()
     try
     {
         var listener = new system.events.Delegate() ;
-        fail("#1") ;
+        this.fail("#1") ;
     }
     catch( e )
     {
@@ -106,7 +106,7 @@ proto.testConstructorWithNullMethodReference = function ()
     try
     {
         var listener = new system.events.Delegate(this.scope) ;
-        fail("#1") ;
+        this.fail("#1") ;
     }
     catch( e )
     {
@@ -120,6 +120,88 @@ proto.testInherit = function()
     this.assertTrue( listener instanceof system.events.EventListener ) ;
 }
 
+proto.testArguments = function () 
+{
+    var target  = null ;
+    var result = null ;
+    
+    var action = function () 
+    {
+        target = this ;
+        result = Array.fromArguments( arguments ) ;
+    }
+    
+    var args ;
+    
+    var delegate = new system.events.Delegate( this.scope , action , "arg1" , "arg2" ) ;
+    
+    /////////
+    
+    args = delegate.arguments ;
+    
+    this.assertEquals( args[0] , "arg1" , "#1-1" ) ;
+    this.assertEquals( args[1] , "arg2" , "#1-2" ) ;
+    
+    /////////
+    
+    delegate.addArguments( "arg3" , "arg4" ) ;
+    
+    args = delegate.arguments ;
+    
+    this.assertEquals( args[0] , "arg1" , "#2-1" ) ;
+    this.assertEquals( args[1] , "arg2" , "#2-2" ) ;
+    this.assertEquals( args[2] , "arg3" , "#2-3" ) ;
+    this.assertEquals( args[3] , "arg4" , "#2-4" ) ;
+    
+    /////////
+    
+    delegate.setArguments( "arg3" , "arg4" ) ;
+    
+    args = delegate.arguments ;
+    
+    this.assertEquals( args[0] , "arg3" , "#3-1" ) ;
+    this.assertEquals( args[1] , "arg4" , "#3-2" ) ;
+    
+}
+
+proto.testMethod = function () 
+{
+    var action = function () {} ;
+    
+    var dispatcher = new system.events.Delegate( this.scope , action ) ;
+    
+    this.assertEquals( dispatcher.method , action ) ;
+}
+
+proto.testScope = function () 
+{
+    var action = function () {} ;
+    
+    var dispatcher = new system.events.Delegate( this.scope , action ) ;
+    
+    this.assertEquals( dispatcher.scope , this.scope ) ;
+}
+
+proto.testClone = function () 
+{
+    var target  = null ;
+    var result = null ;
+    
+    var action = function () 
+    {
+        target = this ;
+        result = Array.fromArguments( arguments ) ;
+    }
+    
+    var delegate = new system.events.Delegate( this.scope , action , "arg3" ) ;
+    
+    var clone = delegate.clone() ;
+    
+    clone.run("arg1","arg2") ;
+    
+    this.assertEquals( target , this.scope ) ;
+    this.assertEquals( "arg3,arg1,arg2" , result.toString() ) ;
+}
 
 proto.testCreate = function() 
 {
@@ -141,6 +223,50 @@ proto.testCreate = function()
     var r = f( 1 , 2 , 3 ) ;
     
     this.assertEquals( r , "scope:scope args:4,5,6,1,2,3") ;
+}
+
+proto.testHandleEvent = function () 
+{
+    var args   ;
+    var target ;
+    
+    var dispatcher ;
+    
+    var event = new system.events.Event("type") ;
+    
+    var action = function ( e /*Event*/) 
+    {
+        target = this ;
+        args   = Array.fromArguments( arguments ) ;
+    }
+    
+    ///////
+    
+    args   = null ;
+    target = null ;
+    
+    dispatcher = new system.events.Delegate( this.scope , action ) ;
+    
+    dispatcher.handleEvent( event ) ;
+    
+    this.assertEquals( target , this.scope ) ;
+    this.assertEquals( 1     , args.length ) ;
+    this.assertEquals( event , args[0] ) ;
+    
+    ///////
+    
+    args   = null ;
+    target = null ;
+    
+    dispatcher = new system.events.Delegate( this.scope , action , "arg1" , "arg2" ) ;
+    
+    dispatcher.handleEvent( event ) ;
+    
+    this.assertEquals( target , this.scope ) ;
+    this.assertEquals( 3      , args.length ) ;
+    this.assertEquals( event  , args[0] ) ;
+    this.assertEquals( "arg1" , args[1] ) ;
+    this.assertEquals( "arg2" , args[2] ) ;
 }
 
 delete proto ;

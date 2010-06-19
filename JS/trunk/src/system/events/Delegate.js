@@ -143,18 +143,20 @@ if ( system.events.Delegate == undefined )
         var args = Array.fromArguments(arguments) ;
         if (args.length > 0) 
         {
-            this._a = this._a.concat(args) ;
+            this._a = this._a.concat( args ) ;
             this._p = this._m.bind.apply( this._m , [this._s].concat(this._a) ) ;
         }
     }
     
     /**
-     * Returns a shallow copy of the instance.
+     * Returns a shallow copy of the instance. 
      * @return a shallow copy of the instance.
      */
     proto.clone = function () 
     {
-        return new system.events.Delegate(this.getScope(), this.getMethod()) ;
+        var delegate = new system.events.Delegate( this._s , this._m ) ;
+        delegate.setArguments.call( delegate , this._a ) ;
+        return delegate ;
     }
     
     /**
@@ -189,7 +191,12 @@ if ( system.events.Delegate == undefined )
      */
     proto.handleEvent = function ( e /*Event*/ ) 
     {
-        return this._m.apply( this._s, [e].concat(this._a) ) ;
+        var args = [e] ;
+        if( this._a && this._a.length > 0 )
+        {
+            args = args.concat( this._a ) ;
+        }
+        this._m.apply( this._s, args ) ;
     }
     
     /**
@@ -219,7 +226,15 @@ if ( system.events.Delegate == undefined )
         this._p = this._m.bind.apply( this._m , [ this._s ].concat( this._a ) ) ;
     }
     
-    ///////
+    ////////////////////
+    
+    proto.__defineGetter__( "arguments" , proto.getArguments ) ;
+    
+    proto.__defineGetter__( "method"    , proto.getMethod    ) ;
+    
+    proto.__defineGetter__( "scope"     , proto.getScope     ) ;
+    
+    ////////////////////
     
     delete proto ;
 }
