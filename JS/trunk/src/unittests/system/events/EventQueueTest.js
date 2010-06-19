@@ -57,12 +57,71 @@ proto.testConstructor = function ()
     this.assertNotNull( queue ) ; 
 }
 
-proto.testSize = function () 
+proto.testClear = function () 
+{
+    var queue = new system.events.EventQueue() ;
+    queue.enqueue( new system.events.Event("type") ) ;
+    queue.clear() ;
+    this.assertEquals(0, queue.size()) ;
+}
+
+proto.testEnqueue = function () 
 {
     var queue = new system.events.EventQueue() ;
     
     this.assertTrue( queue.enqueue( new system.events.Event("type") ) ) ;
     this.assertFalse( queue.enqueue( "type" ) ) ;
+}
+
+
+proto.testGetQueuedEvents = function () 
+{
+    var Event = system.events.Event ;
+    
+    var eq = new system.events.EventQueue() ;
+    
+    var event1 = new Event("type1") ;
+    var event2 = new Event("type1") ;
+    var event3 = new Event("type2") ;
+    var event4 = new Event("type2") ;
+    
+    eq.enqueue( event1 ) ;
+    eq.enqueue( event2 ) ;
+    eq.enqueue( event3 ) ;
+    eq.enqueue( event4 ) ;
+    
+    //////
+    
+    queue = eq.getQueuedEvents( "type1" ) ;
+    
+    this.assertTrue( queue instanceof system.data.queues.LinearQueue ) ;
+    this.assertEquals( 2 , queue.size() ) ;
+    this.assertEquals( event1 , queue.poll() ) ;
+    this.assertEquals( event2 , queue.poll() ) ;
+    
+    //////
+    
+    queue = eq.getQueuedEvents( "type2" ) ;
+    
+    this.assertTrue( queue instanceof system.data.queues.LinearQueue ) ;
+    this.assertEquals( 2 , queue.size() ) ;
+    this.assertEquals( event3 , queue.poll() ) ;
+    this.assertEquals( event4 , queue.poll() ) ;
+    
+    //////
+    
+    queue = eq.getQueuedEvents( null ) ;
+    
+    this.assertTrue( queue instanceof system.data.queues.LinearQueue ) ;
+    
+    this.assertEquals( 4 , queue.size() ) ;
+    
+    this.assertEquals( event1 , queue.poll() ) ;
+    this.assertEquals( event2 , queue.poll() ) ;
+    this.assertEquals( event3 , queue.poll() ) ;
+    this.assertEquals( event4 , queue.poll() ) ;
+    
+    this.assertEquals( 0 , eq.size() ) ; 
 }
 
 proto.testSize = function () 

@@ -54,6 +54,14 @@ if (system.events.EventQueue == undefined)
     proto = system.events.EventQueue.extend( Object ) ;
     
     /**
+     * Removes all elements in the queue.
+     */
+    proto.clear = function () /*void*/ 
+    {
+        this._events.clear() ;
+    }
+    
+    /**
      * Enqueue an event in the buffer if no EventListener are registered in the EventListener.
      */
     proto.enqueue = function ( e /*Event*/ ) /*Boolean*/ 
@@ -83,7 +91,7 @@ if (system.events.EventQueue == undefined)
             while ( it.hasNext() ) 
             {
                 var e /*Event*/ = it.next() ;
-                if (e.getType() == type) 
+                if ( e.getType() == type ) 
                 {
                     q.enqueue(e) ;
                 }
