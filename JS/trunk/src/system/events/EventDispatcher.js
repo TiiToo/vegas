@@ -302,6 +302,10 @@ if (system.events.EventDispatcher == undefined)
             {
                 var group /*EventListenerGroup*/ = map.get( type ) ;
                 group.removeListener(listener) ;
+                if ( group.numListeners() == 0 )
+                {
+                    map.remove( type ) ;
+                }
             }
         }
     }
@@ -368,11 +372,11 @@ if (system.events.EventDispatcher == undefined)
     system.events.EventDispatcher.getInstance = function ( name /*String*/ ) /*EventDispatcher*/ 
     {
         var EventDispatcher = system.events.EventDispatcher ;
-        if (!name) 
+        if ( !name ) 
         {
             name = "__default__" ;
         }
-        if (! EventDispatcher.instances.containsKey(name) ) 
+        if ( !EventDispatcher.instances.containsKey(name) ) 
         {
             EventDispatcher.instances.put(name, new EventDispatcher(null, null, name)) ;
         }
@@ -385,6 +389,14 @@ if (system.events.EventDispatcher == undefined)
     system.events.EventDispatcher.flush = function () /*Void*/ 
     {
         system.events.EventDispatcher.instances.clear() ;
+    }
+    
+    /**
+     * Indicates the number of singletons defines in the factory of the EventDispatcher class.
+     */
+    system.events.EventDispatcher.numInstances = function () /*uint*/ 
+    {
+        return system.events.EventDispatcher.instances.size() ;
     }
     
     /**

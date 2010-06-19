@@ -113,6 +113,38 @@ proto.testAddGlobalEventListener = function ()
     this.assertEquals( 1 , listeners.length ) ;
 }
 
+proto.testRemoveEventListener = function () 
+{
+    var dispatcher = new system.events.EventDispatcher() ;
+    
+    var listener1 = new system.events.mocks.MockEventListener() ;
+    var listener2 = new system.events.mocks.MockEventListener() ;
+    
+    dispatcher.addEventListener( "type" , listener1 ) ;
+    dispatcher.addEventListener( "type" , listener2 ) ;
+    
+    dispatcher.removeEventListener( "type" , listener1 ) ;
+    
+    this.assertTrue( dispatcher.hasEventListener( "type" ) ) ;
+    
+    dispatcher.removeEventListener( "type" , listener2 ) ;
+    
+    this.assertFalse( dispatcher.hasEventListener( "type" ) ) ;
+}
+
+proto.testRemoveGlobalEventListener = function () 
+{
+    var dispatcher = new system.events.EventDispatcher() ;
+    var listener   = new system.events.mocks.MockEventListener() ;
+    
+    dispatcher.addGlobalEventListener( listener ) ;
+    dispatcher.removeGlobalEventListener( listener ) ;
+    
+    var listeners = dispatcher.getGlobalEventListeners() ;
+    
+    this.assertEquals( 0 , listeners.length ) ;
+}
+
 proto.testDispatchEvent = function () 
 {
     var dispatcher = new system.events.EventDispatcher() ;
@@ -208,6 +240,14 @@ proto.testGetTarget = function ()
     this.assertTrue( dispatcher2.target      == dispatcher1 ) ;
 }
 
+proto.testParent = function () 
+{
+    var d1 = new system.events.EventDispatcher() ;
+    var d2 = new system.events.EventDispatcher() ;
+    d2.parent = d1 ;
+    this.assertTrue( d2.parent == d1 ) ;
+}
+
 proto.testName = function () 
 {
     var dispatcher = new system.events.EventDispatcher() ;
@@ -232,42 +272,56 @@ proto.testHasEventListener = function ()
     this.assertFalse( dispatcher.hasEventListener("unknow") ) ;
 }
 
-/*
+///////////
 
-proto.testFlush = function () 
+proto.testInstances = function () 
 {
-    try 
-    {
-        var ed = system.events.EventDispatcher.getInstance() ;
-        system.events.EventDispatcher.flush() ;
-    }
-    catch (e) 
-    {
-        this.fail( "#1") ;
-    }
+    this.assertTrue( system.events.EventDispatcher.instances instanceof system.data.maps.ArrayMap ) ;
+}
+
+proto.testNumInstances = function () 
+{
+    var EventDispatcher = system.events.EventDispatcher ;
+    
+    this.assertEquals( 0 , EventDispatcher.numInstances() ) ;
+    
+    EventDispatcher.getInstance() ;
+    
+    this.assertEquals( 1 , EventDispatcher.numInstances() ) ;
+    
+    EventDispatcher.flush() ;
+    
+    this.assertEquals( 0 , EventDispatcher.numInstances() ) ;
 }
 
 proto.testGetInstance = function () 
 {
-    var dispatcher;
+    var EventDispatcher = system.events.EventDispatcher ;
     
-    dispatcher = system.events.EventDispatcher.getInstance() ;
-    this.assertTrue( dispatcher , "#1" ) ;
+    var dispatcher1 = EventDispatcher.getInstance() ;
+    this.assertTrue( "__default__" , dispatcher1.name , "#1" ) ;
     
-    dispatcher = system.events.EventDispatcher.getInstance("myDispatcher") ;
-    this.assertTrue( dispatcher , "#2" ) ;
+    var dispatcher2 = EventDispatcher.getInstance() ;
+    this.assertEquals( dispatcher1 , dispatcher2 , "#2" ) ;
     
-    system.events.EventDispatcher.flush() ;
+    var dispatcher3 = EventDispatcher.getInstance("channel") ;
+    this.assertTrue( "channel" , dispatcher3.name , "#1" ) ;
+    
+    EventDispatcher.flush() ;
 }
 
-
-proto.testParent = function () 
+proto.testFlush = function () 
 {
-    var o1 = new system.events.EventDispatcher() ;
-    var o2 = new system.events.EventDispatcher() ;
-    o2.parent = o1 ;
-    this.assertEquals( o2.parent , o1,  "ED_12 : parent property failed." ) ;
+    var EventDispatcher = system.events.EventDispatcher ;
+    
+    var dispatcher = EventDispatcher.getInstance() ;
+    
+    EventDispatcher.flush() ;
+    
+    this.assertEquals( 0 , EventDispatcher.numInstances() ) ;
 }
+
+/*
 
 proto.testRelease = function () 
 {
@@ -280,41 +334,6 @@ proto.testRelease = function ()
     {
         this.fail( "ED_13 : static release method failed.") ;
     }
-}
-
-proto.testRemoveChild = function () 
-{
-    var o1 = new system.events.EventDispatcher() ;
-    var o2 = new system.events.EventDispatcher() ;
-    o1.addChild(o2) ;
-    o1.removeChild(o2) ;
-    this.assertNull( o1.parent ,  "ED_14: removeChild() failed." ) ;
-}
-
-
-proto.testRemoveEventListener = function () 
-{
-    var dispatcher = new system.events.EventDispatcher() ;
-    
-    dispatcher.addEventListener("MY_EVENT", this) ;
-    
-    var result = dispatcher.removeEventListener( "MY_EVENT" , this ) ;
-    
-    this.assertNotNull( result ) ;
-}
-
-proto.testRemoveGlobalEventListener = function () 
-{
-    var dispatcher = new system.events.EventDispatcher() ;
-    
-    dispatcher.addGlobalEventListener(this) ;
-    
-    var result = dispatcher.removeGlobalEventListener(this) ;
-    var listeners = dispatcher.getGlobalEventListeners() ;
-    
-    var test = (result != null) && (listeners.size() == 0) ;
-    
-    this.assertTrue( test ) ;
 }
 
 proto.testRemoveInstance = function () 
