@@ -36,9 +36,8 @@
 */
  
 /**
- * Delegate an event in a proxy eventlistener.
- * <p>This version is also inspired from <a href='http://www.peterjoel.com/blog/index.php?archive=2004_08_01_archive.xml#109320812208031938'>Peter Hall's EventDelegate</a> implementation and from the Francis bourre framework "<a href="http://osflash.org/pixlib">Pixlib</a>".</p>
- * <p>You can instantiate and keep a reference of a Delegate instance.</p>
+ * Delegate the scope of an EventListener or a specific Function. 
+ * <p>You can instantiate and keep in memory a reference of a Delegate instance.</p>
  * <p>Note :
  * <li>The {@code Delegate} class implements {@code EventListener} interface. you can use a Delegate instances in the {@code addEventListener} method for all {@code EventTarget} implementations.</li>
  * <li>The {@code Delegate} class implements {@code Runnable} interface</li>
