@@ -39,6 +39,7 @@ getPackage("system.events.mocks" ) ;
 
 load("unittests/system/events/mocks/MockEventListener.js") ;
 
+load("unittests/system/events/DelegateTest.js") ;
 load("unittests/system/events/EventTest.js") ;
 load("unittests/system/events/EventDispatcherTest.js") ;
 load("unittests/system/events/EventFactoryTest.js") ;
@@ -63,6 +64,7 @@ system.events.AllTests.suite = function()
     
     //suite.simpleTrace = true;
     
+    suite.addTest( new TestSuite( system.events.DelegateTest           ) ) ;
     suite.addTest( new TestSuite( system.events.EventTest              ) ) ;
     suite.addTest( new TestSuite( system.events.EventDispatcherTest    ) ) ;
     suite.addTest( new TestSuite( system.events.EventFactoryTest       ) ) ;

@@ -47,14 +47,7 @@
  * 
  * var action = function ( e ) 
  * {
- *     if( e != undefined) 
- *     {
- *         trace ("> action : " + e.type ) ;
- *     }
- *     else 
- *     {
- *         trace ("> action : no event") ;
- *     }
+ *     trace ("action : " + e.type ) ;
  * }
  * 
  * var listener = new Delegate( this , action) ;

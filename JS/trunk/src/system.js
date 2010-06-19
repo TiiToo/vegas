@@ -125,7 +125,8 @@ catch(e)
     require( "system.errors.NoSuchElementError"  ) ;
     
     // system.events
-     
+    
+    require( "system.events.Delegate"           ) ; 
     require( "system.events.Event"              ) ;
     require( "system.events.EventDispatcher"    ) ;
     require( "system.events.EventFactory"       ) ;

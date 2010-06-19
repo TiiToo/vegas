@@ -35,9 +35,6 @@
   
 */
 
-// TODO Finir les tests sur toutes les méthodes.
-// TODO test la R/W "name"
-
 // ---o Constructor
 
 system.events.EventDispatcherTest = function( name ) 
@@ -266,10 +263,6 @@ proto.testRemoveInstance = function ()
     this.assertTrue( b ) ;
 }
 
-proto.handleEvent = function ( e ) 
-{
-    this.assertTrue( e instanceof system.events.BasicEvent , e.getContext() ) ;
-}
 */
 // ----o Encapsulate
 
