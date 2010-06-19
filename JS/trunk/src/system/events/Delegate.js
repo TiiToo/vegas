@@ -76,31 +76,56 @@ if ( system.events.Delegate == undefined )
      * @param scope the scope to be used by calling this method.
      * @param method the method to be executed.
      */
-    system.events.Delegate = function(scope, method /*, [arg1, arg2, ..., argN]*/ ) 
+    system.events.Delegate = function( scope , method /*, [arg1, arg2, ..., argN]*/ ) 
     {
+        if ( scope == null )
+        {
+            throw new Error( "Delegate constructor failed, the scope argument not must be null.") ;
+        }
+        
+        if ( method == null && !( method instanceof Function) )
+        {
+            throw new Error( "Delegate constructor failed, the method argument not must be null and must be a Function." ) ;
+        }
+        
         this._s = scope ;
         this._m = method ;
-        this._a = [].concat( (Array.fromArguments(arguments)).splice(2) ) ;
-        this._p = system.events.Delegate.create.apply(this, [this._s, this._m].concat(this._a) ) ;
+        
+        this._a = Array.fromArguments(arguments) ;
+        this._a.splice( 0 , 2 )  ;
+        
+        this._p = this._m.bind.apply( this._m , [this._s].concat(this._a) ) ;
     }
     
     /////////////
     
     /**
-     * Creates a method that delegates its arguments to a specified scope. This static method is a wrapper for MM compatibility.
+     * Creates a method that delegates its arguments to a specified scope.
+     * <p><b>Example :</b></p>
+     * <pre>
+     * var scope =
+     * {
+     *     toString : function(){ return "scope" } 
+     * }
+     * 
+     * var method = function()
+     * {
+     *     trace( this + " method [" + Array.fromArguments(arguments) + "]" ) ;
+     * }
+     * 
+     * var action = system.events.Delegate.create( scope , method , 4 , 5 , 6 ) ;
+     * 
+     * action(1,2,3) ; // scope method [4,5,6,1,2,3]
+     * </pre>
      * @param scope this scope to be used by calling this method.
      * @param method the method to be called.
-     * @return a Function that delegates its call to a custom scope, method and arguments.
+     * @return A Function that delegates its call to a custom scope, method and arguments.
      */
-    system.events.Delegate.create = function (scope /*Object*/ , method /*Function*/ ) /*Function*/ 
+    system.events.Delegate.create = function ( scope /*Object*/ , method /*Function*/ ) /*Function*/ 
     {
-        var args /*Array*/ = Array.fromArguments(arguments) ;
-        args = args.splice(2) ;
-        return function() 
-        {
-            var ar /*Array*/ = Array.fromArguments(arguments).concat(args) ;
-            method.apply(scope, ar) ;
-        }
+        var args = Array.fromArguments( arguments ) ;
+        args.splice( 1 , 1 )  ;
+        return method.bind.apply( method , args ) ;
     }
     
     /////////////
@@ -119,7 +144,7 @@ if ( system.events.Delegate == undefined )
         if (args.length > 0) 
         {
             this._a = this._a.concat(args) ;
-            this._p = system.events.Delegate.create.apply(this, [this._s, this._m].concat(this._a) ) ;
+            this._p = this._m.bind.apply( this._m , [this._s].concat(this._a) ) ;
         }
     }
     
@@ -172,21 +197,26 @@ if ( system.events.Delegate == undefined )
      */
     proto.run = function() 
     {
-        this.addArguments.apply(this, Array.fromArguments(arguments)) ;
+        var args = Array.fromArguments(arguments) ;
+        if ( args.length > 0 )
+        {
+            this.addArguments.apply( this , args ) ;
+        }
         this._p() ;
     }
     
     /**
      * Sets or change arguments of proxy method.
      */
-    proto.setArguments = function () 
+    proto.setArguments = function() 
     {
+        this._a = [] ;
         var args = Array.fromArguments(arguments) ;
         if (args.length > 0) 
         {
-            this._a = [].concat(args) ;
-            this._p = system.events.Delegate.create.apply(this, [this._s, this._m].concat(this._a) ) ;
+            this._a = this._a.concat( args ) ;
         }
+        this._p = this._m.bind.apply( this._m , [ this._s ].concat( this._a ) ) ;
     }
     
     ///////

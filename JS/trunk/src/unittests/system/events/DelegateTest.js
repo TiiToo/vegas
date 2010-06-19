@@ -49,9 +49,79 @@ system.events.DelegateTest.prototype.constructor = system.events.DelegateTest ;
 
 proto = system.events.DelegateTest.prototype ;
 
+// ----o Initialize
+
+proto.setUp = function()
+{
+    this.scope =
+    {
+        toString : function()
+        {
+            return "scope" ;
+        }
+    };
+}
+
+proto.tearDown = function()
+{
+    this.scope = undefined ;
+}
+
 // ----o Public Methods
 
 proto.testConstructor = function () 
+{
+    var target  = null ;
+    var result = null ;
+    
+    var action = function () 
+    {
+        target = this ;
+        result = Array.fromArguments( arguments ) ;
+    }
+    
+    var listener = new system.events.Delegate( this.scope , action , "arg3" ) ;
+    
+    listener.run("arg1","arg2") ;
+    
+    this.assertEquals( target , this.scope ) ;
+    this.assertEquals( "arg3,arg1,arg2" , result.toString() ) ;
+}
+
+proto.testConstructorWithNullScopeReference = function () 
+{
+    try
+    {
+        var listener = new system.events.Delegate() ;
+        fail("#1") ;
+    }
+    catch( e )
+    {
+        this.assertEquals( "Delegate constructor failed, the scope argument not must be null." , e.message , "#2" ) ;
+    }
+}
+
+proto.testConstructorWithNullMethodReference = function () 
+{
+    try
+    {
+        var listener = new system.events.Delegate(this.scope) ;
+        fail("#1") ;
+    }
+    catch( e )
+    {
+        this.assertEquals( "Delegate constructor failed, the method argument not must be null and must be a Function." , e.message , "#2" ) ;
+    }
+}
+
+proto.testInherit = function() 
+{
+    var listener = new system.events.Delegate( this.scope , function(){} ) ;
+    this.assertTrue( listener instanceof system.events.EventListener ) ;
+}
+
+
+proto.testCreate = function() 
 {
     var target = 
     {
@@ -63,16 +133,14 @@ proto.testConstructor = function ()
     
     var action = function () 
     {
-        scope  = this ;
-        result = Array.fromArguments( arguments ) ;
+        return "scope:" + this + " args:" + Array.fromArguments(arguments) ; 
     }
     
-    var listener = new system.events.Delegate( target , action , "arg3" ) ;
+    var f = system.events.Delegate.create( this.scope , action , 4 , 5 , 6 ) ;
     
-    listener.run("arg1","arg2") ;
+    var r = f( 1 , 2 , 3 ) ;
     
-    this.assertEquals( target           , scope ) ;
-    this.assertEquals( "arg3,arg1,arg2" , result.toString() ) ;
+    this.assertEquals( r , "scope:scope args:4,5,6,1,2,3") ;
 }
 
 delete proto ;
