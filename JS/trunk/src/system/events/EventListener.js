@@ -35,7 +35,6 @@
   
 */
 
-
 /**
  * The {@code EventListener} interface is the primary method for handling events. 
  * Users implement the EventListener interface and register their listener on an {@code EventTarget} using the {@code addEventListener method}. 

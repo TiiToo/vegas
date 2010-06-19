@@ -35,39 +35,43 @@
   
 */
 
-getPackage("system.events.mocks" ) ;
+// ---o Constructor
 
-load("unittests/system/events/mocks/MockEventListener.js") ;
-
-load("unittests/system/events/EventTest.js") ;
-load("unittests/system/events/EventListenerBatchTest.js") ;
-load("unittests/system/events/EventListenerEntryTest.js") ;
-load("unittests/system/events/EventListenerGroupTest.js") ;
-load("unittests/system/events/EventListenerTest.js") ;
-load("unittests/system/events/EventPhaseTest.js") ;
-load("unittests/system/events/EventTargetTest.js") ;
-load("unittests/system/events/IEventDispatcherTest.js") ;
-
-// ----o constructor
-
-system.events.AllTests = {} ;
-
-system.events.AllTests.suite = function() 
+system.events.IEventDispatcherTest = function( name ) 
 {
-    var TestSuite = buRRRn.ASTUce.TestSuite;
-    
-    var suite = new TestSuite( "system.events unit tests" );
-    
-    //suite.simpleTrace = true;
-    
-    suite.addTest( new TestSuite( system.events.EventTest              ) ) ;
-    suite.addTest( new TestSuite( system.events.EventListenerBatchTest ) ) ;
-    suite.addTest( new TestSuite( system.events.EventListenerEntryTest ) ) ;
-    suite.addTest( new TestSuite( system.events.EventListenerGroupTest ) ) ;
-    suite.addTest( new TestSuite( system.events.EventListenerTest      ) ) ;
-    suite.addTest( new TestSuite( system.events.EventPhaseTest         ) ) ;
-    suite.addTest( new TestSuite( system.events.EventTargetTest        ) ) ;
-    suite.addTest( new TestSuite( system.events.IEventDispatcherTest   ) ) ;
-    
-    return suite ;
+    buRRRn.ASTUce.TestCase.call( this , name ) ;
 }
+
+// ----o Inherit
+
+system.events.IEventDispatcherTest.prototype             = new buRRRn.ASTUce.TestCase() ;
+system.events.IEventDispatcherTest.prototype.constructor = system.events.IEventDispatcherTest ;
+
+proto = system.events.IEventDispatcherTest.prototype ;
+
+// ----o Public Methods
+
+proto.testConstructor = function () 
+{
+    var dispatcher = new system.events.IEventDispatcher() ;
+    this.assertNotNull( dispatcher ) ; 
+}
+
+proto.testInherit = function () 
+{
+    var dispatcher = new system.events.IEventDispatcher() ;
+    this.assertTrue( dispatcher instanceof system.events.EventTarget ) ; 
+}
+
+proto.testInterface = function () 
+{
+    var dispatcher = new system.events.IEventDispatcher() ;
+    this.assertTrue( "addGlobalEventListener"    in dispatcher ) ;
+    this.assertTrue( "getEventListeners"         in dispatcher ) ;
+    this.assertTrue( "getGlobalEventListeners"   in dispatcher ) ; 
+    this.assertTrue( "getRegisteredTypes"        in dispatcher ) ; 
+    this.assertTrue( "hasEventListener"          in dispatcher ) ; 
+    this.assertTrue( "removeGlobalEventListener" in dispatcher ) ; 
+}
+
+delete proto ;

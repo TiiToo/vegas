@@ -133,6 +133,7 @@ catch(e)
     require( "system.events.EventListenerGroup" ) ;
     require( "system.events.EventPhase"         ) ;
     require( "system.events.EventTarget"        ) ;
+    require( "system.events.IEventDispatcher"   ) ;
     
     // system.data.formatters
     
