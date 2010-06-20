@@ -34,7 +34,7 @@
   the terms of any one of the MPL, the GPL or the LGPL.
   
 */
- 
+
 /**
  * Delegate the scope of an EventListener or a specific Function. 
  * <p>You can instantiate and keep in memory a reference of a Delegate instance.</p>

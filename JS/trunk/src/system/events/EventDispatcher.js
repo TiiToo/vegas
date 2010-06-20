@@ -617,4 +617,8 @@ if (system.events.EventDispatcher == undefined)
         this._queue.enqueue(e) ;
         return e ;
     }
+    
+    ////////////////////
+    
+    delete proto ;
 }

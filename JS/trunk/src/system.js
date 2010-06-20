@@ -137,6 +137,7 @@ catch(e)
     require( "system.events.EventPhase"         ) ;
     require( "system.events.EventQueue"         ) ;
     require( "system.events.EventTarget"        ) ;
+    require( "system.events.FrontController"    ) ;
     require( "system.events.IEventDispatcher"   ) ;
     
     // system.data.formatters
