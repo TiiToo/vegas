@@ -50,6 +50,7 @@ load("unittests/system/events/EventListenerTest.js") ;
 load("unittests/system/events/EventPhaseTest.js") ;
 load("unittests/system/events/EventQueueTest.js") ;
 load("unittests/system/events/EventTargetTest.js") ;
+load("unittests/system/events/FrontControllerTest.js") ;
 load("unittests/system/events/IEventDispatcherTest.js") ;
 
 // ----o constructor
@@ -75,6 +76,7 @@ system.events.AllTests.suite = function()
     suite.addTest( new TestSuite( system.events.EventPhaseTest         ) ) ;
     suite.addTest( new TestSuite( system.events.EventQueueTest         ) ) ;
     suite.addTest( new TestSuite( system.events.EventTargetTest        ) ) ;
+    suite.addTest( new TestSuite( system.events.FrontControllerTest    ) ) ;
     suite.addTest( new TestSuite( system.events.IEventDispatcherTest   ) ) ;
     
     return suite ;
