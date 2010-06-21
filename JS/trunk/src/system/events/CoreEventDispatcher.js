@@ -255,6 +255,13 @@ if (system.events.CoreEventDispatcher == undefined)
     
     ////////////
     
+    proto.__defineGetter__( "parent" , proto.getParent ) ;
+    proto.__defineSetter__( "parent" , proto.setParent ) ;
+    
+    proto.__defineGetter__( "target" , proto.getTarget ) ;
+    
+    ////////////
+    
     /**
      * The internal flag to indicates if the display is locked or not.
      */ 
