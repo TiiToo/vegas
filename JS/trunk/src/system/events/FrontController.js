@@ -141,12 +141,12 @@ if ( system.events.FrontController == undefined )
     {
         if ( type == null || !( typeof(type) == "string" || type instanceof String ) ) 
         {
-            throw new TypeError( "The FrontController add() method failed, the 'type' argument not must be null and must be a String." ) ;
+            throw new TypeError( "The FrontController addBatch() method failed, the 'type' argument not must be null and must be a String." ) ;
         }
         
         if ( listener == null || !( listener instanceof system.events.EventListener )) 
         {
-            throw new TypeError( "The FrontController add() method failed, the event type '" + type + "' failed, the 'listener' argument not must be null." ) ;
+            throw new TypeError( "The FrontController addBatch() method failed, the event type '" + type + "' failed, the 'listener' argument not must be null." ) ;
         }
         
         var batch ;
@@ -177,9 +177,16 @@ if ( system.events.FrontController == undefined )
         if ( this.size() > 0 )
         {
             var it /*Iterator*/ = this._map.keyIterator() ;
-            while(it.hasNext())
+            var type /*String*/ ;
+            var listener /*String*/ ;
+            while( it.hasNext() )
             {
-                this.remove( it.next() ) ;
+                type     = it.next() ;
+                listener = this._map.get( type ) ;
+                if ( listener ) 
+                {
+                    this._dispatcher.removeEventListener( type , listener ) ;
+                }
             }
             this._map.clear() ;
         }
@@ -218,7 +225,7 @@ if ( system.events.FrontController == undefined )
      * @param  type the type of the EventListener to search.
      * @return an EventListener register in the front controller with the specified event type.
      */
-    proto.getListener = function(type /*String*/ ) /*EventListener*/ 
+    proto.getListener = function( type /*String*/ ) /*EventListener*/ 
     {
         return this._map.get( type ) ;
     }
@@ -357,7 +364,7 @@ if ( system.events.FrontController == undefined )
         
         var FrontController = system.events.FrontController ;
         
-        if ( !FrontController.instances.containsKey(channel) ) 
+        if ( FrontController.instances.containsKey(channel) ) 
         {
             return FrontController.instances.remove(channel) != null ;
         }
