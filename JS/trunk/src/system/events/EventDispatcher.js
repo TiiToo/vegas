@@ -177,6 +177,11 @@ if (system.events.EventDispatcher == undefined)
             return null ;
         }
         
+        if ( e.getTarget() == null )
+        {
+            e.setTarget( this.getTarget() ) ;
+        }
+        
         var EventPhase = system.events.EventPhase ;
         
         var phase /*uint*/ = e.getEventPhase() ;
@@ -187,7 +192,7 @@ if (system.events.EventDispatcher == undefined)
             
             e.setEventPhase( EventPhase.AT_TARGET ) ;
             
-            e.setCurrentTarget(this) ;
+            e.setCurrentTarget( this.getTarget() ) ;
             
             this._propagate(e, isQueue || false ) ; // AT_TARGET
             
@@ -197,11 +202,11 @@ if (system.events.EventDispatcher == undefined)
         }
         else if ( phase == EventPhase.BUBBLING_PHASE ) 
         {
-            this._propagateBubble(e) ;
+            this._propagateBubble( e ) ;
         }
         else if ( phase == EventPhase.CAPTURING_PHASE ) 
         {
-            this._propagateCapture(e) ;
+            this._propagateCapture( e ) ;
         }
         
         return e ;
@@ -568,11 +573,10 @@ if (system.events.EventDispatcher == undefined)
     /**
      * @private
      */
-    proto._propagateBubble = function ( e /*Event*/) /*Void*/ 
+    proto._propagateBubble = function ( e /*Event*/ ) /*Void*/ 
     {
         if ( e.getEventPhase() == system.events.EventPhase.BUBBLING_PHASE ) 
         {
-            e.setCurrentTarget( this.getTarget() ) ;
             this._propagate(e) ;
         }
     }
@@ -585,8 +589,12 @@ if (system.events.EventDispatcher == undefined)
         if ( this._captures.containsKey( e.getType() ) ) 
         {
             e.setEventPhase( system.events.EventPhase.CAPTURING_PHASE ) ;
+            e.setCurrentTarget( this.getTarget() ) ;
             var group/*EventListenerGroup*/ = this._captures.get( e.getType() ) ;
-            group.propagate(e) ;
+            if ( group )
+            {
+                group.propagate(e) ;
+            }
         }
     }
     

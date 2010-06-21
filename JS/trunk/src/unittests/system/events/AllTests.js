@@ -39,6 +39,7 @@ getPackage("system.events.mocks" ) ;
 
 load("unittests/system/events/mocks/MockEventListener.js") ;
 
+load("unittests/system/events/CoreEventDispatcherTest.js") ;
 load("unittests/system/events/DelegateTest.js") ;
 load("unittests/system/events/EventTest.js") ;
 load("unittests/system/events/EventDispatcherTest.js") ;
@@ -65,19 +66,20 @@ system.events.AllTests.suite = function()
     
     //suite.simpleTrace = true;
     
-    suite.addTest( new TestSuite( system.events.DelegateTest           ) ) ;
-    suite.addTest( new TestSuite( system.events.EventTest              ) ) ;
-    suite.addTest( new TestSuite( system.events.EventDispatcherTest    ) ) ;
-    suite.addTest( new TestSuite( system.events.EventFactoryTest       ) ) ;
-    suite.addTest( new TestSuite( system.events.EventListenerBatchTest ) ) ;
-    suite.addTest( new TestSuite( system.events.EventListenerEntryTest ) ) ;
-    suite.addTest( new TestSuite( system.events.EventListenerGroupTest ) ) ;
-    suite.addTest( new TestSuite( system.events.EventListenerTest      ) ) ;
-    suite.addTest( new TestSuite( system.events.EventPhaseTest         ) ) ;
-    suite.addTest( new TestSuite( system.events.EventQueueTest         ) ) ;
-    suite.addTest( new TestSuite( system.events.EventTargetTest        ) ) ;
-    suite.addTest( new TestSuite( system.events.FrontControllerTest    ) ) ;
-    suite.addTest( new TestSuite( system.events.IEventDispatcherTest   ) ) ;
+    suite.addTest( new TestSuite( system.events.CoreEventDispatcherTest ) ) ;
+    suite.addTest( new TestSuite( system.events.DelegateTest            ) ) ;
+    suite.addTest( new TestSuite( system.events.EventTest               ) ) ;
+    suite.addTest( new TestSuite( system.events.EventDispatcherTest     ) ) ;
+    suite.addTest( new TestSuite( system.events.EventFactoryTest        ) ) ;
+    suite.addTest( new TestSuite( system.events.EventListenerBatchTest  ) ) ;
+    suite.addTest( new TestSuite( system.events.EventListenerEntryTest  ) ) ;
+    suite.addTest( new TestSuite( system.events.EventListenerGroupTest  ) ) ;
+    suite.addTest( new TestSuite( system.events.EventListenerTest       ) ) ;
+    suite.addTest( new TestSuite( system.events.EventPhaseTest          ) ) ;
+    suite.addTest( new TestSuite( system.events.EventQueueTest          ) ) ;
+    suite.addTest( new TestSuite( system.events.EventTargetTest         ) ) ;
+    suite.addTest( new TestSuite( system.events.FrontControllerTest     ) ) ;
+    suite.addTest( new TestSuite( system.events.IEventDispatcherTest    ) ) ;
     
     return suite ;
 }

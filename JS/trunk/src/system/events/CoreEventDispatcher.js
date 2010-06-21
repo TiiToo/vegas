@@ -122,7 +122,7 @@ if (system.events.CoreEventDispatcher == undefined)
      */
     proto.getGlobalEventListeners = function()/*EventListenerCollection*/ 
     {
-        return this._dispatcher.getGlobalEventListeners.apply(this._dispatcher, Array.fromArguments(arguments)) ;
+        return this._dispatcher.getGlobalEventListeners() ;
     }
     
     /**
@@ -243,6 +243,15 @@ if (system.events.CoreEventDispatcher == undefined)
     proto.setParent = function( parent /*EventDispatcher*/ )/*void*/ 
     {
         return this._dispatcher.parent = parent ;
+    }
+    
+    /**
+     * Returns the source code string representation of the object.
+     * @return the source code string representation of the object.
+     */
+    proto.toSource = function () /*Array*/ 
+    {
+        return "new " + this.getConstructorPath() + "()" ;
     }
     
     /**
