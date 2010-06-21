@@ -80,12 +80,23 @@ if ( system.events.FrontController == undefined )
      * Creates a new FrontController instance.
      * @param channel the channel of this FrontController.
      * @param target the EventDispatcher reference to switch with the default EventDispatcher singleton in the controller.
-     * <p><b>Example :</b> {@code var oC = new FrontController() ;}</p>
+     * <p><b>Example :</b> {@code var controller = new system.events.FrontController() ;}</p>
      */
     system.events.FrontController = function( channel /*String*/, target /*EventDispatcher*/  ) 
     {
-        this._map        = new system.data.maps.ArrayMap() ;
-        this._dispatcher = target || system.events.EventDispatcher.getInstance( channel ) ; 
+        this._map = new system.data.maps.ArrayMap() ;
+        if ( target && target instanceof system.events.IEventDispatcher )
+        {
+            this._dispatcher = target ;
+        }
+        else
+        {
+            if ( !( typeof(channel) == "string" || ( channel instanceof String ) ) )  
+            {
+                channel = null ;
+            } 
+            this._dispatcher = system.events.EventDispatcher.getInstance( channel )
+        }
     }
     
     /**

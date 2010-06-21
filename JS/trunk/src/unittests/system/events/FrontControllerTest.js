@@ -53,19 +53,40 @@ proto = system.events.FrontControllerTest.prototype ;
 
 proto.setUp = function()
 {
-    this.controller = new system.events.FrontController() ;
+    // 
 }
 
 proto.tearDown = function()
 {
-    this.controller = undefined ;
+    system.events.EventDispatcher.flush() ;
+    system.events.FrontController.flush() ;
 }
 
 // ----o Public Methods
 
 proto.testConstructor = function () 
 {
-    this.assertNotNull( this.controller ) ;
+    var controller = new system.events.FrontController() ;
+    this.assertEquals( controller.getEventDispatcher() , system.events.EventDispatcher.getInstance() ) ;
+}
+
+proto.testConstructorChannel = function()
+{
+    var controller = new system.events.FrontController("channel") ;
+    this.assertEquals( controller.getEventDispatcher() , system.events.EventDispatcher.getInstance("channel") ) ;
+}
+
+proto.testConstructorBadChannel = function()
+{
+    var controller = new system.events.FrontController( 2 ) ;
+    this.assertEquals( controller.getEventDispatcher() , system.events.EventDispatcher.getInstance() ) ;
+}
+
+proto.testConstructorTarget = function()
+{
+    var dispatcher = new system.events.EventDispatcher() ;
+    var controller = new system.events.FrontController( null , dispatcher ) ;
+    this.assertEquals( controller.getEventDispatcher() , dispatcher ) ;
 }
 
 // ----o Encapsulate
