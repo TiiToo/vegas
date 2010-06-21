@@ -89,6 +89,50 @@ proto.testConstructorTarget = function()
     this.assertEquals( controller.getEventDispatcher() , dispatcher ) ;
 }
 
+proto.testAdd = function()
+{
+    var listener   = new system.events.mocks.MockEventListener() ;
+    var controller = new system.events.FrontController() ;
+    
+    controller.add( "type", listener ) ;
+    
+    this.assertEquals( 1 , controller.size() , "#1" ) ;
+    
+    controller.add( "type", listener ) ;
+    
+    this.assertEquals( 1 , controller.size() , "#2" ) ;
+}
+
+proto.testAddTypeArgumentError = function()
+{
+    var controller = new system.events.FrontController() ;
+    try
+    {
+        controller.add( null , null ) ;
+        this.fail("#1");
+    }
+    catch( e )
+    {
+        this.assertTrue( e instanceof TypeError , "#2" ) ;
+        this.assertEquals( "The FrontController add() method failed, the 'type' argument not must be null and must be a String." , e.message , "#3") ;
+    }
+}
+
+proto.testAddEventListenerArgumentError = function()
+{
+    var controller = new system.events.FrontController() ;
+    try
+    {
+        controller.add( "test" , null ) ;
+        this.fail("#1");
+    }
+    catch( e )
+    {
+        this.assertTrue( e instanceof TypeError , "#2" ) ;
+        this.assertEquals( "The FrontController add() method failed, the event type 'test' failed, the 'listener' argument not must be null." , e.message , "#3") ;
+    }
+}
+
 // ----o Encapsulate
 
 delete proto ;
