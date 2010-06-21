@@ -126,15 +126,6 @@ if (system.events.CoreEventDispatcher == undefined)
     }
     
     /**
-     * Returns the value of the isGlobal flag of this model.
-     * @return {@code true} if the model use a global EventDispatcher to dispatch this events.
-     */
-    proto.getIsGlobal = function() /*Boolean*/
-    {
-        return this._isGlobal ;
-    }
-    
-    /**
      * Returns the EventDispatcher reference of the parent of this instance.
      * @return the EventDispatcher reference of the parent of this instance.
      */
@@ -178,6 +169,15 @@ if (system.events.CoreEventDispatcher == undefined)
     proto.initEventDispatcher = function () /*EventDispatcher*/ 
     {
         return new system.events.EventDispatcher( this ) ;
+    }
+    
+    /**
+     * Returns the value of the isGlobal flag of this model.
+     * @return {@code true} if the model use a global EventDispatcher to dispatch this events.
+     */
+    proto.isGlobal = function() /*Boolean*/
+    {
+        return this._isGlobal ;
     }
     
     /**
@@ -252,10 +252,6 @@ if (system.events.CoreEventDispatcher == undefined)
     {
         this.___isLock___ = false ;
     }
-    
-    ////////////
-    
-    proto.__defineGetter__( "isGlobal", proto.getIsGlobal ) ;
     
     ////////////
     
