@@ -126,19 +126,20 @@ catch(e)
     
     // system.events
     
-    require( "system.events.Delegate"           ) ; 
-    require( "system.events.Event"              ) ;
-    require( "system.events.EventDispatcher"    ) ;
-    require( "system.events.EventFactory"       ) ;
-    require( "system.events.EventListener"      ) ;
-    require( "system.events.EventListenerBatch" ) ;
-    require( "system.events.EventListenerEntry" ) ;
-    require( "system.events.EventListenerGroup" ) ;
-    require( "system.events.EventPhase"         ) ;
-    require( "system.events.EventQueue"         ) ;
-    require( "system.events.EventTarget"        ) ;
-    require( "system.events.FrontController"    ) ;
-    require( "system.events.IEventDispatcher"   ) ;
+    require( "system.events.CoreEventDispatcher" ) ;
+    require( "system.events.Delegate"            ) ;
+    require( "system.events.Event"               ) ;
+    require( "system.events.EventDispatcher"     ) ;
+    require( "system.events.EventFactory"        ) ;
+    require( "system.events.EventListener"       ) ;
+    require( "system.events.EventListenerBatch"  ) ;
+    require( "system.events.EventListenerEntry"  ) ;
+    require( "system.events.EventListenerGroup"  ) ;
+    require( "system.events.EventPhase"          ) ;
+    require( "system.events.EventQueue"          ) ;
+    require( "system.events.EventTarget"         ) ;
+    require( "system.events.FrontController"     ) ;
+    require( "system.events.IEventDispatcher"    ) ;
     
     // system.data.formatters
     

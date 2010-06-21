@@ -208,8 +208,8 @@ if (system.events.EventDispatcher == undefined)
     }
     
     /**
-     * Returns the {@code EventListenerCollection} of the specified event name.
-     * @return the {@code EventListenerCollection} of the specified event name.
+     * Returns the {@code Array} of all the listeners registered with the specific type.
+     * @return the {@code Array} of all the listeners registered with the specific type.
      */
     proto.getEventListeners = function( type/*String*/ ) /*Array*/ 
     {
@@ -249,8 +249,8 @@ if (system.events.EventDispatcher == undefined)
     }
     
     /**
-     * Returns a set of all register event's name in this EventTarget.
-     * @return a set of all register event's name in this EventTarget.
+     * Returns an array set of all register event's name in this EventTarget.
+     * @return an array set of all register event's name in this EventTarget.
      */
     proto.getRegisteredTypes = function () /*Array*/ 
     {
