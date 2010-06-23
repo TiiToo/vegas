@@ -37,12 +37,14 @@
 
 package vegas
 {
-    import system.Reflection;
+    import core.reflect.getClassName;
+    import core.reflect.getClassPath;
+
     import system.Serializable;
     import system.logging.Log;
     import system.logging.Loggable;
     import system.logging.Logger;
-    
+
     /**
      * CoreObject offers a default implementation of the Loggable and Serializable interfaces.
      * <p><b>Example :</b></p>
@@ -60,7 +62,7 @@ package vegas
          */
         public function CoreObject() 
         {
-            _logger = Log.getLogger( Reflection.getClassPath(this) ) ;
+            _logger = Log.getLogger( getClassPath(this, true) ) ;
         }
         
         /**
@@ -76,7 +78,7 @@ package vegas
          */
         public function set logger( log:Logger ):void 
         {
-            _logger = (log == null ) ? Log.getLogger( Reflection.getClassPath(this) ) : log ;
+            _logger = (log == null ) ? Log.getLogger( getClassPath(this, true) ) : log ;
         }
         
         /**
@@ -85,7 +87,7 @@ package vegas
          */
         public function toSource( indent:int = 0 ):String 
         {
-            return "new " + Reflection.getClassPath(this) + "()" ;
+            return "new " + getClassPath(this, true) + "()" ;
         }
         
         /**
@@ -94,7 +96,7 @@ package vegas
          */
         public function toString():String 
         {
-            return "[" + Reflection.getClassName(this) + "]" ;
+            return "[" + getClassName(this) + "]" ;
         }
         
         /**

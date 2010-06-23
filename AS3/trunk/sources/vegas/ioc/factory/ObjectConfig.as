@@ -37,9 +37,11 @@
 
 package vegas.ioc.factory 
 {
+    import core.reflect.getClassName;
+
     import system.Reflection;
     import system.data.Iterator;
-    
+
     import vegas.ioc.ObjectAttribute;
     import vegas.ioc.TypeAliases;
     import vegas.ioc.TypeExpression;
@@ -49,9 +51,9 @@ package vegas.ioc.factory
     import vegas.ioc.evaluators.ReferenceEvaluator;
     import vegas.ioc.evaluators.TypeEvaluator;
     import vegas.net.FlashVars;
-    
+
     import flash.display.Stage;
-    
+
     /**
      * This object contains the configuration of the IOC object factory.
      * <p><b>Example :</b></p>
@@ -409,7 +411,7 @@ package vegas.ioc.factory
          */
         public function toString():String 
         {
-            var s:String = "[" + Reflection.getClassName(this) ;
+            var s:String = "[" + getClassName(this) ;
             if ( defaultDestroyMethod != null )
             {
                 s += " defaultDestroyMethod:" + defaultDestroyMethod ;

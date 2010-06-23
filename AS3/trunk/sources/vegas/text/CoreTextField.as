@@ -37,16 +37,18 @@
 
 package vegas.text 
 {
-    import system.Reflection;
+    import core.reflect.getClassName;
+    import core.reflect.getClassPath;
+
     import system.logging.Log;
     import system.logging.Logger;
-    
+
     import vegas.display.DisplayObjectCollector;
     import vegas.display.IDisplayObject;
-    
+
     import flash.events.Event;
     import flash.text.TextField;
-    
+
     /**
      * The CoreTextField class extends the flash.text.TextField class and implements the IDisplayObject interface.
      * <p><b>Example :</b></p>
@@ -127,7 +129,7 @@ package vegas.text
          */
         public function set logger( log:Logger ):void 
         {
-            _logger = ( log == null ) ? Log.getLogger( Reflection.getClassPath(this) ) : log ;
+            _logger = ( log == null ) ? Log.getLogger( getClassPath(this, true) ) : log ;
         }
         
         /**
@@ -161,7 +163,7 @@ package vegas.text
          */
         public override function toString():String
         {
-            var str:String = "[" + Reflection.getClassName(this) ;
+            var str:String = "[" + getClassName(this) ;
             if ( this.id != null )
             {
                 str += " " + this.id ;

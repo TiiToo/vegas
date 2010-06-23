@@ -37,14 +37,14 @@
 
 package vegas.media 
 {
-    import system.Reflection;
-    import system.eden;
-    
+    import core.dump;
+    import core.reflect.getClassName;
+
     import vegas.vo.SimpleValueObject;
-    
+
     import flash.media.Microphone;
     import flash.net.registerClassAlias;
-    
+
     /**
      * This value object contains all values to set a Microphone object.
      */
@@ -127,11 +127,10 @@ package vegas.media
          */
         public override function toString():String
         {
-            var str:String = "[" + Reflection.getClassName(this) ;
-            str += eden.serialize(toObject()) ;
+            var str:String = "[" + getClassName(this) ;
+            str += dump(toObject()) ;
             str += "]" ;
             return str ;
         } 
-        
     }
 }

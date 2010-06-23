@@ -37,12 +37,14 @@
 
 package vegas.vo
 {
+    import core.reflect.getClassName;
+    import core.reflect.getClassPath;
+
     import system.Equatable;
-    import system.Reflection;
     import system.Serializable;
     import system.data.Identifiable;
     import system.data.ValueObject;
-    
+
     /**
      * The SimpleValueObject class provides a basic implementation of the ValueObject interface.
      * @param init A generic object containing properties with which to populate the newly instance. If this argument is null, it is ignored.
@@ -102,7 +104,7 @@ package vegas.vo
          */
         public function toSource( indent:int = 0 ):String 
         {
-            return "new " + Reflection.getClassPath(this) + "()" ;
+            return "new " + getClassPath(this, true) + "()" ;
         }
         
         /**
@@ -111,7 +113,7 @@ package vegas.vo
          */
         public function toString():String
         {
-            var str:String = "[" + Reflection.getClassName(this) ;
+            var str:String = "[" + getClassName(this) ;
             if ( this.id != null )
             {
                 str += " " + this.id ;

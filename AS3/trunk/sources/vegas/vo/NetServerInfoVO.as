@@ -37,12 +37,14 @@
 
 package vegas.vo 
 {
-    import system.Reflection;
+    import core.reflect.getClassName;
+    import core.reflect.getClassPath;
+
     import system.Serializable;
     import system.eden;
-    
+
     import flash.net.registerClassAlias;
-    
+
     /**
      * This value object contains information sending by a server.
      * @example
@@ -132,7 +134,7 @@ package vegas.vo
          */
         public override function toSource( indent:int = 0 ):String 
         {
-            return "new " + Reflection.getClassPath(this) + "(" + eden.serialize(toObject()) + ")" ;
+            return "new " + getClassPath(this, true) + "(" + eden.serialize(toObject()) + ")" ;
         }
         
         /**
@@ -141,7 +143,7 @@ package vegas.vo
          */
         public override function toString():String
         {
-            var str:String = "[" + Reflection.getClassName(this) ;
+            var str:String = "[" + getClassName(this) ;
             if (code != null && code.length > 0)
             {
                 str += " code:" + code ;

@@ -37,11 +37,12 @@
 
 package vegas.text 
 {
-    import system.Reflection;
+    import core.reflect.getClassName;
+
     import system.data.Identifiable;
-    
+
     import flash.text.StyleSheet;
-    
+
     /**
      * The CoreStyleSheet class extends the flash.text.StyleSheet.
      * <p><b>Example :</b></p>
@@ -102,7 +103,7 @@ package vegas.text
          */
         public override function toString():String
         {
-            var str:String = "[" + Reflection.getClassName(this) ;
+            var str:String = "[" + getClassName(this) ;
             if ( this.id != null )
             {
                 str += " " + this.id ;

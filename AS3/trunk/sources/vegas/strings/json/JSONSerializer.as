@@ -46,10 +46,10 @@ package vegas.strings.json
      * <p>Add Hexa Digits tool in deserialize method - <a href="http://code.google.com/p/edenrr/">eden inspiration</a></p>
      * <p><b>Example :</b></p>
      * <pre class="prettyprint">
+     * import core.getClassName ;
+     * 
      * import vegas.strings.JSON;
      * import vegas.strings.JSONError;
-     * 
-     * import system.Reflection ;
      * 
      * // --- Init
      * 
@@ -81,7 +81,7 @@ package vegas.strings.json
      *     {
      *         for (var each:String in o[i])
      *         {
-     *             trace("    > " + each + " : " + o[i][each] + " :: " + Reflection.getClassName(o[i][each]) ) ;
+     *             trace("    > " + each + " : " + o[i][each] + " :: " + getClassName(o[i][each]) ) ;
      *         }
      *     }
      * }

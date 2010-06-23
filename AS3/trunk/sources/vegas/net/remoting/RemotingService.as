@@ -36,21 +36,22 @@
 */
 package vegas.net.remoting
 {
+    import core.reflect.getClassName;
+
     import system.Cloneable;
-    import system.Reflection;
     import system.process.CoreAction;
     import system.process.TimeoutPolicy;
-    
+
     import vegas.events.RemotingEvent;
     import vegas.ioc.ObjectScope;
-    
+
     import flash.errors.IllegalOperationError;
     import flash.events.TimerEvent;
     import flash.net.ObjectEncoding;
     import flash.net.Responder;
     import flash.net.registerClassAlias;
     import flash.utils.Timer;
-    
+
     /**
      * This class provides a service object to communicate with a remoting gateway server.
      * <p><b>Example : RemotingService and classmapping</b></p>
@@ -482,7 +483,7 @@ package vegas.net.remoting
         {
             if (aliasName == null)
             {
-                aliasName = Reflection.getClassName( classObject ) ;
+                aliasName = getClassName( classObject ) ;
             }
             flash.net.registerClassAlias(aliasName, classObject) ; 
         }

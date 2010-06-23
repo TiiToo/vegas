@@ -37,12 +37,13 @@
 
 package vegas.events 
 {
-    import system.Reflection;
+    import core.reflect.getClassName;
+
     import system.data.Entry;
     import system.events.BasicEvent;
-    
+
     import flash.events.Event;
-    
+
     /**
      * A basic Entry event.
      */
@@ -141,7 +142,7 @@ package vegas.events
          */
         public override function toString():String 
         {
-            return formatToString( Reflection.getClassName(this), "type", "entry", "target", "context", "bubbles", "cancelable", "eventPhase" ); 
+            return formatToString( getClassName(this), "type", "entry", "target", "context", "bubbles", "cancelable", "eventPhase" ); 
         }
         
         /**

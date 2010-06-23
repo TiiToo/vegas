@@ -37,11 +37,12 @@
 
 package vegas.vo 
 {
-    import system.Reflection;
-    import system.eden;
-    
+    import core.dump;
+    import core.reflect.getClassName;
+    import core.reflect.getClassPath;
+
     import flash.net.registerClassAlias;
-    
+
     /**
      * This class provides a binary filter value object.
      * <p><b>Example :</b></p>
@@ -171,17 +172,16 @@ package vegas.vo
          */
         public override function toSource( indent:int = 0 ):String 
         {
-            return "new " + Reflection.getClassPath(this) + "(" + eden.serialize(filter) + ")" ;
+            return "new " + getClassPath(this, true) + "(" + dump(filter) + ")" ;
         }
-            
+        
         /**
          * Returns the String representation of this object.
          * @return the String representation of this object.
          */
         public override function toString():String
         {
-            return "[" + Reflection.getClassName(this) + ":" + filter + "]" ;
+            return "[" + getClassName(this) + ":" + filter + "]" ;
         }
-        
     }
 }

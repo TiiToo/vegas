@@ -37,12 +37,13 @@
 
 package vegas.i18n
 {
-    import system.Reflection;
+    import core.dump;
+    import core.reflect.getClassPath;
+
     import system.Serializable;
     import system.data.maps.HashMap;
-    import system.eden;
     import system.evaluators.Evaluable;
-    
+
     /**
      * This static enumeration class defines the language code of the system on which the player is running. 
      * The language is specified as a lowercase two-letter language code from ISO 639-1. 
@@ -146,14 +147,14 @@ package vegas.i18n
         {
             return LANGS.size() ;
         }
-
+        
         /**
          * Returns the eden string representation of the object.
          * @return the eden string representation of the object.
          */
         public function toSource( indent:int = 0 ):String 
         {
-            return  "new " + Reflection.getClassPath(this) + "(" + eden.serialize(value) + "," + eden.serialize(label) + ")" ; 
+            return  "new " + getClassPath(this, true) + "(" + dump(value) + "," + dump(label) + ")" ; 
         }
         
         /**

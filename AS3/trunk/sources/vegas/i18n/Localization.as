@@ -37,15 +37,17 @@
 
 package vegas.i18n 
 {
+    import core.reflect.getClassName;
+
     import system.Reflection;
     import system.data.Identifiable;
     import system.data.maps.HashMap;
     import system.events.CoreEventDispatcher;
-    
+
     import vegas.events.LocalizationEvent;
-    
+
     import flash.errors.IllegalOperationError;
-    
+
     /**
      * The Localization class allows to manage via textual files with 'JSON' or 'eden' format to charge the textual contents 
      * of an application according to the parameters of languages chosen by the users.
@@ -434,20 +436,19 @@ package vegas.i18n
           */
         public function toString():String
         {
-            var str:String = "[" + Reflection.getClassName(this) ;
+            var str:String = "[" + getClassName(this) ;
             if ( this.id != null )
             {
                 str += " " + this.id ;
             } 
             str += "]" ;
             return str ;
-        }    
+        }
         
         /**
          * @private
          */
         private var _current:Lang = null ;
-        
         
         /**
          * @private

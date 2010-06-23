@@ -37,7 +37,8 @@
 
 package vegas.utils
 {
-    import system.Reflection;
+    import core.reflect.getClassName;
+    import core.reflect.getClassPath;
     
     /**
      * Returns the unique name of the specified instance in argument.
@@ -56,7 +57,7 @@ package vegas.utils
      */
     public function getUniqueName( o:* , isFull:Boolean = false ):String
     {
-        var name:String = isFull ? Reflection.getClassPath( o ) : Reflection.getClassName( o ) ;
+        var name:String = isFull ? getClassPath( o , true ) : getClassName( o ) ;
         var charCode:int = name.charCodeAt( name.length - 1 );
         if (charCode >= 48 && charCode <= 57) // if the class name finish with a number 0..9
         {

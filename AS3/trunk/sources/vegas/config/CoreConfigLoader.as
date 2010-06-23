@@ -37,13 +37,14 @@
 
 package vegas.config
 {
-    import system.Reflection;
+    import core.reflect.getClassPath;
+
     import system.process.ActionURLLoader;
-    
+
     import flash.net.URLLoader;
     import flash.net.URLRequest;
     import flash.utils.getDefinitionByName;
-    
+
     /**
      * This skeletal class provides an easy implementation of the IConfigLoader interface. 
      */
@@ -143,7 +144,7 @@ package vegas.config
          */
         public override function clone():*
         {
-            var cName:String = Reflection.getClassPath(this) ;
+            var cName:String = getClassPath(this, true) ;
             var clazz:Class = ( getDefinitionByName( cName ) as Class ) ;
             var cloader:* = new clazz(_name) ;
             if (cloader != null)

@@ -44,17 +44,17 @@ package vegas.strings
      * <p>Add Hexa Digits tool in deserialize method - <a href="http://code.google.com/p/edenrr/">eden inspiration</a></p>
      * <p><b>Example :</b></p>
      * <pre class="prettyprint">
+     * import core.getClassName ;
+     * 
      * import vegas.strings.JSON;
      * import vegas.strings.errors.JSONError;
      * 
-     * import system.Reflection ;
-     * 
      * // --- Init
      * 
-     * var a:Array = [2, true, "hello"] ;
-     * var o:Object = { prop1 : 1 , prop2 : 2 } ;
-     * var s:String = "hello world" ;
-     * var n:Number = 4 ;
+     * var a:Array   = [2, true, "hello"] ;
+     * var o:Object  = { prop1 : 1 , prop2 : 2 } ;
+     * var s:String  = "hello world" ;
+     * var n:Number  = 4 ;
      * var b:Boolean = true ;
      * 
      * trace("# Serialize \r") ;
@@ -79,7 +79,7 @@ package vegas.strings
      *     {
      *         for (var each:String in o[i])
      *         {
-     *             trace("    > " + each + " : " + o[i][each] + " :: " + Reflection.getClassName(o[i][each]) ) ;
+     *             trace("    > " + each + " : " + o[i][each] + " :: " + getClassName(o[i][each]) ) ;
      *         }
      *     }
      * }

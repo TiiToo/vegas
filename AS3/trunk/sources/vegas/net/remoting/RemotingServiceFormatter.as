@@ -37,12 +37,13 @@
 
 package vegas.net.remoting
 {
-    import system.Reflection;
+    import core.reflect.getClassName;
+
     import system.data.Iterable;
     import system.data.Iterator;
     import system.eden;
     import system.formatters.Formattable;
-    
+
     /**
      * Formats a RemotingService object in this String representation.
      */
@@ -67,7 +68,7 @@ package vegas.net.remoting
                 return "" ;
             }
             var r:* = rs.getResult() ;
-            var txt:String = "[" + Reflection.getClassName(rs) ;
+            var txt:String = "[" + getClassName(rs) ;
             if ( rs.serviceName )
             {
                 txt += " serviceName:" + rs.serviceName ;

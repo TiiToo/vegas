@@ -37,7 +37,9 @@
 
 package vegas.media 
 {
-    import system.Reflection;
+    import core.reflect.getClassName;
+    import core.reflect.getClassPath;
+    
     import system.events.ActionEvent;
     import system.events.EventListener;
     import system.logging.Log;
@@ -50,9 +52,9 @@ package vegas.media
     import system.process.TaskPhase;
     import system.signals.Signal;
     import system.signals.Signaler;
-    
+
     import vegas.events.SoundEvent;
-    
+
     import flash.events.Event;
     import flash.events.IOErrorEvent;
     import flash.events.TimerEvent;
@@ -63,7 +65,7 @@ package vegas.media
     import flash.net.URLRequest;
     import flash.utils.Timer;
     import flash.utils.getDefinitionByName;
-    
+
     /**
      * Dispatched when a process is finished.
      * @eventType system.events.ActionEvent.FINISH
@@ -223,7 +225,7 @@ package vegas.media
          */
         public function set logger( log:Logger ):void 
         {
-            _logger = ( log == null ) ? Log.getLogger( Reflection.getClassPath(this) ):log ;
+            _logger = ( log == null ) ? Log.getLogger( getClassPath(this, true) ):log ;
         }
         
         /**
@@ -408,7 +410,7 @@ package vegas.media
          */
         public function clone():*
         {
-            var clazz:Class = getDefinitionByName( Reflection.getClassPath( this ) ) as Class ;
+            var clazz:Class = getDefinitionByName( getClassPath( this , true ) ) as Class ;
             return new clazz() ;
         }
         
@@ -612,7 +614,7 @@ package vegas.media
             if ( pausing )
             {
                 resume() ;
-            }    
+            }
             else
             {
                 pause() ;
@@ -625,7 +627,7 @@ package vegas.media
           */
         public function toSource(indent:int = 0):String
         {
-            return "new " + Reflection.getClassPath(this) + "()" ;
+            return "new " + getClassPath(this, true) + "()" ;
         }
         
         /**
@@ -634,7 +636,7 @@ package vegas.media
           */
         public override function toString():String
         {
-            var str:String = "[" + Reflection.getClassName(this) ;
+            var str:String = "[" + getClassName(this) ;
             if ( this.id != null )
             {
                 str += " " + this.id ;

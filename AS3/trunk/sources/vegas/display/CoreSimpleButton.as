@@ -37,13 +37,15 @@
 
 package vegas.display 
 {
-    import system.Reflection;
+    import core.reflect.getClassName;
+    import core.reflect.getClassPath;
+
     import system.logging.Log;
     import system.logging.Logger;
-    
+
     import flash.display.DisplayObject;
     import flash.display.SimpleButton;
-    
+
     /**
      * The CoreSimpleButton class extends the flash.display.SimpleButton class and implements the IDisplayObject interface.
      * <p><b>Example :</b></p>
@@ -128,7 +130,7 @@ package vegas.display
          */
         public function set logger( log:Logger ):void 
         {
-            _logger = ( log == null ) ? Log.getLogger( Reflection.getClassPath(this) ) : log ;
+            _logger = ( log == null ) ? Log.getLogger( getClassPath(this, true) ) : log ;
         }
         
         /**
@@ -162,7 +164,7 @@ package vegas.display
          */
         public override function toString():String
         {
-            var str:String = "[" + Reflection.getClassName(this) ;
+            var str:String = "[" + getClassName(this) ;
             if ( this.id != null )
             {
                 str += " " + this.id ;

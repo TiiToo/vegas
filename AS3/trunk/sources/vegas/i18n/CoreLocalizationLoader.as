@@ -37,13 +37,14 @@
 
 package vegas.i18n
 {
-    import system.Reflection;
+    import core.reflect.getClassPath;
+
     import system.process.ActionURLLoader;
-    
+
     import flash.net.URLLoader;
     import flash.net.URLRequest;
     import flash.utils.getDefinitionByName;
-    
+
     /**
      * This skeletal class provides an easy implementation of the ILocalizationLoader interface. 
      */
@@ -197,7 +198,7 @@ package vegas.i18n
          */
         public override function clone():*
         {
-            var cName:String = Reflection.getClassPath(this) ;
+            var cName:String = getClassPath(this, true) ;
             var clazz:Class = ( getDefinitionByName( cName ) as Class ) ;
             var loader:* = new clazz() ;
             if (loader != null)
