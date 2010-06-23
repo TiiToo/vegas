@@ -35,34 +35,34 @@
   
 */
 
-getPackage("system.signals.samples" ) ;
+// ---o Constructor
 
-load("unittests/system/signals/samples/ReceiverClass.js") ;
-load("unittests/system/signals/samples/SignalerClass.js") ;
-
-load("unittests/system/signals/ReceiverTest.js") ;
-load("unittests/system/signals/SignalTest.js") ;
-load("unittests/system/signals/SignalEntryTest.js") ;
-load("unittests/system/signals/SignalerTest.js") ;
-load("unittests/system/signals/SignalStringsTest.js") ;
-
-// ----o constructor
-
-system.signals.AllTests = {} ;
-
-system.signals.AllTests.suite = function() 
+system.signals.SignalerTest = function( name ) 
 {
-    var TestSuite = buRRRn.ASTUce.TestSuite;
+    buRRRn.ASTUce.TestCase.call( this , name ) ;
+}
+
+// ----o Inherit
+
+system.signals.SignalerTest.prototype             = new buRRRn.ASTUce.TestCase() ;
+system.signals.SignalerTest.prototype.constructor = system.signals.SignalerTest ;
+
+// ----o Public Methods
+
+system.signals.SignalerTest.prototype.testInterface = function()
+{
+    var signaler = new system.signals.Signaler() ;
+    this.assertNotNull( signaler ) ;
+}
+
+system.signals.SignalerTest.prototype.testMethods = function()
+{
+    var signaler = new system.signals.Signaler() ;
     
-    var suite = new TestSuite( "system.signals unit tests" );
-    
-    //suite.simpleTrace = true;
-    
-    suite.addTest( new TestSuite( system.signals.ReceiverTest ) ) ;
-    suite.addTest( new TestSuite( system.signals.SignalTest ) ) ;
-    suite.addTest( new TestSuite( system.signals.SignalEntryTest ) ) ;
-    suite.addTest( new TestSuite( system.signals.SignalerTest ) ) ;
-    suite.addTest( new TestSuite( system.signals.SignalStringsTest ) ) ;
-    
-    return suite ;
+    this.assertTrue( "connect" in signaler ) ;
+    this.assertTrue( "connected" in signaler ) ;
+    this.assertTrue( "disconnect" in signaler ) ;
+    this.assertTrue( "emit" in signaler ) ;
+    this.assertTrue( "getLength" in signaler ) ;
+    this.assertTrue( "hasReceiver" in signaler ) ;
 }

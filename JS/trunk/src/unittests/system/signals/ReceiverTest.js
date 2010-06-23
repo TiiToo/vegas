@@ -35,34 +35,27 @@
   
 */
 
-getPackage("system.signals.samples" ) ;
+// ---o Constructor
 
-load("unittests/system/signals/samples/ReceiverClass.js") ;
-load("unittests/system/signals/samples/SignalerClass.js") ;
-
-load("unittests/system/signals/ReceiverTest.js") ;
-load("unittests/system/signals/SignalTest.js") ;
-load("unittests/system/signals/SignalEntryTest.js") ;
-load("unittests/system/signals/SignalerTest.js") ;
-load("unittests/system/signals/SignalStringsTest.js") ;
-
-// ----o constructor
-
-system.signals.AllTests = {} ;
-
-system.signals.AllTests.suite = function() 
+system.signals.ReceiverTest = function( name ) 
 {
-    var TestSuite = buRRRn.ASTUce.TestSuite;
-    
-    var suite = new TestSuite( "system.signals unit tests" );
-    
-    //suite.simpleTrace = true;
-    
-    suite.addTest( new TestSuite( system.signals.ReceiverTest ) ) ;
-    suite.addTest( new TestSuite( system.signals.SignalTest ) ) ;
-    suite.addTest( new TestSuite( system.signals.SignalEntryTest ) ) ;
-    suite.addTest( new TestSuite( system.signals.SignalerTest ) ) ;
-    suite.addTest( new TestSuite( system.signals.SignalStringsTest ) ) ;
-    
-    return suite ;
+    buRRRn.ASTUce.TestCase.call( this , name ) ;
+}
+
+// ----o Inherit
+
+system.signals.ReceiverTest.prototype             = new buRRRn.ASTUce.TestCase() ;
+system.signals.ReceiverTest.prototype.constructor = system.signals.ReceiverTest ;
+
+// ----o Public Methods
+
+system.signals.ReceiverTest.prototype.testInterface = function()
+{
+    var receiver = new system.signals.Receiver() ;
+    this.assertNotNull( receiver ) ;
+}
+system.signals.ReceiverTest.prototype.testMethods = function()
+{
+    var receiver = new system.signals.Receiver() ;
+    this.assertTrue( "receive" in receiver ) ;
 }
