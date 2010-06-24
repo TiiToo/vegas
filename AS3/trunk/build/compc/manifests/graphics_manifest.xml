@@ -26,21 +26,50 @@
     
     <!-- graphics.colors -->
     
-    <component id="graphics.colors:CMY"        class="graphics.colors.CMY" />
-    <component id="graphics.colors:CMYK"       class="graphics.colors.CMYK" />
-    <component id="graphics.colors:Colors"     class="graphics.colors.Colors" />
-    <component id="graphics.colors:ColorSpace" class="graphics.colors.ColorSpace" />
-    <component id="graphics.colors:HSL"        class="graphics.colors.HSL" />
-    <component id="graphics.colors:HSV"        class="graphics.colors.HSV" />
-    <component id="graphics.colors:RGB"        class="graphics.colors.RGB" />
-    <component id="graphics.colors:RGBA"       class="graphics.colors.RGBA" />
-    <component id="graphics.colors:Trismulus"  class="graphics.colors.Trismulus" />
-    <component id="graphics.colors:XYZ"        class="graphics.colors.XYZ" />
-    <component id="graphics.colors:YUV"        class="graphics.colors.YUV" />
-    <component id="graphics.colors:Yxy"        class="graphics.colors.Yxy" />
+    <component id="graphics.colors:CMY"           class="graphics.colors.CMY" />
+    <component id="graphics.colors:CMY2CMYK"      class="graphics.colors.CMY2CMYK" />
+    <component id="graphics.colors:CMY2RGB"       class="graphics.colors.CMY2RGB" />
+    
+    <component id="graphics.colors:CMYK"          class="graphics.colors.CMYK" />
+    <component id="graphics.colors:CMYK2CMY"      class="graphics.colors.CMYK2CMY" />
+    
+    <component id="graphics.colors:Colors"        class="graphics.colors.Colors" />
+    <component id="graphics.colors:ColorSpace"    class="graphics.colors.ColorSpace" />
+    
+    <component id="graphics.colors:HSL"           class="graphics.colors.HSL" />
+    <component id="graphics.colors:HSL2RGB"       class="graphics.colors.HSL2RGB" />
+    <component id="graphics.colors:HSL2RGBNumber" class="graphics.colors.HSL2RGBNumber" />
+    
+    <component id="graphics.colors:HSV"           class="graphics.colors.HSV" />
+    <component id="graphics.colors:HSV2RGB"       class="graphics.colors.HSV2RGB" />
+    <component id="graphics.colors:HSV2RGBNumber" class="graphics.colors.HSV2RGBNumber" />
+    
+    <component id="graphics.colors:HUE2RGB"       class="graphics.colors.HUE2RGB" />
+    
+    <component id="graphics.colors:RGB"           class="graphics.colors.RGB" />
+    <component id="graphics.colors:RGB2CMY"       class="graphics.colors.RGB2CMY" />
+    <component id="graphics.colors:RGB2HSL"       class="graphics.colors.RGB2HSL" />
+    <component id="graphics.colors:RGB2HSV"       class="graphics.colors.RGB2HSV" />
+    <component id="graphics.colors:RGB2XYZ"       class="graphics.colors.RGB2XYZ" />
+    <component id="graphics.colors:RGB2YUV"       class="graphics.colors.RGB2YUV" />
+    
+    <component id="graphics.colors:RGBA"          class="graphics.colors.RGBA" />
+    
+    <component id="graphics.colors:Trismulus"     class="graphics.colors.Trismulus" />
+    
+    <component id="graphics.colors:XYZ"           class="graphics.colors.XYZ" />
+    <component id="graphics.colors:XYZ2RGB"       class="graphics.colors.XYZ2RGB" />
+    <component id="graphics.colors:XYZ2Yxy"       class="graphics.colors.XYZ2Yxy" />
+    
+    <component id="graphics.colors:YUV"           class="graphics.colors.YUV" />
+    <component id="graphics.colors:YUV2RGB"       class="graphics.colors.YUV2RGB" />
+    
+    <component id="graphics.colors:Yxy"           class="graphics.colors.Yxy" />
+    <component id="graphics.colors:Yxy2XYZ"       class="graphics.colors.Yxy2XYZ" />
     
     <!-- graphics.display -->
     
+    <component id="graphics.display:BigBitmap"               class="graphics.display.BigBitmap" />
     <component id="graphics.display:CropBitmapData"          class="graphics.display.CropBitmapData" />
     <component id="graphics.display:DisplayObjectContainers" class="graphics.display.DisplayObjectContainers" />
     <component id="graphics.display:DisplayObjects"          class="graphics.display.DisplayObjects" />
@@ -98,18 +127,30 @@
     
     <!-- graphics.filters -->
     
+    <component id="graphics.filters:AlphaMatte"           class="graphics.filters.AlphaMatte" />
+    <component id="graphics.filters:CircleSpectrum"       class="graphics.filters.CircleSpectrum" />
     <component id="graphics.filters:CircleSpectrumFilter" class="graphics.filters.CircleSpectrumFilter" />
     <component id="graphics.filters:Filters"              class="graphics.filters.Filters" />
+    <component id="graphics.filters:GrayScale"            class="graphics.filters.GrayScale" />
     <component id="graphics.filters:GrayScaleFilter"      class="graphics.filters.GrayScaleFilter" />
+    <component id="graphics.filters:Hole"                 class="graphics.filters.Hole" />
     <component id="graphics.filters:HoleFilter"           class="graphics.filters.HoleFilter" />
+    <component id="graphics.filters:Knockout"             class="graphics.filters.Knockout" />
     <component id="graphics.filters:KnockoutFilter"       class="graphics.filters.KnockoutFilter" />
+    <component id="graphics.filters:Reflection"           class="graphics.filters.Reflection" />
     <component id="graphics.filters:ReflectionFilter"     class="graphics.filters.ReflectionFilter" />
+    <component id="graphics.filters:RGBDistort"           class="graphics.filters.RGBDistort" />
     <component id="graphics.filters:RGBDistortFilter"     class="graphics.filters.RGBDistortFilter" />
+    <component id="graphics.filters:RippleBlocks"         class="graphics.filters.RippleBlocks" />
     <component id="graphics.filters:RippleBlocksFilter"   class="graphics.filters.RippleBlocksFilter" />
+    <component id="graphics.filters:RoundPixel"           class="graphics.filters.RoundPixel" />
     <component id="graphics.filters:RoundPixelFilter"     class="graphics.filters.RoundPixelFilter" />
     <component id="graphics.filters:ShaderCustomFilter"   class="graphics.filters.ShaderCustomFilter" />
+    <component id="graphics.filters:Sharpen"              class="graphics.filters.Sharpen" />
     <component id="graphics.filters:SharpenFilter"        class="graphics.filters.SharpenFilter" />
+    <component id="graphics.filters:Twirl"                class="graphics.filters.Twirl" />
     <component id="graphics.filters:TwirlFilter"          class="graphics.filters.TwirlFilter" />
+    <component id="graphics.filters:WaveReflection"       class="graphics.filters.WaveReflection" />
     <component id="graphics.filters:WaveReflectionFilter" class="graphics.filters.WaveReflectionFilter" />
     
     <!-- graphics.geom -->
