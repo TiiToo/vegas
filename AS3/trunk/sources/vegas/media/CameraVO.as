@@ -127,7 +127,7 @@ package vegas.media
          * Returns the <code class="prettyprint">Object</code> representation of this object.
          * @return the <code class="prettyprint">Object</code> representation of this object.
          */
-        public function toObject():Object
+        public override function toObject():Object
         {
             var o:Object =
             {
