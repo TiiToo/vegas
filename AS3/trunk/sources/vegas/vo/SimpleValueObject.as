@@ -130,6 +130,16 @@ package vegas.vo
             
             return source ;
         }
+        
+        /**
+         * Returns the Object representation of this object.
+         * @return the Object representation of this object.
+         */
+        public function toObject():Object
+        {
+            return { id:id } ;
+        }
+        
         /**
          * Returns the source code string representation of the object.
          * @return the source code string representation of the object.

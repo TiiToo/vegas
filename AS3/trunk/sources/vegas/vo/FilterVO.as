@@ -40,9 +40,9 @@ package vegas.vo
     import core.dump;
     import core.reflect.getClassName;
     import core.reflect.getClassPath;
-
+    
     import flash.net.registerClassAlias;
-
+    
     /**
      * This class provides a binary filter value object.
      * <p><b>Example :</b></p>
@@ -161,7 +161,7 @@ package vegas.vo
          * Returns the Object representation of this object.
          * @return the Object representation of this object.
          */
-        public function toObject():Object
+        public override function toObject():Object
         {
             return { filter:filter } ;
         }
@@ -181,7 +181,7 @@ package vegas.vo
          */
         public override function toString():String
         {
-            return "[" + getClassName(this) + ":" + filter + "]" ;
+            return formatToString( getClassName(this) , "filter" ) ;
         }
     }
 }

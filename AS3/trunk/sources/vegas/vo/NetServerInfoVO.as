@@ -37,11 +37,11 @@
 
 package vegas.vo 
 {
+    import core.dump;
     import core.reflect.getClassName;
     import core.reflect.getClassPath;
 
     import system.Serializable;
-    import system.eden;
 
     import flash.net.registerClassAlias;
 
@@ -123,10 +123,10 @@ package vegas.vo
          * Returns the Object representation of this object.
          * @return the Object representation of this object.
          */
-        public function toObject():Object
+        public override function toObject():Object
         {
             return { code:code , description:description , level:level, line:line, methodName:methodName, serviceName:serviceName , application:application } ;
-        }    
+        }
         
         /**
          * Returns the source code string representation of the object.
@@ -134,7 +134,7 @@ package vegas.vo
          */
         public override function toSource( indent:int = 0 ):String 
         {
-            return "new " + getClassPath(this, true) + "(" + eden.serialize(toObject()) + ")" ;
+            return "new " + getClassPath(this, true) + "(" + dump( toObject() ) + ")" ;
         }
         
         /**
@@ -143,29 +143,7 @@ package vegas.vo
          */
         public override function toString():String
         {
-            var str:String = "[" + getClassName(this) ;
-            if (code != null && code.length > 0)
-            {
-                str += " code:" + code ;
-            }
-            if (level != null && level.length > 0)
-            {
-                str += " level:" + level;
-            }
-            if (description != null && description.length > 0)
-            {
-                str += " description:" + description;
-            }
-            if ( !isNaN(line) && line.toString().length > 0)
-            {
-                str += " line:" + line;
-            }
-            if (application != null)
-            {
-                str += " application:" + application  ;
-            }
-            str += "]" ;
-            return str ;
+            return formatToString( getClassName(this) , "code" , "level" , "description" , "line" , "application" ) ;
         }
     }
 }

@@ -37,6 +37,8 @@ package vegas.vo
 {
     import buRRRn.ASTUce.framework.TestCase;
 
+    import core.dump;
+
     import system.data.ValueObject;
 
     public class SimpleValueObjectTest extends TestCase 
@@ -96,6 +98,13 @@ package vegas.vo
             assertNull( vo.id ) ;
             vo.id = "test" ;
             assertEquals( "test" , vo.id ) ;
+        }
+        
+        public function testToObject():void
+        {
+            assertEquals( "{id:undefined}" , dump(vo.toObject()) ) ;
+            vo.id = "test" ;
+            assertEquals( '{id:"test"}' , dump(vo.toObject()) ) ;
         }
         
         public function testToSource():void
