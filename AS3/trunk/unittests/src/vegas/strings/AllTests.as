@@ -44,6 +44,7 @@ package vegas.strings
         {
             var suite:TestSuite = new TestSuite( "vegas.strings unit tests" );
             
+            suite.addTestSuite( HTMLFormatterTest ) ;
             suite.addTestSuite( MinifierTest ) ;
             suite.addTestSuite( MinifierStringsTest ) ;
             
