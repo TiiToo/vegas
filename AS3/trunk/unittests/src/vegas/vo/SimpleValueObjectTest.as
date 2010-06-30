@@ -36,12 +36,84 @@
 package vegas.vo  
 {
     import buRRRn.ASTUce.framework.TestCase;
-    
+
+    import system.data.ValueObject;
+
     public class SimpleValueObjectTest extends TestCase 
     {
         public function SimpleValueObjectTest(name:String = "")
         {
             super(name);
+        }
+        
+        public var vo:SimpleValueObject ;
+        
+        public function setUp():void
+        {
+            vo = new SimpleValueObject() ;
+        }
+        
+        public function tearDown():void
+        {
+            vo = null ;
+        }
+        
+        public function testConstructor():void
+        {
+            assertNotNull( vo ) ;
+        }
+        
+        public function testConstructorWithArgument():void
+        {
+            vo = new SimpleValueObject( { id : "foo" } ) ;
+            assertEquals( "foo" , vo.id ) ;
+        }
+        
+        public function testInterface():void
+        {
+            assertTrue( vo is ValueObject ) ;
+        }
+        
+        public function testEquals():void
+        {
+            assertEquals( vo , new SimpleValueObject() ) ;
+            
+            vo.id = "test" ;
+            assertEquals( vo , new SimpleValueObject({id:"test"}) ) ;
+        }
+        
+        public function testFormatToString():void
+        {
+            assertEquals( vo.formatToString() , "[SimpleValueObject]" ) ;
+            assertEquals( vo.formatToString( null ) , "[SimpleValueObject]" ) ;
+            assertEquals( vo.formatToString("Test") , "[Test]" ) ;
+            assertEquals( vo.formatToString("Test",2) , "[Test]" ) ;
+            assertEquals( vo.formatToString("Test","id") , "[Test id:null]" ) ;
+        }
+        
+        public function testId():void
+        {
+            assertNull( vo.id ) ;
+            vo.id = "test" ;
+            assertEquals( "test" , vo.id ) ;
+        }
+        
+        public function testToSource():void
+        {
+            assertEquals( "new vegas.vo.SimpleValueObject({id:undefined})" , vo.toSource() ) ;
+            vo.id = "test" ;
+            assertEquals( "new vegas.vo.SimpleValueObject({id:\"test\"})" , vo.toSource() ) ;
+        }
+        
+        public function testToStringDefault():void
+        {
+            assertEquals( "[SimpleValueObject id:null]" , vo.toString() ) ;
+        }
+        
+        public function testToString():void
+        {
+            vo.id = "test" ;
+            assertEquals( "[SimpleValueObject id:test]" , vo.toString() ) ;
         }
     }
 }

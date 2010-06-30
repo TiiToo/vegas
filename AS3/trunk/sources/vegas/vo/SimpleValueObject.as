@@ -37,6 +37,7 @@
 
 package vegas.vo
 {
+    import core.dump;
     import core.reflect.getClassName;
     import core.reflect.getClassPath;
 
@@ -99,12 +100,43 @@ package vegas.vo
         }
         
         /**
+         * A utility function for implementing the toString() method. 
+         * Overriding the toString() method is recommended, but not required.
+         */
+        public function formatToString( className:String = null , ...args:Array ):String
+        {
+            var source:String ;
+            
+            source = "[" ;
+            
+            source += ( className != null && className != "" ) ? className : getClassName(this) ;
+            
+            if ( args.length > 0 )
+            {
+                var m:String ; 
+                var i:int ;
+                var l:int = args.length ;
+                for( i = 0 ; i<l ; i++ )
+                {
+                    m = args[i] as String;
+                    if ( m && m in this )
+                    {
+                        source += " " + m + ":" + (this[m] == null ? "null" : String(this[m]) ) ;
+                    }
+                }
+            }
+            
+            source += "]" ;
+            
+            return source ;
+        }
+        /**
          * Returns the source code string representation of the object.
          * @return the source code string representation of the object.
          */
         public function toSource( indent:int = 0 ):String 
         {
-            return "new " + getClassPath(this, true) + "()" ;
+            return "new " + getClassPath(this, true) + "(" + dump({id:id}) + ")" ;
         }
         
         /**
@@ -113,13 +145,7 @@ package vegas.vo
          */
         public function toString():String
         {
-            var str:String = "[" + getClassName(this) ;
-            if ( this.id != null )
-            {
-                str += " " + this.id ;
-            } 
-            str += "]" ;
-            return str ;
+            return formatToString( getClassName(this) , "id" ) ;
         }
         
         /**
