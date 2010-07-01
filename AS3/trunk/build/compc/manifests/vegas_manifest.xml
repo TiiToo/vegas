@@ -253,10 +253,11 @@
     <component id="vegas.net:NetServerLevel"      class="vegas.net.NetServerLevel"      />
     <component id="vegas.net:NetServerStatus"     class="vegas.net.NetServerStatus"     />
     
-    <component id="vegas.net:NetStreamClient"     class="vegas.net.NetStreamClient"     />
-    <component id="vegas.net:NetStreamExpert"     class="vegas.net.NetStreamExpert"     />
-    <component id="vegas.net:NetStreamStatus"     class="vegas.net.NetStreamStatus"     />
-    <component id="vegas.net:NetStreamTransition" class="vegas.net.NetStreamTransition" />
+    <component id="vegas.net:NetStreamClient"      class="vegas.net.NetStreamClient"      />
+    <component id="vegas.net:NetStreamExpert"      class="vegas.net.NetStreamExpert"      />
+    <component id="vegas.net:NetStreamPublishType" class="vegas.net.NetStreamPublishType" />
+    <component id="vegas.net:NetStreamStatus"      class="vegas.net.NetStreamStatus"      />
+    <component id="vegas.net:NetStreamTransition"  class="vegas.net.NetStreamTransition"  />
     
     <component id="vegas.net:ParserLoader"        class="vegas.net.ParserLoader"        />
     <component id="vegas.net:XMLLoader"           class="vegas.net.XMLLoader"           />
