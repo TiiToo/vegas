@@ -76,6 +76,12 @@ package vegas.net
         public static const CONNECT_INVALID_APP:String =  "NetConnection.Connect.InvalidApp";
         
         /**
+         * Flash Player has detected a network change, for example, a dropped wireless connection, a successful wireless connection,or a network cable loss. 
+         * Use this event to check for a network interface change. Don't use this event to implement your NetConnection reconnect logic. Use "NetConnection.Connect.Closed" to implement your NetConnection reconnect logic.
+         */
+        public static const CONNECT_NETWORK_CHANGE:String = "NetConnection.Connect.NetworkChange" ;
+        
+        /**
          * The connection attempt did not have permission to access the application.
          */
         public static const CONNECT_REJECTED:String =  "NetConnection.Connect.Rejected" ;

@@ -239,6 +239,22 @@ package vegas.net
         }
         
         /**
+         * This signal emit when the Flash Player has detected a network change, for example, a dropped wireless connection, a successful wireless connection,or a network cable loss. 
+         */
+        public function get connectNetworkChange():Signaler
+        {
+            return _connectNetworkChange ;
+        }
+        
+        /**
+         * @private
+         */
+        public function set connectNetworkChange( signal:Signaler ):void
+        {
+            _connectNetworkChange = signal || new Signal() ;
+        }
+        
+        /**
          * This signal emit when the connection attempt succeeded.
          */
         public function get connectSuccess():Signaler
@@ -535,6 +551,11 @@ package vegas.net
         /**
          * @private
          */
+        protected var _connectNetworkChange:Signaler = new Signal() ;
+        
+        /**
+         * @private
+         */
         protected var _connectRejected:Signaler = new Signal() ;
         
         /**
@@ -619,12 +640,12 @@ package vegas.net
                 }
                 case ConnectionCode.CALL_FAILED :
                 {
-                    _callFailed.emit(this , info ) ;
+                    _callFailed.emit( this , info ) ;
                    break ;
                 }
                 case ConnectionCode.CALL_PROHIBITED :
                 {
-                    _callProhibited.emit(this , info ) ;
+                    _callProhibited.emit( this , info ) ;
                    break ;
                 }
                 case ConnectionCode.CONNECT_CLOSED :
@@ -639,8 +660,13 @@ package vegas.net
                 }
                 case ConnectionCode.CONNECT_INVALID_APP :
                 {
-                    _connectInvalidApp.emit(this , info ) ;
+                    _connectInvalidApp.emit( this , info ) ;
                    break ;
+                }
+                case ConnectionCode.CONNECT_NETWORK_CHANGE :
+                {
+                    _connectNetworkChange.emit( this, info ) ;
+                    break ;
                 }
                 case ConnectionCode.CONNECT_REJECTED :
                 {
@@ -649,7 +675,7 @@ package vegas.net
                 }
                 case ConnectionCode.CONNECT_SHUTDOWN :
                 {
-                    _connectAppShutDown.emit(this , info ) ;
+                    _connectAppShutDown.emit( this , info ) ;
                    break ;
                 }
                 case ConnectionCode.CONNECT_SUCCESS :
