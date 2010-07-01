@@ -37,8 +37,9 @@
 
 package vegas.net
 {
+    import core.dump;
+    
     import system.Serializable;
-    import system.eden;
     
     /**
      * Defines the information object in a onStatus callback method.
@@ -96,7 +97,7 @@ package vegas.net
          */
         public function toSource( indent:int = 0 ):String 
         {
-            return "new vegas.net.NetServerInfo(" + eden.serialize( toObject() ) + ")" ;
+            return "new vegas.net.NetServerInfo(" + dump( toObject() ) + ")" ;
         }
         
         /**
@@ -120,7 +121,7 @@ package vegas.net
             }
             if (application != null)
             {
-                s += ",application:" + eden.serialize(application)  ;
+                s += ",application:" + dump(application)  ;
             }
             s += "]" ;
             return s ;
