@@ -295,6 +295,22 @@ package vegas.net
         }
         
         /**
+         * This signal emit when the notifyInfo method is invoked. 
+         */
+        public function get infoIt():Signaler
+        {
+            return _infoIt ;
+        }
+        
+        /**
+         * @private
+         */
+        public function set infoIt( signal:Signaler ):void
+        {
+            _infoIt = signal || new Signal() ;
+        }
+        
+        /**
          * The current phase of the action.
          * @see system.process.TaskPhase
          */
