@@ -230,22 +230,34 @@
     
     <component id="vegas.net:BOM"                 class="vegas.net.BOM"                 />
     <component id="vegas.net:BOMInspector"        class="vegas.net.BOMInspector"        />
+    
+    <component id="vegas.net:Connection"          class="vegas.net.Connection"          />
+    <component id="vegas.net:ConnectionCode"      class="vegas.net.ConnectionCode"      />
+    <component id="vegas.net:ConnectionLevel"     class="vegas.net.ConnectionLevel"     />
+    
     <component id="vegas.net:EdenLoader"          class="vegas.net.EdenLoader"          />
     <component id="vegas.net:FlashVars"           class="vegas.net.FlashVars"           />
+    
     <component id="vegas.net:HTMLEntities"        class="vegas.net.HTMLEntities"        />
     <component id="vegas.net:HTTPHost"            class="vegas.net.HTTPHost"            />
+    
     <component id="vegas.net:INetStreamClient"    class="vegas.net.INetStreamClient"    />
+    
     <component id="vegas.net:JSONLoader"          class="vegas.net.JSONLoader"          />
+    
     <component id="vegas.net:MIME"                class="vegas.net.MIME"                />
+    
     <component id="vegas.net:NetServerConnection" class="vegas.net.NetServerConnection" />
     <component id="vegas.net:NetServerGateway"    class="vegas.net.NetServerGateway"    />
     <component id="vegas.net:NetServerInfo"       class="vegas.net.NetServerInfo"       />
     <component id="vegas.net:NetServerLevel"      class="vegas.net.NetServerLevel"      />
     <component id="vegas.net:NetServerStatus"     class="vegas.net.NetServerStatus"     />
+    
     <component id="vegas.net:NetStreamClient"     class="vegas.net.NetStreamClient"     />
     <component id="vegas.net:NetStreamExpert"     class="vegas.net.NetStreamExpert"     />
     <component id="vegas.net:NetStreamStatus"     class="vegas.net.NetStreamStatus"     />
     <component id="vegas.net:NetStreamTransition" class="vegas.net.NetStreamTransition" />
+    
     <component id="vegas.net:ParserLoader"        class="vegas.net.ParserLoader"        />
     <component id="vegas.net:XMLLoader"           class="vegas.net.XMLLoader"           />
     
