@@ -39,6 +39,7 @@
 
 getPackage("system.data") ;
 getPackage("system.errors") ;
+getPackage("system.evaluators") ;
 getPackage("system.events") ;
 getPackage("system.formatters") ;
 getPackage("system.logging") ;
@@ -57,6 +58,7 @@ load("unittests/system/SortableTest.js") ;
 
 load("unittests/system/data/AllTests.js") ;
 load("unittests/system/errors/AllTests.js") ;
+load("unittests/system/evaluators/AllTests.js") ;
 load("unittests/system/events/AllTests.js") ;
 load("unittests/system/formatters/AllTests.js") ;
 load("unittests/system/logging/AllTests.js") ;
@@ -85,6 +87,7 @@ system.AllTests.suite = function()
     
     suite.addTest( system.data.AllTests.suite()       );
     suite.addTest( system.errors.AllTests.suite()     );
+    suite.addTest( system.evaluators.AllTests.suite() );
     suite.addTest( system.events.AllTests.suite()     );
     suite.addTest( system.formatters.AllTests.suite() );
     suite.addTest( system.logging.AllTests.suite()    );
