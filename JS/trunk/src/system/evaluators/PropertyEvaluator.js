@@ -37,6 +37,57 @@
 
 /**
  * Evaluates a type string expression and return the property value who corresponding in the target object specified in this evaluator.
+ * <p><b>Example :</b></p>
+ * <pre>
+ * PropertyEvaluator = system.evaluators.PropertyEvaluator ;
+ * 
+ * var obj =
+ * {
+ *     message : "hello world" ,
+ *     title   : "my title"    ,
+ *     menu    :
+ *     {
+ *         title : "my menu title" ,
+ *         label : "my label"
+ *     }
+ * }
+ * 
+ * var evaluator = new PropertyEvaluator( obj ) ;
+ * 
+ * // valid expressions
+ * 
+ * trace( evaluator.eval( "message"    ) ) ; // hello world
+ * trace( evaluator.eval( "title"      ) ) ; // my title
+ * trace( evaluator.eval( "menu.title" ) ) ; // my menu title
+ * trace( evaluator.eval( "menu.label" ) ) ; // my label
+ * 
+ * // invalid expressions
+ * 
+ * trace( evaluator.eval( ""            ) ) ; // null
+ * trace( evaluator.eval( "unknow"      ) ) ; // null
+ * trace( evaluator.eval( "menu.unknow" ) ) ; // null
+ * 
+ * // change the "undefineable" value returns in the eval() method when the evaluation failed.
+ * 
+ * evaluator.undefineable = "empty" ;
+ * trace( evaluator.eval( "unknow" ) ) ; // empty ;
+ * 
+ * evaluator.undefineable = undefined ;
+ * trace( evaluator.eval( "unknow" ) ) ; // undefined ;
+ * 
+ * // activate the throwError mode.
+ * 
+ * evaluator.throwError = true ;
+ * 
+ * try
+ * {
+ *     evaluator.eval( "test" ) ;
+ * }
+ * catch( e )
+ * {
+ *     trace( e ) ; // ##EvalError: [object PropertyEvaluator] eval failed with the expression : test##
+ * }
+ * </pre>
  */
 if ( system.evaluators.PropertyEvaluator == undefined ) 
 {
