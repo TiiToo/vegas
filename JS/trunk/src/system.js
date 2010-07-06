@@ -128,6 +128,7 @@ catch(e)
     // system.evaluators
     
     require( "system.evaluators.Evaluable" ) ;
+    require( "system.evaluators.PropertyEvaluator" ) ;
     
     // system.events
     
