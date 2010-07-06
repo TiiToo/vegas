@@ -36,6 +36,7 @@
 */
 
 load("unittests/system/evaluators/EvaluableTest.js") ;
+load("unittests/system/evaluators/PropertyEvaluatorTest.js") ;
 
 // ----o constructor
 
@@ -50,6 +51,7 @@ system.evaluators.AllTests.suite = function()
     //suite.simpleTrace = true;
     
     suite.addTest( new TestSuite( system.evaluators.EvaluableTest ) ) ;
+    suite.addTest( new TestSuite( system.evaluators.PropertyEvaluatorTest ) ) ;
     
     return suite ;
 }

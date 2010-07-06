@@ -54,4 +54,14 @@ if ( system.evaluators.Evaluable == undefined )
     {
         // 
     }
+    
+    
+    /**
+     * Returns the string representation of this instance.
+     * @return the string representation of this instance.
+     */
+    system.evaluators.Evaluable.prototype.toString = function () /*String*/ 
+    {
+        return "[" + this.getConstructorName() + "]" ;
+    }
 }

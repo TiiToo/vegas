@@ -84,12 +84,12 @@ if ( system.evaluators.PropertyEvaluator == undefined )
      */
     proto.eval = function ( o )  
     {
-        if ( o != null && ( typeof(o) == "string" || o instanceof String ) && target != null )
+        if ( o != null && ( typeof(o) == "string" || o instanceof String ) && this.target != null )
         {
             var exp /*String*/ = String(o) ;
             if ( exp.length > 0 )
             {
-                var value = target ;
+                var value = this.target ;
                 var members /*Array*/ = exp.split( this.separator ) ;
                 var len /*int*/ = members.length ;
                 for ( var i /*int*/ = 0 ; i < len ; i++ )
@@ -112,4 +112,6 @@ if ( system.evaluators.PropertyEvaluator == undefined )
         }
         return this.undefineable ;
     }
+    
+    delete proto ;
 }

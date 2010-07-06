@@ -55,3 +55,9 @@ system.evaluators.EvaluableTest.prototype.testInterface = function ()
     this.assertNotNull( evaluators ) ; 
     this.assertTrue( "eval" in evaluators ) ;
 }
+
+system.evaluators.EvaluableTest.prototype.testToString = function () 
+{
+    var evaluators = new system.evaluators.Evaluable() ;
+    this.assertEquals( "[Evaluable]" , evaluators.toString() ) ;
+}
