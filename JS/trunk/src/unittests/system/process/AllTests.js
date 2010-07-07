@@ -61,6 +61,7 @@ load("unittests/system/process/TaskTest.js") ;
 load("unittests/system/process/TaskGroupTest.js") ;
 load("unittests/system/process/TaskPhaseTest.js") ;
 load("unittests/system/process/TimeoutPolicyTest.js") ;
+load("unittests/system/process/TimerTest.js") ;
 
 system.process.AllTests = {} ;
 
@@ -90,6 +91,7 @@ system.process.AllTests.suite = function()
     suite.addTest( new TestSuite( system.process.TaskGroupTest     ) ) ;
     suite.addTest( new TestSuite( system.process.TaskPhaseTest     ) ) ;
     suite.addTest( new TestSuite( system.process.TimeoutPolicyTest ) ) ;
+    suite.addTest( new TestSuite( system.process.TimerTest         ) ) ;
     
     return suite ;
 }
