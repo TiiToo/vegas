@@ -49,9 +49,14 @@ load("./core/String.js") ;
 SRC     = "./" ;
 SUFFIX  = ".js" ;
 
+if ( _global.core == undefined )
+{
+    getPackage( "core") ;
+}
+
+
 // packages
 
-getPackage( "core") ;
 getPackage( "core.arrays"  ) ;
 getPackage( "core.strings" ) ;
 

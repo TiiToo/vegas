@@ -35,23 +35,49 @@
   
 */
 
-load("unittests/vegas/net/NetServerConnectionTest.js") ;
-load("unittests/vegas/net/NetServerInfoTest.js") ;
+// ---o Constructor
 
-// ----o constructor
-
-vegas.net.AllTests = {} ;
-
-vegas.net.AllTests.suite = function() 
+vegas.net.NetServerConnectionTest = function( name ) 
 {
-    var TestSuite = buRRRn.ASTUce.TestSuite;
-    
-    var suite = new TestSuite( "vegas.net unit tests" );
-    
-    //suite.simpleTrace = true;
-    
-    suite.addTest( new TestSuite( vegas.net.NetServerConnectionTest ) ) ;
-    suite.addTest( new TestSuite( vegas.net.NetServerInfoTest ) ) ;
-    
-    return suite ;
+    buRRRn.ASTUce.TestCase.call( this , name ) ;
 }
+
+// ----o Inherit
+
+vegas.net.NetServerConnectionTest.prototype             = new buRRRn.ASTUce.TestCase() ;
+vegas.net.NetServerConnectionTest.prototype.constructor = vegas.net.NetServerConnectionTest ;
+
+proto = vegas.net.NetServerConnectionTest.prototype ;
+
+// ----o Initialize
+
+proto.setUp = function()
+{
+    this.connection = new vegas.net.NetServerConnection() ;
+}
+
+proto.tearDown = function()
+{
+    this.connection = null ;
+}
+
+// ----o Public Methods
+
+proto.testInherit = function () 
+{
+    this.assertTrue( this.connection instanceof system.process.CoreAction ) ;
+}
+
+proto.testToSource = function () 
+{
+    this.assertEquals( "new vegas.net.NetServerConnection()" , this.connection.toSource() ) ;
+}
+
+proto.testToString = function () 
+{
+    this.assertEquals( "[NetServerConnection]" , this.connection.toString() ) ;
+}
+
+// ----o Encapsulate
+
+delete proto ;

@@ -57,8 +57,8 @@ AllTests.suite = function()
     
     // suite.simpleTrace = true;
     
-    suite.addTest( core.AllTests.suite() ) ;
-    suite.addTest( system.AllTests.suite() ) ;
+    // suite.addTest( core.AllTests.suite() ) ;
+    // suite.addTest( system.AllTests.suite() ) ;
     suite.addTest( vegas.AllTests.suite() ) ;
     
     return suite ;

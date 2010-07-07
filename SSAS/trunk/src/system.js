@@ -35,21 +35,18 @@
   
 */
 
-try 
+// constants
+
+SRC     = "./" ;
+SUFFIX  = ".js" ;
+
+if ( _global.system == undefined )
 {
-    dummy = system ;
-}
-catch(e) 
-{
-    // constants
-    
-    SRC     = "./" ;
-    SUFFIX  = ".js" ;
-    
-    // packages
-    
     getPackage("system") ;
-    
+}
+
+if ( _global.system )
+{
     getPackage("system.data") ;
     getPackage("system.data.collections") ;
     getPackage("system.data.iterators") ;
