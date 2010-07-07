@@ -1,6 +1,7 @@
 ///////////////////////////
 
-load( "trace.js" ) ; // Rhino hack
+load( "trace.js" ) ;
+
 
 load( "buRRRn.js" ) ;
 load( "core.js"   ) ;

@@ -41,5 +41,10 @@ try
 }
 catch( e )
 {
+    /**
+     * rhino : print 
+     * V8    : print or write (no return)
+     * JSDB  : writeln
+     */
     trace = print ;
 }
