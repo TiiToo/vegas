@@ -1,0 +1,3464 @@
+<HTML><HEAD><TITLE>JSDB Reference</TITLE>
+<style type=text/css>
+<!--
+
+P {margin-left=2px; margin-top=0px; font:10pt/12pt Helvetica,Arial,sans-serif}
+TD {margin-left=10px; margin-top=0px; margin-bottom=3px; font:10pt/12pt Helvetica,Arial,sans-serif; vertical-align:top}
+DT {margin-left=10px; margin-top=2px; font:10pt/12pt Helvetica,Arial,sans-serif}
+DD {margin-left=10px; margin-top=0px; font:10pt/12pt Helvetica,Arial,sans-serif}
+H2 {margin-left=0px; margin-top=5px; padding: 3px; background-color: rgb(255,255,192); border-top: thin solid #000000; font-weight: bold; font:14pt/14pt Helvetica,Arial,sans-serif}
+H3 {margin-left=5px; font-weight: bold; font:12pt/14pt Helvetica,Arial,sans-serif}
+tt {font:10pt/12pt Courier,monospace}
+
+-->
+</style></head>
+</head><body>
+<H2><a name=ActiveX><b>ActiveX</b></H2>
+<H3><b>Properties</b></H3>
+<TABLE>
+<TR><TD width=2% NOWRAP valign=top><A NAME=ActiveX_className></A><font color="purple">className</font><TD valign=top><font color="navy">String</font></td>
+<TD valign=top width=98%>"ActiveX"
+<TR><TD width=2% NOWRAP valign=top><A NAME=ActiveX_members></A><font color="purple">members</font><TD valign=top><font color="navy">Object</font></td>
+<TD valign=top width=98%>A hash table describing the functions and properties of the COM object. Use
+<tt>for (var x in obj.members) {writeln(x,'=',obj.members[x]);}</tt> to view the list and the COM-supplied documentation.
+</TABLE>
+<H3><b>Functions</b></H3><DL>
+<DT><A NAME=ActiveX_ActiveX></A>
+<font color="green">ActiveX</font>(
+<font color="purple">id</font> <font color="navy">String</font>, <font color="purple">forceNew</font> <font color="navy">Any</font>)
+<dd><TABLE>
+<TR><TD width=2% NOWRAP valign=top><font color="purple">id</font>
+<TD valign=top>CLSID or object title from the registry
+<TR><TD width=2% NOWRAP valign=top><font color="purple">forceNew</font>
+<TD valign=top>Try to create a new object
+<tr><Td colspan=2>
+The constructor tries to connect the active object in a COM class. If there is no active object, it will try to create one with CoCreateInstance(). The constructor will throw an exception if the COM class does not implement the IDispatch interface. If you use a 
+second parameter (of any value), a new COM object will always be created.
+</TABLE>
+<DT><A NAME=ActiveX_close></A>
+<font color="green">close</font>(
+)
+<dd><TABLE>
+<tr><Td colspan=2>
+Closes the COM object and frees unused ActiveX libraries.
+</TABLE>
+<DT><A NAME=ActiveX_get></A>
+<font color="green">get</font>(
+<font color="purple">name</font> <font color="navy">String</font>)
+ returns <font color="navy">Object</font>
+<dd><TABLE>
+<tr><Td colspan=2>
+If a COM property ID is less than 255, it will appear as an automatic property of the JS object. Otherwise, use get() and set() to read and change property values. Recognized  VARIANT types are BOOLEAN, INT4, DOUBLE, NULL, BSTR, IUnknown, and IDispatch. 
+</TABLE>
+<DT><A NAME=ActiveX_set></A>
+<font color="green">set</font>(
+<font color="purple">name</font> <font color="navy">String</font>, <font color="purple">value</font> <font color="navy">Any</font>)
+ returns <font color="navy">Object</font>
+<dd><TABLE>
+<tr><Td colspan=2>
+If a COM property ID is less than 255, it will appear as an automatic property of the JS object. Otherwise, use get() and set() to read and change property values. The property must accept VARIANT types of BOOLEAN, INT4, DOUBLE, NULL, or BSTR. 
+</TABLE>
+<DT><A NAME=ActiveX_toString></A>
+<font color="green">toString</font>(
+)
+ returns <font color="navy">String</font>
+<dd><TABLE>
+<tr><Td colspan=2>
+invokes the COM toString(...) method. If that function doesn't exist, it returns the property with index=0.
+<pre>
+idl file:
+  [propget, id(0), helpstring("property toString")] HRESULT toString([out,retval] VARIANT *rv);
+implementation:
+  STDMETHODIMP CFoo::get_whoami(VARIANT *rv)
+  {
+    rv->vt = VT_BSTR;
+    rv->bstrVal = SysAllocString(L"[Foo object]");
+    return S_OK;
+  }
+</pre>
+</TABLE>
+</DL>
+<H2><a name=Archive><b>Archive</b></H2>
+<H3><b>Properties</b></H3>
+<TABLE>
+<TR><TD width=2% NOWRAP valign=top><A NAME=Archive_count></A><font color="purple">count</font><TD valign=top><font color="navy">Number</font></td>
+<TD valign=top width=98%>Number of files included in the archive.
+</TABLE>
+<H3><b>Functions</b></H3><DL>
+<DT><A NAME=Archive_Archive></A>
+<font color="green">Archive</font>(
+<font color="purple">file</font> <font color="navy">String|Stream</font>)
+<dd><TABLE>
+<tr><Td colspan=2>
+The constructor needs a seekable stream (like a file or memory) or a filename. The stream used to
+open the archive will be kept open (even if it is deleted) until the archive is freed.
+</TABLE>
+<DT><A NAME=Archive_Archive.compress></A>
+<font color="green">Archive.compress</font>(
+<font color="purple">data</font> <font color="navy">String</font>)
+ returns <font color="navy">String</font>
+<dd><TABLE>
+<tr><Td colspan=2>
+Returns the compressed string contents.
+</TABLE>
+<DT><A NAME=Archive_Archive.uncompress></A>
+<font color="green">Archive.uncompress</font>(
+<font color="purple">compressed data</font> <font color="navy">String</font>)
+ returns <font color="navy">String</font>
+<dd><TABLE>
+<tr><Td colspan=2>
+Returns the uncompressed string contents.
+</TABLE>
+<DT><A NAME=Archive_close></A>
+<font color="green">close</font>(
+)
+<dd><TABLE>
+<tr><Td colspan=2>
+Closes the archive and frees the stream.
+</TABLE>
+<DT><A NAME=Archive_extract></A>
+<font color="green">extract</font>(
+<font color="purple">index</font> <font color="navy">Number|String</font>, <font color="purple">stream</font> <font color="navy">Stream</font>)
+ returns <font color="navy">Number</font>
+<dd><TABLE>
+<tr><Td colspan=2>
+If the 2nd parameter is a stream, data are uncompressed to that stream. Otherwise, a new memory stream
+is returned containing the file data.
+</TABLE>
+<DT><A NAME=Archive_find></A>
+<font color="green">find</font>(
+<font color="purple">name</font> <font color="navy">String</font>)
+ returns <font color="navy">Number</font>
+<dd><TABLE>
+<tr><Td colspan=2>
+Returns the index of the file, or -1 if it does not exist
+</TABLE>
+<DT><A NAME=Archive_has></A>
+<font color="green">has</font>(
+<font color="purple">name</font> <font color="navy">String|Number</font>)
+ returns <font color="navy">Number</font>
+<dd><TABLE>
+<tr><Td colspan=2>
+Returns true if the file is in the archive
+</TABLE>
+<DT><A NAME=Archive_name></A>
+<font color="green">name</font>(
+<font color="purple">index</font> <font color="navy">Number</font>)
+ returns <font color="navy">String</font>
+<dd><TABLE>
+<tr><Td colspan=2>
+Returns the filename.
+</TABLE>
+<DT><A NAME=Archive_size></A>
+<font color="green">size</font>(
+<font color="purple">index</font> <font color="navy">Number</font>)
+ returns <font color="navy">Number</font>
+<dd><TABLE>
+<tr><Td colspan=2>
+Returns the uncompressed size of the file.
+</TABLE>
+</DL>
+<H2><a name=Form><b>Form</b></H2>
+<H3><b>Properties</b></H3>
+<TABLE>
+<TR><TD width=2% NOWRAP valign=top><A NAME=Form_count></A><font color="purple">count</font><TD valign=top><font color="navy">Number</font></td>
+<TD valign=top width=98%>number of questions
+<TR><TD width=2% NOWRAP valign=top><A NAME=Form_file_id></A><font color="purple">file_id</font><TD valign=top><font color="navy">Number</font></td>
+<TD valign=top width=98%>FORM tag index (usually zero)
+<TR><TD width=2% NOWRAP valign=top><A NAME=Form_name></A><font color="purple">name</font><TD valign=top><font color="navy">String</font></td>
+<TD valign=top width=98%>the filename of the EZF file
+<TR><TD width=2% NOWRAP valign=top><A NAME=Form_options></A><font color="purple">options</font><TD valign=top><font color="navy">Record</font></td>
+<TD valign=top width=98%>form options
+</TABLE>
+<H3><b>Functions</b></H3><DL>
+<DT><A NAME=Form_Form></A>
+<font color="green">Form</font>(
+<font color="purple">name</font> <font color="navy">String|Stream</font>, <font color="purple">index</font> <font color="navy">Number</font>)
+ returns <font color="navy">Form</font>
+<dd><TABLE>
+<TR><TD width=2% NOWRAP valign=top><font color="purple">name</font>
+<TD valign=top>Form filename, XML text, or a Stream.
+<TR><TD width=2% NOWRAP valign=top><font color="purple">index</font>
+<TD valign=top>A HTML file may contain multiple  <FORM> tags. If you
+  don't want to load read the first of these, specify the form's index
+  within the file.
+<tr><Td colspan=2>
+
+Reads an EZF or HTML form into memory. This is a special-purpose XML
+  interpreter. Question properties are accessed using the getXXX() and setXXX()
+  functions. Question properties you can use are:
+  <ul><li>Name (fieldname): String
+  <li>Text :String
+  <li>Description:String
+  <li>Length: Number
+  <li>Help: String
+  <li>Extra (unparsed XML within the question): String
+  <li>Type: String (see below)
+  <li>Responses: Record (names = codes, values = descriptions)
+  <li>Options: Record
+  <li>Skips: Record
+  </ul>
+  For each of these properties, there is a getXXX() and setXXX() function, whose
+  syntax are similar to getType() and setType(), described below.
+</TABLE>
+<DT><A NAME=Form_addQuestion></A>
+<font color="green">addQuestion</font>(
+<font color="purple">Type</font> <font color="navy">String</font>, <font color="purple">Fieldname</font> <font color="navy">String</font>, <font color="purple">Text</font> <font color="navy">String</font>, <font color="purple">Description</font> <font color="navy">String</font>, <font color="purple">Responses</font> <font color="navy">String</font>, <font color="purple">Length</font> <font color="navy">Integer</font>, <font color="purple">Options</font> <font color="navy">String</font>, <font color="purple">Before</font> <font color="navy">Integer</font>)
+ returns <font color="navy">Number</font>
+<dd><TABLE>
+<TR><TD width=2% NOWRAP valign=top><font color="purple">Responses</font>
+<TD valign=top>Pipe-delimited list of codes and values
+<TR><TD width=2% NOWRAP valign=top><font color="purple">Options</font>
+<TD valign=top>Pipe-delimited list of options
+<TR><TD width=2% NOWRAP valign=top><font color="purple">Before</font>
+<TD valign=top>Insert before this question (-1 for end)
+<tr><Td colspan=2>
+
+</TABLE>
+<DT><A NAME=Form_find></A>
+<font color="green">find</font>(
+<font color="purple">fieldname</font> <font color="navy">String</font>)
+ returns <font color="navy">Number</font>
+<dd><TABLE>
+<TR><TD width=2% NOWRAP valign=top><font color="purple">fieldname</font>
+<TD valign=top>Field name
+<tr><Td colspan=2>
+Returns the question number (starting with 0) that matches a given fieldname.
+</TABLE>
+<DT><A NAME=Form_getType></A>
+<font color="green">getType</font>(
+<font color="purple">index</font> <font color="navy">Number</font>)
+ returns <font color="navy">String</font>
+<dd><TABLE>
+<TR><TD width=2% NOWRAP valign=top><font color="purple">index</font>
+<TD valign=top>Question number (starting with 0)
+<tr><Td colspan=2>
+
+Retrieves a question type. Question types are:
+  <pre>
+Text
+Password
+Date
+Time
+Number
+Radio
+Weighted
+Check
+Single
+Multiple
+Combo
+Rank
+Hidden
+Section
+Page
+RichText
+Image
+PlainText
+ToolButton
+</pre>
+</TABLE>
+<DT><A NAME=Form_hasData></A>
+<font color="green">hasData</font>(
+<font color="purple">index</font> <font color="navy">Number</font>)
+ returns <font color="navy">Boolean</font>
+<dd><TABLE>
+<TR><TD width=2% NOWRAP valign=top><font color="purple">index</font>
+<TD valign=top>Question number (starting with 0)
+<tr><Td colspan=2>
+Returns true if the field can contain data, or false if it's a layout object.
+</TABLE>
+<DT><A NAME=Form_isPageStart></A>
+<font color="green">isPageStart</font>(
+<font color="purple">index</font> <font color="navy">Number</font>)
+ returns <font color="navy">Boolean</font>
+<dd><TABLE>
+<TR><TD width=2% NOWRAP valign=top><font color="purple">index</font>
+<TD valign=top>Question number
+<tr><Td colspan=2>
+
+Determines if the question starts a new page. This is the case if
+  <ul><li>the previous question has the "end-of-page" attribute (EZSurvey)
+  <li>the question is a PAGE type (created in InterForm)
+  <li>the question has the "new-page" attribute (EZSurvey)
+  <li>the question is a Section type following a non-Section type question
+  <li>the question is the first one in the form
+  </ul>
+</TABLE>
+<DT><A NAME=Form_move></A>
+<font color="green">move</font>(
+<font color="purple">start</font> <font color="navy">Number</font>, <font color="purple">finish</font> <font color="navy">Number</font>)
+ returns <font color="navy">Boolean</font>
+<dd><TABLE>
+<TR><TD width=2% NOWRAP valign=top><font color="purple">start</font>
+<TD valign=top>Question index
+<TR><TD width=2% NOWRAP valign=top><font color="purple">finish</font>
+<TD valign=top>Question index
+<tr><Td colspan=2>
+
+Moves a question from the <b>start</b> position to the <b>finish</b> position
+  in the form. The other questions are rearranged, so you should be careful
+  about using this while iterating over the questions.
+</TABLE>
+<DT><A NAME=Form_remove></A>
+<font color="green">remove</font>(
+<font color="purple">index</font> <font color="navy">Number</font>)
+ returns <font color="navy">Boolean</font>
+<dd><TABLE>
+<TR><TD width=2% NOWRAP valign=top><font color="purple">index</font>
+<TD valign=top>Question index
+<tr><Td colspan=2>
+
+Deletes a question. The questions after <b>index</b> are moved up,
+  so you should be careful about using this while iterating
+  over the questions.
+</TABLE>
+<DT><A NAME=Form_save></A>
+<font color="green">save</font>(
+<font color="purple">filename</font> <font color="navy">String</font>)
+ returns <font color="navy">String</font>
+<dd><TABLE>
+<TR><TD width=2% NOWRAP valign=top><font color="purple">filename</font>
+<TD valign=top>optional new file name
+<tr><Td colspan=2>
+Saves changes.
+</TABLE>
+<DT><A NAME=Form_setType></A>
+<font color="green">setType</font>(
+<font color="purple">index</font> <font color="navy">Number</font>, <font color="purple">type</font> <font color="navy">String</font>)
+ returns <font color="navy">String</font>
+<dd><TABLE>
+<TR><TD width=2% NOWRAP valign=top><font color="purple">index</font>
+<TD valign=top>Question number (starting with 0)
+<TR><TD width=2% NOWRAP valign=top><font color="purple">type</font>
+<TD valign=top>New value
+<tr><Td colspan=2>
+Changes a question type. See getType() for the list of types.
+</TABLE>
+</DL>
+<H2><a name=Image><b>Image</b></H2>
+<H3><b>Properties</b></H3>
+<TABLE>
+<TR><TD width=2% NOWRAP valign=top><A NAME=Image_colors></A><font color="purple">colors</font><TD valign=top><font color="navy">Number</font></td>
+<TD valign=top width=98%>Number of colors (in addition to the background)
+<TR><TD width=2% NOWRAP valign=top><A NAME=Image_height></A><font color="purple">height</font><TD valign=top><font color="navy">Number</font></td>
+<TD valign=top width=98%>Height
+<TR><TD width=2% NOWRAP valign=top><A NAME=Image_size></A><font color="purple">size</font><TD valign=top><font color="navy">Number</font></td>
+<TD valign=top width=98%>Number of bytes as a GIF file
+<TR><TD width=2% NOWRAP valign=top><A NAME=Image_width></A><font color="purple">width</font><TD valign=top><font color="navy">Number</font></td>
+<TD valign=top width=98%>Width
+</TABLE>
+<H3><b>Functions</b></H3><DL>
+<DT><A NAME=Image_Image></A>
+<font color="green">Image</font>(
+<font color="purple">height</font> <font color="navy">Number</font>, <font color="purple">width</font> <font color="navy">Number</font>)
+ returns <font color="navy">Image</font>
+<dd><TABLE>
+<TR><TD width=2% NOWRAP valign=top><font color="purple">height</font>
+<TD valign=top>Height
+<TR><TD width=2% NOWRAP valign=top><font color="purple">width</font>
+<TD valign=top>Width
+<tr><Td colspan=2>
+Creates a new GIF image. The background color is white (color 0) and the
+  transparent color is 127. There are 126 user-definable colors.
+ 
+</TABLE>
+<DT><A NAME=Image_arc></A>
+<font color="green">arc</font>(
+<font color="purple">X1</font> <font color="navy">Number</font>, <font color="purple">Y1</font> <font color="navy">Number</font>, <font color="purple">R</font> <font color="navy">Number</font>, <font color="purple">start</font> <font color="navy">Number</font>, <font color="purple">stop</font> <font color="navy">Number</font>, <font color="purple">color</font> <font color="navy">Number</font>)
+ returns <font color="navy">Boolean</font>
+<dd><TABLE>
+<TR><TD width=2% NOWRAP valign=top><font color="purple">X1</font>
+<TD valign=top>start point
+<TR><TD width=2% NOWRAP valign=top><font color="purple">Y1</font>
+<TD valign=top>start point
+<TR><TD width=2% NOWRAP valign=top><font color="purple">R</font>
+<TD valign=top>radius
+<TR><TD width=2% NOWRAP valign=top><font color="purple">start</font>
+<TD valign=top>start angle (radians)
+<TR><TD width=2% NOWRAP valign=top><font color="purple">stop</font>
+<TD valign=top>stop angle (radians)
+<TR><TD width=2% NOWRAP valign=top><font color="purple">color</font>
+<TD valign=top>Color index
+<tr><Td colspan=2>
+Draws an arc.
+</TABLE>
+<DT><A NAME=Image_color></A>
+<font color="green">color</font>(
+<font color="purple">R</font> <font color="navy">Number</font>, <font color="purple">G</font> <font color="navy">Number</font>, <font color="purple">B</font> <font color="navy">Number</font>)
+ returns <font color="navy">Integer</font>
+<dd><TABLE>
+<TR><TD width=2% NOWRAP valign=top><font color="purple">R</font>
+<TD valign=top>0..255
+<TR><TD width=2% NOWRAP valign=top><font color="purple">G</font>
+<TD valign=top>0..255
+<TR><TD width=2% NOWRAP valign=top><font color="purple">B</font>
+<TD valign=top>0..255
+<tr><Td colspan=2>
+Adds a new color and returns its index.
+</TABLE>
+<DT><A NAME=Image_fill></A>
+<font color="green">fill</font>(
+<font color="purple">X1</font> <font color="navy">Number</font>, <font color="purple">Y1</font> <font color="navy">Number</font>, <font color="purple">color</font> <font color="navy">Number</font>)
+ returns <font color="navy">Boolean</font>
+<dd><TABLE>
+<TR><TD width=2% NOWRAP valign=top><font color="purple">X1</font>
+<TD valign=top>start point
+<TR><TD width=2% NOWRAP valign=top><font color="purple">Y1</font>
+<TD valign=top>start point
+<TR><TD width=2% NOWRAP valign=top><font color="purple">color</font>
+<TD valign=top>Color index
+<tr><Td colspan=2>
+Fills all connected background-colored pixels with the new color.
+</TABLE>
+<DT><A NAME=Image_getp></A>
+<font color="green">getp</font>(
+<font color="purple">X1</font> <font color="navy">Number</font>, <font color="purple">Y1</font> <font color="navy">Number</font>)
+ returns <font color="navy">Number</font>
+<dd><TABLE>
+<TR><TD width=2% NOWRAP valign=top><font color="purple">X1</font>
+<TD valign=top>x position
+<TR><TD width=2% NOWRAP valign=top><font color="purple">Y1</font>
+<TD valign=top>y position
+<tr><Td colspan=2>
+Returns the pixel value at a point
+</TABLE>
+<DT><A NAME=Image_line></A>
+<font color="green">line</font>(
+<font color="purple">X1</font> <font color="navy">Number</font>, <font color="purple">Y1</font> <font color="navy">Number</font>, <font color="purple">X2</font> <font color="navy">Number</font>, <font color="purple">Y2</font> <font color="navy">Number</font>, <font color="purple">color</font> <font color="navy">Number</font>)
+ returns <font color="navy">Boolean</font>
+<dd><TABLE>
+<TR><TD width=2% NOWRAP valign=top><font color="purple">X1</font>
+<TD valign=top>start point
+<TR><TD width=2% NOWRAP valign=top><font color="purple">Y1</font>
+<TD valign=top>start point
+<TR><TD width=2% NOWRAP valign=top><font color="purple">X2</font>
+<TD valign=top>end point
+<TR><TD width=2% NOWRAP valign=top><font color="purple">Y2</font>
+<TD valign=top>end point
+<TR><TD width=2% NOWRAP valign=top><font color="purple">color</font>
+<TD valign=top>Color index
+<tr><Td colspan=2>
+Draws a 1-pixel line.
+</TABLE>
+<DT><A NAME=Image_print></A>
+<font color="green">print</font>(
+<font color="purple">X</font> <font color="navy">Number</font>, <font color="purple">Y</font> <font color="navy">Number</font>, <font color="purple">color</font> <font color="navy">Number</font>, <font color="purple">text</font> <font color="navy">String</font>, <font color="purple">background</font> <font color="navy">Number</font>)
+ returns <font color="navy">Boolean</font>
+<dd><TABLE>
+<TR><TD width=2% NOWRAP valign=top><font color="purple">X</font>
+<TD valign=top>start point
+<TR><TD width=2% NOWRAP valign=top><font color="purple">Y</font>
+<TD valign=top>start point
+<TR><TD width=2% NOWRAP valign=top><font color="purple">color</font>
+<TD valign=top>Color index
+<TR><TD width=2% NOWRAP valign=top><font color="purple">text</font>
+<TD valign=top>Text to display
+<TR><TD width=2% NOWRAP valign=top><font color="purple">background</font>
+<TD valign=top>Background color index (default is 0)
+<tr><Td colspan=2>
+Prints text. At present, the only font is 9-pixel sans-serif.
+</TABLE>
+<DT><A NAME=Image_setBGColor></A>
+<font color="green">setBGColor</font>(
+<font color="purple">R</font> <font color="navy">Number</font>, <font color="purple">G</font> <font color="navy">Number</font>, <font color="purple">B</font> <font color="navy">Number</font>)
+ returns <font color="navy">Boolean</font>
+<dd><TABLE>
+<TR><TD width=2% NOWRAP valign=top><font color="purple">R</font>
+<TD valign=top>0..255
+<TR><TD width=2% NOWRAP valign=top><font color="purple">G</font>
+<TD valign=top>0..255
+<TR><TD width=2% NOWRAP valign=top><font color="purple">B</font>
+<TD valign=top>0..255
+<tr><Td colspan=2>
+Sets the background color value (color 0).
+</TABLE>
+<DT><A NAME=Image_setp></A>
+<font color="green">setp</font>(
+<font color="purple">X1</font> <font color="navy">Number</font>, <font color="purple">Y1</font> <font color="navy">Number</font>, <font color="purple">C</font> <font color="navy">Number</font>)
+ returns <font color="navy">Boolean</font>
+<dd><TABLE>
+<TR><TD width=2% NOWRAP valign=top><font color="purple">X1</font>
+<TD valign=top>x position
+<TR><TD width=2% NOWRAP valign=top><font color="purple">Y1</font>
+<TD valign=top>y position
+<TR><TD width=2% NOWRAP valign=top><font color="purple">C</font>
+<TD valign=top>color
+<tr><Td colspan=2>
+Set a pixel value
+</TABLE>
+<DT><A NAME=Image_slice></A>
+<font color="green">slice</font>(
+<font color="purple">X1</font> <font color="navy">Number</font>, <font color="purple">Y1</font> <font color="navy">Number</font>, <font color="purple">R</font> <font color="navy">Number</font>, <font color="purple">start</font> <font color="navy">Number</font>, <font color="purple">stop</font> <font color="navy">Number</font>, <font color="purple">color</font> <font color="navy">Number</font>)
+ returns <font color="navy">Boolean</font>
+<dd><TABLE>
+<TR><TD width=2% NOWRAP valign=top><font color="purple">X1</font>
+<TD valign=top>start point
+<TR><TD width=2% NOWRAP valign=top><font color="purple">Y1</font>
+<TD valign=top>start point
+<TR><TD width=2% NOWRAP valign=top><font color="purple">R</font>
+<TD valign=top>radius
+<TR><TD width=2% NOWRAP valign=top><font color="purple">start</font>
+<TD valign=top>start angle (radians)
+<TR><TD width=2% NOWRAP valign=top><font color="purple">stop</font>
+<TD valign=top>stop angle (radians)
+<TR><TD width=2% NOWRAP valign=top><font color="purple">color</font>
+<TD valign=top>Color index
+<tr><Td colspan=2>
+Draws a filled pie slice
+</TABLE>
+<DT><A NAME=Image_write></A>
+<font color="green">write</font>(
+<font color="purple">out</font> <font color="navy">Stream</font>)
+ returns <font color="navy">Boolean</font>
+<dd><TABLE>
+<TR><TD width=2% NOWRAP valign=top><font color="purple">out</font>
+<TD valign=top>destination file or web connection
+<tr><Td colspan=2>
+Writes a GIF file
+</TABLE>
+</DL>
+<H2><a name=Index><b>Index</b></H2>
+<H3><b>Functions</b></H3><DL>
+<DT><A NAME=Index_add></A>
+<font color="green">add</font>(
+<font color="purple">value</font> <font color="navy">String</font>)
+<dd><TABLE>
+<TR><TD width=2% NOWRAP valign=top><font color="purple">value</font>
+<TD valign=top>Key value
+<tr><Td colspan=2>
+Appends a key to the next slot in the index
+</TABLE>
+<DT><A NAME=Index_find></A>
+<font color="green">find</font>(
+<font color="purple">value</font> <font color="navy">String</font>)
+ returns <font color="navy">Number</font>
+<dd><TABLE>
+<TR><TD width=2% NOWRAP valign=top><font color="purple">value</font>
+<TD valign=top>Key value
+<tr><Td colspan=2>
+Returns the index of one entry matching the key value, or -1 if the key is not in the index.
+</TABLE>
+<DT><A NAME=Index_rebuild></A>
+<font color="green">rebuild</font>(
+)
+<dd><TABLE>
+<tr><Td colspan=2>
+Rebuilds an index created by Table.index().
+</TABLE>
+</DL>
+<H2><a name=Mail><b>Mail</b></H2>
+<H3><b>Properties</b></H3>
+<TABLE>
+<TR><TD width=2% NOWRAP valign=top><A NAME=Mail_name></A><font color="purple">name</font><TD valign=top><font color="navy">String</font></td>
+<TD valign=top width=98%>connection string
+</TABLE>
+<H3><b>Functions</b></H3><DL>
+<DT><A NAME=Mail_Mail></A>
+<font color="green">Mail</font>(
+<font color="purple">type</font> <font color="navy">String</font>, <font color="purple">login</font> <font color="navy">String</font>, <font color="purple">password</font> <font color="navy">String</font>, <font color="purple">server</font> <font color="navy">String</font>, <font color="purple">smtpserver</font> <font color="navy">String</font>, <font color="purple">language</font> <font color="navy">String</font>, <font color="purple">return address</font> <font color="navy">String</font>)
+ returns <font color="navy">Mail</font>
+<dd><TABLE>
+<TR><TD width=2% NOWRAP valign=top><font color="purple">type</font>
+<TD valign=top>mail system type: one of
+  CCMAIL5, CCMAIL8, CCMAIL, BEYONDMAIL, VIM, NOTES, MAPI, MSMAIL,
+  EXCHANGE, GROUPWISE, CMC, INTERNET, POP3, SMTP
+<TR><TD width=2% NOWRAP valign=top><font color="purple">login</font>
+<TD valign=top>account name
+<TR><TD width=2% NOWRAP valign=top><font color="purple">password</font>
+<TD valign=top>password
+<TR><TD width=2% NOWRAP valign=top><font color="purple">server</font>
+<TD valign=top>server address or windows mail profile
+<TR><TD width=2% NOWRAP valign=top><font color="purple">smtpserver</font>
+<TD valign=top>Internet mail server, if different from the POP3 server
+<TR><TD width=2% NOWRAP valign=top><font color="purple">language</font>
+<TD valign=top>MIME language string, like USASCII or ISO-8859-1
+<TR><TD width=2% NOWRAP valign=top><font color="purple">return address</font>
+<TD valign=top>Return mail address (generally useful if sending mail)
+<tr><Td colspan=2>
+Connects to a mail server. In the case of internet mail (INTERNET, POP3, SMTP are equivalent), the
+  password is unnessary. The return email address is login@server.
+</TABLE>
+<DT><A NAME=Mail_get></A>
+<font color="green">get</font>(
+)
+ returns <font color="navy">Table</font>
+<dd><TABLE>
+<tr><Td colspan=2>
+Returns a message summary table. The table has a <tt>getMessage()</tt> function 
+you can use to retrieve the message text. If the Mail system
+is closed, this table will be deactivated.
+</TABLE>
+<DT><A NAME=Mail_send></A>
+<font color="green">send</font>(
+<font color="purple">recipient</font> <font color="navy">String</font>, <font color="purple">subject</font> <font color="navy">String</font>, <font color="purple">textNote</font> <font color="navy">String</font>, <font color="purple">htmlNote</font> <font color="navy">String</font>)
+ returns <font color="navy">Boolean</font>
+<dd><TABLE>
+<TR><TD width=2% NOWRAP valign=top><font color="purple">recipient</font>
+<TD valign=top>comma-delimited list of recipient email addresses
+<TR><TD width=2% NOWRAP valign=top><font color="purple">subject</font>
+<TD valign=top>subject line
+<TR><TD width=2% NOWRAP valign=top><font color="purple">textNote</font>
+<TD valign=top>note
+<TR><TD width=2% NOWRAP valign=top><font color="purple">htmlNote</font>
+<TD valign=top>HTML version of note (Internet mail only)
+<tr><Td colspan=2>
+Sends a mail message.
+</TABLE>
+<DT><A NAME=Mail_sendFiles></A>
+<font color="green">sendFiles</font>(
+<font color="purple">recipient</font> <font color="navy">String</font>, <font color="purple">subject</font> <font color="navy">String</font>, <font color="purple">attachments</font> <font color="navy">String</font>, <font color="purple">textNote</font> <font color="navy">String</font>, <font color="purple">htmlNote</font> <font color="navy">String</font>)
+ returns <font color="navy">Boolean</font>
+<dd><TABLE>
+<TR><TD width=2% NOWRAP valign=top><font color="purple">recipient</font>
+<TD valign=top>comma-delimited list of recipient email addresses
+<TR><TD width=2% NOWRAP valign=top><font color="purple">subject</font>
+<TD valign=top>subject line
+<TR><TD width=2% NOWRAP valign=top><font color="purple">attachments</font>
+<TD valign=top>comma-delimited list of files
+<TR><TD width=2% NOWRAP valign=top><font color="purple">textNote</font>
+<TD valign=top>note
+<TR><TD width=2% NOWRAP valign=top><font color="purple">htmlNote</font>
+<TD valign=top>HTML version of note (Internet mail only)
+<tr><Td colspan=2>
+Sends a mail message with file attachments.
+</TABLE>
+</DL>
+<H2><a name=Matrix><b>Matrix</b></H2>
+<tt>include('<font color="darkgreen">matrix.js</font>')</tt><br><H3><b>Properties</b></H3>
+<TABLE>
+<TR><TD width=2% NOWRAP valign=top><A NAME=Matrix_cols></A><font color="purple">cols</font><TD valign=top><font color="navy">Number</font></td>
+<TD valign=top width=98%>Number of columns
+<TR><TD width=2% NOWRAP valign=top><A NAME=Matrix_data></A><font color="purple">data</font><TD valign=top><font color="navy">Array</font></td>
+<TD valign=top width=98%>Number of columns
+<TR><TD width=2% NOWRAP valign=top><A NAME=Matrix_rows></A><font color="purple">rows</font><TD valign=top><font color="navy">Number</font></td>
+<TD valign=top width=98%>Number of rows
+</TABLE>
+<H3><b>Functions</b></H3><DL>
+<DT><A NAME=Matrix_Matrix></A>
+<font color="green">Matrix</font>(
+<font color="purple">data</font> <font color="navy">String</font>)
+<dd><TABLE>
+<tr><Td colspan=2>
+Constructs a new matrix, where rows are separated by <b>,</b> and columns by spaces. <tt>new Matrix("1 0, 0 1")</tt> is the 2x2 identity.
+</TABLE>
+<DT><A NAME=Matrix_Matrix></A>
+<font color="green">Matrix</font>(
+<font color="purple">rows</font> <font color="navy">Number</font>, <font color="purple">cols</font> <font color="navy">Number</font>, <font color="purple">data</font> <font color="navy">Array|Numbers</font>)
+<dd><TABLE>
+<TR><TD width=2% NOWRAP valign=top><font color="purple">rows</font>
+<TD valign=top>Number of rows
+<TR><TD width=2% NOWRAP valign=top><font color="purple">cols</font>
+<TD valign=top>Number of columns
+<TR><TD width=2% NOWRAP valign=top><font color="purple">data</font>
+<TD valign=top>Initial data
+<tr><Td colspan=2>
+Constructs a new matrix, using <b>data</b> as its elements (in row-major order). You can pass a Numbers object if you plan to work with a lot of data.
+</TABLE>
+<DT><A NAME=Matrix_Matrix.fit></A>
+<font color="green">Matrix.fit</font>(
+<font color="purple">O</font> <font color="navy">Integer</font>, <font color="purple">data</font> <font color="navy">Matrix</font>)
+ returns <font color="navy">Array</font>
+<dd><TABLE>
+<tr><Td colspan=2>
+Fits the Nx2 <i>data</i> to a polynomial of order <i>O</i>. Returns an array C such that the x^p coefficient of the least-squares fit is C[p].
+</TABLE>
+<DT><A NAME=Matrix_Matrix.identity></A>
+<font color="green">Matrix.identity</font>(
+<font color="purple">N</font> <font color="navy">Integer</font>)
+<dd><TABLE>
+<tr><Td colspan=2>
+Returns a new NxN identity matrix
+</TABLE>
+<DT><A NAME=Matrix_Matrix.solve></A>
+<font color="green">Matrix.solve</font>(
+<font color="purple">S</font> <font color="navy">Matrix</font>, <font color="purple">Y</font> <font color="navy">Matrix</font>)
+<dd><TABLE>
+<tr><Td colspan=2>
+Given a square matrix S and vector Y, returns X such that S &middot; X = Y
+</TABLE>
+<DT><A NAME=Matrix_at></A>
+<font color="green">at</font>(
+<font color="purple">row</font> <font color="navy">Integer</font>, <font color="purple">column</font> <font color="navy">Integer</font>)
+ returns <font color="navy">Number</font>
+<dd><TABLE>
+<tr><Td colspan=2>
+Same as get()
+</TABLE>
+<DT><A NAME=Matrix_copy></A>
+<font color="green">copy</font>(
+)
+ returns <font color="navy">Matrix</font>
+<dd><TABLE>
+<tr><Td colspan=2>
+Returns a copy of the matrix.
+</TABLE>
+<DT><A NAME=Matrix_get></A>
+<font color="green">get</font>(
+<font color="purple">row</font> <font color="navy">Integer</font>, <font color="purple">column</font> <font color="navy">Integer</font>)
+ returns <font color="navy">Number</font>
+<dd><TABLE>
+<tr><Td colspan=2>
+Returns the entry at <I>row,column</I>. No bounds-checking.
+</TABLE>
+<DT><A NAME=Matrix_put></A>
+<font color="green">put</font>(
+<font color="purple">row</font> <font color="navy">Integer</font>, <font color="purple">column</font> <font color="navy">Integer</font>, <font color="purple">value</font> <font color="navy">Number</font>)
+ returns <font color="navy">Number</font>
+<dd><TABLE>
+<tr><Td colspan=2>
+Same as set()
+</TABLE>
+<DT><A NAME=Matrix_set></A>
+<font color="green">set</font>(
+<font color="purple">row</font> <font color="navy">Integer</font>, <font color="purple">column</font> <font color="navy">Integer</font>, <font color="purple">value</font> <font color="navy">Number</font>)
+ returns <font color="navy">Number</font>
+<dd><TABLE>
+<tr><Td colspan=2>
+Updates the entry at <I>row,column</I>. No bounds-checking.
+</TABLE>
+<DT><A NAME=Matrix_times></A>
+<font color="green">times</font>(
+<font color="purple">A</font> <font color="navy">Matrix</font>, <font color="purple">B</font> <font color="navy">Matrix</font>)
+ returns <font color="navy">Matrix</font>
+<dd><TABLE>
+<tr><Td colspan=2>
+Returns A &middot; B.
+</TABLE>
+<DT><A NAME=Matrix_toSource></A>
+<font color="green">toSource</font>(
+)
+ returns <font color="navy">String</font>
+<dd><TABLE>
+<tr><Td colspan=2>
+
+</TABLE>
+<DT><A NAME=Matrix_toString></A>
+<font color="green">toString</font>(
+)
+ returns <font color="navy">String</font>
+<dd><TABLE>
+<tr><Td colspan=2>
+
+</TABLE>
+<DT><A NAME=Matrix_transpose></A>
+<font color="green">transpose</font>(
+)
+ returns <font color="navy">Matrix</font>
+<dd><TABLE>
+<tr><Td colspan=2>
+Returns the transpose of the matrix.
+</TABLE>
+<DT><A NAME=Matrix_zero></A>
+<font color="green">zero</font>(
+)
+<dd><TABLE>
+<tr><Td colspan=2>
+Resets the matrix to all zeros
+</TABLE>
+</DL>
+<H2><a name=Numbers><b>Numbers</b></H2>
+<P>Fast and efficient ordered list of 64-bit floating point numbers. Numbers acts like Array, providing
+<tt>for .. in</tt> and <tt>[]</tt> operators, but the get() and set() functions are much more efficient.<br>
+<H3><b>Properties</b></H3>
+<TABLE>
+<TR><TD width=2% NOWRAP valign=top><A NAME=Numbers_length></A><font color="purple">length</font><TD valign=top><font color="navy">Integer</font></td>
+<TD valign=top width=98%>Number of elements in this list.
+</TABLE>
+<H3><b>Functions</b></H3><DL>
+<DT><A NAME=Numbers_Numbers></A>
+<font color="green">Numbers</font>(
+<font color="purple">length</font> <font color="navy">Integer</font>)
+<dd><TABLE>
+<tr><Td colspan=2>
+Creates a new array, initialized to 0.
+</TABLE>
+<DT><A NAME=Numbers_Numbers></A>
+<font color="green">Numbers</font>(
+<font color="purple">values</font> <font color="navy">String</font>)
+<dd><TABLE>
+<tr><Td colspan=2>
+Creates a new array, initialized by converting <i>values</i> to numbers. Space, comma, or tab are good delimiters, but other characters will work, too, with a slight performance penalty.
+</TABLE>
+<DT><A NAME=Numbers_Numbers></A>
+<font color="green">Numbers</font>(
+<font color="purple">source</font> <font color="navy">Numbers</font>)
+<dd><TABLE>
+<tr><Td colspan=2>
+Creates a new array, copying an existing Numbers object.
+</TABLE>
+<DT><A NAME=Numbers_add></A>
+<font color="green">add</font>(
+<font color="purple">value</font> <font color="navy"></font>)
+<dd><TABLE>
+<tr><Td colspan=2>
+Increments each list element by <i>value</i>
+</TABLE>
+<DT><A NAME=Numbers_at></A>
+<font color="green">at</font>(
+<font color="purple">index</font> <font color="navy">Integer</font>)
+ returns <font color="navy">Number</font>
+<dd><TABLE>
+<tr><Td colspan=2>
+Same as get()
+</TABLE>
+<DT><A NAME=Numbers_close></A>
+<font color="green">close</font>(
+)
+<dd><TABLE>
+<tr><Td colspan=2>
+Immediately frees the memory used for this object
+</TABLE>
+<DT><A NAME=Numbers_exec></A>
+<font color="green">exec</font>(
+)
+<dd><TABLE>
+<tr><Td colspan=2>
+This is a special function for doing fast vector operations with a RPN evaluator. Each parameter passed to this function may be a Numbers object (all of the same length!) or a String naming the mathematical operation. In the example
+<pre>
+a = new Numbers(5)
+b = new Numbers("1 2 3 4 5")
+c = new Numbers("10 20 30 40 50")
+a.exec(b,c,'+')
+writeln(a)
+</pre>
+the result is
+<pre>
+11,22,33,44,55
+</pre>
+
+<br>The calculator stack starts as (<b>b</b>, <B>c</B>, '+'), and the result is stored in <b>a</b> (the object that called exec()). Arguments are evaluated left-to-right, so <b>a</b> is always the result of each operation and the number on the bottom of the stack for the next operation
+
+<br>You can also do
+<pre>
+a = new Numbers("1 2 3 4 5")
+b = new Numbers("10 20 30 40 50")
+a.exec(b,'+')
+writeln(a)
+</pre>
+with the same result -- in case of stack underflow, the object calling exec() is pushed to the bottom of the stack.
+
+<br>This function may have as many arguments as you want, so long as all the lists are of the same length. The supported operators, and the number of arguments they take, are:
+<ul>
+<li>+ 2
+<li>* 2
+<li>- 2 (or 1 for negation)
+<li>/ 2 (or 1 for inversion)
+<li>cos 1
+<li>sin 1
+<li>tan 1
+<li>atan2 2
+<li>atan 1
+<li>pow 2
+<li>exp 1
+<li>log 1
+</ul>
+
+<br>Special: unary negation and division (inversion) are allowed, as a shortcut
+</TABLE>
+<DT><A NAME=Numbers_get></A>
+<font color="green">get</font>(
+<font color="purple">index</font> <font color="navy">Integer</font>)
+ returns <font color="navy">Number</font>
+<dd><TABLE>
+<tr><Td colspan=2>
+Returns the number at the <I>index</I> location. Throws an error if <I>index</I> is out of bounds.
+</TABLE>
+<DT><A NAME=Numbers_log></A>
+<font color="green">log</font>(
+)
+<dd><TABLE>
+<tr><Td colspan=2>
+Replaces each list element by its log (base e)
+</TABLE>
+<DT><A NAME=Numbers_max></A>
+<font color="green">max</font>(
+<font color="purple">start</font> <font color="navy">Integer</font>, <font color="purple">length</font> <font color="navy">Integer</font>)
+<dd><TABLE>
+<tr><Td colspan=2>
+Returns the <b>index</b> of the largest value in the list. Use <i>start</i> and <i>length</i> to operate on a subset of the list.
+</TABLE>
+<DT><A NAME=Numbers_min></A>
+<font color="green">min</font>(
+<font color="purple">start</font> <font color="navy">Integer</font>, <font color="purple">length</font> <font color="navy">Integer</font>)
+<dd><TABLE>
+<tr><Td colspan=2>
+Returns the <b>index</b> of the smallest value in the list. Use <i>start</i> and <i>length</i> to operate on a subset of the list.
+</TABLE>
+<DT><A NAME=Numbers_pow></A>
+<font color="green">pow</font>(
+<font color="purple">p</font> <font color="navy"></font>)
+<dd><TABLE>
+<tr><Td colspan=2>
+Raise each list element to the power <i>p</i>
+</TABLE>
+<DT><A NAME=Numbers_put></A>
+<font color="green">put</font>(
+<font color="purple">index</font> <font color="navy">Integer</font>, <font color="purple">value</font> <font color="navy">Number</font>)
+ returns <font color="navy">Number</font>
+<dd><TABLE>
+<tr><Td colspan=2>
+Same as set()
+</TABLE>
+<DT><A NAME=Numbers_resize></A>
+<font color="green">resize</font>(
+<font color="purple">length</font> <font color="navy">Integer</font>)
+<dd><TABLE>
+<tr><Td colspan=2>
+Changes the length of the underlying list. If the length increases, new memory is allocated. If the length decreases, memory is not freed (but subsequent growth, up to the original length, will not use lead to a memory allocation). 
+New entries are initialized to 0.
+</TABLE>
+<DT><A NAME=Numbers_scale></A>
+<font color="green">scale</font>(
+<font color="purple">value</font> <font color="navy"></font>)
+<dd><TABLE>
+<tr><Td colspan=2>
+Multiplies each list element by <i>value</i>
+</TABLE>
+<DT><A NAME=Numbers_set></A>
+<font color="green">set</font>(
+<font color="purple">index</font> <font color="navy">Integer</font>, <font color="purple">value</font> <font color="navy">Number</font>)
+ returns <font color="navy">Number</font>
+<dd><TABLE>
+<tr><Td colspan=2>
+Updates the number at the <I>index</I> location. Throws an error if <I>index</I> is out of bounds.
+</TABLE>
+<DT><A NAME=Numbers_sum></A>
+<font color="green">sum</font>(
+<font color="purple">start</font> <font color="navy">Integer</font>, <font color="purple">length</font> <font color="navy">Integer</font>)
+<dd><TABLE>
+<tr><Td colspan=2>
+Returns the sum of all the numbers in the list. Use <i>start</i> and <i>length</i> to operate on a subset of the list.
+</TABLE>
+<DT><A NAME=Numbers_sum2></A>
+<font color="green">sum2</font>(
+<font color="purple">start</font> <font color="navy">Integer</font>, <font color="purple">length</font> <font color="navy">Integer</font>)
+<dd><TABLE>
+<tr><Td colspan=2>
+Returns the sum of the square of all the numbers in the list. Use <i>start</i> and <i>length</i> to operate on a subset of the list. Why would you want to do this? To calculate the standard deviation quickly.
+<pre>
+var n = new Numbers("1 495 52 2 34 5 6 1 12 35 6 2 34")
+writeln("Average: ",n.sum()/n.length)
+writeln("Average of the square: ", n.sum2()/n.length)
+</pre>
+</TABLE>
+<DT><A NAME=Numbers_toString></A>
+<font color="green">toString</font>(
+<font color="purple">delimiter</font> <font color="navy">string</font>, <font color="purple">start</font> <font color="navy">Integer</font>, <font color="purple">length</font> <font color="navy">Integer</font>)
+ returns <font color="navy">String</font>
+<dd><TABLE>
+<tr><Td colspan=2>
+Although the Numbers class acts like the JavaScript Array class by default, you may customize the formatting with any delimiter (default is a comma). Use <i>start</i> and <i>length</i> to operate on a subset of the list.
+</TABLE>
+</DL>
+<H2><a name=ODBC><b>ODBC</b></H2>
+<H3><b>Properties</b></H3>
+<TABLE>
+<TR><TD width=2% NOWRAP valign=top><A NAME=ODBC_className></A><font color="purple">className</font><TD valign=top><font color="navy">String</font></td>
+<TD valign=top width=98%>"ODBC"
+<TR><TD width=2% NOWRAP valign=top><A NAME=ODBC_error></A><font color="purple">error</font><TD valign=top><font color="navy">String</font></td>
+<TD valign=top width=98%>The last error message. It is initially undefined, and only changes when a query() or exec() 
+function fails.
+<TR><TD width=2% NOWRAP valign=top><A NAME=ODBC_name></A><font color="purple">name</font><TD valign=top><font color="navy">String</font></td>
+<TD valign=top width=98%>Driver name
+</TABLE>
+<H3><b>Functions</b></H3><DL>
+<DT><A NAME=ODBC_ODBC></A>
+<font color="green">ODBC</font>(
+<font color="purple">connection string</font> <font color="navy">String</font>)
+ returns <font color="navy">ODBC</font>
+<dd><TABLE>
+<TR><TD width=2% NOWRAP valign=top><font color="purple">connection string</font>
+<TD valign=top>"DSN=source_name;UID=login;PWD=password;"
+<tr><Td colspan=2>
+Connects to an ODBC driver. You can also use<br>
+<tt>
+var myDB = new ODBC("DRIVER={MySQL ODBC 3.51 Driver};SERVER=localhost;DATABASE=dbname;USER=root;PASSWORD=password;OPTION=3;");<br>
+var myReader = myDB.query('select * from people');
+</tt> or </tt><br>
+var myT = new Table('odbc://DRIVER={MySQL ODBC 3.51 Driver};SERVER=localhost;DATABASE=dbname;USER=root;PASSWORD=password;OPTION=3;/people')<br>
+</tt>
+The difference is that the query() function gives you a read-only table, while the Table() constructor
+lets you make changes with set() and setRow(). 
+<br>You might see a "Dialog failed" message from Microsoft. This only means that there's something wrong with your connection string.
+<br>JSDB is a mediocre command-line SQL console. Use <a href=http://www.raosoft.com/products/utilities/>Raosoft's SQL.exe</a> instead.
+</TABLE>
+<DT><A NAME=ODBC_close></A>
+<font color="green">close</font>(
+)
+ returns <font color="navy">Boolean</font>
+<dd><TABLE>
+<tr><Td colspan=2>
+Closes the connection to the database and all tables that were opened with the query()
+function. The table objects are invalidated (further function calls will fail), 
+but they are not deleted.
+</TABLE>
+<DT><A NAME=ODBC_columns></A>
+<font color="green">columns</font>(
+<font color="purple">table</font> <font color="navy">String</font>, <font color="purple">longFormat</font> <font color="navy">Boolean</font>)
+ returns <font color="navy">Array</font>
+<dd><TABLE>
+<TR><TD width=2% NOWRAP valign=top><font color="purple">table</font>
+<TD valign=top>A table name
+<tr><Td colspan=2>
+Returns an array of all the column names for the specified table. If <b>longFormat</b> is true, the return value will look like <br><tt>["id INTEGER","name VARCHAR(32)","value DECIMAL(12,5)"]</tt>.
+</TABLE>
+<DT><A NAME=ODBC_commit></A>
+<font color="green">commit</font>(
+)
+ returns <font color="navy">Boolean</font>
+<dd><TABLE>
+<tr><Td colspan=2>
+Commits the current transaction.
+</TABLE>
+<DT><A NAME=ODBC_escape></A>
+<font color="green">escape</font>(
+<font color="purple">text</font> <font color="navy">String</font>)
+ returns <font color="navy">String</font>
+<dd><TABLE>
+<TR><TD width=2% NOWRAP valign=top><font color="purple">text</font>
+<TD valign=top>Field text to send to the database
+<tr><Td colspan=2>
+Quotes and escapes text as appropriate for the database. Usage:<br>
+<tt>db.exec("insert into friends (name) values (" + db.escape('Cynthia') + ")")</tt>
+</TABLE>
+<DT><A NAME=ODBC_exec></A>
+<font color="green">exec</font>(
+<font color="purple">command</font> <font color="navy">String</font>)
+ returns <font color="navy">Boolean</font>
+<dd><TABLE>
+<TR><TD width=2% NOWRAP valign=top><font color="purple">command</font>
+<TD valign=top>"ALTER TABLE ..."
+<tr><Td colspan=2>
+Same as ODBC.execute().
+</TABLE>
+<DT><A NAME=ODBC_execute></A>
+<font color="green">execute</font>(
+<font color="purple">command</font> <font color="navy">String</font>)
+ returns <font color="navy">Boolean</font>
+<dd><TABLE>
+<TR><TD width=2% NOWRAP valign=top><font color="purple">command</font>
+<TD valign=top>"ALTER TABLE ..."
+<tr><Td colspan=2>
+This calls SQLExecDirect() on the database. Returns true if the operation was successful. 
+You can read the error parameter to find out what went wrong otherwise.
+</TABLE>
+<DT><A NAME=ODBC_keys></A>
+<font color="green">keys</font>(
+<font color="purple">table</font> <font color="navy">String</font>)
+ returns <font color="navy">Array</font>
+<dd><TABLE>
+<TR><TD width=2% NOWRAP valign=top><font color="purple">table</font>
+<TD valign=top>A table name
+<tr><Td colspan=2>
+Returns a list of all the key names for the specified table.
+</TABLE>
+<DT><A NAME=ODBC_query></A>
+<font color="green">query</font>(
+<font color="purple">query</font> <font color="navy">String</font>)
+ returns <font color="navy">Table</font>
+<dd><TABLE>
+<TR><TD width=2% NOWRAP valign=top><font color="purple">query</font>
+<TD valign=top>"SELECT * FROM table WHERE ..."
+<tr><Td colspan=2>
+Executes an SQL command, and returns the result set mapped into a read-only Table object. 
+The Table object provides a cache and indexed access to records, even if the ODBC driver
+does not. If you just want to read from a SQL table with a simple query, this is equivalent
+to <b>new Table('odbc://userid:password@service/tablename?field1=xxx*&field2=yyy')</b>. Both ways of 
+accessing the tables do on-demand loading of data from the database server.
+</TABLE>
+<DT><A NAME=ODBC_rollback></A>
+<font color="green">rollback</font>(
+)
+ returns <font color="navy">Boolean</font>
+<dd><TABLE>
+<tr><Td colspan=2>
+Rolls back the current transaction, if the database is not in AUTOCOMMIT mode.
+</TABLE>
+<DT><A NAME=ODBC_setAutoCommit></A>
+<font color="green">setAutoCommit</font>(
+<font color="purple">value</font> <font color="navy">Boolean</font>)
+ returns <font color="navy">Boolean</font>
+<dd><TABLE>
+<TR><TD width=2% NOWRAP valign=top><font color="purple">value</font>
+<TD valign=top>New setting
+<tr><Td colspan=2>
+Sets the database AUTOCOMMIT flag, which usually defaults to true when the ODBC connection is opened.
+</TABLE>
+<DT><A NAME=ODBC_table></A>
+<font color="green">table</font>(
+<font color="purple">name</font> <font color="navy">String</font>)
+ returns <font color="navy">Table</font>
+<dd><TABLE>
+<TR><TD width=2% NOWRAP valign=top><font color="purple">name</font>
+<TD valign=top>Table name
+<tr><Td colspan=2>
+Opens a Table object in the database.
+</TABLE>
+<DT><A NAME=ODBC_tables></A>
+<font color="green">tables</font>(
+)
+ returns <font color="navy">Array</font>
+<dd><TABLE>
+<tr><Td colspan=2>
+Returns an array of all the table names in the database.
+</TABLE>
+</DL>
+<H2><a name=Process><b>Process</b></H2>
+<H3><b>Properties</b></H3>
+<TABLE>
+<TR><TD width=2% NOWRAP valign=top><A NAME=Process_active></A><font color="purple">active</font><TD valign=top><font color="navy">Boolean</font></td>
+<TD valign=top width=98%>Whether the program is still running.
+<TR><TD width=2% NOWRAP valign=top><A NAME=Process_className></A><font color="purple">className</font><TD valign=top><font color="navy">String</font></td>
+<TD valign=top width=98%>"Process"
+<TR><TD width=2% NOWRAP valign=top><A NAME=Process_exitCode></A><font color="purple">exitCode</font><TD valign=top><font color="navy">Number</font></td>
+<TD valign=top width=98%>If done, the program's exit code.
+</TABLE>
+<H3><b>Functions</b></H3><DL>
+<DT><A NAME=Process_Process></A>
+<font color="green">Process</font>(
+<font color="purple">cmd</font> <font color="navy">String</font>)
+<dd><TABLE>
+<TR><TD width=2% NOWRAP valign=top><font color="purple">cmd</font>
+<TD valign=top>Command line, .exe file name, or document name
+<tr><Td colspan=2>
+The constructor tries to start a program. Only programs ending in .exe will be run. 
+If <i>cmd</i> is a document file or URL, Process queries the Windows shell to run the appropriate program to open the document.
+Note that file names must be fully qualified.
+</TABLE>
+<DT><A NAME=Process_close></A>
+<font color="green">close</font>(
+)
+<dd><TABLE>
+<tr><Td colspan=2>
+Sends a quit message to the child process and frees associated handles.
+</TABLE>
+</DL>
+<H2><a name=Record><b>Record</b></H2>
+<H3><b>Properties</b></H3>
+<TABLE>
+<TR><TD width=2% NOWRAP valign=top><A NAME=Record_caseSensitive></A><font color="purple">caseSensitive</font><TD valign=top><font color="navy">Boolean</font></td>
+<TD valign=top width=98%>Are fields case sensitive?
+<TR><TD width=2% NOWRAP valign=top><A NAME=Record_count></A><font color="purple">count</font><TD valign=top><font color="navy">Number</font></td>
+<TD valign=top width=98%>Number of name-value pairs stored by the record
+<TR><TD width=2% NOWRAP valign=top><A NAME=Record_length></A><font color="purple">length</font><TD valign=top><font color="navy">Number</font></td>
+<TD valign=top width=98%>Number of name-value pairs stored by the record
+</TABLE>
+<H3><b>Functions</b></H3><DL>
+<DT><A NAME=Record_Record></A>
+<font color="green">Record</font>(
+<font color="purple">initial</font> <font color="navy">String</font>, <font color="purple">delimiter</font> <font color="navy">String</font>)
+ returns <font color="navy">Record</font>
+<dd><TABLE>
+<TR><TD width=2% NOWRAP valign=top><font color="purple">initial</font>
+<TD valign=top>
+Delimited string for initial values <tt>(a=b,c=d,e=f,...)</tt>
+<TR><TD width=2% NOWRAP valign=top><font color="purple">delimiter</font>
+<TD valign=top>Delimiter character, default is a comma
+<tr><Td colspan=2>
+Creates a record with initial values. See read().
+</TABLE>
+<DT><A NAME=Record_Record></A>
+<font color="green">Record</font>(
+<font color="purple">caseSensitive</font> <font color="navy">Boolean</font>)
+ returns <font color="navy">Record</font>
+<dd><TABLE>
+<TR><TD width=2% NOWRAP valign=top><font color="purple">caseSensitive</font>
+<TD valign=top>true for a case-sensitive list
+<tr><Td colspan=2>
+Creates a record. Use Record(true) for name searches to be case-sensitive.
+</TABLE>
+<DT><A NAME=Record_Record></A>
+<font color="green">Record</font>(
+<font color="purple">caseSensitive</font> <font color="navy">Boolean</font>)
+ returns <font color="navy">Record</font>
+<dd><TABLE>
+<TR><TD width=2% NOWRAP valign=top><font color="purple">caseSensitive</font>
+<TD valign=top>true for a case-sensitive list
+<tr><Td colspan=2>
+Creates a record. Use Record(true) for name searches to be case-sensitive.
+</TABLE>
+<DT><A NAME=Record_Record></A>
+<font color="green">Record</font>(
+<font color="purple">data</font> <font color="navy">Object</font>)
+ returns <font color="navy">Record</font>
+<dd><TABLE>
+<TR><TD width=2% NOWRAP valign=top><font color="purple">data</font>
+<TD valign=top>Any JavaScript object
+<tr><Td colspan=2>
+Creates a record, copying fields and values from an Object. The Record will be case-sensitive.
+</TABLE>
+<DT><A NAME=Record_append></A>
+<font color="green">append</font>(
+<font color="purple">data</font> <font color="navy">Record|Object</font>)
+ returns <font color="navy">Number</font>
+<dd><TABLE>
+<TR><TD width=2% NOWRAP valign=top><font color="purple">data</font>
+<TD valign=top>Additional data
+<tr><Td colspan=2>
+Appends the name/value pairs from another record or object. If field names match, they are overwritten.
+</TABLE>
+<DT><A NAME=Record_clear></A>
+<font color="green">clear</font>(
+)
+ returns <font color="navy">Boolean</font>
+<dd><TABLE>
+<tr><Td colspan=2>
+Deletes all the name/value pairs from the record.
+</TABLE>
+<DT><A NAME=Record_get></A>
+<font color="green">get</font>(
+<font color="purple">name</font> <font color="navy">String</font>)
+ returns <font color="navy">String</font>
+<dd><TABLE>
+<TR><TD width=2% NOWRAP valign=top><font color="purple">name</font>
+<TD valign=top>Field name
+<tr><Td colspan=2>
+Returns the value of a field, or an empty string if the field does not exist.
+</TABLE>
+<DT><A NAME=Record_has></A>
+<font color="green">has</font>(
+<font color="purple">name</font> <font color="navy">String</font>)
+ returns <font color="navy">Boolean</font>
+<dd><TABLE>
+<TR><TD width=2% NOWRAP valign=top><font color="purple">name</font>
+<TD valign=top>Field name
+<tr><Td colspan=2>
+Returns true if the field exists in the record.
+</TABLE>
+<DT><A NAME=Record_name></A>
+<font color="green">name</font>(
+<font color="purple">index</font> <font color="navy">Number</font>)
+ returns <font color="navy">String</font>
+<dd><TABLE>
+<TR><TD width=2% NOWRAP valign=top><font color="purple">index</font>
+<TD valign=top>
+Index from 0 to <b>length</b> - 1
+<tr><Td colspan=2>
+Name/value pairs are indexed sequentially. This function returns the name at a given position.
+</TABLE>
+<DT><A NAME=Record_read></A>
+<font color="green">read</font>(
+<font color="purple">data</font> <font color="navy">String</font>, <font color="purple">delimiter</font> <font color="navy">String</font>)
+ returns <font color="navy">Number</font>
+<dd><TABLE>
+<TR><TD width=2% NOWRAP valign=top><font color="purple">data</font>
+<TD valign=top>
+Delimited string to read <tt>(a=b&c=d&e=f&...)</tt>
+<TR><TD width=2% NOWRAP valign=top><font color="purple">delimiter</font>
+<TD valign=top>Delimiter character, default is & (think of HTTP GET)
+<tr><Td colspan=2>
+Reads a delimited string into the record.
+</TABLE>
+<DT><A NAME=Record_readINI></A>
+<font color="green">readINI</font>(
+<font color="purple">file</font> <font color="navy">String</font>, <font color="purple">section</font> <font color="navy">String</font>)
+ returns <font color="navy">Number</font>
+<dd><TABLE>
+<TR><TD width=2% NOWRAP valign=top><font color="purple">file</font>
+<TD valign=top>INI file name (in Windows directory by default)
+<TR><TD width=2% NOWRAP valign=top><font color="purple">section</font>
+<TD valign=top>INI file section
+<tr><Td colspan=2>
+Reads a Windows INI file section.Returns the number of entries.
+</TABLE>
+<DT><A NAME=Record_set></A>
+<font color="green">set</font>(
+<font color="purple">name</font> <font color="navy">String|Integer</font>, <font color="purple">value</font> <font color="navy">String</font>)
+ returns <font color="navy">Boolean</font>
+<dd><TABLE>
+<TR><TD width=2% NOWRAP valign=top><font color="purple">name</font>
+<TD valign=top>Field name or index
+<TR><TD width=2% NOWRAP valign=top><font color="purple">value</font>
+<TD valign=top>New value
+<tr><Td colspan=2>
+Sets a field value, or creates a name/value pair if it doesn't already exist.
+</TABLE>
+<DT><A NAME=Record_toObject></A>
+<font color="green">toObject</font>(
+)
+ returns <font color="navy">Object</font>
+<dd><TABLE>
+<tr><Td colspan=2>
+Generates a JS Object from the record data.
+</TABLE>
+<DT><A NAME=Record_toString></A>
+<font color="green">toString</font>(
+)
+ returns <font color="navy">String</font>
+<dd><TABLE>
+<tr><Td colspan=2>
+Returns a '\n'-delimited list of the record.
+</TABLE>
+<DT><A NAME=Record_unSet></A>
+<font color="green">unSet</font>(
+<font color="purple">name</font> <font color="navy">String</font>)
+ returns <font color="navy">Boolean</font>
+<dd><TABLE>
+<TR><TD width=2% NOWRAP valign=top><font color="purple">name</font>
+<TD valign=top>Field name
+<tr><Td colspan=2>
+Removes a name/value pair if it exists.
+</TABLE>
+<DT><A NAME=Record_value></A>
+<font color="green">value</font>(
+<font color="purple">index</font> <font color="navy">Number</font>)
+ returns <font color="navy">String</font>
+<dd><TABLE>
+<TR><TD width=2% NOWRAP valign=top><font color="purple">index</font>
+<TD valign=top>
+Index from 0 to <b>length</b> - 1
+<tr><Td colspan=2>
+Name/value pairs are indexed sequentially. This function returns the value at a given position.
+</TABLE>
+<DT><A NAME=Record_write></A>
+<font color="green">write</font>(
+<font color="purple">delimiter</font> <font color="navy">String</font>)
+ returns <font color="navy">String</font>
+<dd><TABLE>
+<TR><TD width=2% NOWRAP valign=top><font color="purple">delimiter</font>
+<TD valign=top>Delimiter character, default is & (think of HTTP GET)
+<tr><Td colspan=2>
+Returns a delimited string of the record's name-value pairs.
+</TABLE>
+<DT><A NAME=Record_writeINI></A>
+<font color="green">writeINI</font>(
+<font color="purple">file</font> <font color="navy">String</font>, <font color="purple">section</font> <font color="navy">String</font>)
+ returns <font color="navy">Number</font>
+<dd><TABLE>
+<TR><TD width=2% NOWRAP valign=top><font color="purple">file</font>
+<TD valign=top>INI file name (in Windows directory by default)
+<TR><TD width=2% NOWRAP valign=top><font color="purple">section</font>
+<TD valign=top>INI file section
+<tr><Td colspan=2>
+Writes a Windows INI file section. Returns the number of entries.
+</TABLE>
+</DL>
+<H2><a name=SQLite><b>SQLite</b></H2>
+<H3><b>Properties</b></H3>
+<TABLE>
+<TR><TD width=2% NOWRAP valign=top><A NAME=SQLite_className></A><font color="purple">className</font><TD valign=top><font color="navy">String</font></td>
+<TD valign=top width=98%>"SQLite"
+<TR><TD width=2% NOWRAP valign=top><A NAME=SQLite_error></A><font color="purple">error</font><TD valign=top><font color="navy">String</font></td>
+<TD valign=top width=98%>The last error reported by SQLite.
+<TR><TD width=2% NOWRAP valign=top><A NAME=SQLite_lastId></A><font color="purple">lastId</font><TD valign=top><font color="navy">String</font></td>
+<TD valign=top width=98%>The id of the last row added to the database, helpful when using an autoincrement primary key.
+Note: "lastid", "lastId", and "lastID" all point to the same property, in case you can't remember which one to use.
+<TR><TD width=2% NOWRAP valign=top><A NAME=SQLite_name></A><font color="purple">name</font><TD valign=top><font color="navy">String</font></td>
+<TD valign=top width=98%>The database file name, ":memory:" if an in-memory database.
+</TABLE>
+<H3><b>Functions</b></H3><DL>
+<DT><A NAME=SQLite_SQLite></A>
+<font color="green">SQLite</font>(
+<font color="purple">database</font> <font color="navy">String</font>)
+<dd><TABLE>
+<TR><TD width=2% NOWRAP valign=top><font color="purple">database</font>
+<TD valign=top>File name
+<tr><Td colspan=2>
+Opens or creates a SQLite3 database file. Creates an in-memory database if the file name is omitted.
+</TABLE>
+<DT><A NAME=SQLite_close></A>
+<font color="green">close</font>(
+)
+<dd><TABLE>
+<tr><Td colspan=2>
+Closes the database and frees associated memory.
+</TABLE>
+<DT><A NAME=SQLite_columns></A>
+<font color="green">columns</font>(
+<font color="purple">table</font> <font color="navy">String</font>, <font color="purple">longFormat</font> <font color="navy">Boolean</font>)
+ returns <font color="navy">Array</font>
+<dd><TABLE>
+<TR><TD width=2% NOWRAP valign=top><font color="purple">table</font>
+<TD valign=top>A table name
+<tr><Td colspan=2>
+Returns an array of all the column names for the specified table. If <b>longFormat</b> is true, the return value will look like <br><tt>["id INTEGER","name VARCHAR(32)","value DECIMAL(12,5)"]</tt>.
+</TABLE>
+<DT><A NAME=SQLite_escape></A>
+<font color="green">escape</font>(
+<font color="purple">text</font> <font color="navy">String</font>)
+ returns <font color="navy">String</font>
+<dd><TABLE>
+<TR><TD width=2% NOWRAP valign=top><font color="purple">text</font>
+<TD valign=top>Field text to send to the database
+<tr><Td colspan=2>
+Quotes and escapes text as appropriate for the database. Usage:<br>
+<tt>db.exec("insert into friends (name) values (" + db.escape('Cynthia') + ")")</tt>
+</TABLE>
+<DT><A NAME=SQLite_exec></A>
+<font color="green">exec</font>(
+<font color="purple">command</font> <font color="navy">String</font>, <font color="purple">callback</font> <font color="navy">Function</font>, <font color="purple">opaque</font> <font color="navy"></font>)
+ returns <font color="navy">Boolean</font>
+<dd><TABLE>
+<TR><TD width=2% NOWRAP valign=top><font color="purple">command</font>
+<TD valign=top>SQL statement
+<TR><TD width=2% NOWRAP valign=top><font color="purple">callback</font>
+<TD valign=top>Callback function
+<TR><TD width=2% NOWRAP valign=top><font color="purple">opaque</font>
+<TD valign=top>Parameters passed to the callback function
+<tr><Td colspan=2>
+Executes a SQL statement. If rows are returned, runs <tt>callback(record, opaque)</tt> for each row in the result set.
+The result record is reused. See <a href=http://www.sqlite.org/lang.html>Query Language Understood by SQLite</a>.
+</TABLE>
+<DT><A NAME=SQLite_keys></A>
+<font color="green">keys</font>(
+<font color="purple">table</font> <font color="navy">String</font>)
+ returns <font color="navy">Array</font>
+<dd><TABLE>
+<TR><TD width=2% NOWRAP valign=top><font color="purple">table</font>
+<TD valign=top>A table name
+<tr><Td colspan=2>
+Returns a list of all the key names for the specified table.
+</TABLE>
+<DT><A NAME=SQLite_tables></A>
+<font color="green">tables</font>(
+)
+ returns <font color="navy">Array</font>
+<dd><TABLE>
+<tr><Td colspan=2>
+Returns an array of all the table names in the database.
+</TABLE>
+</DL>
+<H2><a name=Server><b>Server</b></H2>
+<H3><b>Properties</b></H3>
+<TABLE>
+<TR><TD width=2% NOWRAP valign=top><A NAME=Server_anyoneWaiting></A><font color="purple">anyoneWaiting</font><TD valign=top><font color="navy">Boolean</font></td>
+<TD valign=top width=98%>is a client waiting for a response?
+<TR><TD width=2% NOWRAP valign=top><A NAME=Server_hostName></A><font color="purple">hostName</font><TD valign=top><font color="navy">String</font></td>
+<TD valign=top width=98%>
+<TR><TD width=2% NOWRAP valign=top><A NAME=Server_port></A><font color="purple">port</font><TD valign=top><font color="navy">Number</font></td>
+<TD valign=top width=98%>
+</TABLE>
+<H3><b>Functions</b></H3><DL>
+<DT><A NAME=Server_Server></A>
+<font color="green">Server</font>(
+<font color="purple">port</font> <font color="navy">Number</font>)
+ returns <font color="navy">Server</font>
+<dd><TABLE>
+<TR><TD width=2% NOWRAP valign=top><font color="purple">port</font>
+<TD valign=top>Default port is 80.
+<tr><Td colspan=2>
+
+</TABLE>
+<DT><A NAME=Server_accept></A>
+<font color="green">accept</font>(
+)
+ returns <font color="navy">Stream</font>
+<dd><TABLE>
+<tr><Td colspan=2>
+Accepts the next connection in the input queue and returns a Stream pointer
+to communicate with it.
+</TABLE>
+<DT><A NAME=Server_close></A>
+<font color="green">close</font>(
+)
+ returns <font color="navy">Boolean</font>
+<dd><TABLE>
+<tr><Td colspan=2>
+Closes the server and all connections.
+</TABLE>
+<DT><A NAME=Server_toString></A>
+<font color="green">toString</font>(
+)
+ returns <font color="navy">String</font>
+<dd><TABLE>
+<tr><Td colspan=2>
+Describes the server configuration and port.
+</TABLE>
+</DL>
+<H2><a name=Stream><b>Stream</b></H2>
+<H3><b>Properties</b></H3>
+<TABLE>
+<TR><TD width=2% NOWRAP valign=top><A NAME=Stream_canRead></A><font color="purple">canRead</font><TD valign=top><font color="navy">Boolean</font></td>
+<TD valign=top width=98%>True if there are characters available in the input buffer, or if you haven't reached the end of a memory stream.
+<TR><TD width=2% NOWRAP valign=top><A NAME=Stream_canWrite></A><font color="purple">canWrite</font><TD valign=top><font color="navy">Boolean</font></td>
+<TD valign=top width=98%>True if the stream was created for writing.
+<TR><TD width=2% NOWRAP valign=top><A NAME=Stream_eof></A><font color="purple">eof</font><TD valign=top><font color="navy">Boolean</font></td>
+<TD valign=top width=98%>Is the stream at its end? For COM
+streams, this identifies whether the stream has been closed. Network
+streams (http://, net://) can only detect whether they've been closed
+after a read() or write() call returns 0. While eof can detect socket
+error conditions, this doesn't happen very often. Unfortunately, there's no 
+good way to detect if a network socket is closed without reading or writing
+to it.
+<TR><TD width=2% NOWRAP valign=top><A NAME=Stream_hasChildren></A><font color="purple">hasChildren</font><TD valign=top><font color="navy">Boolean</font></td>
+<TD valign=top width=98%>See readTag()
+<TR><TD width=2% NOWRAP valign=top><A NAME=Stream_header></A><font color="purple">header</font><TD valign=top><font color="navy">Object</font></td>
+<TD valign=top width=98%>For http:// streams, the HTTP header. Use <tt>stream["Content-type"]</tt> to extract values.
+<TR><TD width=2% NOWRAP valign=top><A NAME=Stream_hostAddress></A><font color="purple">hostAddress</font><TD valign=top><font color="navy">String</font></td>
+<TD valign=top width=98%>For network streams, the remote host address
+<TR><TD width=2% NOWRAP valign=top><A NAME=Stream_hostName></A><font color="purple">hostName</font><TD valign=top><font color="navy">String</font></td>
+<TD valign=top width=98%>For network streams, the remote host name
+<TR><TD width=2% NOWRAP valign=top><A NAME=Stream_name></A><font color="purple">name</font><TD valign=top><font color="navy">String</font></td>
+<TD valign=top width=98%>Filename or URL
+<TR><TD width=2% NOWRAP valign=top><A NAME=Stream_pos></A><font color="purple">pos</font><TD valign=top><font color="navy">Number</font></td>
+<TD valign=top width=98%>
+Same as <b>position</b>
+<TR><TD width=2% NOWRAP valign=top><A NAME=Stream_position></A><font color="purple">position</font><TD valign=top><font color="navy">Number</font></td>
+<TD valign=top width=98%>Cursor position, in bytes, from the beginning. 
+This property is not appropriate for HTTP and COM streams.
+<TR><TD width=2% NOWRAP valign=top><A NAME=Stream_size></A><font color="purple">size</font><TD valign=top><font color="navy">Number</font></td>
+<TD valign=top width=98%>Total number of bytes for file and memory streams.
+<TR><TD width=2% NOWRAP valign=top><A NAME=Stream_status></A><font color="purple">status</font><TD valign=top><font color="navy">Number</font></td>
+<TD valign=top width=98%>For http:// streams, the server's response status, such as <tt>200</tt>. 
+<TR><TD width=2% NOWRAP valign=top><A NAME=Stream_statusText></A><font color="purple">statusText</font><TD valign=top><font color="navy">String</font></td>
+<TD valign=top width=98%>For http:// streams, the wWeb server response message, such as <tt>'HTTP/1.1 200 OK'</tt>. 
+<TR><TD width=2% NOWRAP valign=top><A NAME=Stream_stderr></A><font color="purple">stderr</font><TD valign=top><font color="navy">Stream</font></td>
+<TD valign=top width=98%>Captures stderr output from exec:// 
+<TR><TD width=2% NOWRAP valign=top><A NAME=Stream_tagText></A><font color="purple">tagText</font><TD valign=top><font color="navy">String</font></td>
+<TD valign=top width=98%>See readTag()
+</TABLE>
+<H3><b>Functions</b></H3><DL>
+<DT><A NAME=Stream_Stream></A>
+<font color="green">Stream</font>(
+<font color="purple">name</font> <font color="navy">String</font>, <font color="purple">mode</font> <font color="navy">String</font>, <font color="purple">header</font> <font color="navy">Record|Object</font>)
+ returns <font color="navy">Stream</font>
+<dd><TABLE>
+<TR><TD width=2% NOWRAP valign=top><font color="purple">name</font>
+<TD valign=top>
+Filename, URL, Number of bytes for a memory stream. URLs are of the form:
+  <tt><br>http://www.jsdb.org/
+  <br>file://c:/test.txt
+  <br>net://server.com:port
+  <br>com1://56000 (or com2, com3, ...)
+  <br>text://<i>number_of_bytes</i>
+  <br>temp://<i>number_of_bytes</i>
+  <br>exec://command line
+  </tt>
+  
+<TR><TD width=2% NOWRAP valign=top><font color="purple">mode</font>
+<TD valign=top>
+For files <b>mode</b>, is the open mode (rwactb+). A + indicates an unbuffered stream and a <tt>b</tt> indicates binary mode. 
+The default mode is 'rt' (read a text file). 
+<table border=0>
+<tr><td>mode<td>Description<td>Combine with
+<tr><td><tt>a</tt><td>Append to a file or write-only file device. You can not seek, so you can not read.<td><tt>+tb</tt>
+<tr><td><tt>rw</tt><td>Create a new file or open an existing file with read and write access<td><tt>+tb</tt>
+<tr><td><tt>w</tt><td>Create or replace a file with read and write access<td><tt>+tbr</tt>
+<tr><td><tt>r</tt><td>Open an existing file with read access<td><tt>+tbw</tt>
+<tr><td><tt>t</tt><td>Text mode: <tt>\r</tt> is stripped when reading, and <tt>\n</tt> is converted to <tt>\r\n</tt> when writing. <tt>seek</tt> and <tt>pos</tt> are accurate.<td><tt>arw+</tt>
+<tr><td><tt>b</tt><td>Binary mode: no CRLF mapping.<td><tt>arw+</tt>
+<tr><td><tt>+</tt><td>Unbuffered: does not use read-ahead or write-behind cache.<td><tt>arwtb</tt>
+<tr><td><tt>d</tt><td>Pipes only: Creates a detached process with its own console window. (Windows)<td><tt>(none)</tt>
+</table>
+
+<P>
+For http:// streams, <b>mode</b> chooses how to connect and what data to retrieve. 
+<table border=0>
+<tr><td>mode<td>Description
+<tr><td>0<td>The stream is a raw connection. To fetch the contents of a web page, do something like this:
+<br><tt>status = stream.readLine()</tt>
+<br><tt>header = stream.readMIME()</tt>
+<br><tt>data = stream.read(header.get("Content-Length"))</tt>
+<tr><td>1<td>The stream starts with the HTTP header fields. The header is cached in the <b>header</b> property. The connection will use Internet Explorer's proxy settings and de-chunk 
+"Transfer-encoding: Chunked" transmissions.
+<tr><td>(anything else)<td>In version 1.7.2.3 and earlier, this is the same as <b>1</b>. In 1.7.2.4 and later, 
+the stream contains only the file data. Use the <b>status</b>, <b>statusText</b>, and <b>header</b> properties for
+connection information. The connection will use Internet Explorer's proxy settings and de-chunk 
+"Transfer-encoding: Chunked" transmissions.
+</table>
+
+<P>
+For net:// streams, <b>mode</b> chooses the socket parameters.
+<table border=0>
+<tr><td>mode<td>Description
+<tr><td><tt>i</tt><td>Immediate mode: Do not use the Nagle algorithm (TCP_NODELAY). Prior to version 1.7.3.6, the number 0 was used instead of the string <tt>i</tt>. No code changes are required -- 0 still works.
+<tr><td>(anything else)<td>Use the Nagle algorithm to group short write() calls so as to send fewer packets. 
+</table>
+
+<TR><TD width=2% NOWRAP valign=top><font color="purple">header</font>
+<TD valign=top>For http:// streams, pass additional header lines to the server.
+<tr><Td colspan=2>
+
+
+If <i>name</i> is a string, jsdb will first try to open a URL. 
+
+ <br>To retrieve a web page using GET and standard headers, use 
+ <b>Stream('http://server.com/')</b>. The <b>status</b> property will be initialized with the 
+ first line from the server response. 
+ <br>To simply open a socket to the server and send your
+ own headers, use <b>a = new Stream('net://server.com:80/'); a.writeln('POST /file.cgi/ HTTP/1.1\r\n')</b>. 
+ The port number defaults to 80 if it is omitted. 
+ <br>A <b>file://</b> URL is always opened in binary, read-only mode.
+
+ <br>If <b>name</b> does not appear to be a URL (no ://), jsdb will try to open a file instead. Forward slashes
+ are converted to back slashes when opening files in Windows. 
+ 
+ <br>If <b>name</b> is <b>fifo://</b>, an in-memory FIFO will be created.
+
+ <br>If <b>name</b> is omitted or is a number, an in-memory stream will be created, with the initial length given by <b>name</b>.
+ 
+ <P>If <b>name</b> starts with "exec://", the stream returns a pipe to a spawned process. Try this:
+<pre>p = new Stream("exec://jsdb.exe","d")
+p.writeln("writeln('hello world');")
+writeln(p.readln())
+p.writeln("quit");
+</pre>
+
+</TABLE>
+<DT><A NAME=Stream_append></A>
+<font color="green">append</font>(
+<font color="purple">data</font> <font color="navy">Stream</font>, <font color="purple">length</font> <font color="navy">Number</font>)
+ returns <font color="navy">String</font>
+<dd><TABLE>
+<TR><TD width=2% NOWRAP valign=top><font color="purple">data</font>
+<TD valign=top>Stream to append
+<TR><TD width=2% NOWRAP valign=top><font color="purple">length</font>
+<TD valign=top>Max number of bytes to read
+<tr><Td colspan=2>
+
+Appends bytes from <b>data</b> until its end. Remember to rewind <b>data</b> before using it
+in a call to append()!
+</TABLE>
+<DT><A NAME=Stream_appendText></A>
+<font color="green">appendText</font>(
+<font color="purple">data</font> <font color="navy">Stream</font>, <font color="purple">length</font> <font color="navy">Number</font>)
+ returns <font color="navy">String</font>
+<dd><TABLE>
+<TR><TD width=2% NOWRAP valign=top><font color="purple">data</font>
+<TD valign=top>Stream to append
+<TR><TD width=2% NOWRAP valign=top><font color="purple">length</font>
+<TD valign=top>Max number of bytes to read
+<tr><Td colspan=2>
+Like append(), but maps '\n' to \r\n'. This is used to prepare text for a windows edit control.
+</TABLE>
+<DT><A NAME=Stream_clear></A>
+<font color="green">clear</font>(
+)
+ returns <font color="navy">Boolean</font>
+<dd><TABLE>
+<tr><Td colspan=2>
+ Resets a memory stream. The length is set to zero, and the position returned 
+ to the beginning, but memory is not freed.
+</TABLE>
+<DT><A NAME=Stream_eatChars></A>
+<font color="green">eatChars</font>(
+<font color="purple">skip</font> <font color="navy">String</font>)
+ returns <font color="navy">String</font>
+<dd><TABLE>
+<TR><TD width=2% NOWRAP valign=top><font color="purple">skip</font>
+<TD valign=top>Characters to skip
+<tr><Td colspan=2>
+
+Reads the stream one byte at a time. If a byte is not in the <b>skip</b> string, it returns
+a string containing that byte. A null character always stops the scan. Example:
+<code>
+var lastchar = file.eatChars(' \t\r\n')
+</code>
+</TABLE>
+<DT><A NAME=Stream_flush></A>
+<font color="green">flush</font>(
+)
+<dd><TABLE>
+<tr><Td colspan=2>
+For file streams, flush the 64k buffer. To create an unbuffered file stream, open it with the "+" option.
+</TABLE>
+<DT><A NAME=Stream_format></A>
+<font color="green">format</font>(
+)
+<dd><TABLE>
+<tr><Td colspan=2>
+
+
+This function was removed in version 1.7.2.7. You can replace it with
+<pre>
+Stream.prototype.format = function(source, values)
+{
+  this.write(source.replace(/{(.*?)}/g, function (x, name) {return values.get(name)} ))
+}
+</pre>
+
+</TABLE>
+<DT><A NAME=Stream_get></A>
+<font color="green">get</font>(
+)
+ returns <font color="navy">String</font>
+<dd><TABLE>
+<tr><Td colspan=2>
+ 
+ Reads one byte from the stream and advances the cursor.
+</TABLE>
+<DT><A NAME=Stream_goBack></A>
+<font color="green">goBack</font>(
+<font color="purple">offset</font> <font color="navy">Number</font>)
+ returns <font color="navy">String</font>
+<dd><TABLE>
+<tr><Td colspan=2>
+
+Moves the cursor backward <b>offset</b> bytes from the current position.. 
+</TABLE>
+<DT><A NAME=Stream_goForward></A>
+<font color="green">goForward</font>(
+<font color="purple">offset</font> <font color="navy">Number</font>)
+ returns <font color="navy">String</font>
+<dd><TABLE>
+<tr><Td colspan=2>
+
+Moves the cursor forward <b>offset</b> bytes from the current position. 
+</TABLE>
+<DT><A NAME=Stream_peek></A>
+<font color="green">peek</font>(
+)
+ returns <font color="navy">String</font>
+<dd><TABLE>
+<tr><Td colspan=2>
+ 
+ Returns the next byte in the file or memory stream, without advancing the cursor.
+ Since HTTP and COM streams aren't buffered, you should avoid using this function
+ unless you know the source of the stream.
+</TABLE>
+<DT><A NAME=Stream_put></A>
+<font color="green">put</font>(
+)
+ returns <font color="navy">String</font>
+<dd><TABLE>
+<tr><Td colspan=2>
+ 
+ Writes one byte to the stream and advances the cursor.
+</TABLE>
+<DT><A NAME=Stream_putBack></A>
+<font color="green">putBack</font>(
+<font color="purple">offset</font> <font color="navy">Number</font>)
+ returns <font color="navy">String</font>
+<dd><TABLE>
+<tr><Td colspan=2>
+
+Moves the cursor backward <b>offset</b> bytes from the current position.. 
+</TABLE>
+<DT><A NAME=Stream_read></A>
+<font color="green">read</font>(
+<font color="purple">count</font> <font color="navy">Number</font>, <font color="purple">dest</font> <font color="navy">Stream</font>)
+ returns <font color="navy">String</font>
+<dd><TABLE>
+<TR><TD width=2% NOWRAP valign=top><font color="purple">count</font>
+<TD valign=top>number of bytes
+<TR><TD width=2% NOWRAP valign=top><font color="purple">dest</font>
+<TD valign=top>Optional target for retrieved data
+<tr><Td colspan=2>
+Reads up to a fixed number of bytes from a file, and returns them as a string. If <b>dest</b> is provided,
+<b>readFile()</b> runs instead of <b>read()</b>
+</TABLE>
+<DT><A NAME=Stream_readByte></A>
+<font color="green">readByte</font>(
+)
+ returns <font color="navy">Number</font>
+<dd><TABLE>
+<tr><Td colspan=2>
+ 
+Same as readUInt8()
+</TABLE>
+<DT><A NAME=Stream_readFile></A>
+<font color="green">readFile</font>(
+<font color="purple">size</font> <font color="navy">Number</font>, <font color="purple">dest</font> <font color="navy">Stream</font>)
+ returns <font color="navy">String|Number</font>
+<dd><TABLE>
+<TR><TD width=2% NOWRAP valign=top><font color="purple">size</font>
+<TD valign=top>Maximum number of bytes
+<TR><TD width=2% NOWRAP valign=top><font color="purple">dest</font>
+<TD valign=top>Where to store the data
+<tr><Td colspan=2>
+Reads the entire stream into a string in binary mode. <b>size</b> and <b>dest</b> may be in any order.
+If <b>dest</b> is provided, the return value is the number of bytes actually copied. Otherwise, the return
+value is a string. The stream is read in binary mode, so the string may contain embedded nulls.
+</TABLE>
+<DT><A NAME=Stream_readFloat32></A>
+<font color="green">readFloat32</font>(
+)
+ returns <font color="navy">Number</font>
+<dd><TABLE>
+<tr><Td colspan=2>
+ 
+Reads a 32-bit floating point
+</TABLE>
+<DT><A NAME=Stream_readFloat64></A>
+<font color="green">readFloat64</font>(
+)
+ returns <font color="navy">Number</font>
+<dd><TABLE>
+<tr><Td colspan=2>
+ 
+Reads a double from the stream
+</TABLE>
+<DT><A NAME=Stream_readInt></A>
+<font color="green">readInt</font>(
+<font color="purple">network</font> <font color="navy">Boolean</font>)
+ returns <font color="navy">Number</font>
+<dd><TABLE>
+<TR><TD width=2% NOWRAP valign=top><font color="purple">network</font>
+<TD valign=top>Network byte order?
+<tr><Td colspan=2>
+Reads a binary, signed 32-bit integer in Intel byte format. (JavaScript uses 31 bit integers internally). Set network=true for Sun or Mac native byte order.
+</TABLE>
+<DT><A NAME=Stream_readInt16></A>
+<font color="green">readInt16</font>(
+<font color="purple">network</font> <font color="navy">Boolean</font>)
+ returns <font color="navy">Number</font>
+<dd><TABLE>
+<TR><TD width=2% NOWRAP valign=top><font color="purple">network</font>
+<TD valign=top>Network byte order?
+<tr><Td colspan=2>
+Reads a binary, signed 16-bit integer in Intel byte format. 
+</TABLE>
+<DT><A NAME=Stream_readInt32></A>
+<font color="green">readInt32</font>(
+<font color="purple">network</font> <font color="navy">Boolean</font>)
+ returns <font color="navy">Number</font>
+<dd><TABLE>
+<TR><TD width=2% NOWRAP valign=top><font color="purple">network</font>
+<TD valign=top>Network byte order?
+<tr><Td colspan=2>
+Same as <b>readInt()</b>.
+</TABLE>
+<DT><A NAME=Stream_readInt8></A>
+<font color="green">readInt8</font>(
+)
+ returns <font color="navy">Number</font>
+<dd><TABLE>
+<tr><Td colspan=2>
+ 
+Reads a binary, signed 8-bit integer.
+</TABLE>
+<DT><A NAME=Stream_readLine></A>
+<font color="green">readLine</font>(
+)
+ returns <font color="navy">String</font>
+<dd><TABLE>
+<tr><Td colspan=2>
+ 
+Same as readln.
+</TABLE>
+<DT><A NAME=Stream_readList></A>
+<font color="green">readList</font>(
+<font color="purple">data</font> <font color="navy">Record</font>, <font color="purple">delimiter</font> <font color="navy">String</font>, <font color="purple">equals</font> <font color="navy">String</font>)
+ returns <font color="navy">Number</font>
+<dd><TABLE>
+<TR><TD width=2% NOWRAP valign=top><font color="purple">data</font>
+<TD valign=top>Receptable for returned data
+<TR><TD width=2% NOWRAP valign=top><font color="purple">delimiter</font>
+<TD valign=top>Delimiter to use (default is probably "\n", but is not guaranteed)
+<TR><TD width=2% NOWRAP valign=top><font color="purple">equals</font>
+<TD valign=top>Name/value separator (default is "=")
+<tr><Td colspan=2>
+
+Reads a delimited name-value list. The delimiter and equals sign must be single characters.
+Note that "\r\n" in files is mapped to "\n" in memory, so the default input it expects is
+<code>
+name=value
+name1=value1
+name2=value2
+</code>
+Returns the number of pairs read.
+</TABLE>
+<DT><A NAME=Stream_readListB></A>
+<font color="green">readListB</font>(
+<font color="purple">data</font> <font color="navy">Record</font>)
+ returns <font color="navy">String</font>
+<dd><TABLE>
+<tr><Td colspan=2>
+<i>Deprecated in 1.7.2.5</i>. Reads data from a Record in binary format. Each parameter is terminated with a null byte, the last with two null bytes.
+</TABLE>
+<DT><A NAME=Stream_readMIME></A>
+<font color="green">readMIME</font>(
+<font color="purple">data</font> <font color="navy">Record</font>)
+ returns <font color="navy">Number</font>
+<dd><TABLE>
+<TR><TD width=2% NOWRAP valign=top><font color="purple">data</font>
+<TD valign=top>Receptacle for parsed data
+<tr><Td colspan=2>
+Reads a name-value list in MIME format. This takes whitespace after the colon into account, 
+and assumes that any non-blank line beginning with whitespace is a continuation line.
+Returns the number of pairs read.
+</TABLE>
+<DT><A NAME=Stream_readTag></A>
+<font color="green">readTag</font>(
+<font color="purple">data</font> <font color="navy">Record</font>, <font color="purple">allowed</font> <font color="navy">String</font>)
+ returns <font color="navy">String</font>
+<dd><TABLE>
+<TR><TD width=2% NOWRAP valign=top><font color="purple">data</font>
+<TD valign=top>Tag fields
+<TR><TD width=2% NOWRAP valign=top><font color="purple">allowed</font>
+<TD valign=top>Comma-delimited list of allowed fields, case-sensitive
+<tr><Td colspan=2>
+
+Used for parsing XML files. This function scans forward in a file until a markup tag is
+found. If <b>allowed</b> is given, only tags (and end-tags) in the list will stop a scan. Otherwise,
+any &lt; sign stops the scan. The text skipped in this scan is stored in the stream's parameter
+<b>tagText</b>.
+
+<br>When it reaches a tag, it reads the tag parameters, and stores them in <b>data</b>. The XML 
+escape sequences &lt; &gt; &amp; and &quot; are automatically decoded in the parameters, but not 
+in CDATA sections. 
+
+<br>If the tag
+has an end marker, (ex: <tt>&lt;tag field=value /&gt;</tt>), the stream's parameter <b>hasChildren</b> 
+is set to false. Otherwise, <b>hasChildren</b> is true. The tag name is returned. If the end of the file 
+has been reached, the return value is an empty string.
+
+<br>If the tag name is "![CDATA[", readTag() searches forward for "]]&gt;", and appends the intervening
+text to <b>tagText</b>. 
+
+<br>For an example of how this is used, see the module "xml.js".
+
+<code>
+  var params = new Record;
+  var name = stream.readTag(params,allowed);
+</code>
+</TABLE>
+<DT><A NAME=Stream_readText></A>
+<font color="green">readText</font>(
+)
+ returns <font color="navy">String</font>
+<dd><TABLE>
+<tr><Td colspan=2>
+ 
+Reads the entire stream, converting all linefeeds to \r\n. Returns a string of the result.
+</TABLE>
+<DT><A NAME=Stream_readUInt16></A>
+<font color="green">readUInt16</font>(
+<font color="purple">network</font> <font color="navy">Boolean</font>)
+ returns <font color="navy">Number</font>
+<dd><TABLE>
+<TR><TD width=2% NOWRAP valign=top><font color="purple">network</font>
+<TD valign=top>Network byte order?
+<tr><Td colspan=2>
+Reads a binary, unsigned 16-bit integer in Intel byte format. 
+</TABLE>
+<DT><A NAME=Stream_readUInt8></A>
+<font color="green">readUInt8</font>(
+)
+ returns <font color="navy">Number</font>
+<dd><TABLE>
+<tr><Td colspan=2>
+ 
+Reads a binary, unsigned 8-bit integer.
+</TABLE>
+<DT><A NAME=Stream_readUntil></A>
+<font color="green">readUntil</font>(
+<font color="purple">search</font> <font color="navy">String</font>, <font color="purple">skipped</font> <font color="navy">Stream</font>)
+ returns <font color="navy">Boolean</font>
+<dd><TABLE>
+<TR><TD width=2% NOWRAP valign=top><font color="purple">search</font>
+<TD valign=top>String that stops the search
+<TR><TD width=2% NOWRAP valign=top><font color="purple">skipped</font>
+<TD valign=top>Skipped data is written to this stream
+<tr><Td colspan=2>
+
+Returns true if the search string was found. readUntil() does a case-insensitive text search. For a binary search, use
+readUntilBytes(). If <i>search</i> is a unicode string, it will be converted
+to UTF-8.  Example:
+<code>
+var memory = new Stream
+var file = new Stream('test.txt')
+file.readUntil('&lt;/file&gt;',memory)
+writeln(memory)
+</code>
+</TABLE>
+<DT><A NAME=Stream_readUntilBytes></A>
+<font color="green">readUntilBytes</font>(
+<font color="purple">search</font> <font color="navy">String</font>, <font color="purple">skipped</font> <font color="navy">Stream</font>)
+ returns <font color="navy">Boolean</font>
+<dd><TABLE>
+<TR><TD width=2% NOWRAP valign=top><font color="purple">search</font>
+<TD valign=top>Byte pattern that stops te search
+<TR><TD width=2% NOWRAP valign=top><font color="purple">skipped</font>
+<TD valign=top>Skipped data is written to this stream
+<tr><Td colspan=2>
+The binary version of readUntil(), readUntilBytes() can search for patterns with embedded nulls.
+</TABLE>
+<DT><A NAME=Stream_readln></A>
+<font color="green">readln</font>(
+<font color="purple">delimiter</font> <font color="navy">String</font>)
+ returns <font color="navy">String</font>
+<dd><TABLE>
+<TR><TD width=2% NOWRAP valign=top><font color="purple">delimiter</font>
+<TD valign=top>End-of-line character (default '\n')
+<tr><Td colspan=2>
+Returns the next line in the file. At the end of the file, it returns an empty string "".
+</TABLE>
+<DT><A NAME=Stream_resize></A>
+<font color="green">resize</font>(
+<font color="purple">size</font> <font color="navy">Number</font>)
+ returns <font color="navy">String</font>
+<dd><TABLE>
+<TR><TD width=2% NOWRAP valign=top><font color="purple">size</font>
+<TD valign=top> Specifies the new buffer size
+<tr><Td colspan=2>
+Resizes a memory stream. If the stream decreases, data are truncated from the end.
+  If the cursor is beyond the end of the stream, it is moved to the new end. 
+  If the stream is expanded, memory is allocated, but  no new data are added.
+</TABLE>
+<DT><A NAME=Stream_rewind></A>
+<font color="green">rewind</font>(
+)
+ returns <font color="navy">String</font>
+<dd><TABLE>
+<tr><Td colspan=2>
+
+
+ For file and memory streams, moves the cursor to the beginning of the stream.
+ Example: <code>
+ temp = new Stream
+ temp.write('hello, world')
+ temp.rewind()
+ file = new Stream('test.txt','at')
+ file.append(temp)
+ </code>
+ 
+</TABLE>
+<DT><A NAME=Stream_seek></A>
+<font color="green">seek</font>(
+<font color="purple">location</font> <font color="navy">Number</font>)
+ returns <font color="navy">String</font>
+<dd><TABLE>
+<tr><Td colspan=2>
+Moves the cursor to a new offset from the beginning. 
+</TABLE>
+<DT><A NAME=Stream_setEndOfFile></A>
+<font color="green">setEndOfFile</font>(
+<font color="purple">length</font> <font color="navy">Number</font>)
+ returns <font color="navy">Boolean</font>
+<dd><TABLE>
+<TR><TD width=2% NOWRAP valign=top><font color="purple">length</font>
+<TD valign=top>New maximum file length
+<tr><Td colspan=2>
+Changes the length of a a file or memory stream. Memory streams can be truncated. 
+File streams can be truncated or extended.
+</TABLE>
+<DT><A NAME=Stream_toString></A>
+<font color="green">toString</font>(
+)
+ returns <font color="navy">String</font>
+<dd><TABLE>
+<tr><Td colspan=2>
+ 
+For a file, COM, or HTTP stream, this returns the filename. For a memory stream, it returns the
+entire buffer.
+</TABLE>
+<DT><A NAME=Stream_write></A>
+<font color="green">write</font>(
+<font color="purple">data...</font> <font color="navy">String</font>)
+ returns <font color="navy">Number</font>
+<dd><TABLE>
+<TR><TD width=2% NOWRAP valign=top><font color="purple">data...</font>
+<TD valign=top>Objects to write to the stream
+<tr><Td colspan=2>
+ Example: stream.write('hello', '4', 5). If the parameters to this function are
+ not strings, their toString() function will be called. Returns the number of bytes written.
+</TABLE>
+<DT><A NAME=Stream_writeByte></A>
+<font color="green">writeByte</font>(
+<font color="purple">value</font> <font color="navy">Number</font>)
+ returns <font color="navy">Number</font>
+<dd><TABLE>
+<tr><Td colspan=2>
+Same as writeUInt8
+</TABLE>
+<DT><A NAME=Stream_writeFloat32></A>
+<font color="green">writeFloat32</font>(
+<font color="purple">value</font> <font color="navy">Number</font>)
+ returns <font color="navy">Number</font>
+<dd><TABLE>
+<tr><Td colspan=2>
+Converts <i>value</i> to a number and writes it to the stream as a 32-bit floating-point number.
+</TABLE>
+<DT><A NAME=Stream_writeFloat64></A>
+<font color="green">writeFloat64</font>(
+<font color="purple">value</font> <font color="navy">Number</font>)
+ returns <font color="navy">Number</font>
+<dd><TABLE>
+<tr><Td colspan=2>
+Writes a double to the stream.
+</TABLE>
+<DT><A NAME=Stream_writeInt></A>
+<font color="green">writeInt</font>(
+<font color="purple">value</font> <font color="navy">Number</font>, <font color="purple">network</font> <font color="navy">Boolean</font>)
+ returns <font color="navy">Number</font>
+<dd><TABLE>
+<TR><TD width=2% NOWRAP valign=top><font color="purple">network</font>
+<TD valign=top>Network byte order?
+<tr><Td colspan=2>
+Writes a binary, signed 32-bit integer in Intel byte format. 
+</TABLE>
+<DT><A NAME=Stream_writeInt16></A>
+<font color="green">writeInt16</font>(
+<font color="purple">value</font> <font color="navy">Number</font>, <font color="purple">network</font> <font color="navy">Boolean</font>)
+ returns <font color="navy">Number</font>
+<dd><TABLE>
+<TR><TD width=2% NOWRAP valign=top><font color="purple">network</font>
+<TD valign=top>Network byte order?
+<tr><Td colspan=2>
+Writes a binary, signed 16-bit integer in Intel byte format. 
+</TABLE>
+<DT><A NAME=Stream_writeInt32></A>
+<font color="green">writeInt32</font>(
+<font color="purple">value</font> <font color="navy">Number</font>, <font color="purple">network</font> <font color="navy">Boolean</font>)
+ returns <font color="navy">Number</font>
+<dd><TABLE>
+<TR><TD width=2% NOWRAP valign=top><font color="purple">network</font>
+<TD valign=top>Network byte order?
+<tr><Td colspan=2>
+Same as <b>writeInt()</b>.
+</TABLE>
+<DT><A NAME=Stream_writeInt8></A>
+<font color="green">writeInt8</font>(
+<font color="purple">value</font> <font color="navy">Number</font>)
+ returns <font color="navy">Number</font>
+<dd><TABLE>
+<tr><Td colspan=2>
+Writes a binary, signed 8-bit integer. 
+</TABLE>
+<DT><A NAME=Stream_writeLine></A>
+<font color="green">writeLine</font>(
+)
+ returns <font color="navy">String</font>
+<dd><TABLE>
+<tr><Td colspan=2>
+ 
+Same as writeln.
+</TABLE>
+<DT><A NAME=Stream_writeList></A>
+<font color="green">writeList</font>(
+<font color="purple">data</font> <font color="navy">Record|Object</font>, <font color="purple">delimiter</font> <font color="navy">String</font>, <font color="purple">equals</font> <font color="navy">String</font>)
+ returns <font color="navy">Number</font>
+<dd><TABLE>
+<TR><TD width=2% NOWRAP valign=top><font color="purple">data</font>
+<TD valign=top>Data to write
+<TR><TD width=2% NOWRAP valign=top><font color="purple">delimiter</font>
+<TD valign=top>Delimiter to use (default is probably "/", but is not guaranteed)
+<TR><TD width=2% NOWRAP valign=top><font color="purple">equals</font>
+<TD valign=top>Name/value separator (default is "=")
+<tr><Td colspan=2>
+
+Writes a delimited name-value list. You can specify any string to use for the record and field
+delimiters. Default output is <tt>name=value/name1=value1/name2=value2/...</tt>
+Returns the number of pairs written.
+</TABLE>
+<DT><A NAME=Stream_writeListB></A>
+<font color="green">writeListB</font>(
+<font color="purple">data</font> <font color="navy">Record|Object</font>)
+ returns <font color="navy">String</font>
+<dd><TABLE>
+<tr><Td colspan=2>
+
+Writes data from a Record in binary format. The C++ equivalent is
+ <code>
+ for (int i=0; i< data.count; i++)
+  {
+   fwrite(data[i].name,1,strlen(data[i].name) + 1, file);
+   fwrite(data[i].value,1,strlen(data[i].value) + 1, file);
+  }
+ fwrite("",1,1,file);
+ </code>
+</TABLE>
+<DT><A NAME=Stream_writeMIME></A>
+<font color="green">writeMIME</font>(
+<font color="purple">data</font> <font color="navy">Object|Record</font>)
+ returns <font color="navy">Number</font>
+<dd><TABLE>
+<TR><TD width=2% NOWRAP valign=top><font color="purple">data</font>
+<TD valign=top>Data to write
+<tr><Td colspan=2>
+
+Writes a name-value list in MIME format. This is equivalent to <tt>writeList(data,': ','\n')</tt>. 
+A blank line ends the list. Returns the number of pairs written.
+</TABLE>
+<DT><A NAME=Stream_writeUInt16></A>
+<font color="green">writeUInt16</font>(
+<font color="purple">value</font> <font color="navy">Number</font>, <font color="purple">network</font> <font color="navy">Boolean</font>)
+ returns <font color="navy">Number</font>
+<dd><TABLE>
+<TR><TD width=2% NOWRAP valign=top><font color="purple">network</font>
+<TD valign=top>Network byte order?
+<tr><Td colspan=2>
+Writes a binary, unsigned 16-bit integer in Intel byte format. 
+</TABLE>
+<DT><A NAME=Stream_writeUInt8></A>
+<font color="green">writeUInt8</font>(
+<font color="purple">value</font> <font color="navy">Number</font>)
+ returns <font color="navy">Number</font>
+<dd><TABLE>
+<tr><Td colspan=2>
+Writes a binary, unsigned 8-bit integer.
+</TABLE>
+<DT><A NAME=Stream_writeln></A>
+<font color="green">writeln</font>(
+)
+ returns <font color="navy">String</font>
+<dd><TABLE>
+<tr><Td colspan=2>
+ 
+ Like write(), but appends a newline (\n for memory, \r\n for files). The file I/O system
+ ensures that, for text mode files, \n in memory is faithfully mapped to \r\n on disk.
+ You can use pos and seek() to move the cursor in text files, but do not rely on counting
+ the bytes in read() and write() operations.
+</TABLE>
+</DL>
+<H2><a name=Table><b>Table</b></H2>
+<H3><b>Properties</b></H3>
+<TABLE>
+<TR><TD width=2% NOWRAP valign=top><A NAME=Table_className></A><font color="purple">className</font><TD valign=top><font color="navy">String</font></td>
+<TD valign=top width=98%>"Table"
+<TR><TD width=2% NOWRAP valign=top><A NAME=Table_colCount></A><font color="purple">colCount</font><TD valign=top><font color="navy">Number</font></td>
+<TD valign=top width=98%>number of columns<br>Column numbers start at 1, and 0 indicates
+an invalid column.
+<TR><TD width=2% NOWRAP valign=top><A NAME=Table_count></A><font color="purple">count</font><TD valign=top><font color="navy">Number</font></td>
+<TD valign=top width=98%>same as rowCount
+<TR><TD width=2% NOWRAP valign=top><A NAME=Table_error></A><font color="purple">error</font><TD valign=top><font color="navy">String</font></td>
+<TD valign=top width=98%>last error message
+<TR><TD width=2% NOWRAP valign=top><A NAME=Table_length></A><font color="purple">length</font><TD valign=top><font color="navy">Number</font></td>
+<TD valign=top width=98%>same as rowCount 
+<TR><TD width=2% NOWRAP valign=top><A NAME=Table_name></A><font color="purple">name</font><TD valign=top><font color="navy">String</font></td>
+<TD valign=top width=98%>the filename of the table
+<TR><TD width=2% NOWRAP valign=top><A NAME=Table_rowCount></A><font color="purple">rowCount</font><TD valign=top><font color="navy">Number</font></td>
+<TD valign=top width=98%>number of rows<br>Row numbers start at 1, and 0 indicates
+an invalid row.
+</TABLE>
+<H3><b>Functions</b></H3><DL>
+<DT><A NAME=Table_Table></A>
+<font color="green">Table</font>(
+<font color="purple">name</font> <font color="navy">String</font>)
+ returns <font color="navy">Table</font>
+<dd><TABLE>
+<TR><TD width=2% NOWRAP valign=top><font color="purple">name</font>
+<TD valign=top>data source name
+<tr><Td colspan=2>
+
+Opens a table. The data source name may be omitted to create an in-memory spreadsheet, or like one of these:
+<br><tt> <br>file://drive:/directory/filename.asc
+  <br>file://drive:/directory/filename.dbf
+<!--  <br>file://drive:/directory/filename.ini-->
+  <br>file://user:password@DSN/filename.dsn
+  <br>odbc://login:password@data_source/table</tt>  
+<br><br>The <tt>file://</tt> prefix is optional, except for the DSN hack to open an ODBC connections. 
+<!--<br>To open fixed-width ASCII files, create an INI file of the form
+<br><pre>[file]
+data=filename.txt
+type=DOS|UNIX|MAC
+[fields]
+field1=length1
+field2=length2
+...
+</pre>
+-->
+</TABLE>
+<DT><A NAME=Table_Table.create></A>
+<font color="green">Table.create</font>(
+<font color="purple">name</font> <font color="navy">String</font>, <font color="purple">fields</font> <font color="navy">String</font>)
+ returns <font color="navy">Boolean</font>
+<dd><TABLE>
+<TR><TD width=2% NOWRAP valign=top><font color="purple">name</font>
+<TD valign=top>Name of a new table to create
+<TR><TD width=2% NOWRAP valign=top><font color="purple">fields</font>
+<TD valign=top>"fieldname [type] length, ..."
+<tr><Td colspan=2>
+(new in 1.7)
+Creates a new xBase table. <b>name</b> is a file name (.dbf). <b>fields</b> is a list of
+column definitions, for example <tt>name C 33, address C 33, age N 3</tt>. 
+
+<br>Field names can be up to 10 characters. The field type and length are optional, they defaul to
+C and 255. The maximum field length is 65535. For xBase compatibility, the total record length
+should less than 65535.
+
+<br><tt>type</tt> can be Character, Number, Date, or Time (only the first letter is needed).
+</TABLE>
+<DT><A NAME=Table_add></A>
+<font color="green">add</font>(
+<font color="purple">data</font> <font color="navy">Record|Object</font>)
+ returns <font color="navy">Boolean</font>
+<dd><TABLE>
+<TR><TD width=2% NOWRAP valign=top><font color="purple">data</font>
+<TD valign=top>initial values
+<tr><Td colspan=2>
+Adds a new row to the table, populating it with values from data, and returning the number of the new row.
+<br><i>SQL databases:</i>
+<ul><li>JSDB will not set autoincrement fields in INSERT statements. Your database does this
+for you. 
+<li>If you have a key field which is not set and not autoincrement, JSDB will generate a unique 24-character value,
+based on the system time and a counter stored in the registry. This value will not repeat in the lifetime of the solar system.
+<li>If you are adding to an Oracle table and do not provide a primary key value, JSDB will use <i>seq_<b>tablename</b>.nextval</i>.
+<li>If the <i>data</i> parameter is an Object, string values will be converted to UTF-8.
+</ul>
+</TABLE>
+<DT><A NAME=Table_addColumn></A>
+<font color="green">addColumn</font>(
+<font color="purple">name</font> <font color="navy">String</font>)
+ returns <font color="navy">Boolean</font>
+<dd><TABLE>
+<TR><TD width=2% NOWRAP valign=top><font color="purple">name</font>
+<TD valign=top>column name
+<tr><Td colspan=2>
+Adds a new column, which must have a unique name, and returns
+  the new column's number.
+</TABLE>
+<DT><A NAME=Table_append></A>
+<font color="green">append</font>(
+<font color="purple">source</font> <font color="navy">String</font>, <font color="purple">callback</font> <font color="navy">Function</font>, <font color="purple">opaque</font> <font color="navy">Function</font>)
+ returns <font color="navy">Boolean</font>
+<dd><TABLE>
+<TR><TD width=2% NOWRAP valign=top><font color="purple">source</font>
+<TD valign=top>source table
+<TR><TD width=2% NOWRAP valign=top><font color="purple">callback</font>
+<TD valign=top>callback function
+<TR><TD width=2% NOWRAP valign=top><font color="purple">opaque</font>
+<TD valign=top>opaque parameter for callback
+<tr><Td colspan=2>
+Copies data from another table.
+<br>The callback function is of the form <tt>function cb(record, opaque, ...)</tt>, where <tt>record</tt>
+is the row number about to be transferred, and <tt>opaque</tt> (and the ...) are extra parameters passed
+to <tt>append()</tt>.
+</TABLE>
+<DT><A NAME=Table_column></A>
+<font color="green">column</font>(
+<font color="purple">column</font> <font color="navy">String</font>)
+ returns <font color="navy">Number</font>
+<dd><TABLE>
+<TR><TD width=2% NOWRAP valign=top><font color="purple">column</font>
+<TD valign=top>field name
+<tr><Td colspan=2>
+This finds the column number corresponding to a field name. If the field name
+  does not exist in the database, the return value is zero.
+</TABLE>
+<DT><A NAME=Table_data></A>
+<font color="green">data</font>(
+<font color="purple">row</font> <font color="navy">Number</font>, <font color="purple">column</font> <font color="navy">Number|String</font>)
+ returns <font color="navy">String</font>
+<dd><TABLE>
+<TR><TD width=2% NOWRAP valign=top><font color="purple">row</font>
+<TD valign=top>row number (starting with 1)
+<TR><TD width=2% NOWRAP valign=top><font color="purple">column</font>
+<TD valign=top>column number or name
+<tr><Td colspan=2>
+
+Returns text <furbie a=b>data</furbie> at a position in the table. You can determine if a row
+  is marked deleted if the first character of <tt>table.data(row,0)</tt> is 'D'.
+</TABLE>
+<DT><A NAME=Table_del></A>
+<font color="green">del</font>(
+<font color="purple">data</font> <font color="navy">Number</font>)
+ returns <font color="navy">Boolean</font>
+<dd><TABLE>
+<TR><TD width=2% NOWRAP valign=top><font color="purple">data</font>
+<TD valign=top>row number
+<tr><Td colspan=2>
+Deletes a row from the table.
+</TABLE>
+<DT><A NAME=Table_deleteColumn></A>
+<font color="green">deleteColumn</font>(
+<font color="purple">column</font> <font color="navy">Number</font>)
+ returns <font color="navy">Boolean</font>
+<dd><TABLE>
+<TR><TD width=2% NOWRAP valign=top><font color="purple">column</font>
+<TD valign=top>column number
+<tr><Td colspan=2>
+Removes a column from a spreadsheet table.
+</TABLE>
+<DT><A NAME=Table_find></A>
+<font color="green">find</font>(
+<font color="purple">query</font> <font color="navy">Record|Object</font>, <font color="purple">start</font> <font color="navy">Number</font>, <font color="purple">direction</font> <font color="navy">Number</font>)
+ returns <font color="navy">Number</font>
+<dd><TABLE>
+<TR><TD width=2% NOWRAP valign=top><font color="purple">query</font>
+<TD valign=top>
+values to search for, for example:
+  <tt>
+  <br>query = {name: 'Alice'} // faster: new Record('name=Alice');
+  <br>row = table.find(query)
+  </tt>
+  
+<TR><TD width=2% NOWRAP valign=top><font color="purple">start</font>
+<TD valign=top>row number from which to start searching (defaults to the first row)
+<TR><TD width=2% NOWRAP valign=top><font color="purple">direction</font>
+<TD valign=top>+1 to search forward, or -1 to search backwards
+<tr><Td colspan=2>
+
+The result of the last search is stored in the table's
+  <tt>lastFind</tt> property. Deleted rows are skipped during the search.
+</TABLE>
+<DT><A NAME=Table_findNext></A>
+<font color="green">findNext</font>(
+<font color="purple">query</font> <font color="navy">Record|Object</font>)
+ returns <font color="navy">Number</font>
+<dd><TABLE>
+<TR><TD width=2% NOWRAP valign=top><font color="purple">query</font>
+<TD valign=top>query from find()
+<tr><Td colspan=2>
+Continues the last search.
+</TABLE>
+<DT><A NAME=Table_get></A>
+<font color="green">get</font>(
+<font color="purple">row</font> <font color="navy">Number</font>, <font color="purple">column</font> <font color="navy">Number|String</font>)
+ returns <font color="navy">String</font>
+<dd><TABLE>
+<TR><TD width=2% NOWRAP valign=top><font color="purple">row</font>
+<TD valign=top>row number (starting with 1)
+<TR><TD width=2% NOWRAP valign=top><font color="purple">column</font>
+<TD valign=top>column number or name
+<tr><Td colspan=2>
+Same as data()
+</TABLE>
+<DT><A NAME=Table_getMessage></A>
+<font color="green">getMessage</font>(
+<font color="purple">row</font> <font color="navy">Number</font>)
+ returns <font color="navy">String</font>
+<dd><TABLE>
+<TR><TD width=2% NOWRAP valign=top><font color="purple">row</font>
+<TD valign=top>row number (starting with 1);
+<tr><Td colspan=2>
+For mail message tables, returns the message text.
+</TABLE>
+<DT><A NAME=Table_getRow></A>
+<font color="green">getRow</font>(
+<font color="purple">row</font> <font color="navy">Number</font>, <font color="purple">data</font> <font color="navy">Record</font>)
+ returns <font color="navy">Boolean|Record</font>
+<dd><TABLE>
+<TR><TD width=2% NOWRAP valign=top><font color="purple">row</font>
+<TD valign=top>row number
+<TR><TD width=2% NOWRAP valign=top><font color="purple">data</font>
+<TD valign=top>data values
+<tr><Td colspan=2>
+
+Returns a record containing the values from a row in the table.
+  If the "data" parameter is used, then it is filled with the values
+  and the function returns <tt>true</tt> or <tt>false</tt>.
+</TABLE>
+<DT><A NAME=Table_getWhere></A>
+<font color="green">getWhere</font>(
+<font color="purple">row</font> <font color="navy">Number</font>)
+ returns <font color="navy">String</font>
+<dd><TABLE>
+<TR><TD width=2% NOWRAP valign=top><font color="purple">row</font>
+<TD valign=top>Row number (starting with 1)
+<tr><Td colspan=2>
+For debugging ODBC tables, returns the WHERE statement used to identify a particular row.
+</TABLE>
+<DT><A NAME=Table_index></A>
+<font color="green">index</font>(
+<font color="purple">column</font> <font color="navy">String|Number</font>)
+ returns <font color="navy">Index</font>
+<dd><TABLE>
+<TR><TD width=2% NOWRAP valign=top><font color="purple">column</font>
+<TD valign=top>Column name
+<tr><Td colspan=2>
+This function returns an index to the database. If you call <tt>index()</tt>
+with a single column name or number, the returned object will have <tt>find(key)</tt> function,
+where <tt>key</tt> can be either a field value or a Record/Object containing the appropriate field value. 
+<br>
+If you call <tt>index()</tt> with a list of field names, the index will be built from strings where 
+data values are separated by newlines. Therefore, you can call <tt>index().find('value1\nvalue2\nvalue3')</tt> or 
+<tt>index().find(new Record('field1=value1,field2=value2,field3=value3')</tt>.
+<br>
+The <tt>index().find()</tt> function returns the number of a matching row, or -1 if none are found. 
+<br>
+Since it takes time to build the index, you can do something like this:
+<pre>
+data = {fieldname: 'Field Value'}
+var index = table.index('field')
+writeln('adding record ',table.addRow(data))
+index.add(data)
+writeln('found record ',index.find(data));
+</pre>
+</TABLE>
+<DT><A NAME=Table_save></A>
+<font color="green">save</font>(
+<font color="purple">file</font> <font color="navy">String|Stream</font>, <font color="purple">delimiter</font> <font color="navy">String</font>, <font color="purple">titles</font> <font color="navy">Boolean</font>)
+ returns <font color="navy">Boolean</font>
+<dd><TABLE>
+<TR><TD width=2% NOWRAP valign=top><font color="purple">file</font>
+<TD valign=top>file name
+<TR><TD width=2% NOWRAP valign=top><font color="purple">delimiter</font>
+<TD valign=top>Defaults to the delimiter used to read the file or tab
+<TR><TD width=2% NOWRAP valign=top><font color="purple">titles</font>
+<TD valign=top>Defaults to true
+<tr><Td colspan=2>
+ Save databsae changes. If the database has no file name, the function
+  fails. For ODBC databases, this forces a COMMIT statement. For DBF databases,
+  nothing happens. 
+  <br>For ASCII databases, you can save to a file name or a stream. In this case,
+  you select a delimiter (or null for the default) and choose whether to include the header row.
+</TABLE>
+<DT><A NAME=Table_set></A>
+<font color="green">set</font>(
+<font color="purple">row</font> <font color="navy">Number</font>, <font color="purple">column</font> <font color="navy">Number|String</font>, <font color="purple">value</font> <font color="navy">String</font>)
+ returns <font color="navy">Boolean</font>
+<dd><TABLE>
+<TR><TD width=2% NOWRAP valign=top><font color="purple">row</font>
+<TD valign=top>row number (starting with 1)
+<TR><TD width=2% NOWRAP valign=top><font color="purple">column</font>
+<TD valign=top>column number or name
+<TR><TD width=2% NOWRAP valign=top><font color="purple">value</font>
+<TD valign=top>new value
+<tr><Td colspan=2>
+
+Set text data at a position in the table. You can delete a row with
+  <tt>table.set(row,0,'Delete')</tt>
+  With DBF and SQL tables, you can un-delete a row with
+  <tt>table.set(row,0,' ')</tt>
+  DBF tables do not remove deleted rows. SQL tables remove deleted rows when they refresh,
+  which is not necessarily immediate. Spreadsheets delete rows immediately.
+</TABLE>
+<DT><A NAME=Table_setN></A>
+<font color="green">setN</font>(
+<font color="purple">row</font> <font color="navy">Number</font>, <font color="purple">column</font> <font color="navy">Number|String</font>, <font color="purple">value</font> <font color="navy">Number</font>)
+ returns <font color="navy">Boolean</font>
+<dd><TABLE>
+<TR><TD width=2% NOWRAP valign=top><font color="purple">row</font>
+<TD valign=top>row number (starting with 1)
+<TR><TD width=2% NOWRAP valign=top><font color="purple">column</font>
+<TD valign=top>column number or name
+<TR><TD width=2% NOWRAP valign=top><font color="purple">value</font>
+<TD valign=top>new value
+<tr><Td colspan=2>
+Set number data at a position in the table. The number will usually be converted to text
+  to store it in the database.
+</TABLE>
+<DT><A NAME=Table_setRow></A>
+<font color="green">setRow</font>(
+<font color="purple">row</font> <font color="navy">Number</font>, <font color="purple">data</font> <font color="navy">Record|Object</font>)
+ returns <font color="navy">Boolean</font>
+<dd><TABLE>
+<TR><TD width=2% NOWRAP valign=top><font color="purple">row</font>
+<TD valign=top>row number
+<TR><TD width=2% NOWRAP valign=top><font color="purple">data</font>
+<TD valign=top>data values
+<tr><Td colspan=2>
+Sets data values into the table. Returns true on success.
+</TABLE>
+<DT><A NAME=Table_setTitle></A>
+<font color="green">setTitle</font>(
+<font color="purple">column</font> <font color="navy">Number</font>, <font color="purple">title</font> <font color="navy">String</font>)
+ returns <font color="navy">Boolean</font>
+<dd><TABLE>
+<TR><TD width=2% NOWRAP valign=top><font color="purple">column</font>
+<TD valign=top>column number
+<TR><TD width=2% NOWRAP valign=top><font color="purple">title</font>
+<TD valign=top>new title
+<tr><Td colspan=2>
+Changes a column's title. This only works for spreadsheet (ASCII
+  and in-memory) tables.
+</TABLE>
+<DT><A NAME=Table_title></A>
+<font color="green">title</font>(
+<font color="purple">column</font> <font color="navy">Number</font>)
+ returns <font color="navy">Number</font>
+<dd><TABLE>
+<TR><TD width=2% NOWRAP valign=top><font color="purple">column</font>
+<TD valign=top>column number
+<tr><Td colspan=2>
+Returns the title of a column. Column numbers start at 1. You
+  can find the number of columns in a table from the colCount property.
+</TABLE>
+<DT><A NAME=Table_toString></A>
+<font color="green">toString</font>(
+)
+ returns <font color="navy">String</font>
+<dd><TABLE>
+<tr><Td colspan=2>
+Returns the file name
+</TABLE>
+<DT><A NAME=Table_type></A>
+<font color="green">type</font>(
+<font color="purple">column</font> <font color="navy">String|Number</font>)
+ returns <font color="navy">String|Array</font>
+<dd><TABLE>
+<TR><TD width=2% NOWRAP valign=top><font color="purple">column</font>
+<TD valign=top>Column name
+<tr><Td colspan=2>
+For one argument, this returns the data type corresponding to the row.
+  For several arguments, this returns an array of data types. The possible
+  types are C, N, D, T for Character, Number, Date, and Time.
+</TABLE>
+<DT><A NAME=Table_width></A>
+<font color="green">width</font>(
+<font color="purple">column</font> <font color="navy">Number</font>)
+ returns <font color="navy">Number</font>
+<dd><TABLE>
+<TR><TD width=2% NOWRAP valign=top><font color="purple">column</font>
+<TD valign=top>column number
+<tr><Td colspan=2>
+Returns the width, in characters, of data that may be stored
+  in this column. Spreadsheet tables do not have a width limit.
+</TABLE>
+</DL>
+<H2><a name=XML><b>XML</b></H2>
+<tt>include('<font color="darkgreen">xml.js</font>')</tt><br><P>The JavaScript 1.6 language includes a built-in XML parser complying with the <a href=http://developer.mozilla.org/en/docs/Category:E4X>E4X</a> standard.
+This XML class pre-dates E4X, and can be used to replace the built-in XML object. 
+<br>Standard usage: XML.read(stream,allowed_tags)<br>
+<H3><b>Properties</b></H3>
+<TABLE>
+<TR><TD width=2% NOWRAP valign=top><A NAME=XML_cdata></A><font color="purple">cdata</font><TD valign=top><font color="navy">String</font></td>
+<TD valign=top width=98%>
+<TR><TD width=2% NOWRAP valign=top><A NAME=XML_children></A><font color="purple">children</font><TD valign=top><font color="navy">Array</font></td>
+<TD valign=top width=98%>
+<TR><TD width=2% NOWRAP valign=top><A NAME=XML_name></A><font color="purple">name</font><TD valign=top><font color="navy">String</font></td>
+<TD valign=top width=98%>
+<TR><TD width=2% NOWRAP valign=top><A NAME=XML_params></A><font color="purple">params</font><TD valign=top><font color="navy">Record</font></td>
+<TD valign=top width=98%>
+</TABLE>
+<H3><b>Functions</b></H3><DL>
+<DT><A NAME=XML_XML.read></A>
+<font color="green">XML.read</font>(
+<font color="purple">source</font> <font color="navy">Stream|String</font>, <font color="purple">dtd</font> <font color="navy">String</font>, <font color="purple">ignored</font> <font color="navy">String</font>, <font color="purple">start</font> <font color="navy">XML</font>)
+ returns <font color="navy">Boolean</font>
+<dd><TABLE>
+<TR><TD width=2% NOWRAP valign=top><font color="purple">dtd</font>
+<TD valign=top>comma-delimited list of tag names
+<TR><TD width=2% NOWRAP valign=top><font color="purple">ignored</font>
+<TD valign=top>comma-delimited list of tags to ignore (defaults to <tt>BR,P,B,I,C,TT,U,IMG,A</tt>)
+<TR><TD width=2% NOWRAP valign=top><font color="purple">start</font>
+<TD valign=top>an existing XML object to receive the new XML tags
+<tr><Td colspan=2>
+This is a static function. Usage: <tt>XML.read(stream, 'html,head,body,p')</tt>
+</TABLE>
+<DT><A NAME=XML_find></A>
+<font color="green">find</font>(
+<font color="purple">type</font> <font color="navy">String</font>, <font color="purple">parameter</font> <font color="navy">String</font>, <font color="purple">value</font> <font color="navy">String</font>, <font color="purple">parameter2</font> <font color="navy">String</font>, <font color="purple">value2</font> <font color="navy">String</font>)
+ returns <font color="navy">Array</font>
+<dd><TABLE>
+<TR><TD width=2% NOWRAP valign=top><font color="purple">type</font>
+<TD valign=top>Child class
+<TR><TD width=2% NOWRAP valign=top><font color="purple">parameter</font>
+<TD valign=top>Field name
+<TR><TD width=2% NOWRAP valign=top><font color="purple">value</font>
+<TD valign=top>Field value
+<TR><TD width=2% NOWRAP valign=top><font color="purple">parameter2</font>
+<TD valign=top>Field name
+<TR><TD width=2% NOWRAP valign=top><font color="purple">value2</font>
+<TD valign=top>Field value
+<tr><Td colspan=2>
+Returns an array of all the child objects whose name is equivalent (case-sensitive) to <b>type</b>
+</TABLE>
+<DT><A NAME=XML_findChildren></A>
+<font color="green">findChildren</font>(
+<font color="purple">type</font> <font color="navy">String</font>, <font color="purple">parameter</font> <font color="navy">String</font>, <font color="purple">value</font> <font color="navy">String</font>)
+ returns <font color="navy">Array</font>
+<dd><TABLE>
+<TR><TD width=2% NOWRAP valign=top><font color="purple">type</font>
+<TD valign=top>Child class. If omitted, searches all children
+<TR><TD width=2% NOWRAP valign=top><font color="purple">parameter</font>
+<TD valign=top>Field name. If omitted, skips the field comparison
+<TR><TD width=2% NOWRAP valign=top><font color="purple">value</font>
+<TD valign=top>Field value
+<tr><Td colspan=2>
+(Deprecated) Returns an array of all the child objects whose name is equivalent (case-sensitive) to <b>type</b>
+and which has a matching field value. Example: fn.find('parameter','optional','1') returns the list of 
+optional parameters for the XML file that generates this document. Use XML.find() to return a list
+of all the children
+</TABLE>
+<DT><A NAME=XML_get></A>
+<font color="green">get</font>(
+<font color="purple">name</font> <font color="navy">String</font>)
+ returns <font color="navy">String</font>
+<dd><TABLE>
+<TR><TD width=2% NOWRAP valign=top><font color="purple">name</font>
+<TD valign=top>Parameter name
+<tr><Td colspan=2>
+Returns the field value corresponding to <b>name</b>. If the field value is missing, this returns
+an empty string. To test for the existence of a field, use <tt>params.has('name')</tt>.
+</TABLE>
+<DT><A NAME=XML_getChildren></A>
+<font color="green">getChildren</font>(
+<font color="purple">type</font> <font color="navy">String</font>)
+ returns <font color="navy">Array</font>
+<dd><TABLE>
+<TR><TD width=2% NOWRAP valign=top><font color="purple">type</font>
+<TD valign=top>Child class
+<tr><Td colspan=2>
+(Deprecated) Returns an array of all the child objects whose name is equivalent (case-sensitive) to <b>type</b>
+</TABLE>
+<DT><A NAME=XML_select></A>
+<font color="green">select</font>(
+<font color="purple">type</font> <font color="navy">String</font>, <font color="purple">test</font> <font color="navy">Function</font>, <font color="purple">opaque</font> <font color="navy"></font>)
+ returns <font color="navy">Array</font>
+<dd><TABLE>
+<TR><TD width=2% NOWRAP valign=top><font color="purple">type</font>
+<TD valign=top>Child class
+<TR><TD width=2% NOWRAP valign=top><font color="purple">test</font>
+<TD valign=top>Test function
+<TR><TD width=2% NOWRAP valign=top><font color="purple">opaque</font>
+<TD valign=top>Parameter passed to the test function
+<tr><Td colspan=2>
+Returns an array of all the child objects for which the test() function returns true. <br>
+Example:
+<pre>
+>var x = XML.read('<list><square id=44 /><sphere id=55 /></list>')
+>y = x.select(null,function (a,b) {return a.get('id') == b},55)
+>writeln(y)
+<sphere id=55 />
+</pre>
+</TABLE>
+<DT><A NAME=XML_sort></A>
+<font color="green">sort</font>(
+<font color="purple">field</font> <font color="navy">String</font>, <font color="purple">descending</font> <font color="navy">Boolean</font>)
+<dd><TABLE>
+<TR><TD width=2% NOWRAP valign=top><font color="purple">field</font>
+<TD valign=top>Field to sort by
+<TR><TD width=2% NOWRAP valign=top><font color="purple">descending</font>
+<TD valign=top>Reverse order? (Default false)
+<tr><Td colspan=2>
+Sorts the children array, according to the value in a given field.
+</TABLE>
+<DT><A NAME=XML_toStream></A>
+<font color="green">toStream</font>(
+<font color="purple">output</font> <font color="navy">Stream</font>)
+ returns <font color="navy">String</font>
+<dd><TABLE>
+<TR><TD width=2% NOWRAP valign=top><font color="purple">output</font>
+<TD valign=top>Appends the XML object to a stream.
+<tr><Td colspan=2>
+
+</TABLE>
+<DT><A NAME=XML_toString></A>
+<font color="green">toString</font>(
+)
+ returns <font color="navy">String</font>
+<dd><TABLE>
+<tr><Td colspan=2>
+Appends the XML object to a memory stream, then returns a string.
+</TABLE>
+</DL>
+<H2><a name=global><b>global</b></H2>
+<H3><b>Properties</b></H3>
+<TABLE>
+<TR><TD width=2% NOWRAP valign=top><A NAME=global_jsArguments></A><font color="purple">jsArguments</font><TD valign=top><font color="navy">Array</font></td>
+<TD valign=top width=98%>Also available as system.arguments. A list of command line arguments (as strings)
+</TABLE>
+<H3><b>Functions</b></H3><DL>
+<DT><A NAME=global_copyFile></A>
+<font color="green">copyFile</font>(
+<font color="purple">source</font> <font color="navy">String</font>, <font color="purple">destination</font> <font color="navy">String</font>)
+ returns <font color="navy">Boolean</font>
+<dd><TABLE>
+<tr><Td colspan=2>
+<i>Deprecated in 1.7.</i> Use system.copy() instead.
+Copies files. Fails if the destination file exists.
+</TABLE>
+<DT><A NAME=global_crc32></A>
+<font color="green">crc32</font>(
+<font color="purple">text</font> <font color="navy"></font>, <font color="purple">seed</font> <font color="navy"></font>)
+ returns <font color="navy">Number</font>
+<dd><TABLE>
+<TR><TD width=2% NOWRAP valign=top><font color="purple">seed</font>
+<TD valign=top>Usually -1
+<tr><Td colspan=2>
+Calculates the 32-bit CRC of a text string, using the Adler32 polynomial. The initial seed may be specified (usually -1).
+The parameters may be passed in any order.
+</TABLE>
+<DT><A NAME=global_decodeANSI></A>
+<font color="green">decodeANSI</font>(
+<font color="purple">text</font> <font color="navy">String</font>)
+ returns <font color="navy">String</font>
+<dd><TABLE>
+<tr><Td colspan=2>
+Converts a Windows-1252 (ANSI) string to a JS string (UCS-2)
+</TABLE>
+<DT><A NAME=global_decodeB64></A>
+<font color="green">decodeB64</font>(
+<font color="purple">text</font> <font color="navy">String</font>)
+ returns <font color="navy">String</font>
+<dd><TABLE>
+<tr><Td colspan=2>
+Removes base-64 (MIME) encoding and returns an decoded string. Does not convert to Unicode -- call decodeUTF8(decodeB64(...)) if you want a JS string.
+</TABLE>
+<DT><A NAME=global_decodeB64></A>
+<font color="green">decodeB64</font>(
+<font color="purple">in</font> <font color="navy">Stream|String</font>, <font color="purple">out</font> <font color="navy">Stream</font>)
+ returns <font color="navy">Number</font>
+<dd><TABLE>
+<tr><Td colspan=2>
+Applies base-64 (MIME) decoding and sends the result to <i>out</i>. Returns the size of the
+decoded data.
+</TABLE>
+<DT><A NAME=global_decodeHTML></A>
+<font color="green">decodeHTML</font>(
+<font color="purple">text</font> <font color="navy">String</font>)
+ returns <font color="navy">String</font>
+<dd><TABLE>
+<tr><Td colspan=2>
+Removes & encoding and returns an decoded string. It decodes < > " & and &#XXX; sequences.
+</TABLE>
+<DT><A NAME=global_decodeURL></A>
+<font color="green">decodeURL</font>(
+<font color="purple">text</font> <font color="navy">String</font>)
+ returns <font color="navy">String</font>
+<dd><TABLE>
+<tr><Td colspan=2>
+Decodes a URL-encoded string.
+</TABLE>
+<DT><A NAME=global_decodeUTF8></A>
+<font color="green">decodeUTF8</font>(
+<font color="purple">text</font> <font color="navy">String</font>)
+ returns <font color="navy">String</font>
+<dd><TABLE>
+<tr><Td colspan=2>
+Converts UTF-8 string to a JS string (UCS-2)
+</TABLE>
+<DT><A NAME=global_encodeB64></A>
+<font color="green">encodeB64</font>(
+<font color="purple">text</font> <font color="navy">String</font>)
+ returns <font color="navy">String</font>
+<dd><TABLE>
+<tr><Td colspan=2>
+Applies base-64 (MIME) encoding and returns an encoded string.
+</TABLE>
+<DT><A NAME=global_encodeB64></A>
+<font color="green">encodeB64</font>(
+<font color="purple">in</font> <font color="navy">Stream|String</font>, <font color="purple">out</font> <font color="navy">Stream</font>)
+ returns <font color="navy">Boolean</font>
+<dd><TABLE>
+<tr><Td colspan=2>
+Applies base-64 (MIME) encoding and sends the result to <i>out</i>. Returns the size of the
+encoded data.
+</TABLE>
+<DT><A NAME=global_encodeHTML></A>
+<font color="green">encodeHTML</font>(
+<font color="purple">text</font> <font color="navy">String</font>)
+ returns <font color="navy">String</font>
+<dd><TABLE>
+<tr><Td colspan=2>
+For XML and HTML printing, applies & encoding and returns an encoded string. It encodes < > " & and Unicode character values over 127.
+</TABLE>
+<DT><A NAME=global_encodeURL></A>
+<font color="green">encodeURL</font>(
+<font color="purple">text</font> <font color="navy">String</font>)
+ returns <font color="navy">String</font>
+<dd><TABLE>
+<tr><Td colspan=2>
+Applies URL (%) encoding and returns an encoded string. Alphanumeric and punctuation
+characters used in URLs are not translated.
+</TABLE>
+<DT><A NAME=global_encodeUTF8></A>
+<font color="green">encodeUTF8</font>(
+<font color="purple">text</font> <font color="navy">String</font>)
+ returns <font color="navy">String</font>
+<dd><TABLE>
+<tr><Td colspan=2>
+Converts a JS string (UCS-2) to UTF-8
+</TABLE>
+<DT><A NAME=global_fileExists></A>
+<font color="green">fileExists</font>(
+<font color="purple">file</font> <font color="navy"></font>)
+<dd><TABLE>
+<tr><Td colspan=2>
+<i>Deprecated in 1.7.</i> Use system.exists() instead.
+Returns true if the file exists and is available for reading.
+</TABLE>
+<DT><A NAME=global_jsBuildDate></A>
+<font color="green">jsBuildDate</font>(
+)
+ returns <font color="navy">String</font>
+<dd><TABLE>
+<tr><Td colspan=2>
+<i>Deprecated in 1.6</i>. Use system.buildDate() instead.
+Returns a string containing the build date of the JavaScript interpreter.
+</TABLE>
+<DT><A NAME=global_jsDebug></A>
+<font color="green">jsDebug</font>(
+<font color="purple">address</font> <font color="navy">String</font>)
+ returns <font color="navy">Boolean</font>
+<dd><TABLE>
+<TR><TD width=2% NOWRAP valign=top><font color="purple">address</font>
+<TD valign=top>Debugger address
+<tr><Td colspan=2>
+<i>Deprecated in 1.6</i>. Use system.debug() instead.
+Connects to a remote debugger. <tt>jsDebug('127.0.0.1:1002')</tt>
+</TABLE>
+<DT><A NAME=global_jsGC></A>
+<font color="green">jsGC</font>(
+)
+ returns <font color="navy">Null</font>
+<dd><TABLE>
+<tr><Td colspan=2>
+<i>Deprecated in 1.6</i>. Use system.gc() instead.
+Runs garbage collection
+</TABLE>
+<DT><A NAME=global_jsIsSafe></A>
+<font color="green">jsIsSafe</font>(
+)
+ returns <font color="navy">Boolean</font>
+<dd><TABLE>
+<tr><Td colspan=2>
+<i>Deprecated in 1.6</i>. Use system.isSafe() instead.
+Tells whether the interpreter is in safe mode.
+</TABLE>
+<DT><A NAME=global_jsOptions></A>
+<font color="green">jsOptions</font>(
+<font color="purple">options</font> <font color="navy">String</font>)
+ returns <font color="navy">String</font>
+<dd><TABLE>
+<TR><TD width=2% NOWRAP valign=top><font color="purple">options</font>
+<TD valign=top>'strict' or 'werror' (treat warnings as errors)
+<tr><Td colspan=2>
+<i>Deprecated in 1.6</i>. Use system.options() instead.
+Toggles the interpreter options, and returns a comma-delimited string of the currently set options. 
+By default, <b>strict</b> is active at startup.
+</TABLE>
+<DT><A NAME=global_jsRestart></A>
+<font color="green">jsRestart</font>(
+)
+<dd><TABLE>
+<tr><Td colspan=2>
+<i>Deprecated in 1.6</i>. Use system.restart() instead.
+Sets the "shouldStop" flag to true, and instructs the interpreter to 
+repeat execution. This is only used in the XYKE web server.
+</TABLE>
+<DT><A NAME=global_jsSafeMode></A>
+<font color="green">jsSafeMode</font>(
+<font color="purple">code</font> <font color="navy">Number</font>)
+ returns <font color="navy">Number</font>
+<dd><TABLE>
+<TR><TD width=2% NOWRAP valign=top><font color="purple">code</font>
+<TD valign=top>password
+<tr><Td colspan=2>
+<i>Deprecated in 1.6</i>. Use system.safeMode() instead.
+Sets a flag in the interpreter to indicate that file access should be forbidden while running 
+an untrusted piece of code. The first call to jsSafeMode() returns  a pseudo-random number,
+and locks file access. The second call, to unlock file access, must be of the form 
+jsSafeMode(number), where the first parameter is the number returned by the call to jsSafeMode() 
+that locked file access. In safe mode, email is blocked, and only memory streams and 
+http:// streams may be created. File and serial port streams that were opened outside 
+of safe mode may still be accessed.
+</TABLE>
+<DT><A NAME=global_jsShellExec></A>
+<font color="green">jsShellExec</font>(
+<font color="purple">command</font> <font color="navy">String</font>, <font color="purple">dir</font> <font color="navy">String</font>)
+<dd><TABLE>
+<TR><TD width=2% NOWRAP valign=top><font color="purple">command</font>
+<TD valign=top>shell command line
+<TR><TD width=2% NOWRAP valign=top><font color="purple">dir</font>
+<TD valign=top>working directory
+<tr><Td colspan=2>
+<i>Deprecated in 1.6</i>. Use system.execute() instead.
+Calls ShellExec() on Windows, or system() on UNIX.
+</TABLE>
+<DT><A NAME=global_jsShouldStop></A>
+<font color="green">jsShouldStop</font>(
+)
+<dd><TABLE>
+<tr><Td colspan=2>
+<i>Deprecated in 1.6</i>. Use system.shouldStop() instead.
+Returns true if the script should finish.
+</TABLE>
+<DT><A NAME=global_jsVersion></A>
+<font color="green">jsVersion</font>(
+<font color="purple">new version</font> <font color="navy">Integer</font>)
+ returns <font color="navy">String</font>
+<dd><TABLE>
+<TR><TD width=2% NOWRAP valign=top><font color="purple">new version</font>
+<TD valign=top>New interpreter version number
+<tr><Td colspan=2>
+<i>Deprecated in 1.6</i>. Use system.version() instead.
+Returns a string containing the JavaScript interpreter version number (or the previous version, if the version is changing). 
+The default version is presently 1.7. The version codes are defined as <pre>
+    JSVERSION_1_0     = 100,
+    JSVERSION_1_1     = 110,
+    JSVERSION_1_2     = 120,
+    JSVERSION_1_3     = 130,
+    JSVERSION_1_4     = 140,
+    JSVERSION_ECMA_3  = 148,
+    JSVERSION_1_5     = 150,
+    JSVERSION_1_6     = 160,
+    JSVERSION_1_7     = 170,
+    JSVERSION_DEFAULT = 0,
+    JSVERSION_UNKNOWN = -1
+</pre>
+</TABLE>
+<DT><A NAME=global_listFiles></A>
+<font color="green">listFiles</font>(
+<font color="purple">filespec</font> <font color="navy"></font>)
+<dd><TABLE>
+<TR><TD width=2% NOWRAP valign=top><font color="purple">filespec</font>
+<TD valign=top>defaults to "*.*"
+<tr><Td colspan=2>
+<i>Deprecated in 1.7.</i> Use system.files() instead.
+Returns an array of file names. Directories and are excluded. System  files, hidden files, and names beginning with . are excluded.
+</TABLE>
+<DT><A NAME=global_listFolders></A>
+<font color="green">listFolders</font>(
+<font color="purple">filespec</font> <font color="navy"></font>)
+<dd><TABLE>
+<TR><TD width=2% NOWRAP valign=top><font color="purple">filespec</font>
+<TD valign=top>defaults to "*.*"
+<tr><Td colspan=2>
+<i>Deprecated in 1.7.</i> Use system.folders() instead.
+Returns an array of directory names. Files are excluded. System  folders, hidden folders, and names beginning with . are excluded.
+</TABLE>
+<DT><A NAME=global_load></A>
+<font color="green">load</font>(
+<font color="purple">filename</font> <font color="navy"></font>)
+ returns <font color="navy">Boolean</font>
+<dd><TABLE>
+<tr><Td colspan=2>
+Runs a JavaScript file. JSDB looks first for files with the following precedence:
+<ol>
+<li>In a ZIP archive appended to the program file. (This only works on UNIX if the program file is in the current directory.)
+<li>In the current working directory
+<li>In the library path. (Set this on the command line with -path, defaults to the executable's directory)
+<li>JSDB ignores the system's path and will not run files from unusual directories.
+</ol>
+<br>This order is chosen so that you may override the standard JSDB libraries, but carries certain security risks. For instance,
+someone might write a malicious "xml.js" in the current directory, expecing that library to be loaded by another script later.
+Therefore, you should be careful about calling the system.cwd() function.
+<br>As with run(), load() will fail if JSDB is in safe mode.
+<br>Unlike run(), load() will only execute a given source file only once. Files will be reloaded if they have been modified.
+</TABLE>
+<DT><A NAME=global_loadResource></A>
+<font color="green">loadResource</font>(
+<font color="purple">name</font> <font color="navy"></font>)
+ returns <font color="navy">Stream</font>
+<dd><TABLE>
+<tr><Td colspan=2>
+<i>Deprecated in 1.6</i>. Use system.resource() instead.
+Returns a readable stream containing the resource data. The resource file is either in the ZIP file 
+attached to or in the same directory as the interpreter program.
+</TABLE>
+<DT><A NAME=global_moveFile></A>
+<font color="green">moveFile</font>(
+<font color="purple">source</font> <font color="navy">String</font>, <font color="purple">destination</font> <font color="navy">String</font>)
+<dd><TABLE>
+<tr><Td colspan=2>
+<i>Deprecated in 1.7.</i> Use system.move() instead.
+Moves a file. Fails if the destination file exists.
+</TABLE>
+<DT><A NAME=global_openBrowser></A>
+<font color="green">openBrowser</font>(
+<font color="purple">file</font> <font color="navy"></font>)
+<dd><TABLE>
+<TR><TD width=2% NOWRAP valign=top><font color="purple">file</font>
+<TD valign=top>URL
+<tr><Td colspan=2>
+<i>Deprecated in 1.7.</i> Use system.browse() instead.
+</TABLE>
+<DT><A NAME=global_print, write></A>
+<font color="green">print, write</font>(
+)
+<dd><TABLE>
+<tr><Td colspan=2>
+Prints the parameters to stdout, calling toString() if necessary. Does not convert to UTF-8. Unicode values in strings will be truncated to 8 bytes.
+</TABLE>
+<DT><A NAME=global_println, writeln></A>
+<font color="green">println, writeln</font>(
+)
+<dd><TABLE>
+<tr><Td colspan=2>
+Like print() and write(), but writes CR/LF at the end.
+</TABLE>
+<DT><A NAME=global_quit,exit></A>
+<font color="green">quit,exit</font>(
+)
+<dd><TABLE>
+<tr><Td colspan=2>
+<i>Deprecated in 1.6</i>. Use system.quit() or system.exit() instead.
+Sets the "shouldStop" flag to true. Execution does not stop immediately.
+</TABLE>
+<DT><A NAME=global_readln></A>
+<font color="green">readln</font>(
+<font color="purple">end</font> <font color="navy">String</font>)
+ returns <font color="navy">String</font>
+<dd><TABLE>
+<TR><TD width=2% NOWRAP valign=top><font color="purple">end</font>
+<TD valign=top>Line end marker, defaults to \n
+<tr><Td colspan=2>
+Reads a line from stdin. Console mode only.
+</TABLE>
+<DT><A NAME=global_regGetKey></A>
+<font color="green">regGetKey</font>(
+<font color="purple">section</font> <font color="navy"></font>, <font color="purple">name</font> <font color="navy"></font>)
+<dd><TABLE>
+<TR><TD width=2% NOWRAP valign=top><font color="purple">section</font>
+<TD valign=top>"hkey_local_machine\SOFTWARE\..."
+<TR><TD width=2% NOWRAP valign=top><font color="purple">name</font>
+<TD valign=top>Key name
+<tr><Td colspan=2>
+<i>Deprecated in 1.7.</i> Use system.getKey() instead.
+Returns a string containing the registry data.
+</TABLE>
+<DT><A NAME=global_regSetKey></A>
+<font color="green">regSetKey</font>(
+<font color="purple">section</font> <font color="navy"></font>, <font color="purple">name</font> <font color="navy"></font>, <font color="purple">value</font> <font color="navy"></font>)
+<dd><TABLE>
+<TR><TD width=2% NOWRAP valign=top><font color="purple">section</font>
+<TD valign=top>"hkey_local_machine\SOFTWARE\..."
+<TR><TD width=2% NOWRAP valign=top><font color="purple">name</font>
+<TD valign=top>Key name
+<TR><TD width=2% NOWRAP valign=top><font color="purple">value</font>
+<TD valign=top>Key value
+<tr><Td colspan=2>
+<i>Deprecated in 1.7.</i> Use system.setKey() instead.
+Sets a registry entry. Returns true if successful.
+</TABLE>
+<DT><A NAME=global_remove></A>
+<font color="green">remove</font>(
+<font color="purple">filename</font> <font color="navy">String</font>)
+ returns <font color="navy">Boolean</font>
+<dd><TABLE>
+<tr><Td colspan=2>
+Deletes a file or directory. Returns true if successful.
+</TABLE>
+<DT><A NAME=global_run></A>
+<font color="green">run</font>(
+<font color="purple">filename</font> <font color="navy"></font>)
+<dd><TABLE>
+<tr><Td colspan=2>
+Runs a JavaScript file. Run uses the same file-finding rules as load().
+</TABLE>
+<DT><A NAME=global_run></A>
+<font color="green">run</font>(
+<font color="purple">text</font> <font color="navy">Stream</font>, <font color="purple">filename</font> <font color="navy">String</font>, <font color="purple">line</font> <font color="navy">Number</font>)
+<dd><TABLE>
+<tr><Td colspan=2>
+Runs JavaScript code stored in a stream. The functions run() and load() are equivalent
+</TABLE>
+<DT><A NAME=global_sleep></A>
+<font color="green">sleep</font>(
+<font color="purple">time</font> <font color="navy">Number</font>)
+<dd><TABLE>
+<TR><TD width=2% NOWRAP valign=top><font color="purple">time</font>
+<TD valign=top>milliseconds
+<tr><Td colspan=2>
+<i>Deprecated in 1.6</i>. Use system.sleep() instead.
+Suspends the process and yields control to other programs.
+</TABLE>
+<DT><A NAME=global_splitURL></A>
+<font color="green">splitURL</font>(
+<font color="purple">URL</font> <font color="navy">String</font>)
+ returns <font color="navy">Array</font>
+<dd><TABLE>
+<tr><Td colspan=2>
+Parses a URL of the form <tt>service://user:password@host/file?query</tt>, and
+returns an array of strings: <tt>[service, user, password, host, file, query]</tt>
+</TABLE>
+<DT><A NAME=global_stripWhitespace></A>
+<font color="green">stripWhitespace</font>(
+<font color="purple">text</font> <font color="navy">String</font>)
+ returns <font color="navy">String</font>
+<dd><TABLE>
+<tr><Td colspan=2>
+Returns a string with initial and final whitespace characters removed.
+</TABLE>
+<DT><A NAME=global_system.kbhit></A>
+<font color="green">system.kbhit</font>(
+)
+ returns <font color="navy">Boolean</font>
+<dd><TABLE>
+<tr><Td colspan=2>
+Returns true if console input is available.
+</TABLE>
+<DT><A NAME=global_testCompile></A>
+<font color="green">testCompile</font>(
+<font color="purple">code</font> <font color="navy"></font>)
+ returns <font color="navy">String</font>
+<dd><TABLE>
+<TR><TD width=2% NOWRAP valign=top><font color="purple">code</font>
+<TD valign=top>JS code to test
+<tr><Td colspan=2>
+<i>Deprecated in 1.7.</i> Use system.compile() instead.
+Returns whatever error messages if there's a problem compiling the code.
+</TABLE>
+</DL>
+<H2><a name=system><b>system</b></H2>
+<H3><b>Properties</b></H3>
+<TABLE>
+<TR><TD width=2% NOWRAP valign=top><A NAME=system_arguments></A><font color="purple">arguments</font><TD valign=top><font color="navy">Array</font></td>
+<TD valign=top width=98%>A list of command line arguments (as strings)
+<TR><TD width=2% NOWRAP valign=top><A NAME=system_buildDate></A><font color="purple">buildDate</font><TD valign=top><font color="navy">String</font></td>
+<TD valign=top width=98%>Interpreter build date.
+<TR><TD width=2% NOWRAP valign=top><A NAME=system_name></A><font color="purple">name</font><TD valign=top><font color="navy">Array</font></td>
+<TD valign=top width=98%>The name of the computer. $COMPUTERNAME on Windows, gethostname() elsewhere.
+<TR><TD width=2% NOWRAP valign=top><A NAME=system_release></A><font color="purple">release</font><TD valign=top><font color="navy">Number</font></td>
+<TD valign=top width=98%>The JSDB release number, something like "1.3".
+<TR><TD width=2% NOWRAP valign=top><A NAME=system_script></A><font color="purple">script</font><TD valign=top><font color="navy">Array</font></td>
+<TD valign=top width=98%>The name of the computer. $COMPUTERNAME on Windows, gethostname() elsewhere.
+<TR><TD width=2% NOWRAP valign=top><A NAME=system_stdin></A><font color="purple">stdin</font><TD valign=top><font color="navy">Stream</font></td>
+<TD valign=top width=98%>Use <tt>system.stdin</tt> to read directly from the console. The stream is unbuffered.
+<TR><TD width=2% NOWRAP valign=top><A NAME=system_stdout></A><font color="purple">stdout</font><TD valign=top><font color="navy">Stream</font></td>
+<TD valign=top width=98%>Use <tt>system.stdout</tt> to write directly to the console. The stream is unbuffered. 
+The interpreter always sends error messages to stdout, never to stderr.
+<TR><TD width=2% NOWRAP valign=top><A NAME=system_version></A><font color="purple">version</font><TD valign=top><font color="navy">Number</font></td>
+<TD valign=top width=98%>Divide by 100 to get the language version. JavaScript 1.5 is represented as 150.
+</TABLE>
+<H3><b>Functions</b></H3><DL>
+<DT><A NAME=system_attributes></A>
+<font color="green">attributes</font>(
+<font color="purple">filename</font> <font color="navy"></font>)
+ returns <font color="navy">String</font>
+<dd><TABLE>
+<tr><Td colspan=2>
+Returns an object describing the specified file.
+<tt>{ attributes: String, size: Number, date: Date, creation: Date }</tt>
+On Windows, attributes can include "archive, compressed, directory, hidden, offline, readonly, system, temporary". On Unix, attributes can include "directory, symlink, regular, chardev, blockdev, fifo, socket".
+</TABLE>
+<DT><A NAME=system_attributes></A>
+<font color="green">attributes</font>(
+<font color="purple">file</font> <font color="navy">String</font>)
+<dd><TABLE>
+<TR><TD width=2% NOWRAP valign=top><font color="purple">file</font>
+<TD valign=top>File name
+<tr><Td colspan=2>
+Returns an object describing the file system attributes, {attributes: String, size: Number, creation: Date, date: Date}.
+<br>Attributes may be
+<table><tr><td>Windows<td>archive, compressed, directory, hidden, offline, readonly, system, temporary,;
+<tr><td>Unix<td>directory, symlink, regular, chardev, blockdev, fifo, socket
+</table>
+</TABLE>
+<DT><A NAME=system_browse()></A>
+<font color="green">browse()</font>(
+<font color="purple">file</font> <font color="navy"></font>)
+<dd><TABLE>
+<TR><TD width=2% NOWRAP valign=top><font color="purple">file</font>
+<TD valign=top>URL
+<tr><Td colspan=2>
+Opens the default web browser on the console, and points it to the specified URL.
+</TABLE>
+<DT><A NAME=system_compile></A>
+<font color="green">compile</font>(
+<font color="purple">code</font> <font color="navy"></font>)
+ returns <font color="navy">String</font>
+<dd><TABLE>
+<TR><TD width=2% NOWRAP valign=top><font color="purple">code</font>
+<TD valign=top>JS code to test
+<tr><Td colspan=2>
+Returns error messages if there's a problem compiling the code.
+</TABLE>
+<DT><A NAME=system_copy></A>
+<font color="green">copy</font>(
+<font color="purple">source</font> <font color="navy">String</font>, <font color="purple">destination</font> <font color="navy">String</font>)
+ returns <font color="navy">Boolean</font>
+<dd><TABLE>
+<tr><Td colspan=2>
+Copies files. Fails if the destination file exists.
+</TABLE>
+<DT><A NAME=system_debug></A>
+<font color="green">debug</font>(
+<font color="purple">address</font> <font color="navy">String</font>)
+ returns <font color="navy">Boolean</font>
+<dd><TABLE>
+<TR><TD width=2% NOWRAP valign=top><font color="purple">address</font>
+<TD valign=top>Debugger address
+<tr><Td colspan=2>
+Connects to a remote debugger. <tt>system.debug('127.0.0.1:1002')</tt>
+</TABLE>
+<DT><A NAME=system_execute></A>
+<font color="green">execute</font>(
+<font color="purple">command</font> <font color="navy">String</font>, <font color="purple">dir</font> <font color="navy">String</font>)
+<dd><TABLE>
+<TR><TD width=2% NOWRAP valign=top><font color="purple">command</font>
+<TD valign=top>shell command line
+<TR><TD width=2% NOWRAP valign=top><font color="purple">dir</font>
+<TD valign=top>working directory
+<tr><Td colspan=2>
+Calls ShellExec() on Windows, or system() on UNIX.
+</TABLE>
+<DT><A NAME=system_exists></A>
+<font color="green">exists</font>(
+<font color="purple">file</font> <font color="navy"></font>)
+<dd><TABLE>
+<tr><Td colspan=2>
+Returns true if the file exists and is available for reading.
+</TABLE>
+<DT><A NAME=system_exit></A>
+<font color="green">exit</font>(
+)
+<dd><TABLE>
+<tr><Td colspan=2>
+Sets the "shouldStop" flag to true. Execution does not stop immediately.
+</TABLE>
+<DT><A NAME=system_files></A>
+<font color="green">files</font>(
+<font color="purple">filespec</font> <font color="navy"></font>)
+<dd><TABLE>
+<TR><TD width=2% NOWRAP valign=top><font color="purple">filespec</font>
+<TD valign=top>defaults to "*.*"
+<tr><Td colspan=2>
+Returns an array of file names. Directories and are excluded. System  files, hidden files, and names beginning with . are excluded.
+</TABLE>
+<DT><A NAME=system_folders></A>
+<font color="green">folders</font>(
+<font color="purple">filespec</font> <font color="navy"></font>)
+<dd><TABLE>
+<TR><TD width=2% NOWRAP valign=top><font color="purple">filespec</font>
+<TD valign=top>defaults to "*.*"
+<tr><Td colspan=2>
+Returns an array of directory names. Files are excluded. System  folders, hidden folders, and names beginning with . are excluded.
+</TABLE>
+<DT><A NAME=system_gc></A>
+<font color="green">gc</font>(
+)
+ returns <font color="navy">Null</font>
+<dd><TABLE>
+<tr><Td colspan=2>
+Runs garbage collection.
+</TABLE>
+<DT><A NAME=system_getKey></A>
+<font color="green">getKey</font>(
+<font color="purple">section</font> <font color="navy"></font>, <font color="purple">name</font> <font color="navy"></font>)
+<dd><TABLE>
+<TR><TD width=2% NOWRAP valign=top><font color="purple">section</font>
+<TD valign=top>"hkey_local_machine\SOFTWARE\..."
+<TR><TD width=2% NOWRAP valign=top><font color="purple">name</font>
+<TD valign=top>Key name
+<tr><Td colspan=2>
+Returns a string containing the registry data. (Windows only) 
+</TABLE>
+<DT><A NAME=system_getenv></A>
+<font color="green">getenv</font>(
+<font color="purple">name</font> <font color="navy">String</font>)
+ returns <font color="navy">String</font>
+<dd><TABLE>
+<TR><TD width=2% NOWRAP valign=top><font color="purple">name</font>
+<TD valign=top>variable name
+<tr><Td colspan=2>
+Returns an environment variable.
+</TABLE>
+<DT><A NAME=system_help></A>
+<font color="green">help</font>(
+)
+ returns <font color="navy">String</font>
+<dd><TABLE>
+<tr><Td colspan=2>
+Returns information about the interpreter version. Look for "JSDB 1.1 ...".
+</TABLE>
+<DT><A NAME=system_isSafe></A>
+<font color="green">isSafe</font>(
+)
+ returns <font color="navy">Boolean</font>
+<dd><TABLE>
+<tr><Td colspan=2>
+Tells whether the interpreter is in safe mode.
+</TABLE>
+<DT><A NAME=system_mkdir></A>
+<font color="green">mkdir</font>(
+<font color="purple">directory</font> <font color="navy"></font>)
+<dd><TABLE>
+<tr><Td colspan=2>
+Creates a directory (recursively). Always returns true.
+</TABLE>
+<DT><A NAME=system_move></A>
+<font color="green">move</font>(
+<font color="purple">source</font> <font color="navy">String</font>, <font color="purple">destination</font> <font color="navy">String</font>, <font color="purple">replace</font> <font color="navy">Boolean</font>)
+<dd><TABLE>
+<TR><TD width=2% NOWRAP valign=top><font color="purple">replace</font>
+<TD valign=top>Set to <b>true</b> to overwrite existing files
+<tr><Td colspan=2>
+Moves a file.
+</TABLE>
+<DT><A NAME=system_options></A>
+<font color="green">options</font>(
+<font color="purple">options</font> <font color="navy">String</font>)
+ returns <font color="navy">String</font>
+<dd><TABLE>
+<TR><TD width=2% NOWRAP valign=top><font color="purple">options</font>
+<TD valign=top>'strict', 'werror' (treat warnings as errors), 'atline', 'xml' (enable E4X in subsequent load() and run() calls)
+<tr><Td colspan=2>
+Toggles the interpreter options, and returns a comma-delimited string of the currently set options. 
+By default, <b>strict</b> is active at startup.
+</TABLE>
+<DT><A NAME=system_print, write></A>
+<font color="green">print, write</font>(
+)
+<dd><TABLE>
+<tr><Td colspan=2>
+Prints the parameters to stdout, calling toString() if necessary.
+</TABLE>
+<DT><A NAME=system_println, writeln></A>
+<font color="green">println, writeln</font>(
+)
+<dd><TABLE>
+<tr><Td colspan=2>
+Like print() and write(), but writes CR/LF at the end.
+</TABLE>
+<DT><A NAME=system_quit></A>
+<font color="green">quit</font>(
+)
+<dd><TABLE>
+<tr><Td colspan=2>
+Sets the "shouldStop" flag to true. Execution does not stop immediately.
+</TABLE>
+<DT><A NAME=system_readln></A>
+<font color="green">readln</font>(
+<font color="purple">end</font> <font color="navy">String</font>)
+ returns <font color="navy">String</font>
+<dd><TABLE>
+<TR><TD width=2% NOWRAP valign=top><font color="purple">end</font>
+<TD valign=top>Line end marker, defaults to \n
+<tr><Td colspan=2>
+Reads a line from stdin. Console mode only.
+</TABLE>
+<DT><A NAME=system_resource></A>
+<font color="green">resource</font>(
+<font color="purple">name</font> <font color="navy"></font>)
+ returns <font color="navy">Stream</font>
+<dd><TABLE>
+<tr><Td colspan=2>
+Returns a readable stream containing the resource data. The resource file is either in the ZIP file 
+attached to or in the same directory as the interpreter program.
+</TABLE>
+<DT><A NAME=system_restart></A>
+<font color="green">restart</font>(
+)
+<dd><TABLE>
+<tr><Td colspan=2>
+Sets the "shouldStop" flag to true, and instructs the interpreter to 
+repeat execution. 
+</TABLE>
+<DT><A NAME=system_safeMode></A>
+<font color="green">safeMode</font>(
+<font color="purple">code</font> <font color="navy">Number</font>)
+ returns <font color="navy">Number</font>
+<dd><TABLE>
+<TR><TD width=2% NOWRAP valign=top><font color="purple">code</font>
+<TD valign=top>password
+<tr><Td colspan=2>
+Sets a flag in the interpreter to indicate that file access should be forbidden while running 
+an untrusted piece of code. The first call to jsSafeMode() returns  a pseudo-random number,
+and locks file access. The second call, to unlock file access, must be of the form 
+system.safeMode(number), where the first parameter is the number returned by the call to system.safeMode() 
+that locked file access. In safe mode, email is blocked, and only memory streams and 
+http:// streams may be created. File and serial port streams that were opened outside 
+of safe mode may still be accessed.
+</TABLE>
+<DT><A NAME=system_setKey></A>
+<font color="green">setKey</font>(
+<font color="purple">section</font> <font color="navy"></font>, <font color="purple">name</font> <font color="navy"></font>, <font color="purple">value</font> <font color="navy"></font>)
+<dd><TABLE>
+<TR><TD width=2% NOWRAP valign=top><font color="purple">section</font>
+<TD valign=top>"hkey_local_machine\SOFTWARE\..."
+<TR><TD width=2% NOWRAP valign=top><font color="purple">name</font>
+<TD valign=top>Key name
+<TR><TD width=2% NOWRAP valign=top><font color="purple">value</font>
+<TD valign=top>Key value
+<tr><Td colspan=2>
+Sets a registry entry. Returns true if successful. (Windows only) 
+</TABLE>
+<DT><A NAME=system_setcwd></A>
+<font color="green">setcwd</font>(
+<font color="purple">directory</font> <font color="navy"></font>)
+ returns <font color="navy">String</font>
+<dd><TABLE>
+<tr><Td colspan=2>
+Sets the current working directory (if directory is not empty) and returns the previous
+working directory. On Windows, the directory name is unicode. Otherwise, it is treated as ASCII, without UTF-8 encoding.
+</TABLE>
+<DT><A NAME=system_shouldStop></A>
+<font color="green">shouldStop</font>(
+)
+<dd><TABLE>
+<tr><Td colspan=2>
+Returns true if the script should finish.
+</TABLE>
+<DT><A NAME=system_sleep></A>
+<font color="green">sleep</font>(
+<font color="purple">time</font> <font color="navy">Number</font>)
+<dd><TABLE>
+<TR><TD width=2% NOWRAP valign=top><font color="purple">time</font>
+<TD valign=top>milliseconds
+<tr><Td colspan=2>
+Suspends the process and yields control to other programs.
+</TABLE>
+<DT><A NAME=system_stripWhitespace></A>
+<font color="green">stripWhitespace</font>(
+<font color="purple">text</font> <font color="navy">String</font>)
+ returns <font color="navy">String</font>
+<dd><TABLE>
+<tr><Td colspan=2>
+Returns a string with initial and final whitespace characters removed.
+</TABLE>
+</DL>

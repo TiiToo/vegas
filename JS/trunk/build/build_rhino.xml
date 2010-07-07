@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<project name="VEGAS JS runner" default="main">
+<project name="VEGAS JS runner (rhino)" default="main">
 
     <target name="main">
     

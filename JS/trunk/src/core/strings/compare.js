@@ -95,10 +95,10 @@ core.strings.compare = function( str1 /*String*/ , str2 /*String*/ , strict /*Bo
         }
         else if( local < 0 )
         {
-            return 1;
+            return -1;
         }
         
-        return -1;
+        return 1;
     }
     else if( str1.length > str2.length )
     {

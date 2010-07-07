@@ -1,0 +1,2286 @@
+<classref>
+<class name=SQLite>
+<property name="error" type="String">
+The last error reported by SQLite.
+</property>
+<property name="name" type="String">
+The database file name, ":memory:" if an in-memory database.
+</property>
+<property name="lastId" type="String">
+The id of the last row added to the database, helpful when using an autoincrement primary key.
+Note: "lastid", "lastId", and "lastID" all point to the same property, in case you can't remember which one to use.
+</property>
+<property name="className" type="String">
+"SQLite"
+</property>
+<function name="tables" type="Array">
+Returns an array of all the table names in the database.
+</function>
+<function name="keys" type="Array">
+<parameter name="table" type="String">A table name</parameter>
+Returns a list of all the key names for the specified table.
+</function>
+<function name="columns" type="Array">
+<parameter name="table" type="String">A table name</parameter>
+<parameter name="longFormat" type="Boolean"></parameter>
+Returns an array of all the column names for the specified table. If <b>longFormat</b> is true, the return value will look like <br><tt>["id INTEGER","name VARCHAR(32)","value DECIMAL(12,5)"]</tt>.
+</function>
+<function name="escape" type="String">
+<parameter name="text" type="String">Field text to send to the database</parameter>
+Quotes and escapes text as appropriate for the database. Usage:<br>
+<tt>db.exec("insert into friends (name) values (" + db.escape('Cynthia') + ")")</tt>
+</function>
+<function name="SQLite">
+<parameter name="database" type="String" optional=1>File name</parameter>
+Opens or creates a SQLite3 database file. Creates an in-memory database if the file name is omitted.
+</function>
+<function name="exec" type=Boolean>
+<parameter name="command" type="String" >SQL statement</parameter>
+<parameter name="callback" type="Function" >Callback function</parameter>
+<parameter name="opaque" >Parameters passed to the callback function</parameter>
+Executes a SQL statement. If rows are returned, runs <tt>callback(record, opaque)</tt> for each row in the result set.
+The result record is reused. See <a href=http://www.sqlite.org/lang.html>Query Language Understood by SQLite</a>.
+</function>
+<function name="close">
+Closes the database and frees associated memory.
+</function>
+</class>
+
+<class name=ActiveX>
+Provides an interface to COM objects through the IDispatch ActiveX interface.
+<property name="members" type="Object">
+A hash table describing the functions and properties of the COM object. Use
+<tt>for (var x in obj.members) {writeln(x,'=',obj.members[x]);}</tt> to view the list and the COM-supplied documentation.
+</property>
+<property name="className" type="String">
+"ActiveX"
+</property>
+
+<function name="ActiveX">
+<parameter name="id" type="String" >CLSID or object title from the registry</parameter>
+<parameter name="forceNew" type="Any" >Try to create a new object</parameter>
+The constructor tries to connect the active object in a COM class. If there is no active object, it will try to create one with CoCreateInstance(). The constructor will throw an exception if the COM class does not implement the IDispatch interface. If you use a 
+second parameter (of any value), a new COM object will always be created.
+</function>
+<function name="toString" type="String">
+invokes the COM toString(...) method. If that function doesn't exist, it returns the property with index=0.
+<pre>
+idl file:
+  [propget, id(0), helpstring("property toString")] HRESULT toString([out,retval] VARIANT *rv);
+implementation:
+  STDMETHODIMP CFoo::get_whoami(VARIANT *rv)
+  {
+    rv->vt = VT_BSTR;
+    rv->bstrVal = SysAllocString(L"[Foo object]");
+    return S_OK;
+  }
+</pre>
+</function>
+
+<function name="get" type="Object">
+<parameter name="name" type="String" />
+If a COM property ID is less than 255, it will appear as an automatic property of the JS object. Otherwise, use get() and set() to read and change property values. Recognized  VARIANT types are BOOLEAN, INT4, DOUBLE, NULL, BSTR, IUnknown, and IDispatch. 
+</function>
+
+<function name="set" type="Object">
+<parameter name="name" type="String" />
+<parameter name="value" type="Any" />
+If a COM property ID is less than 255, it will appear as an automatic property of the JS object. Otherwise, use get() and set() to read and change property values. The property must accept VARIANT types of BOOLEAN, INT4, DOUBLE, NULL, or BSTR. 
+</function>
+
+<function name="close">
+Closes the COM object and frees unused ActiveX libraries.
+</function>
+
+</class>
+<class name=Process>
+Starts and stops other programs
+<property name="active" type="Boolean">
+Whether the program is still running.
+</property>
+<property name="className" type="String">
+"Process"
+</property>
+<property name="exitCode" type="Number">
+If done, the program's exit code.
+</property>
+
+<function name="Process">
+<parameter name="cmd" type="String" >Command line, .exe file name, or document name</parameter>
+The constructor tries to start a program. Only programs ending in .exe will be run. 
+If <i>cmd</i> is a document file or URL, Process queries the Windows shell to run the appropriate program to open the document.
+Note that file names must be fully qualified.
+</function>
+
+<function name="close">
+Sends a quit message to the child process and frees associated handles.
+</function>
+
+</class>
+
+<class name=Archive>
+Extracts file from a ZIP or JAR file. Supported compression types are uncompressed (0) and deflate (8).
+<property name="count" type="Number">
+Number of files included in the archive.</property>
+<function name="Archive">
+<parameter name="file" type="String|Stream" />
+The constructor needs a seekable stream (like a file or memory) or a filename. The stream used to
+open the archive will be kept open (even if it is deleted) until the archive is freed.
+</function>
+<function name="name" type="String">
+<parameter name="index" type="Number" />
+Returns the filename.
+</function>
+<function name="Archive.compress" type="String">
+<parameter name="data" type="String" />
+Returns the compressed string contents.
+</function>
+<function name="Archive.uncompress" type="String">
+<parameter name="compressed data" type="String" />
+Returns the uncompressed string contents.
+</function>
+<function name="size" type="Number">
+<parameter name="index" type="Number" />
+Returns the uncompressed size of the file.
+</function>
+<function name="find" type="Number">
+<parameter name="name" type="String" />
+Returns the index of the file, or -1 if it does not exist
+</function>
+<function name="has" type="Number">
+<parameter name="name" type="String|Number" />
+Returns true if the file is in the archive
+</function>
+<function name="extract" type="Number">
+<parameter name="index" type="Number|String" />
+<parameter name="stream" type="Stream" optional=1 />
+If the 2nd parameter is a stream, data are uncompressed to that stream. Otherwise, a new memory stream
+is returned containing the file data.
+</function>
+<function name="close">
+Closes the archive and frees the stream.
+</function>
+</class>
+
+<class name="global">
+Global functions, accessible in all execution scopes. 
+Not all of these functions are defined in every interpreter.
+<property name="jsArguments" type="Array">
+Also available as system.arguments. A list of command line arguments (as strings)
+</property>
+<function name="system.kbhit" type="Boolean">
+Returns true if console input is available.
+</function>
+<function name="load" type="Boolean">
+<parameter name="filename" />
+Runs a JavaScript file. JSDB looks first for files with the following precedence:
+<ol>
+<li>In a ZIP archive appended to the program file. (This only works on UNIX if the program file is in the current directory.)
+<li>In the current working directory
+<li>In the library path. (Set this on the command line with -path, defaults to the executable's directory)
+<li>JSDB ignores the system's path and will not run files from unusual directories.
+</ol>
+<br>This order is chosen so that you may override the standard JSDB libraries, but carries certain security risks. For instance,
+someone might write a malicious "xml.js" in the current directory, expecing that library to be loaded by another script later.
+Therefore, you should be careful about calling the system.cwd() function.
+<br>As with run(), load() will fail if JSDB is in safe mode.
+<br>Unlike run(), load() will only execute a given source file only once. Files will be reloaded if they have been modified.
+</function>
+<function name="run" id="1">
+<parameter name="filename" />
+Runs a JavaScript file. Run uses the same file-finding rules as load().
+</function>
+<function name="run" id="2">
+<parameter name="text" type="Stream"/>
+<parameter name="filename" type="String"/>
+<parameter name="line" type="Number"/>
+Runs JavaScript code stored in a stream. The functions run() and load() are equivalent
+</function>
+<function name=sleep>
+<parameter name="time" type="Number" optional=1>milliseconds</parameter>
+<i>Deprecated in 1.6</i>. Use system.sleep() instead.
+Suspends the process and yields control to other programs.
+</function>
+<function name=jsShellExec>
+<parameter name="command" type="String">shell command line</parameter>
+<parameter name="dir" type="String" optional=1>working directory</parameter>
+<i>Deprecated in 1.6</i>. Use system.execute() instead.
+Calls ShellExec() on Windows, or system() on UNIX.
+</function>
+<function name=quit,exit>
+<i>Deprecated in 1.6</i>. Use system.quit() or system.exit() instead.
+Sets the "shouldStop" flag to true. Execution does not stop immediately.
+</function>
+<function name=jsShouldStop>
+<i>Deprecated in 1.6</i>. Use system.shouldStop() instead.
+Returns true if the script should finish.
+</function>
+<function name=jsRestart>
+<i>Deprecated in 1.6</i>. Use system.restart() instead.
+Sets the "shouldStop" flag to true, and instructs the interpreter to 
+repeat execution. This is only used in the XYKE web server.
+</function>
+<function name=jsIsSafe type=Boolean>
+<i>Deprecated in 1.6</i>. Use system.isSafe() instead.
+Tells whether the interpreter is in safe mode.
+</function>
+<function name=jsDebug type=Boolean>
+<parameter name="address" type="String" optional=1>Debugger address</parameter>
+<i>Deprecated in 1.6</i>. Use system.debug() instead.
+Connects to a remote debugger. <tt>jsDebug('127.0.0.1:1002')</tt>
+</function>
+<function name=jsSafeMode type=Number>
+<parameter name="code" type="Number" optional=1>password</parameter>
+<i>Deprecated in 1.6</i>. Use system.safeMode() instead.
+Sets a flag in the interpreter to indicate that file access should be forbidden while running 
+an untrusted piece of code. The first call to jsSafeMode() returns  a pseudo-random number,
+and locks file access. The second call, to unlock file access, must be of the form 
+jsSafeMode(number), where the first parameter is the number returned by the call to jsSafeMode() 
+that locked file access. In safe mode, email is blocked, and only memory streams and 
+http:// streams may be created. File and serial port streams that were opened outside 
+of safe mode may still be accessed.
+</function>
+
+<function name=stripWhitespace type=String>
+<parameter name="text" type="String" />
+Returns a string with initial and final whitespace characters removed.
+</function>
+
+<function name="print, write">
+Prints the parameters to stdout, calling toString() if necessary. Does not convert to UTF-8. Unicode values in strings will be truncated to 8 bytes.
+</function>
+
+<function name="println, writeln">
+Like print() and write(), but writes CR/LF at the end.
+</function>
+
+<function name="readln" type="String">
+<parameter name="end" type="String" optional="1" >Line end marker, defaults to \n</parameter>
+Reads a line from stdin. Console mode only.
+</function>
+
+<function name=jsVersion type=String>
+<parameter name="new version" type="Integer" >New interpreter version number</parameter>
+<i>Deprecated in 1.6</i>. Use system.version() instead.
+Returns a string containing the JavaScript interpreter version number (or the previous version, if the version is changing). 
+The default version is presently 1.7. The version codes are defined as <pre>
+    JSVERSION_1_0     = 100,
+    JSVERSION_1_1     = 110,
+    JSVERSION_1_2     = 120,
+    JSVERSION_1_3     = 130,
+    JSVERSION_1_4     = 140,
+    JSVERSION_ECMA_3  = 148,
+    JSVERSION_1_5     = 150,
+    JSVERSION_1_6     = 160,
+    JSVERSION_1_7     = 170,
+    JSVERSION_DEFAULT = 0,
+    JSVERSION_UNKNOWN = -1
+</pre>
+</function>
+
+<function name=jsOptions type=String>
+<parameter name="options" type="String" >'strict' or 'werror' (treat warnings as errors)</parameter>
+<i>Deprecated in 1.6</i>. Use system.options() instead.
+Toggles the interpreter options, and returns a comma-delimited string of the currently set options. 
+By default, <b>strict</b> is active at startup.
+</function>
+
+<function name=jsBuildDate type=String>
+<i>Deprecated in 1.6</i>. Use system.buildDate() instead.
+Returns a string containing the build date of the JavaScript interpreter.
+</function>
+
+<function name=jsGC type=Null>
+<i>Deprecated in 1.6</i>. Use system.gc() instead.
+Runs garbage collection
+</function>
+
+<function name=splitURL type=Array>
+<parameter name="URL" type="String" />
+Parses a URL of the form <tt>service://user:password@host/file?query</tt>, and
+returns an array of strings: <tt>[service, user, password, host, file, query]</tt>
+</function>
+
+<function name=encodeURL type=String>
+<parameter name="text" type="String" />
+Applies URL (%) encoding and returns an encoded string. Alphanumeric and punctuation
+characters used in URLs are not translated.
+</function>
+
+<function name=decodeURL type=String>
+<parameter name="text" type="String" />
+Decodes a URL-encoded string.
+</function>
+
+<function name=encodeUTF8 type=String>
+<parameter name="text" type="String" />
+Converts a JS string (UCS-2) to UTF-8
+</function>
+
+<function name=decodeUTF8 type=String>
+<parameter name="text" type="String" />
+Converts UTF-8 string to a JS string (UCS-2)
+</function>
+
+<function name=decodeANSI type=String>
+<parameter name="text" type="String" />
+Converts a Windows-1252 (ANSI) string to a JS string (UCS-2)
+</function>
+
+<function name=encodeB64 type=String id=1>
+<parameter name="text" type="String" />
+Applies base-64 (MIME) encoding and returns an encoded string.
+</function>
+
+<function name=encodeB64 type=Boolean id=2>
+<parameter name="in" type="Stream|String" />
+<parameter name="out" type="Stream" />
+Applies base-64 (MIME) encoding and sends the result to <i>out</i>. Returns the size of the
+encoded data.
+</function>
+
+<function name=decodeB64 type=String id=1>
+<parameter name="text" type="String" />
+Removes base-64 (MIME) encoding and returns an decoded string. Does not convert to Unicode -- call decodeUTF8(decodeB64(...)) if you want a JS string.
+</function>
+
+<function name=decodeB64 type=Number id=2>
+<parameter name="in" type="Stream|String" />
+<parameter name="out" type="Stream" />
+Applies base-64 (MIME) decoding and sends the result to <i>out</i>. Returns the size of the
+decoded data.
+</function>
+
+<function name=encodeHTML type=String>
+<parameter name="text" type="String" />
+For XML and HTML printing, applies & encoding and returns an encoded string. It encodes &lt; &gt; &quot; &amp; and Unicode character values over 127.
+</function>
+
+<function name=decodeHTML type=String>
+<parameter name="text" type="String" />
+Removes & encoding and returns an decoded string. It decodes &lt; &gt; &quot; &amp; and &amp;#XXX; sequences.
+</function>
+
+<function name=crc32 type=Number>
+<parameter name="text" />
+<parameter name="seed">Usually -1</parameter>
+Calculates the 32-bit CRC of a text string, using the Adler32 polynomial. The initial seed may be specified (usually -1).
+The parameters may be passed in any order.
+</function>
+
+<function name=copyFile type=Boolean>
+<parameter name="source" type=String />
+<parameter name="destination" type=String />
+<i>Deprecated in 1.7.</i> Use system.copy() instead.
+Copies files. Fails if the destination file exists.
+</function>
+
+<function name=moveFile>
+<parameter name="source" type=String />
+<parameter name="destination" type=String />
+<i>Deprecated in 1.7.</i> Use system.move() instead.
+Moves a file. Fails if the destination file exists.
+</function>
+
+<function name=remove type=Boolean>
+<parameter name="filename" type=String />
+Deletes a file or directory. Returns true if successful.
+</function>
+
+<function name=listFiles>
+<parameter name="filespec" optional=1 >defaults to "*.*"</parameter>
+<i>Deprecated in 1.7.</i> Use system.files() instead.
+Returns an array of file names. Directories and are excluded. System  files, hidden files, and names beginning with . are excluded.
+</function>
+<function name=listFolders>
+<parameter name="filespec" optional=1 >defaults to "*.*"</parameter>
+<i>Deprecated in 1.7.</i> Use system.folders() instead.
+Returns an array of directory names. Files are excluded. System  folders, hidden folders, and names beginning with . are excluded.
+</function>
+
+<function name=loadResource type=Stream>
+<parameter name="name" ></parameter>
+<i>Deprecated in 1.6</i>. Use system.resource() instead.
+Returns a readable stream containing the resource data. The resource file is either in the ZIP file 
+attached to or in the same directory as the interpreter program.
+</function>
+
+<function name=testCompile type=String>
+<parameter name="code">JS code to test</parameter>
+<i>Deprecated in 1.7.</i> Use system.compile() instead.
+Returns whatever error messages if there's a problem compiling the code.
+</function>
+
+<function name=fileExists>
+<parameter name="file" />
+<i>Deprecated in 1.7.</i> Use system.exists() instead.
+Returns true if the file exists and is available for reading.
+</function>
+
+<function name=regGetKey>
+<parameter name="section" >"hkey_local_machine\SOFTWARE\..."</parameter>
+<parameter name="name" >Key name</parameter>
+<i>Deprecated in 1.7.</i> Use system.getKey() instead.
+Returns a string containing the registry data.
+</function>
+
+<function name=regSetKey>
+<parameter name="section" >"hkey_local_machine\SOFTWARE\..."</parameter>
+<parameter name="name" >Key name</parameter>
+<parameter name="value" >Key value</parameter>
+<i>Deprecated in 1.7.</i> Use system.setKey() instead.
+Sets a registry entry. Returns true if successful.
+</function>
+
+<function name=openBrowser>
+<parameter name="file" >URL</parameter>
+<i>Deprecated in 1.7.</i> Use system.browse() instead.
+</function>
+</class>
+
+<class name=system>
+The system object is where you find functions for interacting with the operating system. There is one system object, rooted in the global scope. That means that you can call <tt>system.execute()</tt> from any scope. Some of these functions are disabled in safe mode.
+<property name="name" type="Array">
+The name of the computer. $COMPUTERNAME on Windows, gethostname() elsewhere.
+</property>
+<property name="script" type="Array">
+The name of the computer. $COMPUTERNAME on Windows, gethostname() elsewhere.
+</property>
+<function name="attributes" type="String">
+<parameter name="filename" />
+Returns an object describing the specified file.
+<tt>{ attributes: String, size: Number, date: Date, creation: Date }</tt>
+On Windows, attributes can include "archive, compressed, directory, hidden, offline, readonly, system, temporary". On Unix, attributes can include "directory, symlink, regular, chardev, blockdev, fifo, socket".
+</function>
+<function name="mkdir">
+<parameter name="directory"></parameter>
+Creates a directory (recursively). Always returns true.
+</function>
+
+<function name="setcwd" type="String">
+<parameter name="directory" optional=1></parameter>
+Sets the current working directory (if directory is not empty) and returns the previous
+working directory. On Windows, the directory name is unicode. Otherwise, it is treated as ASCII, without UTF-8 encoding.
+</function>
+
+<property name="stdin" type="Stream">
+Use <tt>system.stdin</tt> to read directly from the console. The stream is unbuffered.
+</property>
+<property name="version" type="Number">
+Divide by 100 to get the language version. JavaScript 1.5 is represented as 150.
+</property>
+<property name="release" type="Number">
+The JSDB release number, something like "1.3".
+</property>
+<property name="buildDate" type="String">
+Interpreter build date.
+</property>
+<property name="stdout" type="Stream">
+Use <tt>system.stdout</tt> to write directly to the console. The stream is unbuffered. 
+The interpreter always sends error messages to stdout, never to stderr.
+</property>
+<property name="arguments" type="Array">
+A list of command line arguments (as strings)
+</property>
+<function name=sleep>
+<parameter name="time" type="Number" optional=1>milliseconds</parameter>
+Suspends the process and yields control to other programs.
+</function>
+<function name=attributes>
+<parameter name="file" type="String" >File name</parameter>
+Returns an object describing the file system attributes, {attributes: String, size: Number, creation: Date, date: Date}.
+<br>Attributes may be
+<table><tr><td>Windows<td>archive, compressed, directory, hidden, offline, readonly, system, temporary,;
+<tr><td>Unix<td>directory, symlink, regular, chardev, blockdev, fifo, socket
+</table>
+</function>
+<function name=execute>
+<parameter name="command" type="String">shell command line</parameter>
+<parameter name="dir" type="String" optional=1>working directory</parameter>
+Calls ShellExec() on Windows, or system() on UNIX.
+</function>
+<function name=quit>
+Sets the "shouldStop" flag to true. Execution does not stop immediately.
+</function>
+<function name=exit>
+Sets the "shouldStop" flag to true. Execution does not stop immediately.
+</function>
+<function name=shouldStop>
+Returns true if the script should finish.
+</function>
+<function name=restart>
+Sets the "shouldStop" flag to true, and instructs the interpreter to 
+repeat execution. 
+</function>
+<function name=isSafe type=Boolean>
+Tells whether the interpreter is in safe mode.
+</function>
+<function name=debug type=Boolean>
+<parameter name="address" type="String" optional=1>Debugger address</parameter>
+Connects to a remote debugger. <tt>system.debug('127.0.0.1:1002')</tt>
+</function>
+<function name=getenv type=String>
+<parameter name="name" type="String" >variable name</parameter>
+Returns an environment variable.
+</function>
+<function name=safeMode type=Number>
+<parameter name="code" type="Number" optional=1>password</parameter>
+Sets a flag in the interpreter to indicate that file access should be forbidden while running 
+an untrusted piece of code. The first call to jsSafeMode() returns  a pseudo-random number,
+and locks file access. The second call, to unlock file access, must be of the form 
+system.safeMode(number), where the first parameter is the number returned by the call to system.safeMode() 
+that locked file access. In safe mode, email is blocked, and only memory streams and 
+http:// streams may be created. File and serial port streams that were opened outside 
+of safe mode may still be accessed.
+</function>
+
+<function name=stripWhitespace type=String>
+<parameter name="text" type="String" />
+Returns a string with initial and final whitespace characters removed.
+</function>
+
+<function name="print, write">
+Prints the parameters to stdout, calling toString() if necessary.
+</function>
+
+<function name="println, writeln">
+Like print() and write(), but writes CR/LF at the end.
+</function>
+
+<function name="readln" type="String">
+<parameter name="end" type="String" optional="1" >Line end marker, defaults to \n</parameter>
+Reads a line from stdin. Console mode only.
+</function>
+
+<function name=options type=String>
+<parameter name="options" type="String" >'strict', 'werror' (treat warnings as errors), 'atline', 'xml' (enable E4X in subsequent load() and run() calls)</parameter>
+Toggles the interpreter options, and returns a comma-delimited string of the currently set options. 
+By default, <b>strict</b> is active at startup.
+</function>
+
+<function name=gc type=Null>
+Runs garbage collection.
+</function>
+
+<function name=help type=String>
+Returns information about the interpreter version. Look for "JSDB 1.1 ...".
+</function>
+
+<function name=copy type=Boolean>
+<parameter name="source" type=String />
+<parameter name="destination" type=String />
+Copies files. Fails if the destination file exists.
+</function>
+
+<function name=move>
+<parameter name="source" type=String />
+<parameter name="destination" type=String />
+<parameter name="replace" type=Boolean optional=1 >Set to <b>true</b> to overwrite existing files</parameter>
+Moves a file.
+</function>
+
+<function name=files>
+<parameter name="filespec" optional=1 >defaults to "*.*"</parameter>
+Returns an array of file names. Directories and are excluded. System  files, hidden files, and names beginning with . are excluded.
+</function>
+<function name=folders>
+<parameter name="filespec" optional=1 >defaults to "*.*"</parameter>
+Returns an array of directory names. Files are excluded. System  folders, hidden folders, and names beginning with . are excluded.
+</function>
+
+<function name=resource type=Stream>
+<parameter name="name" ></parameter>
+Returns a readable stream containing the resource data. The resource file is either in the ZIP file 
+attached to or in the same directory as the interpreter program.
+</function>
+
+<function name=compile type=String>
+<parameter name="code">JS code to test</parameter>
+Returns error messages if there's a problem compiling the code.
+</function>
+
+<function name=exists>
+<parameter name="file" />
+Returns true if the file exists and is available for reading.
+</function>
+
+<function name=getKey>
+<parameter name="section" >"hkey_local_machine\SOFTWARE\..."</parameter>
+<parameter name="name" >Key name</parameter>
+Returns a string containing the registry data. (Windows only) 
+</function>
+
+<function name=setKey>
+<parameter name="section" >"hkey_local_machine\SOFTWARE\..."</parameter>
+<parameter name="name" >Key name</parameter>
+<parameter name="value" >Key value</parameter>
+Sets a registry entry. Returns true if successful. (Windows only) 
+</function>
+
+<function name=browse()>
+<parameter name="file" >URL</parameter>
+Opens the default web browser on the console, and points it to the specified URL.
+</function>
+</class>
+
+<class name="ODBC">
+Represents a connection to an ODBC database. Connections are pooled and cached, and 
+are shared between ODBC and Table objects. An unused connection will be closed after 
+a few minutes' inactivity. See the notes on Table.add() for database-specific behavior.
+<property name="name" type="String">
+Driver name</property>
+<property name="error" type="String">
+The last error message. It is initially undefined, and only changes when a query() or exec() 
+function fails.</property>
+<property name="className" type="String">
+"ODBC"</property>
+<function name="ODBC" type="ODBC">
+<parameter name="connection string" type="String">"DSN=source_name;UID=login;PWD=password;"</parameter>
+Connects to an ODBC driver. You can also use<br>
+<tt>
+var myDB = new ODBC("DRIVER={MySQL ODBC 3.51 Driver};SERVER=localhost;DATABASE=dbname;USER=root;PASSWORD=password;OPTION=3;");<br>
+var myReader = myDB.query('select * from people');
+</tt> or </tt><br>
+var myT = new Table('odbc://DRIVER={MySQL ODBC 3.51 Driver};SERVER=localhost;DATABASE=dbname;USER=root;PASSWORD=password;OPTION=3;/people')<br>
+</tt>
+The difference is that the query() function gives you a read-only table, while the Table() constructor
+lets you make changes with set() and setRow(). 
+<br>You might see a "Dialog failed" message from Microsoft. This only means that there's something wrong with your connection string.
+<br>JSDB is a mediocre command-line SQL console. Use <a href=http://www.raosoft.com/products/utilities/>Raosoft's SQL.exe</a> instead.
+</function>
+<function name="query" type="Table">
+<parameter name="query" type="String">"SELECT * FROM table WHERE ..."</parameter>
+Executes an SQL command, and returns the result set mapped into a read-only Table object. 
+The Table object provides a cache and indexed access to records, even if the ODBC driver
+does not. If you just want to read from a SQL table with a simple query, this is equivalent
+to <b>new Table('odbc://userid:password@service/tablename?field1=xxx*&field2=yyy')</b>. Both ways of 
+accessing the tables do on-demand loading of data from the database server.
+</function>
+<function name="tables" type="Array">
+Returns an array of all the table names in the database.
+</function>
+<function name="escape" type="String">
+<parameter name="text" type="String">Field text to send to the database</parameter>
+Quotes and escapes text as appropriate for the database. Usage:<br>
+<tt>db.exec("insert into friends (name) values (" + db.escape('Cynthia') + ")")</tt>
+</function>
+<function name="keys" type="Array">
+<parameter name="table" type="String">A table name</parameter>
+Returns a list of all the key names for the specified table.
+</function>
+<function name="columns" type="Array">
+<parameter name="table" type="String">A table name</parameter>
+<parameter name="longFormat" type="Boolean"></parameter>
+Returns an array of all the column names for the specified table. If <b>longFormat</b> is true, the return value will look like <br><tt>["id INTEGER","name VARCHAR(32)","value DECIMAL(12,5)"]</tt>.
+</function>
+<function name="execute" type="Boolean">
+<parameter name="command" type="String">"ALTER TABLE ..."</parameter>
+This calls SQLExecDirect() on the database. Returns true if the operation was successful. 
+You can read the error parameter to find out what went wrong otherwise.
+</function>
+<function name="exec" type="Boolean">
+<parameter name="command" type="String">"ALTER TABLE ..."</parameter>
+Same as ODBC.execute().
+</function>
+<function name="table" type="Table">
+<parameter name="name" type="String">Table name</parameter>
+Opens a Table object in the database.
+</function>
+<function name="setAutoCommit" type="Boolean">
+<parameter name="value" type="Boolean">New setting</parameter>
+Sets the database AUTOCOMMIT flag, which usually defaults to true when the ODBC connection is opened.
+</function>
+<function name="commit" type="Boolean">
+Commits the current transaction.
+</function>
+<function name="rollback" type="Boolean">
+Rolls back the current transaction, if the database is not in AUTOCOMMIT mode.
+</function>
+<function name="close" type="Boolean">
+Closes the connection to the database and all tables that were opened with the query()
+function. The table objects are invalidated (further function calls will fail), 
+but they are not deleted.
+</function>
+</class>
+
+<class name="Server">
+<property name="anyoneWaiting" type="Boolean">
+is a client waiting for a response?
+</property>
+<property name="hostName" type="String"/>
+<property name="port" type="Number"/>
+<function name="Server" type="Server">
+<parameter name="port" type="Number">
+Default port is 80.
+</parameter>
+</function>
+<function name="accept" type="Stream">
+Accepts the next connection in the input queue and returns a Stream pointer
+to communicate with it.
+</function>
+<function name="close" type="Boolean">
+Closes the server and all connections.
+</function>
+<function name="toString" type="String">
+Describes the server configuration and port.
+</function>
+</class>
+<class name="Image">
+<property name="colors" type="Number">
+Number of colors (in addition to the background)
+</property>
+<property name="height" type="Number">
+Height
+</property>
+<property name="width" type="Number">
+Width
+</property>
+<property name="size" type="Number">
+Number of bytes as a GIF file
+</property>
+<function name="Image" type="Image">
+<parameter name="height" type="Number">
+Height
+</parameter>
+<parameter name="width" type="Number">
+Width
+</parameter>
+Creates a new GIF image. The background color is white (color 0) and the
+  transparent color is 127. There are 126 user-definable colors.
+ 
+</function>
+<function name="setBGColor" type="Boolean">
+<parameter name="R" type="Number">
+0..255
+</parameter>
+<parameter name="G" type="Number">
+0..255
+</parameter>
+<parameter name="B" type="Number">
+0..255
+</parameter>
+Sets the background color value (color 0).
+</function>
+<function name="color" type="Integer">
+<parameter name="R" type="Number">
+0..255
+</parameter>
+<parameter name="G" type="Number">
+0..255
+</parameter>
+<parameter name="B" type="Number">
+0..255
+</parameter>
+Adds a new color and returns its index.
+</function>
+<function name="setp" type="Boolean">
+<parameter name="X1" type="Number">
+x position
+</parameter>
+<parameter name="Y1" type="Number">
+y position
+</parameter>
+<parameter name="C" type="Number">
+color
+</parameter>
+Set a pixel value
+</function>
+<function name="getp" type="Number">
+<parameter name="X1" type="Number">
+x position
+</parameter>
+<parameter name="Y1" type="Number">
+y position
+</parameter>
+Returns the pixel value at a point
+</function>
+<function name="line" type="Boolean">
+<parameter name="X1" type="Number">
+start point
+</parameter>
+<parameter name="Y1" type="Number">
+start point
+</parameter>
+<parameter name="X2" type="Number">
+end point
+</parameter>
+<parameter name="Y2" type="Number">
+end point
+</parameter>
+<parameter name="color" type="Number">
+Color index
+</parameter>
+Draws a 1-pixel line.
+</function>
+<function name="print" type="Boolean">
+<parameter name="X" type="Number">
+start point
+</parameter>
+<parameter name="Y" type="Number">
+start point
+</parameter>
+<parameter name="color" type="Number">
+Color index
+</parameter>
+<parameter name="text" type="String">
+Text to display
+</parameter>
+<parameter name="background" type="Number">
+Background color index (default is 0)
+</parameter>
+Prints text. At present, the only font is 9-pixel sans-serif.
+</function>
+<function name="slice" type="Boolean">
+<parameter name="X1" type="Number">
+start point
+</parameter>
+<parameter name="Y1" type="Number">
+start point
+</parameter>
+<parameter name="R" type="Number">
+radius
+</parameter>
+<parameter name="start" type="Number">
+start angle (radians)
+</parameter>
+<parameter name="stop" type="Number">
+stop angle (radians)
+</parameter>
+<parameter name="color" type="Number">
+Color index
+</parameter>
+Draws a filled pie slice
+</function>
+<function name="arc" type="Boolean">
+<parameter name="X1" type="Number">
+start point
+</parameter>
+<parameter name="Y1" type="Number">
+start point
+</parameter>
+<parameter name="R" type="Number">
+radius
+</parameter>
+<parameter name="start" type="Number">
+start angle (radians)
+</parameter>
+<parameter name="stop" type="Number">
+stop angle (radians)
+</parameter>
+<parameter name="color" type="Number">
+Color index
+</parameter>
+Draws an arc.
+</function>
+<function name="fill" type="Boolean">
+<parameter name="X1" type="Number">
+start point
+</parameter>
+<parameter name="Y1" type="Number">
+start point
+</parameter>
+<parameter name="color" type="Number">
+Color index
+</parameter>
+Fills all connected background-colored pixels with the new color.
+</function>
+<function name="write" type="Boolean">
+<parameter name="out" type="Stream">
+destination file or web connection
+</parameter>
+Writes a GIF file
+</function>
+</class>
+<class name="Table">
+<property name="name" type="String">
+the filename of the table
+</property>
+<property name="length" type="Number">
+same as rowCount 
+</property>
+<property name="count" type="Number">
+same as rowCount</property>
+<property name="error" type="String">
+last error message</property>
+<property name="className" type="String">
+"Table"</property>
+<property name="rowCount" type="Number">
+number of rows<br>Row numbers start at 1, and 0 indicates
+an invalid row.
+</property>
+<property name="colCount" type="Number">
+number of columns<br>Column numbers start at 1, and 0 indicates
+an invalid column.
+</property>
+<function name="Table" type="Table">
+<parameter name="name" type="String" Optional=1>
+data source name
+</parameter>
+<![CDATA[
+Opens a table. The data source name may be omitted to create an in-memory spreadsheet, or like one of these:
+<br><tt> <br>file://drive:/directory/filename.asc
+  <br>file://drive:/directory/filename.dbf
+<!--  <br>file://drive:/directory/filename.ini-->
+  <br>file://user:password@DSN/filename.dsn
+  <br>odbc://login:password@data_source/table</tt>  
+<br><br>The <tt>file://</tt> prefix is optional, except for the DSN hack to open an ODBC connections. 
+<!--<br>To open fixed-width ASCII files, create an INI file of the form
+<br><pre>[file]
+data=filename.txt
+type=DOS|UNIX|MAC
+[fields]
+field1=length1
+field2=length2
+...
+</pre>
+-->]]>
+</function>
+<function name="append" type="Boolean">
+<parameter name="source" type="String">source table</parameter>
+<parameter name="callback" type="Function" optional="1">callback function</parameter>
+<parameter name="opaque" type="Function" optional="1">opaque parameter for callback</parameter>
+Copies data from another table.
+<br>The callback function is of the form <tt>function cb(record, opaque, ...)</tt>, where <tt>record</tt>
+is the row number about to be transferred, and <tt>opaque</tt> (and the ...) are extra parameters passed
+to <tt>append()</tt>.
+</function>
+<function name="Table.create" type="Boolean">
+<parameter name="name" type="String">Name of a new table to create</parameter>
+<parameter name="fields" type="String">
+"fieldname [type] length, ..."
+</parameter>
+(new in 1.7)
+Creates a new xBase table. <b>name</b> is a file name (.dbf). <b>fields</b> is a list of
+column definitions, for example <tt>name C 33, address C 33, age N 3</tt>. 
+
+<br>Field names can be up to 10 characters. The field type and length are optional, they defaul to
+C and 255. The maximum field length is 65535. For xBase compatibility, the total record length
+should less than 65535.
+
+<br><tt>type</tt> can be Character, Number, Date, or Time (only the first letter is needed).
+</function>
+<function name="data" type="String">
+<parameter name="row" type="Number">
+row number (starting with 1)
+</parameter>
+<parameter name="column" type="Number|String">
+column number or name
+</parameter>
+<![CDATA[Returns text <furbie a=b>data</furbie> at a position in the table. You can determine if a row
+  is marked deleted if the first character of <tt>table.data(row,0)</tt> is 'D'.]]>
+</function>
+<function name="getMessage" type="String">
+<parameter name="row" type="Number">
+row number (starting with 1);
+</parameter>
+For mail message tables, returns the message text.
+</function>
+<function name="getWhere" type="String">
+<parameter name="row" type="Number">Row number (starting with 1)</parameter>
+For debugging ODBC tables, returns the WHERE statement used to identify a particular row.
+</function>
+<function name="get" type="String">
+<parameter name="row" type="Number">
+row number (starting with 1)
+</parameter>
+<parameter name="column" type="Number|String">
+column number or name
+</parameter>
+Same as data()
+</function>
+<function name="set" type="Boolean">
+<parameter name="row" type="Number">
+row number (starting with 1)
+</parameter>
+<parameter name="column" type="Number|String">
+column number or name
+</parameter>
+<parameter name="value" type="String">
+new value
+</parameter>
+<![CDATA[Set text data at a position in the table. You can delete a row with
+  <tt>table.set(row,0,'Delete')</tt>
+  With DBF and SQL tables, you can un-delete a row with
+  <tt>table.set(row,0,' ')</tt>
+  DBF tables do not remove deleted rows. SQL tables remove deleted rows when they refresh,
+  which is not necessarily immediate. Spreadsheets delete rows immediately.]]>
+</function>
+<function name="setN" type="Boolean">
+<parameter name="row" type="Number">
+row number (starting with 1)
+</parameter>
+<parameter name="column" type="Number|String">
+column number or name
+</parameter>
+<parameter name="value" type="Number">
+new value
+</parameter>
+Set number data at a position in the table. The number will usually be converted to text
+  to store it in the database.
+</function>
+<function name="save" type="Boolean">
+<parameter name="file" type="String|Stream" optional="1">
+file name
+</parameter>
+<parameter name="delimiter" type="String" optional="1">
+Defaults to the delimiter used to read the file or tab
+</parameter>
+<parameter name="titles" type="Boolean" optional="1">
+Defaults to true
+</parameter>
+ Save databsae changes. If the database has no file name, the function
+  fails. For ODBC databases, this forces a COMMIT statement. For DBF databases,
+  nothing happens. 
+  <br>For ASCII databases, you can save to a file name or a stream. In this case,
+  you select a delimiter (or null for the default) and choose whether to include the header row.
+</function>
+<function name="index" type="Index">
+<parameter name="column" type="String|Number">
+Column name
+</parameter>
+This function returns an index to the database. If you call <tt>index()</tt>
+with a single column name or number, the returned object will have <tt>find(key)</tt> function,
+where <tt>key</tt> can be either a field value or a Record/Object containing the appropriate field value. 
+<br>
+If you call <tt>index()</tt> with a list of field names, the index will be built from strings where 
+data values are separated by newlines. Therefore, you can call <tt>index().find('value1\nvalue2\nvalue3')</tt> or 
+<tt>index().find(new Record('field1=value1,field2=value2,field3=value3')</tt>.
+<br>
+The <tt>index().find()</tt> function returns the number of a matching row, or -1 if none are found. 
+<br>
+Since it takes time to build the index, you can do something like this:
+<pre>
+data = {fieldname: 'Field Value'}
+var index = table.index('field')
+writeln('adding record ',table.addRow(data))
+index.add(data)
+writeln('found record ',index.find(data));
+</pre>
+</function>
+
+<function name="type" type="String|Array">
+<parameter name="column" type="String|Number">
+Column name
+</parameter>
+For one argument, this returns the data type corresponding to the row.
+  For several arguments, this returns an array of data types. The possible
+  types are C, N, D, T for Character, Number, Date, and Time.
+</function>
+<function name="column" type="Number">
+<parameter name="column" type="String">
+field name
+</parameter>
+This finds the column number corresponding to a field name. If the field name
+  does not exist in the database, the return value is zero.
+</function>
+<function name="title" type="Number">
+<parameter name="column" type="Number">
+column number
+</parameter>
+Returns the title of a column. Column numbers start at 1. You
+  can find the number of columns in a table from the colCount property.
+</function>
+<function name="setTitle" type="Boolean">
+<parameter name="column" type="Number">
+column number
+</parameter>
+<parameter name="title" type="String">
+new title
+</parameter>
+Changes a column's title. This only works for spreadsheet (ASCII
+  and in-memory) tables.
+</function>
+<function name="width" type="Number">
+<parameter name="column" type="Number">
+column number
+</parameter>
+Returns the width, in characters, of data that may be stored
+  in this column. Spreadsheet tables do not have a width limit.
+</function>
+<function name="deleteColumn" type="Boolean">
+<parameter name="column" type="Number">
+column number
+</parameter>
+Removes a column from a spreadsheet table.
+</function>
+<function name="addColumn" type="Boolean">
+<parameter name="name" type="String">
+column name
+</parameter>
+Adds a new column, which must have a unique name, and returns
+  the new column's number.
+</function>
+<function name="add" type="Boolean">
+<parameter name="data" type="Record|Object">
+initial values
+</parameter>
+Adds a new row to the table, populating it with values from data, and returning the number of the new row.
+<br><i>SQL databases:</i>
+<ul><li>JSDB will not set autoincrement fields in INSERT statements. Your database does this
+for you. 
+<li>If you have a key field which is not set and not autoincrement, JSDB will generate a unique 24-character value,
+based on the system time and a counter stored in the registry. This value will not repeat in the lifetime of the solar system.
+<li>If you are adding to an Oracle table and do not provide a primary key value, JSDB will use <i>seq_<b>tablename</b>.nextval</i>.
+<li>If the <i>data</i> parameter is an Object, string values will be converted to UTF-8.
+</ul>
+
+</function>
+<function name="del" type="Boolean">
+<parameter name="data" type="Number">
+row number
+</parameter>
+Deletes a row from the table.
+</function>
+<function name="find" type="Number">
+<parameter name="query" type="Record|Object">
+<![CDATA[values to search for, for example:
+  <tt>
+  <br>query = {name: 'Alice'} // faster: new Record('name=Alice');
+  <br>row = table.find(query)
+  </tt>
+  ]]>
+</parameter>
+<parameter name="start" type="Number" optional="1">
+row number from which to start searching (defaults to the first row)
+</parameter>
+<parameter name="direction" type="Number" optional="1">
++1 to search forward, or -1 to search backwards
+</parameter>
+<![CDATA[The result of the last search is stored in the table's
+  <tt>lastFind</tt> property. Deleted rows are skipped during the search.]]>
+</function>'
+<function name="findNext" type="Number">
+<parameter name="query" type="Record|Object">
+query from find()
+</parameter>
+Continues the last search.
+</function>
+<function name="getRow" type="Boolean|Record">
+<parameter name="row" type="Number">
+row number
+</parameter>
+<parameter name="data" type="Record" optional="1">
+data values
+</parameter>
+<![CDATA[Returns a record containing the values from a row in the table.
+  If the "data" parameter is used, then it is filled with the values
+  and the function returns <tt>true</tt> or <tt>false</tt>.]]>
+</function>
+<function name="setRow" type="Boolean">
+<parameter name="row" type="Number">
+row number
+</parameter>
+<parameter name="data" type="Record|Object">
+data values
+</parameter>
+Sets data values into the table. Returns true on success.
+</function>
+<function name="toString" type="String">
+Returns the file name
+</function>
+</class>
+<class name="Index">
+A fast binary-search alphabetical index. 
+If two entries have the same value, there is no guarantee as to which one will be found.
+If created by Table.index(), row numbers start at one. Otherwise, they start at zero.
+<function name="find" type="Number">
+<parameter name="value" type="String">Key value
+</parameter>
+Returns the index of one entry matching the key value, or -1 if the key is not in the index.
+</function>
+<function name="rebuild" type="">
+Rebuilds an index created by Table.index().
+</function>
+<function name="add" type="">
+<parameter name="value" type="String">Key value
+</parameter>
+Appends a key to the next slot in the index
+</function>
+</class>
+
+<class name="Stream">
+<property name="name" type="String">
+Filename or URL
+</property>
+<property name="size" type="Number">
+Total number of bytes for file and memory streams.
+</property>
+<property name="position" type="Number">
+Cursor position, in bytes, from the beginning. 
+This property is not appropriate for HTTP and COM streams.
+</property>
+<property name="pos" type="Number">
+<![CDATA[Same as <b>position</b>]]>
+</property>
+<property name="eof" type="Boolean">
+Is the stream at its end? For COM
+streams, this identifies whether the stream has been closed. Network
+streams (http://, net://) can only detect whether they've been closed
+after a read() or write() call returns 0. While eof can detect socket
+error conditions, this doesn't happen very often. Unfortunately, there's no 
+good way to detect if a network socket is closed without reading or writing
+to it.
+</property>
+<property name="canRead" type="Boolean">
+True if there are characters available in the input buffer, or if you haven't reached the end of a memory stream.
+</property>
+<property name="canWrite" type="Boolean">
+True if the stream was created for writing.
+</property>
+<property name="tagText" type="String">
+See readTag()
+</property>
+<property name="hasChildren" type="Boolean">
+See readTag()
+</property>
+<property name="stderr" type="Stream">
+Captures stderr output from exec:// 
+</property>
+<property name="header" type="Object">For http:// streams, the HTTP header. Use <tt>stream["Content-type"]</tt> to extract values.</property>
+<property name="hostName" type="String">For network streams, the remote host name</property>
+<property name="hostAddress" type="String">For network streams, the remote host address</property>
+<property name="status" type="Number">
+For http:// streams, the server's response status, such as <tt>200</tt>. 
+</property>
+<property name="statusText" type="String">
+For http:// streams, the wWeb server response message, such as <tt>'HTTP/1.1 200 OK'</tt>. 
+</property>
+<function name="Stream" type="Stream">
+<parameter name="name" type="String" optional="1">
+<![CDATA[Filename, URL, Number of bytes for a memory stream. URLs are of the form:
+  <tt><br>http://www.jsdb.org/
+  <br>file://c:/test.txt
+  <br>net://server.com:port
+  <br>com1://56000 (or com2, com3, ...)
+  <br>text://<i>number_of_bytes</i>
+  <br>temp://<i>number_of_bytes</i>
+  <br>exec://command line
+  </tt>
+  ]]>
+</parameter>
+<parameter name="mode" type="String" optional="1">
+<![CDATA[
+For files <b>mode</b>, is the open mode (rwactb+). A + indicates an unbuffered stream and a <tt>b</tt> indicates binary mode. 
+The default mode is 'rt' (read a text file). 
+<table border=0>
+<tr><td>mode<td>Description<td>Combine with
+<tr><td><tt>a</tt><td>Append to a file or write-only file device. You can not seek, so you can not read.<td><tt>+tb</tt>
+<tr><td><tt>rw</tt><td>Create a new file or open an existing file with read and write access<td><tt>+tb</tt>
+<tr><td><tt>w</tt><td>Create or replace a file with read and write access<td><tt>+tbr</tt>
+<tr><td><tt>r</tt><td>Open an existing file with read access<td><tt>+tbw</tt>
+<tr><td><tt>t</tt><td>Text mode: <tt>\r</tt> is stripped when reading, and <tt>\n</tt> is converted to <tt>\r\n</tt> when writing. <tt>seek</tt> and <tt>pos</tt> are accurate.<td><tt>arw+</tt>
+<tr><td><tt>b</tt><td>Binary mode: no CRLF mapping.<td><tt>arw+</tt>
+<tr><td><tt>+</tt><td>Unbuffered: does not use read-ahead or write-behind cache.<td><tt>arwtb</tt>
+<tr><td><tt>d</tt><td>Pipes only: Creates a detached process with its own console window. (Windows)<td><tt>(none)</tt>
+</table>
+
+<P>
+For http:// streams, <b>mode</b> chooses how to connect and what data to retrieve. 
+<table border=0>
+<tr><td>mode<td>Description
+<tr><td>0<td>The stream is a raw connection. To fetch the contents of a web page, do something like this:
+<br><tt>status = stream.readLine()</tt>
+<br><tt>header = stream.readMIME()</tt>
+<br><tt>data = stream.read(header.get("Content-Length"))</tt>
+<tr><td>1<td>The stream starts with the HTTP header fields. The header is cached in the <b>header</b> property. The connection will use Internet Explorer's proxy settings and de-chunk 
+"Transfer-encoding: Chunked" transmissions.
+<tr><td>(anything else)<td>In version 1.7.2.3 and earlier, this is the same as <b>1</b>. In 1.7.2.4 and later, 
+the stream contains only the file data. Use the <b>status</b>, <b>statusText</b>, and <b>header</b> properties for
+connection information. The connection will use Internet Explorer's proxy settings and de-chunk 
+"Transfer-encoding: Chunked" transmissions.
+</table>
+
+<P>
+For net:// streams, <b>mode</b> chooses the socket parameters.
+<table border=0>
+<tr><td>mode<td>Description
+<tr><td><tt>i</tt><td>Immediate mode: Do not use the Nagle algorithm (TCP_NODELAY). Prior to version 1.7.3.6, the number 0 was used instead of the string <tt>i</tt>. No code changes are required -- 0 still works.
+<tr><td>(anything else)<td>Use the Nagle algorithm to group short write() calls so as to send fewer packets. 
+</table>
+]]>
+</parameter>
+<parameter name="header" type="Record|Object" optional="1">
+For http:// streams, pass additional header lines to the server.
+</parameter>
+<![CDATA[ 
+If <i>name</i> is a string, jsdb will first try to open a URL. 
+
+ <br>To retrieve a web page using GET and standard headers, use 
+ <b>Stream('http://server.com/')</b>. The <b>status</b> property will be initialized with the 
+ first line from the server response. 
+ <br>To simply open a socket to the server and send your
+ own headers, use <b>a = new Stream('net://server.com:80/'); a.writeln('POST /file.cgi/ HTTP/1.1\r\n')</b>. 
+ The port number defaults to 80 if it is omitted. 
+ <br>A <b>file://</b> URL is always opened in binary, read-only mode.
+
+ <br>If <b>name</b> does not appear to be a URL (no ://), jsdb will try to open a file instead. Forward slashes
+ are converted to back slashes when opening files in Windows. 
+ 
+ <br>If <b>name</b> is <b>fifo://</b>, an in-memory FIFO will be created.
+
+ <br>If <b>name</b> is omitted or is a number, an in-memory stream will be created, with the initial length given by <b>name</b>.
+ 
+ <P>If <b>name</b> starts with "exec://", the stream returns a pipe to a spawned process. Try this:
+<pre>p = new Stream("exec://jsdb.exe","d")
+p.writeln("writeln('hello world');")
+writeln(p.readln())
+p.writeln("quit");
+</pre>
+]]>
+</function>
+<function name="format">
+<![CDATA[ 
+This function was removed in version 1.7.2.7. You can replace it with
+<pre>
+Stream.prototype.format = function(source, values)
+{
+  this.write(source.replace(/{(.*?)}/g, function (x, name) {return values.get(name)} ))
+}
+</pre>
+]]>
+</function>
+<function name="read" type="String">
+<parameter name="count" type="Number">
+number of bytes
+</parameter>
+<parameter name="dest" type="Stream" optional="1">Optional target for retrieved data</parameter>
+Reads up to a fixed number of bytes from a file, and returns them as a string. If <b>dest</b> is provided,
+<b>readFile()</b> runs instead of <b>read()</b>
+</function>
+
+<function name="setEndOfFile" type="Boolean">
+<parameter name="length" type="Number">New maximum file length</parameter>
+Changes the length of a a file or memory stream. Memory streams can be truncated. 
+File streams can be truncated or extended.
+</function>
+
+<function name="readln" type="String">
+<parameter name="delimiter" type="String" optional="1">
+End-of-line character (default '\n')
+</parameter>
+Returns the next line in the file. At the end of the file, it returns an empty string "".
+</function>
+<function name="readLine" type="String">
+ 
+Same as readln.
+</function>
+
+<function name=readText type=String > 
+Reads the entire stream, converting all linefeeds to \r\n. Returns a string of the result.
+</function>
+
+<function name=readFile type="String|Number" > 
+<parameter name="size" type="Number" optional="1">Maximum number of bytes</parameter>
+<parameter name="dest" type="Stream" optional="1">Where to store the data</parameter>
+Reads the entire stream into a string in binary mode. <b>size</b> and <b>dest</b> may be in any order.
+If <b>dest</b> is provided, the return value is the number of bytes actually copied. Otherwise, the return
+value is a string. The stream is read in binary mode, so the string may contain embedded nulls.
+</function>
+
+<function name="clear" type="Boolean">
+ Resets a memory stream. The length is set to zero, and the position returned 
+ to the beginning, but memory is not freed.
+</function>
+<function name="resize" type="String">
+<parameter name="size" type="Number">
+ Specifies the new buffer size
+</parameter>
+Resizes a memory stream. If the stream decreases, data are truncated from the end.
+  If the cursor is beyond the end of the stream, it is moved to the new end. 
+  If the stream is expanded, memory is allocated, but  no new data are added.
+</function>
+<function name="write" type="Number">
+<parameter name="data..." type="String">
+Objects to write to the stream
+</parameter>
+ Example: stream.write('hello', '4', 5). If the parameters to this function are
+ not strings, their toString() function will be called. Returns the number of bytes written.
+</function>
+<function name="writeln" type="String">
+ 
+ Like write(), but appends a newline (\n for memory, \r\n for files). The file I/O system
+ ensures that, for text mode files, \n in memory is faithfully mapped to \r\n on disk.
+ You can use pos and seek() to move the cursor in text files, but do not rely on counting
+ the bytes in read() and write() operations.
+</function>
+<function name="writeLine" type="String">
+ 
+Same as writeln.
+</function>
+<function name="seek" type="String">
+<parameter name="location" type="Number"/>
+Moves the cursor to a new offset from the beginning. 
+</function>
+<function name="flush">
+For file streams, flush the 64k buffer. To create an unbuffered file stream, open it with the "+" option.
+</function>
+<function name="goForward" type="String">
+<parameter name="offset" type="Number"/>
+<![CDATA[Moves the cursor forward <b>offset</b> bytes from the current position. ]]>
+</function>
+<function name="goBack" type="String">
+<parameter name="offset" type="Number"/>
+<![CDATA[Moves the cursor backward <b>offset</b> bytes from the current position.. ]]>
+</function>
+<function name="putBack" type="String">
+<parameter name="offset" type="Number"/>
+<![CDATA[Moves the cursor backward <b>offset</b> bytes from the current position.. ]]>
+</function>
+<function name="peek" type="String">
+ 
+ Returns the next byte in the file or memory stream, without advancing the cursor.
+ Since HTTP and COM streams aren't buffered, you should avoid using this function
+ unless you know the source of the stream.
+</function>
+<function name="get" type="String">
+ 
+ Reads one byte from the stream and advances the cursor.
+</function>
+<function name="put" type="String">
+ 
+ Writes one byte to the stream and advances the cursor.
+</function>
+<function name="rewind" type="String">
+<![CDATA[ 
+ For file and memory streams, moves the cursor to the beginning of the stream.
+ Example: <code>
+ temp = new Stream
+ temp.write('hello, world')
+ temp.rewind()
+ file = new Stream('test.txt','at')
+ file.append(temp)
+ </code>
+ ]]>
+</function>
+<function name="writeListB" type="String">
+<parameter name="data" type="Record|Object"/>
+<![CDATA[ Writes data from a Record in binary format. The C++ equivalent is
+ <code>
+ for (int i=0; i< data.count; i++)
+  {
+   fwrite(data[i].name,1,strlen(data[i].name) + 1, file);
+   fwrite(data[i].value,1,strlen(data[i].value) + 1, file);
+  }
+ fwrite("",1,1,file);
+ </code>]]>
+</function>
+<function name="readListB" type="String">
+<parameter name="data" type="Record"/>
+<i>Deprecated in 1.7.2.5</i>. Reads data from a Record in binary format. Each parameter is terminated with a null byte, the last with two null bytes.
+</function>
+<function name="writeList" type="Number">
+<parameter name="data" type="Record|Object">
+Data to write
+</parameter>
+<parameter name="delimiter" type="String">
+Delimiter to use (default is probably "/", but is not guaranteed)
+</parameter>
+<parameter name="equals" type="String" optional="1">
+Name/value separator (default is "=")
+</parameter>
+<![CDATA[Writes a delimited name-value list. You can specify any string to use for the record and field
+delimiters. Default output is <tt>name=value/name1=value1/name2=value2/...</tt>
+Returns the number of pairs written.]]>
+</function>
+<function name="readList" type="Number">
+<parameter name="data" type="Record">
+Receptable for returned data
+</parameter>
+<parameter name="delimiter" type="String">
+Delimiter to use (default is probably "\n", but is not guaranteed)
+</parameter>
+<parameter name="equals" type="String" optional="1">
+Name/value separator (default is "=")
+</parameter>
+<![CDATA[Reads a delimited name-value list. The delimiter and equals sign must be single characters.
+Note that "\r\n" in files is mapped to "\n" in memory, so the default input it expects is
+<code>
+name=value
+name1=value1
+name2=value2
+</code>
+Returns the number of pairs read.]]>
+</function>
+<function name="writeMIME" type="Number">
+<parameter name="data" type="Object|Record">
+Data to write
+</parameter>
+<![CDATA[Writes a name-value list in MIME format. This is equivalent to <tt>writeList(data,': ','\n')</tt>. 
+A blank line ends the list. Returns the number of pairs written.]]>
+</function>
+<function name="readMIME" type="Number">
+<parameter name="data" type="Record">
+Receptacle for parsed data
+</parameter>
+Reads a name-value list in MIME format. This takes whitespace after the colon into account, 
+and assumes that any non-blank line beginning with whitespace is a continuation line.
+Returns the number of pairs read.
+</function>
+<function name="readUntilBytes" type="Boolean">
+<parameter name="search" type="String">
+Byte pattern that stops te search
+</parameter>
+<parameter name="skipped" type="Stream" optional="1">
+Skipped data is written to this stream
+</parameter>
+The binary version of readUntil(), readUntilBytes() can search for patterns with embedded nulls.
+</function>
+<function name="readUntil" type="Boolean">
+<parameter name="search" type="String">
+String that stops the search
+</parameter>
+<parameter name="skipped" type="Stream" optional="1">
+Skipped data is written to this stream
+</parameter>
+<![CDATA[Returns true if the search string was found. readUntil() does a case-insensitive text search. For a binary search, use
+readUntilBytes(). If <i>search</i> is a unicode string, it will be converted
+to UTF-8.  Example:
+<code>
+var memory = new Stream
+var file = new Stream('test.txt')
+file.readUntil('&lt;/file&gt;',memory)
+writeln(memory)
+</code>]]>
+</function>
+<function name="eatChars" type="String">
+<parameter name="skip" type="String">
+Characters to skip
+</parameter>
+<![CDATA[Reads the stream one byte at a time. If a byte is not in the <b>skip</b> string, it returns
+a string containing that byte. A null character always stops the scan. Example:
+<code>
+var lastchar = file.eatChars(' \t\r\n')
+</code>]]>
+</function>
+<function name="readTag" type="String">
+<parameter name="data" type="Record" optional="1">
+Tag fields
+</parameter>
+<parameter name="allowed" type="String" optional="1">
+Comma-delimited list of allowed fields, case-sensitive
+</parameter>
+<![CDATA[Used for parsing XML files. This function scans forward in a file until a markup tag is
+found. If <b>allowed</b> is given, only tags (and end-tags) in the list will stop a scan. Otherwise,
+any &lt; sign stops the scan. The text skipped in this scan is stored in the stream's parameter
+<b>tagText</b>.
+
+<br>When it reaches a tag, it reads the tag parameters, and stores them in <b>data</b>. The XML 
+escape sequences &lt; &gt; &amp; and &quot; are automatically decoded in the parameters, but not 
+in CDATA sections. 
+
+<br>If the tag
+has an end marker, (ex: <tt>&lt;tag field=value /&gt;</tt>), the stream's parameter <b>hasChildren</b> 
+is set to false. Otherwise, <b>hasChildren</b> is true. The tag name is returned. If the end of the file 
+has been reached, the return value is an empty string.
+
+<br>If the tag name is "![CDATA[", readTag() searches forward for "]]&gt;", and appends the intervening
+text to <b>tagText</b>. 
+
+<br>For an example of how this is used, see the module "xml.js".
+
+<code>
+  var params = new Record;
+  var name = stream.readTag(params,allowed);
+</code>]]>
+</function>
+<function name="readInt" type="Number"> 
+<parameter name=network type=Boolean optional=1>Network byte order?</parameter>
+Reads a binary, signed 32-bit integer in Intel byte format. (JavaScript uses 31 bit integers internally). Set network=true for Sun or Mac native byte order.
+</function>
+<function name="writeInt" type="Number">
+<parameter name="value" type="Number"/>
+<parameter name=network type=Boolean optional=1>Network byte order?</parameter>
+Writes a binary, signed 32-bit integer in Intel byte format. 
+</function>
+<function name="writeFloat64" type="Number">
+<parameter name="value" type="Number"/>
+Writes a double to the stream.
+</function>
+<function name="readFloat64" type="Number"> 
+Reads a double from the stream
+</function>
+<function name="writeFloat32" type="Number">
+<parameter name="value" type="Number"/>
+Converts <i>value</i> to a number and writes it to the stream as a 32-bit floating-point number.
+</function>
+<function name="readFloat32" type="Number"> 
+Reads a 32-bit floating point
+</function>
+<function name="readInt32" type="Number"> 
+<parameter name=network type=Boolean optional=1>Network byte order?</parameter>
+Same as <b>readInt()</b>.
+</function>
+<function name="writeInt32" type="Number">
+<parameter name="value" type="Number"/>
+<parameter name=network type=Boolean optional=1>Network byte order?</parameter>
+Same as <b>writeInt()</b>.
+</function>
+<function name="readInt16" type="Number"> 
+<parameter name=network type=Boolean optional=1>Network byte order?</parameter>
+Reads a binary, signed 16-bit integer in Intel byte format. 
+</function>
+<function name="writeInt16" type="Number">
+<parameter name="value" type="Number"/>
+<parameter name=network type=Boolean optional=1>Network byte order?</parameter>
+Writes a binary, signed 16-bit integer in Intel byte format. 
+</function>
+<function name="readUInt16" type="Number"> 
+<parameter name=network type=Boolean optional=1>Network byte order?</parameter>
+Reads a binary, unsigned 16-bit integer in Intel byte format. 
+</function>
+<function name="writeUInt16" type="Number">
+<parameter name="value" type="Number"/>
+<parameter name=network type=Boolean optional=1>Network byte order?</parameter>
+Writes a binary, unsigned 16-bit integer in Intel byte format. 
+</function>
+<function name="readInt8" type="Number"> 
+Reads a binary, signed 8-bit integer.
+</function>
+<function name="writeInt8" type="Number">
+<parameter name="value" type="Number"/>
+Writes a binary, signed 8-bit integer. 
+</function>
+<function name="readByte" type="Number"> 
+Same as readUInt8()
+</function>
+<function name="writeByte" type="Number">
+<parameter name="value" type="Number"/>
+Same as writeUInt8
+</function>
+<function name="readUInt8" type="Number"> 
+Reads a binary, unsigned 8-bit integer.
+</function>
+<function name="writeUInt8" type="Number">
+<parameter name="value" type="Number"/>
+Writes a binary, unsigned 8-bit integer.
+</function>
+<function name="append" type="String">
+<parameter name="data" type="Stream">
+Stream to append
+</parameter>
+<parameter name="length" type="Number" optional=1>Max number of bytes to read</parameter>
+<![CDATA[Appends bytes from <b>data</b> until its end. Remember to rewind <b>data</b> before using it
+in a call to append()!]]>
+</function>
+<function name="appendText" type="String">
+<parameter name="data" type="Stream">
+Stream to append
+</parameter>
+<parameter name="length" type="Number" optional=1>Max number of bytes to read</parameter>
+Like append(), but maps '\n' to \r\n'. This is used to prepare text for a windows edit control.
+</function>
+<function name="toString" type="String">
+ 
+For a file, COM, or HTTP stream, this returns the filename. For a memory stream, it returns the
+entire buffer.
+</function>
+ 
+</class>
+
+<class name=Numbers>
+<comment>Fast and efficient ordered list of 64-bit floating point numbers. Numbers acts like Array, providing
+<tt>for .. in</tt> and <tt>[]</tt> operators, but the get() and set() functions are much more efficient.
+</comment>
+<property name="length" type="Integer">Number of elements in this list.</property>
+<function name=close>Immediately frees the memory used for this object
+</function>
+<function name=Numbers id=1>
+<parameter name="length" type=Integer />
+Creates a new array, initialized to 0.
+</function>
+<function name=Numbers id=2>
+<parameter name="values" type=String />
+Creates a new array, initialized by converting <i>values</i> to numbers. Space, comma, or tab are good delimiters, but other characters will work, too, with a slight performance penalty.
+</function>
+<function name=Numbers id=3>
+<parameter name="source" type=Numbers />
+Creates a new array, copying an existing Numbers object.
+</function>
+<function name=at type=Number>
+<parameter name="index" type=Integer />
+Same as get()
+</function>
+<function name=get type=Number>
+<parameter name="index" type=Integer />
+Returns the number at the <I>index</I> location. Throws an error if <I>index</I> is out of bounds.
+</function>
+<function name=put type=Number>
+<parameter name="index" type=Integer />
+<parameter name="value" type=Number />
+Same as set()
+</function>
+<function name=set type=Number>
+<parameter name="index" type=Integer />
+<parameter name="value" type=Number />
+Updates the number at the <I>index</I> location. Throws an error if <I>index</I> is out of bounds.
+</function>
+<function name=toString type=String>
+<parameter name="delimiter" type=string Optional=1 />
+<parameter name="start" type=Integer Optional=1 />
+<parameter name="length" type=Integer Optional=1 />
+Although the Numbers class acts like the JavaScript Array class by default, you may customize the formatting with any delimiter (default is a comma). Use <i>start</i> and <i>length</i> to operate on a subset of the list.
+</function>
+<function name=resize>
+<parameter name="length" type=Integer />
+Changes the length of the underlying list. If the length increases, new memory is allocated. If the length decreases, memory is not freed (but subsequent growth, up to the original length, will not use lead to a memory allocation). 
+New entries are initialized to 0.
+</function>
+<function name=scale>
+<parameter name=value />
+Multiplies each list element by <i>value</i>
+</function>
+<function name=add>
+<parameter name=value />
+Increments each list element by <i>value</i>
+</function>
+<function name=log>
+Replaces each list element by its log (base e)
+</function>
+<function name=pow>
+<parameter name=p />
+Raise each list element to the power <i>p</i>
+</function>
+<function name=sum>
+<parameter name="start" type=Integer Optional=1 />
+<parameter name="length" type=Integer Optional=1 />
+Returns the sum of all the numbers in the list. Use <i>start</i> and <i>length</i> to operate on a subset of the list.
+</function>
+<function name=sum2>
+<parameter name="start" type=Integer Optional=1 />
+<parameter name="length" type=Integer Optional=1 />
+Returns the sum of the square of all the numbers in the list. Use <i>start</i> and <i>length</i> to operate on a subset of the list. Why would you want to do this? To calculate the standard deviation quickly.
+<pre>
+var n = new Numbers("1 495 52 2 34 5 6 1 12 35 6 2 34")
+writeln("Average: ",n.sum()/n.length)
+writeln("Average of the square: ", n.sum2()/n.length)
+</pre>
+</function>
+<function name=max>
+<parameter name="start" type=Integer Optional=1 />
+<parameter name="length" type=Integer Optional=1 />
+Returns the <b>index</b> of the largest value in the list. Use <i>start</i> and <i>length</i> to operate on a subset of the list.
+</function>
+<function name=min>
+<parameter name="start" type=Integer Optional=1 />
+<parameter name="length" type=Integer Optional=1 />
+Returns the <b>index</b> of the smallest value in the list. Use <i>start</i> and <i>length</i> to operate on a subset of the list.
+</function>
+<function name=exec>
+This is a special function for doing fast vector operations with a RPN evaluator. Each parameter passed to this function may be a Numbers object (all of the same length!) or a String naming the mathematical operation. In the example
+<pre>
+a = new Numbers(5)
+b = new Numbers("1 2 3 4 5")
+c = new Numbers("10 20 30 40 50")
+a.exec(b,c,'+')
+writeln(a)
+</pre>
+the result is
+<pre>
+11,22,33,44,55
+</pre>
+
+<br>The calculator stack starts as (<b>b</b>, <B>c</B>, '+'), and the result is stored in <b>a</b> (the object that called exec()). Arguments are evaluated left-to-right, so <b>a</b> is always the result of each operation and the number on the bottom of the stack for the next operation
+
+<br>You can also do
+<pre>
+a = new Numbers("1 2 3 4 5")
+b = new Numbers("10 20 30 40 50")
+a.exec(b,'+')
+writeln(a)
+</pre>
+with the same result -- in case of stack underflow, the object calling exec() is pushed to the bottom of the stack.
+
+<br>This function may have as many arguments as you want, so long as all the lists are of the same length. The supported operators, and the number of arguments they take, are:
+<ul>
+<li>+ 2
+<li>* 2
+<li>- 2 (or 1 for negation)
+<li>/ 2 (or 1 for inversion)
+<li>cos 1
+<li>sin 1
+<li>tan 1
+<li>atan2 2
+<li>atan 1
+<li>pow 2
+<li>exp 1
+<li>log 1
+</ul>
+
+<br>Special: unary negation and division (inversion) are allowed, as a shortcut
+
+
+</function>    
+</class>
+
+<class name="Matrix" module="matrix.js">
+<property name="rows" type="Number">Number of rows</property>
+<property name="cols" type="Number">Number of columns</property>
+<property name="data" type="Array">Number of columns</property>
+<function name=Matrix id=1>
+<parameter name="data" type=String />
+Constructs a new matrix, where rows are separated by <b>,</b> and columns by spaces. <tt>new Matrix("1 0, 0 1")</tt> is the 2x2 identity.
+</function>
+<function name=Matrix id=2>
+<parameter name="rows" type="Number">Number of rows</parameter>
+<parameter name="cols" type="Number">Number of columns</parameter>
+<parameter name="data" type="Array|Numbers" Optional=1>Initial data</parameter>
+Constructs a new matrix, using <b>data</b> as its elements (in row-major order). You can pass a Numbers object if you plan to work with a lot of data.
+</function>
+<function name=copy type=Matrix>
+Returns a copy of the matrix.
+</function>
+<function name=times type=Matrix>
+<parameter name="A" type=Matrix />
+<parameter name="B" type=Matrix />
+Returns A &middot; B.
+</function>
+<function name=transpose type=Matrix>
+Returns the transpose of the matrix.
+</function>
+<function name=zero>
+Resets the matrix to all zeros
+</function>
+<function name=Matrix.identity>
+<parameter name="N" type=Integer />
+Returns a new NxN identity matrix
+</function>
+<function name=Matrix.fit type=Array>
+<parameter name="O" type=Integer />
+<parameter name="data" type=Matrix />
+Fits the Nx2 <i>data</i> to a polynomial of order <i>O</i>. Returns an array C such that the x^p coefficient of the least-squares fit is C[p].
+</function>
+<function name=Matrix.solve>
+<parameter name="S" type=Matrix />
+<parameter name="Y" type=Matrix />
+Given a square matrix S and vector Y, returns X such that S &middot; X = Y
+</function>
+<function name=at type=Number>
+<parameter name="row" type=Integer />
+<parameter name="column" type=Integer />
+Same as get()
+</function>
+<function name=get type=Number>
+<parameter name="row" type=Integer />
+<parameter name="column" type=Integer />
+Returns the entry at <I>row,column</I>. No bounds-checking.
+</function>
+<function name=put type=Number>
+<parameter name="row" type=Integer />
+<parameter name="column" type=Integer />
+<parameter name="value" type=Number />
+Same as set()
+</function>
+<function name=set type=Number>
+<parameter name="row" type=Integer />
+<parameter name="column" type=Integer />
+<parameter name="value" type=Number />
+Updates the entry at <I>row,column</I>. No bounds-checking.
+</function>
+<function name="toString" type="String">
+</function>
+<function name="toSource" type="String">
+</function>
+</class>
+
+<class name="XML" module="xml.js">
+<comment>
+The JavaScript 1.6 language includes a built-in XML parser complying with the <a href=http://developer.mozilla.org/en/docs/Category:E4X>E4X</a> standard.
+This XML class pre-dates E4X, and can be used to replace the built-in XML object. 
+<br>Standard usage: XML.read(stream,allowed_tags)
+</comment>
+<property name="name" type="String"/>
+<property name="params" type="Record"/>
+<property name="cdata" type="String"/>
+<property name="children" type="Array"/>
+<function name="toString" type="String">
+Appends the XML object to a memory stream, then returns a string.
+</function>
+<function name="toStream" type="String">
+<parameter name="output" type="Stream">
+Appends the XML object to a stream.
+</parameter>
+</function>
+<function name="XML.read" type="Boolean">
+<parameter name=source type=Stream|String></parameter>
+<parameter name=dtd type=String optional=1>comma-delimited list of tag names</parameter>
+<parameter name=ignored type=String optional=1>comma-delimited list of tags to ignore (defaults to <tt>BR,P,B,I,C,TT,U,IMG,A</tt>)</parameter>
+<parameter name=start type=XML optional=1>an existing XML object to receive the new XML tags</parameter>
+This is a static function. Usage: <tt>XML.read(stream, 'html,head,body,p')</tt>
+</function>
+<function name="get" type="String">
+<parameter name=name type=String>Parameter name</parameter>
+Returns the field value corresponding to <b>name</b>. If the field value is missing, this returns
+an empty string. To test for the existence of a field, use <tt>params.has('name')</tt>.
+</function>
+<function name=find type=Array>
+<parameter name=type type=String optional=1>Child class</parameter>
+<parameter name=parameter type=String optional=1>Field name</parameter>
+<parameter name=value type=String optional=1>Field value</parameter>
+<parameter name=parameter2 type=String optional=1>Field name</parameter>
+<parameter name=value2 type=String optional=1>Field value</parameter>
+Returns an array of all the child objects whose name is equivalent (case-sensitive) to <b>type</b>
+</function>
+<function name=select type=Array>
+<parameter name=type type=String optional=1>Child class</parameter>
+<parameter name=test type=Function optional=1>Test function</parameter>
+<parameter name=opaque optional=1>Parameter passed to the test function</parameter>
+Returns an array of all the child objects for which the test() function returns true. <br>
+Example:
+<pre>
+&gt;var x = XML.read('<list><square id=44 /><sphere id=55 /></list>')
+&gt;y = x.select(null,function (a,b) {return a.get('id') == b},55)
+&gt;writeln(y)
+<sphere id=55 />
+</pre>
+</function>
+<function name=findChildren type=Array>
+<parameter name=type type=String optional=1>Child class. If omitted, searches all children</parameter>
+<parameter name=parameter type=String optional=1>Field name. If omitted, skips the field comparison</parameter>
+<parameter name=value type=String optional=1>Field value</parameter>
+(Deprecated) Returns an array of all the child objects whose name is equivalent (case-sensitive) to <b>type</b>
+and which has a matching field value. Example: fn.find('parameter','optional','1') returns the list of 
+optional parameters for the XML file that generates this document. Use XML.find() to return a list
+of all the children
+</function>
+<function name=sort>
+<parameter name=field type=String>Field to sort by</parameter>
+<parameter name=descending type=Boolean optional=1>Reverse order? (Default false)</parameter>
+Sorts the children array, according to the value in a given field.
+</function>
+<function name=getChildren type=Array>
+<parameter name=type type=String>Child class</parameter>
+(Deprecated) Returns an array of all the child objects whose name is equivalent (case-sensitive) to <b>type</b>
+</function>
+
+</class>
+<class name="Record">
+Starting in version 1.7.2.4, the Record class is being gradually replaced with the JS Object.
+<property name="caseSensitive" type="Boolean">
+Are fields case sensitive?
+</property>
+<property name="count" type="Number">
+Number of name-value pairs stored by the record
+</property>
+<property name="length" type="Number">
+Number of name-value pairs stored by the record
+</property>
+<function name="Record" type="Record" id=1>
+<parameter name="initial" type="String" optional="1">
+<![CDATA[Delimited string for initial values <tt>(a=b,c=d,e=f,...)</tt>]]>
+</parameter>
+<parameter name="delimiter" type="String" optional="1">
+Delimiter character, default is a comma
+</parameter>
+Creates a record with initial values. See read().
+</function>
+<function name="Record" type="Record" id=2>
+<parameter name="caseSensitive" type="Boolean">
+true for a case-sensitive list
+</parameter>
+Creates a record. Use Record(true) for name searches to be case-sensitive.
+</function>
+<function name="Record" type="Record" id=2>
+<parameter name="caseSensitive" type="Boolean">
+true for a case-sensitive list
+</parameter>
+Creates a record. Use Record(true) for name searches to be case-sensitive.
+</function>
+<function name="Record" type="Record" id=3>
+<parameter name="data" type="Object">Any JavaScript object</parameter>
+Creates a record, copying fields and values from an Object. The Record will be case-sensitive.
+</function>
+<function name="append" type="Number">
+<parameter name="data" type="Record|Object">
+Additional data
+</parameter>
+Appends the name/value pairs from another record or object. If field names match, they are overwritten.
+</function>
+<function name="clear" type="Boolean">
+Deletes all the name/value pairs from the record.
+</function>
+<function name="read" type="Number">
+<parameter name="data" type="String">
+<![CDATA[Delimited string to read <tt>(a=b&c=d&e=f&...)</tt>]]>
+</parameter>
+<parameter name="delimiter" type="String" optional="1">
+Delimiter character, default is &amp; (think of HTTP GET)
+</parameter>
+Reads a delimited string into the record.
+</function>
+<function name="toObject" type="Object">
+Generates a JS Object from the record data.
+</function>
+<function name="write" type="String">
+<parameter name="delimiter" type="String" optional="1">
+Delimiter character, default is &amp; (think of HTTP GET)
+</parameter>
+Returns a delimited string of the record's name-value pairs.
+</function>
+<function name="readINI" type="Number">
+<parameter name="file" type="String">
+INI file name (in Windows directory by default)
+</parameter>
+<parameter name="section" type="String">
+INI file section
+</parameter>
+Reads a Windows INI file section.Returns the number of entries.
+</function>
+<function name="writeINI" type="Number">
+<parameter name="file" type="String">
+INI file name (in Windows directory by default)
+</parameter>
+<parameter name="section" type="String">
+INI file section
+</parameter>
+Writes a Windows INI file section. Returns the number of entries.
+</function>
+<function name="set" type="Boolean">
+<parameter name="name" type="String|Integer">
+Field name or index
+</parameter>
+<parameter name="value" type="String">
+New value
+</parameter>
+Sets a field value, or creates a name/value pair if it doesn't already exist.
+</function>
+<function name="unSet" type="Boolean">
+<parameter name="name" type="String">
+Field name
+</parameter>
+Removes a name/value pair if it exists.
+</function>
+<function name="get" type="String">
+<parameter name="name" type="String">
+Field name
+</parameter>
+Returns the value of a field, or an empty string if the field does not exist.
+</function>
+<function name="has" type="Boolean">
+<parameter name="name" type="String">
+Field name
+</parameter>
+Returns true if the field exists in the record.
+</function>
+<function name="name" type="String">
+<parameter name="index" type="Number">
+<![CDATA[Index from 0 to <b>length</b> - 1]]>
+</parameter>
+Name/value pairs are indexed sequentially. This function returns the name at a given position.
+</function>
+<function name="value" type="String">
+<parameter name="index" type="Number">
+<![CDATA[Index from 0 to <b>length</b> - 1]]>
+</parameter>
+Name/value pairs are indexed sequentially. This function returns the value at a given position.
+</function>
+<function name="toString" type="String">
+Returns a '\n'-delimited list of the record.
+</function>
+</class>
+<class name="Mail">
+<property name="name" type="String">
+connection string
+</property>
+<function name="Mail" type="Mail">
+<parameter name="type" type="String">
+mail system type: one of
+  CCMAIL5, CCMAIL8, CCMAIL, BEYONDMAIL, VIM, NOTES, MAPI, MSMAIL,
+  EXCHANGE, GROUPWISE, CMC, INTERNET, POP3, SMTP
+</parameter>
+<parameter name="login" type="String">
+account name
+</parameter>
+<parameter name="password" type="String" optional="1">
+password
+</parameter>
+<parameter name="server" type="String" optional="1">
+server address or windows mail profile
+</parameter>
+<parameter name="smtpserver" type="String" optional="1">
+Internet mail server, if different from the POP3 server
+</parameter>
+<parameter name="language" type="String" optional="1">
+MIME language string, like USASCII or ISO-8859-1
+</parameter>
+<parameter name="return address" type="String" optional="1">
+Return mail address (generally useful if sending mail)
+</parameter>
+Connects to a mail server. In the case of internet mail (INTERNET, POP3, SMTP are equivalent), the
+  password is unnessary. The return email address is login@server.
+</function>
+<function name="send" type="Boolean">
+<parameter name="recipient" type="String">
+comma-delimited list of recipient email addresses
+</parameter>
+<parameter name="subject" type="String">
+subject line
+</parameter>
+<parameter name="textNote" type="String">
+note
+</parameter>
+<parameter name="htmlNote" type="String" optional="1">
+HTML version of note (Internet mail only)
+</parameter>
+Sends a mail message.
+</function>
+<function name="sendFiles" type="Boolean">
+<parameter name="recipient" type="String">
+comma-delimited list of recipient email addresses
+</parameter>
+<parameter name="subject" type="String">
+subject line
+</parameter>
+<parameter name="attachments" type="String">
+comma-delimited list of files
+</parameter>
+<parameter name="textNote" type="String">
+note
+</parameter>
+<parameter name="htmlNote" type="String" optional="1">
+HTML version of note (Internet mail only)
+</parameter>
+Sends a mail message with file attachments.
+</function>
+<function name="get" type="Table">
+Returns a message summary table. The table has a <tt>getMessage()</tt> function 
+you can use to retrieve the message text. If the Mail system
+is closed, this table will be deactivated.
+</function>
+</class>
+<class name="Form">
+<i>Deprecated in 1.7.2.4</i>. Since EZSurvey and EZReport are discontinued, and nobody uses this object anyway, it will go away in the near future.
+<property name="name" type="String">
+the filename of the EZF file
+</property>
+<property name="count" type="Number">
+number of questions
+</property>
+<property name="file_id" type="Number">
+FORM tag index (usually zero)
+</property>
+<property name="options" type="Record">
+form options
+</property>
+<function name="addQuestion" type=Number>
+<parameter name=Type type=String />
+<parameter name=Fieldname type=String />
+<parameter name=Text type=String />
+<parameter name=Description type=String optional=1 />
+<parameter name=Responses type=String optional=1 >Pipe-delimited list of codes and values</parameter>
+<parameter name=Length type=Integer optional=1 />
+<parameter name=Options type=String optional=1>Pipe-delimited list of options</parameter>
+<parameter name=Before type=Integer optional=1>Insert before this question (-1 for end)</parameter>
+</function>
+<function name="Form" type="Form">
+<parameter name="name" type="String|Stream">
+Form filename, XML text, or a Stream.
+</parameter>
+<parameter name="index" type="Number" optional="1">
+A HTML file may contain multiple  &lt;FORM&gt; tags. If you
+  don't want to load read the first of these, specify the form's index
+  within the file.
+</parameter>
+<![CDATA[Reads an EZF or HTML form into memory. This is a special-purpose XML
+  interpreter. Question properties are accessed using the getXXX() and setXXX()
+  functions. Question properties you can use are:
+  <ul><li>Name (fieldname): String
+  <li>Text :String
+  <li>Description:String
+  <li>Length: Number
+  <li>Help: String
+  <li>Extra (unparsed XML within the question): String
+  <li>Type: String (see below)
+  <li>Responses: Record (names = codes, values = descriptions)
+  <li>Options: Record
+  <li>Skips: Record
+  </ul>
+  For each of these properties, there is a getXXX() and setXXX() function, whose
+  syntax are similar to getType() and setType(), described below.]]>
+</function>
+<function name="find" type="Number">
+<parameter name="fieldname" type="String">
+Field name
+</parameter>
+Returns the question number (starting with 0) that matches a given fieldname.
+</function>
+<function name="hasData" type="Boolean">
+<parameter name="index" type="Number">
+Question number (starting with 0)
+</parameter>
+Returns true if the field can contain data, or false if it's a layout object.
+</function>
+<function name="getType" type="String">
+<parameter name="index" type="Number">
+Question number (starting with 0)
+</parameter>
+<![CDATA[Retrieves a question type. Question types are:
+  <pre>
+Text
+Password
+Date
+Time
+Number
+Radio
+Weighted
+Check
+Single
+Multiple
+Combo
+Rank
+Hidden
+Section
+Page
+RichText
+Image
+PlainText
+ToolButton
+</pre>]]>
+</function>
+<function name="setType" type="String">
+<parameter name="index" type="Number">
+Question number (starting with 0)
+</parameter>
+<parameter name="type" type="String">
+New value
+</parameter>
+Changes a question type. See getType() for the list of types.
+</function>
+<function name="save" type="String">
+<parameter name="filename" type="String" optional="1">
+optional new file name
+</parameter>
+Saves changes.
+</function>
+<function name="isPageStart" type="Boolean">
+<parameter name="index" type="Number">
+Question number
+</parameter>
+<![CDATA[Determines if the question starts a new page. This is the case if
+  <ul><li>the previous question has the "end-of-page" attribute (EZSurvey)
+  <li>the question is a PAGE type (created in InterForm)
+  <li>the question has the "new-page" attribute (EZSurvey)
+  <li>the question is a Section type following a non-Section type question
+  <li>the question is the first one in the form
+  </ul>]]>
+</function>
+<function name="move" type="Boolean">
+<parameter name="start" type="Number">
+Question index
+</parameter>
+<parameter name="finish" type="Number">
+Question index
+</parameter>
+<![CDATA[Moves a question from the <b>start</b> position to the <b>finish</b> position
+  in the form. The other questions are rearranged, so you should be careful
+  about using this while iterating over the questions.]]>
+</function>
+<function name="remove" type="Boolean">
+<parameter name="index" type="Number">
+Question index
+</parameter>
+<![CDATA[Deletes a question. The questions after <b>index</b> are moved up,
+  so you should be careful about using this while iterating
+  over the questions.]]>
+</function>
+</class>
+</classref>

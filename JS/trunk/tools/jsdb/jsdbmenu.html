@@ -1,0 +1,486 @@
+<HTML><HEAD><TITLE>JSDB Reference</TITLE><base target=body />
+<STYLE>
+.treebranch {list-style-image: url(http://www.jsdb.org/plus.gif);}
+.treeleaf {list-style-image: url(http://www.jsdb.org/solid.gif);cursor: default;}
+.list {display: none;}
+A {text-decoration: none; cursor:hand;color: blue}
+A.prop {color: purple}
+A.func {color: green}
+P {margin-left: 2px; padding=0px; margin-top=0px; font:10pt/12pt Helvetica,Arial,sans-serif}
+LI {margin-left: 2px; padding=0px; margin-top=0px; font:10pt/12pt Helvetica,Arial,sans-serif}
+UL {margin-left: 16px; margin-top: 0px; padding-left:0px; padding-top: 0px;border-left:0px;font:10pt/12pt Helvetica,Arial,sans-serif}
+</STYLE>
+<SCRIPT>
+function getList (li) {
+  var list = null;
+  for (var c = 0; c < li.childNodes.length; c++)
+    if (li.childNodes[c].nodeName == 'UL') {
+      list = li.childNodes[c];
+      break;
+    }
+  return list;
+}
+function onClickHandler (evt) {
+  var target = evt ? evt.target : event.srcElement;
+  if (target.className == 'treebranch') {
+    if (target.expanded) {
+      target.style.listStyleImage = 'url(http://www.jsdb.org/plus.gif)';
+      getList(target).style.display = 'none';
+      target.expanded = false;
+    }
+    else {
+      target.style.listStyleImage = 'url(http://www.jsdb.org/minus.gif)';
+      getList(target).style.display = 'block';
+      target.expanded = true;
+    }
+  }
+  return true;
+}
+document.onclick = onClickHandler;
+
+</SCRIPT>
+</HEAD><BODY>
+<P><a target="_parent" href=http://www.jsdb.org/>About JSDB<sub>&reg;</sub></a><br><A href=tutorial.html>Tutorial</a><br><A href=cookbook.html>Cookbook</a>
+<ul>
+<li class=treebranch><a href=jsdbhelp.html#ActiveX>ActiveX</a>
+<ul class=list>
+<li class=treeleaf><a class=prop href=jsdbhelp.html#ActiveX_className>className</a>
+<li class=treeleaf><a class=prop href=jsdbhelp.html#ActiveX_members>members</a>
+<li class=treeleaf><a class=func href=jsdbhelp.html#ActiveX_ActiveX>ActiveX</a>
+<li class=treeleaf><a class=func href=jsdbhelp.html#ActiveX_close>close</a>
+<li class=treeleaf><a class=func href=jsdbhelp.html#ActiveX_get>get</a>
+<li class=treeleaf><a class=func href=jsdbhelp.html#ActiveX_set>set</a>
+<li class=treeleaf><a class=func href=jsdbhelp.html#ActiveX_toString>toString</a>
+</ul>
+<li class=treebranch><a href=jsdbhelp.html#Archive>Archive</a>
+<ul class=list>
+<li class=treeleaf><a class=prop href=jsdbhelp.html#Archive_count>count</a>
+<li class=treeleaf><a class=func href=jsdbhelp.html#Archive_Archive>Archive</a>
+<li class=treeleaf><a class=func href=jsdbhelp.html#Archive_Archive.compress>Archive.compress</a>
+<li class=treeleaf><a class=func href=jsdbhelp.html#Archive_Archive.uncompress>Archive.uncompress</a>
+<li class=treeleaf><a class=func href=jsdbhelp.html#Archive_close>close</a>
+<li class=treeleaf><a class=func href=jsdbhelp.html#Archive_extract>extract</a>
+<li class=treeleaf><a class=func href=jsdbhelp.html#Archive_find>find</a>
+<li class=treeleaf><a class=func href=jsdbhelp.html#Archive_has>has</a>
+<li class=treeleaf><a class=func href=jsdbhelp.html#Archive_name>name</a>
+<li class=treeleaf><a class=func href=jsdbhelp.html#Archive_size>size</a>
+</ul>
+<li class=treebranch><a href=jsdbhelp.html#Form>Form</a>
+<ul class=list>
+<li class=treeleaf><a class=prop href=jsdbhelp.html#Form_count>count</a>
+<li class=treeleaf><a class=prop href=jsdbhelp.html#Form_file_id>file_id</a>
+<li class=treeleaf><a class=prop href=jsdbhelp.html#Form_name>name</a>
+<li class=treeleaf><a class=prop href=jsdbhelp.html#Form_options>options</a>
+<li class=treeleaf><a class=func href=jsdbhelp.html#Form_Form>Form</a>
+<li class=treeleaf><a class=func href=jsdbhelp.html#Form_addQuestion>addQuestion</a>
+<li class=treeleaf><a class=func href=jsdbhelp.html#Form_find>find</a>
+<li class=treeleaf><a class=func href=jsdbhelp.html#Form_getType>getType</a>
+<li class=treeleaf><a class=func href=jsdbhelp.html#Form_hasData>hasData</a>
+<li class=treeleaf><a class=func href=jsdbhelp.html#Form_isPageStart>isPageStart</a>
+<li class=treeleaf><a class=func href=jsdbhelp.html#Form_move>move</a>
+<li class=treeleaf><a class=func href=jsdbhelp.html#Form_remove>remove</a>
+<li class=treeleaf><a class=func href=jsdbhelp.html#Form_save>save</a>
+<li class=treeleaf><a class=func href=jsdbhelp.html#Form_setType>setType</a>
+</ul>
+<li class=treebranch><a href=jsdbhelp.html#Image>Image</a>
+<ul class=list>
+<li class=treeleaf><a class=prop href=jsdbhelp.html#Image_colors>colors</a>
+<li class=treeleaf><a class=prop href=jsdbhelp.html#Image_height>height</a>
+<li class=treeleaf><a class=prop href=jsdbhelp.html#Image_size>size</a>
+<li class=treeleaf><a class=prop href=jsdbhelp.html#Image_width>width</a>
+<li class=treeleaf><a class=func href=jsdbhelp.html#Image_Image>Image</a>
+<li class=treeleaf><a class=func href=jsdbhelp.html#Image_arc>arc</a>
+<li class=treeleaf><a class=func href=jsdbhelp.html#Image_color>color</a>
+<li class=treeleaf><a class=func href=jsdbhelp.html#Image_fill>fill</a>
+<li class=treeleaf><a class=func href=jsdbhelp.html#Image_getp>getp</a>
+<li class=treeleaf><a class=func href=jsdbhelp.html#Image_line>line</a>
+<li class=treeleaf><a class=func href=jsdbhelp.html#Image_print>print</a>
+<li class=treeleaf><a class=func href=jsdbhelp.html#Image_setBGColor>setBGColor</a>
+<li class=treeleaf><a class=func href=jsdbhelp.html#Image_setp>setp</a>
+<li class=treeleaf><a class=func href=jsdbhelp.html#Image_slice>slice</a>
+<li class=treeleaf><a class=func href=jsdbhelp.html#Image_write>write</a>
+</ul>
+<li class=treebranch><a href=jsdbhelp.html#Index>Index</a>
+<ul class=list>
+<li class=treeleaf><a class=func href=jsdbhelp.html#Index_add>add</a>
+<li class=treeleaf><a class=func href=jsdbhelp.html#Index_find>find</a>
+<li class=treeleaf><a class=func href=jsdbhelp.html#Index_rebuild>rebuild</a>
+</ul>
+<li class=treebranch><a href=jsdbhelp.html#Mail>Mail</a>
+<ul class=list>
+<li class=treeleaf><a class=prop href=jsdbhelp.html#Mail_name>name</a>
+<li class=treeleaf><a class=func href=jsdbhelp.html#Mail_Mail>Mail</a>
+<li class=treeleaf><a class=func href=jsdbhelp.html#Mail_get>get</a>
+<li class=treeleaf><a class=func href=jsdbhelp.html#Mail_send>send</a>
+<li class=treeleaf><a class=func href=jsdbhelp.html#Mail_sendFiles>sendFiles</a>
+</ul>
+<li class=treebranch><a href=jsdbhelp.html#Matrix>Matrix</a>
+<ul class=list>
+<li class=treeleaf><a class=prop href=jsdbhelp.html#Matrix_cols>cols</a>
+<li class=treeleaf><a class=prop href=jsdbhelp.html#Matrix_data>data</a>
+<li class=treeleaf><a class=prop href=jsdbhelp.html#Matrix_rows>rows</a>
+<li class=treeleaf><a class=func href=jsdbhelp.html#Matrix_Matrix>Matrix</a>
+<li class=treeleaf><a class=func href=jsdbhelp.html#Matrix_Matrix>Matrix</a>
+<li class=treeleaf><a class=func href=jsdbhelp.html#Matrix_Matrix.fit>Matrix.fit</a>
+<li class=treeleaf><a class=func href=jsdbhelp.html#Matrix_Matrix.identity>Matrix.identity</a>
+<li class=treeleaf><a class=func href=jsdbhelp.html#Matrix_Matrix.solve>Matrix.solve</a>
+<li class=treeleaf><a class=func href=jsdbhelp.html#Matrix_at>at</a>
+<li class=treeleaf><a class=func href=jsdbhelp.html#Matrix_copy>copy</a>
+<li class=treeleaf><a class=func href=jsdbhelp.html#Matrix_get>get</a>
+<li class=treeleaf><a class=func href=jsdbhelp.html#Matrix_put>put</a>
+<li class=treeleaf><a class=func href=jsdbhelp.html#Matrix_set>set</a>
+<li class=treeleaf><a class=func href=jsdbhelp.html#Matrix_times>times</a>
+<li class=treeleaf><a class=func href=jsdbhelp.html#Matrix_toSource>toSource</a>
+<li class=treeleaf><a class=func href=jsdbhelp.html#Matrix_toString>toString</a>
+<li class=treeleaf><a class=func href=jsdbhelp.html#Matrix_transpose>transpose</a>
+<li class=treeleaf><a class=func href=jsdbhelp.html#Matrix_zero>zero</a>
+</ul>
+<li class=treebranch><a href=jsdbhelp.html#Numbers>Numbers</a>
+<ul class=list>
+<li class=treeleaf><a class=prop href=jsdbhelp.html#Numbers_length>length</a>
+<li class=treeleaf><a class=func href=jsdbhelp.html#Numbers_Numbers>Numbers</a>
+<li class=treeleaf><a class=func href=jsdbhelp.html#Numbers_Numbers>Numbers</a>
+<li class=treeleaf><a class=func href=jsdbhelp.html#Numbers_Numbers>Numbers</a>
+<li class=treeleaf><a class=func href=jsdbhelp.html#Numbers_add>add</a>
+<li class=treeleaf><a class=func href=jsdbhelp.html#Numbers_at>at</a>
+<li class=treeleaf><a class=func href=jsdbhelp.html#Numbers_close>close</a>
+<li class=treeleaf><a class=func href=jsdbhelp.html#Numbers_exec>exec</a>
+<li class=treeleaf><a class=func href=jsdbhelp.html#Numbers_get>get</a>
+<li class=treeleaf><a class=func href=jsdbhelp.html#Numbers_log>log</a>
+<li class=treeleaf><a class=func href=jsdbhelp.html#Numbers_max>max</a>
+<li class=treeleaf><a class=func href=jsdbhelp.html#Numbers_min>min</a>
+<li class=treeleaf><a class=func href=jsdbhelp.html#Numbers_pow>pow</a>
+<li class=treeleaf><a class=func href=jsdbhelp.html#Numbers_put>put</a>
+<li class=treeleaf><a class=func href=jsdbhelp.html#Numbers_resize>resize</a>
+<li class=treeleaf><a class=func href=jsdbhelp.html#Numbers_scale>scale</a>
+<li class=treeleaf><a class=func href=jsdbhelp.html#Numbers_set>set</a>
+<li class=treeleaf><a class=func href=jsdbhelp.html#Numbers_sum>sum</a>
+<li class=treeleaf><a class=func href=jsdbhelp.html#Numbers_sum2>sum2</a>
+<li class=treeleaf><a class=func href=jsdbhelp.html#Numbers_toString>toString</a>
+</ul>
+<li class=treebranch><a href=jsdbhelp.html#ODBC>ODBC</a>
+<ul class=list>
+<li class=treeleaf><a class=prop href=jsdbhelp.html#ODBC_className>className</a>
+<li class=treeleaf><a class=prop href=jsdbhelp.html#ODBC_error>error</a>
+<li class=treeleaf><a class=prop href=jsdbhelp.html#ODBC_name>name</a>
+<li class=treeleaf><a class=func href=jsdbhelp.html#ODBC_ODBC>ODBC</a>
+<li class=treeleaf><a class=func href=jsdbhelp.html#ODBC_close>close</a>
+<li class=treeleaf><a class=func href=jsdbhelp.html#ODBC_columns>columns</a>
+<li class=treeleaf><a class=func href=jsdbhelp.html#ODBC_commit>commit</a>
+<li class=treeleaf><a class=func href=jsdbhelp.html#ODBC_escape>escape</a>
+<li class=treeleaf><a class=func href=jsdbhelp.html#ODBC_exec>exec</a>
+<li class=treeleaf><a class=func href=jsdbhelp.html#ODBC_execute>execute</a>
+<li class=treeleaf><a class=func href=jsdbhelp.html#ODBC_keys>keys</a>
+<li class=treeleaf><a class=func href=jsdbhelp.html#ODBC_query>query</a>
+<li class=treeleaf><a class=func href=jsdbhelp.html#ODBC_rollback>rollback</a>
+<li class=treeleaf><a class=func href=jsdbhelp.html#ODBC_setAutoCommit>setAutoCommit</a>
+<li class=treeleaf><a class=func href=jsdbhelp.html#ODBC_table>table</a>
+<li class=treeleaf><a class=func href=jsdbhelp.html#ODBC_tables>tables</a>
+</ul>
+<li class=treebranch><a href=jsdbhelp.html#Process>Process</a>
+<ul class=list>
+<li class=treeleaf><a class=prop href=jsdbhelp.html#Process_active>active</a>
+<li class=treeleaf><a class=prop href=jsdbhelp.html#Process_className>className</a>
+<li class=treeleaf><a class=prop href=jsdbhelp.html#Process_exitCode>exitCode</a>
+<li class=treeleaf><a class=func href=jsdbhelp.html#Process_Process>Process</a>
+<li class=treeleaf><a class=func href=jsdbhelp.html#Process_close>close</a>
+</ul>
+<li class=treebranch><a href=jsdbhelp.html#Record>Record</a>
+<ul class=list>
+<li class=treeleaf><a class=prop href=jsdbhelp.html#Record_caseSensitive>caseSensitive</a>
+<li class=treeleaf><a class=prop href=jsdbhelp.html#Record_count>count</a>
+<li class=treeleaf><a class=prop href=jsdbhelp.html#Record_length>length</a>
+<li class=treeleaf><a class=func href=jsdbhelp.html#Record_Record>Record</a>
+<li class=treeleaf><a class=func href=jsdbhelp.html#Record_Record>Record</a>
+<li class=treeleaf><a class=func href=jsdbhelp.html#Record_Record>Record</a>
+<li class=treeleaf><a class=func href=jsdbhelp.html#Record_Record>Record</a>
+<li class=treeleaf><a class=func href=jsdbhelp.html#Record_append>append</a>
+<li class=treeleaf><a class=func href=jsdbhelp.html#Record_clear>clear</a>
+<li class=treeleaf><a class=func href=jsdbhelp.html#Record_get>get</a>
+<li class=treeleaf><a class=func href=jsdbhelp.html#Record_has>has</a>
+<li class=treeleaf><a class=func href=jsdbhelp.html#Record_name>name</a>
+<li class=treeleaf><a class=func href=jsdbhelp.html#Record_read>read</a>
+<li class=treeleaf><a class=func href=jsdbhelp.html#Record_readINI>readINI</a>
+<li class=treeleaf><a class=func href=jsdbhelp.html#Record_set>set</a>
+<li class=treeleaf><a class=func href=jsdbhelp.html#Record_toObject>toObject</a>
+<li class=treeleaf><a class=func href=jsdbhelp.html#Record_toString>toString</a>
+<li class=treeleaf><a class=func href=jsdbhelp.html#Record_unSet>unSet</a>
+<li class=treeleaf><a class=func href=jsdbhelp.html#Record_value>value</a>
+<li class=treeleaf><a class=func href=jsdbhelp.html#Record_write>write</a>
+<li class=treeleaf><a class=func href=jsdbhelp.html#Record_writeINI>writeINI</a>
+</ul>
+<li class=treebranch><a href=jsdbhelp.html#SQLite>SQLite</a>
+<ul class=list>
+<li class=treeleaf><a class=prop href=jsdbhelp.html#SQLite_className>className</a>
+<li class=treeleaf><a class=prop href=jsdbhelp.html#SQLite_error>error</a>
+<li class=treeleaf><a class=prop href=jsdbhelp.html#SQLite_lastId>lastId</a>
+<li class=treeleaf><a class=prop href=jsdbhelp.html#SQLite_name>name</a>
+<li class=treeleaf><a class=func href=jsdbhelp.html#SQLite_SQLite>SQLite</a>
+<li class=treeleaf><a class=func href=jsdbhelp.html#SQLite_close>close</a>
+<li class=treeleaf><a class=func href=jsdbhelp.html#SQLite_columns>columns</a>
+<li class=treeleaf><a class=func href=jsdbhelp.html#SQLite_escape>escape</a>
+<li class=treeleaf><a class=func href=jsdbhelp.html#SQLite_exec>exec</a>
+<li class=treeleaf><a class=func href=jsdbhelp.html#SQLite_keys>keys</a>
+<li class=treeleaf><a class=func href=jsdbhelp.html#SQLite_tables>tables</a>
+</ul>
+<li class=treebranch><a href=jsdbhelp.html#Server>Server</a>
+<ul class=list>
+<li class=treeleaf><a class=prop href=jsdbhelp.html#Server_anyoneWaiting>anyoneWaiting</a>
+<li class=treeleaf><a class=prop href=jsdbhelp.html#Server_hostName>hostName</a>
+<li class=treeleaf><a class=prop href=jsdbhelp.html#Server_port>port</a>
+<li class=treeleaf><a class=func href=jsdbhelp.html#Server_Server>Server</a>
+<li class=treeleaf><a class=func href=jsdbhelp.html#Server_accept>accept</a>
+<li class=treeleaf><a class=func href=jsdbhelp.html#Server_close>close</a>
+<li class=treeleaf><a class=func href=jsdbhelp.html#Server_toString>toString</a>
+</ul>
+<li class=treebranch><a href=jsdbhelp.html#Stream>Stream</a>
+<ul class=list>
+<li class=treeleaf><a class=prop href=jsdbhelp.html#Stream_canRead>canRead</a>
+<li class=treeleaf><a class=prop href=jsdbhelp.html#Stream_canWrite>canWrite</a>
+<li class=treeleaf><a class=prop href=jsdbhelp.html#Stream_eof>eof</a>
+<li class=treeleaf><a class=prop href=jsdbhelp.html#Stream_hasChildren>hasChildren</a>
+<li class=treeleaf><a class=prop href=jsdbhelp.html#Stream_header>header</a>
+<li class=treeleaf><a class=prop href=jsdbhelp.html#Stream_hostAddress>hostAddress</a>
+<li class=treeleaf><a class=prop href=jsdbhelp.html#Stream_hostName>hostName</a>
+<li class=treeleaf><a class=prop href=jsdbhelp.html#Stream_name>name</a>
+<li class=treeleaf><a class=prop href=jsdbhelp.html#Stream_pos>pos</a>
+<li class=treeleaf><a class=prop href=jsdbhelp.html#Stream_position>position</a>
+<li class=treeleaf><a class=prop href=jsdbhelp.html#Stream_size>size</a>
+<li class=treeleaf><a class=prop href=jsdbhelp.html#Stream_status>status</a>
+<li class=treeleaf><a class=prop href=jsdbhelp.html#Stream_statusText>statusText</a>
+<li class=treeleaf><a class=prop href=jsdbhelp.html#Stream_stderr>stderr</a>
+<li class=treeleaf><a class=prop href=jsdbhelp.html#Stream_tagText>tagText</a>
+<li class=treeleaf><a class=func href=jsdbhelp.html#Stream_Stream>Stream</a>
+<li class=treeleaf><a class=func href=jsdbhelp.html#Stream_append>append</a>
+<li class=treeleaf><a class=func href=jsdbhelp.html#Stream_appendText>appendText</a>
+<li class=treeleaf><a class=func href=jsdbhelp.html#Stream_clear>clear</a>
+<li class=treeleaf><a class=func href=jsdbhelp.html#Stream_eatChars>eatChars</a>
+<li class=treeleaf><a class=func href=jsdbhelp.html#Stream_flush>flush</a>
+<li class=treeleaf><a class=func href=jsdbhelp.html#Stream_format>format</a>
+<li class=treeleaf><a class=func href=jsdbhelp.html#Stream_get>get</a>
+<li class=treeleaf><a class=func href=jsdbhelp.html#Stream_goBack>goBack</a>
+<li class=treeleaf><a class=func href=jsdbhelp.html#Stream_goForward>goForward</a>
+<li class=treeleaf><a class=func href=jsdbhelp.html#Stream_peek>peek</a>
+<li class=treeleaf><a class=func href=jsdbhelp.html#Stream_put>put</a>
+<li class=treeleaf><a class=func href=jsdbhelp.html#Stream_putBack>putBack</a>
+<li class=treeleaf><a class=func href=jsdbhelp.html#Stream_read>read</a>
+<li class=treeleaf><a class=func href=jsdbhelp.html#Stream_readByte>readByte</a>
+<li class=treeleaf><a class=func href=jsdbhelp.html#Stream_readFile>readFile</a>
+<li class=treeleaf><a class=func href=jsdbhelp.html#Stream_readFloat32>readFloat32</a>
+<li class=treeleaf><a class=func href=jsdbhelp.html#Stream_readFloat64>readFloat64</a>
+<li class=treeleaf><a class=func href=jsdbhelp.html#Stream_readInt>readInt</a>
+<li class=treeleaf><a class=func href=jsdbhelp.html#Stream_readInt16>readInt16</a>
+<li class=treeleaf><a class=func href=jsdbhelp.html#Stream_readInt32>readInt32</a>
+<li class=treeleaf><a class=func href=jsdbhelp.html#Stream_readInt8>readInt8</a>
+<li class=treeleaf><a class=func href=jsdbhelp.html#Stream_readLine>readLine</a>
+<li class=treeleaf><a class=func href=jsdbhelp.html#Stream_readList>readList</a>
+<li class=treeleaf><a class=func href=jsdbhelp.html#Stream_readListB>readListB</a>
+<li class=treeleaf><a class=func href=jsdbhelp.html#Stream_readMIME>readMIME</a>
+<li class=treeleaf><a class=func href=jsdbhelp.html#Stream_readTag>readTag</a>
+<li class=treeleaf><a class=func href=jsdbhelp.html#Stream_readText>readText</a>
+<li class=treeleaf><a class=func href=jsdbhelp.html#Stream_readUInt16>readUInt16</a>
+<li class=treeleaf><a class=func href=jsdbhelp.html#Stream_readUInt8>readUInt8</a>
+<li class=treeleaf><a class=func href=jsdbhelp.html#Stream_readUntil>readUntil</a>
+<li class=treeleaf><a class=func href=jsdbhelp.html#Stream_readUntilBytes>readUntilBytes</a>
+<li class=treeleaf><a class=func href=jsdbhelp.html#Stream_readln>readln</a>
+<li class=treeleaf><a class=func href=jsdbhelp.html#Stream_resize>resize</a>
+<li class=treeleaf><a class=func href=jsdbhelp.html#Stream_rewind>rewind</a>
+<li class=treeleaf><a class=func href=jsdbhelp.html#Stream_seek>seek</a>
+<li class=treeleaf><a class=func href=jsdbhelp.html#Stream_setEndOfFile>setEndOfFile</a>
+<li class=treeleaf><a class=func href=jsdbhelp.html#Stream_toString>toString</a>
+<li class=treeleaf><a class=func href=jsdbhelp.html#Stream_write>write</a>
+<li class=treeleaf><a class=func href=jsdbhelp.html#Stream_writeByte>writeByte</a>
+<li class=treeleaf><a class=func href=jsdbhelp.html#Stream_writeFloat32>writeFloat32</a>
+<li class=treeleaf><a class=func href=jsdbhelp.html#Stream_writeFloat64>writeFloat64</a>
+<li class=treeleaf><a class=func href=jsdbhelp.html#Stream_writeInt>writeInt</a>
+<li class=treeleaf><a class=func href=jsdbhelp.html#Stream_writeInt16>writeInt16</a>
+<li class=treeleaf><a class=func href=jsdbhelp.html#Stream_writeInt32>writeInt32</a>
+<li class=treeleaf><a class=func href=jsdbhelp.html#Stream_writeInt8>writeInt8</a>
+<li class=treeleaf><a class=func href=jsdbhelp.html#Stream_writeLine>writeLine</a>
+<li class=treeleaf><a class=func href=jsdbhelp.html#Stream_writeList>writeList</a>
+<li class=treeleaf><a class=func href=jsdbhelp.html#Stream_writeListB>writeListB</a>
+<li class=treeleaf><a class=func href=jsdbhelp.html#Stream_writeMIME>writeMIME</a>
+<li class=treeleaf><a class=func href=jsdbhelp.html#Stream_writeUInt16>writeUInt16</a>
+<li class=treeleaf><a class=func href=jsdbhelp.html#Stream_writeUInt8>writeUInt8</a>
+<li class=treeleaf><a class=func href=jsdbhelp.html#Stream_writeln>writeln</a>
+</ul>
+<li class=treebranch><a href=jsdbhelp.html#Table>Table</a>
+<ul class=list>
+<li class=treeleaf><a class=prop href=jsdbhelp.html#Table_className>className</a>
+<li class=treeleaf><a class=prop href=jsdbhelp.html#Table_colCount>colCount</a>
+<li class=treeleaf><a class=prop href=jsdbhelp.html#Table_count>count</a>
+<li class=treeleaf><a class=prop href=jsdbhelp.html#Table_error>error</a>
+<li class=treeleaf><a class=prop href=jsdbhelp.html#Table_length>length</a>
+<li class=treeleaf><a class=prop href=jsdbhelp.html#Table_name>name</a>
+<li class=treeleaf><a class=prop href=jsdbhelp.html#Table_rowCount>rowCount</a>
+<li class=treeleaf><a class=func href=jsdbhelp.html#Table_Table>Table</a>
+<li class=treeleaf><a class=func href=jsdbhelp.html#Table_Table.create>Table.create</a>
+<li class=treeleaf><a class=func href=jsdbhelp.html#Table_add>add</a>
+<li class=treeleaf><a class=func href=jsdbhelp.html#Table_addColumn>addColumn</a>
+<li class=treeleaf><a class=func href=jsdbhelp.html#Table_append>append</a>
+<li class=treeleaf><a class=func href=jsdbhelp.html#Table_column>column</a>
+<li class=treeleaf><a class=func href=jsdbhelp.html#Table_data>data</a>
+<li class=treeleaf><a class=func href=jsdbhelp.html#Table_del>del</a>
+<li class=treeleaf><a class=func href=jsdbhelp.html#Table_deleteColumn>deleteColumn</a>
+<li class=treeleaf><a class=func href=jsdbhelp.html#Table_find>find</a>
+<li class=treeleaf><a class=func href=jsdbhelp.html#Table_findNext>findNext</a>
+<li class=treeleaf><a class=func href=jsdbhelp.html#Table_get>get</a>
+<li class=treeleaf><a class=func href=jsdbhelp.html#Table_getMessage>getMessage</a>
+<li class=treeleaf><a class=func href=jsdbhelp.html#Table_getRow>getRow</a>
+<li class=treeleaf><a class=func href=jsdbhelp.html#Table_getWhere>getWhere</a>
+<li class=treeleaf><a class=func href=jsdbhelp.html#Table_index>index</a>
+<li class=treeleaf><a class=func href=jsdbhelp.html#Table_save>save</a>
+<li class=treeleaf><a class=func href=jsdbhelp.html#Table_set>set</a>
+<li class=treeleaf><a class=func href=jsdbhelp.html#Table_setN>setN</a>
+<li class=treeleaf><a class=func href=jsdbhelp.html#Table_setRow>setRow</a>
+<li class=treeleaf><a class=func href=jsdbhelp.html#Table_setTitle>setTitle</a>
+<li class=treeleaf><a class=func href=jsdbhelp.html#Table_title>title</a>
+<li class=treeleaf><a class=func href=jsdbhelp.html#Table_toString>toString</a>
+<li class=treeleaf><a class=func href=jsdbhelp.html#Table_type>type</a>
+<li class=treeleaf><a class=func href=jsdbhelp.html#Table_width>width</a>
+</ul>
+<li class=treebranch><a href=jsdbhelp.html#XML>XML</a>
+<ul class=list>
+<li class=treeleaf><a class=prop href=jsdbhelp.html#XML_cdata>cdata</a>
+<li class=treeleaf><a class=prop href=jsdbhelp.html#XML_children>children</a>
+<li class=treeleaf><a class=prop href=jsdbhelp.html#XML_name>name</a>
+<li class=treeleaf><a class=prop href=jsdbhelp.html#XML_params>params</a>
+<li class=treeleaf><a class=func href=jsdbhelp.html#XML_XML.read>XML.read</a>
+<li class=treeleaf><a class=func href=jsdbhelp.html#XML_find>find</a>
+<li class=treeleaf><a class=func href=jsdbhelp.html#XML_findChildren>findChildren</a>
+<li class=treeleaf><a class=func href=jsdbhelp.html#XML_get>get</a>
+<li class=treeleaf><a class=func href=jsdbhelp.html#XML_getChildren>getChildren</a>
+<li class=treeleaf><a class=func href=jsdbhelp.html#XML_select>select</a>
+<li class=treeleaf><a class=func href=jsdbhelp.html#XML_sort>sort</a>
+<li class=treeleaf><a class=func href=jsdbhelp.html#XML_toStream>toStream</a>
+<li class=treeleaf><a class=func href=jsdbhelp.html#XML_toString>toString</a>
+</ul>
+<li class=treebranch><a href=jsdbhelp.html#global>global</a>
+<ul class=list>
+<li class=treeleaf><a class=prop href=jsdbhelp.html#global_jsArguments>jsArguments</a>
+<li class=treeleaf><a class=func href=jsdbhelp.html#global_copyFile>copyFile</a>
+<li class=treeleaf><a class=func href=jsdbhelp.html#global_crc32>crc32</a>
+<li class=treeleaf><a class=func href=jsdbhelp.html#global_decodeANSI>decodeANSI</a>
+<li class=treeleaf><a class=func href=jsdbhelp.html#global_decodeB64>decodeB64</a>
+<li class=treeleaf><a class=func href=jsdbhelp.html#global_decodeB64>decodeB64</a>
+<li class=treeleaf><a class=func href=jsdbhelp.html#global_decodeHTML>decodeHTML</a>
+<li class=treeleaf><a class=func href=jsdbhelp.html#global_decodeURL>decodeURL</a>
+<li class=treeleaf><a class=func href=jsdbhelp.html#global_decodeUTF8>decodeUTF8</a>
+<li class=treeleaf><a class=func href=jsdbhelp.html#global_encodeB64>encodeB64</a>
+<li class=treeleaf><a class=func href=jsdbhelp.html#global_encodeB64>encodeB64</a>
+<li class=treeleaf><a class=func href=jsdbhelp.html#global_encodeHTML>encodeHTML</a>
+<li class=treeleaf><a class=func href=jsdbhelp.html#global_encodeURL>encodeURL</a>
+<li class=treeleaf><a class=func href=jsdbhelp.html#global_encodeUTF8>encodeUTF8</a>
+<li class=treeleaf><a class=func href=jsdbhelp.html#global_fileExists>fileExists</a>
+<li class=treeleaf><a class=func href=jsdbhelp.html#global_jsBuildDate>jsBuildDate</a>
+<li class=treeleaf><a class=func href=jsdbhelp.html#global_jsDebug>jsDebug</a>
+<li class=treeleaf><a class=func href=jsdbhelp.html#global_jsGC>jsGC</a>
+<li class=treeleaf><a class=func href=jsdbhelp.html#global_jsIsSafe>jsIsSafe</a>
+<li class=treeleaf><a class=func href=jsdbhelp.html#global_jsOptions>jsOptions</a>
+<li class=treeleaf><a class=func href=jsdbhelp.html#global_jsRestart>jsRestart</a>
+<li class=treeleaf><a class=func href=jsdbhelp.html#global_jsSafeMode>jsSafeMode</a>
+<li class=treeleaf><a class=func href=jsdbhelp.html#global_jsShellExec>jsShellExec</a>
+<li class=treeleaf><a class=func href=jsdbhelp.html#global_jsShouldStop>jsShouldStop</a>
+<li class=treeleaf><a class=func href=jsdbhelp.html#global_jsVersion>jsVersion</a>
+<li class=treeleaf><a class=func href=jsdbhelp.html#global_listFiles>listFiles</a>
+<li class=treeleaf><a class=func href=jsdbhelp.html#global_listFolders>listFolders</a>
+<li class=treeleaf><a class=func href=jsdbhelp.html#global_load>load</a>
+<li class=treeleaf><a class=func href=jsdbhelp.html#global_loadResource>loadResource</a>
+<li class=treeleaf><a class=func href=jsdbhelp.html#global_moveFile>moveFile</a>
+<li class=treeleaf><a class=func href=jsdbhelp.html#global_openBrowser>openBrowser</a>
+<li class=treeleaf><a class=func href=jsdbhelp.html#global_print, write>print, write</a>
+<li class=treeleaf><a class=func href=jsdbhelp.html#global_println, writeln>println, writeln</a>
+<li class=treeleaf><a class=func href=jsdbhelp.html#global_quit,exit>quit,exit</a>
+<li class=treeleaf><a class=func href=jsdbhelp.html#global_readln>readln</a>
+<li class=treeleaf><a class=func href=jsdbhelp.html#global_regGetKey>regGetKey</a>
+<li class=treeleaf><a class=func href=jsdbhelp.html#global_regSetKey>regSetKey</a>
+<li class=treeleaf><a class=func href=jsdbhelp.html#global_remove>remove</a>
+<li class=treeleaf><a class=func href=jsdbhelp.html#global_run>run</a>
+<li class=treeleaf><a class=func href=jsdbhelp.html#global_run>run</a>
+<li class=treeleaf><a class=func href=jsdbhelp.html#global_sleep>sleep</a>
+<li class=treeleaf><a class=func href=jsdbhelp.html#global_splitURL>splitURL</a>
+<li class=treeleaf><a class=func href=jsdbhelp.html#global_stripWhitespace>stripWhitespace</a>
+<li class=treeleaf><a class=func href=jsdbhelp.html#global_system.kbhit>system.kbhit</a>
+<li class=treeleaf><a class=func href=jsdbhelp.html#global_testCompile>testCompile</a>
+</ul>
+<li class=treebranch><a href=jsdbhelp.html#system>system</a>
+<ul class=list>
+<li class=treeleaf><a class=prop href=jsdbhelp.html#system_arguments>arguments</a>
+<li class=treeleaf><a class=prop href=jsdbhelp.html#system_buildDate>buildDate</a>
+<li class=treeleaf><a class=prop href=jsdbhelp.html#system_name>name</a>
+<li class=treeleaf><a class=prop href=jsdbhelp.html#system_release>release</a>
+<li class=treeleaf><a class=prop href=jsdbhelp.html#system_script>script</a>
+<li class=treeleaf><a class=prop href=jsdbhelp.html#system_stdin>stdin</a>
+<li class=treeleaf><a class=prop href=jsdbhelp.html#system_stdout>stdout</a>
+<li class=treeleaf><a class=prop href=jsdbhelp.html#system_version>version</a>
+<li class=treeleaf><a class=func href=jsdbhelp.html#system_attributes>attributes</a>
+<li class=treeleaf><a class=func href=jsdbhelp.html#system_attributes>attributes</a>
+<li class=treeleaf><a class=func href=jsdbhelp.html#system_browse()>browse()</a>
+<li class=treeleaf><a class=func href=jsdbhelp.html#system_compile>compile</a>
+<li class=treeleaf><a class=func href=jsdbhelp.html#system_copy>copy</a>
+<li class=treeleaf><a class=func href=jsdbhelp.html#system_debug>debug</a>
+<li class=treeleaf><a class=func href=jsdbhelp.html#system_execute>execute</a>
+<li class=treeleaf><a class=func href=jsdbhelp.html#system_exists>exists</a>
+<li class=treeleaf><a class=func href=jsdbhelp.html#system_exit>exit</a>
+<li class=treeleaf><a class=func href=jsdbhelp.html#system_files>files</a>
+<li class=treeleaf><a class=func href=jsdbhelp.html#system_folders>folders</a>
+<li class=treeleaf><a class=func href=jsdbhelp.html#system_gc>gc</a>
+<li class=treeleaf><a class=func href=jsdbhelp.html#system_getKey>getKey</a>
+<li class=treeleaf><a class=func href=jsdbhelp.html#system_getenv>getenv</a>
+<li class=treeleaf><a class=func href=jsdbhelp.html#system_help>help</a>
+<li class=treeleaf><a class=func href=jsdbhelp.html#system_isSafe>isSafe</a>
+<li class=treeleaf><a class=func href=jsdbhelp.html#system_mkdir>mkdir</a>
+<li class=treeleaf><a class=func href=jsdbhelp.html#system_move>move</a>
+<li class=treeleaf><a class=func href=jsdbhelp.html#system_options>options</a>
+<li class=treeleaf><a class=func href=jsdbhelp.html#system_print, write>print, write</a>
+<li class=treeleaf><a class=func href=jsdbhelp.html#system_println, writeln>println, writeln</a>
+<li class=treeleaf><a class=func href=jsdbhelp.html#system_quit>quit</a>
+<li class=treeleaf><a class=func href=jsdbhelp.html#system_readln>readln</a>
+<li class=treeleaf><a class=func href=jsdbhelp.html#system_resource>resource</a>
+<li class=treeleaf><a class=func href=jsdbhelp.html#system_restart>restart</a>
+<li class=treeleaf><a class=func href=jsdbhelp.html#system_safeMode>safeMode</a>
+<li class=treeleaf><a class=func href=jsdbhelp.html#system_setKey>setKey</a>
+<li class=treeleaf><a class=func href=jsdbhelp.html#system_setcwd>setcwd</a>
+<li class=treeleaf><a class=func href=jsdbhelp.html#system_shouldStop>shouldStop</a>
+<li class=treeleaf><a class=func href=jsdbhelp.html#system_sleep>sleep</a>
+<li class=treeleaf><a class=func href=jsdbhelp.html#system_stripWhitespace>stripWhitespace</a>
+</ul>
+</ul><hr>
+<li><a
+href="http://developer.mozilla.org/En/Core_JavaScript_1.5_Reference:Global_Objects:Array"
+title="Core JavaScript 1.5 Reference:Global Objects:Array">Array</a>
+</li>
+<li><a
+href="http://developer.mozilla.org/En/Core_JavaScript_1.5_Reference:Global_Objects:Boolean"
+title="Core JavaScript 1.5 Reference:Global Objects:Boolean">Boolean</a>
+</li>
+<li><a
+href="http://developer.mozilla.org/En/Core_JavaScript_1.5_Reference:Global_Objects:Date"
+title="Core JavaScript 1.5 Reference:Global Objects:Date">Date</a>
+</li>
+<li><a
+href="http://developer.mozilla.org/En/Core_JavaScript_1.5_Reference:Global_Objects:Function"
+title="Core JavaScript 1.5 Reference:Global Objects:Function">Function</a>
+</li>
+<li><a
+href="http://developer.mozilla.org/En/Core_JavaScript_1.5_Reference:Global_Objects:Math"
+title="Core JavaScript 1.5 Reference:Global Objects:Math">Math</a>
+</li>
+<li><a
+href="http://developer.mozilla.org/En/Core_JavaScript_1.5_Reference:Global_Objects:Number"
+title="Core JavaScript 1.5 Reference:Global Objects:Number">Number</a>
+</li>
+<li><a
+href="http://developer.mozilla.org/En/Core_JavaScript_1.5_Reference:Global_Objects:Object"
+title="Core JavaScript 1.5 Reference:Global Objects:Object">Object</a>
+</li>
+<li><a
+href="http://developer.mozilla.org/En/Core_JavaScript_1.5_Reference:Global_Objects:RegExp"
+title="Core JavaScript 1.5 Reference:Global Objects:RegExp">RegExp</a>
+</li>
+<li><a
+href="http://developer.mozilla.org/En/Core_JavaScript_1.5_Reference:Global_Objects:String"
+title="Core JavaScript 1.5 Reference:Global Objects:String">String</a>
+</li>
+</ul>
+</BODY></HTML>
