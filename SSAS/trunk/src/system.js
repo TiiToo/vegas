@@ -194,6 +194,7 @@ catch(e)
     require( "system.process.TaskGroup"     ) ;
     require( "system.process.TaskPhase"     ) ;
     require( "system.process.TimeoutPolicy" ) ;
+    require( "system.process.Timer"         ) ;
     
     // system.signals
     

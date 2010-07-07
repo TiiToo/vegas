@@ -39,9 +39,11 @@
 
 getPackage("core") ;
 getPackage("system") ;
+getPackage("vegas") ;
 
 load("unittests/core/AllTests.js") ;
 load("unittests/system/AllTests.js") ;
+load("unittests/vegas/AllTests.js") ;
 
 /////////
 
@@ -57,6 +59,7 @@ AllTests.suite = function()
     
     suite.addTest( core.AllTests.suite() ) ;
     suite.addTest( system.AllTests.suite() ) ;
+    suite.addTest( vegas.AllTests.suite() ) ;
     
     return suite ;
 }
