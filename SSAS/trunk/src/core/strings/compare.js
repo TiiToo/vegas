@@ -88,17 +88,19 @@ core.strings.compare = function( str1 /*String*/ , str2 /*String*/ , strict /*Bo
     }
     else if( str1.length == str2.length )
     {
-        var local /*int*/ = str1.localeCompare( str2 );
+        var local = str1.localeCompare( str2 );
         if( local == 0 )
         {
             return 0;
         }
         else if( local < 0 )
         {
+            return -1;
+        }
+        else
+        {
             return 1;
         }
-        
-        return -1;
     }
     else if( str1.length > str2.length )
     {

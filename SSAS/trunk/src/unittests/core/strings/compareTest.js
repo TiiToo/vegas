@@ -58,9 +58,9 @@ core.strings.compareTest.prototype.testCompare = function ()
     
     this.assertEquals( -1 , core.strings.compare( s1, s2 ) , "#1" );
     this.assertEquals(  1 , core.strings.compare( s2, s1 ) , "#2" );
-    this.assertEquals(  1 , core.strings.compare( s1, s3 ) , "#3" );
+    this.assertEquals( -1 , core.strings.compare( s1, s3 ) , "#3" );
     this.assertEquals(  0 , core.strings.compare( s1, s1 ) , "#4" );
     this.assertEquals(  0 , core.strings.compare( s1, s0 ) , "#5" );
-    this.assertEquals( -1 , core.strings.compare( s1, s0, true ) , "#6" );
-    this.assertEquals(  1 , core.strings.compare( s0, s1, true ) , "#7" );
+    this.assertEquals(  1 , core.strings.compare( s1, s0, true ) , "#6" );
+    this.assertEquals( -1 , core.strings.compare( s0, s1, true ) , "#7" );
 }
