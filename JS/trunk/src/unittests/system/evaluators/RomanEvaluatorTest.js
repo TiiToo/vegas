@@ -35,25 +35,42 @@
   
 */
 
-load("unittests/system/evaluators/EvaluableTest.js") ;
-load("unittests/system/evaluators/PropertyEvaluatorTest.js") ;
-load("unittests/system/evaluators/RomanEvaluatorTest.js") ;
+// ---o Constructor
 
-// ----o constructor
-
-system.evaluators.AllTests = {} ;
-
-system.evaluators.AllTests.suite = function() 
+system.evaluators.RomanEvaluatorTest = function( name ) 
 {
-    var TestSuite = buRRRn.ASTUce.TestSuite;
-    
-    var suite = new TestSuite( "system.evaluators unit tests" );
-    
-    //suite.simpleTrace = true;
-    
-    suite.addTest( new TestSuite( system.evaluators.EvaluableTest ) ) ;
-    suite.addTest( new TestSuite( system.evaluators.PropertyEvaluatorTest ) ) ;
-    suite.addTest( new TestSuite( system.evaluators.RomanEvaluatorTest ) ) ;
-    
-    return suite ;
+    buRRRn.ASTUce.TestCase.call( this , name ) ;
 }
+
+// ----o Inherit
+
+system.evaluators.RomanEvaluatorTest.prototype             = new buRRRn.ASTUce.TestCase() ;
+system.evaluators.RomanEvaluatorTest.prototype.constructor = system.evaluators.RomanEvaluatorTest ;
+
+proto = system.evaluators.RomanEvaluatorTest.prototype ;
+
+// ----o Initialize
+
+proto.setUp = function()
+{
+    this.evaluator = new system.evaluators.RomanEvaluator() ;
+}
+
+proto.tearDown = function()
+{
+    this.evaluator = null ;
+}
+
+// ----o Public Methods
+
+proto.testInterface = function () 
+{
+    this.assertTrue(  this.evaluator instanceof system.evaluators.Evaluable ) ;
+}
+
+proto.testToString = function () 
+{
+    this.assertEquals( "[RomanEvaluator]" , this.evaluator.toString() ) ;
+}
+
+delete proto ;

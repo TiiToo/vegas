@@ -129,6 +129,7 @@ catch(e)
     
     require( "system.evaluators.Evaluable" ) ;
     require( "system.evaluators.PropertyEvaluator" ) ;
+    require( "system.evaluators.RomanEvaluator" ) ;
     
     // system.events
     
