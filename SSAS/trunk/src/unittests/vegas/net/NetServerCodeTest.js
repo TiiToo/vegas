@@ -56,11 +56,6 @@ proto.testCALL_FAILED = function ()
     this.assertEquals( "NetConnection.Call.Failed"  , vegas.net.NetServerCode.CALL_FAILED ) ;
 }
 
-proto.testCONNECT_APP_SHUTDOWN = function () 
-{
-    this.assertEquals( "NetConnection.Connect.AppShutdown"  , vegas.net.NetServerCode.CONNECT_APP_SHUTDOWN ) ;
-}
-
 proto.testCONNECT_CLOSED = function () 
 {
     this.assertEquals( "NetConnection.Connect.Closed"  , vegas.net.NetServerCode.CONNECT_CLOSED ) ;
@@ -74,6 +69,11 @@ proto.testCONNECT_FAILED = function ()
 proto.testCONNECT_REJECTED = function () 
 {
     this.assertEquals( "NetConnection.Connect.Rejected"  , vegas.net.NetServerCode.CONNECT_REJECTED ) ;
+}
+
+proto.testCONNECT_SHUTDOWN = function () 
+{
+    this.assertEquals( "NetConnection.Connect.AppShutdown"  , vegas.net.NetServerCode.CONNECT_SHUTDOWN ) ;
 }
 
 proto.testCONNECT_SUCCESS = function () 
