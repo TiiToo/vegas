@@ -35,29 +35,39 @@
   
 */
 
-load("unittests/vegas/net/NetServerCodeTest.js") ;
-load("unittests/vegas/net/NetServerConnectionTest.js") ;
-load("unittests/vegas/net/NetServerInfoTest.js") ;
-load("unittests/vegas/net/NetServerLevelTest.js") ;
-load("unittests/vegas/net/ObjectEncodingTest.js") ;
+// ---o Constructor
 
-// ----o constructor
-
-vegas.net.AllTests = {} ;
-
-vegas.net.AllTests.suite = function() 
+vegas.net.ObjectEncodingTest = function( name ) 
 {
-    var TestSuite = buRRRn.ASTUce.TestSuite;
-    
-    var suite = new TestSuite( "vegas.net unit tests" );
-    
-    //suite.simpleTrace = true;
-    
-    suite.addTest( new TestSuite( vegas.net.NetServerCodeTest ) ) ;
-    suite.addTest( new TestSuite( vegas.net.NetServerConnectionTest ) ) ;
-    suite.addTest( new TestSuite( vegas.net.NetServerInfoTest ) ) ;
-    suite.addTest( new TestSuite( vegas.net.NetServerLevelTest ) ) ;
-    suite.addTest( new TestSuite( vegas.net.ObjectEncodingTest ) ) ;
-    
-    return suite ;
+    buRRRn.ASTUce.TestCase.call( this , name ) ;
 }
+
+// ----o Inherit
+
+vegas.net.ObjectEncodingTest.prototype             = new buRRRn.ASTUce.TestCase() ;
+vegas.net.ObjectEncodingTest.prototype.constructor = vegas.net.ObjectEncodingTest ;
+
+proto = vegas.net.ObjectEncodingTest.prototype ;
+
+// ----o Initialize
+
+// ----o Tests
+
+proto.testAMF0 = function () 
+{
+    this.assertEquals( 0 , vegas.net.ObjectEncoding.AMF0 ) ;
+}
+
+proto.testAMF3 = function () 
+{
+    this.assertEquals( 3  , vegas.net.ObjectEncoding.AMF3 ) ;
+}
+
+proto.testDEFAULT = function () 
+{
+    this.assertEquals( 3  , vegas.net.ObjectEncoding.DEFAULT ) ;
+}
+
+// ----o Encapsulate
+
+delete proto ;
