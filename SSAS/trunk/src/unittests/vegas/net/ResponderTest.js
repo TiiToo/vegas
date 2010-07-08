@@ -35,31 +35,45 @@
   
 */
 
-load("unittests/vegas/net/ConnectionTest.js") ;
-load("unittests/vegas/net/ConnectionCodeTest.js") ;
-load("unittests/vegas/net/ConnectionInfoTest.js") ;
-load("unittests/vegas/net/ConnectionLevelTest.js") ;
-load("unittests/vegas/net/ObjectEncodingTest.js") ;
-load("unittests/vegas/net/ResponderTest.js") ;
+// ---o Constructor
 
-// ----o constructor
-
-vegas.net.AllTests = {} ;
-
-vegas.net.AllTests.suite = function() 
+vegas.net.ResponderTest = function( name ) 
 {
-    var TestSuite = buRRRn.ASTUce.TestSuite;
-    
-    var suite = new TestSuite( "vegas.net unit tests" );
-    
-    //suite.simpleTrace = true;
-    
-    suite.addTest( new TestSuite( vegas.net.ConnectionTest ) ) ;
-    suite.addTest( new TestSuite( vegas.net.ConnectionCodeTest ) ) ;
-    suite.addTest( new TestSuite( vegas.net.ConnectionInfoTest ) ) ;
-    suite.addTest( new TestSuite( vegas.net.ConnectionLevelTest ) ) ;
-    suite.addTest( new TestSuite( vegas.net.ObjectEncodingTest ) ) ;
-    suite.addTest( new TestSuite( vegas.net.ResponderTest ) ) ;
-    
-    return suite ;
+    buRRRn.ASTUce.TestCase.call( this , name ) ;
 }
+
+// ----o Inherit
+
+vegas.net.ResponderTest.prototype             = new buRRRn.ASTUce.TestCase() ;
+vegas.net.ResponderTest.prototype.constructor = vegas.net.ResponderTest ;
+
+proto = vegas.net.ResponderTest.prototype ;
+
+// ----o Initialize
+
+proto.setUp = function()
+{
+    this.responder = new vegas.net.Responder() ;
+}
+
+proto.tearDown = function()
+{
+    this.responder = undefined ;
+}
+
+// ----o Tests
+
+proto.testConstructor = function () 
+{
+    this.assertNotNull( this.responder ) ;
+}
+
+proto.testToString = function () 
+{
+    this.assertEquals( "[Responder]" , this.responder.toString() ) ;
+}
+
+
+// ----o Encapsulate
+
+delete proto ;
