@@ -53,19 +53,59 @@ proto = vegas.net.ResponderTest.prototype ;
 
 proto.setUp = function()
 {
-    this.responder = new vegas.net.Responder() ;
+    this.resultValue = null ;
+    
+    this.result = function( value )
+    {
+        this.resultValue = value ;
+    }.bind( this ) ;
+    
+    
+    this.statusValue = null ;
+    
+    this.status = function( value )
+    {
+        this.statusValue = value ;
+    }.bind( this );
+    
+    this.responder = new vegas.net.Responder( this.result , this.status ) ;
 }
 
 proto.tearDown = function()
 {
-    this.responder = undefined ;
+    this.responder   = undefined ;
+    this.result      = undefined ;
+    this.resultValue = undefined ;
+    this.status      = undefined ;
+    this.statusValue = undefined ;
 }
 
 // ----o Tests
 
 proto.testConstructor = function () 
 {
+    this.assertTrue( this.responder.result == this.result ) ;
+    this.assertTrue( this.responder.status == this.status ) ;
+}
+
+proto.testEmptyConstructor = function () 
+{
+    this.responder = new vegas.net.Responder() ;
     this.assertNotNull( this.responder ) ;
+    this.assertNull( this.responder.result ) ;
+    this.assertNull( this.responder.status ) ;
+}
+
+proto.testOnResult = function () 
+{
+    this.responder.onResult( "test" ) ;
+    this.assertEquals( "test" , this.resultValue ) ;
+}
+
+proto.testOnStatus = function () 
+{
+    this.responder.onStatus( "test" ) ;
+    this.assertEquals( "test" , this.statusValue ) ;
 }
 
 proto.testToString = function () 
