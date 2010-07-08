@@ -35,18 +35,57 @@
   
 */
 
-SRC     = "./" ;
-SUFFIX  = ".asc" ;
+// ---o Constructor
 
-if ( _global.vegas == undefined )
+vegas.net.NetServerCodeTest = function( name ) 
 {
-    getPackage("vegas") ;
+    buRRRn.ASTUce.TestCase.call( this , name ) ;
 }
 
-getPackage("vegas.net") ;
+// ----o Inherit
 
-// vegas.net
+vegas.net.NetServerCodeTest.prototype             = new buRRRn.ASTUce.TestCase() ;
+vegas.net.NetServerCodeTest.prototype.constructor = vegas.net.NetServerCodeTest ;
 
-require( "vegas.net.NetServerCode" ) ;
-require( "vegas.net.NetServerConnection" ) ;
-require( "vegas.net.NetServerInfo" ) ;
+proto = vegas.net.NetServerCodeTest.prototype ;
+
+// ----o Tests
+
+proto.testCALL_FAILED = function () 
+{
+    this.assertEquals( "NetConnection.Call.Failed"  , vegas.net.NetServerCode.CALL_FAILED ) ;
+}
+
+proto.testCONNECT_APP_SHUTDOWN = function () 
+{
+    this.assertEquals( "NetConnection.Connect.AppShutdown"  , vegas.net.NetServerCode.CONNECT_APP_SHUTDOWN ) ;
+}
+
+proto.testCONNECT_CLOSED = function () 
+{
+    this.assertEquals( "NetConnection.Connect.Closed"  , vegas.net.NetServerCode.CONNECT_CLOSED ) ;
+}
+
+proto.testCONNECT_FAILED = function () 
+{
+    this.assertEquals( "NetConnection.Connect.Failed"  , vegas.net.NetServerCode.CONNECT_FAILED ) ;
+}
+
+proto.testCONNECT_REJECTED = function () 
+{
+    this.assertEquals( "NetConnection.Connect.Rejected"  , vegas.net.NetServerCode.CONNECT_REJECTED ) ;
+}
+
+proto.testCONNECT_SUCCESS = function () 
+{
+    this.assertEquals( "NetConnection.Connect.Success"  , vegas.net.NetServerCode.CONNECT_SUCCESS ) ;
+}
+
+proto.testPROXY_NOT_RESPONDING = function () 
+{
+    this.assertEquals( "NetConnection.Proxy.NotResponding"  , vegas.net.NetServerCode.PROXY_NOT_RESPONDING ) ;
+}
+
+// ----o Encapsulate
+
+delete proto ;
