@@ -35,35 +35,21 @@
   
 */
 
-load("unittests/vegas/net/ConnectionTest.js") ;
-load("unittests/vegas/net/ConnectionCodeTest.js") ;
-load("unittests/vegas/net/ConnectionInfoTest.js") ;
-load("unittests/vegas/net/ConnectionLevelTest.js") ;
-load("unittests/vegas/net/ObjectEncodingTest.js") ;
-load("unittests/vegas/net/ResponderTest.js") ;
+load("unittests/vegas/net/remoting/RemotingAuthentificationTest.js") ;
+load("unittests/vegas/net/remoting/RemotingConnectionTest.js") ;
 
-load("unittests/vegas/net/remoting/AllTests.js") ;
+vegas.net.remoting.AllTests = {} ;
 
-// ----o constructor
-
-vegas.net.AllTests = {} ;
-
-vegas.net.AllTests.suite = function() 
+vegas.net.remoting.AllTests.suite = function() 
 {
     var TestSuite = buRRRn.ASTUce.TestSuite;
     
-    var suite = new TestSuite( "vegas.net unit tests" );
+    var suite = new TestSuite( "vegas.net.remoting unit tests" );
     
     //suite.simpleTrace = true;
     
-    suite.addTest( new TestSuite( vegas.net.ConnectionTest ) ) ;
-    suite.addTest( new TestSuite( vegas.net.ConnectionCodeTest ) ) ;
-    suite.addTest( new TestSuite( vegas.net.ConnectionInfoTest ) ) ;
-    suite.addTest( new TestSuite( vegas.net.ConnectionLevelTest ) ) ;
-    suite.addTest( new TestSuite( vegas.net.ObjectEncodingTest ) ) ;
-    suite.addTest( new TestSuite( vegas.net.ResponderTest ) ) ;
-    
-    suite.addTest( vegas.net.remoting.AllTests.suite() );
+    suite.addTest( new TestSuite( vegas.net.remoting.RemotingAuthentificationTest ) ) ;
+    suite.addTest( new TestSuite( vegas.net.remoting.RemotingConnectionTest ) ) ;
     
     return suite ;
 }
