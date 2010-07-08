@@ -37,31 +37,60 @@
 
 // ---o Constructor
 
-vegas.net.NetServerLevelTest = function( name ) 
+vegas.net.ConnectionCodeTest = function( name ) 
 {
     buRRRn.ASTUce.TestCase.call( this , name ) ;
 }
 
 // ----o Inherit
 
-vegas.net.NetServerLevelTest.prototype             = new buRRRn.ASTUce.TestCase() ;
-vegas.net.NetServerLevelTest.prototype.constructor = vegas.net.NetServerLevelTest ;
+vegas.net.ConnectionCodeTest.prototype             = new buRRRn.ASTUce.TestCase() ;
+vegas.net.ConnectionCodeTest.prototype.constructor = vegas.net.ConnectionCodeTest ;
 
-proto = vegas.net.NetServerLevelTest.prototype ;
-
-// ----o Initialize
+proto = vegas.net.ConnectionCodeTest.prototype ;
 
 // ----o Tests
 
-proto.testERROR = function () 
+proto.testCALL_BAD_VERSION = function () 
 {
-    this.assertEquals( "error"  , vegas.net.NetServerLevel.ERROR ) ;
+    this.assertEquals( "NetConnection.Call.BadVersion"  , vegas.net.ConnectionCode.CALL_BAD_VERSION ) ;
 }
 
-proto.testSTATUS = function () 
+proto.testCALL_FAILED = function () 
 {
-    this.assertEquals( "status"  , vegas.net.NetServerLevel.STATUS ) ;
+    this.assertEquals( "NetConnection.Call.Failed"  , vegas.net.ConnectionCode.CALL_FAILED ) ;
 }
+
+proto.testCONNECT_CLOSED = function () 
+{
+    this.assertEquals( "NetConnection.Connect.Closed"  , vegas.net.ConnectionCode.CONNECT_CLOSED ) ;
+}
+
+proto.testCONNECT_FAILED = function () 
+{
+    this.assertEquals( "NetConnection.Connect.Failed"  , vegas.net.ConnectionCode.CONNECT_FAILED ) ;
+}
+
+proto.testCONNECT_REJECTED = function () 
+{
+    this.assertEquals( "NetConnection.Connect.Rejected"  , vegas.net.ConnectionCode.CONNECT_REJECTED ) ;
+}
+
+proto.testCONNECT_SHUTDOWN = function () 
+{
+    this.assertEquals( "NetConnection.Connect.AppShutdown"  , vegas.net.ConnectionCode.CONNECT_SHUTDOWN ) ;
+}
+
+proto.testCONNECT_SUCCESS = function () 
+{
+    this.assertEquals( "NetConnection.Connect.Success"  , vegas.net.ConnectionCode.CONNECT_SUCCESS ) ;
+}
+
+proto.testPROXY_NOT_RESPONDING = function () 
+{
+    this.assertEquals( "NetConnection.Proxy.NotResponding"  , vegas.net.ConnectionCode.PROXY_NOT_RESPONDING ) ;
+}
+
 // ----o Encapsulate
 
 delete proto ;

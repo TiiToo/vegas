@@ -35,23 +35,49 @@
   
 */
 
-/**
- * The enumeration of all levels in the info object who indicates the severity of the event.
- */
-if ( vegas.net.NetServerLevel == undefined ) 
+// ---o Constructor
+
+vegas.net.ConnectionTest = function( name ) 
 {
-    /**
-     * Creates a new NetServerLevel singleton.
-     */
-    vegas.net.NetServerLevel = {}
-    
-    /**
-     * The "error" level.
-     */
-    vegas.net.NetServerLevel.ERROR = "error" ;
-    
-    /**
-     * The "status" level.
-     */
-    vegas.net.NetServerLevel.STATUS = "status" ;
+    buRRRn.ASTUce.TestCase.call( this , name ) ;
 }
+
+// ----o Inherit
+
+vegas.net.ConnectionTest.prototype             = new buRRRn.ASTUce.TestCase() ;
+vegas.net.ConnectionTest.prototype.constructor = vegas.net.ConnectionTest ;
+
+proto = vegas.net.ConnectionTest.prototype ;
+
+// ----o Initialize
+
+proto.setUp = function()
+{
+    this.connection = new vegas.net.Connection() ;
+}
+
+proto.tearDown = function()
+{
+    this.connection = null ;
+}
+
+// ----o Public Methods
+
+proto.testInherit = function () 
+{
+    this.assertTrue( this.connection instanceof system.process.CoreAction ) ;
+}
+
+proto.testToSource = function () 
+{
+    this.assertEquals( "new vegas.net.Connection()" , this.connection.toSource() ) ;
+}
+
+proto.testToString = function () 
+{
+    this.assertEquals( "[Connection]" , this.connection.toString() ) ;
+}
+
+// ----o Encapsulate
+
+delete proto ;

@@ -37,17 +37,17 @@
 
 // ---o Constructor
 
-vegas.net.NetServerInfoTest = function( name ) 
+vegas.net.ConnectionInfoTest = function( name ) 
 {
     buRRRn.ASTUce.TestCase.call( this , name ) ;
 }
 
 // ----o Inherit
 
-vegas.net.NetServerInfoTest.prototype             = new buRRRn.ASTUce.TestCase() ;
-vegas.net.NetServerInfoTest.prototype.constructor = vegas.net.NetServerInfoTest ;
+vegas.net.ConnectionInfoTest.prototype             = new buRRRn.ASTUce.TestCase() ;
+vegas.net.ConnectionInfoTest.prototype.constructor = vegas.net.ConnectionInfoTest ;
 
-proto = vegas.net.NetServerInfoTest.prototype ;
+proto = vegas.net.ConnectionInfoTest.prototype ;
 
 // ----o Initialize
 
@@ -60,7 +60,7 @@ proto.setUp = function()
          level       : "level" ,
          description : "description"
     }
-    this.info = new vegas.net.NetServerInfo( this.init ) ;
+    this.info = new vegas.net.ConnectionInfo( this.init ) ;
 }
 
 proto.tearDown = function()
@@ -88,7 +88,7 @@ proto.testConstructor = function ()
 
 proto.testEmptyConstructor = function () 
 {
-    this.info = new vegas.net.NetServerInfo() ;
+    this.info = new vegas.net.ConnectionInfo() ;
     this.assertNotNull( this.info ) ; 
     this.assertNull( this.info.application ) ;
     this.assertNull( this.info.code ) ;
@@ -111,12 +111,12 @@ proto.testToObject = function ()
 
 proto.testToSource = function () 
 {
-    this.assertEquals( "new vegas.net.NetServerInfo({application:\"application\",code:\"code\",description:\"description\",level:\"level\"})" , this.info.toSource() ) ;
+    this.assertEquals( "new vegas.net.ConnectionInfo({application:\"application\",code:\"code\",description:\"description\",level:\"level\"})" , this.info.toSource() ) ;
 }
 
 proto.testToString = function () 
 {
-    this.assertEquals( "[NetServerInfo code:code level:level description:description application:application]" , this.info.toString() ) ;
+    this.assertEquals( "[ConnectionInfo code:code level:level description:description application:application]" , this.info.toString() ) ;
 }
 
 // ----o Encapsulate

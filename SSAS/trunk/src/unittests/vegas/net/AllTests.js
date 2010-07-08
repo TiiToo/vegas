@@ -35,10 +35,10 @@
   
 */
 
-load("unittests/vegas/net/NetServerCodeTest.js") ;
-load("unittests/vegas/net/NetServerConnectionTest.js") ;
-load("unittests/vegas/net/NetServerInfoTest.js") ;
-load("unittests/vegas/net/NetServerLevelTest.js") ;
+load("unittests/vegas/net/ConnectionTest.js") ;
+load("unittests/vegas/net/ConnectionCodeTest.js") ;
+load("unittests/vegas/net/ConnectionInfoTest.js") ;
+load("unittests/vegas/net/ConnectionLevelTest.js") ;
 load("unittests/vegas/net/ObjectEncodingTest.js") ;
 
 // ----o constructor
@@ -53,10 +53,10 @@ vegas.net.AllTests.suite = function()
     
     //suite.simpleTrace = true;
     
-    suite.addTest( new TestSuite( vegas.net.NetServerCodeTest ) ) ;
-    suite.addTest( new TestSuite( vegas.net.NetServerConnectionTest ) ) ;
-    suite.addTest( new TestSuite( vegas.net.NetServerInfoTest ) ) ;
-    suite.addTest( new TestSuite( vegas.net.NetServerLevelTest ) ) ;
+    suite.addTest( new TestSuite( vegas.net.ConnectionTest ) ) ;
+    suite.addTest( new TestSuite( vegas.net.ConnectionCodeTest ) ) ;
+    suite.addTest( new TestSuite( vegas.net.ConnectionInfoTest ) ) ;
+    suite.addTest( new TestSuite( vegas.net.ConnectionLevelTest ) ) ;
     suite.addTest( new TestSuite( vegas.net.ObjectEncodingTest ) ) ;
     
     return suite ;
