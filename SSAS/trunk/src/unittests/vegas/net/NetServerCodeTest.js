@@ -51,6 +51,11 @@ proto = vegas.net.NetServerCodeTest.prototype ;
 
 // ----o Tests
 
+proto.testCALL_BAD_VERSION = function () 
+{
+    this.assertEquals( "NetConnection.Call.BadVersion"  , vegas.net.NetServerCode.CALL_BAD_VERSION ) ;
+}
+
 proto.testCALL_FAILED = function () 
 {
     this.assertEquals( "NetConnection.Call.Failed"  , vegas.net.NetServerCode.CALL_FAILED ) ;
