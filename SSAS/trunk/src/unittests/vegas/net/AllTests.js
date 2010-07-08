@@ -38,6 +38,7 @@
 load("unittests/vegas/net/NetServerCodeTest.js") ;
 load("unittests/vegas/net/NetServerConnectionTest.js") ;
 load("unittests/vegas/net/NetServerInfoTest.js") ;
+load("unittests/vegas/net/NetServerLevelTest.js") ;
 
 // ----o constructor
 
@@ -54,6 +55,7 @@ vegas.net.AllTests.suite = function()
     suite.addTest( new TestSuite( vegas.net.NetServerCodeTest ) ) ;
     suite.addTest( new TestSuite( vegas.net.NetServerConnectionTest ) ) ;
     suite.addTest( new TestSuite( vegas.net.NetServerInfoTest ) ) ;
+    suite.addTest( new TestSuite( vegas.net.NetServerLevelTest ) ) ;
     
     return suite ;
 }

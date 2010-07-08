@@ -35,19 +35,33 @@
   
 */
 
-SRC     = "./" ;
-SUFFIX  = ".asc" ;
+// ---o Constructor
 
-if ( _global.vegas == undefined )
+vegas.net.NetServerLevelTest = function( name ) 
 {
-    getPackage("vegas") ;
+    buRRRn.ASTUce.TestCase.call( this , name ) ;
 }
 
-getPackage("vegas.net") ;
+// ----o Inherit
 
-// vegas.net
+vegas.net.NetServerLevelTest.prototype             = new buRRRn.ASTUce.TestCase() ;
+vegas.net.NetServerLevelTest.prototype.constructor = vegas.net.NetServerLevelTest ;
 
-require( "vegas.net.NetServerCode" ) ;
-require( "vegas.net.NetServerConnection" ) ;
-require( "vegas.net.NetServerInfo" ) ;
-require( "vegas.net.NetServerLevel" ) ;
+proto = vegas.net.NetServerLevelTest.prototype ;
+
+// ----o Initialize
+
+// ----o Tests
+
+proto.testERROR = function () 
+{
+    this.assertEquals( "error"  , vegas.net.NetServerLevel.ERROR ) ;
+}
+
+proto.testSTATUS = function () 
+{
+    this.assertEquals( "status"  , vegas.net.NetServerLevel.STATUS ) ;
+}
+// ----o Encapsulate
+
+delete proto ;
