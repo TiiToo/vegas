@@ -96,6 +96,13 @@ proto.testEmptyConstructor = function ()
     this.assertNull( this.info.level ) ;
 }
 
+proto.testObjectEncoding = function () 
+{
+    this.assertEquals( 0 , this.info.objectEncoding ) ;
+    this.info.objectEncoding = 3 ;
+    this.assertEquals( 3 , this.info.objectEncoding ) ;
+}
+
 proto.testToObject = function () 
 {
     this.assertEquals( "{application:\"application\",code:\"code\",description:\"description\",level:\"level\"}" , core.dump( this.info.toObject() ) ) ;
