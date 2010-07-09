@@ -35,28 +35,45 @@
   
 */
 
-SRC     = "./" ;
-SUFFIX  = ".asc" ;
+// ---o Constructor
 
-if ( _global.vegas == undefined )
+vegas.net.remoting.RemotingConnectionCollectorTest = function( name ) 
 {
-    getPackage("vegas") ;
+    buRRRn.ASTUce.TestCase.call( this , name ) ;
 }
 
-getPackage("vegas.net") ;
-getPackage("vegas.net.remoting") ;
+// ----o Inherit
 
-// vegas.net
+vegas.net.remoting.RemotingConnectionCollectorTest.prototype             = new buRRRn.ASTUce.TestCase() ;
+vegas.net.remoting.RemotingConnectionCollectorTest.prototype.constructor = vegas.net.remoting.RemotingConnectionCollectorTest ;
 
-require( "vegas.net.Connection" ) ;
-require( "vegas.net.ConnectionCode" ) ;
-require( "vegas.net.ConnectionInfo" ) ;
-require( "vegas.net.ConnectionLevel" ) ;
-require( "vegas.net.ObjectEncoding" ) ;
-require( "vegas.net.Responder" ) ;
+proto = vegas.net.remoting.RemotingConnectionCollectorTest.prototype ;
 
-// vegas.net.remoting
+// ----o Initialize
 
-require( "vegas.net.remoting.RemotingAuthentification" ) ;
-require( "vegas.net.remoting.RemotingConnection" ) ;
-require( "vegas.net.remoting.RemotingConnectionCollector" ) ;
+proto.setUp = function()
+{
+    this.collector = new vegas.net.remoting.RemotingConnectionCollector() ;
+}
+
+proto.tearDown = function()
+{
+    this.collector = undefined ;
+}
+
+// ----o Tests
+
+proto.testConstructor = function () 
+{
+    this.assertNotNull( this.collector  ) ;
+}
+
+proto.testToString = function () 
+{
+    this.assertEquals( "[RemotingConnectionCollector]" , this.collector.toString() ) ;
+}
+
+
+// ----o Encapsulate
+
+delete proto ;
