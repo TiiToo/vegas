@@ -51,6 +51,7 @@ if ( system.process.Task == undefined)
     system.process.Task = function () 
     { 
         this._finishIt = new system.signals.Signal() ;
+        this.__lock__  = false ;
         this._phase    = system.process.TaskPhase.INACTIVE ;
         this._running  = false ;
         this._startIt  = new system.signals.Signal() ;

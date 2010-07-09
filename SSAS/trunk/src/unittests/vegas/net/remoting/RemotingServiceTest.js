@@ -101,6 +101,12 @@ proto.testDelay = function ()
     this.assertEquals( 0 , this.service.delay , "#4" ) ;
 }
 
+proto.testFaultIt = function () 
+{
+    this.assertNotNull( this.service.faultIt ) ;
+    this.assertTrue( this.service.faultIt instanceof system.signals.Signal ) ;
+}
+
 proto.testGatewayUrl = function () 
 {
     this.assertEquals( "http://localhost/vegas/gateway.php" , this.service.gatewayUrl , "#1" ) ;
@@ -115,6 +121,13 @@ proto.testMethodName = function ()
     this.assertEquals( "method" , this.service.methodName ) ;
     this.service.methodName = "my_method" ;
     this.assertEquals( "my_method" , this.service.methodName ) ;
+}
+
+proto.testmultipleSimultaneousAllowed = function () 
+{
+    this.assertFalse( this.service.multipleSimultaneousAllowed , "#1" ) ;
+    this.service.multipleSimultaneousAllowed = true ;
+    this.assertTrue( this.service.multipleSimultaneousAllowed , "#2" ) ;
 }
 
 proto.testObjectEncoding = function ()
@@ -149,12 +162,30 @@ proto.testParams = function ()
     this.assertEquals( 0 , this.service.params.length , "#4.2" ) ;
 }
 
+proto.testParams = function ()
+{
+    this.assertEquals( this.service , this.service.proxy ) ;
+}
+
 proto.testResponder = function () 
 {
     this.assertEquals( this.service._internalResponder , this.service.responder ) ;
     var responder = new vegas.net.Responder() ;
     this.service.responder = responder ;
     this.assertEquals( responder , this.service.responder ) ;
+}
+
+proto.testResult = function () 
+{
+    this.assertNull( this.service.result ) ;
+    this.service.notifyResult( "hello" ) ;
+    this.assertEquals( "hello" , this.service.result ) ;
+}
+
+proto.testResulIt = function () 
+{
+    this.assertNotNull( this.service.resultIt ) ;
+    this.assertTrue( this.service.resultIt instanceof system.signals.Signal ) ;
 }
 
 proto.testServiceName = function () 
