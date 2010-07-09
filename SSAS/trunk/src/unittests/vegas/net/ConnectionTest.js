@@ -68,6 +68,17 @@ proto.testInherit = function ()
     this.assertTrue( this.connection instanceof system.process.CoreAction ) ;
 }
 
+proto.testObjectEncoding = function ()
+{
+    this.assertEquals( vegas.net.ObjectEncoding.DEFAULT , this.connection.objectEncoding , "#1" ) ;
+    this.connection.objectEncoding = vegas.net.ObjectEncoding.AMF0 ;
+    this.assertEquals( vegas.net.ObjectEncoding.AMF0 , this.connection.objectEncoding , "#2" ) ;
+    this.connection.objectEncoding = vegas.net.ObjectEncoding.AMF3 ;
+    this.assertEquals( vegas.net.ObjectEncoding.AMF3 , this.connection.objectEncoding , "#3" ) ;
+    this.connection.objectEncoding = 99999 ;
+    this.assertEquals( vegas.net.ObjectEncoding.AMF3 , this.connection.objectEncoding , "#4" ) ;
+}
+
 proto.testTimeoutPolicy = function () 
 {
     this.assertEquals( system.process.TimeoutPolicy.INFINITY , this.connection.timeoutPolicy ) ;

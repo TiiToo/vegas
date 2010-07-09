@@ -117,6 +117,38 @@ proto.testMethodName = function ()
     this.assertEquals( "my_method" , this.service.methodName ) ;
 }
 
+proto.testObjectEncoding = function ()
+{
+    this.assertEquals( vegas.net.ObjectEncoding.DEFAULT , this.service.objectEncoding , "#1" ) ;
+    this.service.objectEncoding = vegas.net.ObjectEncoding.AMF0 ;
+    this.assertEquals( vegas.net.ObjectEncoding.AMF0 , this.service.objectEncoding , "#2" ) ;
+    this.service.objectEncoding = vegas.net.ObjectEncoding.AMF3 ;
+    this.assertEquals( vegas.net.ObjectEncoding.AMF3 , this.service.objectEncoding , "#3" ) ;
+    this.service.objectEncoding = 99999 ;
+    this.assertEquals( vegas.net.ObjectEncoding.AMF3 , this.service.objectEncoding , "#4" ) ;
+}
+
+proto.testParams = function ()
+{
+    this.assertTrue( this.service.params instanceof Array , "#1.1" ) ;
+    this.assertEquals( 0 , this.service.params.length , "#1.2" ) ;
+    
+    this.service.params = [] ;
+    this.assertTrue( this.service.params instanceof Array , "#2.1" ) ;
+    this.assertEquals( 0 , this.service.params.length , "#2.2" ) ;
+    
+    this.service.params = [2,3,4] ;
+    this.assertTrue( this.service.params instanceof Array , "#3.1" ) ;
+    this.assertEquals( 3 , this.service.params.length , "#3.2" ) ;
+    this.assertEquals( 2 , this.service.params[0] , "#3.3" ) ;
+    this.assertEquals( 3 , this.service.params[1] , "#3.4" ) ;
+    this.assertEquals( 4 , this.service.params[2] , "#3.5" ) ;
+    
+    this.service.params = 2 ;
+    this.assertTrue( this.service.params instanceof Array , "#4.1" ) ;
+    this.assertEquals( 0 , this.service.params.length , "#4.2" ) ;
+}
+
 proto.testResponder = function () 
 {
     this.assertEquals( this.service._internalResponder , this.service.responder ) ;
