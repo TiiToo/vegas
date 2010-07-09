@@ -89,6 +89,14 @@ proto.testDebug = function ()
     this.assertEquals( '{amf:false,amfheaders:false,coldfusion:false,error:true,httpheaders:false,m_debug:true,recordset:true,trace:true}' , core.dump( this.connection.debug ) ) ;
 }
 
+proto.testClone = function()
+{
+    var clone = this.connection.clone() ;
+    this.assertNotNull( clone ) ;
+    this.assertTrue( clone instanceof vegas.net.remoting.RemotingConnection ) ;
+    this.assertEquals( this.connection.uri , clone.uri ) ;
+}
+
 proto.testSetCredentials = function () 
 {
     try
