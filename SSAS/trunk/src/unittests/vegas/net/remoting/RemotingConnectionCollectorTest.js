@@ -54,8 +54,8 @@ proto = vegas.net.remoting.RemotingConnectionCollectorTest.prototype ;
 proto.setUp = function()
 {
     this.collector   = new vegas.net.remoting.RemotingConnectionCollector() ;
-    this.connection1 = new vegas.net.remoting.RemotingConnection( "http://localhost/gateway1.php") ;
-    this.connection2 = new vegas.net.remoting.RemotingConnection( "http://localhost/gateway2.php") ;
+    this.connection1 = new vegas.net.remoting.RemotingConnection( "http://localhost/gateway1.php" ) ;
+    this.connection2 = new vegas.net.remoting.RemotingConnection( "http://localhost/gateway2.php" ) ;
 }
 
 proto.tearDown = function()
@@ -94,6 +94,13 @@ proto.testContains = function ()
     this.collector.add( this.connection1 ) ;
     this.assertTrue( this.collector.contains( this.connection1     ) , "#2.1" ) ;
     this.assertTrue( this.collector.contains( this.connection1.uri ) , "#2.2" ) ;
+}
+
+proto.testGet = function () 
+{
+    this.collector.add( this.connection1 ) ;
+    this.assertEquals( this.connection1 , this.collector.get("http://localhost/gateway1.php") , "#1" )
+    this.assertNull( this.collector.get("http://localhost/gateway2.php") , "#2" )
 }
 
 proto.testIsEmpty = function () 
