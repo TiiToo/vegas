@@ -206,6 +206,28 @@ proto.testTimeoutPolicy = function ()
     this.assertEquals( system.process.TimeoutPolicy.INFINITY , this.service.timeoutPolicy ) ;
 }
 
+proto.testGetConnectionSingleton = function()
+{
+    var connection1 = this.service.getConnection() ;
+    var connection2 = this.service.getConnection() ;
+    
+    this.assertNotNull( connection1 , "#1" ) ;
+    this.assertNotNull( connection2 , "#2" ) ;
+    
+    this.assertTrue( connection1 instanceof vegas.net.remoting.RemotingConnection , "#3" ) ;
+    this.assertTrue( connection2 instanceof vegas.net.remoting.RemotingConnection , "#4" ) ;
+    
+    this.assertEquals( connection1 , connection2 , "#5" ) ;
+}
+
+proto.testGetConnectionEmptyGatewayUrl = function()
+{
+    this.service.gatewayUrl = null ;
+    this.assertNull( this.service.getConnection() , "#1" ) ;
+    this.service.gatewayUrl = "" ;
+    this.assertNull( this.service.getConnection() , "#2" ) ;
+}
+
 proto.testToString = function () 
 {
     this.assertEquals( "[RemotingService]" , this.service.toString() ) ;
