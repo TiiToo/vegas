@@ -197,6 +197,20 @@ proto.testServiceName = function ()
     this.assertEquals( "" , this.service.serviceName ) ;
 }
 
+proto.testScope = function () 
+{
+    this.assertEquals( "singleton" , this.service.scope , "#1" ) ;
+    
+    this.service.scope = "prototype" ;
+    this.assertEquals( "prototype" , this.service.scope , "#2" ) ;
+    
+    this.service.scope = "unknow" ;
+    this.assertEquals( "prototype" , this.service.scope , "#3" ) ;
+    
+    this.service.scope = null ;
+    this.assertEquals( "prototype" , this.service.scope , "#4" ) ;
+}
+
 proto.testTimeoutPolicy = function () 
 {
     this.assertEquals( system.process.TimeoutPolicy.INFINITY , this.service.timeoutPolicy ) ;
