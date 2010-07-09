@@ -53,12 +53,16 @@ proto = vegas.net.remoting.RemotingConnectionCollectorTest.prototype ;
 
 proto.setUp = function()
 {
-    this.collector = new vegas.net.remoting.RemotingConnectionCollector() ;
+    this.collector   = new vegas.net.remoting.RemotingConnectionCollector() ;
+    this.connection1 = new vegas.net.remoting.RemotingConnection( "http://localhost/gateway1.php") ;
+    this.connection2 = new vegas.net.remoting.RemotingConnection( "http://localhost/gateway2.php") ;
 }
 
 proto.tearDown = function()
 {
-    this.collector = undefined ;
+    this.collector   = undefined ;
+    this.connection1 = undefined ;
+    this.connection2 = undefined ;
 }
 
 // ----o Tests
@@ -68,9 +72,68 @@ proto.testConstructor = function ()
     this.assertNotNull( this.collector  ) ;
 }
 
+proto.testAdd = function () 
+{
+    this.assertTrue( this.collector.add( this.connection1 ) ) ;
+    this.assertTrue( this.collector.add( this.connection2 ) ) ;
+    this.assertFalse( this.collector.add( this.connection1 ) ) ;
+}
+
+proto.testClear = function () 
+{
+    this.assertTrue( this.collector.add( this.connection1 ) ) ;
+    this.assertTrue( this.collector.add( this.connection2 ) ) ;
+    this.collector.clear() ;
+    this.assertTrue( this.collector.isEmpty() ) ;
+}
+
+proto.testContains = function () 
+{
+    this.assertFalse( this.collector.contains( this.connection1     ) , "#1.1" ) ;
+    this.assertFalse( this.collector.contains( this.connection1.uri ) , "#1.2" ) ;
+    this.collector.add( this.connection1 ) ;
+    this.assertTrue( this.collector.contains( this.connection1     ) , "#2.1" ) ;
+    this.assertTrue( this.collector.contains( this.connection1.uri ) , "#2.2" ) ;
+}
+
+proto.testIsEmpty = function () 
+{
+    this.assertTrue( this.collector.isEmpty() , "#1" ) ;
+    this.collector.add( this.connection1 ) ;
+    this.assertFalse( this.collector.isEmpty() , "#2" ) ;
+}
+
+proto.testRemove = function () 
+{
+    this.collector.add( this.connection1 ) ;
+    this.collector.add( this.connection2 ) ;
+    this.assertTrue( this.connection1 == this.collector.remove( this.connection1 ) , "#1") ;
+    this.assertEquals( 1 , this.collector.size() , "#2" ) ;
+}
+
+proto.testLength = function () 
+{
+    this.assertEquals( 0 , this.collector.length ) ;
+    this.collector.add( this.connection1 ) ;
+    this.assertEquals( 1 , this.collector.length ) ;
+}
+
+proto.testSize = function () 
+{
+    this.assertEquals( 0 , this.collector.size() ) ;
+    this.collector.add( this.connection1 ) ;
+    this.assertEquals( 1 , this.collector.size() ) ;
+}
+
 proto.testToString = function () 
 {
     this.assertEquals( "[RemotingConnectionCollector]" , this.collector.toString() ) ;
+}
+
+proto.testSingleton = function () 
+{
+    this.assertNotNull( vegas.net.remoting.collector ) ;
+    this.assertTrue( vegas.net.remoting.collector instanceof vegas.net.remoting.RemotingConnectionCollector ) ;
 }
 
 
