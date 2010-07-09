@@ -68,6 +68,21 @@ proto.testConstructor = function ()
     this.assertNotNull( this.auth  ) ;
 }
 
+proto.testPassword = function () 
+{
+    this.assertEquals( "user" , this.auth.userid ) ;
+}
+
+proto.testUserid = function () 
+{
+    this.assertEquals( "password" , this.auth.password ) ;
+}
+
+proto.testToObject = function () 
+{
+    this.assertEquals( "{password:\"password\",userid:\"user\"}" , core.dump( this.auth.toObject() ) ) ;
+}
+
 proto.testToString = function () 
 {
     this.assertEquals( "[RemotingAuthentification]" , this.auth.toString() ) ;
