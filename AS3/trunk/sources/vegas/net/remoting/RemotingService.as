@@ -497,12 +497,16 @@ package vegas.net.remoting
             {
                this.params = [].concat( arguments ) ;   
             }
+            
             var rc:RemotingConnection = getConnection() as RemotingConnection ;
+            
             if ( rc == null )
             {
                 throw new IllegalOperationError(this + ", You can't run the service with a null internal RemotingConnection reference.") ;
             }
+            
             rc.objectEncoding = objectEncoding ;
+            
             if ( rc.connected == false)
             {
                 rc.connect( gatewayUrl ) ;
@@ -519,13 +523,18 @@ package vegas.net.remoting
             else 
             {
                 notifyStarted() ;
+                
                 _result = null ;
+                
                 var params:Array = [ _serviceName + "." + _methodName , responder ] ;
+                
                 if (_args != null && _args.length > 0)
                 {
                     params = params.concat( _args ) ;
                 }
+                
                 _timer.start() ;
+                
                 rc.call.apply( rc, params ) ;
             } 
         }

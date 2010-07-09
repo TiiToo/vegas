@@ -37,11 +37,11 @@
 
 package vegas.net.remoting
 {
+    import core.dump;
     import core.reflect.getClassName;
 
     import system.data.Iterable;
     import system.data.Iterator;
-    import system.eden;
     import system.formatters.Formattable;
 
     /**
@@ -89,7 +89,7 @@ package vegas.net.remoting
                     var it:Iterator = (r as Iterable).iterator() ;
                     while ( it.hasNext() ) 
                     {
-                        txt += "\t" + eden.serialize( it.next() ) + "\r" ;
+                        txt += "\t" + dump( it.next() ) + "\r" ;
                     }
                 } 
                 else 
