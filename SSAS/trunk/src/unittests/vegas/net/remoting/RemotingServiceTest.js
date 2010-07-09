@@ -35,29 +35,61 @@
   
 */
 
-SRC     = "./" ;
-SUFFIX  = ".asc" ;
+// ---o Constructor
 
-if ( _global.vegas == undefined )
+vegas.net.remoting.RemotingServiceTest = function( name ) 
 {
-    getPackage("vegas") ;
+    buRRRn.ASTUce.TestCase.call( this , name ) ;
 }
 
-getPackage("vegas.net") ;
-getPackage("vegas.net.remoting") ;
+// ----o Inherit
 
-// vegas.net
+vegas.net.remoting.RemotingServiceTest.prototype             = new buRRRn.ASTUce.TestCase() ;
+vegas.net.remoting.RemotingServiceTest.prototype.constructor = vegas.net.remoting.RemotingServiceTest ;
 
-require( "vegas.net.Connection" ) ;
-require( "vegas.net.ConnectionCode" ) ;
-require( "vegas.net.ConnectionInfo" ) ;
-require( "vegas.net.ConnectionLevel" ) ;
-require( "vegas.net.ObjectEncoding" ) ;
-require( "vegas.net.Responder" ) ;
+proto = vegas.net.remoting.RemotingServiceTest.prototype ;
 
-// vegas.net.remoting
+// ----o Initialize
 
-require( "vegas.net.remoting.RemotingAuthentification" ) ;
-require( "vegas.net.remoting.RemotingConnection" ) ;
-require( "vegas.net.remoting.RemotingConnectionCollector" ) ;
-require( "vegas.net.remoting.RemotingService" ) ;
+proto.setUp = function()
+{
+    this.service = new vegas.net.remoting.RemotingService( "http://localhost/vegas/gateway.php" ) ;
+}
+
+proto.tearDown = function()
+{
+    this.service = undefined ;
+}
+
+// ----o Tests
+
+proto.testDEFAULT_DELAY = function () 
+{
+    this.assertEquals( 8000 , vegas.net.remoting.RemotingService.DEFAULT_DELAY ) ;
+}
+
+proto.testConstructor = function () 
+{
+    this.assertNotNull( this.service ) ;
+}
+
+proto.testInherit = function () 
+{
+    this.assertTrue( this.service instanceof system.process.CoreAction ) ;
+}
+
+proto.testClone = function()
+{
+    var clone = this.service.clone() ;
+    this.assertNotNull( clone ) ;
+    this.assertTrue( clone instanceof vegas.net.remoting.RemotingService ) ;
+}
+
+proto.testToString = function () 
+{
+    this.assertEquals( "[RemotingService]" , this.service.toString() ) ;
+}
+
+// ----o Encapsulate
+
+delete proto ;

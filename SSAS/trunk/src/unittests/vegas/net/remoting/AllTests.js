@@ -38,6 +38,7 @@
 load("unittests/vegas/net/remoting/RemotingAuthentificationTest.js") ;
 load("unittests/vegas/net/remoting/RemotingConnectionCollectorTest.js") ;
 load("unittests/vegas/net/remoting/RemotingConnectionTest.js") ;
+load("unittests/vegas/net/remoting/RemotingServiceTest.js") ;
 
 vegas.net.remoting.AllTests = {} ;
 
@@ -52,6 +53,7 @@ vegas.net.remoting.AllTests.suite = function()
     suite.addTest( new TestSuite( vegas.net.remoting.RemotingAuthentificationTest ) ) ;
     suite.addTest( new TestSuite( vegas.net.remoting.RemotingConnectionCollectorTest ) ) ;
     suite.addTest( new TestSuite( vegas.net.remoting.RemotingConnectionTest ) ) ;
+    suite.addTest( new TestSuite( vegas.net.remoting.RemotingServiceTest ) ) ;
     
     return suite ;
 }
