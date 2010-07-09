@@ -53,7 +53,12 @@ proto = vegas.net.remoting.RemotingServiceTest.prototype ;
 
 proto.setUp = function()
 {
-    this.service = new vegas.net.remoting.RemotingService( "http://localhost/vegas/gateway.php" , "service" ) ;
+    this.service = new vegas.net.remoting.RemotingService
+    ( 
+        "http://localhost/vegas/gateway.php" , 
+        "service" , 
+        "method" 
+    ) ;
 }
 
 proto.tearDown = function()
@@ -85,6 +90,33 @@ proto.testClone = function()
     this.assertTrue( clone instanceof vegas.net.remoting.RemotingService ) ;
 }
 
+proto.testDelay = function () 
+{
+    this.assertEquals( 8000 , this.service.delay , "#1" ) ;
+    this.service.delay = 12000 ;
+    this.assertEquals( 12000 , this.service.delay , "#2" ) ;
+    this.service.delay = -10 ;
+    this.assertEquals( 0 , this.service.delay , "#3" ) ;
+    this.service.delay = null ;
+    this.assertEquals( 0 , this.service.delay , "#4" ) ;
+}
+
+proto.testGatewayUrl = function () 
+{
+    this.assertEquals( "http://localhost/vegas/gateway.php" , this.service.gatewayUrl , "#1" ) ;
+    this.service.gatewayUrl = "test" ;
+    this.assertEquals( "test" , this.service.gatewayUrl , "#2" ) ;
+    this.service.gatewayUrl = null ;
+    this.assertNull( this.service.gatewayUrl , "#3" ) ;
+}
+
+proto.testMethodName = function () 
+{
+    this.assertEquals( "method" , this.service.methodName ) ;
+    this.service.methodName = "my_method" ;
+    this.assertEquals( "my_method" , this.service.methodName ) ;
+}
+
 proto.testResponder = function () 
 {
     this.assertEquals( this.service._internalResponder , this.service.responder ) ;
@@ -98,6 +130,8 @@ proto.testServiceName = function ()
     this.assertEquals( "service" , this.service.serviceName ) ;
     this.service.serviceName = "my_service" ;
     this.assertEquals( "my_service" , this.service.serviceName ) ;
+    this.service.serviceName = null ;
+    this.assertEquals( "" , this.service.serviceName ) ;
 }
 
 proto.testTimeoutPolicy = function () 
