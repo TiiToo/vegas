@@ -36,14 +36,13 @@
 package examples 
 {
     import system.events.ActionEvent;
-    
+
     import vegas.events.RemotingEvent;
     import vegas.net.remoting.RemotingService;
-    
+
     import flash.display.Sprite;
     import flash.events.KeyboardEvent;
-    import flash.net.ObjectEncoding;
-    
+
     /**
      * Basic "hello world" example of the RemotingService class.
      */
@@ -52,7 +51,6 @@ package examples
         public function Remoting01Example()
         {
             service                = new RemotingService() ;
-            service.objectEncoding = ObjectEncoding.AMF0 ;
             
             service.addEventListener( RemotingEvent.ERROR  , error    ) ;
             service.addEventListener( RemotingEvent.FAULT  , fault    ) ;
@@ -62,7 +60,7 @@ package examples
             service.addEventListener( ActionEvent.START    , start    ) ;
             service.addEventListener( ActionEvent.TIMEOUT  , timeOut  ) ;
             
-            service.gatewayUrl  = "http://localhost/vegas/php/gateway.php" ;
+            service.gatewayUrl  = "http://localhost:8888/vegas/amfphp/gateway.php" ;
             service.serviceName = "Test"  ;
             service.methodName  = "hello" ;
             

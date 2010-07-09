@@ -35,15 +35,14 @@
 package examples 
 {
     import examples.vo.UserVO;
-    
+
     import system.events.ActionEvent;
-    
+
     import vegas.events.RemotingEvent;
     import vegas.net.remoting.RemotingService;
-    
+
     import flash.display.Sprite;
-    import flash.net.ObjectEncoding;
-    
+
     /**
      * Tests the RemotingService class with class mapping and value object with the amf protocol.
      */
@@ -54,7 +53,6 @@ package examples
             UserVO.register() ;
             
             var service:RemotingService = new RemotingService() ;
-            service.objectEncoding      = ObjectEncoding.AMF0 ;
             
             service.addEventListener( RemotingEvent.ERROR  , error    ) ;
             service.addEventListener( RemotingEvent.FAULT  , fault    ) ;
@@ -64,9 +62,9 @@ package examples
             service.addEventListener( ActionEvent.START    , start    ) ;
             service.addEventListener( ActionEvent.TIMEOUT  , timeOut  ) ;
             
-            service.gatewayUrl  = "http://localhost/vegas/php/gateway.php" ;
+            service.gatewayUrl  = "http://localhost:8888/vegas/amfphp/gateway.php" ;
             service.serviceName = "TestClassMapping" ;
-            service.methodName  = "getUser" ;           
+            service.methodName  = "getUser" ;
             service.params      = [ "eka", 31, "http://www.ekameleon.net" ] ;
             
             service.run() ;

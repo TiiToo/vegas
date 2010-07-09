@@ -49,7 +49,7 @@ package examples
     {
         public function Remoting04Example()
         {
-            var gatewayUrl:String  = "http://localhost/vegas/php/gateway.php" ;
+            var gatewayUrl:String  = "http://localhost:8888/vegas/amfphp/gateway.php" ;
             var serviceName:String = "Test"  ;
             
             var service:RemotingService = new RemotingService( gatewayUrl , serviceName ) ;

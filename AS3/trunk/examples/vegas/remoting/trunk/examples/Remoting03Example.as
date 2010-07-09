@@ -39,10 +39,9 @@ package examples
     import vegas.events.RemotingEvent;
     import vegas.net.remoting.RemotingAuthentification;
     import vegas.net.remoting.RemotingService;
-
+    
     import flash.display.Sprite;
-    import flash.net.ObjectEncoding;
-
+    
     /**
      * Tests the RemotingService class with the authentification engine (credentials).
      */
@@ -50,8 +49,7 @@ package examples
     {
         public function Remoting03Example()
         {
-            service                = new RemotingService() ;
-            service.objectEncoding = ObjectEncoding.AMF0   ;
+            service = new RemotingService() ;
             
             service.addEventListener( RemotingEvent.ERROR  , error    ) ;
             service.addEventListener( RemotingEvent.FAULT  , fault    ) ;
@@ -65,7 +63,7 @@ package examples
             
             service.setCredentials( authentification ) ; // creates a server-side session.
             
-            service.gatewayUrl  = "http://localhost/vegas/php/gateway.php" ;
+            service.gatewayUrl  = "http://localhost:8888/vegas/amfphp/gateway.php" ;
             service.serviceName = "TestAuthentificate" ;
             service.methodName  = "register" ;
             

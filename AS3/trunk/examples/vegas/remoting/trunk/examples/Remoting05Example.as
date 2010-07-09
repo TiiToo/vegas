@@ -36,13 +36,12 @@ package examples
 {
     import system.logging.LoggerLevel;
     import system.logging.targets.TraceTarget;
-    
+
     import vegas.net.remoting.RemotingService;
     import vegas.net.remoting.RemotingServiceListener;
-    
+
     import flash.display.Sprite;
-    import flash.net.ObjectEncoding;
-    
+
     /**
      * Tests the RemotingServiceListener class. 
      * Note : you can create your custom listener, 
@@ -61,14 +60,13 @@ package examples
             
             //////////////
             
-            var gatewayUrl:String  = "http://localhost:8888/vegas/php/gateway.php" ;
+            var gatewayUrl:String  = "http://localhost:8888/vegas/amfphp/gateway.php" ;
             var serviceName:String = "Test"  ;
             
             var service:RemotingService = new RemotingService( gatewayUrl , serviceName ) ;
             
             service.listener = new RemotingServiceListener() ;
             
-            service.objectEncoding = ObjectEncoding.AMF0 ;
             service.methodName     = "hello" ;
             
             service.run( "world" ) ;
