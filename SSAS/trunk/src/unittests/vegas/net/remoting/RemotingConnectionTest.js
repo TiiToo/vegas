@@ -63,6 +63,16 @@ proto.tearDown = function()
 
 // ----o Tests
 
+proto.testAMF_SERVER_DEBUG = function () 
+{
+    this.assertEquals( "amf_server_debug" , vegas.net.remoting.RemotingConnection.AMF_SERVER_DEBUG ) ;
+}
+
+proto.testCREDENTIALS = function () 
+{
+    this.assertEquals( "Credentials" , vegas.net.remoting.RemotingConnection.CREDENTIALS ) ;
+}
+
 proto.testConstructor = function () 
 {
     this.assertNotNull( this.connection  ) ;
@@ -74,11 +84,27 @@ proto.testInherit = function ()
     this.assertTrue( this.connection instanceof vegas.net.Connection ) ;
 }
 
+proto.testDebug = function () 
+{
+    this.assertEquals( '{amf:false,amfheaders:false,coldfusion:false,error:true,httpheaders:false,m_debug:true,recordset:true,trace:true}' , core.dump( this.connection.debug ) ) ;
+}
+
+proto.testSetCredentials = function () 
+{
+    try
+    {
+        this.connection.setCredentials( new vegas.net.remoting.RemotingAuthentification( "name" , "pass" ) ) ;
+    }
+    catch( e )
+    {
+        this.fail( "#1 : " + e ) ;
+    }
+}
+
 proto.testToString = function () 
 {
     this.assertEquals( "[RemotingConnection]" , this.connection.toString() ) ;
 }
-
 
 // ----o Encapsulate
 
