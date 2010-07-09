@@ -53,7 +53,7 @@ proto = vegas.net.remoting.RemotingServiceTest.prototype ;
 
 proto.setUp = function()
 {
-    this.service = new vegas.net.remoting.RemotingService( "http://localhost/vegas/gateway.php" ) ;
+    this.service = new vegas.net.remoting.RemotingService( "http://localhost/vegas/gateway.php" , "service" ) ;
 }
 
 proto.tearDown = function()
@@ -83,6 +83,30 @@ proto.testClone = function()
     var clone = this.service.clone() ;
     this.assertNotNull( clone ) ;
     this.assertTrue( clone instanceof vegas.net.remoting.RemotingService ) ;
+}
+
+proto.testResponder = function () 
+{
+    this.assertEquals( this.service._internalResponder , this.service.responder ) ;
+    var responder = new vegas.net.Responder() ;
+    this.service.responder = responder ;
+    this.assertEquals( responder , this.service.responder ) ;
+}
+
+proto.testServiceName = function () 
+{
+    this.assertEquals( "service" , this.service.serviceName ) ;
+    this.service.serviceName = "my_service" ;
+    this.assertEquals( "my_service" , this.service.serviceName ) ;
+}
+
+proto.testTimeoutPolicy = function () 
+{
+    this.assertEquals( system.process.TimeoutPolicy.INFINITY , this.service.timeoutPolicy ) ;
+    this.service.timeoutPolicy = system.process.TimeoutPolicy.LIMIT ;
+    this.assertEquals( system.process.TimeoutPolicy.LIMIT , this.service.timeoutPolicy ) ;
+    this.service.timeoutPolicy = "hello" ;
+    this.assertEquals( system.process.TimeoutPolicy.INFINITY , this.service.timeoutPolicy ) ;
 }
 
 proto.testToString = function () 

@@ -68,6 +68,15 @@ proto.testInherit = function ()
     this.assertTrue( this.connection instanceof system.process.CoreAction ) ;
 }
 
+proto.testTimeoutPolicy = function () 
+{
+    this.assertEquals( system.process.TimeoutPolicy.INFINITY , this.connection.timeoutPolicy ) ;
+    this.connection.timeoutPolicy = system.process.TimeoutPolicy.LIMIT ;
+    this.assertEquals( system.process.TimeoutPolicy.LIMIT , this.connection.timeoutPolicy ) ;
+    this.connection.timeoutPolicy = "hello" ;
+    this.assertEquals( system.process.TimeoutPolicy.INFINITY , this.connection.timeoutPolicy ) ;
+}
+
 proto.testToSource = function () 
 {
     this.assertEquals( "new vegas.net.Connection()" , this.connection.toSource() ) ;
