@@ -37,10 +37,11 @@
 
 package vegas.net 
 {
+    import core.dump;
+    
     import system.Cloneable;
     import system.Equatable;
     import system.Serializable;
-    import system.eden;
     
     /**
      * Holds all of the variables needed to describe an HTTP connection to a host. 
@@ -52,9 +53,11 @@ package vegas.net
      * var h:HTTPHost ;
      * 
      * h = new HTTPHost("localhost") ;
-     * trace(h) ;     * 
+     * 
+     * trace(h) ;
      * 
      * h = new HTTPHost("127.0.0.1", 80, "https") ;
+     * 
      * trace(h) ;
      * </pre>
      */
@@ -116,7 +119,7 @@ package vegas.net
         public function set port( value:int ):void
         {
             _port = value ;
-        }         
+        }
         
         /**
          * Determinates the scheme name. <code class="prettyprint">null</code> indicates the {@link #DEFAULT_SCHEME_NAME default scheme}.
@@ -171,7 +174,7 @@ package vegas.net
          */
         public function toSource(indent:int = 0):String
         {
-            return "new vegas.net.HTTPHost(" + eden.serialize(_host) + "," + eden.serialize(_port) + "," + eden.serialize(_scheme) + ")" ;
+            return "new vegas.net.HTTPHost(" + dump(_host) + "," + dump(_port) + "," + dump(_scheme) + ")" ;
         }
         
         /**

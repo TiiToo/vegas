@@ -37,8 +37,8 @@
 
 package vegas.ioc.factory 
 {
-    import system.eden;
-    
+    import core.dump;
+
     import vegas.ioc.ObjectArgument;
     import vegas.ioc.ObjectAttribute;
     import vegas.ioc.ObjectListener;
@@ -46,7 +46,7 @@ package vegas.ioc.factory
     import vegas.ioc.ObjectProperty;
     import vegas.ioc.ObjectReceiver;
     import vegas.logging.logger;
-    
+
     /**
      * This object defines a property definition and this value in an object definition.
      */
@@ -178,7 +178,7 @@ package vegas.ioc.factory
                 }
                 else
                 {
-                    logger.warn( LISTENERS_WARN , id , i , eden.serialize( def ) ) ; 
+                    logger.warn( LISTENERS_WARN , id , i , dump( def ) ) ; 
                 }
             }
             return ( listeners.length > 0 ) ? listeners : null ;
@@ -258,7 +258,7 @@ package vegas.ioc.factory
                 }
                 else
                 {
-                    logger.warn( PROPERTIES_WARN , id , i , eden.serialize( prop ) ) ; 
+                    logger.warn( PROPERTIES_WARN , id , i , dump( prop ) ) ; 
                 }
             }
             return ( properties.length > 0 ) ? properties : null ;
@@ -313,7 +313,7 @@ package vegas.ioc.factory
                 }
                 else
                 {
-                    logger.warn( RECEIVERS_WARN , id , i , eden.serialize( def ) ) ; 
+                    logger.warn( RECEIVERS_WARN , id , i , dump( def ) ) ; 
                 }
             }
             return ( receivers.length > 0 ) ? receivers : null ;
