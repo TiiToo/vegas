@@ -439,8 +439,6 @@ package vegas.media
          */
         public override function load( stream:URLRequest, context:SoundLoaderContext = null ) : void
         {
-            stop() ;
-            notifyStarted() ;
             try
             {
                 super.load(stream, context) ;
@@ -448,7 +446,6 @@ package vegas.media
             catch( e:Error )
             {
                 logger.error( this + " load failed : " + e.toString()) ;
-                notifyFinished() ;
             }
         }
         
@@ -708,7 +705,10 @@ package vegas.media
         {
             _isRunning = false ;
             _phase     = TaskPhase.STOPPED ;
-            _timer.stop() ;
+            if ( _timer.running )
+            {
+                _timer.stop() ;
+            }
             _fireActionEvent( ActionEvent.PAUSE ) ;
         }
         
@@ -730,7 +730,10 @@ package vegas.media
         {
             _isRunning = false ;
             _phase     = TaskPhase.STOPPED ;
-            _timer.stop() ;
+            if ( _timer.running )
+            {
+                _timer.stop() ;
+            }
             _fireActionEvent( ActionEvent.STOP ) ;
         }
         

@@ -38,12 +38,14 @@
 package vegas.media 
 {
     import system.process.CoreActionLoader;
-    
+    import system.process.Stoppable;
+
+    import flash.errors.IOError;
     import flash.events.Event;
     import flash.events.IEventDispatcher;
     import flash.media.ID3Info;
     import flash.media.SoundLoaderContext;
-    
+
     /**
      * This action process is an helper who launch the load of a CoreSound object.
      * <p><b>Example :</b></p>
@@ -86,7 +88,7 @@ package vegas.media
      * process.run() ;
      * </pre>
      */
-    public class SoundLoader extends CoreActionLoader 
+    public class SoundLoader extends CoreActionLoader implements Stoppable
     {
         /**
          * Creates a new SoundLoader instance.
@@ -180,15 +182,25 @@ package vegas.media
         public function get url():String
         {
             return (_loader as CoreSound).url ;
-        }   
+        }
         
         /**
          * Cancels a load() method operation that is currently in progress for the Loader instance.
          */
         public override function close():void
         {
-            (_loader as CoreSound).close() ;
-            notifyFinished() ;
+            try
+            {
+                (_loader as CoreSound).close() ;
+            }
+            catch( e:IOError )
+            {
+                
+            }
+            if ( _isRunning )
+            {
+                notifyFinished() ;
+            }
         } 
         
         /**
@@ -198,8 +210,19 @@ package vegas.media
         {
             if ( dispatcher != null )
             {
-                super.register(dispatcher) ;
+                super.register( dispatcher ) ;
                 dispatcher.addEventListener( Event.ID3, _id3, false, 0, true ) ;
+            }
+        }
+        
+        /**
+         * Stops the process if is running
+         */
+        public function stop():void
+        {
+            if ( _isRunning )
+            {
+                close() ;
             }
         }
         
@@ -220,7 +243,10 @@ package vegas.media
          */
         protected function _id3( e:Event ):void
         {
-            dispatchEvent( e ) ;
+            if( hasEventListener( e.type ) )
+            {
+                dispatchEvent( e ) ;
+            }
         }
         
         /**

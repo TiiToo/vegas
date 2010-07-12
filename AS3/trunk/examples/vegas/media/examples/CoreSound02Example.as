@@ -64,8 +64,7 @@ package examples
             field.height = 300 ;
             field.defaultTextFormat = new TextFormat( "Verdana" , 11, 0xFFFFFF, true ) ;
             
-            addChild(field) ;
-            
+            addChild( field ) ;
             
             var request:URLRequest = new URLRequest( "mp3/test.mp3" ) ;
             
