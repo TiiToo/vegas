@@ -152,7 +152,7 @@ if ( _global.system )
     
     // system.ioc
     
-    require( "system.ioc." ) ;
+    require( "system.ioc.TypePolicy" ) ;
     
     // system.logging
     

@@ -61,6 +61,7 @@ load("unittests/system/errors/AllTests.js") ;
 load("unittests/system/evaluators/AllTests.js") ;
 load("unittests/system/events/AllTests.js") ;
 load("unittests/system/formatters/AllTests.js") ;
+load("unittests/system/ioc/AllTests.js") ;
 load("unittests/system/logging/AllTests.js") ;
 load("unittests/system/numeric/AllTests.js") ;
 load("unittests/system/process/AllTests.js") ;
@@ -90,6 +91,7 @@ system.AllTests.suite = function()
     suite.addTest( system.evaluators.AllTests.suite() );
     suite.addTest( system.events.AllTests.suite()     );
     suite.addTest( system.formatters.AllTests.suite() );
+    suite.addTest( system.ioc.AllTests.suite()        );
     suite.addTest( system.logging.AllTests.suite()    );
     suite.addTest( system.numeric.AllTests.suite()    );
     suite.addTest( system.process.AllTests.suite()    );
