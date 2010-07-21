@@ -36,10 +36,45 @@
 */
 
 /**
- * This object register formattable expression and format a String with all expressions register in this internal dictionnary. 
+ * This object register formattable expression and format a String with all expressions register in this internal dictionnary.
+ * <p><b>Example :</b></p>
+ * <pre>
+ * ExpressionFormatter = system.formatters.ExpressionFormatter ;
+ * 
+ * formatter = new ExpressionFormatter() ;
+ * 
+ * formatter.expressions.put( "root"      , "c:"                     ) ;
+ * formatter.expressions.put( "system"    , "{root}/project/system"  ) ;
+ * formatter.expressions.put( "data.maps" , "{system}/data/maps"     ) ;
+ * formatter.expressions.put( "map"       , "{data.maps}/HashMap.as" ) ;
+ * 
+ * source = "the root : {root} - the class : {map}" ; 
+ * // the root : c: - the class : c:/project/system/data/maps/HashMap.as
+ * 
+ * trace( formatter.format( source ) ) ;
+ * 
+ * trace( "----" ) ;
+ * 
+ * formatter.expressions.put( "system"    , "%root%/project/system" ) ;
+ * formatter.expressions.put( "data.maps" , "%system%/data/maps" ) ;
+ * formatter.expressions.put( "HashMap"   , "%data.maps%/HashMap.as" ) ;
+ * 
+ * formatter.beginSeparator = "%" ;
+ * formatter.endSeparator   = "%" ;
+ * 
+ * source = "the root : %root% - the class : %HashMap%" ;
+ * 
+ * trace( formatter.format( source ) ) ;
+ * // the root : c: - the class : c:/project/system/data/maps/HashMap.as
+ * </pre>
  */
 if ( system.formatters.ExpressionFormatter == undefined ) 
 {
+    /**
+     * @requires system.data.maps.ArrayMap
+     */
+    require( "system.data.maps.ArrayMap" ) ;
+    
     /**
      * @requires system.formatters.Formattable
      */
@@ -69,7 +104,7 @@ if ( system.formatters.ExpressionFormatter == undefined )
     /**
      * The dictionary of all expressions register in the formatter.
      */
-    proto.expressions = {} ;
+    proto.expressions = new system.data.maps.ArrayMap() ;
     
     /**
      * Formats the specified value.
@@ -78,7 +113,7 @@ if ( system.formatters.ExpressionFormatter == undefined )
      */
     proto.format = function ( value ) /*String*/ 
     {
-        // 
+        return this._format( value.toString() , 0 ) ;
     }
     
     //////// getter/setter
@@ -150,9 +185,38 @@ if ( system.formatters.ExpressionFormatter == undefined )
     /**
      * @private
      */
-    proto._format = function( value /*String*/ ) /*void*/
+    proto._format = function( str /*String*/ , depth /*uint*/ ) /*void*/
     {
+        if ( depth >= system.formatters.ExpressionFormatter.MAX_RECURSION )
+        {
+            return str ;
+        } 
         
+        var m /*Array*/ = str.match( this._reg ) ;
+        
+        if ( m == null )
+        {
+            return str ;
+        }
+        var l /*int*/   = m.length ;
+        
+        if ( l > 0 )
+        {
+            var exp /*String*/ ;
+            var key /*String*/ ;
+            for ( var i /*int*/ = 0 ; i<l ; i++ )
+            {
+                key = m[i].substr(1) ;
+                key = key.substr( 0 , key.length-1 ) ;
+                if ( this.expressions.containsKey( key ) )
+                {
+                    exp = this._format( this.expressions.get(key) , depth + 1 ) ;
+                    this.expressions.put( key , exp ) ;
+                    str = str.replace( m[i] , exp ) || exp ;
+                }
+            }
+        }
+        return str ;
     }
     
     /**
@@ -160,6 +224,6 @@ if ( system.formatters.ExpressionFormatter == undefined )
      */
     proto._reset = function() /*void*/
     {
-        this._reg = new RegExp( core.strings.format( this._pattern , this.beginSeparator , this.endSeparator ), "g" ) ;
+        this._reg = new RegExp( core.strings.fastformat( this._pattern , this.beginSeparator , this.endSeparator ), "g" ) ;
     }
 }

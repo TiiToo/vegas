@@ -148,6 +148,7 @@ if ( _global.system )
     
     // system.data.formatters
     
+    require( "system.formatters.ExpressionFormatter" ) ;
     require( "system.formatters.Formattable" ) ;
     
     // system.ioc
