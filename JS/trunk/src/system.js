@@ -56,6 +56,7 @@ if ( _global.system )
     getPackage("system.evaluators") ;
     getPackage("system.events") ;
     getPackage("system.formatters") ;
+    getPackage("system.ioc") ;
     getPackage("system.logging") ;
     getPackage("system.logging.targets") ;
     getPackage("system.numeric") ;
@@ -148,6 +149,10 @@ if ( _global.system )
     // system.data.formatters
     
     require( "system.formatters.Formattable" ) ;
+    
+    // system.ioc
+    
+    require( "system.ioc." ) ;
     
     // system.logging
     
