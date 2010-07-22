@@ -92,7 +92,7 @@ package vegas.ioc
                 }
                 default :
                 {
-                  _policy = ObjectAttribute.VALUE ;
+                    _policy = ObjectAttribute.VALUE ;
                 }
             }
         }

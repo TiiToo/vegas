@@ -156,7 +156,7 @@ package vegas.ioc
         public function getAliases():Array 
         {
             return _map.getKeys() ;
-        }        
+        }
         
         /**
          * Returns the internal Map reference of this collector.
