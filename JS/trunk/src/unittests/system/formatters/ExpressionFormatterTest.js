@@ -35,23 +35,44 @@
   
 */
 
-load("unittests/system/formatters/ExpressionFormatterTest.js") ;
-load("unittests/system/formatters/FormattableTest.js") ;
+// ---o Constructor
 
-// ----o constructor
-
-system.formatters.AllTests = {} ;
-
-system.formatters.AllTests.suite = function() 
+system.formatters.ExpressionFormatterTest = function( name ) 
 {
-    var TestSuite = buRRRn.ASTUce.TestSuite;
-    
-    var suite = new TestSuite( "system.formatters unit tests" );
-    
-    //suite.simpleTrace = true;
-    
-    suite.addTest( new TestSuite( system.formatters.ExpressionFormatterTest ) ) ;
-    suite.addTest( new TestSuite( system.formatters.FormattableTest ) ) ;
-    
-    return suite ;
+    buRRRn.ASTUce.TestCase.call( this , name ) ;
 }
+
+// ----o Inherit
+
+system.formatters.ExpressionFormatterTest.prototype             = new buRRRn.ASTUce.TestCase() ;
+system.formatters.ExpressionFormatterTest.prototype.constructor = system.formatters.ExpressionFormatterTest ;
+
+proto = system.formatters.ExpressionFormatterTest.prototype ;
+
+// ----o Initialize
+
+proto.setUp = function()
+{
+    this.formatter = new system.formatters.ExpressionFormatter() ;
+}
+
+proto.tearDown = function()
+{
+    this.formatter = null
+}
+
+// ----o Public Methods
+
+proto.testConstructor = function () 
+{
+    this.assertNotNull( this.formatter ) ; 
+}
+
+proto.testInherit = function () 
+{
+    this.assertTrue( this.formatter instanceof system.formatters.Formattable ) ; 
+}
+
+// ----o Encapsulate
+
+delete proto ;
