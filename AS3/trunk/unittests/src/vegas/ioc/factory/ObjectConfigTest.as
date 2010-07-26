@@ -67,40 +67,78 @@ package vegas.ioc.factory
         public function testConstructor():void
         {
             assertNotNull( config ) ;
-            
+        }
+        
+        public function testTypePolicy():void
+        {
             assertEquals( TypePolicy.NONE , config.typePolicy ) ;
-            
+        }
+        
+        public function testConfig():void
+        {
             assertNotNull( config.config ) ;
+        }
+        
+        public function testLocale():void
+        {
             assertNotNull( config.locale ) ;
-            
+        }
+        
+        public function testDefaultTools():void
+        {
             assertNotNull( config.configEvaluator    as ConfigEvaluator ) ;
             assertNotNull( config.localeEvaluator    as LocaleEvaluator ) ;
             assertNotNull( config.referenceEvaluator as ReferenceEvaluator ) ;
             assertNotNull( config.typeAliases        as TypeAliases ) ;
             assertNotNull( config.typeEvaluator      as TypeEvaluator ) ;
             assertNotNull( config.typeExpression     as TypeExpression ) ;
-            
-            assertNull( config.defaultDestroyMethod ) ;
-            assertNull( config.defaultInitMethod    ) ;
-            assertNull( config.flashVars            ) ;
-            assertNull( config.root                 ) ;
-            assertNull( config.stage                ) ;
-            
+        }
+        
+        public function testFlashVars():void
+        {
+            assertNull( config.flashVars ) ;
+        }
+        
+        public function testRoot():void
+        {
+            assertNull( config.root ) ;
+        }
+        
+        public function testStage():void
+        {
+            assertNull( config.stage ) ;
+        }
+        
+        public function testThrowError():void
+        {
             assertTrue( config.throwError ) ;
+        }
+        
+        public function testUseLogger():void
+        {
             assertTrue( config.useLogger ) ;
-            
+        }
+        
+        public function testIdentify():void
+        {
             assertFalse( config.identify ) ;
-            assertFalse( config.lock     ) ;
+        }
+        
+        public function testLock():void
+        {
+            assertFalse( config.lock ) ;
         }
         
         public function testDefaultDestroyMethod():void
         {
+            assertNull( config.defaultDestroyMethod ) ;
             config = new ObjectConfig( { defaultDestroyMethod:"destroyer" } ) ;
             assertEquals( "destroyer" , config.defaultDestroyMethod ) ;
         }
         
         public function testDefaultInitMethod():void
         {
+            assertNull( config.defaultInitMethod ) ;
             config = new ObjectConfig( { defaultInitMethod:"initialize" } ) ;
             assertEquals( "initialize" , config.defaultInitMethod ) ;
         }
