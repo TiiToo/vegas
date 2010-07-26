@@ -27,7 +27,7 @@ package examples
     import flash.display.Sprite;
     import flash.text.TextFormat;
     
-    [SWF(width="740", height="460", frameRate="24", backgroundColor="#666666")]
+    [SWF(width="340", height="120", frameRate="24", backgroundColor="#666666")]
     
     public class ECMAObjectFactory21Example extends Sprite 
     {
@@ -39,14 +39,12 @@ package examples
             {
                 field : 
                 {
-                    defaultTextFormat : new TextFormat( "Arial", 12 ) ,
-                    textColor         : 0xFFFF00 ,
+                    autoSize          : "left" ,
+                    border            : false ,
+                    defaultTextFormat : new TextFormat( "Verdana", 16  , 0xFFFF00) , 
                     selectable        : false ,
-                    text              : "hello world" ,
-                    height            : 250 ,
-                    width             : 250 ,
-                    x                 :  25 ,
-                    y                 :  25 
+                    x                 : 25 ,
+                    y                 : 25 
                 }
             };
             factory.create( objects ) ;
@@ -75,7 +73,8 @@ package examples
                 lazyInit   : true ,
                 properties :
                 [
-                    { name : "#init"   , config : "field" } 
+                    { name : "#init" , config : "field"       } , 
+                    { name : "text"  , value  : "hello world" } 
                 ]
             }
             ,
