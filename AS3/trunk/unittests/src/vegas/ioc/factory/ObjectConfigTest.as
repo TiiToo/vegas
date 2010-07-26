@@ -130,7 +130,37 @@ package vegas.ioc.factory
         
         public function testThrowError():void
         {
-            assertTrue( config.throwError ) ;
+            assertTrue( config.throwError , "#1" ) ;
+            
+            config.configEvaluator.throwError = false ;
+            assertFalse( config.throwError , "#2" ) ;
+            config.configEvaluator.throwError = true ;
+            
+            config.localeEvaluator.throwError = false ;
+            assertFalse( config.throwError , "#3" ) ;
+            config.localeEvaluator.throwError = true ;
+            
+            config.typeEvaluator.throwError = false ;
+            assertFalse( config.throwError , "#4" ) ;
+            config.typeEvaluator.throwError = true ;
+            
+            config.referenceEvaluator.throwError = false ;
+            assertFalse( config.throwError , "#5" ) ;
+            config.referenceEvaluator.throwError = true ;
+            
+            config.throwError = false ;
+            assertFalse( config.throwError                    , "#6-0" ) ;
+            assertFalse( config.configEvaluator.throwError    , "#6-1" ) ;
+            assertFalse( config.localeEvaluator.throwError    , "#6-2" ) ;
+            assertFalse( config.referenceEvaluator.throwError , "#6-3" ) ;
+            assertFalse( config.typeEvaluator.throwError      , "#6-4" ) ;
+            
+            config.throwError = true ;
+            assertTrue( config.throwError                    , "#6-0" ) ;
+            assertTrue( config.configEvaluator.throwError    , "#7-1" ) ;
+            assertTrue( config.localeEvaluator.throwError    , "#7-2" ) ;
+            assertTrue( config.referenceEvaluator.throwError , "#7-3" ) ;
+            assertTrue( config.typeEvaluator.throwError      , "#7-4" ) ;
         }
         
         public function testUseLogger():void
