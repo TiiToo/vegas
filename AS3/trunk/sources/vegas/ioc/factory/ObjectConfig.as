@@ -37,9 +37,6 @@
 
 package vegas.ioc.factory 
 {
-    import core.reflect.getClassName;
-
-    import system.Reflection;
     import system.data.Iterator;
 
     import vegas.ioc.ObjectAttribute;
@@ -406,54 +403,19 @@ package vegas.ioc.factory
         }
         
         /**
-         * Resets the target of the internal config dynamic object in this instance with a basic generic Object reference.
-         */
-        public function resetConfigTarget():void
-        {
-            _config = {} ;
-        }
-        
-        /**
          * This method is used to change the target of the internal config dynamic object.
          */
-        public function setConfigTarget( o:Object ):void
+        public function setConfigTarget( o:Object = null ):void
         {
-            _config = Reflection.getClassInfo(o).isDynamic() ? o : {} ;
+            _config = o || {} ;
         }
         
         /**
          * This method is used to change the target of the internal local dynamic object.
          */
-        public function setLocaleTarget( o:Object ):void
+        public function setLocaleTarget( o:Object = null ):void
         {
-            _locale = Reflection.getClassInfo(o).isDynamic() ? o : {} ;
-        }
-        
-        /**
-         * Returns the string representation of this instance.
-         * @return the string representation of this instance.
-         */
-        public function toString():String 
-        {
-            var s:String = "[" + getClassName(this) ;
-            if ( defaultDestroyMethod != null )
-            {
-                s += " defaultDestroyMethod:" + defaultDestroyMethod ;
-            }
-            if ( defaultInitMethod != null )
-            {
-                s += " defaultInitMethod:" + defaultInitMethod ;
-            }
-            if ( identify )
-            {
-                s += " identify:" + identify ;
-            }
-            if ( lock )
-            {
-                s += " lock:" + lock ;
-            }
-            s += "]" ;
-            return s ;
+            _locale = o || {} ;
         }
         
         /**

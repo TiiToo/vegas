@@ -98,11 +98,11 @@ package examples
             
             conf.config = {} ; 
             
-            trace(conf.config.prop1) ; // hello world
+            trace( conf.config.prop1 ) ; // hello world
             
-            conf.resetConfigTarget() ; 
+            conf.setConfigTarget() ; // reset the config target with a new empty generic object
             
-            trace(conf.config.prop1) ; // undefined
+            trace( conf.config.prop1 ) ; // undefined
             
             trace("--- Defines a new internal object reference of the config attribut with the setConfigTarget() method.") ;
             

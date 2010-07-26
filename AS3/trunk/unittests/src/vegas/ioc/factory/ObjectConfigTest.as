@@ -44,6 +44,7 @@ package vegas.ioc.factory
     import vegas.ioc.evaluators.LocaleEvaluator;
     import vegas.ioc.evaluators.ReferenceEvaluator;
     import vegas.ioc.evaluators.TypeEvaluator;
+    import vegas.net.FlashVars;
 
     public class ObjectConfigTest extends TestCase 
     {
@@ -72,6 +73,21 @@ package vegas.ioc.factory
         public function testTypePolicy():void
         {
             assertEquals( TypePolicy.NONE , config.typePolicy ) ;
+            
+            config.typePolicy = TypePolicy.ALIAS ;
+            assertEquals( TypePolicy.ALIAS , config.typePolicy ) ;
+            
+            config.typePolicy = TypePolicy.ALL ;
+            assertEquals( TypePolicy.ALL , config.typePolicy ) ;
+            
+            config.typePolicy = TypePolicy.EXPRESSION ;
+            assertEquals( TypePolicy.EXPRESSION , config.typePolicy ) ;
+            
+            config.typePolicy = TypePolicy.NONE ;
+            assertEquals( TypePolicy.NONE , config.typePolicy ) ;
+            
+            config.typePolicy = "unknow" ;
+            assertEquals( TypePolicy.NONE , config.typePolicy ) ;
         }
         
         public function testConfig():void
@@ -97,6 +113,9 @@ package vegas.ioc.factory
         public function testFlashVars():void
         {
             assertNull( config.flashVars ) ;
+            var fv:FlashVars = new FlashVars() ;
+            config.flashVars = fv ;
+            assertEquals( fv , config.flashVars ) ;
         }
         
         public function testRoot():void
