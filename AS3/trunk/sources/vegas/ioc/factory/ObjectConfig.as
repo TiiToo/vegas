@@ -80,9 +80,9 @@ package vegas.ioc.factory
          */
         public function ObjectConfig( init:Object=null )
         {
-            _config          = new Object() ;
+            _config          = {} ;
             _configEvaluator = new ConfigEvaluator( this ) ;
-            _locale          = new Object() ;
+            _locale          = {} ;
             _typeExpression  = new TypeExpression() ;
             _typeAliases     = new TypeAliases() ;
             _localeEvaluator = new LocaleEvaluator( this ) ;
@@ -220,8 +220,10 @@ package vegas.ioc.factory
          * <p><b>Example :</b></p>
          * <pre class="prettyprint">
          * import vegas.ioc.factory.ObjectConfig ;
+         * 
          * var config:ObjectConfig  = new ObjectConfig() ;
-         * config.typeAliases       =
+         * 
+         * config.typeAliases =
          * [ 
          *     { alias:"Sprite" , type:"flash.display.Sprite" } 
          * ] ;
@@ -278,18 +280,36 @@ package vegas.ioc.factory
         
         /**
          * Determinates the content of the typeExpression reference in this config object.
-         * <p>The setter of this virtual property can be populated with a TypeAliases instance or an Array of typeAliases items.</p>
-         * <p>This setter attribute don't remove the old TypeAliases instance but fill it with new aliases. 
-         * If you want cleanup the aliases of this configuration object you must use the <code class="prettyprint">typeAliases.clear()</code> method.</p>
-         * <p>The typeAliases items are generic objects with 2 attributes <b>alias</b> (the alias String expression) and <b>type</b> (the type String expression).</p>
-         * <p><b>Example :</b></p>
+         * <p><b>Example 1 :</b></p>
          * <pre class="prettyprint">
          * import vegas.ioc.factory.ObjectConfig ;
+         * import vegas.ioc.TypeExpression ;
+         * 
+         * var exp:TypeExpression = new TypeExpression() ;
+         * 
+         * exp.put( "vegas"             , "vegas" ) ;
+         * exp.put( "data.map"          , "{vegas}.map" ) ;
+         * exp.put( "data.map.HashMap"  , "{data.map}.HashMap" ) ;
+         * 
          * var config:ObjectConfig  = new ObjectConfig() ;
-         * config.typeAliases       = 
-         * [ 
-         *     { alias:"HashMap" , type:"system.data.maps.HashMap" } 
-         * ] ;
+         * 
+         * config.typeExpression = exp ;
+         * </pre> 
+         * <p><b>Example 2 :</b> Use an Array of entries with the name/value members</p>
+         * <pre class="prettyprint">
+         * import vegas.ioc.factory.ObjectConfig ;
+         * import vegas.ioc.TypeExpression ;
+         * 
+         * var expressions:Array = 
+         * [
+         *     { name : "data"    , value : "system.data"    } ,
+         *     { name : "maps"    , value : "{data}.maps"    } ,
+         *     { name : "HashMap" , value : "{maps}.HashMap" } ,
+         * ];
+         * 
+         * var config:ObjectConfig  = new ObjectConfig() ;
+         * 
+         * config.typeExpression = expressions ;
          * </pre> 
          */
         public function get typeExpression():*
@@ -308,6 +328,10 @@ package vegas.ioc.factory
             }
             else if ( expressions is Array )
             {
+                if ( _typeExpression == null )
+                {
+                    _typeExpression = new TypeExpression() ;
+                }
                 var item:Object ;
                 var ar:Array = expressions as Array ;
                 var len:int  = ar.length ;

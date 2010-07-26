@@ -37,9 +37,9 @@ package vegas.ioc.factory
 {
     import buRRRn.ASTUce.framework.ITest;
     import buRRRn.ASTUce.framework.TestSuite;
-    
+
     import vegas.ioc.factory.strategy.AllTests;
-    
+
     /**
      * This class launch all tests.
      */
@@ -55,7 +55,7 @@ package vegas.ioc.factory
             suite.addTest( vegas.ioc.factory.strategy.AllTests.suite() ) ;
             
             // FIXME suite.addTestSuite( ECMAObjectFactoryTest ) ;
-            // FIXME suite.addTestSuite( ObjectConfigTest ) ;
+            suite.addTestSuite( ObjectConfigTest ) ;
             // FIXME suite.addTestSuite( ObjectFactoryTest ) ;
             
             return suite;

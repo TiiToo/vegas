@@ -36,12 +36,73 @@
 package vegas.ioc.factory
 {
     import buRRRn.ASTUce.framework.TestCase;
-    
+
+    import vegas.ioc.TypeAliases;
+    import vegas.ioc.TypeExpression;
+    import vegas.ioc.TypePolicy;
+    import vegas.ioc.evaluators.ConfigEvaluator;
+    import vegas.ioc.evaluators.LocaleEvaluator;
+    import vegas.ioc.evaluators.ReferenceEvaluator;
+    import vegas.ioc.evaluators.TypeEvaluator;
+
     public class ObjectConfigTest extends TestCase 
     {
         public function ObjectConfigTest(name:String = "")
         {
             super(name);
+        }
+        
+        public var config:ObjectConfig ;
+        
+        public function setUp():void
+        {
+            config = new ObjectConfig() ;
+        }
+        
+        public function tearDown():void
+        {
+            config = null;
+        }
+        
+        public function testConstructor():void
+        {
+            assertNotNull( config ) ;
+            
+            assertEquals( TypePolicy.NONE , config.typePolicy ) ;
+            
+            assertNotNull( config.config ) ;
+            assertNotNull( config.locale ) ;
+            
+            assertNotNull( config.configEvaluator    as ConfigEvaluator ) ;
+            assertNotNull( config.localeEvaluator    as LocaleEvaluator ) ;
+            assertNotNull( config.referenceEvaluator as ReferenceEvaluator ) ;
+            assertNotNull( config.typeAliases        as TypeAliases ) ;
+            assertNotNull( config.typeEvaluator      as TypeEvaluator ) ;
+            assertNotNull( config.typeExpression     as TypeExpression ) ;
+            
+            assertNull( config.defaultDestroyMethod ) ;
+            assertNull( config.defaultInitMethod    ) ;
+            assertNull( config.flashVars            ) ;
+            assertNull( config.root                 ) ;
+            assertNull( config.stage                ) ;
+            
+            assertTrue( config.throwError ) ;
+            assertTrue( config.useLogger ) ;
+            
+            assertFalse( config.identify ) ;
+            assertFalse( config.lock     ) ;
+        }
+        
+        public function testDefaultDestroyMethod():void
+        {
+            config = new ObjectConfig( { defaultDestroyMethod:"destroyer" } ) ;
+            assertEquals( "destroyer" , config.defaultDestroyMethod ) ;
+        }
+        
+        public function testDefaultInitMethod():void
+        {
+            config = new ObjectConfig( { defaultInitMethod:"initialize" } ) ;
+            assertEquals( "initialize" , config.defaultInitMethod ) ;
         }
     }
 }
