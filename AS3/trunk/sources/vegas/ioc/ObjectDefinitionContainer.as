@@ -84,12 +84,9 @@ package vegas.ioc
     {
         /**
          * Creates a new ObjectDefinitionContainer instance.
-         * @param global the flag to use a global event flow or a local event flow.
-         * @param channel the name of the global event flow if the <code class="prettyprint">global</code> argument is <code class="prettyprint">true</code>.
          */
-        public function ObjectDefinitionContainer( global:Boolean = false , channel:String = null )
+        public function ObjectDefinitionContainer()
         {
-            super( global, channel ) ;
             _map = new HashMap() ;
         }
         

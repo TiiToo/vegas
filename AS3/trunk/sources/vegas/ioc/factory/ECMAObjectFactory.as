@@ -37,10 +37,8 @@
 
 package vegas.ioc.factory 
 {
-    import vegas.ioc.ObjectDefinition;
-
+    import system.data.Identifiable;
     import system.data.maps.HashMap;
-    import system.data.sets.HashSet;
 
     /**
      * This IoC factory use an ECMAScript collection of generic objects to create and initialize all object definitions used in the application.
@@ -88,29 +86,39 @@ package vegas.ioc.factory
      * factory.create( objects ) ; 
      * </pre>
      */
-    public class ECMAObjectFactory extends ObjectFactory
+    public class ECMAObjectFactory extends ObjectFactory implements Identifiable
     {
         /**
          * Creates a new ECMAObjectFactory instance.
          * @param id The id of this factory.
-         * @param global the flag to use a global event flow or a local event flow.
-         * @param channel the name of the global event flow if the <code class="prettyprint">global</code> argument is <code class="prettyprint">true</code>.
+         * @param objects This array contains generic objects to fill and initialize this factory with the run or create method.
          */
-        public function ECMAObjectFactory( id:*=null , global:Boolean = false , channel:String = null )
+        public function ECMAObjectFactory( id:* = null , objects:Array = null )
         {
-            super( id , global, channel ) ;
-            _setDefinitions = new HashSet() ;
+            super( objects ) ;
+            this.id  = id ;
+        }
+        
+        /**
+         * Indicates the id of this object.
+         */
+        public function get id():*
+        {
+            return _id ;
+        }
+        
+        /**
+         * @private
+         */
+        public function set id( id:* ):void
+        {
+            _id = id ;
         }
         
         /**
          * Determinates the default singleton name.
          */
         public static const DEFAULT_SINGLETON_NAME:String = "__default__" ;
-        
-        /**
-         * This array contains objects to fill this factory with the run or create method.
-         */
-        public var objects:Array ;
         
         /**
          * Indicates if the specified singleton reference is register.
@@ -169,103 +177,13 @@ package vegas.ioc.factory
         }
         
         /**
-         * Run the process.
+         * @private
          */
-        public override function run( ...arguments:Array ):void 
-        {
-            if ( running )
-            {
-                return ;
-            }
-            
-            notifyStarted() ;
-            
-            setRunning( true ) ;
-            
-            _setDefinitions.clear() ;
-            
-            if ( arguments[0] is Array )
-            {
-                objects = arguments[0] ;
-            }
-            
-            if ( objects == null )
-            {
-                throw new ReferenceError(this + " run failed if the 'objects' Array property not must be 'null' or 'undefined'.") ;
-            }
-            
-            if ( objects.length > 0)
-            {
-                while ( objects.length > 0 )
-                {
-                    _createNewObjectDefinition( objects.shift() ) ;
-                }
-            }
-            
-            _flushInitSingletonDefinitions() ;
-            
-            setRunning( false ) ;
-            
-            notifyFinished() ;
-        }
+        private var _id:* ;
         
         /**
          * @private
          */
         private static var _instances:HashMap = new HashMap() ;
-        
-        /**
-         * @private
-         */
-        private var _setDefinitions:HashSet ;
-        
-        /**
-         * Returns and creates a new IObjectDefinition instance.
-         * @return and creates a new IObjectDefinition instance.
-         */
-        private function _createNewObjectDefinition( o:Object ):void
-        {
-            if ( o != null )
-            {
-                var definition:ObjectDefinition = ObjectDefinition.create(o) ;
-                addObjectDefinition( definition ) ;
-                _initDefinition( definition ) ;
-            }
-            else
-            {
-                warn( this + " create new object definition failed with a 'null' or 'undefined' object." ) ;
-            }
-        }
-        
-        /**
-         * @private
-         */
-        private function _flushInitSingletonDefinitions():void
-        {
-            if ( _setDefinitions.isEmpty() == false )
-            {
-                var ar:Array  = _setDefinitions.toArray() ;
-                var size:int = ar.length ;
-                for ( var i:int ; i < size ; i++ )
-                {
-                    getObject( ar[i] as String ) ;
-                } 
-                _setDefinitions.clear() ;
-            }
-        }
-        
-        /**
-         * @private
-         */
-        private function _initDefinition( definition:ObjectDefinition ):void
-        {
-            if ( definition.isSingleton() && ( definition.isLazyInit() == false ) )
-            {
-                if ( containsObject( definition.id ) )
-                {
-                    _setDefinitions.add( definition.id ) ;
-                }
-            }
-        }
     }
 }
