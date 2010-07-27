@@ -59,6 +59,7 @@ if ( _global.core == undefined )
 // packages
 
 getPackage( "core.arrays"  ) ;
+getPackage( "core.reflect" ) ;
 getPackage( "core.strings" ) ;
 
 // core
@@ -80,6 +81,10 @@ require( "core.arrays.repeat"      ) ;
 require( "core.arrays.shuffle"     ) ;
 require( "core.arrays.sortOn"      ) ;
 require( "core.arrays.spliceInto"  ) ;
+
+// core.reflect
+
+require( "core.reflect.hasDefinitionByName" ) ;
 
 // core.strings
 

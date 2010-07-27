@@ -51,9 +51,8 @@ core.arrays.repeatTest.prototype.constructor = core.arrays.repeatTest ;
 
 core.arrays.repeatTest.prototype.testRepeat1 = function () 
 {
-    var a ;
+    var a = core.arrays.repeat([2, 3, 4]) ;
     
-    a = core.arrays.repeat([2, 3, 4]) ;
     this.assertEquals( a.length , 3 ) ;
     this.assertEquals( 2 , a[0] ) ;
     this.assertEquals( 3 , a[1] ) ;
@@ -61,8 +60,8 @@ core.arrays.repeatTest.prototype.testRepeat1 = function ()
 }
 
 core.arrays.repeatTest.prototype.testRepeat2 = function () 
-{    
-    a = core.arrays.repeat([2, 3, 4], 0) ;
+{
+    var a = core.arrays.repeat([2, 3, 4], 0) ;
     this.assertEquals( a.length , 3 ) ;
     this.assertEquals( 2 , a[0] ) ;
     this.assertEquals( 3 , a[1] ) ;
@@ -71,7 +70,7 @@ core.arrays.repeatTest.prototype.testRepeat2 = function ()
 
 core.arrays.repeatTest.prototype.testRepeat3 = function () 
 {
-    a = core.arrays.repeat([2, 3, 4], 3) ;
+    var a = core.arrays.repeat([2, 3, 4], 3) ;
     this.assertEquals( a.length , 9 ) ;
     this.assertEquals( 2 , a[0] ) ;
     this.assertEquals( 3 , a[1] ) ;

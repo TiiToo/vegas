@@ -266,6 +266,8 @@ proto.testToArray = function ()
     var co = new ArrayCollection([2,3,4]) ;
     var tc = new TypedCollection( Number , co ) ;
     
+    var a ;
+    
     a = tc.toArray() ;
     
     this.assertNotNull( a , "#01" ) ;
