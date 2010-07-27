@@ -35,4 +35,4 @@
   
 */
 
-load("unittests/core/strings/AllTests.js") ;
+load("unittests/core/reflect/AllTests.js") ;

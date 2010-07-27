@@ -35,4 +35,19 @@
   
 */
 
-load("unittests/core/strings/AllTests.js") ;
+load("unittests/core/reflect/hasDefinitionByNameTest.js" ) ;
+
+core.reflect.AllTests = {} ;
+
+core.reflect.AllTests.suite = function() 
+{
+    var TestSuite = buRRRn.ASTUce.TestSuite;
+    
+    var suite = new TestSuite( "core.reflect unit tests" );
+    
+    //suite.simpleTrace = true;
+    
+    suite.addTest( new TestSuite( core.strings.hasDefinitionByNameTest ) ) ;
+    
+    return suite ;
+}

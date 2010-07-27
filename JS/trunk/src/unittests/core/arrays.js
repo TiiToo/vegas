@@ -35,13 +35,4 @@
   
 */
 
-try 
-{
-    dummy = core.arrays ;
-}
-catch(e) 
-{
-    core.arrays = {};
-}
-
 load("unittests/core/arrays/AllTests.js") ;

@@ -35,4 +35,25 @@
   
 */
 
-load("unittests/core/strings/AllTests.js") ;
+// ---o Constructor
+
+core.strings.hasDefinitionByNameTest = function( name ) 
+{
+    buRRRn.ASTUce.TestCase.call( this , name ) ;
+}
+
+// ----o Inherit
+
+core.strings.hasDefinitionByNameTest.prototype             = new buRRRn.ASTUce.TestCase() ;
+core.strings.hasDefinitionByNameTest.prototype.constructor = core.strings.hasDefinitionByNameTest ;
+
+// ----o Public Methods
+
+core.strings.hasDefinitionByNameTest.prototype.testCenter = function () 
+{
+    this.assertTrue( core.reflect.hasDefinitionByName( "core.dump" )  ) ;
+    this.assertTrue( core.reflect.hasDefinitionByName( "core.reflect.hasDefinitionByName" )  ) ;
+    
+    this.assertFalse( core.reflect.hasDefinitionByName( "a" )  ) ;
+    this.assertFalse( core.reflect.hasDefinitionByName( "unknow" )  ) ;
+}
