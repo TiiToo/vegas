@@ -47,6 +47,12 @@ package examples
     
     [SWF(width="740", height="480", frameRate="24", backgroundColor="#666666")]
     
+    ////////////// Linkage enforcer
+    
+    LoggerLevel ;
+     
+    //////////////
+    
     /**
      * Example of the EdenLoader class.
      */
@@ -54,14 +60,6 @@ package examples
     {
         public function EdenLoaderExample()
         {
-            // test eden config and authorized white list.
-            
-            LoggerLevel ;
-            
-            eden.addAuthorized( "system.logging.LoggerLevel.*" ) ;
-            
-            //////////////
-            
             var loader:EdenLoader = new EdenLoader() ;
             var request:URLRequest = new URLRequest("data/config.eden");
             

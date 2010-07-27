@@ -90,7 +90,7 @@ package vegas.net
             {
                 case URLLoaderDataFormat.TEXT :
                 {
-                    if ( serializer != null && isDeserialize )
+                    if ( serializer && isDeserialize )
                     {
                         data = serializer.deserialize(data) ;
                     }
@@ -100,7 +100,7 @@ package vegas.net
                 case URLLoaderDataFormat.VARIABLES :
                 {
                     data = new URLVariables(data) ;
-                    if ( serializer != null && isDeserialize )
+                    if ( serializer && isDeserialize )
                     {
                         for (var prop:String in data)
                         {
