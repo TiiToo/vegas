@@ -37,8 +37,9 @@
 
 package vegas.date 
 {
-    import system.numeric.Mathematics;
-    
+    import core.maths.floor;
+    import core.maths.sign;
+
     /**
      * The <code class="prettyprint">Time</code> object is a holder for a time difference.
      * <p><code class="prettyprint">Time</code> splits a time difference (distance between two dates) into 
@@ -172,7 +173,7 @@ package vegas.date
          */
         public function evaluate():void 
         {
-            var negative:int = Mathematics.sign(ms) ;
+            var negative:int = sign(ms) ;
             var rest:Number  = ms ;
             
             days = rest / DAY ;
@@ -204,7 +205,7 @@ package vegas.date
             {
                 evaluate() ;
             }
-            return isNaN(round) ? days : Mathematics.floor(days, round) ;
+            return isNaN(round) ? days : floor(days, round) ;
         }
         
         /**
@@ -219,7 +220,7 @@ package vegas.date
             {
                 evaluate() ;
             }
-            return isNaN(round) ? hours : Mathematics.floor(hours, round);
+            return isNaN(round) ? hours : floor(hours, round);
         }
         
         /**
@@ -234,7 +235,7 @@ package vegas.date
             {
                 evaluate();
             }
-            return isNaN(round) ? milliSeconds : Mathematics.floor(milliSeconds, round) ;
+            return isNaN(round) ? milliSeconds : floor(milliSeconds, round) ;
         }
         
         /**
@@ -249,7 +250,7 @@ package vegas.date
             {
                 evaluate() ;
             }
-            return isNaN(round) ? minutes :Mathematics.floor(minutes, round) ;
+            return isNaN(round) ? minutes :floor(minutes, round) ;
         }
         
         /**
@@ -264,7 +265,7 @@ package vegas.date
             {
                 evaluate();
             }
-            return isNaN(round) ? seconds : Mathematics.floor(seconds, round) ;
+            return isNaN(round) ? seconds : floor(seconds, round) ;
         }
         
         /**

@@ -37,10 +37,11 @@
 
 package vegas.models.maps 
 {
+    import core.maths.clamp;
+    
     import system.data.Map;
     import system.data.ValueObject;
     import system.data.maps.ArrayMap;
-    import system.numeric.Mathematics;
     
     /**
      * This map model is indexed and you can select all value objects register with the basic <code>index</code> (int) property.
@@ -144,7 +145,7 @@ package vegas.models.maps
             }
             else
             {
-                value = Mathematics.clamp( value , 0 , _map.size() - 1 ) ;
+                value = clamp( value , 0 , _map.size() - 1 ) ;
             }
             if ( value == _index )
             {
@@ -166,7 +167,7 @@ package vegas.models.maps
         /**
          * Indicates if index attribute loop when this value is out of the range (between 0 and the size()-1).
          */
-        public var looping:Boolean = false ;
+        public var looping:Boolean ;
         
         /**
          * Clear the model.

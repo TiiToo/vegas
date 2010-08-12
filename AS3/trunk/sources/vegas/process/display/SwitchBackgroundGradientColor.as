@@ -36,14 +36,15 @@
 */
 
 package vegas.process.display 
-{    import graphics.FillGradientStyle;
+{    import core.maths.clamp;
+
+    import graphics.FillGradientStyle;
     import graphics.colors.RGB;
     import graphics.transitions.CoreTransition;
     import graphics.transitions.TweenArray;
     import graphics.transitions.TweenUnit;
 
     import system.events.ActionEvent;
-    import system.numeric.Mathematics;
     import system.process.BatchTask;
 
     import vegas.display.Background;
@@ -356,7 +357,7 @@ package vegas.process.display
             var g2:Number = _rgb.g ;
             var b2:Number = _rgb.b ;
             
-            var p:Number = Mathematics.clamp( isNaN(level) ? 1 : level , 0 , 1) ;
+            var p:Number = clamp( isNaN(level) ? 1 : level , 0 , 1) ;
             var q:Number = 1 - p ;
             
             _rgb.r = r1 * q + r2 * p ;

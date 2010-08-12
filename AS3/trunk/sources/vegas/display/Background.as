@@ -37,6 +37,8 @@
 
 package vegas.display 
 {
+    import core.maths.clamp;
+
     import graphics.Direction;
     import graphics.Directionable;
     import graphics.Drawable;
@@ -50,7 +52,6 @@ package vegas.display
     import graphics.transitions.FrameTimer;
 
     import system.hack;
-    import system.numeric.Mathematics;
 
     import flash.events.Event;
     import flash.events.TimerEvent;
@@ -306,7 +307,7 @@ package vegas.display
         public function get h():Number 
         {
             var n:Number = ( isFull && (stage != null) && (_direction != Direction.HORIZONTAL) ) ? stage.stageHeight : _h ;
-            return Mathematics.clamp( n , _minHeight, _maxHeight) ;
+            return clamp( n , _minHeight, _maxHeight) ;
         }
         
         /**
@@ -314,7 +315,7 @@ package vegas.display
          */
         public function set h( n:Number ):void 
         {
-            _h = Mathematics.clamp( n , _minHeight, _maxHeight ) ;
+            _h = clamp( n , _minHeight, _maxHeight ) ;
             update() ;
             notifyResized() ;
         }
@@ -486,7 +487,7 @@ package vegas.display
         public function get w():Number 
         {
             var n:Number = ( isFull && (stage != null) && (_direction != Direction.VERTICAL) ) ? stage.stageWidth : _w ;
-            return Mathematics.clamp( n , _minWidth, _maxWidth ) ;
+            return clamp( n , _minWidth, _maxWidth ) ;
         }
         
         /**
@@ -494,7 +495,7 @@ package vegas.display
          */
         public function set w( n:Number ):void 
         {
-            _w = Mathematics.clamp( n , _minWidth, _maxWidth ) ;
+            _w = clamp( n , _minWidth, _maxWidth ) ;
             update() ;
             notifyResized() ;
         }
@@ -614,8 +615,8 @@ package vegas.display
          */
         public function setSize( w:Number, h:Number ):void
         {
-            _w = isNaN(w) ? 0 : Mathematics.clamp( w , _minWidth, _maxWidth) ; 
-            _h = isNaN(h) ? 0 : Mathematics.clamp( h , _minHeight, _maxHeight) ; 
+            _w = isNaN(w) ? 0 : clamp( w , _minWidth, _maxWidth) ; 
+            _h = isNaN(h) ? 0 : clamp( h , _minHeight, _maxHeight) ; 
             update() ;
             notifyResized() ;
         }

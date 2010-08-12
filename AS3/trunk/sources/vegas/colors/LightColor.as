@@ -37,18 +37,20 @@
 
 package vegas.colors 
 {
-    import system.numeric.Mathematics;
-
+    import core.maths.clamp;
+    
     import flash.display.DisplayObject;
     import flash.geom.ColorTransform;
-
+    
     /**
      * This class is the basic extension of the actionscript Color class to changed light and contrast over a MovieClip. 
      * <p><b>Example :</b></p>
      * <pre class="prettyprint">
      * import vegas.colors.LightColor;
+     * 
      * var c:LightColor = new LightColor( display ) ; 
-     * c.brightness     = 255 ;
+     * 
+     * c.brightness = 255 ;
      * </pre>
      */
     public class LightColor extends Color 
@@ -80,7 +82,7 @@ package vegas.colors
         {
             n = isNaN(n) ? 0 : n ;
             n /= 100 ;
-            n  = Mathematics.clamp( n , -1 , 1 ) ;
+            n  = clamp( n , -1 , 1 ) ;
             _ct = _display.transform.colorTransform ;
             _ct.redMultiplier = _ct.greenMultiplier = _ct.blueMultiplier = 1 - Math.abs (n) ;
             _ct.redOffset     = _ct.greenOffset     = _ct.blueOffset     = (n > 0) ? ( n * 256 ) : 0 ;
@@ -102,7 +104,7 @@ package vegas.colors
         public function set brightOffset(n:Number):void 
         {
             n = isNaN(n) ? 0 : n ;
-            n  = Mathematics.clamp( n , -255 , 255 ) ;
+            n  = clamp( n , -255 , 255 ) ;
             _ct = _display.transform.colorTransform ;
             _ct.redOffset  = _ct.greenOffset = _ct.blueOffset = n ;
             _display.transform.colorTransform = _ct ;
@@ -124,7 +126,7 @@ package vegas.colors
         {
             n = isNaN(n) ? 0 : n ;
             n /= 100 ;
-            n  = Mathematics.clamp( n , -1 , 1 ) ;
+            n  = clamp( n , -1 , 1 ) ;
             _ct = _display.transform.colorTransform ;
             _ct.redMultiplier = _ct.greenMultiplier = _ct.blueMultiplier = n ;
             _ct.redOffset     = _ct.greenOffset     = _ct.blueOffset     = 128 - ( 128 * n ) ;
@@ -147,7 +149,7 @@ package vegas.colors
         {
             n = isNaN(n) ? 0 : n ;
             n /= 100 ;
-            n  = Mathematics.clamp( n , 0 , 100 ) ;
+            n  = clamp( n , 0 , 100 ) ;
             _ct = _display.transform.colorTransform ;
             _ct.redMultiplier = _ct.greenMultiplier = _ct.blueMultiplier = 1 - 2 * n ;
             _ct.redOffset     = _ct.greenOffset     = _ct.blueOffset     = n * 255 ;
