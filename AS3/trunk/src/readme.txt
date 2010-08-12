@@ -1,8 +1,8 @@
-VEGAS AS3 - version 1.7.3.1985
+VEGAS AS3 - version 1.7.3.1987
 
 This directory use svn externals to centralize all sources.
 
-    - core http://maashaack.googlecode.com/svn/branches/maashaack_ekameleon/trunk/src/core/
+    - core http://maashaack.googlecode.com/svn/packages/core/trunk/src/core/
     - system http://maashaack.googlecode.com/svn/branches/maashaack_ekameleon/trunk/src/system/
     - graphics http://maashaack.googlecode.com/svn/branches/maashaack_ekameleon/trunk/src/graphics/
     - vegas http://vegas.googlecode.com/svn/AS3/trunk/sources/vegas/
