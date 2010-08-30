@@ -113,7 +113,7 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("OÂ
      Creates a container to register all the Object define by the corresponding IObjectDefinition objects.</td>
 </tr>
 <tr>
-<td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('vegas/ioc/class-list.html');" href="vegas/ioc/ObjectDefinitionContainer.html#ObjectDefinitionContainer()">ObjectDefinitionContainer</a>(global, channel) &mdash; Constructor in class vegas.ioc.<a onclick="javascript:loadClassListFrame('vegas/ioc/class-list.html');" href="vegas/ioc/ObjectDefinitionContainer.html">ObjectDefinitionContainer</a></td>
+<td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('vegas/ioc/class-list.html');" href="vegas/ioc/ObjectDefinitionContainer.html#ObjectDefinitionContainer()">ObjectDefinitionContainer</a>() &mdash; Constructor in class vegas.ioc.<a onclick="javascript:loadClassListFrame('vegas/ioc/class-list.html');" href="vegas/ioc/ObjectDefinitionContainer.html">ObjectDefinitionContainer</a></td>
 </tr>
 <tr>
 <td width="20"></td><td>
@@ -162,7 +162,7 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("OÂ
      The basic Inversion of Control container/factory class.</td>
 </tr>
 <tr>
-<td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('vegas/ioc/factory/class-list.html');" href="vegas/ioc/factory/ObjectFactory.html#ObjectFactory()">ObjectFactory</a>(id, global, channel) &mdash; Constructor in class vegas.ioc.factory.<a onclick="javascript:loadClassListFrame('vegas/ioc/factory/class-list.html');" href="vegas/ioc/factory/ObjectFactory.html">ObjectFactory</a></td>
+<td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('vegas/ioc/factory/class-list.html');" href="vegas/ioc/factory/ObjectFactory.html#ObjectFactory()">ObjectFactory</a>(objects) &mdash; Constructor in class vegas.ioc.factory.<a onclick="javascript:loadClassListFrame('vegas/ioc/factory/class-list.html');" href="vegas/ioc/factory/ObjectFactory.html">ObjectFactory</a></td>
 </tr>
 <tr>
 <td width="20"></td><td>
@@ -400,6 +400,27 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("OÂ
          Creates a new ObjectProperty instance.</td>
 </tr>
 <tr>
+<td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('vegas/ioc/class-list.html');" href="vegas/ioc/ObjectReceiver.html">ObjectReceiver</a> &mdash; Class in package <a onclick="javascript:loadClassListFrame('vegas/ioc/class-list.html');" href="vegas/ioc/package-detail.html">vegas.ioc</a></td>
+</tr>
+<tr>
+<td width="20"></td><td>
+     This object defines a receiver definition in an object definition.</td>
+</tr>
+<tr>
+<td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('vegas/ioc/class-list.html');" href="vegas/ioc/ObjectReceiver.html#ObjectReceiver()">ObjectReceiver</a>(signal, slot, priority, autoDisconnect, order) &mdash; Constructor in class vegas.ioc.<a onclick="javascript:loadClassListFrame('vegas/ioc/class-list.html');" href="vegas/ioc/ObjectReceiver.html">ObjectReceiver</a></td>
+</tr>
+<tr>
+<td width="20"></td><td>
+         Creates a new ObjectReceiver instance.</td>
+</tr>
+<tr>
+<td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('vegas/ioc/class-list.html');" href="vegas/ioc/ObjectAttribute.html#OBJECT_RECEIVERS">OBJECT_RECEIVERS</a> &mdash; Constant static property in class vegas.ioc.<a onclick="javascript:loadClassListFrame('vegas/ioc/class-list.html');" href="vegas/ioc/ObjectAttribute.html">ObjectAttribute</a></td>
+</tr>
+<tr>
+<td width="20"></td><td>
+         Defines the label of the "receivers" name property of the object.</td>
+</tr>
+<tr>
 <td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('vegas/ioc/io/class-list.html');" href="vegas/ioc/io/ObjectResource.html">ObjectResource</a> &mdash; Class in package <a onclick="javascript:loadClassListFrame('vegas/ioc/io/class-list.html');" href="vegas/ioc/io/package-detail.html">vegas.ioc.io</a></td>
 </tr>
 <tr>
@@ -442,7 +463,7 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("OÂ
      Convenience base class for resource implementations.</td>
 </tr>
 <tr>
-<td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('vegas/ioc/factory/class-list.html');" href="vegas/ioc/factory/ECMAObjectFactory.html#objects">objects</a> &mdash; Property in class vegas.ioc.factory.<a onclick="javascript:loadClassListFrame('vegas/ioc/factory/class-list.html');" href="vegas/ioc/factory/ECMAObjectFactory.html">ECMAObjectFactory</a></td>
+<td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('vegas/ioc/factory/class-list.html');" href="vegas/ioc/factory/ObjectFactory.html#objects">objects</a> &mdash; Property in class vegas.ioc.factory.<a onclick="javascript:loadClassListFrame('vegas/ioc/factory/class-list.html');" href="vegas/ioc/factory/ObjectFactory.html">ObjectFactory</a></td>
 </tr>
 <tr>
 <td width="20"></td><td>
@@ -576,20 +597,6 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("OÂ
          </td>
 </tr>
 <tr>
-<td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('graphics/geom/class-list.html');" href="graphics/geom/Rectangle.html#offset()">offset</a>(dx, dy) &mdash; Method in class graphics.geom.<a onclick="javascript:loadClassListFrame('graphics/geom/class-list.html');" href="graphics/geom/Rectangle.html">Rectangle</a></td>
-</tr>
-<tr>
-<td width="20"></td><td>
-         Adjusts the location of the Rectangle object, as determined by its top-left corner, by the specified amounts.</td>
-</tr>
-<tr>
-<td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('graphics/geom/class-list.html');" href="graphics/geom/Vector2.html#offset()">offset</a>(dx, dy) &mdash; Method in class graphics.geom.<a onclick="javascript:loadClassListFrame('graphics/geom/class-list.html');" href="graphics/geom/Vector2.html">Vector2</a></td>
-</tr>
-<tr>
-<td width="20"></td><td>
-         Offsets the vector by the specified amount.</td>
-</tr>
-<tr>
 <td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('vegas/display/coverflow/class-list.html');" href="vegas/display/coverflow/CoverFlow.html#offsetAngle">offsetAngle</a> &mdash; Property in class vegas.display.coverflow.<a onclick="javascript:loadClassListFrame('vegas/display/coverflow/class-list.html');" href="vegas/display/coverflow/CoverFlow.html">CoverFlow</a></td>
 </tr>
 <tr>
@@ -623,13 +630,6 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("OÂ
 <tr>
 <td width="20"></td><td>
          The offset depth value of the covers (default 256).</td>
-</tr>
-<tr>
-<td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('graphics/geom/class-list.html');" href="graphics/geom/Rectangle.html#offsetPoint()">offsetPoint</a>(vector:<a href="graphics/geom/Vector2.html" onclick="javascript:loadClassListFrame('graphics/geom./class-list.html');">graphics.geom:Vector2</a>) &mdash; Method in class graphics.geom.<a onclick="javascript:loadClassListFrame('graphics/geom/class-list.html');" href="graphics/geom/Rectangle.html">Rectangle</a></td>
-</tr>
-<tr>
-<td width="20"></td><td>
-         Adjusts the location of the Rectangle object using a Point object as a parameter.</td>
 </tr>
 <tr>
 <td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('vegas/colors/class-list.html');" href="vegas/colors/SVGColor.html#OLD_LACE">OLD_LACE</a> &mdash; Constant static property in class vegas.colors.<a onclick="javascript:loadClassListFrame('vegas/colors/class-list.html');" href="vegas/colors/SVGColor.html">SVGColor</a></td>
@@ -957,6 +957,13 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("OÂ
          The 'Orchid' SVG color object.</td>
 </tr>
 <tr>
+<td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('graphics/layouts/class-list.html');" href="graphics/layouts/BoxLayout.html#order">order</a> &mdash; Property in class graphics.layouts.<a onclick="javascript:loadClassListFrame('graphics/layouts/class-list.html');" href="graphics/layouts/BoxLayout.html">BoxLayout</a></td>
+</tr>
+<tr>
+<td width="20"></td><td>
+         Indicates the direction order of to layout all children in the container.</td>
+</tr>
+<tr>
 <td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('vegas/ioc/class-list.html');" href="vegas/ioc/ObjectListener.html#order">order</a> &mdash; Property in class vegas.ioc.<a onclick="javascript:loadClassListFrame('vegas/ioc/class-list.html');" href="vegas/ioc/ObjectListener.html">ObjectListener</a></td>
 </tr>
 <tr>
@@ -964,11 +971,25 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("OÂ
          The order of the listener registration ('after' or by default 'before').</td>
 </tr>
 <tr>
+<td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('vegas/ioc/class-list.html');" href="vegas/ioc/ObjectReceiver.html#order">order</a> &mdash; Property in class vegas.ioc.<a onclick="javascript:loadClassListFrame('vegas/ioc/class-list.html');" href="vegas/ioc/ObjectReceiver.html">ObjectReceiver</a></td>
+</tr>
+<tr>
+<td width="20"></td><td>
+         The order of the receiver registration ('after' or by default 'before').</td>
+</tr>
+<tr>
 <td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('vegas/ioc/class-list.html');" href="vegas/ioc/ObjectListener.html#ORDER">ORDER</a> &mdash; Constant static property in class vegas.ioc.<a onclick="javascript:loadClassListFrame('vegas/ioc/class-list.html');" href="vegas/ioc/ObjectListener.html">ObjectListener</a></td>
 </tr>
 <tr>
 <td width="20"></td><td>
          Defines the "order" attribute in a listener object definition.</td>
+</tr>
+<tr>
+<td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('vegas/ioc/class-list.html');" href="vegas/ioc/ObjectReceiver.html#ORDER">ORDER</a> &mdash; Constant static property in class vegas.ioc.<a onclick="javascript:loadClassListFrame('vegas/ioc/class-list.html');" href="vegas/ioc/ObjectReceiver.html">ObjectReceiver</a></td>
+</tr>
+<tr>
+<td width="20"></td><td>
+         Defines the "order" attribute in a receiver object definition.</td>
 </tr>
 <tr>
 <td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('system/data/class-list.html');" href="system/data/OrderedIterator.html"><i>OrderedIterator</i></a> &mdash; Interface in package <a onclick="javascript:loadClassListFrame('system/data/class-list.html');" href="system/data/package-detail.html">system.data</a></td>
@@ -990,6 +1011,69 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("OÂ
 <tr>
 <td width="20"></td><td>
          Creates a new OrderedMapModelObject instance.</td>
+</tr>
+<tr>
+<td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('graphics/layouts/class-list.html');" href="graphics/layouts/GridLayout.html#orientation">orientation</a> &mdash; Property in class graphics.layouts.<a onclick="javascript:loadClassListFrame('graphics/layouts/class-list.html');" href="graphics/layouts/GridLayout.html">GridLayout</a></td>
+</tr>
+<tr>
+<td width="20"></td><td>
+         The orientation of the layout.</td>
+</tr>
+<tr>
+<td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('graphics/class-list.html');" href="graphics/Orientation.html">Orientation</a> &mdash; Class in package <a onclick="javascript:loadClassListFrame('graphics/class-list.html');" href="graphics/package-detail.html">graphics</a></td>
+</tr>
+<tr>
+<td width="20"></td><td>
+     Constants defining layout orientation options.</td>
+</tr>
+<tr>
+<td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('graphics/display/class-list.html');" href="graphics/display/DisplayObjects.html#originalHeight()">originalHeight</a>(target) &mdash; Static method in class graphics.display.<a onclick="javascript:loadClassListFrame('graphics/display/class-list.html');" href="graphics/display/DisplayObjects.html">DisplayObjects</a></td>
+</tr>
+<tr>
+<td width="20"></td><td>
+         Returns the original height in pixels of the specified DisplayObject.</td>
+</tr>
+<tr>
+<td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('graphics/display/class-list.html');" href="graphics/display/DisplayObjects.html#originalWidth()">originalWidth</a>(target) &mdash; Static method in class graphics.display.<a onclick="javascript:loadClassListFrame('graphics/display/class-list.html');" href="graphics/display/DisplayObjects.html">DisplayObjects</a></td>
+</tr>
+<tr>
+<td width="20"></td><td>
+         Returns the original width in pixels of the specified DisplayObject.</td>
+</tr>
+<tr>
+<td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('graphics/class-list.html');" href="graphics/CardinalDirection.html#ORTHOGONALS">ORTHOGONALS</a> &mdash; Constant static property in class graphics.<a onclick="javascript:loadClassListFrame('graphics/class-list.html');" href="graphics/CardinalDirection.html">CardinalDirection</a></td>
+</tr>
+<tr>
+<td width="20"></td><td>
+         The set of all orthogonals directions (north, south, south, north).</td>
+</tr>
+<tr>
+<td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('graphics/filters/projections/class-list.html');" href="graphics/filters/projections/Orthographic.html">Orthographic</a> &mdash; Class in package <a onclick="javascript:loadClassListFrame('graphics/filters/projections/class-list.html');" href="graphics/filters/projections/package-detail.html">graphics.filters.projections</a></td>
+</tr>
+<tr>
+<td width="20"></td><td>
+     The byteCode of the pixelbender Orthographic effect to initialize a Shader with it.</td>
+</tr>
+<tr>
+<td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('graphics/filters/projections/class-list.html');" href="graphics/filters/projections/Orthographic.html#Orthographic()">Orthographic</a>() &mdash; Constructor in class graphics.filters.projections.<a onclick="javascript:loadClassListFrame('graphics/filters/projections/class-list.html');" href="graphics/filters/projections/Orthographic.html">Orthographic</a></td>
+</tr>
+<tr>
+<td width="20"></td><td>
+         Creates a new Orthographic instance.</td>
+</tr>
+<tr>
+<td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('graphics/filters/projections/class-list.html');" href="graphics/filters/projections/OrthographicFilter.html">OrthographicFilter</a> &mdash; Class in package <a onclick="javascript:loadClassListFrame('graphics/filters/projections/class-list.html');" href="graphics/filters/projections/package-detail.html">graphics.filters.projections</a></td>
+</tr>
+<tr>
+<td width="20"></td><td>
+     Apply a orthographic projection.</td>
+</tr>
+<tr>
+<td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('graphics/filters/projections/class-list.html');" href="graphics/filters/projections/OrthographicFilter.html#OrthographicFilter()">OrthographicFilter</a>(shader, init) &mdash; Constructor in class graphics.filters.projections.<a onclick="javascript:loadClassListFrame('graphics/filters/projections/class-list.html');" href="graphics/filters/projections/OrthographicFilter.html">OrthographicFilter</a></td>
+</tr>
+<tr>
+<td width="20"></td><td>
+         Creates a new OrthographicFilter instance.</td>
 </tr>
 <tr>
 <td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('system/class-list.html');" href="system/_Environment.html#os">os</a> &mdash; Property in class system.<a onclick="javascript:loadClassListFrame('system/class-list.html');" href="system/_Environment.html">_Environment</a></td>
@@ -1033,6 +1117,13 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("OÂ
 <tr>
 <td width="20"></td><td>
          The outer radius of the circle (between 0 and 2800 px, default 100 px).</td>
+</tr>
+<tr>
+<td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('graphics/filters/class-list.html');" href="graphics/filters/MagnifyFilter.html#outerRadius">outerRadius</a> &mdash; Property in class graphics.filters.<a onclick="javascript:loadClassListFrame('graphics/filters/class-list.html');" href="graphics/filters/MagnifyFilter.html">MagnifyFilter</a></td>
+</tr>
+<tr>
+<td width="20"></td><td>
+         The outer radius of the effect (between 0 and 500 px, default 80 px).</td>
 </tr>
 <tr>
 <td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('graphics/geom/class-list.html');" href="graphics/geom/Ring.html#outerRadius">outerRadius</a> &mdash; Property in class graphics.geom.<a onclick="javascript:loadClassListFrame('graphics/geom/class-list.html');" href="graphics/geom/Ring.html">Ring</a></td>

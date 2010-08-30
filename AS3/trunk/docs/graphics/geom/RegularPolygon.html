@@ -1,0 +1,488 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" href="../../style.css" type="text/css" media="screen">
+<link rel="stylesheet" href="../../print.css" type="text/css" media="print">
+<link rel="stylesheet" href="../../prettify.css" type="text/css">
+<meta content="RegularPolygon,graphics.geom.RegularPolygon,apothemByRadius,apothemBySide,areaByApothem,areaByApothemAndPerimeter,areaByRadius,areaBySide,centralAngle,perimeter,radiusByApothem,radiusBySide" name="keywords">
+<title>graphics.geom.RegularPolygon</title>
+</head>
+<body>
+<script type="text/javascript" language="javascript" src="../../prettify.js"></script><script type="text/javascript" language="javascript" src="../../asdoc.js"></script><script type="text/javascript" language="javascript" src="../../cookies.js"></script><script type="text/javascript" language="javascript">
+<!--
+				asdocTitle = 'RegularPolygon - VEGAS AS3 Reference';
+				var baseRef = '../../';
+				window.onload = configPage;
+			--></script>
+<table style="display:none" id="titleTable" cellspacing="0" cellpadding="0" class="titleTable">
+<tr>
+<td align="left" class="titleTableTitle">VEGAS AS3 Reference</td><td align="right" class="titleTableTopNav"><a onclick="loadClassListFrame('../../all-classes.html')" href="../../package-summary.html">All&nbsp;Packages</a>&nbsp;|&nbsp;<a onclick="loadClassListFrame('../../all-classes.html')" href="../../class-summary.html">All&nbsp;Classes</a>&nbsp;|&nbsp;<a onclick="loadClassListFrame('../../index-list.html')" href="../../all-index-A.html">Index</a>&nbsp;|&nbsp;<a href="../../index.html?graphics/geom/RegularPolygon.html&amp;graphics/geom/class-list.html" id="framesLink1">Frames</a><a onclick="parent.location=document.location" href="" style="display:none" id="noFramesLink1">No&nbsp;Frames</a></td><td rowspan="3" align="right" class="titleTableLogo"><img alt="Adobe Logo" title="Adobe Logo" class="logoImage" src="../../images/logo.jpg"></td>
+</tr>
+<tr class="titleTableRow2">
+<td align="left" id="subTitle" class="titleTableSubTitle">Class&nbsp;RegularPolygon</td><td align="right" id="subNav" class="titleTableSubNav"><a href="#methodSummary">Methods</a></td>
+</tr>
+<tr class="titleTableRow3">
+<td colspan="2">&nbsp;</td>
+</tr>
+</table>
+<script type="text/javascript" language="javascript">
+<!--
+if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Class RegularPolygon"); titleBar_setSubNav(false,false,false,false,false,false,true,false,false,false,false,false,false,false);}
+--></script>
+<div class="MainContent">
+<table cellspacing="0" cellpadding="0" class="classHeaderTable">
+<tr>
+<td class="classHeaderTableLabel">Package</td><td><a onclick="javascript:loadClassListFrame('class-list.html')" href="package-detail.html">graphics.geom</a></td>
+</tr>
+<tr>
+<td class="classHeaderTableLabel">Class</td><td class="classSignature">public final  class RegularPolygon</td>
+</tr>
+</table>
+<p></p>
+     Tool class to manipulates and transforms the regular polygons.
+     <p></p>
+<br>
+<hr>
+</div>
+<a name="methodSummary"></a>
+<div class="summarySection">
+<div class="summaryTableTitle">Public Methods</div>
+<table id="summaryTableMethod" class="summaryTable " cellpadding="3" cellspacing="0">
+<tr>
+<th>&nbsp;</th><th colspan="2">Method</th><th class="summaryTableOwnerCol">Defined&nbsp;by</th>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#apothemByRadius()">apothemByRadius</a>(radius:Number, sides:uint):Number</div>
+<div class="summaryTableDescription">[static]
+         Determinates the size of the line segment from the center of a regular polygon to the midpoint of a side.</div>
+</td><td class="summaryTableOwnerCol">RegularPolygon</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#apothemBySide()">apothemBySide</a>(side:Number, sides:uint):Number</div>
+<div class="summaryTableDescription">[static]
+         Determinates the size of the line segment from the center of a regular polygon to the midpoint of a side.</div>
+</td><td class="summaryTableOwnerCol">RegularPolygon</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#areaByApothem()">areaByApothem</a>(apothem:Number, sides:uint):Number</div>
+<div class="summaryTableDescription">[static]
+         Calculates the area of the hexagon with the specified apothem length.</div>
+</td><td class="summaryTableOwnerCol">RegularPolygon</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#areaByApothemAndPerimeter()">areaByApothemAndPerimeter</a>(apothem:Number, perimeter:Number):Number</div>
+<div class="summaryTableDescription">[static]
+         Calculates the area of the hexagon with the specified apothem and perimeter length.</div>
+</td><td class="summaryTableOwnerCol">RegularPolygon</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#areaByRadius()">areaByRadius</a>(radius:Number, sides:uint):Number</div>
+<div class="summaryTableDescription">[static]
+         Calculates the area of the hexagon with the specified radius length.</div>
+</td><td class="summaryTableOwnerCol">RegularPolygon</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#areaBySide()">areaBySide</a>(side:Number, sides:uint):Number</div>
+<div class="summaryTableDescription">[static]
+         Calculates the area of the hexagon with the specified side size.</div>
+</td><td class="summaryTableOwnerCol">RegularPolygon</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#centralAngle()">centralAngle</a>(sides:uint, degrees:Boolean = false):Number</div>
+<div class="summaryTableDescription">[static]
+         Calculates the central angle of the specified regular polygon.</div>
+</td><td class="summaryTableOwnerCol">RegularPolygon</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#perimeter()">perimeter</a>(side:Number, sides:uint):Number</div>
+<div class="summaryTableDescription">[static]
+         For regular polygons, where all the sides are the same length, the perimeter is n times the length of any side, where n is the number of sides.</div>
+</td><td class="summaryTableOwnerCol">RegularPolygon</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#radiusByApothem()">radiusByApothem</a>(apothem:Number, sides:uint):Number</div>
+<div class="summaryTableDescription">[static]
+         Determinates the radius of the regular polygon with the specified apothem.</div>
+</td><td class="summaryTableOwnerCol">RegularPolygon</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#radiusBySide()">radiusBySide</a>(side:Number, sides:uint):Number</div>
+<div class="summaryTableDescription">[static]
+         Determinates the radius of the regular polygon with the specified side length.</div>
+</td><td class="summaryTableOwnerCol">RegularPolygon</td>
+</tr>
+</table>
+</div>
+<script type="text/javascript" language="javascript">
+<!--
+showHideInherited();
+--></script>
+<div class="MainContent">
+<a name="methodDetail"></a>
+<div class="detailSectionHeader">Method detail</div>
+<a name="apothemByRadius()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">apothemByRadius</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public static function apothemByRadius(radius:Number, sides:uint):Number</code><p>
+         Determinates the size of the line segment from the center of a regular polygon to the midpoint of a side. 
+         By definition, all sides of a regular polygon are equal in length. 
+         If you know the length of one of the sides, the apothem length is given by the formula: s/(2an(PI/n))
+         where 
+         s is the length of any side, 
+         n  is the number of sides, 
+         PI approximately Math.PI, 
+         tan is the tangent function calculated in radians
+         </p><span class="label">Parameters</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td><code><span class="label">radius</span>:Number</code> &mdash; The length of the radius of the polygon.
+         </td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><code><span class="label">sides</span>:uint</code> &mdash; The number of sides.
+         </td>
+</tr>
+</table>
+<p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><code>Number</code> &mdash; The apothem size of the regular polygon.
+         </td>
+</tr>
+</table>
+</div>
+<a name="apothemBySide()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">apothemBySide</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public static function apothemBySide(side:Number, sides:uint):Number</code><p>
+         Determinates the size of the line segment from the center of a regular polygon to the midpoint of a side. 
+         By definition, all sides of a regular polygon are equal in length. 
+         If you know the length of one of the sides, the apothem length is given by the formula: s/(2an(PI/n))
+         where 
+         s is the length of any side, 
+         n  is the number of sides, 
+         PI approximately Math.PI, 
+         tan is the tangent function calculated in radians
+         </p><span class="label">Parameters</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td><code><span class="label">side</span>:Number</code> &mdash; The length of any side.
+         </td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><code><span class="label">sides</span>:uint</code> &mdash; The number of sides.
+         </td>
+</tr>
+</table>
+<p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><code>Number</code> &mdash; The apothem size of the regular polygon.
+         </td>
+</tr>
+</table>
+</div>
+<a name="areaByApothem()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">areaByApothem</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public static function areaByApothem(apothem:Number, sides:uint):Number</code><p>
+         Calculates the area of the hexagon with the specified apothem length.
+         </p><span class="label">Parameters</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td><code><span class="label">apothem</span>:Number</code> &mdash; The size of the line segment from the center of a regular polygon to the midpoint of a side.
+         </td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><code><span class="label">sides</span>:uint</code> &mdash; The number of sides.
+         </td>
+</tr>
+</table>
+<p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><code>Number</code> &mdash; The area of the specified regular polygon.
+         </td>
+</tr>
+</table>
+</div>
+<a name="areaByApothemAndPerimeter()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">areaByApothemAndPerimeter</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public static function areaByApothemAndPerimeter(apothem:Number, perimeter:Number):Number</code><p>
+         Calculates the area of the hexagon with the specified apothem and perimeter length.
+         </p><span class="label">Parameters</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td><code><span class="label">apothem</span>:Number</code> &mdash; The size of the line segment from the center of a regular polygon to the midpoint of a side.
+         </td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><code><span class="label">perimeter</span>:Number</code> &mdash; The perimeter length.
+         </td>
+</tr>
+</table>
+<p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><code>Number</code> &mdash; The area of the specified regular polygon.
+         </td>
+</tr>
+</table>
+</div>
+<a name="areaByRadius()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">areaByRadius</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public static function areaByRadius(radius:Number, sides:uint):Number</code><p>
+         Calculates the area of the hexagon with the specified radius length.
+         </p><span class="label">Parameters</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td><code><span class="label">radius</span>:Number</code> &mdash; The length of the radius of the polygon.
+         </td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><code><span class="label">sides</span>:uint</code> &mdash; The number of sides.
+         </td>
+</tr>
+</table>
+<p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><code>Number</code> &mdash; The area of the specified regular polygon.
+         </td>
+</tr>
+</table>
+</div>
+<a name="areaBySide()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">areaBySide</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public static function areaBySide(side:Number, sides:uint):Number</code><p>
+         Calculates the area of the hexagon with the specified side size.
+         </p><span class="label">Parameters</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td><code><span class="label">side</span>:Number</code> &mdash; The length of any side.
+         </td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><code><span class="label">sides</span>:uint</code> &mdash; The number of sides.
+         </td>
+</tr>
+</table>
+<p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><code>Number</code> &mdash; The area of the specified regular polygon.
+         </td>
+</tr>
+</table>
+</div>
+<a name="centralAngle()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">centralAngle</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public static function centralAngle(sides:uint, degrees:Boolean = false):Number</code><p>
+         Calculates the central angle of the specified regular polygon. 
+         The central angle is the angle made at the center of the polygon by any two adjacent vertices of the polygon.
+         </p><span class="label">Parameters</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td><code><span class="label">sides</span>:uint</code> &mdash; The number of sides
+         </td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><code><span class="label">degrees</span>:Boolean</code> (default = <code>false</code>)<code></code> &mdash; Indicates if the angle is in degrees or in radians (by default in radians).
+         </td>
+</tr>
+</table>
+<p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><code>Number</code></td>
+</tr>
+</table>
+</div>
+<a name="perimeter()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">perimeter</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public static function perimeter(side:Number, sides:uint):Number</code><p>
+         For regular polygons, where all the sides are the same length, the perimeter is n times the length of any side, where n is the number of sides.
+         </p><span class="label">Parameters</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td><code><span class="label">side</span>:Number</code> &mdash; The length of any side.
+         </td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><code><span class="label">sides</span>:uint</code> &mdash; The number of sides.
+         </td>
+</tr>
+</table>
+<p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><code>Number</code> &mdash; The perimeter of the specified regular polygon.
+         </td>
+</tr>
+</table>
+</div>
+<a name="radiusByApothem()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">radiusByApothem</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public static function radiusByApothem(apothem:Number, sides:uint):Number</code><p>
+         Determinates the radius of the regular polygon with the specified apothem. 
+         </p><span class="label">Parameters</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td><code><span class="label">apothem</span>:Number</code> &mdash; The size of the line segment from the center of a regular polygon to the midpoint of a side.
+         </td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><code><span class="label">sides</span>:uint</code> &mdash; The number of sides.
+         </td>
+</tr>
+</table>
+<p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><code>Number</code> &mdash; The radius of the regular polygon.
+         </td>
+</tr>
+</table>
+</div>
+<a name="radiusBySide()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">radiusBySide</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public static function radiusBySide(side:Number, sides:uint):Number</code><p>
+         Determinates the radius of the regular polygon with the specified side length. 
+         </p><span class="label">Parameters</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td><code><span class="label">side</span>:Number</code> &mdash; The length of any side.
+         </td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><code><span class="label">sides</span>:uint</code> &mdash; The number of sides.
+         </td>
+</tr>
+</table>
+<p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><code>Number</code> &mdash; The radius of the regular polygon.
+         </td>
+</tr>
+</table>
+</div>
+<br>
+<br>
+<hr>
+<br>
+<p></p>
+<center class="copyright"> 
+</center>
+</div>
+</body>
+</html>
+<!-- -->

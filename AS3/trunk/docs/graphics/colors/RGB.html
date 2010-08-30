@@ -1,0 +1,710 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" href="../../style.css" type="text/css" media="screen">
+<link rel="stylesheet" href="../../print.css" type="text/css" media="print">
+<link rel="stylesheet" href="../../prettify.css" type="text/css">
+<meta content="RGB,graphics.colors.RGB,maximum,b,g,luminance,r,clone,difference,equals,fromNumber,interpolate,interpolateToNumber,toHex,toHexString,toNumber,toObject,toSource,toString,valueOf,set" name="keywords">
+<title>graphics.colors.RGB</title>
+</head>
+<body>
+<script type="text/javascript" language="javascript" src="../../prettify.js"></script><script type="text/javascript" language="javascript" src="../../asdoc.js"></script><script type="text/javascript" language="javascript" src="../../cookies.js"></script><script type="text/javascript" language="javascript">
+<!--
+				asdocTitle = 'RGB - VEGAS AS3 Reference';
+				var baseRef = '../../';
+				window.onload = configPage;
+			--></script>
+<table style="display:none" id="titleTable" cellspacing="0" cellpadding="0" class="titleTable">
+<tr>
+<td align="left" class="titleTableTitle">VEGAS AS3 Reference</td><td align="right" class="titleTableTopNav"><a onclick="loadClassListFrame('../../all-classes.html')" href="../../package-summary.html">All&nbsp;Packages</a>&nbsp;|&nbsp;<a onclick="loadClassListFrame('../../all-classes.html')" href="../../class-summary.html">All&nbsp;Classes</a>&nbsp;|&nbsp;<a onclick="loadClassListFrame('../../index-list.html')" href="../../all-index-A.html">Index</a>&nbsp;|&nbsp;<a href="../../index.html?graphics/colors/RGB.html&amp;graphics/colors/class-list.html" id="framesLink1">Frames</a><a onclick="parent.location=document.location" href="" style="display:none" id="noFramesLink1">No&nbsp;Frames</a></td><td rowspan="3" align="right" class="titleTableLogo"><img alt="Adobe Logo" title="Adobe Logo" class="logoImage" src="../../images/logo.jpg"></td>
+</tr>
+<tr class="titleTableRow2">
+<td align="left" id="subTitle" class="titleTableSubTitle">Class&nbsp;RGB</td><td align="right" id="subNav" class="titleTableSubNav"><a href="#propertySummary">Properties</a>&nbsp;| <a href="#methodSummary">Methods</a>&nbsp;| <a href="#constantSummary">Constants</a></td>
+</tr>
+<tr class="titleTableRow3">
+<td colspan="2">&nbsp;</td>
+</tr>
+</table>
+<script type="text/javascript" language="javascript">
+<!--
+if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Class RGB"); titleBar_setSubNav(true,true,false,false,false,false,true,false,false,false,false,false,false,false);}
+--></script>
+<div class="MainContent">
+<table cellspacing="0" cellpadding="0" class="classHeaderTable">
+<tr>
+<td class="classHeaderTableLabel">Package</td><td><a onclick="javascript:loadClassListFrame('class-list.html')" href="package-detail.html">graphics.colors</a></td>
+</tr>
+<tr>
+<td class="classHeaderTableLabel">Class</td><td class="classSignature">public class RGB</td>
+</tr>
+<tr>
+<td class="classHeaderTableLabel">Implements</td><td><a href="ColorSpace.html">ColorSpace</a></td>
+</tr>
+<tr>
+<td class="classHeaderTableLabel">Subclasses</td><td><a href="../colors/RGBA.html">RGBA</a></td>
+</tr>
+</table>
+<p></p>
+     The RGB class encapsulates an rgb color.
+     <pre class="prettyprint">
+     import graphics.colors.RGB ;
+     
+     trace("---- black") ;
+     
+     var black:RGB = new RGB() ;
+     
+     trace( "black : " + black ) ; // [RGB r:0 g:0 b:0 hex:0x000000]
+     trace( "black.toHexString('#') : " + black.toHexString("#") ) ; // #000000
+     
+     black.difference() ;
+     trace( "black difference : " + black ) ; // [RGB r:255 g:255 b:255 hex:0xFFFFFF]
+     
+     trace("---- red") ;
+     
+     var red:RGB = new RGB(255, 0, 0) ;
+     trace( "red : " + red ) ; // [RGB r:255 g:0 b:0 hex:0xFF0000]
+     trace( "red.toHexString('#') : " + red.toHexString("#") ) ; // #FF0000
+     
+     red.difference() ; 
+     trace( "red difference : " + red ) ; // [RGB r:0 g:255 b:255 hex:0x00FFFF]
+     
+     trace("---- blue") ;
+     
+     var blue:RGB = new RGB(92, 160, 205) ;
+     trace( "blue : " + blue ) ; // [RGB r:92 g:160 b:205 hex:0x5CA0CD]
+     trace( "blue.toHexString('#') : " + blue.toHexString("#") ) ; // #5CA0CD
+     
+     blue.difference() ;
+     trace( "blue difference       : " + blue ) ; // [RGB r:163 g:95 b:50 hex:0xA35F32]
+     
+     blue.fromNumber( 0x23516D ) ;
+     trace( "blue                  : " + blue ) ; // [RGB r:35 g:81 b:109 hex:0x23516D]
+     trace( "blue.r                : " + blue.r ) ; // 35
+     trace( "blue.g                : " + blue.g ) ; // 81
+     trace( "blue.b                : " + blue.b ) ; // 109
+     </pre>
+     <p></p>
+<br>
+<hr>
+</div>
+<a name="propertySummary"></a>
+<div class="summarySection">
+<div class="summaryTableTitle">Public Properties</div>
+<table id="summaryTableProperty" class="summaryTable " cellpadding="3" cellspacing="0">
+<tr>
+<th>&nbsp;</th><th colspan="2">Property</th><th class="summaryTableOwnerCol">Defined&nbsp;by</th>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#b">b</a> : uint<div class="summaryTableDescription">
+         The blue component, between 0 and 255.</div>
+</td><td class="summaryTableOwnerCol">RGB</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#g">g</a> : uint<div class="summaryTableDescription">
+         The green component, between 0 and 255.</div>
+</td><td class="summaryTableOwnerCol">RGB</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#luminance">luminance</a> : Number<div class="summaryTableDescription">
+         Indicates the luminance of the color.</div>
+</td><td class="summaryTableOwnerCol">RGB</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#r">r</a> : uint<div class="summaryTableDescription">
+         The red component, between 0 and 255.</div>
+</td><td class="summaryTableOwnerCol">RGB</td>
+</tr>
+</table>
+</div>
+<a name="methodSummary"></a>
+<div class="summarySection">
+<div class="summaryTableTitle">Public Methods</div>
+<table id="summaryTableMethod" class="summaryTable " cellpadding="3" cellspacing="0">
+<tr>
+<th>&nbsp;</th><th colspan="2">Method</th><th class="summaryTableOwnerCol">Defined&nbsp;by</th>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#RGB()">RGB</a>(r:uint = 0, g:uint = 0, b:uint = 0)</div>
+<div class="summaryTableDescription">
+         Creates a new RGB instance.</div>
+</td><td class="summaryTableOwnerCol">RGB</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#clone()">clone</a>():*</div>
+<div class="summaryTableDescription">
+         Creates and returns a shallow copy of the object.</div>
+</td><td class="summaryTableOwnerCol">RGB</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#difference()">difference</a>():void</div>
+<div class="summaryTableDescription">
+         Transforms the red, green and blue components of the color in this difference color representation.</div>
+</td><td class="summaryTableOwnerCol">RGB</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#equals()">equals</a>(o:*):Boolean</div>
+<div class="summaryTableDescription">
+         Compares the specified object with this object for equality.</div>
+</td><td class="summaryTableOwnerCol">RGB</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#fromNumber()">fromNumber</a>(value:Number):void</div>
+<div class="summaryTableDescription">
+         Sets the red, green and blue components with the specified number value.</div>
+</td><td class="summaryTableOwnerCol">RGB</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#interpolate()">interpolate</a>(to:<a href="RGB.html">RGB</a>, level:Number = 1):<a href="../colors/RGB.html">RGB</a>
+</div>
+<div class="summaryTableDescription">
+         Interpolate the color and returns a new RGB object.</div>
+</td><td class="summaryTableOwnerCol">RGB</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#interpolateToNumber()">interpolateToNumber</a>(to:<a href="RGB.html">RGB</a>, level:Number = 1):Number</div>
+<div class="summaryTableDescription">
+         Interpolate the color and returns the number rgb value.</div>
+</td><td class="summaryTableOwnerCol">RGB</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#set()">set</a>(... args):void</div>
+<div class="summaryTableDescription">
+         Sets all tree components of a color.</div>
+</td><td class="summaryTableOwnerCol">RGB</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#toHexString()">toHexString</a>(prefix:String = "0x"):String</div>
+<div class="summaryTableDescription">
+         Returns the full String representation of the color.</div>
+</td><td class="summaryTableOwnerCol">RGB</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#toNumber()">toNumber</a>(r:Number, g:Number, b:Number):Number</div>
+<div class="summaryTableDescription">[static]
+         Converts the basic red, green, blue passed-in arguments in a HTML number color (base 10).</div>
+</td><td class="summaryTableOwnerCol">RGB</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#toObject()">toObject</a>():Object</div>
+<div class="summaryTableDescription">
+         Converts an object to an equivalent Object value.</div>
+</td><td class="summaryTableOwnerCol">RGB</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#toSource()">toSource</a>(indent:int = 0):String</div>
+<div class="summaryTableDescription">
+         Returns the source code string representation of the object.</div>
+</td><td class="summaryTableOwnerCol">RGB</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#toString()">toString</a>():String</div>
+<div class="summaryTableDescription">
+         Returns a String representation of the object.</div>
+</td><td class="summaryTableOwnerCol">RGB</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#valueOf()">valueOf</a>():uint</div>
+<div class="summaryTableDescription">
+         Returns the real value of the object.</div>
+</td><td class="summaryTableOwnerCol">RGB</td>
+</tr>
+</table>
+</div>
+<a name="protectedMethodSummary"></a>
+<div class="summarySection">
+<div class="summaryTableTitle">Protected Methods</div>
+<table id="summaryTableProtectedMethod" class="summaryTable " cellpadding="3" cellspacing="0">
+<tr>
+<th>&nbsp;</th><th colspan="2">Method</th><th class="summaryTableOwnerCol">Defined&nbsp;by</th>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#toHex()">toHex</a>(value:uint):String</div>
+<div class="summaryTableDescription">
+         Basic method use to convert the specified uint value in a hexadecimal String representation.</div>
+</td><td class="summaryTableOwnerCol">RGB</td>
+</tr>
+</table>
+</div>
+<script type="text/javascript" language="javascript">
+<!--
+showHideInherited();
+--></script>
+<div class="MainContent">
+<a name="propertyDetail"></a>
+<div class="detailSectionHeader">Property detail</div>
+<a name="b"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">b</td><td class="detailHeaderType">property</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>b:uint</code>&nbsp;&nbsp;[read-write]<p>
+         The blue component, between 0 and 255.
+         </p><span class="label">Implementation</span>
+<br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function get b():uint</code>
+<br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function set b(value:uint):void</code>
+<br>
+</div>
+<a name="g"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">g</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>g:uint</code>&nbsp;&nbsp;[read-write]<p>
+         The green component, between 0 and 255.
+         </p><span class="label">Implementation</span>
+<br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function get g():uint</code>
+<br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function set g(value:uint):void</code>
+<br>
+</div>
+<a name="luminance"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">luminance</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>luminance:Number</code>&nbsp;&nbsp;[read-write]<p>
+         Indicates the luminance of the color. The value is normed and lies in the range between 0 (black) and 255 (white).
+         </p><span class="label">Implementation</span>
+<br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function get luminance():Number</code>
+<br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function set luminance(value:Number):void</code>
+<br>
+</div>
+<a name="r"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">r</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>r:uint</code>&nbsp;&nbsp;[read-write]<p>
+         The red component, between 0 and 255.
+         </p><span class="label">Implementation</span>
+<br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function get r():uint</code>
+<br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function set r(value:uint):void</code>
+<br>
+</div>
+<a name="constructorDetail"></a>
+<div class="detailSectionHeader">Constructor detail</div>
+<a name="RGB()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">RGB</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">constructor</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public function RGB(r:uint = 0, g:uint = 0, b:uint = 0)</code><p>
+         Creates a new RGB instance.
+         </p><span class="label">Parameters</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td><code><span class="label">r</span>:uint</code> (default = <code>0</code>)<code></code> &mdash; The red component, between 0 and 255 (default 0).
+         </td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><code><span class="label">g</span>:uint</code> (default = <code>0</code>)<code></code> &mdash; The green component, between 0 and 255 (default 0).
+         </td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><code><span class="label">b</span>:uint</code> (default = <code>0</code>)<code></code> &mdash; The blue component, between 0 and 255 (default 0). 
+         </td>
+</tr>
+</table>
+</div>
+<a name="methodDetail"></a>
+<div class="detailSectionHeader">Method detail</div>
+<a name="clone()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">clone</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public function clone():*</code><p>
+         Creates and returns a shallow copy of the object.
+         </p><p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><code>*</code> &mdash; A new object that is a shallow copy of this instance.
+         </td>
+</tr>
+</table>
+</div>
+<a name="difference()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">difference</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public function difference():void</code><p>
+         Transforms the red, green and blue components of the color in this difference color representation.
+         </p></div>
+<a name="equals()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">equals</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public function equals(o:*):Boolean</code><p>
+         Compares the specified object with this object for equality.
+         </p><span class="label">Parameters</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td><code><span class="label">o</span>:*</code></td>
+</tr>
+</table>
+<p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><code>Boolean</code> &mdash; <code class="prettyprint">true</code> if the the specified object is equal with this object.
+         </td>
+</tr>
+</table>
+</div>
+<a name="fromNumber()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">fromNumber</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public function fromNumber(value:Number):void</code><p>
+         Sets the red, green and blue components with the specified number value.
+         </p><span class="label">Parameters</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td><code><span class="label">value</span>:Number</code></td>
+</tr>
+</table>
+</div>
+<a name="interpolate()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">interpolate</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public function interpolate(to:<a href="RGB.html">RGB</a>, level:Number = 1):<a href="../colors/RGB.html">RGB</a></code><p>
+         Interpolate the color and returns a new RGB object.
+         </p><span class="label">Parameters</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td><code><span class="label">to</span>:<a href="RGB.html">RGB</a></code> &mdash; The RGB reference used to interpolate the current RGB object.
+         </td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><code><span class="label">level</span>:Number</code> (default = <code>1</code>)<code></code> &mdash; The level of the interpolation as a decimal, where <code>0</code> is the start and <code>1</code> is the end.
+         </td>
+</tr>
+</table>
+<p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><code><a href="../colors/RGB.html">RGB</a></code> &mdash; 
+                        The interpolate RGB reference of the current color.
+         
+                        
+                     </td>
+</tr>
+</table>
+</div>
+<a name="interpolateToNumber()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">interpolateToNumber</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public function interpolateToNumber(to:<a href="RGB.html">RGB</a>, level:Number = 1):Number</code><p>
+         Interpolate the color and returns the number rgb value.
+         </p><span class="label">Parameters</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td><code><span class="label">to</span>:<a href="RGB.html">RGB</a></code> &mdash; The RGB reference used to interpolate the current RGB object.
+         </td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><code><span class="label">level</span>:Number</code> (default = <code>1</code>)<code></code> &mdash; The level of the interpolation as a decimal, where <code>0</code> is the start and <code>1</code> is the end.
+         </td>
+</tr>
+</table>
+<p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><code>Number</code> &mdash; The interpolate Number value of the current color.
+         </td>
+</tr>
+</table>
+</div>
+<a name="set()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">set</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public function set(... args):void</code><p>
+         Sets all tree components of a color. 
+         </p><span class="label">Parameters</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td><code>... <span class="label">args</span></code></td>
+</tr>
+</table>
+</div>
+<a name="toHex()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">toHex</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>protected function toHex(value:uint):String</code><p>
+         Basic method use to convert the specified uint value in a hexadecimal String representation.
+         </p><span class="label">Parameters</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td><code><span class="label">value</span>:uint</code></td>
+</tr>
+</table>
+<p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><code>String</code> &mdash; The String representation of the specified color.
+         </td>
+</tr>
+</table>
+</div>
+<a name="toHexString()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">toHexString</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public function toHexString(prefix:String = "0x"):String</code><p>
+         Returns the full String representation of the color.
+         </p><span class="label">Parameters</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td><code><span class="label">prefix</span>:String</code> (default = "<code>0x</code>")<code></code></td>
+</tr>
+</table>
+<p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><code>String</code> &mdash; the full String representation of the color.
+         </td>
+</tr>
+</table>
+</div>
+<a name="toNumber()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">toNumber</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public static function toNumber(r:Number, g:Number, b:Number):Number</code><p>
+         Converts the basic red, green, blue passed-in arguments in a HTML number color (base 10).
+         </p><p><b>Example :</b></p>
+         <pre class="prettyprint">
+         import graphics.colors.RGB ;
+         
+         var rgb:Number = RGB.toNumber(234,111,81) ; 
+         trace( rgb ) ; // 0xEA6F51
+         </pre>
+         <span class="label">Parameters</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td><code><span class="label">r</span>:Number</code> &mdash; The red component (between 0 and 0xFF)
+         </td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><code><span class="label">g</span>:Number</code> &mdash; The green component (between 0 and 0xFF)
+         </td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><code><span class="label">b</span>:Number</code> &mdash; The blue component (between 0 and 0xFF)
+         </td>
+</tr>
+</table>
+<p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><code>Number</code> &mdash; The base 10 representation of the specified red, green, blue components.
+         </td>
+</tr>
+</table>
+</div>
+<a name="toObject()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">toObject</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public function toObject():Object</code><p>
+         Converts an object to an equivalent Object value.
+         </p><p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><code>Object</code> &mdash; the Object representation of the instance.
+         </td>
+</tr>
+</table>
+</div>
+<a name="toSource()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">toSource</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public function toSource(indent:int = 0):String</code><p>
+         Returns the source code string representation of the object.
+         </p><span class="label">Parameters</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td><code><span class="label">indent</span>:int</code> (default = <code>0</code>)<code></code></td>
+</tr>
+</table>
+<p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><code>String</code> &mdash; the source code string representation of the object.
+         </td>
+</tr>
+</table>
+</div>
+<a name="toString()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">toString</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public function toString():String</code><p>
+         Returns a String representation of the object.
+         </p><p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><code>String</code> &mdash; a String representation of the object.
+         </td>
+</tr>
+</table>
+</div>
+<a name="valueOf()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">valueOf</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public function valueOf():uint</code><p>
+         Returns the real value of the object.
+         </p><p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><code>uint</code> &mdash; the real value of the object.
+         </td>
+</tr>
+</table>
+</div>
+<a name="constantDetail"></a>
+<div class="detailSectionHeader">Constant detail</div>
+<a name="maximum"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">maximum</td><td class="detailHeaderType">constant</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>hack const maximum:uint = 0xFF</code><p>
+         The maximum value specified with a color component.
+         </p></div>
+<br>
+<br>
+<hr>
+<br>
+<p></p>
+<center class="copyright"> 
+</center>
+</div>
+</body>
+</html>
+<!-- -->

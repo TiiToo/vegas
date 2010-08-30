@@ -1,0 +1,395 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" href="../../style.css" type="text/css" media="screen">
+<link rel="stylesheet" href="../../print.css" type="text/css" media="print">
+<link rel="stylesheet" href="../../prettify.css" type="text/css">
+<meta content="WildExp,core.strings.WildExp,IGNORECASE,MULTILINE,MULTIWORD,NONE,questionMarks,source,wildcards,addToQuestionMarks,addToWildcards,test,toString" name="keywords">
+<title>core.strings.WildExp</title>
+</head>
+<body>
+<script type="text/javascript" language="javascript" src="../../prettify.js"></script><script type="text/javascript" language="javascript" src="../../asdoc.js"></script><script type="text/javascript" language="javascript" src="../../cookies.js"></script><script type="text/javascript" language="javascript">
+<!--
+				asdocTitle = 'WildExp - VEGAS AS3 Reference';
+				var baseRef = '../../';
+				window.onload = configPage;
+			--></script>
+<table style="display:none" id="titleTable" cellspacing="0" cellpadding="0" class="titleTable">
+<tr>
+<td align="left" class="titleTableTitle">VEGAS AS3 Reference</td><td align="right" class="titleTableTopNav"><a onclick="loadClassListFrame('../../all-classes.html')" href="../../package-summary.html">All&nbsp;Packages</a>&nbsp;|&nbsp;<a onclick="loadClassListFrame('../../all-classes.html')" href="../../class-summary.html">All&nbsp;Classes</a>&nbsp;|&nbsp;<a onclick="loadClassListFrame('../../index-list.html')" href="../../all-index-A.html">Index</a>&nbsp;|&nbsp;<a href="../../index.html?core/strings/WildExp.html&amp;core/strings/class-list.html" id="framesLink1">Frames</a><a onclick="parent.location=document.location" href="" style="display:none" id="noFramesLink1">No&nbsp;Frames</a></td><td rowspan="3" align="right" class="titleTableLogo"><img alt="Adobe Logo" title="Adobe Logo" class="logoImage" src="../../images/logo.jpg"></td>
+</tr>
+<tr class="titleTableRow2">
+<td align="left" id="subTitle" class="titleTableSubTitle">Class&nbsp;WildExp</td><td align="right" id="subNav" class="titleTableSubNav"><a href="#propertySummary">Properties</a>&nbsp;| <a href="#methodSummary">Methods</a>&nbsp;| <a href="#constantSummary">Constants</a></td>
+</tr>
+<tr class="titleTableRow3">
+<td colspan="2">&nbsp;</td>
+</tr>
+</table>
+<script type="text/javascript" language="javascript">
+<!--
+if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Class WildExp"); titleBar_setSubNav(true,true,false,false,false,false,true,false,false,false,false,false,false,false);}
+--></script>
+<div class="MainContent">
+<table cellspacing="0" cellpadding="0" class="classHeaderTable">
+<tr>
+<td class="classHeaderTableLabel">Package</td><td><a onclick="javascript:loadClassListFrame('class-list.html')" href="package-detail.html">core.strings</a></td>
+</tr>
+<tr>
+<td class="classHeaderTableLabel">Class</td><td class="classSignature">public class WildExp</td>
+</tr>
+</table>
+<p></p>
+     A wild expression is constructed like a regular expression but is based on a globbing algorithm like the one you found for searching files on a hard-drive.
+     <p><b>Syntax :</b>
+      <p>1. ? : match any unique char - exactly 1 char must be found</p>
+      <p>2. : match any number of chars - at least 0 or more any chars can be found</p>
+      <p>3. ! : ignore next char</p>
+     </p>
+     <p><b>Rules :</b>
+      <p>1. " is equal to " to " to an infinity number of " chars</p>
+      <p>2. "" is concatened to " (more precisely ")</p>
+      <p>3. " if for zero char to infinity chars</p>
+      <p>4. "! ignore the pattern and look for the char " in string</p>
+      <p>5. "!?" ignore the pattern and look for the char "?" in string</p>
+      </p>
+      <p><b>Tips and tricks :</b>
+      
+      <p><b>1. find all the words in a string</b>
+      <pre class="prettyprint"> 
+      import core.strings.WildExp ;
+      var we:WildExp   = new WildExp( ", WildExp.IGNORECASE | WildExp.MULTIWORD );
+      var result:Array = we.test( "any phrases with words inside" );
+      //result = [ "any", "phrases", "with", "words", "inside" ];
+      }
+      </pre>
+      </p>
+      <p><b>2. find comments in a string</b>
+      <pre class="prettyprint"> 
+      import core.strings.WildExp ;
+      var we:WildExp   = new WildExp( "/!/\, WildExp.IGNORECASE | WildExp.MULTIWORD );
+      var result:Array = we.test( "toto = \"123\"; /\ello world/" );
+      //result = [ "toto = \"123\"; ", "hello world" ] ;
+      }
+      </pre>
+      </p>
+      <p><b>3. find the name, arguments and body of a function</b>
+      <pre class="prettyprint"> 
+      import core.strings.WildExp ;
+      var we:WildExp = new WildExp( "function ", WildExp.IGNORECASE | WildExp.MULTIWORD );
+      result = we.test( "function toto( a, b, c )\r\n{\treturn \"hello world\";\r\n\t}" );
+      //result = [ "toto", " a, b, c ", "\r\n", "\treturn \"hello world\";\r\n\t" ];
+      }
+      </pre>
+      </p>
+     <p></p>
+<br>
+<hr>
+</div>
+<a name="propertySummary"></a>
+<div class="summarySection">
+<div class="summaryTableTitle">Public Properties</div>
+<table id="summaryTableProperty" class="summaryTable " cellpadding="3" cellspacing="0">
+<tr>
+<th>&nbsp;</th><th colspan="2">Property</th><th class="summaryTableOwnerCol">Defined&nbsp;by</th>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#questionMarks">questionMarks</a> : Array<div class="summaryTableDescription">
+         The array of all question marks.</div>
+</td><td class="summaryTableOwnerCol">WildExp</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#source">source</a> : String<div class="summaryTableDescription">
+         The source of this wildcard.</div>
+</td><td class="summaryTableOwnerCol">WildExp</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#wildcards">wildcards</a> : Array<div class="summaryTableDescription">
+         The array of all wildcards.</div>
+</td><td class="summaryTableOwnerCol">WildExp</td>
+</tr>
+</table>
+</div>
+<a name="methodSummary"></a>
+<div class="summarySection">
+<div class="summaryTableTitle">Public Methods</div>
+<table id="summaryTableMethod" class="summaryTable " cellpadding="3" cellspacing="0">
+<tr>
+<th>&nbsp;</th><th colspan="2">Method</th><th class="summaryTableOwnerCol">Defined&nbsp;by</th>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#WildExp()">WildExp</a>(pattern:String, options:uint = 0)</div>
+<div class="summaryTableDescription">
+         Creates a new WildExp instance.</div>
+</td><td class="summaryTableOwnerCol">WildExp</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#addToQuestionMarks()">addToQuestionMarks</a>(chr:String):void</div>
+<div class="summaryTableDescription">
+         Adds a caracter in the questionMarks array, only if the array isn't empty.</div>
+</td><td class="summaryTableOwnerCol">WildExp</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#addToWildcards()">addToWildcards</a>(chr:String):void</div>
+<div class="summaryTableDescription">
+         Adds a caracter in the wildcards array, only if the array isn't empty.</div>
+</td><td class="summaryTableOwnerCol">WildExp</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#test()">test</a>(str:String):*</div>
+<div class="summaryTableDescription">
+         Test the specific expression in argument.</div>
+</td><td class="summaryTableOwnerCol">WildExp</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#toString()">toString</a>():String</div>
+<div class="summaryTableDescription">
+         Returns the string representation of this object.</div>
+</td><td class="summaryTableOwnerCol">WildExp</td>
+</tr>
+</table>
+</div>
+<a name="constantSummary"></a>
+<div class="summarySection">
+<div class="summaryTableTitle">Public Constants</div>
+<table id="summaryTableConstant" class="summaryTable " cellpadding="3" cellspacing="0">
+<tr>
+<th>&nbsp;</th><th colspan="2">Constant</th><th class="summaryTableOwnerCol">Defined&nbsp;by</th>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#IGNORECASE">IGNORECASE</a> : uint = 1<div class="summaryTableDescription">[static]
+         const the IGNORECASE value (1).</div>
+</td><td class="summaryTableOwnerCol">WildExp</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#MULTILINE">MULTILINE</a> : uint = 2<div class="summaryTableDescription">[static]
+         const the MULTILINE value (2).</div>
+</td><td class="summaryTableOwnerCol">WildExp</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#MULTIWORD">MULTIWORD</a> : uint = 4<div class="summaryTableDescription">[static]
+         const the MULTIWORD value (4).</div>
+</td><td class="summaryTableOwnerCol">WildExp</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#NONE">NONE</a> : uint = 0<div class="summaryTableDescription">[static]
+         const the NONE value (0).</div>
+</td><td class="summaryTableOwnerCol">WildExp</td>
+</tr>
+</table>
+</div>
+<script type="text/javascript" language="javascript">
+<!--
+showHideInherited();
+--></script>
+<div class="MainContent">
+<a name="propertyDetail"></a>
+<div class="detailSectionHeader">Property detail</div>
+<a name="questionMarks"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">questionMarks</td><td class="detailHeaderType">property</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public var questionMarks:Array</code><p>
+         The array of all question marks.
+         </p></div>
+<a name="source"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">source</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public var source:String</code><p>
+         The source of this wildcard.
+         </p></div>
+<a name="wildcards"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">wildcards</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public var wildcards:Array</code><p>
+         The array of all wildcards.
+         </p></div>
+<a name="constructorDetail"></a>
+<div class="detailSectionHeader">Constructor detail</div>
+<a name="WildExp()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">WildExp</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">constructor</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public function WildExp(pattern:String, options:uint = 0)</code><p>
+         Creates a new WildExp instance.
+         </p><p><b>Example :</b></p>
+         <pre class="prettyprint">
+         import core.strings.WildExp ;
+         
+         var wild:WildExp ;
+         
+         wild = new WildExp("foo. , WildExp.IGNORECASE ) ;
+         
+         trace( wild.test("foo") ) ; // false
+         trace( wild.test("foo.") ) ; // true
+         trace( wild.test("foo.bar") ) ; // true
+         trace( wild.test("bar.foo.bar") ) ; // false
+         trace( wild.test("FOO.bar") ) ; // false
+         </pre>
+         <span class="label">Parameters</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td><code><span class="label">pattern</span>:String</code> &mdash; The pattern of the evaluator.
+         </td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><code><span class="label">options</span>:uint</code> (default = <code>0</code>)<code></code> &mdash; The option flag value.
+         </td>
+</tr>
+</table>
+</div>
+<a name="methodDetail"></a>
+<div class="detailSectionHeader">Method detail</div>
+<a name="addToQuestionMarks()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">addToQuestionMarks</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public function addToQuestionMarks(chr:String):void</code><p>
+         Adds a caracter in the questionMarks array, only if the array isn't empty.
+         </p><span class="label">Parameters</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td><code><span class="label">chr</span>:String</code></td>
+</tr>
+</table>
+</div>
+<a name="addToWildcards()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">addToWildcards</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public function addToWildcards(chr:String):void</code><p>
+         Adds a caracter in the wildcards array, only if the array isn't empty.
+         </p><span class="label">Parameters</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td><code><span class="label">chr</span>:String</code></td>
+</tr>
+</table>
+</div>
+<a name="test()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">test</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public function test(str:String):*</code><p>
+         Test the specific expression in argument.
+         </p><span class="label">Parameters</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td><code><span class="label">str</span>:String</code></td>
+</tr>
+</table>
+<p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><code>*</code></td>
+</tr>
+</table>
+</div>
+<a name="toString()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">toString</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public function toString():String</code><p>
+         Returns the string representation of this object.
+         </p><p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><code>String</code> &mdash; the string representation of this object.
+         </td>
+</tr>
+</table>
+</div>
+<a name="constantDetail"></a>
+<div class="detailSectionHeader">Constant detail</div>
+<a name="IGNORECASE"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">IGNORECASE</td><td class="detailHeaderType">constant</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public static const IGNORECASE:uint = 1</code><p>
+         const the IGNORECASE value (1).
+         </p></div>
+<a name="MULTILINE"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">MULTILINE</td><td class="detailHeaderType">constant</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public static const MULTILINE:uint = 2</code><p>
+         const the MULTILINE value (2).
+         </p></div>
+<a name="MULTIWORD"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">MULTIWORD</td><td class="detailHeaderType">constant</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public static const MULTIWORD:uint = 4</code><p>
+         const the MULTIWORD value (4).
+         </p></div>
+<a name="NONE"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">NONE</td><td class="detailHeaderType">constant</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public static const NONE:uint = 0</code><p>
+         const the NONE value (0).
+         </p></div>
+<br>
+<br>
+<hr>
+<br>
+<p></p>
+<center class="copyright"> 
+</center>
+</div>
+</body>
+</html>
+<!-- -->
