@@ -73,16 +73,14 @@ http://vegas.googlecode.com/files/vegas_flash_classpath_02.jpg
 
 6 - In flash creates a new AS3 document and in an ActionScript layer write :
 {{{
-import vegas.CoreObject ;
+import system.data.maps.HashMap ;
  
-var oC:CoreObject = new CoreObject() ;
-trace("hasCode :: " + oC.hashCode()) ;
-trace("toString :: " + oC) ;
+var map:HashMap = new HashMap() ;
+
+map.put( "key1" , "value1" ) ;
+map.put( "key2" , "value2" ) ;
  
-/* output
-hasCode :: 0
-toString :: [CoreObject]
-*/
+trace( map ) ;
 }}}
 
 == AS2 project == 
@@ -175,7 +173,7 @@ You can now try the next script in the main *Application.mxml* class of the proj
 	<mx:Script>
 		<![CDATA[
 
-		import vegas.CoreObject;
+		import system.data.maps.HashMap ;
 
 		
 		/**
@@ -184,9 +182,12 @@ You can now try the next script in the main *Application.mxml* class of the proj
 		public function complete( e:Event ):void
 		{
 			
-			var core:CoreObject = new CoreObject() ;
-			trace( "core     : " + core ) ;            // core      : [CoreObject]
-			trace( "hashCode : " + core.hashCode() ) ; // hashCode  : 0
+			var map:HashMap = new HashMap() ;
+
+ 			map.put( "key1" , "value1" ) ;
+ 			map.put( "key1" , "value2" ) ;
+
+			trace( map ) ;
 			
 		}			
 			
