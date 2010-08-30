@@ -1,9 +1,9 @@
 #labels Documentation,Phase-Requirements
-= VEGAS version 1.7.1.2 =
+= VEGAS version 1.8 =
 
 Vegas is an opensource framework based on ECMAScript and ActionScript.
 
- * _The latest stable release : *[http://code.google.com/p/vegas/downloads/detail?name=version%201.7.2.1617.zip 1.7.2.1617]*_
+ * _The latest stable release : *[http://code.google.com/p/vegas/downloads/detail?name=version%201.8.0.1997.zip 1.8.0.1997]*_
 
 ==Description==
 
@@ -122,6 +122,6 @@ ActionScript Template application framework based on VEGAS. This opensource libr
 
 ===NinjAS===
 
-Full AS3 projects based on VEGAS (coverflow, swc helper, etc.)
+Full AS3 projects based on VEGAS (coverflow, video player, minifier, swc helper, etc.)
 
  * [http://code.google.com/p/ninjas/ NinjAS page project (Google Code)] 
