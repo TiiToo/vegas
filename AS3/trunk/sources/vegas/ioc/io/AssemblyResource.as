@@ -37,15 +37,15 @@
 
 package vegas.ioc.io 
 {
-    import vegas.ioc.ObjectDefinition;
-    import vegas.ioc.factory.ObjectFactory;
-    import vegas.ioc.factory.strategy.ObjectFactoryValue;
-    import vegas.ioc.io.ObjectResource;
-    
     import system.Reflection;
     import system.process.ActionLoader;
     import system.process.CoreActionLoader;
-    
+    import system.process.TimeoutPolicy;
+
+    import vegas.ioc.ObjectDefinition;
+    import vegas.ioc.factory.ObjectFactory;
+    import vegas.ioc.factory.strategy.ObjectFactoryValue;
+
     import flash.display.Loader;
     import flash.net.URLRequest;
     import flash.system.ApplicationDomain;
@@ -61,7 +61,7 @@ package vegas.ioc.io
          * Creates a new AssemblyResource instance.
          * @param init A generic object containing properties with which to populate the newly instance. If this argument is null, it is ignored.
          */
-        public function AssemblyResource(init:Object = null)
+        public function AssemblyResource( init:Object = null )
         {
             super(init);
         }
@@ -93,6 +93,13 @@ package vegas.ioc.io
         public var definition:Object ;
         
         /**
+         * Indicates the delay of the timeout notification of the internal loader of this resource if the timeoutPolicy is "limit". 
+         * If the delay property is NaN the internal loader use this default delay value.
+         * @see system.process#CoreActionLoader
+         */
+        public var delay:Number ;
+        
+        /**
          * Indicates if the assembly is loading in the current domain or a specific ApplicationDomain (default "current").
          */
         public function get domain():String
@@ -117,6 +124,11 @@ package vegas.ioc.io
          * The optional root path of the assembly.
          */
         public var path:String ;
+        
+        /**
+         * Indicates the timeout policy of the loader (TimeoutPolicy.LIMIT (default) or TimeoutPolicy.INFINITY).
+         */
+        public var timeoutPolicy:TimeoutPolicy = TimeoutPolicy.LIMIT ;
         
         /**
          * Creates a new ActionURLLoader object with the resource.
@@ -163,6 +175,7 @@ package vegas.ioc.io
                     id        : id  ,
                     type      : DEFAULT_CLASS_NAME 
                 };
+                
                 if ( definition != null )
                 {
                     for (var prop:String in definition )
@@ -170,6 +183,7 @@ package vegas.ioc.io
                        init[prop] = definition[prop] ;
                     }
                 }
+                
                 _definition = ObjectDefinition.create( init ) ;
                 
                 factory.addObjectDefinition( _definition  ) ;
@@ -179,8 +193,16 @@ package vegas.ioc.io
             
             _action = new ActionLoader( currentLoader || new DEFAULT_LOADER() ) ;
             
-            _action.request = new URLRequest( path + resource ) ;
-            _action.context = new LoaderContext( checkPolicyFile , appDomain ) ;
+            
+            _action.context       = new LoaderContext( checkPolicyFile , appDomain ) ;
+            _action.request       = new URLRequest( path + resource ) ;
+            
+            _action.timeoutPolicy = timeoutPolicy ;
+            
+            if ( !isNaN(delay) )
+            { 
+                _action.setDelay( delay ) ;
+            }
             
             return _action ;
         } 
