@@ -40,12 +40,12 @@ package vegas.utils.pool
     /**
      * This class defines all nodes in the ObjectPool manager.
      */
-    internal class Node 
+    public class ObjectPoolNode 
     {
         /**
          * Creates a new Node instance.
          */
-        public function Node()
+        public function ObjectPoolNode()
         {
             
         }
@@ -53,7 +53,7 @@ package vegas.utils.pool
         /**
          * The next Node reference of the current node.
          */
-        public var next:Node;
+        public var next:ObjectPoolNode;
         
         /**
          * The data value of the current node.

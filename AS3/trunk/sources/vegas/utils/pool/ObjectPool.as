@@ -131,9 +131,9 @@ package vegas.utils.pool
          * Creates a new ObjectPool instance.
          * @param grow Indicates if the pool of objects is auto growing when a new user is called with the "object" property.
          */
-        public function ObjectPool( grow:Boolean = false )
+        public function ObjectPool( growing:Boolean = false )
         {
-            this.grow = grow ;
+            this.growing = growing ;
         }
         
         /**
@@ -146,7 +146,15 @@ package vegas.utils.pool
         /**
          * Indicates if the pool of objects is auto growing when a new user is called with the "object" property.
          */
-        public var grow:Boolean ;
+        public var growing:Boolean ;
+        
+        /**
+         * Indicates the pool size.
+         */
+        public function get length():int
+        {
+            return _currSize;
+        }
         
         /**
          * The optional Array representation of parameters to send in the ObjectPoolBuilder.build() method use in the pool to create all objects. 
@@ -200,14 +208,14 @@ package vegas.utils.pool
             
             _initSize = _currSize = size;
             
-            _head      = _tail = new Node();
+            _head      = _tail = new ObjectPoolNode();
             _head.data = builder.build.apply(builder, this.parameters) ;
             
-            var n:Node;
+            var n:ObjectPoolNode;
             
             for ( var i:int = 1 ; i < _initSize ; i++ )
             {
-                n      = new Node() ;
+                n      = new ObjectPoolNode() ;
                 n.data = builder.build.apply(builder, this.parameters) ;
                 n.next = _head ;
                 _head  = n ;
@@ -222,8 +230,8 @@ package vegas.utils.pool
          */
         public function destroy():void
         {
-            var tmp:Node ;
-            var cur:Node = _head ;
+            var tmp:ObjectPoolNode ;
+            var cur:ObjectPoolNode = _head ;
             while (cur)
             {
                 tmp      = cur.next ;
@@ -257,7 +265,7 @@ package vegas.utils.pool
         public function flush():void
         {
             var i:int ;
-            var node:Node ;
+            var node:ObjectPoolNode ;
             if (_usageCount == 0)
             {
                 if ( _currSize == _initSize )
@@ -280,8 +288,10 @@ package vegas.utils.pool
             }
             else
             {
-                var a:Array = [];
-                node =_head;
+                var a:Vector.<ObjectPoolNode> = new Vector.<ObjectPoolNode>;
+                
+                node = _head ;
+                
                 while (node)
                 {
                     if (!node.data) 
@@ -294,27 +304,31 @@ package vegas.utils.pool
                     }
                     node = node.next ;
                 }
+                
                 _currSize = a.length;
                 _usageCount = _currSize;
                 _head = _tail = a[0];
+                
                 for (i = 1; i < _currSize; i++)
                 {
                     node = a[i];
                     node.next = _head;
                     _head = node;
                 }
+                
                 _empty     = _allocate = _head ;
                 _tail.next = _head;
+                
                 if (_usageCount < _initSize)
                 {
                     _currSize = _initSize;
                     
-                    var n:Node = _tail ;
-                    var t:Node = _tail ;
+                    var n:ObjectPoolNode = _tail ;
+                    var t:ObjectPoolNode = _tail ;
                     var k:int = _initSize - _usageCount ;
                     for ( i = 0 ; i < k ; i++ )
                     {
-                        node      = new Node();
+                        node      = new ObjectPoolNode();
                         node.data = builder.build.apply(builder, parameters) ;
                         t.next    = node ;
                         t         = node ; 
@@ -334,15 +348,18 @@ package vegas.utils.pool
         {
             if ( _usageCount == _currSize )
             {
-                if ( grow )
+                if ( growing )
                 {
-                    _currSize += _initSize;
-                    var n:Node = _tail;
-                    var t:Node = _tail;
-                    var node:Node;
-                    for (var i:int ; i < _initSize; i++)
+                    _currSize += _initSize ;
+                    
+                    var n:ObjectPoolNode = _tail ;
+                    var t:ObjectPoolNode = _tail ;
+                    
+                    var node:ObjectPoolNode;
+                    
+                    for ( var i:int ; i < _initSize ; i++ )
                     {
-                        node      = new Node() ;
+                        node      = new ObjectPoolNode() ;
                         node.data = builder.build() ;
                         t.next    = node ;
                         t         = node ;
@@ -374,14 +391,14 @@ package vegas.utils.pool
          */
         public function initialize( name:String , args:Array):void
         {
-            var n:Node = _head ;
+            var n:ObjectPoolNode = _head ;
             while (n)
             {
                 if ( name in n.data && n.data[ name ] is Function )
                 {
                     n.data[ name ].apply( n.data, args ) ;
                 }
-                if (n == _tail) 
+                if ( n == _tail ) 
                 {
                     break ;
                 }
@@ -390,17 +407,9 @@ package vegas.utils.pool
         }
         
         /**
-         * Indicates the pool size.
-         */
-        public function size():int
-        {
-            return _currSize;
-        }
-        
-        /**
          * @private
          */
-        private var _allocate:Node;
+        private var _allocate:ObjectPoolNode;
         
         /**
          * @private
@@ -410,12 +419,12 @@ package vegas.utils.pool
         /**
          * @private
          */
-        private var _empty:Node;
+        private var _empty:ObjectPoolNode;
                 
         /**
          * @private
          */
-        private var _head:Node;
+        private var _head:ObjectPoolNode;
         
         /**
          * @private
@@ -425,7 +434,7 @@ package vegas.utils.pool
         /**
          * @private
          */
-        private var _tail:Node;
+        private var _tail:ObjectPoolNode;
         
         /**
          * @private
