@@ -328,9 +328,9 @@
     <!-- vegas.utils.pool -->
     
     <component id="vegas.utils.pool:InstanceBuilder"   class="vegas.utils.pool.InstanceBuilder"   />
-    <component id="vegas.utils.pool:Node"              class="vegas.utils.pool.Node"              />
     <component id="vegas.utils.pool:ObjectPool"        class="vegas.utils.pool.ObjectPool"        />
     <component id="vegas.utils.pool:ObjectPoolBuilder" class="vegas.utils.pool.ObjectPoolBuilder" />
+    <component id="vegas.utils.pool:ObjectPoolNode"    class="vegas.utils.pool.ObjectPoolNode"    />
     
     <!-- vegas.utils.visitors -->
     
