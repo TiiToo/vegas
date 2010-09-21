@@ -114,7 +114,6 @@ package vegas.ioc.net
      * 
      * loader.run() ;
      * </pre>
-     * @see vegas.ioc.factory.ECMAObjectFactory
      */
     public class ECMAObjectLoader extends ObjectFactoryLoader
     {
@@ -122,10 +121,10 @@ package vegas.ioc.net
          * Creates a new ECMAObjectLoader instance.
          * @param context The uri of the context external eden file (default "application.eden").
          * @param path The optional path of the external context file (default "").
-         * @param factory The optional ECMAObjectFactory reference of this loader. By default the loader use the ECMAObjectFactory.getInstance() reference. 
+         * @param factory The optional ObjectFactory reference of this loader. By default the loader use the ECMAObjectFactory.getInstance() reference. 
          * @param internalLoader The internal parse loader class to use to load all external context files (optional EdenLoader).
          */
-        public function ECMAObjectLoader( context:String = "application.eden" , path:String = "" , factory:ECMAObjectFactory = null )
+        public function ECMAObjectLoader( context:String = "application.eden" , path:String = "" , factory:ObjectFactory = null )
         {
             super( context , path , factory ) ;
             localization = Localization.getInstance() ;
