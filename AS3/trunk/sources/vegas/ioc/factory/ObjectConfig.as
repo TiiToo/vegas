@@ -138,6 +138,11 @@ package vegas.ioc.factory
         public var identify:Boolean ;
         
         /**
+         * Indicates if the factory lock this "run" method and allow the flush of the singletons buffer who must be initialized when the process is finished.
+         */
+        public var lazyInit:Boolean ;
+        
+        /**
          * The locale object of the factory. To evaluate locale expression in the object definitions.
          */
         public function get locale():Object
