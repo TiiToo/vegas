@@ -30,21 +30,21 @@ package mvc.events
         /**
          * The name of the event when a new PictureVO is inserted in the model.
          */
-        public static const ADD_PICTURE:String = "onAddPicture" ;
-
+        public static const ADD_PICTURE:String = "addPicture" ;
+        
         /**
          * The name of the event when the gallery model is changed.
          */
-        public static const CHANGE_PICTURE:String = "onChangePicture" ;
+        public static const CHANGE_PICTURE:String = "changePicture" ;
         
         /**
          * The name of the event when the model is cleared
          */
-        public static const CLEAR_PICTURE:String = "onClearPicture" ;
+        public static const CLEAR_PICTURE:String = "clearPicture" ;
         
         /**
          * The name of the event when a PictureVO is removed in the model.
          */
-        public static const REMOVE_PICTURE:String = "onRemovePicture" ;
+        public static const REMOVE_PICTURE:String = "removePicture" ;
     }
 }

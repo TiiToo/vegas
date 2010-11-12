@@ -31,6 +31,6 @@ package mvc.model
         /**
          * The id name of this picture model.
          */
-        public static var PICTURE_MODEL:String = "picture_model" ;
+        public static const PICTURE_MODEL:String = "picture_model" ;
     }
 }

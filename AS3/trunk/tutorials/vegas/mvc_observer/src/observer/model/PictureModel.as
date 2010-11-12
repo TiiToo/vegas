@@ -86,7 +86,7 @@ package observer.model
          * Launch the loading of the next Picture in the model. If the model hasn't a next picture, the model load the first picture.
          * This method used an Iterator to keep the next url in the model. If the user use the 
          */
-        public function run(...arguments):void
+        public function run( ...arguments:Array ):void
         {
             if (_it == null)
             {

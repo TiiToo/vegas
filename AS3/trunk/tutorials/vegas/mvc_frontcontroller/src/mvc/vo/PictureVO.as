@@ -23,6 +23,8 @@
 
 package mvc.vo
 {
+    import core.reflect.getClassName;
+
     import vegas.vo.SimpleValueObject;
     
     /**
@@ -50,26 +52,12 @@ package mvc.vo
         public var url:String ;
         
         /**
-          * Returns the <code>String</code> representation of this object.
-          * @return the <code>String</code> representation of this object.
-          */
+         * Returns the <code class="prettyprint">String</code> representation of this object.
+         * @return the <code class="prettyprint">String</code> representation of this object.
+         */
         public override function toString():String
         {
-            var str:String = "[PictureVO" ;
-            if ( this.id != null )
-            {
-                str += " id:" + this.id ;
-            }
-            if ( this.name != null )
-            {
-                str += " name:" + this.name ;
-            } 
-            if ( this.url != null )
-            {
-                str += " url:" + this.url ;
-            } 
-            str += "]" ;
-            return str ;
+            return formatToString( getClassName(this) , "id" , "name" , "url" ) ;
         }
     }
 }

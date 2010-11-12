@@ -20,7 +20,7 @@
   Contributor(s) :
   
 */
-package mvc.controller.model
+package mvc.controller.model.pictures
 {
     import mvc.display.DisplayList;
     import mvc.vo.PictureVO;

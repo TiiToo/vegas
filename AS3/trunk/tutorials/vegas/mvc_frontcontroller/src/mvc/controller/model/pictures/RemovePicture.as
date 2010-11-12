@@ -21,7 +21,7 @@
   
 */
 
-package mvc.controller.model
+package mvc.controller.model.pictures
 {
     import mvc.vo.PictureVO;
 

@@ -24,23 +24,23 @@
 package 
 {
     import graphics.FillStyle;
-    
-    import mvc.controller.model.AddPicture;
-    import mvc.controller.model.ChangePicture;
-    import mvc.controller.model.ClearPicture;
-    import mvc.controller.model.RemovePicture;
+
+    import mvc.controller.model.pictures.AddPicture;
+    import mvc.controller.model.pictures.ChangePicture;
+    import mvc.controller.model.pictures.ClearPicture;
+    import mvc.controller.model.pictures.RemovePicture;
     import mvc.display.DisplayList;
     import mvc.events.EventList;
     import mvc.model.ModelList;
     import mvc.model.PictureModel;
     import mvc.vo.PictureVO;
-    
+
     import system.events.FrontController;
-    
+
     import vegas.display.Background;
     import vegas.display.CoreLoader;
     import vegas.models.ModelCollector;
-    
+
     import flash.display.Sprite;
     import flash.display.StageAlign;
     import flash.display.StageScaleMode;
