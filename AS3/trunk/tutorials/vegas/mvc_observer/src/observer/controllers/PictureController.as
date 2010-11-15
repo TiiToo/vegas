@@ -80,34 +80,30 @@ package observer.controllers
                 case PictureMessage.CLEAR :
                 {
                     trace( this + " change : " + message.type ) ;
-                    if ( loader )
-                    {
-                        loader.unload() ;
-                    }
+                    loader.unload() ;
                     break ;
                 }
                 case PictureMessage.LOAD :
                 {
                     trace( this + " change : " + message.type + " url:" + message.url ) ;
-                    if ( loader )
+                    
+                    if( loader.hasEventListener(Event.COMPLETE) )
                     {
-                        if( loader.hasEventListener(Event.COMPLETE) )
-                        {
-                            loader.removeEventListener( Event.COMPLETE , complete ) ;
-                        }
-                        loader.contentLoaderInfo.addEventListener( Event.COMPLETE , complete ) ;
-                        loader.unload() ;
-                        loader.load( new URLRequest( message.url ) ) ;
+                        loader.removeEventListener( Event.COMPLETE , complete ) ;
                     }
+                    
+                    loader.contentLoaderInfo.addEventListener( Event.COMPLETE , complete ) ;
+                    
+                    loader.unload() ;
+                    
+                    loader.load( new URLRequest( message.url ) ) ;
+                    
                     break ;
                 }
                 case PictureMessage.VISIBLE :
                 {
                     trace( this + " change : " + message.type + " value:" + message.visible  ) ;
-                    if ( loader )
-                    {
-                       loader.visible = message.visible ;
-                    }
+                    loader.visible = message.visible ;
                     break ;
                 }
             }
