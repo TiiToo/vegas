@@ -91,35 +91,28 @@ package observer
         {
             var code:uint = e.keyCode ;
             trace( e.type + " : " + code ) ;
-            try
+            switch (code)
             {
-                switch (code)
+                case Keyboard.UP:
                 {
-                    case Keyboard.UP:
-                    {
-                        model.show() ;
-                        break ;
-                    }
-                    case Keyboard.DOWN :
-                    {
-                        model.hide() ;
-                        break ;
-                    }
-                    case Keyboard.SPACE :
-                    {
-                        model.run() ;
-                        break ;
-                    }
-                    case Keyboard.DELETE :
-                    {
-                        model.clear() ;
-                        break ;
-                    }
+                    model.show() ;
+                    break ;
                 }
-            }
-            catch( error:Error )
-            {
-                trace( " keyHandler failed : " + error.toString() )  ;
+                case Keyboard.DOWN :
+                {
+                    model.hide() ;
+                    break ;
+                }
+                case Keyboard.SPACE :
+                {
+                    model.run() ;
+                    break ;
+                }
+                case Keyboard.DELETE :
+                {
+                    model.clear() ;
+                    break ;
+                }
             }
         }
     }
