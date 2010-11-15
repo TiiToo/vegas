@@ -40,14 +40,14 @@ package observer.controllers
     import observer.display.loader;
     import observer.display.picture;
     import observer.models.PictureMessage;
-
+    
     import system.signals.Receiver;
-
+    
     import flash.events.Event;
     import flash.net.URLRequest;
     
     /**
-     * This observer of the picture model.
+     * The observer (receiver) of the picture model.
      */
     public class PictureController implements Receiver
     {
