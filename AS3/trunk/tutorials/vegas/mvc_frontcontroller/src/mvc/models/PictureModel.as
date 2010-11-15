@@ -20,17 +20,34 @@
   Contributor(s) :
   
 */
-package mvc.model 
+package mvc.models
 {
-
+    import mvc.vo.PictureVO;
+    
+    import vegas.models.maps.OrderedMapModelObject;
+    
     /**
-     * This static enumeration class contains all model ids of the application.
+     * The model of all pictures.
      */
-    public class ModelList 
+    public final class PictureModel extends OrderedMapModelObject
     {
         /**
-         * The id name of this picture model.
+         * Creates a new PictureModel instance.
+         * @param id the id of this model.
          */
-        public static const PICTURE_MODEL:String = "picture_model" ;
+        public function PictureModel( id:* = null )
+        {
+            super( id ) ;
+        }
+        
+        /**
+         * Returns <code>true</code> if the <code>Validator</code> object validate the value. Overrides this method in your concrete IModelObject class.
+         * @param value the object to test.
+         * @return <code>true</code> is this specific value is valid.
+         */
+        public override function supports( value:* ):Boolean 
+        {
+            return value is PictureVO ;
+        }
     }
 }

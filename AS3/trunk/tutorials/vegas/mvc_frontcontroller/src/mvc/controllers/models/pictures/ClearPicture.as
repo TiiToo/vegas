@@ -20,21 +20,21 @@
   Contributor(s) :
   
 */
-package mvc.controller.model.pictures
+
+package mvc.controllers.models.pictures
 {
-    import mvc.vo.PictureVO;
-    
+    import mvc.display.loader;
+
     import vegas.controllers.AbstractController;
-    import vegas.events.ModelObjectEvent;
-    
+
     import flash.events.Event;
-    
-    public class AddPicture extends AbstractController
+
+    public class ClearPicture extends AbstractController
     {
         /**
-         * Creates a new AddPicture instance.
+         * Creates a new ClearPicture instance.
          */
-        public function AddPicture()
+        public function ClearPicture()
         {
             super();
         }
@@ -44,8 +44,8 @@ package mvc.controller.model.pictures
          */
         public override function handleEvent(e:Event):void
         {
-            var picture:PictureVO = (e as ModelObjectEvent).getVO() as PictureVO ;
-            trace( this + " handleEvent : " + picture ) ;
+            trace( this + " handleEvent." ) ;
+            loader.unload() ;
         }
     }
 }

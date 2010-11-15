@@ -20,21 +20,32 @@
   Contributor(s) :
   
 */
-package mvc.display
+package mvc.controllers.models.pictures
 {
-    /**
-     * This static enumeration class contains all display's name of the application.
-     */
-    public class DisplayList
+    import mvc.vo.PictureVO;
+    
+    import vegas.controllers.AbstractController;
+    import vegas.events.ModelObjectEvent;
+    
+    import flash.events.Event;
+    
+    public class AddPicture extends AbstractController
     {
         /**
-         * The name of the loader display is the application.
+         * Creates a new AddPicture instance.
          */
-        public static const LOADER:String = "loader" ;
+        public function AddPicture()
+        {
+            super();
+        }
         
         /**
-         * The name of the picture display is the application.
+         * Handles the event.
          */
-        public static const PICTURE:String = "picture" ;
+        public override function handleEvent(e:Event):void
+        {
+            var picture:PictureVO = (e as ModelObjectEvent).getVO() as PictureVO ;
+            trace( this + " handleEvent : " + picture ) ;
+        }
     }
 }

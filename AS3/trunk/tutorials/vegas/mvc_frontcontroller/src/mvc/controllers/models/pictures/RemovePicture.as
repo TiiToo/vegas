@@ -20,34 +20,33 @@
   Contributor(s) :
   
 */
-package mvc.model
+
+package mvc.controllers.models.pictures
 {
     import mvc.vo.PictureVO;
-    
-    import vegas.models.maps.OrderedMapModelObject;
-    
-    /**
-     * The model of all pictures.
-     */
-    public final class PictureModel extends OrderedMapModelObject
+
+    import vegas.controllers.AbstractController;
+    import vegas.events.ModelObjectEvent;
+
+    import flash.events.Event;
+
+    public class RemovePicture extends AbstractController
     {
         /**
-         * Creates a new PictureModel instance.
-         * @param id the id of this model.
+         * Creates a new RemovePicture instance.
          */
-        public function PictureModel( id:* = null )
+        public function RemovePicture()
         {
-            super( id ) ;
+            super();
         }
         
         /**
-         * Returns <code>true</code> if the <code>Validator</code> object validate the value. Overrides this method in your concrete IModelObject class.
-         * @param value the object to test.
-         * @return <code>true</code> is this specific value is valid.
+         * Handles the event.
          */
-        public override function supports( value:* ):Boolean 
+        public override function handleEvent(e:Event):void
         {
-            return value is PictureVO ;
+            var picture:PictureVO = (e as ModelObjectEvent).getVO() as PictureVO ;
+            trace( this + " handleEvent : " + picture ) ;
         }
     }
 }

@@ -20,18 +20,15 @@
   Contributor(s) :
   
 */
-package mvc.controller.model.pictures
+package mvc.controllers.models.pictures
 {
-    import mvc.display.DisplayList;
+    import mvc.display.loader;
+    import mvc.display.picture;
     import mvc.vo.PictureVO;
     
     import vegas.controllers.AbstractController;
-    import vegas.display.Background;
-    import vegas.display.DisplayObjectCollector;
     import vegas.events.ModelObjectEvent;
     
-    import flash.display.Loader;
-    import flash.display.LoaderInfo;
     import flash.events.Event;
     import flash.net.URLRequest;
     
@@ -52,15 +49,11 @@ package mvc.controller.model.pictures
         {
             var vo:PictureVO = (e as ModelObjectEvent).getVO() as PictureVO ;
             trace( this + " handleEvent : " + vo ) ;
-            if (vo != null)
+            if ( vo != null )
             {
-                var loader:Loader = DisplayObjectCollector.get( DisplayList.LOADER  ) as Loader  ;
-                if ( loader != null )
-                {
-                    loader.contentLoaderInfo.addEventListener(Event.COMPLETE, complete) ;
-                    loader.unload() ;
-                    loader.load( new URLRequest( vo.url ) ) ;
-                }
+                loader.contentLoaderInfo.addEventListener(Event.COMPLETE, complete) ;
+                loader.unload() ;
+                loader.load( new URLRequest( vo.url ) ) ;
             }
         }
         
@@ -69,18 +62,9 @@ package mvc.controller.model.pictures
          */
         protected function complete(e:Event):void
         {
-            var info:LoaderInfo    = e.target as LoaderInfo ;
-            var loader:Loader      = info.loader ;
-            var picture:Background = DisplayObjectCollector.get( DisplayList.PICTURE  ) as Background  ;
-            if ( loader )
-            {
-                loader.removeEventListener( Event.COMPLETE , complete ) ;
-                if ( picture )
-                {
-                    loader.x = ( picture.w - loader.width  ) / 2 ;
-                    loader.y = ( picture.h - loader.height ) / 2 ;
-                } 
-            }
+            loader.contentLoaderInfo.removeEventListener( Event.COMPLETE , complete ) ;
+            loader.x = ( picture.w - loader.width  ) / 2 ;
+            loader.y = ( picture.h - loader.height ) / 2 ;
         }
     }
 }
