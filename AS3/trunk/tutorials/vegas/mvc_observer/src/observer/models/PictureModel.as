@@ -1,5 +1,7 @@
 ﻿/*
 
+  Version: MPL 1.1/GPL 2.0/LGPL 2.1
+ 
   The contents of this file are subject to the Mozilla Public License Version
   1.1 (the "License"); you may not use this file except in compliance with
   the License. You may obtain a copy of the License at 
@@ -10,7 +12,7 @@
   WITHOUT WARRANTY OF ANY KIND, either express or implied. See the License
   for the specific language governing rights and limitations under the License. 
   
-  The Original Code is Vegas Framework.
+  The Original Code is VEGAS Framework.
   
   The Initial Developer of the Original Code is
   ALCARAZ Marc (aka eKameleon)  <ekameleon@gmail.com>.
@@ -19,29 +21,39 @@
   
   Contributor(s) :
   
+  Alternatively, the contents of this file may be used under the terms of
+  either the GNU General Public License Version 2 or later (the "GPL"), or
+  the GNU Lesser General Public License Version 2.1 or later (the "LGPL"),
+  in which case the provisions of the GPL or the LGPL are applicable instead
+  of those above. If you wish to allow use of your version of this file only
+  under the terms of either the GPL or the LGPL, and not to allow others to
+  use your version of this file under the terms of the MPL, indicate your
+  decision by deleting the provisions above and replace them with the notice
+  and other provisions required by the LGPL or the GPL. If you do not delete
+  the provisions above, a recipient may use your version of this file under
+  the terms of any one of the MPL, the GPL or the LGPL.
+  
 */
 
-package observer.model
+package observer.models
 {
-    import observer.events.PictureModelEvent;
-
-    import system.broadcasters.MessageBroadcaster;
     import system.data.Iterator;
     import system.data.Set;
-    import system.data.sets.HashSet;
+    import system.data.sets.ArraySet;
     import system.process.Runnable;
+    import system.signals.Signal;
     
     /**
-     * The model to change the Picture with differents external files.
+     * This model contains a set of picture urls to load in the application.
      */
-    public class PictureModel extends MessageBroadcaster implements Runnable
+    public class PictureModel extends Signal implements Runnable
     {
         /**
          * Creates a new PictureModel.
          */
         public function PictureModel()
         {
-            _set = new HashSet() ;
+            _set = new ArraySet() ;
         }
         
         /**
@@ -51,7 +63,7 @@ package observer.model
         public function addUrl( url:String ):Boolean
         {
             var b:Boolean = _set.add( url ) ;
-            notifyChanged( new PictureModelEvent( PictureModelEvent.ADD , url ) );
+            notifyChanged( PictureMessage.ADD , url ) ;
             return b ;
         }
         
@@ -62,7 +74,7 @@ package observer.model
         {
             _set.clear() ;
             _it = _set.iterator() ;
-            notifyChanged( new PictureModelEvent( PictureModelEvent.CLEAR ) );
+            notifyChanged( PictureMessage.CLEAR ) ;
         }
         
         /**
@@ -79,7 +91,7 @@ package observer.model
          */
         public function hide():void
         {
-            notifyChanged(new PictureModelEvent( PictureModelEvent.VISIBLE, null, false ) ) ;
+            notifyChanged( PictureMessage.VISIBLE, null, false ) ;
         }
         
         /**
@@ -104,9 +116,9 @@ package observer.model
         /**
          * Notify a change in the model.
          */
-        public function notifyChanged( e:PictureModelEvent ):void
+        public function notifyChanged( type:String = null , url:String = null , visible:Boolean = false ):void
         {
-            broadcastMessage( "change" , e );
+            emit( new PictureMessage( type , url , visible ) );
         }
         
         /**
@@ -116,7 +128,7 @@ package observer.model
         public function load( url:String ):void
         {
             _url = url ;
-            notifyChanged( new PictureModelEvent( PictureModelEvent.LOAD , _url ) ) ;
+            notifyChanged( PictureMessage.LOAD , _url ) ;
         }
         
         /**
@@ -132,7 +144,7 @@ package observer.model
          */
         public function show():void
         {
-            notifyChanged(new PictureModelEvent( PictureModelEvent.VISIBLE, null, true ) ) ;
+            notifyChanged( PictureMessage.VISIBLE, null, true ) ;
         }
         
         /**
@@ -150,5 +162,4 @@ package observer.model
          */
         private var _url:String ;
     }
-
 }
