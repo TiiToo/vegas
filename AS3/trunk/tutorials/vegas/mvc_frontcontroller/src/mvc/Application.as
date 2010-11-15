@@ -110,30 +110,23 @@ package mvc
         public function keyDown( e:KeyboardEvent ):void
         {
             var code:uint = e.keyCode ;
-            try
+            switch (code)
             {
-                switch (code)
+                case Keyboard.RIGHT :
                 {
-                    case Keyboard.RIGHT :
-                    {
-                        model.next() ;
-                        break ;
-                    }
-                    case Keyboard.LEFT :
-                    {
-                        model.previous() ;
-                        break ;
-                    }
-                    case Keyboard.SPACE :
-                    {
-                        model.clear() ;
-                        break ;
-                    }
+                    model.next() ;
+                    break ;
                 }
-            }
-            catch( error:Error )
-            {
-                trace( " keyHandler failed : " + error.toString() )  ;
+                case Keyboard.LEFT :
+                {
+                    model.previous() ;
+                    break ;
+                }
+                case Keyboard.SPACE :
+                {
+                    model.clear() ;
+                    break ;
+                }
             }
         }
     }
