@@ -37,13 +37,13 @@ package examples
 {
     import system.evaluators.DateEvaluator;
     import system.evaluators.EdenEvaluator;
-
+    
     import vegas.net.FlashVars;
-
+    
     import flash.display.Sprite;
     import flash.text.TextField;
     import flash.text.TextFormat;
-
+    
     /**
      * Test the vegas.net.FlashVars class.
      * Launchs this example in the deploy/FlashVars.html page

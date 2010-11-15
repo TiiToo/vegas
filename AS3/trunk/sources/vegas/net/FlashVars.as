@@ -37,7 +37,7 @@
 
 package vegas.net 
 {
-    import system.evaluators.MultiEvaluator;
+    import system.ioc.Parameters;
     
     import flash.display.DisplayObjectContainer;
     
@@ -71,7 +71,7 @@ package vegas.net
      * }
      * </pre>
      */
-    public class FlashVars 
+    public class FlashVars extends Parameters
     {
         /**
          * Creates a new FlashVars instance.
@@ -79,74 +79,7 @@ package vegas.net
          */
         public function FlashVars( root:DisplayObjectContainer = null ):void
         {
-            if ( root != null )
-            {
-                parameters =  root.loaderInfo.parameters || null ;
-            }
-            _evaluators           = new MultiEvaluator() ;
-            _evaluators.autoClear = true ;
+            super ( root ? root.loaderInfo.parameters : null ) ;
         }
-        
-        /**
-         * Defines the flashvars parameters object of the application.
-         */
-        public function get parameters():Object
-        {
-            return _parameters ;
-        }
-        
-        /**
-         * Defines the flashvars parameters object of the application.
-         */
-        public function set parameters( o:Object ):void
-        {
-            _parameters = o ;
-        }
-        
-        /**
-         * Indicates if the FlashVars manager contains the specified variable. 
-         */
-        public function contains( name:String ):Boolean
-        {
-            return ( _parameters != null ) && ( name in _parameters ) && ( _parameters[name] != null ) ;
-        }
-        
-        /**
-         * Returns the value of the specified variable in the FlashVars of the application.
-         * @param name The name of the variable to resolve in the parameters object of the application.
-         * @param ...rest (optional) All <code class="prettyprint">IEvaluator</code> objects used to evaluate and initialize the value of the specified FlashVars.
-         * <p><b>Example :</b></p>
-         * <pre class="prettyprint">
-         * import system.evaluators.DateEvaluator ;
-         * import system.evaluators.EdenEvaluator ;
-         * import vegas.net.FlashVars ;
-         *  
-         * var value:String = flashVars.getValue("date", new EdenEvaluator(false), new DateEvaluator()) ;
-         * trace( "result : " + value ) ; // result : "12.06.2006 16:12:24" with the original "date" flashvars value : "new Date(2006,5,12,16,12,24)"
-         * </pre>
-         * @return the value of the specified variable in the FlashVars of the application.
-         */
-        public function getValue( name:String , ...rest:Array ):*
-        {
-            if ( _parameters != null && contains(name) )
-            {
-                _evaluators.add( rest ) ;
-                return _evaluators.eval(_parameters[name]) ;
-            }
-            else
-            {
-                return null ;
-            }
-        }
-        
-        /**
-         * @private
-         */
-        private var _evaluators:MultiEvaluator ;
-        
-        /**
-         * @private
-         */
-        private var _parameters:Object ;
     }
 }
