@@ -22,6 +22,7 @@
 */
 package mvc.models
 {
+    import mvc.events.EventList;
     import mvc.vo.PictureVO;
     
     import vegas.models.maps.OrderedMapModelObject;
@@ -35,9 +36,12 @@ package mvc.models
          * Creates a new PictureModel instance.
          * @param id the id of this model.
          */
-        public function PictureModel( id:* = null )
+        public function PictureModel()
         {
-            super( id ) ;
+            setEventTypeADD    ( EventList.ADD_PICTURE    ) ;
+            setEventTypeCHANGE ( EventList.CHANGE_PICTURE ) ;
+            setEventTypeCLEAR  ( EventList.CLEAR_PICTURE  ) ;
+            setEventTypeREMOVE ( EventList.REMOVE_PICTURE ) ;
         }
         
         /**

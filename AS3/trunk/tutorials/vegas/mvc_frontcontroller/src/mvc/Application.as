@@ -72,25 +72,14 @@ package mvc
             
             stage.addEventListener( KeyboardEvent.KEY_DOWN, keyDown ) ;
             
-            // model
-            
-            model.setEventTypeADD    ( EventList.ADD_PICTURE    ) ;
-            model.setEventTypeCHANGE ( EventList.CHANGE_PICTURE ) ;
-            model.setEventTypeCLEAR  ( EventList.CLEAR_PICTURE  ) ;
-            model.setEventTypeREMOVE ( EventList.REMOVE_PICTURE ) ;
-            
-            // view
+            // initialize
             
             addChild( picture ) ;
-            
-            // controller
             
             controller.add( EventList.ADD_PICTURE    , new AddPicture() ) ;
             controller.add( EventList.CHANGE_PICTURE , new ChangePicture() ) ;
             controller.add( EventList.CLEAR_PICTURE  , new ClearPicture() ) ;
             controller.add( EventList.REMOVE_PICTURE , new RemovePicture() ) ;
-            
-            // initialize
             
             var count:int = 6 ;
             
