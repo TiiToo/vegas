@@ -37,21 +37,19 @@
 
 package vegas.display 
 {
-    import core.reflect.getClassName;
     import core.reflect.getClassPath;
-
+    
     import system.logging.Log;
     import system.logging.Logger;
-
+    
     import flash.display.DisplayObject;
     import flash.display.SimpleButton;
-
+    
     /**
      * The CoreSimpleButton class extends the flash.display.SimpleButton class and implements the IDisplayObject interface.
      * <p><b>Example :</b></p>
      * <pre class="prettyprint">
      * import vegas.display.CoreSimpleButton ;
-     * import vegas.display.DisplayObjectCollector ;
      * 
      * import flash.events.MouseEvent ;
      * 
@@ -64,57 +62,25 @@ package vegas.display
      * button.addEventListener( MouseEvent.CLICK , click ) ;
      * 
      * addChild( button ) ;
-     * 
-     * trace( "DisplayObject contains 'mybutton' : " + DisplayObjectCollector.contains( "my_button" ) ) ;
-     * trace( DisplayObjectCollector.get( "my_button" ) ) ;
      * </pre>
      */
     public class CoreSimpleButton extends SimpleButton implements IDisplayObject
     {
         /**
          * Creates a new CoreSimpleButton instance.
-         * @param id Indicates the id of the object.
          * @param upState The initial value for the SimpleButton up state. 
          * @param overState The initial value for the SimpleButton over state. 
          * @param downState The initial value for the SimpleButton down state.
          * @param hitTestState The initial value for the SimpleButton hitTest state.  
-         * @param isConfigurable This flag indicates if the IConfigurable object is register in the ConfigCollector.
-         * @param name Indicates the instance name of the object. 
          */
         public function CoreSimpleButton
         ( 
-            id:*=null , upState:DisplayObject   = null , overState:DisplayObject    = null , 
-                        downState:DisplayObject = null , hitTestState:DisplayObject = null , name:String = null  
+            upState:DisplayObject   = null , overState:DisplayObject    = null , 
+            downState:DisplayObject = null , hitTestState:DisplayObject = null
         )
         {
             super( upState, overState, downState, hitTestState ) ;
-            if ( id != null )
-            {
-                this.id = id ;
-            }
-            if ( name != null )
-            {
-                this.name = name ;
-            }
             logger = null ;
-        }
-        
-        /**
-         * Returns the id of this object.
-         * @return the id of this object.
-         */
-        public function get id():*
-        {
-            return _id ;
-        }
-        
-        /**
-         * Returns the <code class="prettyprint">String</code> representation of this object.
-         * @return the <code class="prettyprint">String</code> representation of this object.
-         */
-        public function set id( id:* ):void
-        {
-            _setID( id ) ;
         }
         
         /**
@@ -159,32 +125,12 @@ package vegas.display
         }
         
         /**
-         * Returns the <code class="prettyprint">String</code> representation of this object.
-         * @return the <code class="prettyprint">String</code> representation of this object.
-         */
-        public override function toString():String
-        {
-            var str:String = "[" + getClassName(this) ;
-            if ( this.id != null )
-            {
-                str += " " + this.id ;
-            } 
-            str += "]" ;
-            return str ;
-        }    
-                
-        /**
          * Unlocks the display.
          */
         public function unlock():void 
         {
             ___isLock___ = Math.max( ___isLock___ - 1  , 0 ) ;
         }
-        
-        /**
-         * @private
-         */
-        private var _id:* = null ;
         
         /**
          * @private
@@ -195,23 +141,5 @@ package vegas.display
          * @private
          */ 
         private var _logger:Logger ;
-        
-        /**
-         * Sets the id of the object and register it in the DisplayObjectCollector if it's possible.
-         * @see DisplayObjectCollector
-         * @private
-         */
-        private function _setID( id:* ):void 
-        {
-            if ( DisplayObjectCollector.contains( this._id ) )
-            {
-                DisplayObjectCollector.remove( this._id ) ;
-            }
-            this._id = id ;
-            if ( this._id != null )
-            {
-                DisplayObjectCollector.insert ( this._id, this ) ;
-            }
-        }
     }
 }
