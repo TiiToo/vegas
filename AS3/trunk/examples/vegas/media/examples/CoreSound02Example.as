@@ -39,7 +39,6 @@ package examples
     import vegas.date.Time;
     import vegas.events.SoundEvent;
     import vegas.media.CoreSound;
-    import vegas.media.SoundCollector;
     
     import flash.display.MovieClip;
     import flash.events.Event;
@@ -68,9 +67,7 @@ package examples
             
             var request:URLRequest = new URLRequest( "mp3/test.mp3" ) ;
             
-            sound = new CoreSound( request , null , "mySound" ) ;
-            
-            trace("SoundCollector.get('mySound') : " + SoundCollector.get( "mySound" ) ) ;
+            sound = new CoreSound( request ) ;
             
             sound.addEventListener( Event.COMPLETE         , debug );
             sound.addEventListener( Event.ID3              , debug );

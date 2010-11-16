@@ -37,14 +37,13 @@
 
 package vegas.media 
 {
-    import system.data.Identifiable;
     import system.logging.Loggable;
     import system.process.Lockable;
     
     /**
      * This interface defines all interfaces who implements the core sound objects.
      */
-    public interface ISound extends Identifiable, Lockable, Loggable
+    public interface ISound extends Lockable, Loggable
     {
         
     }

@@ -37,7 +37,6 @@
 
 package vegas.media 
 {
-    import core.reflect.getClassName;
     import core.reflect.getClassPath;
     
     import system.events.ActionEvent;
@@ -52,9 +51,9 @@ package vegas.media
     import system.process.TaskPhase;
     import system.signals.Signal;
     import system.signals.Signaler;
-
+    
     import vegas.events.SoundEvent;
-
+    
     import flash.events.Event;
     import flash.events.IOErrorEvent;
     import flash.events.TimerEvent;
@@ -65,7 +64,7 @@ package vegas.media
     import flash.net.URLRequest;
     import flash.utils.Timer;
     import flash.utils.getDefinitionByName;
-
+    
     /**
      * Dispatched when a process is finished.
      * @eventType system.events.ActionEvent.FINISH
@@ -133,18 +132,13 @@ package vegas.media
          * Creates a new CoreSound instance.
          * @param stream The URL request that points to an external MP3 file.
          * @param context The SoundLoaderContext Minimum number of milliseconds of MP3 data to hold in the Sound object's buffer. The Sound object waits until it has at least this much data before beginning playback and before resuming playback after a network stall. The default value is 1000 (one second). 
-         * @param id Indicates the id of the object.
          */
-        public function CoreSound( stream:URLRequest = null, context:SoundLoaderContext = null , id:*=null )
+        public function CoreSound( stream:URLRequest = null, context:SoundLoaderContext = null )
         {
             _timer = new Timer( DEFAULT_DELAY ) ;
             _timer.addEventListener( TimerEvent.TIMER , _onTimer ) ;
             addEventListener( IOErrorEvent.IO_ERROR  , _onIOError );
             super( stream, context );
-            if ( id != null )
-            {
-                this.id = id ;
-            }
             this.logger         = null ;
             this.soundTransform = null ;
         }
@@ -179,24 +173,6 @@ package vegas.media
         }
         
         /**
-         * Returns the id of this object.
-         * @return the id of this object.
-         */
-        public function get id():*
-        {
-            return _id ;
-        }
-        
-        /**
-          * Returns the <code class="prettyprint">String</code> representation of this object.
-          * @return the <code class="prettyprint">String</code> representation of this object.
-          */
-        public function set id( id:* ):void
-        {
-            _setID( id ) ;
-        }
-        
-        /**
          * The current amplitude (volume) of the left channel, from 0 (silent) to 1 (full amplitude). 
          * If the value is NaN, the internal SoundChannel is 'null'.
          */
@@ -205,7 +181,7 @@ package vegas.media
             if ( channel != null )
             {
                 return channel.leftPeak ;
-            }    
+            }
             else
             {
                 return NaN ;
@@ -351,7 +327,7 @@ package vegas.media
         }
         
         /**
-         * This signal emit when the notifyStarted method is invoked. 
+         * This signal emit when the notifyStarted method is invoked.
          */
         public function get startIt():Signaler
         {
@@ -628,21 +604,6 @@ package vegas.media
         }
         
         /**
-          * Returns the <code class="prettyprint">String</code> representation of this object.
-          * @return the <code class="prettyprint">String</code> representation of this object.
-          */
-        public override function toString():String
-        {
-            var str:String = "[" + getClassName(this) ;
-            if ( this.id != null )
-            {
-                str += " " + this.id ;
-            } 
-            str += "]" ;
-            return str ;
-        }
-        
-        /**
          * Unlocks the sound.
          */
         public function unlock():void 
@@ -751,12 +712,6 @@ package vegas.media
          * @private
          */
         private var _finishIt:Signaler = new Signal() ;
-        
-        /**
-         * The internal id of this object.
-         * @private
-         */
-        private var _id:* ;
         
         /**
          * The internal flag to indicates if the sound is locked or not.
@@ -900,22 +855,6 @@ package vegas.media
                 _channel.soundTransform = soundTransform ;
             }
             return _channel ;
-        }
-        
-        /**
-         * @private
-         */
-        private function _setID( id:* ):void 
-        {
-            if ( SoundCollector.contains( this._id ) )
-            {
-                SoundCollector.remove( this._id ) ;
-            }
-            this._id = id ;
-            if ( this._id != null )
-            {
-                SoundCollector.add( this._id, this ) ;
-            }
         }
     }
 }
