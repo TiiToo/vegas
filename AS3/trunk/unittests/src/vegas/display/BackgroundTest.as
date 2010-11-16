@@ -63,15 +63,13 @@ package vegas.display
         public function testConstructor():void
         {
             assertNotNull( background ) ;
-            assertNull( background.id ) ; 
             assertFalse( background.isFull ) ;
         }
         
         public function testConstructorWithParameters():void
         {
-            background = new Background( "background" , true , "my_background" ) ;
+            background = new Background( true ) ;
             assertNotNull( background ) ;
-            assertEquals( background.name  , "my_background" ) ;
             assertTrue( background.isFull ) ;
         }
         
