@@ -36,12 +36,11 @@
 package examples 
 {
     import vegas.display.CoreMovieClip;
-    import vegas.display.DisplayObjectCollector;
-
+    
     import flash.display.Sprite;
     import flash.display.StageAlign;
     import flash.display.StageScaleMode;
-
+    
     /**
      * Example with the vegas.display.CoreMovieClip class.
      */
@@ -52,7 +51,7 @@ package examples
             stage.align      = StageAlign.TOP_LEFT ;
             stage.scaleMode  = StageScaleMode.NO_SCALE ;
             
-            var mc:CoreMovieClip = new CoreMovieClip( "my_movieclip" ) ;
+            var mc:CoreMovieClip = new CoreMovieClip() ;
             
             mc.x = 25 ;
             mc.y = 25 ;
@@ -61,9 +60,6 @@ package examples
             mc.graphics.drawRect( 0, 0, 200, 160 ) ;
             
             addChild( mc ) ;
-            
-            trace( "DisplayObject contains 'my_movieclip' : " + DisplayObjectCollector.contains( "my_movieclip" ) ) ;
-            trace( DisplayObjectCollector.get( "my_movieclip" ) ) ;
         }
     }
 }

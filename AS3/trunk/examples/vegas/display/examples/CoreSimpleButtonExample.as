@@ -36,8 +36,7 @@
 package examples 
 {
     import vegas.display.CoreSimpleButton;
-    import vegas.display.DisplayObjectCollector;
-
+    
     import flash.display.Sprite;
     import flash.display.StageAlign;
     import flash.display.StageScaleMode;
@@ -53,7 +52,7 @@ package examples
             stage.align      = StageAlign.TOP_LEFT ;
             stage.scaleMode  = StageScaleMode.NO_SCALE ;
             
-            var button:CoreSimpleButton = new CoreSimpleButton( "my_button" , new UpState() , new OverState(), new DownState(), new HitTestState() ) ;
+            var button:CoreSimpleButton = new CoreSimpleButton( new UpState() , new OverState(), new DownState(), new HitTestState() ) ;
             
             button.x = 25  ;
             button.y = 25  ;
@@ -61,9 +60,6 @@ package examples
             button.addEventListener( MouseEvent.CLICK , click ) ;
             
             addChild( button ) ;
-            
-            trace( "DisplayObject contains 'mybutton' : " + DisplayObjectCollector.contains( "my_button" ) ) ;
-            trace( DisplayObjectCollector.get( "my_button" ) ) ;
         }
         
         public function click( e:MouseEvent ):void

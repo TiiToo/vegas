@@ -36,8 +36,7 @@
 package examples 
 {
     import vegas.display.CoreLoader;
-    import vegas.display.DisplayObjectCollector;
-
+    
     import flash.display.Sprite;
     import flash.display.StageAlign;
     import flash.display.StageScaleMode;
@@ -53,7 +52,7 @@ package examples
             stage.align      = StageAlign.TOP_LEFT ;
             stage.scaleMode  = StageScaleMode.NO_SCALE ;
             
-            var loader:CoreLoader = new CoreLoader( "my_loader" ) ;
+            var loader:CoreLoader = new CoreLoader() ;
             loader.x = 25 ;
             loader.y = 25 ;
             
@@ -63,10 +62,6 @@ package examples
             var request:URLRequest = new URLRequest( url ) ;
             
             loader.load( request ) ;
-            
-            trace( "DisplayObject contains 'my_loader' : " + DisplayObjectCollector.contains( "my_loader" ) ) ;
-            trace( DisplayObjectCollector.get( "my_loader" ) ) ;
         }
-
     }
 }

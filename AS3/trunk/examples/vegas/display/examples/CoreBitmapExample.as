@@ -36,7 +36,6 @@
 package examples 
 {
     import vegas.display.CoreBitmap;
-    import vegas.display.DisplayObjectCollector;
     
     import flash.display.Sprite;
     import flash.display.StageAlign;
@@ -55,7 +54,7 @@ package examples
                 stage.scaleMode  = StageScaleMode.NO_SCALE ;
             }
             
-            var bmp:CoreBitmap = new CoreBitmap( "my_bitmap" ) ;
+            var bmp:CoreBitmap = new CoreBitmap() ;
             bmp.smoothing = true ;
             bmp.x = 25 ;
             bmp.y = 25 ;
@@ -63,9 +62,6 @@ package examples
             bmp.bitmapData = new Picture(240,240) ;
             
             addChild( bmp ) ;
-            
-            trace( "DisplayObject contains 'my_bitmap' : " + DisplayObjectCollector.contains( "my_bitmap" ) ) ;
-            trace( DisplayObjectCollector.get( "my_bitmap" ) ) ;
         }
     }
 }

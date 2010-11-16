@@ -36,7 +36,6 @@
 package examples 
 {
     import vegas.display.CoreSprite;
-    import vegas.display.DisplayObjectCollector;
     
     import flash.display.Sprite;
     import flash.display.StageAlign;
@@ -53,7 +52,7 @@ package examples
             stage.align      = StageAlign.TOP_LEFT ;
             stage.scaleMode  = StageScaleMode.NO_SCALE ;
             
-            var sprite:CoreSprite = new CoreSprite( "my_sprite" ) ;
+            var sprite:CoreSprite = new CoreSprite() ;
             
             sprite.x = 25 ;
             sprite.y = 25 ;
@@ -62,9 +61,6 @@ package examples
             sprite.graphics.drawRect( 0, 0, 200, 160 ) ;
             
             addChild( sprite ) ;
-            
-            trace( "DisplayObject contains 'my_sprite' : " + DisplayObjectCollector.contains( "my_sprite" ) ) ;
-            trace( DisplayObjectCollector.get( "my_sprite" ) ) ;
         }
     }
 }
