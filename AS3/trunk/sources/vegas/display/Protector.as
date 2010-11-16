@@ -105,7 +105,7 @@ package vegas.display
         public function Protector( cursor:Sprite = null , magnetic:Boolean = false , cursorAlign:uint = 1  , cursorAutoPlay:Boolean = true )
         {
             lock() ;
-            super( null , true );
+            super( true );
             autoSize            = true ;
             this.cursor         = cursor ;
             this.cursorAlign    = cursorAlign ;
