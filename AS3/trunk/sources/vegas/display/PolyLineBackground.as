@@ -85,13 +85,10 @@ package vegas.display
     {
         /**
          * Creates a new PolyLineBackground instance.
-         * @param id Indicates the id of the object.
-         * @param isFull Indicates if the display is full size or not.
-         * @param name Indicates the instance name of the object.
+         * @param data An Array of all points to defines the polyline pen.
          */
-        public function PolyLineBackground( data:Array = null , id:* = null, name:String = null)
+        public function PolyLineBackground( data:Array = null )
         {
-            super(id, name);
             _pen = initBackgroundPen() ;
             this.data = data ;  
         }
@@ -233,7 +230,7 @@ package vegas.display
         public function viewChanged():void
         {
             // overrides
-        }        
+        }
         
         /**
          * @private
@@ -244,7 +241,7 @@ package vegas.display
          * @private
          */
         private var _lineStyle:ILineStyle ;
-
+        
         /**
          * @private
          */
