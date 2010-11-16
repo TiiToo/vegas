@@ -51,7 +51,7 @@ package vegas.display
      * <pre class="prettyprint">
      * import vegas.display.CoreMovieClip ;
      * 
-     * var mc:CoreMovieClip = new CoreMovieClip( "my_movieclip" ) ;
+     * var mc:CoreMovieClip = new CoreMovieClip() ;
      * 
      * mc.graphics.beginFill( 0xFF0000 , 100 ) ;
      * mc.graphics.drawRect( 0, 0, 200, 160 ) ;

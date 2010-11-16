@@ -51,7 +51,7 @@ package vegas.display
      * <pre class="prettyprint">
      * import vegas.display.CoreShape ;
      * 
-     * var shape:CoreShape = new CoreShape( "my_shape" ) ;
+     * var shape:CoreShape = new CoreShape() ;
      * shape.x = 25 ;
      * shape.y = 25 ;
      * 

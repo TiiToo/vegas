@@ -58,7 +58,7 @@ package vegas.display
      *     trace(e) ;
      * }
      * 
-     * var button:CoreSimpleButton = new CoreSimpleButton( "my_button" , new UpState() , new OverState(), new DownState(), new HitTestState() ) ;
+     * var button:CoreSimpleButton = new CoreSimpleButton( new UpState() , new OverState(), new DownState(), new HitTestState() ) ;
      * button.addEventListener( MouseEvent.CLICK , click ) ;
      * 
      * addChild( button ) ;
