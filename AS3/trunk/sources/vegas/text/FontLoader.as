@@ -125,12 +125,9 @@ package vegas.text
     {
         /**
          * Creates a new FontLoader instance.
-         * @param id Indicates the id of the object.
-         * @param name Indicates the instance name of the object.
          */
-        public function FontLoader( id:* = null, name:String = null )
+        public function FontLoader()
         {
-            super( id , name );
             contentLoaderInfo.addEventListener( Event.COMPLETE, complete , false, 99999 ) ;
         }
         
@@ -200,7 +197,7 @@ package vegas.text
          * Invoked when the FontLoader process is complete.
          */
         protected function complete( e:Event ) : void
-        {   
+        {
             var domain:ApplicationDomain = contentLoaderInfo.applicationDomain as ApplicationDomain ;
             if ( autoRegister )
             {
