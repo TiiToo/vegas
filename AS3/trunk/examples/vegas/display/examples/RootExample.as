@@ -34,11 +34,11 @@
 */
 package examples 
 {
-    import vegas.display.ApplicationDisplay;
+    import vegas.display.Root;
 
-    public class ApplicationDisplayExample extends ApplicationDisplay 
+    public class RootExample extends Root 
     {
-        public function ApplicationDisplayExample()
+        public function RootExample()
         {
             trace("success") ;
         }
