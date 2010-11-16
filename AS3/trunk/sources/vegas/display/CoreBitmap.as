@@ -37,23 +37,22 @@
 
 package vegas.display 
 {
-    import core.reflect.getClassName;
     import core.reflect.getClassPath;
-
+    
     import system.logging.Log;
     import system.logging.Logger;
-
+    
     import flash.display.Bitmap;
     import flash.display.BitmapData;
-
+    
     /**
      * The CoreBitmap class extends the flash.display.Bitmap class and implements the IDisplayObject interface.
      * <p><b>Example :</b></p>
      * <pre class="prettyprint">
      * import vegas.display.CoreBitmap ;
-     * import vegas.display.DisplayObjectCollector ;
      * 
-     * var bmp:CoreBitmap = new CoreBitmap( "my_bitmap" ) ;
+     * var bmp:CoreBitmap = new CoreBitmap() ;
+     * 
      * bmp.smoothing = true ;
      * bmp.x = 25 ;
      * bmp.y = 25 ;
@@ -61,46 +60,20 @@ package vegas.display
      * bmp.bitmapData = new Picture(240,240) ;
      * 
      * addChild( bmp ) ;
-     * 
-     * trace( "DisplayObject contains 'my_bitmap' : " + DisplayObjectCollector.contains( "my_bitmap" ) ) ;
-     * trace( DisplayObjectCollector.get( "my_bitmap" ) ) ;
      * </pre>
      */
     public class CoreBitmap extends Bitmap implements IDisplayObject
     {
         /**
          * Creates a new CoreBitmap instance.
-         * @param id Indicates the id of the object.
          * @param bitmapData The BitmapData object being referenced.
          * @param pixelSnapping Controls whether or not the Bitmap object is snapped to the nearest pixel.
          * @param smoothing Controls whether or not the bitmap is smoothed when scaled.
          */
-        public function CoreBitmap( id:*=null , bitmapData:BitmapData = null, pixelSnapping:String = "auto", smoothing:Boolean = false )
+        public function CoreBitmap( bitmapData:BitmapData = null, pixelSnapping:String = "auto", smoothing:Boolean = false )
         {
             super( bitmapData , pixelSnapping , smoothing ) ;
-            if ( id != null )
-            {
-                this.id = id ;
-            }
             logger = null ;
-        }
-        
-        /**
-         * Returns the id of this object.
-         * @return the id of this object.
-         */
-        public function get id():*
-        {
-            return _id ;
-        }
-        
-        /**
-          * Returns the <code class="prettyprint">String</code> representation of this object.
-          * @return the <code class="prettyprint">String</code> representation of this object.
-          */
-        public function set id( id:* ):void
-        {
-            _setID( id ) ;
         }
         
         /**
@@ -145,32 +118,12 @@ package vegas.display
         }
         
         /**
-         * Returns the <code class="prettyprint">String</code> representation of this object.
-         * @return the <code class="prettyprint">String</code> representation of this object.
-         */
-        public override function toString():String
-        {
-            var str:String = "[" + getClassName(this) ;
-            if ( this.id != null )
-            {
-                str += " " + this.id ;
-            } 
-            str += "]" ;
-            return str ;
-        }    
-
-        /**
          * Unlocks the display.
          */
         public function unlock():void 
         {
             ___isLock___ = Math.max( ___isLock___ - 1  , 0 ) ;
         }
-        
-        /**
-         * @private
-         */
-        private var _id:* = null ;
         
         /**
          * @private
@@ -181,23 +134,5 @@ package vegas.display
          * @private
          */ 
         private var _logger:Logger ;
-        
-        /**
-         * Sets the id of the object and register it in the DisplayObjectCollector if it's possible.
-         * @see DisplayObjectCollector
-         * @private
-         */
-        private function _setID( id:* ):void 
-        {
-            if ( DisplayObjectCollector.contains( this._id ) )
-            {
-                DisplayObjectCollector.remove( this._id ) ;
-            }
-            this._id = id ;
-            if ( this._id != null )
-            {
-                DisplayObjectCollector.insert ( this._id, this ) ;
-            }
-        }
     }
 }
