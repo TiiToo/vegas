@@ -37,21 +37,19 @@
 
 package vegas.display 
 {
-    import core.reflect.getClassName;
     import core.reflect.getClassPath;
-
+    
     import system.logging.Log;
     import system.logging.Logger;
-
+    
     import flash.display.MovieClip;
     import flash.events.Event;
-
+    
     /**
      * The CoreMovieClip class extends the flash.display.MovieClip class and implements the IDisplayObject interface.
      * <p><b>Example :</b></p>
      * <pre class="prettyprint">
      * import vegas.display.CoreMovieClip ;
-     * import vegas.display.DisplayObjectCollector ;
      * 
      * var mc:CoreMovieClip = new CoreMovieClip( "my_movieclip" ) ;
      * 
@@ -59,50 +57,18 @@ package vegas.display
      * mc.graphics.drawRect( 0, 0, 200, 160 ) ;
      * 
      * addChild( mc ) ;
-     * 
-     * trace( "DisplayObject contains 'my_movieclip' : " + DisplayObjectCollector.contains( "my_movieclip" ) ) ;
-     * trace( DisplayObjectCollector.get( "my_movieclip" ) ) ;
      * </pre>
      */
     public class CoreMovieClip extends MovieClip implements IDisplayObject
     {
-
         /**
          * Creates a new CoreMovieClip instance.
-         * @param id Indicates the id of the object.
-         * @param name Indicates the instance name of the object.
          */
-        public function CoreMovieClip( id:*=null, name:String=null )
+        public function CoreMovieClip()
         {
-            if ( id != null )
-            {
-                this.id = id ;
-            }
-            if ( name != null )
-            {
-                this.name = name ;
-            }
             addEventListener( Event.ADDED_TO_STAGE      , addedToStage ) ;
             addEventListener( Event.REMOVED_FROM_STAGE  , removedFromStage ) ;
             logger = null ;
-        }
-        
-        /**
-         * Returns the id of this object.
-         * @return the id of this object.
-         */
-        public function get id():*
-        {
-            return _id ;
-        }
-    
-        /**
-          * Returns the <code class="prettyprint">String</code> representation of this object.
-          * @return the <code class="prettyprint">String</code> representation of this object.
-          */
-        public function set id( id:* ):void
-        {
-            _setID(id) ;
         }
         
         /**
@@ -147,21 +113,6 @@ package vegas.display
         }
         
         /**
-          * Returns the <code class="prettyprint">String</code> representation of this object.
-          * @return the <code class="prettyprint">String</code> representation of this object.
-          */
-        public override function toString():String
-        {
-            var str:String = "[" + getClassName(this) ;
-            if ( this.id != null )
-            {
-                str += " " + this.id ;
-            } 
-            str += "]" ;
-            return str ;
-        }
-        
-        /**
          * Unlocks the display.
          */
         public function unlock():void 
@@ -187,11 +138,6 @@ package vegas.display
         
         /**
          * @private
-         */
-        private var _id:* = null ;
-        
-        /**
-         * @private
          */ 
         private var ___isLock___:uint ;
         
@@ -199,23 +145,5 @@ package vegas.display
          * @private
          */ 
         private var _logger:Logger ;
-        
-        /**
-         * Sets the id of the object and register it in the DisplayObjectCollector if it's possible.
-         * @see DisplayObjectCollector
-         * @private
-         */
-        private function _setID( id:* ):void 
-        {
-            if ( DisplayObjectCollector.contains( this._id ) )
-            {
-                DisplayObjectCollector.remove( this._id ) ;
-            }
-            this._id = id ;
-            if ( this._id != null )
-            {
-                DisplayObjectCollector.insert ( this._id, this ) ;
-            }
-        }
     }
 }
