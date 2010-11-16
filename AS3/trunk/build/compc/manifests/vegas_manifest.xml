@@ -46,22 +46,21 @@
     
     <!-- vegas.display -->
 
-    <component id="vegas.display:ApplicationDisplay"      class="vegas.display.ApplicationDisplay"  />
-    <component id="vegas.display:AVM2Loader"              class="vegas.display.AVM2Loader"  />
-    <component id="vegas.display:Background"              class="vegas.display.Background"  />
-    <component id="vegas.display:CoreBitmap"              class="vegas.display.CoreBitmap"  />
-    <component id="vegas.display:CoreLoader"              class="vegas.display.CoreLoader"  />
-    <component id="vegas.display:CoreMovieClip"           class="vegas.display.CoreMovieClip"  />
-    <component id="vegas.display:CoreShape"               class="vegas.display.CoreShape"  />
-    <component id="vegas.display:CoreSimpleButton"        class="vegas.display.CoreSimpleButton"  />
-    <component id="vegas.display:CoreSprite"              class="vegas.display.CoreSprite" />
-    <component id="vegas.display:DisplayObjectCollector"  class="vegas.display.DisplayObjectCollector" />
-    <component id="vegas.display:IDisplayObject"          class="vegas.display.IDisplayObject"  />
-    <component id="vegas.display:Parallaxe"               class="vegas.display.Parallaxe" />
-    <component id="vegas.display:ParallaxeLayer"          class="vegas.display.ParallaxeLayer" />
-    <component id="vegas.display:PolyLineBackground"      class="vegas.display.PolyLineBackground" />
-    <component id="vegas.display:Protector"               class="vegas.display.Protector"  />
-    <component id="vegas.display:SWFInfo"                 class="vegas.display.SWFInfo"  />
+    <component id="vegas.display:AVM2Loader"         class="vegas.display.AVM2Loader" />
+    <component id="vegas.display:Background"         class="vegas.display.Background" />
+    <component id="vegas.display:CoreBitmap"         class="vegas.display.CoreBitmap" />
+    <component id="vegas.display:CoreLoader"         class="vegas.display.CoreLoader" />
+    <component id="vegas.display:CoreMovieClip"      class="vegas.display.CoreMovieClip" />
+    <component id="vegas.display:CoreShape"          class="vegas.display.CoreShape" />
+    <component id="vegas.display:CoreSimpleButton"   class="vegas.display.CoreSimpleButton" />
+    <component id="vegas.display:CoreSprite"         class="vegas.display.CoreSprite" />
+    <component id="vegas.display:IDisplayObject"     class="vegas.display.IDisplayObject" />
+    <component id="vegas.display:Parallaxe"          class="vegas.display.Parallaxe" />
+    <component id="vegas.display:ParallaxeLayer"     class="vegas.display.ParallaxeLayer" />
+    <component id="vegas.display:PolyLineBackground" class="vegas.display.PolyLineBackground" />
+    <component id="vegas.display:Protector"          class="vegas.display.Protector"  />
+    <component id="vegas.display:Root"               class="vegas.display.Root" />
+    <component id="vegas.display:SWFInfo"            class="vegas.display.SWFInfo" />
     
     <!-- vegas.display.coverflow -->
     
@@ -83,7 +82,7 @@
     
     <!-- vegas.i18n -->
     
-    <component id="vegas.i18n:CoreLocalizationLoader" class="vegas.i18n.CoreLocalizationLoader" />  
+    <component id="vegas.i18n:CoreLocalizationLoader" class="vegas.i18n.CoreLocalizationLoader" />
     <component id="vegas.i18n:EdenLocalizationLoader" class="vegas.i18n.EdenLocalizationLoader" />
     <component id="vegas.i18n:ILocalizationLoader"    class="vegas.i18n.ILocalizationLoader"    />
     <component id="vegas.i18n:JSONLocalizationLoader" class="vegas.i18n.JSONLocalizationLoader" />
@@ -165,7 +164,7 @@
     <component id="vegas.logging:logger" class="vegas.logging.logger"  />
     
     <!-- vegas.managers -->  
-
+    
     <component id="vegas.managers:ProtectorManager"    class="vegas.managers.ProtectorManager" />
     <component id="vegas.managers:TabManager"          class="vegas.managers.TabManager"  />
     
@@ -184,7 +183,6 @@
     <component id="vegas.media:MicrophoneExpert" class="vegas.media.MicrophoneExpert"  />
     <component id="vegas.media:MicrophoneStatus" class="vegas.media.MicrophoneStatus"  />
     <component id="vegas.media:MicrophoneVO"     class="vegas.media.MicrophoneVO"  />
-    <component id="vegas.media:SoundCollector"   class="vegas.media.SoundCollector"  />
     <component id="vegas.media:SoundLoader"      class="vegas.media.SoundLoader"  />
     <component id="vegas.media:VideoCodec"       class="vegas.media.VideoCodec"  />
     
