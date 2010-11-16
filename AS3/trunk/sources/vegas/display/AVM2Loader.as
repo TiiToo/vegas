@@ -81,8 +81,10 @@ package vegas.display
      * }
      * 
      * var loader:AVM2Loader = new AVM2Loader() ;
+     * 
      * loader.context = new LoaderContext( false , ApplicationDomain.currentDomain ) ;
      * loader.contentLoaderInfo.addEventListener( Event.INIT , init ) ;
+     * 
      * loader.x = 25 ;
      * loader.y = 25 ;
      * 
@@ -96,13 +98,10 @@ package vegas.display
     {
         /**
          * Creates a new AVM2Loader instance.
-         * @param id Indicates the id of the object.
-         * @param isConfigurable This flag indicates if the IConfigurable object is register in the ConfigCollector.
-         * @param name Indicates the instance name of the object.
          */
-        public function AVM2Loader( id:* = null, name:String = null)
+        public function AVM2Loader()
         {
-            super( id, name );
+            //
         }
         
         /**
