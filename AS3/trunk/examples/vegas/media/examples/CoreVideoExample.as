@@ -34,16 +34,15 @@
 */
 package examples 
 {
-    import vegas.media.CoreVideo;
-
     import flash.display.Sprite;
     import flash.media.Camera;
+    import flash.media.Video;
 
     public class CoreVideoExample extends Sprite 
     {
         public function CoreVideoExample()
         {
-            var video:CoreVideo = new CoreVideo( "myVideo" ) ;
+            var video:Video = new Video() ;
             
             addChild( video ) ;
             
