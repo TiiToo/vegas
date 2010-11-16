@@ -92,8 +92,6 @@ package examples
             
             var container:CoreSprite = factory.getObject("my_container") as CoreSprite ;
             
-            trace( container + " id:" + container.id ) ; // my_container
-            
             addChild( container ) ;
             
             // from a basic assembly resource

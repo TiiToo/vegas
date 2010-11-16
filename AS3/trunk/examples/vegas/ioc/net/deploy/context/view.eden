@@ -48,7 +48,6 @@ objects =
         type       : "{display}.CoreSprite" ,
         singleton  : true  , 
         lazyInit   : true  ,
-        identify   : true  ,
         properties : 
         [
             
