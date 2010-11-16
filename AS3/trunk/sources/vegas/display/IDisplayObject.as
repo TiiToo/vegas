@@ -37,7 +37,6 @@
 
 package vegas.display 
 {
-    import system.data.Identifiable;
     import system.logging.Loggable;
     import system.process.Lockable;
     
@@ -46,7 +45,7 @@ package vegas.display
     /**
      * This interface defines all interfaces who implements the core displays objects.
      */
-    public interface IDisplayObject extends IEventDispatcher, Identifiable, Lockable, Loggable
+    public interface IDisplayObject extends IEventDispatcher, Lockable, Loggable
     {
         
     }
