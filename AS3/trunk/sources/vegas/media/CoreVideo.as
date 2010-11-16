@@ -36,17 +36,15 @@
 */
 package vegas.media 
 {
-    import core.reflect.getClassName;
     import core.reflect.getClassPath;
-
+    
     import system.logging.Log;
     import system.logging.Logger;
-
-    import vegas.display.DisplayObjectCollector;
+    
     import vegas.display.IDisplayObject;
-
+    
     import flash.media.Video;
-
+    
     /**
      * The CoreVideo class extends the flash.media.Video class and implements the IDisplayObject interface.
      */
@@ -58,36 +56,13 @@ package vegas.media
          * You can also set the width and height properties of the Video object after the initial construction, using Video.width and Video.height. 
          * When a new Video object is created, values of zero for width or height are not allowed ; 
          * if you pass zero, the defaults will be applied. 
-         * @param id Indicates the id of the object.
          * @param width The width of the video, in pixels. (default 320)
          * @param height The width of the video, in pixels. (default 240)
          */
-        public function CoreVideo( id:*=null , width:int = 320, height:int = 240 )
+        public function CoreVideo( width:int = 320, height:int = 240 )
         {
             super( width , height ) ;
             logger = null ;
-            if ( id != null )
-            {
-                this.id = id ;
-            }
-        }
-        
-        /**
-         * Returns the id of this object.
-         * @return the id of this object.
-         */
-        public function get id():*
-        {
-            return _id ;
-        }
-        
-        /**
-         * Returns the <code class="prettyprint">String</code> representation of this object.
-         * @return the <code class="prettyprint">String</code> representation of this object.
-         */
-        public function set id( id:* ):void
-        {
-            _setID( id ) ;
         }
         
         /**
@@ -132,32 +107,12 @@ package vegas.media
         }
         
         /**
-         * Returns the <code class="prettyprint">String</code> representation of this object.
-         * @return the <code class="prettyprint">String</code> representation of this object.
-         */
-        public override function toString():String
-        {
-            var str:String = "[" + getClassName(this) ;
-            if ( this.id != null )
-            {
-                str += " " + this.id ;
-            } 
-            str += "]" ;
-            return str ;
-        }
-
-        /**
          * Unlocks the display.
          */
         public function unlock():void 
         {
             ___isLock___ = Math.max( ___isLock___ - 1  , 0 ) ;
         }
-        
-        /**
-         * @private
-         */
-        private var _id:* = null ;
         
         /**
          * @private
@@ -168,23 +123,5 @@ package vegas.media
          * @private
          */ 
         private var _logger:Logger ;
-        
-        /**
-         * Sets the id of the object and register it in the DisplayObjectCollector if it's possible.
-         * @see DisplayObjectCollector
-         * @private
-         */
-        private function _setID( id:* ):void 
-        {
-            if ( DisplayObjectCollector.contains( this._id ) )
-            {
-                DisplayObjectCollector.remove( this._id ) ;
-            }
-            this._id = id ;
-            if ( this._id != null )
-            {
-                DisplayObjectCollector.insert ( this._id, this ) ;
-            }
-        }
     }
 }
