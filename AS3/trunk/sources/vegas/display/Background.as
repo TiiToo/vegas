@@ -50,14 +50,14 @@ package vegas.display
     import graphics.geom.Dimension;
     import graphics.numeric.Trigo;
     import graphics.transitions.FrameTimer;
-
+    
     import system.hack;
-
+    
     import flash.events.Event;
     import flash.events.TimerEvent;
     import flash.geom.Matrix;
     import flash.geom.Point;
-
+    
     /**
      * This display is used to create a background in your application or in an other display of the application.
      * <p><b>Example :</b></p>
@@ -149,13 +149,10 @@ package vegas.display
         
         /**
          * Creates a new Background instance.
-         * @param id Indicates the id of the object.
          * @param isFull Indicates if the display is full size or not.
-         * @param name Indicates the instance name of the object.
          */
-        public function Background(id:* = null, isFull:Boolean=false, name:String = null)
+        public function Background( isFull:Boolean=false )
         {
-            super( id, name );
             addEventListener( Event.ADDED_TO_STAGE      , addedToStageResize     , false , 9999 ) ;
             addEventListener( Event.REMOVED_FROM_STAGE  , removedFromStageResize , false , 9999 ) ;
             _pen  = initBackgroundPen() ;
