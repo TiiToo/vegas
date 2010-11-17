@@ -110,13 +110,13 @@ package vegas.models.maps
     {
         /**
          * Creates a new IndexedMapModelObject instance.
-         * @param id the id of this model.
          * @param global the flag to use a global event flow or a local event flow (default true).
          * @param channel (optional) the name of the global event flow if the <code class="prettyprint">global</code> argument is <code class="prettyprint">true</code>.
+         * @param id the id of this model.
          */
-        public function IndexedMapModelObject( id:* = null , global:Boolean = true , channel:String = null )
+        public function IndexedMapModelObject( global:Boolean = true , channel:String = null , id:* = null )
         {
-            super( id, global, channel, new ArrayMap() );
+            super( global, channel, new ArrayMap() , id ) ;
         }
         
         /**
