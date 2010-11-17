@@ -51,13 +51,13 @@ package vegas.media
     {
         /**
          * Creates a new MediaExpert instance.
-         * @param id the id of the model.
          * @param global the flag to use a global event flow or a local event flow.
          * @param channel the name of the global event flow if the <code class="prettyprint">global</code> argument is <code class="prettyprint">true</code>.
+         * @param id the id of the model.
          */
-        public function MediaExpert( id:* = null , global:Boolean = false, channel:String = null )
+        public function MediaExpert( global:Boolean = false, channel:String = null , id:* = null )
         {
-            super( id , global, channel );
+            super( global, channel , id );
         }
         
         /**
