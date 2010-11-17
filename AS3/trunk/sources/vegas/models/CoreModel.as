@@ -46,14 +46,14 @@ package vegas.models
     {
         /**
          * Creates a new CoreModel instance.
-         * @param id the id of the model.
          * @param global the flag to use a global event flow or a local event flow (default true).
          * @param channel the name of the global event flow if the <code class="prettyprint">global</code> argument is <code class="prettyprint">true</code>.
+         * @param id the id of the model.
          */    
-        public function CoreModel( id:* = null , global:Boolean = true , channel:String = null )
+        public function CoreModel( global:Boolean = true , channel:String = null , id:* = null )
         {
             super( global , channel ) ;
-            _setID( id ) ;
+            this.id = id ;
         }
         
         /**
@@ -71,7 +71,7 @@ package vegas.models
          */
         public function set id(value:*):void
         {
-            _setID( value ) ;
+            _id = value ;
         }
         
         /**
@@ -87,22 +87,5 @@ package vegas.models
          * @private
          */
         private var _id:* ;
-        
-        /**
-         * Internal method to register the IModel in the ModelCollector with the specified id in argument.
-         * @see ModelCollector.
-         */
-        private function _setID( id:* ):void 
-        {
-            if ( ModelCollector.contains( this._id ) )
-            {
-                ModelCollector.remove( this._id ) ;
-            }
-            this._id = id ;
-            if ( this._id != null )
-            {
-                ModelCollector.insert ( this._id, this ) ;
-            }
-        }
     }
 }
