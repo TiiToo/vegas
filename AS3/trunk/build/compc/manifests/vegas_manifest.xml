@@ -192,7 +192,6 @@
     <component id="vegas.models:CoreModel"       class="vegas.models.CoreModel" />
     <component id="vegas.models:CoreModelObject" class="vegas.models.CoreModelObject" />
     <component id="vegas.models:Model"           class="vegas.models.Model" />
-    <component id="vegas.models:ModelCollector"  class="vegas.models.ModelCollector" />
     <component id="vegas.models:ModelObject"     class="vegas.models.ModelObject" />
     <component id="vegas.models:PageByPageModel" class="vegas.models.PageByPageModel" />
     
