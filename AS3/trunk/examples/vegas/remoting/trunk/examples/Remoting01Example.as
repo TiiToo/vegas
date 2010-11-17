@@ -50,7 +50,7 @@ package examples
     {
         public function Remoting01Example()
         {
-            service                = new RemotingService() ;
+            service = new RemotingService() ;
             
             service.addEventListener( RemotingEvent.ERROR  , error    ) ;
             service.addEventListener( RemotingEvent.FAULT  , fault    ) ;
