@@ -117,9 +117,9 @@ package vegas.managers
          * @param global the flag to use a global event flow or a local event flow.
          * @param channel the name of the global event flow if the <code class="prettyprint">bGlobal</code> argument is <code class="prettyprint">true</code>.
          */
-        public function TabManager( id:* = null, global:Boolean = false, channel:String = null)
+        public function TabManager( global:Boolean = false, channel:String = null , id:* = null )
         {
-            super( id, global, channel );
+            super( global, channel , id );
             _map = new HashMap() ;
             _set = new MultiSetMap() ;
         }
@@ -127,7 +127,7 @@ package vegas.managers
         /**
          * Indicates if the tab manager use a auto group focus over the interactive objects when there are focused.
          */
-        public var auto:Boolean = false ;
+        public var auto:Boolean ;
         
         /**
          * Removes all elements in this manager.
@@ -199,10 +199,10 @@ package vegas.managers
             if ( b )
             {
                 child.tabEnabled = false ;
-                child.addEventListener(FocusEvent.FOCUS_IN, _onFocusIn, false, 0, true) ;
+                child.addEventListener( FocusEvent.FOCUS_IN , _onFocusIn, false, 0, true ) ;
                 _map.put( child , id ) ;
             }
-            return b == true ;
+            return b ;
         } 
         
         /**
@@ -318,7 +318,7 @@ package vegas.managers
          */
         private function _onFocusIn( e:FocusEvent ):void
         {
-            if ( auto && (e.relatedObject != e.target) )
+            if ( auto && ( e.relatedObject != e.target ) )
             {
                 var child:InteractiveObject = e.target as InteractiveObject ;
                 if ( _map.containsKey( child ) )
