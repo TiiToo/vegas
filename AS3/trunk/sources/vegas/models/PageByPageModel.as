@@ -55,13 +55,13 @@ package vegas.models
          * @param current the current page of the model.
          * @param total the total number of the model.
          * @param limit the limit number of pages of the model. 
-         * @param id the id of the model.
          * @param global the flag to use a global event flow or a local event flow.
          * @param channel the name of the global event flow if the <code class="prettyprint">global</code> argument is <code class="prettyprint">true</code>.
+         * @param id the id of the model.
          */
-        public function PageByPageModel( current:uint = 1 , total:uint = 1 , limit:uint = 5, id:* = null , global:Boolean = false , channel:String = null )
+        public function PageByPageModel( current:uint = 1 , total:uint = 1 , limit:uint = 5 , global:Boolean = false , channel:String = null , id:* = null )
         {
-            super( id , global , channel ) ;
+            super( global , channel , id ) ;
             _sChangeType = Event.CHANGE ;
             _range       = new Range( 1 , 1 ) ;
             setNavigator( current, total, limit ) ;
