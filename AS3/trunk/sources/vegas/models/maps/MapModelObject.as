@@ -42,10 +42,10 @@ package vegas.models.maps
     import system.data.Map;
     import system.data.ValueObject;
     import system.data.maps.HashMap;
-
+    
     import vegas.events.ModelObjectEvent;
     import vegas.models.CoreModelObject;
-
+    
     /**
      * This model use an internal <code class="prettyprint">Map</code> to register value objects with a specific key.
      */
@@ -53,14 +53,14 @@ package vegas.models.maps
     {
         /**
          * Creates a new MapModelObject instance.
-         * @param id the id of this model.
          * @param global the flag to use a global event flow or a local event flow (default true).
          * @param channel (optional) the name of the global event flow if the <code class="prettyprint">global</code> argument is <code class="prettyprint">true</code>.
          * @param factory (optional) the Map factory reference used in the model to register all entries.
+         * @param id the id of this model.
          */
-        public function MapModelObject(id:* = null , global:Boolean = true , channel:String = null , factory:Map = null )
+        public function MapModelObject( global:Boolean = true , channel:String = null , factory:Map = null , id:* = null )
         {
-            super( id , global , channel );
+            super( global , channel , id ) ;
             _map = factory || initializeMap() ;
         }
         
