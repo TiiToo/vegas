@@ -50,13 +50,13 @@ package vegas.media
          * Creates a new MicrophoneExpert instance.
          * @param setting The MicrophoneVO reference to set the current Microphone object.
          * @param index The index value of the microphone. 
+         * @param global the flag to use a global event flow or a local event flow.
+         * @param channel the name of the global event flow if the <code class="prettyprint">bGlobal</code> argument is <code class="prettyprint">true</code>.
          * @param id the id of the model.
-         * @param bGlobal the flag to use a global event flow or a local event flow.
-         * @param sChannel the name of the global event flow if the <code class="prettyprint">bGlobal</code> argument is <code class="prettyprint">true</code>.
          */
-        public function MicrophoneExpert( setting:MicrophoneVO = null , index:int = 0 , id:* = null , bGlobal:Boolean = false, sChannel:String = null )
+        public function MicrophoneExpert( setting:MicrophoneVO = null , index:int = 0 , global:Boolean = false, channel:String = null , id:* = null )
         {
-            super( id , bGlobal, sChannel );
+            super( global, channel , id ) ;
             this.setting = setting || DEFAULT_SETTING ;
             setMicrophone( index ) ;
         }
