@@ -38,14 +38,13 @@
 package vegas.ioc.io 
 {
     import system.Reflection;
+    import system.ioc.ObjectDefinition;
+    import system.ioc.ObjectFactory;
+    import system.ioc.strategies.ObjectFactoryValue;
     import system.process.ActionLoader;
     import system.process.CoreActionLoader;
     import system.process.TimeoutPolicy;
-
-    import vegas.ioc.ObjectDefinition;
-    import vegas.ioc.factory.ObjectFactory;
-    import vegas.ioc.factory.strategy.ObjectFactoryValue;
-
+    
     import flash.display.Loader;
     import flash.net.URLRequest;
     import flash.system.ApplicationDomain;
