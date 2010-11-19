@@ -37,7 +37,7 @@ package examples
 {
     import system.events.ActionEvent;
     
-    import vegas.ioc.net.ECMAObjectLoader;
+    import vegas.net.ApplicationLoader;
     
     import flash.display.MovieClip;
     import flash.events.Event;
@@ -47,11 +47,11 @@ package examples
     /**
      * "assembly" resource example.
      */
-    public class ECMAObjectLoader07Example extends MovieClip 
+    public class ApplicationLoader07Example extends MovieClip 
     {
-        public function ECMAObjectLoader07Example()
+        public function ApplicationLoader07Example()
         {
-            var loader:ECMAObjectLoader = new ECMAObjectLoader( "application_assembly_resource.eden" , "context/" ) ;
+            var loader:ApplicationLoader = new ApplicationLoader( "application_assembly_resource.eden" , "context/" ) ;
             
             loader.root = this ;
             
