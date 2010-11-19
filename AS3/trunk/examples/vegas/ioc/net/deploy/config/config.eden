@@ -1,21 +1,23 @@
 
-pseudo  = "ekameleon" ;
+pseudo = "ekameleon" ;
 
-display =
+picture =
 {
-   
-   filters : 
-   [ 
-        new flash.filters.DropShadowFilter(4,75,0x000000,0.8,12,12,1,3) 
-   ] 
+   filters : [ new flash.filters.DropShadowFilter(4,75,0x000000,0.8,12,12,1,3) ] ,
+   x       : 470 ,
+   y       : 75 
 
+};
+
+square =
+{
+   filters : [ new flash.filters.DropShadowFilter(4,75,0x000000,0.8,12,12,1,3) ] 
 };
 
 field =
 {
     autoSize          : "left" ,
     defaultTextFormat : new flash.text.TextFormat("Arial", 14, 0xEEED2B) ,
-    text              : "hello world" ,
-    x                 : 25 ,
-    y                 : 25
+    x                 : 20 ,
+    y                 : 20 
 };
