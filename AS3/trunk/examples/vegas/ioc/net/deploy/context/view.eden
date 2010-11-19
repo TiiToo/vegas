@@ -1,51 +1,46 @@
 objects =
 [
     {
-        id                  : "formatter" ,
+        id                  : "message" ,
         type                : "String"    ,
         staticFactoryMethod :
         {
             type      : "system.Strings" , 
             name      : "format" ,
-            arguments : [ { locale:"pattern" } , { config:"pseudo" } ]
+            arguments : [ { locale:"pattern" } , { ref:"user.name" } ]
         }
     }
     ,
     {
-        id         : "my_field" ,
+        id         : "field" ,
         type       : "TextField"  ,
         properties : 
         [
-            { name : "autoSize"          , value  : "left"            } ,
-            { name : "filters"           , config : "display.filters" } ,
-            { name : "x"                 , value  : 10                } ,
-            { name : "y"                 , value  : 10                } ,
-            { name : "styleSheet"        , ref    : "style_sheet"     } ,
-            { name : "htmlText"          , ref    : "formatter"       } 
+            { name : "#init"      , config : "field"       } ,
+            { name : "styleSheet" , ref    : "style_sheet" } ,
+            { name : "htmlText"   , ref    : "message"     } 
         ]
     }
     ,
     {
-        id               : "my_picture" ,
+        id               : "picture" ,
         type             : "flash.display.Bitmap"  ,
         factoryReference : "assembly_picture" ,
         properties : 
         [
-            { name : "filters" , config : "display.filters" } ,
-            { name : "x"       , value  : 470               } ,
-            { name : "y"       , value  : 75                }
+            { name : "#init" , config : "picture" } 
         ]
     }    
     ,
     {
-        id         : "my_square" ,
+        id         : "square" ,
         type       : "Square" ,
-        properties : [ { name : "filters" , config : "display.filters" } ]
+        properties : [ { name : "#init" , config : "square" } ]
     } 
     ,
     {
-        id         : "my_container" ,
-        type       : "{display}.CoreSprite" ,
+        id         : "container" ,
+        type       : "{display}.Sprite" ,
         singleton  : true  , 
         lazyInit   : true  ,
         properties : 
@@ -58,21 +53,20 @@ objects =
             
             // methods
             
-            { name : "addChild" , arguments : [ { ref:"my_square"  } ] } ,
-            { name : "addChild" , arguments : [ { ref:"my_field"   } ] }  
+            { name : "addChild" , arguments : [ { ref:"square" } ] } ,
+            { name : "addChild" , arguments : [ { ref:"field"  } ] }  
         ]
     }  
     ,
     {
-        id         : "my_logo" ,
-        type       : "Logo"    ,
-        singleton  : true      , 
-        lazyInit   : true      ,
+        id         : "logo" ,
+        type       : "Logo" ,
+        singleton  : true , 
+        lazyInit   : true ,
         properties : 
         [
-            { name : "filters" , config : "display.filters" } ,
-            { name : "x"       , value  : 280               } ,
-            { name : "y"       , value  : 50                }
+            { name : "x" , value : 280 } ,
+            { name : "y" , value : 50  }
         ]
     }
 ] ;

@@ -2,7 +2,7 @@ imports =
 [
     // assembly
     
-    { resource : "library/dll.swf"     , type:"assembly" } 
+    { resource : "library/dll.swf" , type:"assembly" } 
     
     ,
     { 
@@ -54,16 +54,16 @@ configuration =
         pattern : "Hello {0}"
     }
     ,
-    typePolicy           : "all" ,
-    typeAliases          : 
+    typePolicy  : "all" ,
+    typeAliases : 
     [
         { alias:"TextField" , type:"flash.text.TextField" } ,
-        { alias:"User"      , type:"examples.vo.User"            } 
+        { alias:"User"      , type:"examples.vo.User"     } 
     ]
     ,
-    typeExpression       :
+    typeExpression :
     [
-        { name : "display" , value : "vegas.display" }
+        { name : "display" , value : "flash.display" }
     ]
 } ;
 

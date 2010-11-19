@@ -11,12 +11,8 @@ objects =
         type : "flash.text.TextField" ,
         properties :
         [
-            { name : "autoSize"          , config : "field.autoSize"          } ,
-            { name : "defaultTextFormat" , config : "field.defaultTextFormat" } ,
-            { name : "filters"           , config : "display.filters"         } ,
-            { name : "text"              , config : "field.text"              } ,
-            { name : "x"                 , config : "field.x"                 } ,
-            { name : "y"                 , config : "field.y"                 } 
+            { name : "#init" , config : "field"       } ,
+            { name : "text"  , value  : "Hello World" } , 
         ]
     }
     ,
