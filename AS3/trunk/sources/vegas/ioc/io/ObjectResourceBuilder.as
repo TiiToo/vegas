@@ -38,9 +38,9 @@
 package vegas.ioc.io 
 {
     /**
-     * This tool class is a helper to create an ObjectResource object with a generic object in the IoC context.
+     * A factory helper to create ObjectResource objects with a generic object in the IoC context.
      */
-    public const ObjectResourceBuilder:ObjectResourceModel = new ObjectResourceModel() ; 
+    public const ObjectResourceBuilder:ObjectResourceFactory = new ObjectResourceFactory() ; 
     
     // default ObjectResource class in the factory.
     
