@@ -37,12 +37,12 @@
 
 package vegas.net 
 {
-	import vegas.ioc.ObjectFactoryLoader;
     import system.ioc.ObjectFactory;
 
     import vegas.config.Config;
     import vegas.events.LocalizationEvent;
     import vegas.i18n.Localization;
+    import vegas.ioc.ObjectFactoryLoader;
     
     /**
      * This loader load an external file who contains a context with all object definitions, resources and configuration objects to create and manage the ECMAObjectFactory IoC container.
@@ -127,20 +127,12 @@ package vegas.net
         public function ApplicationLoader( context:String = "application.eden" , path:String = "" , factory:ObjectFactory = null , config:Config = null , localization:Localization = null )
         {
             super( context , path , factory ) ;
-            localization = Localization.getInstance()  ; 
+            setConfigTarget( config  ) ;
+            this.localization = localization || Localization.getInstance()  ;
         }
         
         /**
-         * @private
-         */
-        public override function set factory( value:ObjectFactory ):void
-        {
-            super.factory = value ;
-            factory.config.setConfigTarget( Config.getInstance() ) ;
-        }
-        
-        /**
-         * Indicates the Localization reference of this loader.
+         * Determinates the Localization reference of this loader.
          */
         public function get localization():Localization
         {
@@ -162,6 +154,14 @@ package vegas.net
                 _localization.addEventListener( LocalizationEvent.CHANGE , updateLocalization , false, 0, true ) ;
             }
             updateLocalization() ;
+        }
+        
+        /**
+         * Defines the Config reference of this loader. If you change the factory of this loader don't forget to actualize this method.
+         */
+        public function setConfigTarget( config:Config ):void
+        {
+            factory.config.setConfigTarget( config || Config.getInstance() ) ;
         }
         
         /**
