@@ -38,7 +38,7 @@ package examples
     import system.events.ActionEvent;
     
     import vegas.ioc.io.ShaderResource;
-    import vegas.ioc.net.ECMAObjectLoader;
+    import vegas.net.ApplicationLoader;
     
     import flash.display.Sprite;
     import flash.events.Event;
@@ -51,9 +51,9 @@ package examples
      * Run  : Use this example only with the FP10 compilation with the compiler parameters :
      * -default-size 200 200 -default-frame-rate 31 -default-background-color 0x666666 -target-player=10.0
      */
-    public class ECMAObjectLoader09Example extends Sprite 
+    public class ApplicationLoader09Example extends Sprite 
     {
-        public function ECMAObjectLoader09Example()
+        public function ApplicationLoader09Example()
         {
             // register the resource in the ObjectResourceBuilder singleton.
             
@@ -61,7 +61,7 @@ package examples
             
             // load the external IoC context and initialize the application.
             
-            var loader:ECMAObjectLoader = new ECMAObjectLoader( "context/application_shader_resource.eden" ) ;
+            var loader:ApplicationLoader = new ApplicationLoader( "context/application_shader_resource.eden" ) ;
             
             loader.addEventListener( ActionEvent.FINISH , finish ) ;
             loader.addEventListener( ActionEvent.START  , start ) ;
