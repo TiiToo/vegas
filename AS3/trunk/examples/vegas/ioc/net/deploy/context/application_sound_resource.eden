@@ -64,7 +64,7 @@ objects =
     {
         id               : "root" ,
         singleton        : true   ,
-        type             : "examples.ECMAObjectLoader11Example" ,
+        type             : "flash.display.Sprite" ,
         factoryReference : "#root" ,
         properties       : 
         [ 

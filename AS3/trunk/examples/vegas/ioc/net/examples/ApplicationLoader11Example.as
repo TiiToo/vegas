@@ -36,13 +36,13 @@
 package examples 
 {
     import system.events.ActionEvent;
-    
+
     import vegas.date.Time;
     import vegas.events.SoundEvent;
     import vegas.ioc.io.SoundResource;
-    import vegas.ioc.net.ECMAObjectLoader;
     import vegas.media.CoreSound;
-    
+    import vegas.net.ApplicationLoader;
+
     import flash.display.Sprite;
     import flash.events.Event;
     import flash.events.KeyboardEvent;
@@ -57,9 +57,9 @@ package examples
      * Run  : Use this example only with the FP10 compilation with the compiler parameters :
      * -default-size 520 320 -default-frame-rate 31 -default-background-color 0x666666 -target-player=10.0
      */
-    public class ECMAObjectLoader11Example extends Sprite 
+    public class ApplicationLoader11Example extends Sprite 
     {
-        public function ECMAObjectLoader11Example()
+        public function ApplicationLoader11Example()
         {
             // register the resource in the ObjectResourceBuilder singleton.
             
@@ -67,7 +67,7 @@ package examples
             
             // load the external IoC context and initialize the application.
             
-            var loader:ECMAObjectLoader = new ECMAObjectLoader( "context/application_sound_resource.eden" ) ;
+            var loader:ApplicationLoader = new ApplicationLoader( "context/application_sound_resource.eden" ) ;
             
             loader.addEventListener( ActionEvent.FINISH , finish ) ;
             loader.addEventListener( ActionEvent.START  , start ) ;
