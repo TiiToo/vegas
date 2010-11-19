@@ -37,15 +37,13 @@
 
 package vegas.ioc.io 
 {
+    import system.ioc.ObjectFactory;
     import system.process.ActionLoader;
     import system.process.CoreActionLoader;
     
     import vegas.events.FontEvent;
-    import vegas.ioc.factory.ObjectFactory;
-    import vegas.text.FontLoader;
-    import vegas.ioc.io.ObjectResourceBuilder;
-    
     import vegas.logging.logger;
+    import vegas.text.FontLoader;
     
     import flash.net.URLRequest;
     import flash.system.ApplicationDomain;
