@@ -37,10 +37,10 @@
 
 package vegas.ioc.io 
 {
+    import system.ioc.ObjectDefinition;
+    import system.ioc.ObjectFactory;
     import system.process.CoreActionLoader;
-
-    import vegas.ioc.ObjectDefinition;
-    import vegas.ioc.factory.ObjectFactory;
+    
     import vegas.logging.logger;
     import vegas.media.CoreSound;
     import vegas.media.SoundLoader;
@@ -88,7 +88,7 @@ package vegas.ioc.io
         public var singleton:Boolean = true ;
         
         /**
-         * Creates a new CoreActionLoader object with the resource.
+         * Creates a new loader object with the resource.
          */
         public override function create():CoreActionLoader
         {
