@@ -35,81 +35,46 @@
 
 package examples 
 {
-    import vegas.events.LocalizationEvent;
-    import vegas.i18n.Lang;
-    import vegas.i18n.Localization;
-    import vegas.ioc.net.ECMAObjectLoader;
-    
+    import vegas.ioc.io.ObjectResourceInfo;
+    import vegas.net.ApplicationLoader;
+
     import flash.display.MovieClip;
     import flash.display.StageScaleMode;
-    import flash.events.KeyboardEvent;
-    import flash.text.TextField;
-    import flash.ui.Keyboard;
+    import flash.events.Event;
+    import flash.events.ProgressEvent;
     
     [SWF(width="740", height="400", frameRate="24", backgroundColor="#660000")]
     
     /**
      * The "i18n" resource example.
      */
-    public class ECMAObjectLoader10Example extends MovieClip 
+    public class ApplicationLoader10Example extends MovieClip 
     {
-        public function ECMAObjectLoader10Example()
+        public function ApplicationLoader10Example()
         {
             //////////
             
-            var loader:ECMAObjectLoader = new ECMAObjectLoader( "application_i18n_resource.eden" , "context/" ) ;
+            stage.scaleMode = StageScaleMode.NO_SCALE ;
+            
+            //////////
+            
+            var loader:ApplicationLoader = new ApplicationLoader( "application_i18n_resource.eden" , "context/" ) ;
             
             loader.root = this ;
+            
+            loader.resourceInfo.addEventListener( Event.OPEN             , debug ) ;
+            loader.resourceInfo.addEventListener( ProgressEvent.PROGRESS , debug ) ;
+            loader.resourceInfo.addEventListener( Event.COMPLETE         , debug ) ;
             
             loader.run() ;
             
             //////////
-            
-            stage.scaleMode = StageScaleMode.NO_SCALE ;
-            stage.addEventListener( KeyboardEvent.KEY_DOWN , keyDown ) ;
         }
         
-        /**
-         * The field reference of the application.
-         */
-        public var field:TextField ;
-        
-        /**
-         * The Localization reference of the application to change the current lang.
-         */
-        public var localization:Localization ;
-        
-        /**
-         * Invoked when the current localization of the application is changed.
-         */
-        public function changeLocalization( e:LocalizationEvent ):void
+        public function debug( e:Event ):void
         {
-            trace( e ) ;
-            if ( field != null )
-            {
-                field.text = e.getLocale("field.text") ;
-            }
-        }
-        
-        /**
-         * Invoked to change the current lang with the Keyboard.UP and Keyboard.DOWN keys.
-         */
-        public function keyDown( e:KeyboardEvent ):void
-        {
-            var code:uint = e.keyCode ;
-            switch( code )
-            {
-                case Keyboard.UP :
-                {
-                    localization.current = Lang.EN ;
-                    break ;
-                }
-                case Keyboard.DOWN :
-                {
-                    localization.current = "fr" ;
-                    break ;
-                }
-            }
+            var info:ObjectResourceInfo = e.target as ObjectResourceInfo ;
+            trace( e.type + " : " + info.resource + " :: " + info.bytesLoaded + " / " + info.bytesTotal ) ;
         }
     }
 }
