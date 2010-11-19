@@ -1,5 +1,7 @@
 ﻿/*
 
+  Version: MPL 1.1/GPL 2.0/LGPL 2.1
+ 
   The contents of this file are subject to the Mozilla Public License Version
   1.1 (the "License"); you may not use this file except in compliance with
   the License. You may obtain a copy of the License at 
@@ -33,40 +35,12 @@
   
 */
 
-package examples 
+package vegas.ioc
 {
-    import system.events.ActionEvent;
-    import system.ioc.ObjectFactory;
-    
-    import vegas.net.ApplicationLoader;
-    
-    import flash.display.Sprite;
-    import flash.events.Event;
-    
-    [SWF(width="740", height="400", frameRate="24", backgroundColor="#660000")]
+    import system.ioc.ObjectFactory ;
     
     /**
-     * Basic "hello world" example of the ApplicationLoader class.
+     * The IoC factory singleton of your application.
      */
-    public class ApplicationLoader01Example extends Sprite 
-    {
-        public function ApplicationLoader01Example()
-        {
-            var loader:ApplicationLoader = new ApplicationLoader( "hello_world.eden" , "context/" , new ObjectFactory() ) ;
-            
-            loader.verbose = true ;
-            
-            loader.root = this ;
-            
-            loader.addEventListener( ActionEvent.START  , debug ) ;
-            loader.addEventListener( ActionEvent.FINISH , debug ) ;
-            
-            loader.run() ;
-        }
-        
-        public function debug( e:Event ):void
-        {
-            trace( e ) ;
-        }
-    }
+    public const factory:ObjectFactory = new ObjectFactory() ;
 }
