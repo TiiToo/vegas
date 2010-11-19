@@ -36,36 +36,34 @@
 package examples 
 {
     import system.events.ActionEvent;
-    
-    import vegas.ioc.net.ECMAObjectLoader;
-    
-    import flash.display.Sprite;
+
+    import vegas.net.ApplicationLoader;
+
+    import flash.display.MovieClip;
     import flash.events.Event;
     
     [SWF(width="740", height="400", frameRate="24", backgroundColor="#660000")]
     
     /**
-     * Basic example of the ECMAObjectLoader class.
+     * The "style" resource example.
      */
-    public class ECMAObjectLoader01Example extends Sprite 
+    public class ApplicationLoader06Example extends MovieClip 
     {
-        public function ECMAObjectLoader01Example()
+        public function ApplicationLoader06Example()
         {
-            var loader:ECMAObjectLoader = new ECMAObjectLoader( "hello_world.eden" , "context/" ) ;
-            
-            loader.verbose = true ;
+            var loader:ApplicationLoader = new ApplicationLoader( "application_style_resource.eden" , "context/" ) ;
             
             loader.root = this ;
             
-            loader.addEventListener( ActionEvent.START  , debug ) ;
             loader.addEventListener( ActionEvent.FINISH , debug ) ;
+            loader.addEventListener( ActionEvent.START  , debug  ) ;
             
             loader.run() ;
         }
         
         public function debug( e:Event ):void
         {
-             trace( e ) ;
+            trace( e ) ;
         }
     }
 }

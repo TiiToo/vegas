@@ -37,7 +37,7 @@ package examples
 {
     import system.events.ActionEvent;
     
-    import vegas.ioc.net.ECMAObjectLoader;
+    import vegas.net.ApplicationLoader;
     
     import flash.display.MovieClip;
     import flash.events.Event;
@@ -45,27 +45,25 @@ package examples
     [SWF(width="740", height="400", frameRate="24", backgroundColor="#660000")]
     
     /**
-     * "font" resource example.
+     * The "config" resource example.
      */
-    public class ECMAObjectLoader03Example extends MovieClip 
+    public class ApplicationLoader05Example extends MovieClip 
     {
-        public function ECMAObjectLoader03Example()
+        public function ApplicationLoader05Example()
         {
-            var loader:ECMAObjectLoader = new ECMAObjectLoader( "application_font_resource.eden" , "context/" ) ;
-            
-            loader.factory.config.useLogger = false ;
+            var loader:ApplicationLoader = new ApplicationLoader( "application_config_resource.eden" , "context/" ) ;
             
             loader.root = this ;
             
-            loader.addEventListener( ActionEvent.START  , debug ) ;
             loader.addEventListener( ActionEvent.FINISH , debug ) ;
+            loader.addEventListener( ActionEvent.START  , debug  ) ;
             
             loader.run() ;
         }
         
         public function debug( e:Event ):void
         {
-             trace( e ) ;
+            trace( e ) ;
         }
     }
 }

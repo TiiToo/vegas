@@ -35,41 +35,57 @@
 
 package examples 
 {
-    import system.eden;
     import system.events.ActionEvent;
-    
-    import vegas.ioc.net.ECMAObjectLoader;
-    
+    import system.ioc.ObjectFactory;
+
+    import vegas.net.ApplicationLoader;
+
     import flash.display.MovieClip;
     import flash.events.Event;
     
     [SWF(width="740", height="400", frameRate="24", backgroundColor="#660000")]
     
     /**
-     * The "config" resource example.
+     * The "xml" resource example.
      */
-    public class ECMAObjectLoader05Example extends MovieClip 
+    public class ApplicationLoader04Example extends MovieClip 
     {
-        public function ECMAObjectLoader05Example()
+        public function ApplicationLoader04Example()
         {
-            var loader:ECMAObjectLoader = new ECMAObjectLoader( "application_config_resource.eden" , "context/" ) ;
+            loader = new ApplicationLoader( "application_xml_resource.eden" , "context/" ) ;
             
             loader.root = this ;
             
-            loader.addEventListener( ActionEvent.FINISH , debug ) ;
-            loader.addEventListener( ActionEvent.START  , debug  ) ;
+            loader.addEventListener( ActionEvent.FINISH , finish ) ;
+            loader.addEventListener( ActionEvent.START  , start  ) ;
             
             loader.run() ;
         }
         
-        public function debug( e:Event ):void
+        public var loader:ApplicationLoader ;
+        
+        public function finish( e:Event ):void
+        {
+            var factory:ObjectFactory = loader.factory ;
+            
+            trace( e ) ;
+            
+            var data:XML = factory.getObject( "data" ) as XML ;
+                
+            trace( "data  : " + data ) ;
+            
+            // target a node value in the external XML reference.
+            
+            trace( "data_title : " + factory.getObject( "data_title" ) ) ;
+            
+            // target an attribute in the external XML reference.
+            
+            trace( "data_type : " + factory.getObject( "data_type" ) ) ;
+        }
+        
+        public function start( e:Event ):void
         {
             trace( e ) ;
         }
-        
-        // Authorizes the TextFormat class in the white list of eden
-        
-        eden.addAuthorized("flash.filters.*") ;
-        eden.addAuthorized("flash.text.TextFormat") ;
     }
 }

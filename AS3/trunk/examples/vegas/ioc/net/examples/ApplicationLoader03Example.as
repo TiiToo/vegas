@@ -37,8 +37,7 @@ package examples
 {
     import system.events.ActionEvent;
     
-    import vegas.ioc.factory.ObjectFactory;
-    import vegas.ioc.net.ECMAObjectLoader;
+    import vegas.net.ApplicationLoader;
     
     import flash.display.MovieClip;
     import flash.events.Event;
@@ -46,46 +45,27 @@ package examples
     [SWF(width="740", height="400", frameRate="24", backgroundColor="#660000")]
     
     /**
-     * The "xml" resource example.
+     * "font" resource example.
      */
-    public class ECMAObjectLoader04Example extends MovieClip 
+    public class ApplicationLoader03Example extends MovieClip 
     {
-        public function ECMAObjectLoader04Example()
+        public function ApplicationLoader03Example()
         {
-            loader = new ECMAObjectLoader( "application_xml_resource.eden" , "context/" ) ;
+            var loader:ApplicationLoader = new ApplicationLoader( "application_font_resource.eden" , "context/" ) ;
+            
+            loader.factory.config.useLogger = false ;
             
             loader.root = this ;
             
-            loader.addEventListener( ActionEvent.FINISH , finish ) ;
-            loader.addEventListener( ActionEvent.START  , start  ) ;
+            loader.addEventListener( ActionEvent.START  , debug ) ;
+            loader.addEventListener( ActionEvent.FINISH , debug ) ;
             
             loader.run() ;
         }
         
-        public var loader:ECMAObjectLoader ;
-        
-        public function finish( e:Event ):void
+        public function debug( e:Event ):void
         {
-            var factory:ObjectFactory = loader.factory ;
-            
-            trace( e ) ;
-            
-            var data:XML = factory.getObject( "data" ) as XML ;
-                
-            trace( "data  : " + data ) ;
-            
-            // target a node value in the external XML reference.
-            
-            trace( "data_title : " + factory.getObject( "data_title" ) ) ;
-            
-            // target an attribute in the external XML reference.
-            
-            trace( "data_type : " + factory.getObject( "data_type" ) ) ;
-        }
-        
-        public function start( e:Event ):void
-        {
-            trace( e ) ;
+             trace( e ) ;
         }
     }
 }

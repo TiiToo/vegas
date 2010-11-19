@@ -37,31 +37,39 @@ package examples
 {
     import examples.vo.User;
     
-    import system.eden;
     import system.events.ActionEvent;
+    import system.ioc.ObjectFactory;
     
-    import vegas.display.CoreSprite;
-    import vegas.ioc.factory.ECMAObjectFactory;
     import vegas.ioc.io.ObjectResourceInfo;
-    import vegas.ioc.net.ECMAObjectLoader;
+    import vegas.net.ApplicationLoader;
     
     import flash.display.Bitmap;
     import flash.display.MovieClip;
+    import flash.display.Sprite;
     import flash.events.Event;
     import flash.events.ProgressEvent;
+    
+    //// Linkage enforcer
+    
+    User ;
+    
+    ////
     
     [SWF(width="740", height="400", frameRate="24", backgroundColor="#660000")]
     
     /**
-     * Example of the ECMAObjectLoader class with external resources.
+     * Example of the ApplicationLoader class with external resources.
      */
-    public class ECMAObjectLoader02Example extends MovieClip 
+    public class ApplicationLoader02Example extends MovieClip 
     {
-        public function ECMAObjectLoader02Example()
+        public function ApplicationLoader02Example()
         {
+            stage.align     = "tl" ;
             stage.scaleMode = "noScale" ;
             
-            var loader:ECMAObjectLoader = new ECMAObjectLoader( "application.eden" , "context/" ) ;
+            factory = new ObjectFactory() ;
+            
+            loader = new ApplicationLoader( "application.eden" , "context/" , factory ) ;
             
             loader.addEventListener( ActionEvent.START  , start ) ;
             loader.addEventListener( ActionEvent.FINISH , finish ) ;
@@ -72,6 +80,10 @@ package examples
             
             loader.run() ;
         }
+        
+        public var factory:ObjectFactory ;
+        
+        public var loader:ApplicationLoader ;
         
         public function debug( e:Event ):void
         {
@@ -88,35 +100,21 @@ package examples
         {
             trace( ">>>> " + e ) ;
             
-            var factory:ECMAObjectFactory = ECMAObjectFactory.getInstance() ;
-            
-            var container:CoreSprite = factory.getObject("my_container") as CoreSprite ;
+            var container:Sprite = factory.getObject("container") as Sprite ;
             
             addChild( container ) ;
             
             // from a basic assembly resource
             
-            var logo:MovieClip = factory.getObject("my_logo") as MovieClip ;
+            var logo:MovieClip = factory.getObject("logo") as MovieClip ;
             
             addChild( logo ) ;
             
             // from an assembly resource with object definition
             
-            var picture:Bitmap = factory.getObject("my_picture") as Bitmap ;
+            var picture:Bitmap = factory.getObject("picture") as Bitmap ;
             
             addChild( picture ) ;
         }
-        
-        //// eden white list
-        
-        eden.addAuthorized( "flash.filters.*" ) ;
-        eden.addAuthorized( "flash.text.TextField" ) ;
-        eden.addAuthorized( "flash.text.TextFormat" ) ; 
-        
-        //// Enforces the linked class in the application
-        
-        User ;
-        
-        ////
     }
 }
