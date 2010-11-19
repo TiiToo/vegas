@@ -35,10 +35,10 @@
 
 package examples 
 {
-    import vegas.ioc.ObjectArgument;
-    import vegas.ioc.ObjectAttribute;
-    import vegas.ioc.factory.ObjectBuilder;
-    
+    import system.ioc.ObjectArgument;
+    import system.ioc.ObjectAttribute;
+    import system.ioc.builders.createArguments;
+
     import flash.display.Sprite;
     
     public class ObjectArgumentExample extends Sprite 
@@ -57,7 +57,7 @@ package examples
                 
             ] ;
             
-            args = ObjectBuilder.createArguments( args ) ; // transform all arguments with the ObjectArgument factory.
+            args = createArguments( args ) ; // transform all arguments with the ObjectArgument factory.
             
             trace( args[0] is ObjectArgument ) ; // true
             

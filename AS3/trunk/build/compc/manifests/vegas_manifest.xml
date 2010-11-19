@@ -92,48 +92,7 @@
     
     <!-- vegas.ioc -->
     
-    <component id="vegas.ioc:IObjectDefinition"          class="vegas.ioc.IObjectDefinition"          />
-    <component id="vegas.ioc:IObjectDefinitionContainer" class="vegas.ioc.IObjectDefinitionContainer" />
-    <component id="vegas.ioc:IObjectFactory"             class="vegas.ioc.IObjectFactory"             />
-    <component id="vegas.ioc:MagicReference"             class="vegas.ioc.MagicReference"             />
-    <component id="vegas.ioc:ObjectArgument"             class="vegas.ioc.ObjectArgument"             />
-    <component id="vegas.ioc:ObjectAttribute"            class="vegas.ioc.ObjectAttribute"            />
-    <component id="vegas.ioc:ObjectDefinition"           class="vegas.ioc.ObjectDefinition"           />
-    <component id="vegas.ioc:ObjectDefinitionContainer"  class="vegas.ioc.ObjectDefinitionContainer"  />
-    <component id="vegas.ioc:ObjectListener"             class="vegas.ioc.ObjectListener"             />
-    <component id="vegas.ioc:ObjectMethod"               class="vegas.ioc.ObjectMethod"               />
-    <component id="vegas.ioc:ObjectOrder"                class="vegas.ioc.ObjectOrder"                />
-    <component id="vegas.ioc:ObjectProperty"             class="vegas.ioc.ObjectProperty"             />
-    <component id="vegas.ioc:ObjectReceiver"             class="vegas.ioc.ObjectReceiver"             />
-    <component id="vegas.ioc:ObjectScope"                class="vegas.ioc.ObjectScope"                />
-    <component id="vegas.ioc:TypeAliases"                class="vegas.ioc.TypeAliases"                />
-    <component id="vegas.ioc:TypeExpression"             class="vegas.ioc.TypeExpression"             />
-    <component id="vegas.ioc:TypePolicy"                 class="vegas.ioc.TypePolicy"                 />
-    
-    <!-- vegas.ioc.evaluators -->
-    
-    <component id="vegas.ioc.evaluators:ConfigEvaluator"    class="vegas.ioc.evaluators.ConfigEvaluator"    />
-    <component id="vegas.ioc.evaluators:LocaleEvaluator"    class="vegas.ioc.evaluators.LocaleEvaluator"    />
-    <component id="vegas.ioc.evaluators:ReferenceEvaluator" class="vegas.ioc.evaluators.ReferenceEvaluator" />
-    <component id="vegas.ioc.evaluators:TypeEvaluator"      class="vegas.ioc.evaluators.TypeEvaluator"      />
-    
-    <!-- vegas.ioc.factory -->
-    
-    <component id="vegas.ioc.factory:ECMAObjectFactory" class="vegas.ioc.factory.ECMAObjectFactory" />
-    <component id="vegas.ioc.factory:ObjectBuilder"     class="vegas.ioc.factory.ObjectBuilder"     /> 
-    <component id="vegas.ioc.factory:ObjectConfig"      class="vegas.ioc.factory.ObjectConfig"      />
-    <component id="vegas.ioc.factory:ObjectFactory"     class="vegas.ioc.factory.ObjectFactory"     />
-    
-    <!-- vegas.ioc.factory.strategy -->
-    
-    <component id="vegas.ioc.factory.strategy:IObjectFactoryStrategy"      class="vegas.ioc.factory.strategy.IObjectFactoryStrategy"      /> 
-    <component id="vegas.ioc.factory.strategy:ObjectFactoryBuilder"        class="vegas.ioc.factory.strategy.ObjectFactoryBuilder"        />
-    <component id="vegas.ioc.factory.strategy:ObjectFactoryMethod"         class="vegas.ioc.factory.strategy.ObjectFactoryMethod"         />
-    <component id="vegas.ioc.factory.strategy:ObjectFactoryProperty"       class="vegas.ioc.factory.strategy.ObjectFactoryProperty"       />
-    <component id="vegas.ioc.factory.strategy:ObjectFactoryReference"      class="vegas.ioc.factory.strategy.ObjectFactoryReference"      />
-    <component id="vegas.ioc.factory.strategy:ObjectFactoryValue"          class="vegas.ioc.factory.strategy.ObjectFactoryValue"          />
-    <component id="vegas.ioc.factory.strategy:ObjectStaticFactoryMethod"   class="vegas.ioc.factory.strategy.ObjectStaticFactoryMethod"   />
-    <component id="vegas.ioc.factory.strategy:ObjectStaticFactoryProperty" class="vegas.ioc.factory.strategy.ObjectStaticFactoryProperty" />
+    <component id="vegas.ioc:ObjectFactoryLoader" class="vegas.ioc.ObjectFactoryLoader" />
     
     <!-- vegas.ioc.io -->
     
@@ -145,19 +104,14 @@
     <component id="vegas.ioc.io:LocaleResource"        class="vegas.ioc.io.LocaleResource"        />
     <component id="vegas.ioc.io:ObjectResource"        class="vegas.ioc.io.ObjectResource"        />
     <component id="vegas.ioc.io:ObjectResourceBuilder" class="vegas.ioc.io.ObjectResourceBuilder" />
+    <component id="vegas.ioc.io:ObjectResourceFactory" class="vegas.ioc.io.ObjectResourceFactory" />
     <component id="vegas.ioc.io:ObjectResourceInfo"    class="vegas.ioc.io.ObjectResourceInfo"    />
-    <component id="vegas.ioc.io:ObjectResourceModel"   class="vegas.ioc.io.ObjectResourceModel"   />
     <component id="vegas.ioc.io:ObjectResourceType"    class="vegas.ioc.io.ObjectResourceType"    />
     <component id="vegas.ioc.io:ShaderResource"        class="vegas.ioc.io.ShaderResource"        />
     <component id="vegas.ioc.io:SoundResource"         class="vegas.ioc.io.SoundResource"         />
     <component id="vegas.ioc.io:StyleSheetResource"    class="vegas.ioc.io.StyleSheetResource"    />
     <component id="vegas.ioc.io:TextResource"          class="vegas.ioc.io.TextResource"          />
     <component id="vegas.ioc.io:XMLResource"           class="vegas.ioc.io.XMLResource"           />
-    
-    <!-- vegas.ioc.net -->
-    
-    <component id="vegas.ioc.net:ECMAObjectLoader"    class="vegas.ioc.net.ECMAObjectLoader"    />
-    <component id="vegas.ioc.net:ObjectFactoryLoader" class="vegas.ioc.net.ObjectFactoryLoader" />
     
     <!-- vegas.logging -->
     
@@ -225,6 +179,7 @@
     
     <!-- vegas.net -->
     
+    <component id="vegas.net:ApplicationLoader"   class="vegas.net.ApplicationLoader"   />
     <component id="vegas.net:BOM"                 class="vegas.net.BOM"                 />
     <component id="vegas.net:BOMInspector"        class="vegas.net.BOMInspector"        />
     
