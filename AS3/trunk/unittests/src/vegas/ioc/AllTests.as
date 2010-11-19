@@ -38,8 +38,6 @@ package vegas.ioc
     import buRRRn.ASTUce.framework.ITest;
     import buRRRn.ASTUce.framework.TestSuite;
     
-    import vegas.ioc.evaluators.AllTests;
-    import vegas.ioc.factory.AllTests;
     import vegas.ioc.io.AllTests;
     
     public class AllTests
@@ -48,13 +46,6 @@ package vegas.ioc
         {
             var suite:TestSuite = new TestSuite( "veags.ioc unit tests" );
             
-            suite.addTestSuite( ObjectAttributeTest ) ;
-            suite.addTestSuite( ObjectOrderTest ) ;
-            suite.addTestSuite( ObjectReceiverTest ) ;
-            suite.addTestSuite( ObjectScopeTest ) ;
-            
-            suite.addTest( vegas.ioc.evaluators.AllTests.suite() ) ;
-            suite.addTest( vegas.ioc.factory.AllTests.suite() ) ;
             suite.addTest( vegas.ioc.io.AllTests.suite() ) ;
             
             return suite;
