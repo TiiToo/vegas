@@ -38,15 +38,13 @@
 package vegas.ioc.io 
 {
     import system.Reflection;
+    import system.ioc.ObjectDefinition;
+    import system.ioc.ObjectFactory;
     import system.process.ActionURLLoader;
     import system.process.CoreActionLoader;
     
-    import vegas.ioc.ObjectDefinition;
-    import vegas.ioc.factory.ObjectFactory;
-    import vegas.text.StyleSheetLoader;
-    import vegas.ioc.io.ObjectResourceBuilder;
-    
     import vegas.logging.logger;
+    import vegas.text.StyleSheetLoader;
     
     import flash.net.URLRequest;
     import flash.text.StyleSheet;
