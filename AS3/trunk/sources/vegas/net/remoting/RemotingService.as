@@ -37,13 +37,13 @@
 package vegas.net.remoting
 {
     import core.reflect.getClassName;
-
+    
     import system.Cloneable;
+    import system.ioc.ObjectScope;
     import system.process.CoreAction;
     import system.process.TimeoutPolicy;
-
+    
     import vegas.events.RemotingEvent;
-    import vegas.ioc.ObjectScope;
 
     import flash.errors.IllegalOperationError;
     import flash.events.TimerEvent;
@@ -91,34 +91,34 @@ package vegas.net.remoting
      *     }
      * }
      * </pre>
-     * <p>TestRemotingService :</p>
+     * <p>RemotingServiceExample :</p>
      * <pre class="prettyprint">
      * package
      * {
-     * 
+     *     import flash.display.Sprite;
+     *     
      *     import system.events.ActionEvent;
+     *     
      *     import vegas.events.RemotingEvent;
      *     import vegas.net.remoting.RemotingService;
-     *     import flash.display.Sprite;
      *     
      *     import test.User;
      *      
-     *     public class TestRemotingService extends Sprite
+     *     public class RemotingServiceExample extends Sprite
      *     {
-     *         public function TestRemotingService()
+     *         public function RemotingServiceExample()
      *         {
-     *              
      *              User.register() ; // register the User class for class mapping
      *              
      *              var service:RemotingService = new RemotingService() ;
      *              
-     *              service.addEventListener( RemotingEvent.ERROR  , onError    ) ;
-     *              service.addEventListener( RemotingEvent.FAULT  , onFault    ) ;
-     *              service.addEventListener( ActionEvent.FINISH   , onFinish   ) ;
-     *              service.addEventListener( ActionEvent.PROGRESS , onProgress ) ;
-     *              service.addEventListener( RemotingEvent.RESULT , onResult   ) ;
-     *              service.addEventListener( ActionEvent.START    , onStart    ) ;
-     *              service.addEventListener( ActionEvent.TIMEOUT  , onTimeOut  ) ;
+     *              service.addEventListener( RemotingEvent.ERROR  , error    ) ;
+     *              service.addEventListener( RemotingEvent.FAULT  , fault    ) ;
+     *              service.addEventListener( ActionEvent.FINISH   , finish   ) ;
+     *              service.addEventListener( ActionEvent.PROGRESS , progress ) ;
+     *              service.addEventListener( RemotingEvent.RESULT , result   ) ;
+     *              service.addEventListener( ActionEvent.START    , start    ) ;
+     *              service.addEventListener( ActionEvent.TIMEOUT  , timeOut  ) ;
      *              
      *              service.gatewayUrl  = "http://localhost/work/vegas/php/gateway.php" ;
      *              service.serviceName = "Test" ;
@@ -128,39 +128,39 @@ package vegas.net.remoting
      *              service.trigger() ;
      *         }
      *         
-     *         public function onError(e:RemotingEvent):void
+     *         public function error(e:RemotingEvent):void
      *         {
      *             trace("> " + e.type + " : " + e.code) ;
      *         }
      *          
-     *         public function onFinish(e:ActionEvent):void
+     *         public function finish(e:ActionEvent):void
      *         {
      *              trace("> " + e.type) ;
      *         }
      *          
-     *         public function onFault(e:RemotingEvent):void
+     *         public function fault(e:RemotingEvent):void
      *         {
      *              trace("> " + e.type + " : " + e.getCode() + " :: " + e.getDescription()) ;
      *         }
      *         
-     *         public function onProgress(e:ActionEvent):void
+     *         public function progress(e:ActionEvent):void
      *         {
      *             trace("> " + e.type ) ;
      *         }
      *         
-     *         public function onResult( e:RemotingEvent ):void
+     *         public function result( e:RemotingEvent ):void
      *         {
      *              trace("-----------") ;
      *              trace("> result : " + e.result) ;
      *              trace("-----------") ;
      *         }
      *          
-     *         public function onStart(e:ActionEvent):void
+     *         public function start(e:ActionEvent):void
      *         {
      *             trace("> " + e.type ) ;
      *         }
      *          
-     *         public function onTimeOut(e:ActionEvent):void
+     *         public function timeout(e:ActionEvent):void
      *         {
      *             trace("> " + e.type ) ;
      *         }
@@ -174,12 +174,8 @@ package vegas.net.remoting
      * 
      * class Test 
      * {
-     * 
-     *     // constructor
-     * 
      *     function Test ()
      *     {
-     * 
      *          $this->methodTable = array
      *          (
      *               "getUser" => array
@@ -191,7 +187,7 @@ package vegas.net.remoting
      *               )
      *          ) ;
      *    }
-     *
+     *    
      *    function getUser( $name, $age, $url )
      *    {
      *        return new User( $name, $age, $url ) ;
