@@ -37,12 +37,12 @@
 
 package vegas.ioc.io 
 {
+    import system.ioc.ObjectDefinition;
+    import system.ioc.ObjectFactory;
+    import system.ioc.strategies.ObjectFactoryValue;
     import system.process.ActionURLLoader;
     import system.process.CoreActionLoader;
     
-    import vegas.ioc.ObjectDefinition;
-    import vegas.ioc.factory.ObjectFactory;
-    import vegas.ioc.factory.strategy.ObjectFactoryValue;
     import vegas.logging.logger;
     import vegas.net.XMLLoader;
     
