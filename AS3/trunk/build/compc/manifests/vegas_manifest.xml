@@ -92,6 +92,7 @@
     
     <!-- vegas.ioc -->
     
+    <component id="vegas.ioc:factory"             class="vegas.ioc.factory"             />
     <component id="vegas.ioc:ObjectFactoryLoader" class="vegas.ioc.ObjectFactoryLoader" />
     
     <!-- vegas.ioc.io -->
