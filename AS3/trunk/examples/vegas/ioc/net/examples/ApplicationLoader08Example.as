@@ -36,9 +36,9 @@
 package examples 
 {
     import system.events.ActionEvent;
-    
-    import vegas.ioc.net.ECMAObjectLoader;
-    
+
+    import vegas.net.ApplicationLoader;
+
     import flash.display.MovieClip;
     import flash.events.Event;
     
@@ -47,11 +47,11 @@ package examples
     /**
      * Example of the "text" resources.
      */
-    public class ECMAObjectLoader08Example extends MovieClip 
+    public class ApplicationLoader08Example extends MovieClip 
     {
-        public function ECMAObjectLoader08Example()
+        public function ApplicationLoader08Example()
         {
-            var loader:ECMAObjectLoader = new ECMAObjectLoader( "application_text_resource.eden" , "context/" ) ;
+            var loader:ApplicationLoader = new ApplicationLoader( "application_text_resource.eden" , "context/" ) ;
             
             loader.root = this ;
             
