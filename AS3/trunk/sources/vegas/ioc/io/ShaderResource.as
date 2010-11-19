@@ -39,11 +39,11 @@ package vegas.ioc.io
 {
     import graphics.display.ShaderLoader;
     
+    import system.ioc.ObjectDefinition;
+    import system.ioc.ObjectFactory;
     import system.process.ActionURLLoader;
     import system.process.CoreActionLoader;
     
-    import vegas.ioc.ObjectDefinition;
-    import vegas.ioc.factory.ObjectFactory;
     import vegas.logging.logger;
     
     import flash.display.Shader;
