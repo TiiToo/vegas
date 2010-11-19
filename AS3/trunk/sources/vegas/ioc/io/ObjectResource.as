@@ -37,9 +37,10 @@
 
 package vegas.ioc.io 
 {
-    import system.Reflection;
+    import core.reflect.getClassName;
+
     import system.process.CoreActionLoader;
-    
+
     import vegas.vo.SimpleValueObject;
     
     /**
@@ -116,17 +117,7 @@ package vegas.ioc.io
          */
         public override function toString():String
         {
-            var str:String = "[" + Reflection.getClassName(this) ;
-            if ( this.id != null )
-            {
-                str += " id:" + this.id ;
-            }
-            if ( this.resource != null )
-            {
-                str += " resource:" + this.resource ;
-            }
-            str += "]" ;
-            return str ;
+            return formatToString( getClassName(this) , "id" , "resource" ) ;
         }
     }
 }
