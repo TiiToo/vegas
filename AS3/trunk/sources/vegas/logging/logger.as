@@ -40,5 +40,5 @@ package vegas.logging
     import system.logging.Log;
     import system.logging.Logger;
     
-    /**     * The logger of the graphics library.     */    public const logger:Logger = Log.getLogger( "vegas" ) ;
+    /**     * The logger of the graphics library.     */    public const logger:Logger = Log.getLogger( "vegas.logging" ) ;
 }
