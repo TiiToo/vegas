@@ -215,18 +215,6 @@
     <component id="vegas.net:ParserLoader"        class="vegas.net.ParserLoader"        />
     <component id="vegas.net:XMLLoader"           class="vegas.net.XMLLoader"           />
     
-    <!-- vegas.net.remoting -->
-    
-    <component id="vegas.net.remoting:IRemotingServiceListener"    class="vegas.net.remoting.IRemotingServiceListener"    />
-    <component id="vegas.net.remoting:RemotingAuthentification"    class="vegas.net.remoting.RemotingAuthentification"    />
-    <component id="vegas.net.remoting:RemotingConnection"          class="vegas.net.remoting.RemotingConnection"          />
-    <component id="vegas.net.remoting:RemotingConnectionCollector" class="vegas.net.remoting.RemotingConnectionCollector" />
-    <component id="vegas.net.remoting:RemotingGatewayUrl"          class="vegas.net.remoting.RemotingGatewayUrl"          />
-    <component id="vegas.net.remoting:RemotingService"             class="vegas.net.remoting.RemotingService"             />
-    <component id="vegas.net.remoting:RemotingServiceFormatter"    class="vegas.net.remoting.RemotingServiceFormatter"    />
-    <component id="vegas.net.remoting:RemotingServiceListener"     class="vegas.net.remoting.RemotingServiceListener"     />
-    <component id="vegas.net.remoting:RemotingServiceProxy"        class="vegas.net.remoting.RemotingServiceProxy"        />
-    
     <!-- vegas.process.display -->
     
     <component id="vegas.process.display:AddChild"        class="vegas.process.display.AddChild"       />
@@ -240,6 +228,18 @@
     <component id="vegas.process.display:SwapChildrenAt"  class="vegas.process.display.SwapChildrenAt" />
     
     <component id="vegas.process.display:SwitchBackgroundGradientColor" class="vegas.process.display.SwitchBackgroundGradientColor" />
+    
+    <!-- vegas.remoting -->
+    
+    <component id="vegas.remoting:IRemotingServiceListener" class="vegas.remoting.IRemotingServiceListener" />
+    <component id="vegas.remoting:logger"                   class="vegas.remoting.logger"                   />
+    <component id="vegas.remoting:RemotingAuthentification" class="vegas.remoting.RemotingAuthentification" />
+    <component id="vegas.remoting:RemotingCollector"        class="vegas.remoting.RemotingCollector"        />
+    <component id="vegas.remoting:RemotingConnection"       class="vegas.remoting.RemotingConnection"       />
+    <component id="vegas.remoting:RemotingGatewayUrl"       class="vegas.remoting.RemotingGatewayUrl"       />
+    <component id="vegas.remoting:RemotingService"          class="vegas.remoting.RemotingService"          />
+    <component id="vegas.remoting:RemotingServiceListener"  class="vegas.remoting.RemotingServiceListener"  />
+    <component id="vegas.remoting:RemotingServiceProxy"     class="vegas.remoting.RemotingServiceProxy"     />
     
     <!-- vegas.strings -->
     
