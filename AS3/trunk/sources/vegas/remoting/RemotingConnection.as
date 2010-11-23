@@ -36,14 +36,12 @@
 */
 package vegas.remoting
 {
-    import system.Cloneable;
-    
     import flash.net.NetConnection;
     
     /**
      * The <code class="prettyprint">RemotingConnection</code> object used in the RemotingService class to connect the client with the server.
      */
-    public class RemotingConnection extends NetConnection implements Cloneable
+    public class RemotingConnection extends NetConnection
     {
         /**
          * Creates a new <code class="prettyprint">RemotingConnection</code> instance.
@@ -66,15 +64,6 @@ package vegas.remoting
          * The "credentials" constant.
          */
         public static const CREDENTIALS:String = "Credentials" ;
-        
-        /**
-         * Returns a shallow copy of this object.
-         * @return a shallow copy of this object.
-         */
-        public function clone():* 
-        {
-            return new RemotingConnection( uri ) ;
-        }
         
         /**
          * Returns the <code class="prettyprint">RemotingConnection</code> reference defines with the specified url representation.
