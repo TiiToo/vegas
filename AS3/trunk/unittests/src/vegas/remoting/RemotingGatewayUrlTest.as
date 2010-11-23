@@ -32,12 +32,11 @@
   the terms of any one of the MPL, the GPL or the LGPL.
   
 */
-
-package vegas.net.remoting 
+package vegas.remoting 
 {
     import buRRRn.ASTUce.framework.TestCase;
 
-    import vegas.net.FlashVars;
+    import system.ioc.Parameters;
 
     public class RemotingGatewayUrlTest extends TestCase 
     {
@@ -48,24 +47,24 @@ package vegas.net.remoting
         
         public var factory:RemotingGatewayUrl ;
         
-        public var flashVars:FlashVars ;
+        public var params:Parameters ;
         
         public function setUp():void
         {
-            flashVars = new FlashVars() ;
-            factory   = new RemotingGatewayUrl( flashVars ) ;
+            params  = new Parameters() ;
+            factory = new RemotingGatewayUrl( params ) ;
         }
         
         public function tearDown():void
         {
-            flashVars = null ;
-            factory   = null ;
+            params  = null ;
+            factory = null ;
         }
         
         public function testConstructor():void
         {
             assertNotNull( factory ) ;
-            assertEquals( factory.flashVars , flashVars ) ;
+            assertEquals( factory.parameters , params ) ;
         }
         
         public function testHttpHostName():void
@@ -85,13 +84,13 @@ package vegas.net.remoting
         
         public function testCreateWithFlashVarsParameters():void
         {
-            flashVars.parameters = { gatewayUrl : "http://{0}/gateway.php" , httpHost : "127.0.0.1" } ;
+            params.parameters = { gatewayUrl : "http://{0}/gateway.php" , httpHost : "127.0.0.1" } ;
             assertEquals( "http://127.0.0.1/gateway.php" , factory.create( "http://{0}/test.php" , "localhost" ) ) ;
         }
         
         public function testCreateWithCustomFlashVarsParameters():void
         {
-            flashVars.parameters = { url : "http://{0}/gateway.php" , host : "127.0.0.1" } ;
+            params.parameters = { url : "http://{0}/gateway.php" , host : "127.0.0.1" } ;
             
             factory.urlName      = "url" ;
             factory.httpHostName = "host" ;

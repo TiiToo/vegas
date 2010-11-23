@@ -33,7 +33,7 @@
   
 */
 
-package vegas.net.remoting  
+package vegas.remoting  
 {
     import buRRRn.ASTUce.framework.ITest;
     import buRRRn.ASTUce.framework.TestSuite;
@@ -42,7 +42,7 @@ package vegas.net.remoting
     {
         public static function suite():ITest
         {
-            var suite:TestSuite = new TestSuite( "vegas.net.remoting unit tests." );
+            var suite:TestSuite = new TestSuite( "vegas.remoting unit tests." );
             
             suite.addTestSuite( RemotingGatewayUrlTest ) ;
             

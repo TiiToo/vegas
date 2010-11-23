@@ -38,8 +38,6 @@ package vegas.net
     import buRRRn.ASTUce.framework.ITest;
     import buRRRn.ASTUce.framework.TestSuite;
     
-    import vegas.net.remoting.AllTests;
-    
     public class AllTests
     {
         public static function suite():ITest
@@ -47,8 +45,6 @@ package vegas.net
             var suite:TestSuite = new TestSuite( "vegas.net unit tests." );
             
             suite.addTestSuite( HTTPHostTest ) ;
-            
-            suite.addTest( vegas.net.remoting.AllTests.suite() ) ;
             
             return suite;
         }
