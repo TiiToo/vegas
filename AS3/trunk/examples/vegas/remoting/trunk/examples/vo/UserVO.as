@@ -36,9 +36,7 @@
 package examples.vo 
 {
     import vegas.vo.SimpleValueObject;
-
-    import flash.net.registerClassAlias;
-
+    
     /**
      * The user value object.
      */
@@ -69,20 +67,12 @@ package examples.vo
         public var url:String ;
         
         /**
-         * Preserves the class (type) of an object when the object is encoded in Action Message Format (AMF). 
-         */
-        public static function register():void
-        {
-             registerClassAlias("UserVO" , UserVO) ;
-        }
-         
-        /**
          * Returns the String representation of the object.
          * @return the String representation of the object.
          */
         public override function toString():String
         {
-            return "[UserVO:" + name + ", age:" + this.age + ", url:" + this.url + "]"  ; 
+            return formatToString( "UserVO" , "name" , "age" , "url" ) ; 
         }
     }
 }

@@ -34,59 +34,42 @@
 */
 package examples 
 {
-    import system.events.ActionEvent;
+    import system.logging.LoggerLevel;
+    import system.logging.targets.TraceTarget;
     
-    import vegas.events.RemotingEvent;
-    import vegas.net.remoting.RemotingService;
+    import vegas.remoting.RemotingService;
+    import vegas.remoting.RemotingServiceListener;
     
     import flash.display.Sprite;
-    import flash.net.ObjectEncoding;
     
     /**
-     * Tests the RemotingService class with this readonly "proxy" property (RemotingServiceProxy reference).
+     * Tests the RemotingServiceListener class. 
+     * Note : you can create your custom listener, 
+     * you must just extend the RemotingServiceListener class 
+     * and override the result, fault, etc. methods.
      */
     public class Remoting04Example extends Sprite 
     {
         public function Remoting04Example()
         {
-            var gatewayUrl:String  = "http://localhost:8888/vegas/amfphp/gateway.php" ;
-            var serviceName:String = "Test"  ;
+            //////////////
             
-            var service:RemotingService = new RemotingService( gatewayUrl , serviceName ) ;
+            var target:TraceTarget = new TraceTarget() ;
+            target.includeLines   = true ;
+            target.filters        = [ "*" ] ;
+            target.level          = LoggerLevel.ALL ;
             
-            service.multipleSimultaneousAllowed = true ;
-            service.objectEncoding              = ObjectEncoding.AMF0 ;
+            //////////////
             
-            service.addEventListener( RemotingEvent.ERROR  , error    ) ;
-            service.addEventListener( RemotingEvent.FAULT  , fault    ) ;
-            service.addEventListener( ActionEvent.PROGRESS , progress ) ;
-            service.addEventListener( RemotingEvent.RESULT , result   ) ;
+            var service:RemotingService = new RemotingService( gatewayUrl , serviceName , methodName ) ;
             
-            service.proxy.hello( "world" ) ;
-            service.proxy.bonjour( "world" ) ;
+            service.listener = new RemotingServiceListener() ;
+            
+            service.run( "world" ) ;
         }
         
-        protected function error(e:RemotingEvent):void
-        {
-            trace("> " + e.type + " : " + e.code) ;
-        }
-        
-        protected function fault(e:RemotingEvent):void
-        {
-            trace( "> " + e.type + " code:" + e.code + " description:" + e.description ) ;
-        }
-        
-        protected function progress(e:ActionEvent):void
-        {
-            trace("> " + e.type ) ;
-        }
-         
-        protected function result( e:RemotingEvent ):void
-        {
-             trace("-----------") ;
-             trace("> service : " + e.target ) ;
-             trace("> result  : " + e.result ) ;
-             trace("-----------") ;
-        }
+        public var gatewayUrl:String  = "http://localhost:8888/vegas/amfphp/gateway.php" ;
+        public var methodName:String  = "hello" ;
+        public var serviceName:String = "Test"  ;
     }
 }

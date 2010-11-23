@@ -35,14 +35,12 @@
 
 package examples 
 {
-    import system.events.ActionEvent;
-
-    import vegas.events.RemotingEvent;
-    import vegas.net.remoting.RemotingService;
-
+    import core.dump;
+    
+    import vegas.remoting.RemotingService;
+    
     import flash.display.Sprite;
-    import flash.events.KeyboardEvent;
-
+    
     /**
      * Basic "hello world" example of the RemotingService class.
      */
@@ -50,71 +48,64 @@ package examples
     {
         public function Remoting01Example()
         {
-            service = new RemotingService() ;
+            var service:RemotingService = new RemotingService() ;
             
-            service.addEventListener( RemotingEvent.ERROR  , error    ) ;
-            service.addEventListener( RemotingEvent.FAULT  , fault    ) ;
-            service.addEventListener( ActionEvent.FINISH   , finish   ) ;
-            service.addEventListener( ActionEvent.PROGRESS , progress ) ;
-            service.addEventListener( RemotingEvent.RESULT , result   ) ;
-            service.addEventListener( ActionEvent.START    , start    ) ;
-            service.addEventListener( ActionEvent.TIMEOUT  , timeOut  ) ;
+            service.finishIt.connect( finish ) ;
+            service.progressIt.connect( progress ) ;
+            service.startIt.connect( start ) ;
+            service.timeoutIt.connect( timeout ) ;
             
-            service.gatewayUrl  = "http://localhost:8888/vegas/amfphp/gateway.php" ;
+            service.error.connect( error  ) ;
+            service.fault.connect( fault  ) ;
+            service.result.connect( result ) ;
+            
+            service.gatewayUrl  = gatewayUrl ;
             service.serviceName = "Test"  ;
             service.methodName  = "hello" ;
             
-            stage.addEventListener( KeyboardEvent.KEY_DOWN , run ) ;
-            
-            run() ; // first trigger
+            service.run( "world" ) ;
         }
         
-        public var cpt:uint ;
+        public var gatewayUrl:String = 
+        "http://localhost:8888/vegas/amfphp/gateway.php" ;
         
-        public var service:RemotingService ;
+        //////////////// slots
         
-        public function run( ...args:Array ):void
+        protected function error( error:* , service:RemotingService ):void
         {
-            service.params = [ "world" + cpt++ ] ;
-            service.run() ;
+            trace("error:" + dump(error) ) ;
         }
         
-        protected function error(e:RemotingEvent):void
+        protected function fault( fault:* , service:RemotingService ):void
         {
-            trace("> " + e.type + " : " + e.code) ;
+            trace("fault:" + dump(fault) ) ;
         }
-          
-        protected function finish(e:ActionEvent):void
+        
+        protected function finish( service:RemotingService ):void
         {
-            trace("> " + e.type) ;
+            trace( "#finish" ) ;
         }
           
-        protected function fault(e:RemotingEvent):void
+        protected function progress( service:RemotingService ):void
         {
-            trace( "> " + e.type + " code:" + e.code + " description:" + e.description ) ;
-        }
-        
-        protected function progress(e:ActionEvent):void
-        {
-            trace("> " + e.type ) ;
+            trace( "#progress" ) ;
         }
          
-        protected function result( e:RemotingEvent ):void
+        protected function result( result:* , service:RemotingService ):void
         {
-             trace("-----------") ;
-             trace("> service : " + e.target ) ;
-             trace("> result  : " + e.result ) ;
-             trace("-----------") ;
+             trace("result : " + result ) ;
         }
         
-        protected function start(e:ActionEvent):void
+        protected function start( service:RemotingService ):void
         {
-            trace("> " + e.type ) ;
+            trace( "#start : " + service ) ;
         }
           
-        protected function timeOut(e:ActionEvent):void
+        protected function timeout( service:RemotingService ):void
         {
-           trace("> " + e.type ) ;
+            trace( "#timeout" ) ;
         }
+        
+        ////////////////
     }
 }

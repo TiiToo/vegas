@@ -34,79 +34,54 @@
 */
 package examples 
 {
-    import system.events.ActionEvent;
-
-    import vegas.events.RemotingEvent;
-    import vegas.net.remoting.RemotingAuthentification;
-    import vegas.net.remoting.RemotingService;
+    import core.dump;
+    
+    import vegas.remoting.RemotingService;
     
     import flash.display.Sprite;
     
     /**
-     * Tests the RemotingService class with the authentification engine (credentials).
+     * Tests the RemotingService proxy reference.
      */
     public class Remoting03Example extends Sprite 
     {
         public function Remoting03Example()
         {
-            service = new RemotingService() ;
+            var service:RemotingService = new RemotingService() ;
             
-            service.addEventListener( RemotingEvent.ERROR  , error    ) ;
-            service.addEventListener( RemotingEvent.FAULT  , fault    ) ;
-            service.addEventListener( ActionEvent.FINISH   , finish   ) ;
-            service.addEventListener( ActionEvent.PROGRESS , progress ) ;
-            service.addEventListener( RemotingEvent.RESULT , result   ) ;
-            service.addEventListener( ActionEvent.START    , start    ) ;
-            service.addEventListener( ActionEvent.TIMEOUT  , timeOut  ) ;
+            service.error.connect( error  ) ;
+            service.fault.connect( fault  ) ;
+            service.result.connect( result ) ;
             
-            var authentification:RemotingAuthentification = new RemotingAuthentification("vegas","vegas") ;
+            service.gatewayUrl  = gatewayUrl ;
+            service.serviceName = "Test"  ;
             
-            service.setCredentials( authentification ) ; // creates a server-side session.
+            service.multipleSimultaneousAllowed = true ;
             
-            service.gatewayUrl  = "http://localhost:8888/vegas/amfphp/gateway.php" ;
-            service.serviceName = "TestAuthentificate" ;
-            service.methodName  = "register" ;
-            
-            service.run() ;
+            service.proxy.hello( "world" ) ;
+            service.proxy.bonjour( "monde" ) ; // don't exist
         }
         
-        public var service:RemotingService ;
+        public var gatewayUrl:String = 
+        "http://localhost:8888/vegas/amfphp/gateway.php" ;
         
-        public function error( e:RemotingEvent ):void
+        //////////////// slots
+        
+        protected function error( error:* , service:RemotingService ):void
         {
-            trace( "> " + e.type + " : " + e.code) ;
-        }
-          
-        public function fault( e:RemotingEvent ):void
-        {
-            trace( "> " + e.type + " code:" + e.code + " description:" + e.description ) ;
+            trace("error:" + dump(error) ) ;
         }
         
-        public function finish( e:ActionEvent ):void
+        protected function fault( fault:* , service:RemotingService ):void
         {
-            trace( "> " + e.type ) ;
+            trace("fault:" + dump(fault) ) ;
         }
         
-        public function progress( e:ActionEvent ):void
+        protected function result( result:* , service:RemotingService ):void
         {
-            trace( "> " + e.type ) ;
-        }
-         
-        public function result( e:RemotingEvent ):void
-        {
-             trace( "-----------" ) ;
-             trace( "> result : " + e.result ) ;
-             trace( "-----------" ) ;
+             trace("result : " + result ) ;
         }
         
-        public function start( e:ActionEvent ):void
-        {
-            trace( "> " + e.type ) ;
-        }
-        
-        public function timeOut( e:ActionEvent ):void
-        {
-            trace( "> " + e.type ) ;
-        }
+        ////////////////
     }
 }

@@ -34,15 +34,15 @@
 */
 package examples 
 {
+    import core.dump;
+    
     import examples.vo.UserVO;
-
-    import system.events.ActionEvent;
-
-    import vegas.events.RemotingEvent;
-    import vegas.net.remoting.RemotingService;
-
+    
+    import vegas.remoting.RemotingService;
+    
     import flash.display.Sprite;
-
+    import flash.net.registerClassAlias;
+    
     /**
      * Tests the RemotingService class with class mapping and value object with the amf protocol.
      */
@@ -50,61 +50,44 @@ package examples
     {
         public function Remoting02Example()
         {
-            UserVO.register() ;
-            
             var service:RemotingService = new RemotingService() ;
             
-            service.addEventListener( RemotingEvent.ERROR  , error    ) ;
-            service.addEventListener( RemotingEvent.FAULT  , fault    ) ;
-            service.addEventListener( ActionEvent.FINISH   , finish   ) ;
-            service.addEventListener( ActionEvent.PROGRESS , progress ) ;
-            service.addEventListener( RemotingEvent.RESULT , result   ) ;
-            service.addEventListener( ActionEvent.START    , start    ) ;
-            service.addEventListener( ActionEvent.TIMEOUT  , timeOut  ) ;
+            service.error.connect( error  ) ;
+            service.fault.connect( fault  ) ;
+            service.result.connect( result ) ;
             
-            service.gatewayUrl  = "http://localhost:8888/vegas/amfphp/gateway.php" ;
-            service.serviceName = "TestClassMapping" ;
+            service.gatewayUrl  = gatewayUrl ;
+            service.serviceName = "TestClassMapping"  ;
             service.methodName  = "getUser" ;
             service.params      = [ "eka", 31, "http://www.ekameleon.net" ] ;
             
             service.run() ;
         }
         
-        public function error( e:RemotingEvent ):void
+        public var gatewayUrl:String = 
+        "http://localhost:8888/vegas/amfphp/gateway.php" ;
+        
+        ///// register value objects
+        
+        registerClassAlias( "UserVO" , UserVO ) ;
+        
+        /////
+        
+        //////////////// slots
+        
+        protected function error( error:* , service:RemotingService ):void
         {
-            trace("> " + e.type + " : " + e.code) ;
-        }
-          
-        public function fault( e:RemotingEvent ):void
-        {
-            trace( "> " + e.type + " code:" + e.code + " description:" + e.description ) ;
+            trace("error:" + dump(error) ) ;
         }
         
-        public function finish( e:ActionEvent ):void
+        protected function fault( fault:* , service:RemotingService ):void
         {
-            trace("> " + e.type) ;
+            trace("fault:" + dump(fault) ) ;
         }
         
-        public function progress( e:ActionEvent ):void
+        protected function result( result:* , service:RemotingService ):void
         {
-            trace("> " + e.type ) ;
-        }
-         
-        public function result( e:RemotingEvent ):void
-        {
-             trace( "-----------" ) ;
-             trace( "> result : " + e.result ) ;
-             trace( "-----------" ) ;
-        }
-        
-        public function start( e:ActionEvent ):void
-        {
-            trace("> " + e.type ) ;
-        }
-        
-        public function timeOut( e:ActionEvent ):void
-        {
-           trace("> " + e.type ) ;
+             trace("result  : " + result ) ;
         }
     }
 }
