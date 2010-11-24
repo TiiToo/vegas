@@ -37,13 +37,12 @@
 package vegas.remoting
 {
     import core.reflect.getClassName;
-
-    import system.Cloneable;
+    
     import system.ioc.ObjectScope;
     import system.process.CoreAction;
     import system.process.TimeoutPolicy;
     import system.signals.Signal;
-
+    
     import flash.errors.IllegalOperationError;
     import flash.events.NetStatusEvent;
     import flash.events.TimerEvent;
@@ -54,7 +53,7 @@ package vegas.remoting
     /**
      * This class provides a service object to communicate with a remoting gateway server.
      */
-    public class RemotingService extends CoreAction implements Cloneable
+    public class RemotingService extends CoreAction
     {
         /**
          * Creates a new RemotingService instance.
@@ -145,7 +144,7 @@ package vegas.remoting
                 _connection = null ;
             }
             _gatewayUrl = url ;
-            if ( _gatewayUrl != null )
+            if ( _gatewayUrl != null && _gatewayUrl != "" )
             {
                 _connection = _scope == ObjectScope.SINGLETON ? RemotingConnection.getConnection(_gatewayUrl) : new RemotingConnection(_gatewayUrl) ;
                 _connection.addEventListener( NetStatusEvent.NET_STATUS , _netStatus ) ;
