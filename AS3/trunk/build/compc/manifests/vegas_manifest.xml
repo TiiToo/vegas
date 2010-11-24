@@ -76,7 +76,6 @@
     <component id="vegas.events:MediaExpertEvent"  class="vegas.events.MediaExpertEvent"  />
     <component id="vegas.events:ModelObjectEvent"  class="vegas.events.ModelObjectEvent"  />
     <component id="vegas.events:NetServerEvent"    class="vegas.events.NetServerEvent"    />
-    <component id="vegas.events:RemotingEvent"     class="vegas.events.RemotingEvent"     />
     <component id="vegas.events:SoundEvent"        class="vegas.events.SoundEvent"        />
     <component id="vegas.events:ValueEvent"        class="vegas.events.ValueEvent"        />
     
