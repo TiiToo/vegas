@@ -52,6 +52,77 @@ package vegas.remoting
     
     /**
      * This class provides a service object to communicate with a remoting gateway server.
+     * <p><b>Example :</b></p>
+     * <pre class="prettyprint">
+     * package examples 
+     * {
+     *     import core.dump;
+     *     
+     *     import vegas.remoting.RemotingService;
+     *     
+     *     import flash.display.Sprite;
+     *     
+     *     public class RemotingExample extends Sprite 
+     *     {
+     *         public function RemotingExample()
+     *         {
+     *             var service:RemotingService = new RemotingService() ;
+     *             
+     *             service.finishIt.connect( finish ) ;
+     *             service.progressIt.connect( progress ) ;
+     *             service.startIt.connect( start ) ;
+     *             service.timeoutIt.connect( timeout ) ;
+     *             
+     *             service.error.connect( error  ) ;
+     *             service.fault.connect( fault  ) ;
+     *             service.result.connect( result ) ;
+     *             
+     *             service.gatewayUrl  = gatewayUrl ;
+     *             service.serviceName = "Test"  ;
+     *             service.methodName  = "hello" ;
+     *             
+     *             service.run( "world" ) ;
+     *         }
+     *         
+     *         public var gatewayUrl:String = 
+     *         "http://localhost:8888/vegas/amfphp/gateway.php" ;
+     *         
+     *         //////////////// slots
+     *         
+     *         protected function error( error:* , service:RemotingService ):void
+     *         {
+     *             trace("error:" + dump(error) ) ;
+     *         }
+     *         
+     *         protected function fault( fault:* , service:RemotingService ):void
+     *         {
+     *             trace("fault:" + dump(fault) ) ;
+     *         }
+     *         
+     *         protected function finish( service:RemotingService ):void
+     *         {
+     *             trace( "#finish" ) ;
+     *         }
+     *           
+     *         protected function result( result:* , service:RemotingService ):void
+     *         {
+     *              trace("result : " + result ) ;
+     *         }
+     *         
+     *         protected function start( service:RemotingService ):void
+     *         {
+     *             trace( "#start : " + service ) ;
+     *         }
+     *           
+     *         protected function timeout( service:RemotingService ):void
+     *         {
+     *             trace( "#timeout" ) ;
+     *         }
+     *         
+     *         ////////////////
+     *     }
+     * }
+     * </pre>
      */
     public class RemotingService extends CoreAction
     {
