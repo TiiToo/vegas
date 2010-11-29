@@ -41,7 +41,7 @@ package vegas.remoting
     import flash.utils.Dictionary;
     
     /**
-     * The basic concrete implementation of the <code class="prettyprint">IRemotingEventListener</code> interface.
+     * The basic concrete implementation of the <code class="prettyprint">IRemotingServiceListener</code> interface.
      */
     public class RemotingServiceListener implements IRemotingServiceListener 
     {
