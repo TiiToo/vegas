@@ -41,7 +41,6 @@ package examples
     import vegas.remoting.RemotingService;
     
     import flash.display.Sprite;
-    import flash.net.registerClassAlias;
     
     /**
      * Tests the RemotingService class with class mapping and value object with the amf protocol.
@@ -69,7 +68,7 @@ package examples
         
         ///// register value objects
         
-        registerClassAlias( "UserVO" , UserVO ) ;
+        RemotingService.registerClassAlias( "UserVO" , UserVO ) ;
         
         /////
         

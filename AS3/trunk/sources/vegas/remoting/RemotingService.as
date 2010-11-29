@@ -37,17 +37,18 @@
 package vegas.remoting
 {
     import core.reflect.getClassName;
-    
+
     import system.ioc.ObjectScope;
     import system.process.CoreAction;
     import system.process.TimeoutPolicy;
     import system.signals.Signal;
-    
+
     import flash.errors.IllegalOperationError;
     import flash.events.NetStatusEvent;
     import flash.events.TimerEvent;
     import flash.net.ObjectEncoding;
     import flash.net.Responder;
+    import flash.net.registerClassAlias;
     import flash.utils.Timer;
     
     /**
@@ -348,6 +349,18 @@ package vegas.remoting
         public override function clone():*
         {
             return new RemotingService( gatewayUrl , serviceName , methodName , params ) ;
+        }
+        
+        /**
+         * Preserves the class (type) of an object when the object is encoded in Action Message Format (AMF). 
+         * When you encode an object into AMF, this function saves the alias for its class, so that you can recover the class when decoding the object. 
+         * If the encoding context did not register an alias for an object's class, the object is encoded as an anonymous object. 
+         * Similarly, if the decoding context does not have the same alias registered, an anonymous object is created for the decoded data. 
+         * This static method is the same like the flash.net.registerClassAlias singleton method.
+         */
+        public static function registerClassAlias( aliasName:String , classObject:Class ):void
+        {
+            flash.net.registerClassAlias( aliasName , classObject ) ;
         }
         
         /**
