@@ -242,7 +242,6 @@
     
     <!-- vegas.strings -->
     
-    <component id="vegas.strings:HTMLFormatter"   class="vegas.strings.HTMLFormatter" />
     <component id="vegas.strings:JSON"            class="vegas.strings.JSON" />
     <component id="vegas.strings:Luhn"            class="vegas.strings.Luhn" />
     <component id="vegas.strings:Minifier"        class="vegas.strings.Minifier" />
