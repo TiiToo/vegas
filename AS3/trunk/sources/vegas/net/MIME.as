@@ -149,7 +149,7 @@ package vegas.net
          * @private
          */
         private var _extensions:Set ;
-
+        
         /**
          * The types dictionary of all MIME types.
          */
