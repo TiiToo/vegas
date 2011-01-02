@@ -228,18 +228,6 @@
     
     <component id="vegas.process.display:SwitchBackgroundGradientColor" class="vegas.process.display.SwitchBackgroundGradientColor" />
     
-    <!-- vegas.remoting -->
-    
-    <component id="vegas.remoting:IRemotingServiceListener" class="vegas.remoting.IRemotingServiceListener" />
-    <component id="vegas.remoting:logger"                   class="vegas.remoting.logger"                   />
-    <component id="vegas.remoting:RemotingAuthentification" class="vegas.remoting.RemotingAuthentification" />
-    <component id="vegas.remoting:RemotingCollector"        class="vegas.remoting.RemotingCollector"        />
-    <component id="vegas.remoting:RemotingConnection"       class="vegas.remoting.RemotingConnection"       />
-    <component id="vegas.remoting:RemotingGatewayUrl"       class="vegas.remoting.RemotingGatewayUrl"       />
-    <component id="vegas.remoting:RemotingService"          class="vegas.remoting.RemotingService"          />
-    <component id="vegas.remoting:RemotingServiceListener"  class="vegas.remoting.RemotingServiceListener"  />
-    <component id="vegas.remoting:RemotingServiceProxy"     class="vegas.remoting.RemotingServiceProxy"     />
-    
     <!-- vegas.strings -->
     
     <component id="vegas.strings:JSON"            class="vegas.strings.JSON" />
