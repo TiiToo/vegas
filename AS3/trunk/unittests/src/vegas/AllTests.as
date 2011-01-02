@@ -46,7 +46,6 @@ package vegas
     import vegas.models.AllTests;
     import vegas.net.AllTests;
     import vegas.process.AllTests;
-    import vegas.remoting.AllTests;
     import vegas.strings.AllTests;
     import vegas.utils.AllTests;
     import vegas.vo.AllTests;
@@ -65,7 +64,6 @@ package vegas
             suite.addTest( vegas.models.AllTests.suite() ) ;
             suite.addTest( vegas.net.AllTests.suite() ) ;
             suite.addTest( vegas.process.AllTests.suite() ) ;
-            suite.addTest( vegas.remoting.AllTests.suite() ) ;
             suite.addTest( vegas.strings.AllTests.suite() ) ;
             suite.addTest( vegas.utils.AllTests.suite() ) ;
             suite.addTest( vegas.vo.AllTests.suite() ) ;
