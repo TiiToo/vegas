@@ -35,11 +35,12 @@
 
 package examples 
 {
-    import system.eden;
+    import core.dump;
+
     import system.logging.LoggerLevel;
-    
+
     import vegas.net.EdenLoader;
-    
+
     import flash.display.Sprite;
     import flash.events.Event;
     import flash.events.ProgressEvent;
@@ -72,7 +73,7 @@ package examples
         protected function complete( e:Event ):void
         {
             var data:* = e.target.data ;
-            trace( eden.serialize(data) ) ;
+            trace( dump(data) ) ;
         }
         
         protected function progress( e:ProgressEvent ):void
