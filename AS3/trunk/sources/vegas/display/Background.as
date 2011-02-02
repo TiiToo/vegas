@@ -46,6 +46,7 @@ package vegas.display
     import graphics.IFillStyle;
     import graphics.ILineStyle;
     import graphics.drawing.IPen;
+    import graphics.drawing.RectanglePen;
     import graphics.drawing.RoundedComplexRectanglePen;
     import graphics.numeric.Trigo;
     import graphics.transitions.FrameTimer;
@@ -535,6 +536,12 @@ package vegas.display
             }
             
             _pen.draw( _real.x , _real.y , _real.width , _real.height , _topLeftRadius , _topRightRadius , _bottomLeftRadius , _bottomRightRadius , _align ) ;
+            
+            if( _pen is RectanglePen )
+            {
+                _real.x = (_pen as RectanglePen)._x ;
+                _real.y = (_pen as RectanglePen)._y ;
+            }
         }
         
         /**
