@@ -47,16 +47,16 @@ package vegas.display
     import graphics.ILineStyle;
     import graphics.drawing.IPen;
     import graphics.drawing.RoundedComplexRectanglePen;
-    import graphics.geom.Dimension;
     import graphics.numeric.Trigo;
     import graphics.transitions.FrameTimer;
-    
+
     import system.hack;
-    
+
     import flash.events.Event;
     import flash.events.TimerEvent;
     import flash.geom.Matrix;
     import flash.geom.Point;
+    import flash.geom.Rectangle;
     
     /**
      * This display is used to create a background in your application or in an other display of the application.
@@ -156,7 +156,7 @@ package vegas.display
             addEventListener( Event.ADDED_TO_STAGE      , addedToStageResize     , false , 9999 ) ;
             addEventListener( Event.REMOVED_FROM_STAGE  , removedFromStageResize , false , 9999 ) ;
             _pen  = initBackgroundPen() ;
-            _real = new Dimension() ;
+            _real = new Rectangle() ;
             ___timer___ = new FrameTimer(24, 1) ;
             ___timer___.addEventListener(TimerEvent.TIMER, _redraw ) ;
             this.isFull = isFull ;
@@ -503,10 +503,11 @@ package vegas.display
          */
         public function draw( ...arguments:Array ):void
         {
-            var      $w:Number = isNaN(arguments[0]) ? this.w : arguments[0] ;
-            var      $h:Number = isNaN(arguments[1]) ? this.h : arguments[1] ;
-            var offsetX:Number = isNaN(arguments[2]) ?      0 : arguments[2] ;
-            var offsetY:Number = isNaN(arguments[3]) ?      0 : arguments[3] ;
+            _real.width  = isNaN(arguments[0]) ? this.w : arguments[0] ;
+            _real.height = isNaN(arguments[1]) ? this.h : arguments[1] ;
+            _real.x      = isNaN(arguments[2]) ?      0 : arguments[2] ;
+            _real.y      = isNaN(arguments[3]) ?      0 : arguments[3] ;
+            
             if ( fill is FillGradientStyle )
             {
                 var matrix:Matrix ;
@@ -519,11 +520,11 @@ package vegas.display
                     matrix = new Matrix() ;
                     if( useGradientBox )
                     {
-                        matrix.createGradientBox( $w, $h );
+                        matrix.createGradientBox( _real.width, _real.height );
                     }
                     if ( !isNaN(gradientRotation) )
                     {
-                        matrix.rotate(Trigo.degreesToRadians(gradientRotation)) ;
+                        matrix.rotate( Trigo.degreesToRadians( gradientRotation ) ) ;
                     }
                     if ( gradientTranslation != null )
                     {
@@ -532,9 +533,8 @@ package vegas.display
                 }
                 ( fill as FillGradientStyle ).matrix = matrix ;
             }
-            _real.width  = $w ;
-            _real.height = $h ;
-            _pen.draw( offsetX , offsetY , $w , $h , _topLeftRadius , _topRightRadius , _bottomLeftRadius , _bottomRightRadius , _align ) ;
+            
+            _pen.draw( _real.x , _real.y , _real.width , _real.height , _topLeftRadius , _topRightRadius , _bottomLeftRadius , _bottomRightRadius , _align ) ;
         }
         
         /**
@@ -754,7 +754,7 @@ package vegas.display
         /**
          * @private
          */
-        hack var _real:Dimension ;
+        hack var _real:Rectangle ;
         
         /**
          * @private
