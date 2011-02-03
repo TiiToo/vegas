@@ -43,6 +43,9 @@ package vegas.process.display
         public static function suite():ITest
         {
             var suite:TestSuite = new TestSuite( "vegas.process.display unit tests" );
+            
+            suite.addTestSuite( MoveToTest ) ;
+            
             return suite;
         }
     }
