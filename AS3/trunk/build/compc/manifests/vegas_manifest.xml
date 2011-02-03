@@ -220,6 +220,7 @@
     <component id="vegas.process.display:AddChildAt"      class="vegas.process.display.AddChildAt"     />
     <component id="vegas.process.display:FiltersDisplay"  class="vegas.process.display.FiltersDisplay" />
     <component id="vegas.process.display:HideDisplay"     class="vegas.process.display.HideDisplay"    />
+    <component id="vegas.process.display:MoveTo"          class="vegas.process.display.MoveTo"         />
     <component id="vegas.process.display:RemoveChild"     class="vegas.process.display.RemoveChild"    />
     <component id="vegas.process.display:RemoveChildAt"   class="vegas.process.display.RemoveChildAt"  />
     <component id="vegas.process.display:SetChildIndex"   class="vegas.process.display.SetChildIndex"  />

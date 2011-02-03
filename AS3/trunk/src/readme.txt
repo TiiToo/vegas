@@ -1,4 +1,4 @@
-VEGAS AS3 - version 1.8.3.2137
+VEGAS AS3 - version 1.8.3.2139
 
 This directory use svn externals to centralize all sources.
 
