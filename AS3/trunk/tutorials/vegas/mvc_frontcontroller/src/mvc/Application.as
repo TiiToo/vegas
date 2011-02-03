@@ -54,14 +54,14 @@ package mvc
     [SWF(width="300", height="300", frameRate="24", backgroundColor="#666666")]
     
     /**
-     * The ApplicationMVC main tutorial class.
+     * The Application main tutorial class.
      * Compiler arguments :
      * -default-size 300 300 -default-frame-rate 24 -default-background-color 0x666666 -target-player=10.0
      */
     public class Application extends Sprite
     {
         /**
-         * Creates a new ApplicationMVC instance.
+         * Creates a new Application instance.
          */
         public function Application()
         {

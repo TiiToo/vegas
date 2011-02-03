@@ -55,7 +55,7 @@ package observer
     public class Application extends Sprite
     {
         /**
-         * Creates a new ApplicationObserver instance.
+         * Creates a new Application instance.
          */
         public function Application()
         {

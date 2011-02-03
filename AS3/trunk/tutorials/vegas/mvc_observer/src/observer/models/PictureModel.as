@@ -63,7 +63,10 @@ package observer.models
         public function addUrl( url:String ):Boolean
         {
             var b:Boolean = _set.add( url ) ;
-            notifyChanged( PictureMessage.ADD , url ) ;
+            if ( b )
+            {
+                notifyChanged( PictureMessage.ADD , url ) ;
+            }
             return b ;
         }
         

@@ -60,7 +60,7 @@ visitor{
     public class Application extends Sprite
     {
         /**
-         * Creates a new ApplicationVisitor instance.
+         * Creates a new Application instance.
          */
         public function Application()
         {
