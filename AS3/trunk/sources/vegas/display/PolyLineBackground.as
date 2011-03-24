@@ -37,12 +37,13 @@
 
 package vegas.display 
 {
+    import core.maths.degreesToRadians;
+
     import graphics.FillGradientStyle;
     import graphics.IFillStyle;
     import graphics.ILineStyle;
     import graphics.drawing.PolyLinePen;
-    import graphics.numeric.Trigo;
-    
+
     import flash.events.Event;
     import flash.geom.Matrix;
     
@@ -182,7 +183,7 @@ package vegas.display
                 var matrix:Matrix = new Matrix() ;
                 // TODO calculate the bound
                 // matrix.createGradientBox( $w, $h );
-                matrix.rotate(Trigo.degreesToRadians( gradientRotation ) ) ;
+                matrix.rotate( degreesToRadians( gradientRotation ) ) ;
                 ( fill as FillGradientStyle ).matrix = matrix ;
             }
             _pen.draw() ;

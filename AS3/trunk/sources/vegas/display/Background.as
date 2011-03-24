@@ -38,7 +38,8 @@
 package vegas.display 
 {
     import core.maths.clamp;
-
+    import core.maths.degreesToRadians;
+    
     import graphics.Direction;
     import graphics.Directionable;
     import graphics.Drawable;
@@ -48,11 +49,10 @@ package vegas.display
     import graphics.drawing.IPen;
     import graphics.drawing.RectanglePen;
     import graphics.drawing.RoundedComplexRectanglePen;
-    import graphics.numeric.Trigo;
     import graphics.transitions.FrameTimer;
-
+    
     import system.hack;
-
+    
     import flash.events.Event;
     import flash.events.TimerEvent;
     import flash.geom.Matrix;
@@ -525,7 +525,7 @@ package vegas.display
                     }
                     if ( !isNaN(gradientRotation) )
                     {
-                        matrix.rotate( Trigo.degreesToRadians( gradientRotation ) ) ;
+                        matrix.rotate( degreesToRadians( gradientRotation ) ) ;
                     }
                     if ( gradientTranslation != null )
                     {
