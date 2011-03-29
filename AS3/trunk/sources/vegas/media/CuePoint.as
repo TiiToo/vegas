@@ -37,6 +37,8 @@
 
 package vegas.media 
 {
+    import core.reflect.getClassName;
+
     import vegas.vo.SimpleValueObject;
     
     /**
@@ -80,27 +82,7 @@ package vegas.media
          */
         public override function toString():String
         {
-            var txt:String = "[CuePoint" ;
-            if (name != null)
-            {
-                txt += ",name:" + name ;
-            }
-            if (time != null)
-            {
-                txt += ",time:" + time ;
-            }
-            if (type != null)
-            {
-                txt += ",type:" + type ;
-            } 
-            if (parameters != null)
-            {
-                txt += ",parameters:" + parameters ;
-            } 
-            txt += "]" ;
-            return txt ;     
+            return formatToString( getClassName(this) , "name" , "time" , "type" , "parameters" ) ;
         }
-        
     }
-
 }

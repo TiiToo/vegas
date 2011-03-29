@@ -146,7 +146,7 @@ package vegas.vo
          */
         public function toSource( indent:int = 0 ):String 
         {
-            return "new " + getClassPath(this, true) + "(" + dump({id:id}) + ")" ;
+            return "new " + getClassPath(this, true) + "(" + dump(toObject()) + ")" ;
         }
         
         /**

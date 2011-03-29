@@ -37,14 +37,10 @@
 
 package vegas.vo 
 {
-    import core.dump;
     import core.reflect.getClassName;
-    import core.reflect.getClassPath;
-
-    import system.Serializable;
-
+    
     import flash.net.registerClassAlias;
-
+    
     /**
      * This value object contains information sending by a server.
      * @example
@@ -64,7 +60,7 @@ package vegas.vo
      * trace("toSource  : " + info.toSource()) ;
      * </pre>
      */
-    public class NetServerInfoVO extends SimpleValueObject implements Serializable
+    public class NetServerInfoVO extends SimpleValueObject
     {
         /**
          * Creates a new NetServerInfoVO instance. 
@@ -126,15 +122,6 @@ package vegas.vo
         public override function toObject():Object
         {
             return { code:code , description:description , level:level, line:line, methodName:methodName, serviceName:serviceName , application:application } ;
-        }
-        
-        /**
-         * Returns the source code string representation of the object.
-         * @return the source code string representation of the object.
-         */
-        public override function toSource( indent:int = 0 ):String 
-        {
-            return "new " + getClassPath(this, true) + "(" + dump( toObject() ) + ")" ;
         }
         
         /**
