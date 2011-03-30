@@ -49,9 +49,8 @@ package vegas.media.subtitles
      * <pre class="prettyprint">
      * import vegas.media.subtitles.SRTParser ;
      * 
-     * var source:String  = "1\n" ;
-     *               srt += "00:00:20,000 --> 00:00:24,400" ;
-     *               srt += "\r" ;
+     * var source:String  = "1\r" ;
+     *               srt += "00:00:20,000 --> 00:00:24,400\r" ;
      *               srt += "You can use a SRTParser instance\r" ;
      *               srt += "to eval your external subtitles files.\r" ;
      *               srt += "\n" ; 
@@ -73,7 +72,7 @@ package vegas.media.subtitles
     public class SRTParser extends GenericParser
     {
         /**
-         * Creates a new SRT instance.
+         * Creates a new SRTParser instance.
          * @param source The string expression to parse.
          */
         public function SRTParser( source:String = null )
