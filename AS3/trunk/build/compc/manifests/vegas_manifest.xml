@@ -140,6 +140,11 @@
     <component id="vegas.media:SoundLoader"      class="vegas.media.SoundLoader"  />
     <component id="vegas.media:VideoCodec"       class="vegas.media.VideoCodec"  />
     
+    <!-- vegas.media.subtitles -->
+    
+    <component id="vegas.media.subtitles:Caption"   class="vegas.media.subtitles.Caption"   />
+    <component id="vegas.media.subtitles:SRTParser" class="vegas.media.subtitles.SRTParser" />
+    
     <!-- vegas.models -->
     
     <component id="vegas.models:ChangeModel"     class="vegas.models.ChangeModel" />
