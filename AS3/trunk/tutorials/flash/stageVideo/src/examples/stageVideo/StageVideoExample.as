@@ -37,18 +37,19 @@
 
 package examples.stageVideo
 {
+    import vegas.media.StageVideoExpert;
     import vegas.net.NetStreamExpert;
+
     import flash.display.Sprite;
     import flash.display.StageAlign;
     import flash.display.StageScaleMode;
-    import flash.events.Event;
+    import flash.events.KeyboardEvent;
     import flash.events.StageVideoAvailabilityEvent;
-    import flash.events.StageVideoEvent;
-    import flash.geom.Rectangle;
     import flash.media.StageVideo;
     import flash.media.StageVideoAvailability;
     import flash.net.NetConnection;
     import flash.net.NetStream;
+    import flash.ui.Keyboard;
     
     [SWF(width="740", height="480", frameRate="24", backgroundColor="#666666")]
     // -static-link-runtime-shared-libraries=true -target-player={playerVersion}
@@ -63,7 +64,8 @@ package examples.stageVideo
             stage.align     = StageAlign.TOP_LEFT ;
             
             stage.addEventListener(StageVideoAvailabilityEvent.STAGE_VIDEO_AVAILABILITY, stageVideoAvailability );
-            stage.addEventListener( Event.RESIZE , resize ) ;
+            
+            stage.addEventListener( KeyboardEvent.KEY_DOWN , keyDown ) ;
             
             ///// stream
             
@@ -71,66 +73,55 @@ package examples.stageVideo
             
             connection.connect(null) ;
             
-            stream = new NetStream( connection ) ;
-            
-            expert = new NetStreamExpert( stream ) ;
+            streamExpert = new NetStreamExpert( new NetStream( connection ) ) ;
         }
+        
+        public var available:Boolean ;
         
         public var connection:NetConnection ;
         
-        public var expert:NetStreamExpert ;
+        public var streamExpert:NetStreamExpert ;
         
         public var stageVideo:StageVideo ;
         
         public var stream:NetStream ;
         
-        protected function renderState( e:Event ):void
+        public var videoExpert:StageVideoExpert ;
+        
+        protected function keyDown( e:KeyboardEvent ):void
         {
-            switch( true )
+            var code:uint = e.keyCode ;
+            switch( code ) 
             {
-                case e is StageVideoEvent :
+                case Keyboard.SPACE :
                 {
-                    var sEvent:StageVideoEvent = (e as StageVideoEvent) ;
-                    trace( "renderState status:" + sEvent.status ) ;
-                    trace( "renderState status:" + sEvent.colorSpace ) ;
-                    /*
-                      Returns the names of available color spaces for this video surface. Usually this list includes "BT.601" and "BT.709". 
-                      On some configurations, only "BT.601" is supported which means a video is possibly not rendered in the correct color space.
-                     */
+                    if ( videoExpert )
+                    {
+                        videoExpert.autoSize = !videoExpert.autoSize ;
+                        videoExpert.isFull   = !videoExpert.isFull ;
+                    }
                     break ;
                 }
             }
         }
         
-        protected function resize( e:Event ):void
-        {
-             if ( stageVideo && stage )
-             {
-                stageVideo.viewPort = new Rectangle( 0 , 0, stage.stageWidth , stage.stageHeight ) ;
-             }
-        }
-        
         protected function stageVideoAvailability( e:StageVideoAvailabilityEvent ):void
         {
-            var available:Boolean = e.availability == StageVideoAvailability.AVAILABLE;
+            available = e.availability == StageVideoAvailability.AVAILABLE;
             
             trace( "stageVideoAvailability : " + available + " :: " + e.availability ) ;
             
             if ( available )
             {
-                stageVideo = stage.stageVideos[0] as StageVideo ;
-                if ( stageVideo )
-                {
-                    stageVideo.addEventListener( StageVideoEvent.RENDER_STATE, renderState );
-                    stageVideo.attachNetStream( stream ) ;
-                    
-                    //stageVideo.zoom = new Point(2,2) ;
-                    //stageVideo.pan = new Point(-1,-1) ;
-                    
-                    stageVideo.viewPort = new Rectangle( 0 , 0, stage.stageWidth , stage.stageHeight ) ;
-                    
-                    expert.play( "videos/dozrok_reel.f4v") ;
-                }
+                videoExpert = new StageVideoExpert(stage,0,0,320,240) ;
+                
+                //videoExpert.zoom = new Point(2,2) ;
+                //videoExpert.pan = new Point(-1,-1) ;
+                
+                videoExpert.stageVideo.attachNetStream( streamExpert.netStream ) ;
+                
+                streamExpert.volume = 0.5 ;
+                streamExpert.play( "videos/dozrok_reel.f4v") ;
             }
         }
     }
