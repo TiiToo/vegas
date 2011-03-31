@@ -186,7 +186,7 @@ package vegas.display
          */
         public function get autoSize():Boolean
         {
-        	return _autoSize ;
+            return _autoSize ;
         }
         
         /**
@@ -194,9 +194,11 @@ package vegas.display
          */
         public function set autoSize( b:Boolean ):void
         {
-        	var old:Boolean = _autoSize ;
+            if( _autoSize == b )
+            {
+                return ;
+            }
             _autoSize = b ;
-            if ( old == b ) return ;
             if ( stage != null )
             {
                 if ( _autoSize )
