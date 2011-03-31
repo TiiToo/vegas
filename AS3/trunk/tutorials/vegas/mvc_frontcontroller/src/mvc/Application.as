@@ -44,7 +44,7 @@ package mvc
     import mvc.display.picture;
     import mvc.events.EventList;
     import mvc.vo.PictureVO;
-    
+
     import flash.display.Sprite;
     import flash.display.StageAlign;
     import flash.display.StageScaleMode;
@@ -56,7 +56,7 @@ package mvc
     /**
      * The Application main tutorial class.
      * Compiler arguments :
-     * -default-size 300 300 -default-frame-rate 24 -default-background-color 0x666666 -target-player=10.0
+     * -target-player=10.1
      */
     public class Application extends Sprite
     {
