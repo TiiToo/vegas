@@ -37,9 +37,10 @@
 
 package examples.stageVideo
 {
+    import vegas.media.FLVMetaData;
     import vegas.media.StageVideoExpert;
     import vegas.net.NetStreamExpert;
-
+    
     import flash.display.Sprite;
     import flash.display.StageAlign;
     import flash.display.StageScaleMode;
@@ -74,6 +75,8 @@ package examples.stageVideo
             connection.connect(null) ;
             
             streamExpert = new NetStreamExpert( new NetStream( connection ) ) ;
+            
+            streamExpert.meta.connect( metaData ) ;
         }
         
         public var available:Boolean ;
@@ -102,7 +105,29 @@ package examples.stageVideo
                     }
                     break ;
                 }
+                case Keyboard.UP :
+                {
+                    streamExpert.close() ;
+                    streamExpert.play( "videos/dozrok_reel.f4v") ;
+                    break ;
+                }
+                case Keyboard.DOWN :
+                {
+                    streamExpert.close() ;
+                    streamExpert.play( "videos/dozrokhd.f4v") ;
+                    break ;
+                }
             }
+        }
+        
+        protected function metaData( metaData:FLVMetaData ):void
+        {
+            trace( "metaData : " + metaData ) ;
+        }
+        
+        protected function renderState( status:String , colorSpace:String , expert:StageVideoExpert ):void
+        {
+            trace( "renderState status:" + status + " colorSpace:" + colorSpace + " width:" + expert.videoWidth + " height:" + expert.videoHeight ) ;
         }
         
         protected function stageVideoAvailability( e:StageVideoAvailabilityEvent ):void
@@ -113,14 +138,23 @@ package examples.stageVideo
             
             if ( available )
             {
-                videoExpert = new StageVideoExpert(stage,0,0,320,240) ;
+                videoExpert = new StageVideoExpert(stage,0,0,600,337) ;
+                
+                videoExpert.minWidth  = 600 ;
+                videoExpert.minHeight = 337 ;
+                
+                videoExpert.keepAspectRatio = true ;
+                
+                videoExpert.renderState.connect( renderState ) ;
+                
+                trace( videoExpert.videoWidth + " :: " + videoExpert.videoHeight ) ;
                 
                 //videoExpert.zoom = new Point(2,2) ;
                 //videoExpert.pan = new Point(-1,-1) ;
                 
-                videoExpert.stageVideo.attachNetStream( streamExpert.netStream ) ;
+                videoExpert.attachNetStream( streamExpert.netStream ) ;
                 
-                streamExpert.volume = 0.5 ;
+                streamExpert.volume = 0.2 ;
                 streamExpert.play( "videos/dozrok_reel.f4v") ;
             }
         }
