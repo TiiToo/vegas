@@ -36,6 +36,8 @@
 */
 package vegas.media 
 {
+    import core.reflect.getClassName;
+
     import vegas.vo.SimpleValueObject;
     
     /**
@@ -178,7 +180,7 @@ package vegas.media
         public var seekPoints:Array ;
         
         /**
-         * An array of key-value pairs that represent the information in the “ilst” atom, which is the equivalent of ID3 tags for MP4 files. iTunes uses these tags. Can be used to display artwork, if available.
+         * An array of key-value pairs that represent the information in the “list” atom, which is the equivalent of ID3 tags for MP4 files. iTunes uses these tags. Can be used to display artwork, if available.
          */
         public var tags:Array ;
         
@@ -217,5 +219,55 @@ package vegas.media
          * Additional string data if specified.
          */
         public var xtradata:String ;
+        
+        /**
+         * Returns the Object representation of this object.
+         * @return the Object representation of this object.
+         */
+        public override function toObject():Object
+        {
+            var r:Object =
+            {
+                aacaot:aacaot,
+                avclevel:avclevel,
+                avcprofile:avcprofile,
+                audiocodecid:audiocodecid,
+                audiodatarate:audiodatarate,
+                audiodelay:audiodelay,
+                audiosize:audiosize,
+                canSeekToEnd:canSeekToEnd,
+                creationdate:creationdate,
+                cuePoints:cuePoints,
+                datasize:datasize,
+                duration:duration,
+                filesize:filesize,
+                framerate:framerate,
+                height:height,
+                keyframes:keyframes,
+                lastkeyframetimestamp:lastkeyframetimestamp,
+                lasttimestamp:lasttimestamp,
+                metadatacreator:metadatacreator,
+                metadatadate:metadatadate,
+                seekPoints:seekPoints,
+                tags:tags,
+                trackinfo:trackinfo,
+                videocodecid:videocodecid,
+                videodatarate:videodatarate,
+                videoframerate:videoframerate,
+                videosize:videosize,
+                width:width,
+                xtradata:xtradata
+            };
+            return r ;
+        }
+        
+        /**
+         * Returns the <code class="prettyprint">String</code> representation of this object.
+         * @return the <code class="prettyprint">String</code> representation of this object.
+         */
+        public override function toString():String
+        {
+            return formatToString( getClassName(this) , "width" , "height" , "duration" ) ;
+        }
     }
 }
