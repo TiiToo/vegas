@@ -38,22 +38,27 @@
 package vegas.media
 {
     import core.maths.clamp;
-    
+
     import graphics.Direction;
-    
+
+    import system.process.Lockable;
+    import system.signals.Signal;
+    import system.signals.Signaler;
+
     import flash.display.Stage;
     import flash.events.Event;
     import flash.events.StageVideoEvent;
     import flash.geom.Point;
     import flash.geom.Rectangle;
     import flash.media.StageVideo;
+    import flash.net.NetStream;
     
-    // TODO use aspectRatio boolean
+    // TODO use keepAspectRatio boolean
     
     /**
      * This expert control a StageVideo instance.
      */
-    public class StageVideoExpert
+    public class StageVideoExpert implements Lockable
     {
         /**
          * Creates a new StageVideoExpert instance.
@@ -317,6 +322,23 @@ package vegas.media
             }
         }
         
+        
+        /**
+         * This signal emit when the StageVideo object render state of the StageVideo object changes.
+         */
+        public function get renderState():Signaler
+        {
+            return _sRenderState ;
+        }
+        
+        /**
+         * @private
+         */
+        public function set renderState( signal:Signaler ):void
+        {
+            _sRenderState = signal || new Signal() ;
+        }
+        
         /**
          * The stage reference of this expert.
          */
@@ -443,6 +465,48 @@ package vegas.media
         }
         
         /**
+         * Specifies a video stream to be displayed within the boundaries of the StageVideo object in the application. 
+         * The video stream is either a video file played with NetStream.play(), or null. 
+         * A video file can be stored on the local file system or on Flash Media Server. 
+         * If the value of the netStream argument is null, the video is no longer played in the StageVideo object. 
+         * Before calling attachNetStream() a second time, call the currently attached NetStream object's close() method. 
+         * Calling close() releases all the resources, including hardware decoders, involved with playing the video. 
+         * Then you can call attachNetStream() with either another NetStream object or null.
+         */
+        public function attachNetStream( netStream:NetStream ):void
+        {
+            if( _stageVideo )
+            {
+                _stageVideo.attachNetStream( netStream ) ;
+            }
+        }
+        
+        /**
+         * Returns <code class="prettyprint">true</code> if the object is locked.
+         * @return <code class="prettyprint">true</code> if the object is locked.
+         */
+        public function isLocked():Boolean 
+        {
+            return ___isLock___ > 0 ;
+        }
+        
+        /**
+         * Locks the object.
+         */
+        public function lock():void 
+        {
+            ___isLock___ ++ ;
+        }
+        
+        /**
+         * Reset the lock security of the display.
+         */
+        public function resetLock():void 
+        {
+            ___isLock___ = 0 ;
+        }
+        
+        /**
          * Sets the virtual width (w) and height (h) values of the component.
          */
         public function setSize( width:Number, height:Number ):void
@@ -450,6 +514,14 @@ package vegas.media
             _viewPort.width  = isNaN(width)  ? 0 : clamp( width  , _minWidth  , _maxWidth  ) ; 
             _viewPort.height = isNaN(height) ? 0 : clamp( height , _minHeight , _maxHeight ) ; 
             update() ;
+        }
+        
+        /**
+         * Unlocks the display.
+         */
+        public function unlock():void 
+        {
+            ___isLock___ = Math.max( ___isLock___ - 1  , 0 ) ;
         }
         
         /**
@@ -486,29 +558,6 @@ package vegas.media
          * @private
          */
         protected var _minWidth:Number = 0 ;
-        
-        /**
-         * Invoked when the display is removed from the stage to enable the autoSize mode.
-         */
-        protected function addedToStageResize( e:Event = null ):void
-        {
-            if ( _stage && _autoSize )
-            {
-                _stage.addEventListener( Event.RESIZE , update ) ;
-                update() ;
-            }
-        }
-         
-        /**
-         * Invoked when the display is removed from the stage to disable the autoSize mode.
-         */
-        protected function removedFromStageResize( e:Event = null ):void
-        {
-            if ( _stage && _autoSize )
-            {
-                _stage.removeEventListener( Event.RESIZE , update ) ;
-            }
-        } 
         
         /**
          * Set up the StageVideo reference.
@@ -551,6 +600,10 @@ package vegas.media
          */
         protected function update( e:Event = null ):void
         {
+            if ( isLocked() )
+            {
+                return ;
+            }
             if( _stageVideo )
             {
                 _realPort.x          = _isFull ? 0 : _viewPort.x ;
@@ -573,6 +626,11 @@ package vegas.media
         
         /**
          * @private
+         */ 
+        private var ___isLock___:uint ;
+        
+        /**
+         * @private
          */
         private var _pan:Point = new Point() ;
         
@@ -580,6 +638,11 @@ package vegas.media
          * @private
          */
         private var _realPort:Rectangle = new Rectangle() ;
+        
+        /**
+         * @private
+         */
+        private var _sRenderState:Signaler = new Signal() ;
         
         /**
          * @private
@@ -606,8 +669,7 @@ package vegas.media
          */
         private function _renderState( e:StageVideoEvent ):void
         {
-            trace( this + " renderState type:" + e.type + " status:" + e.status + " colorSpace" + e.colorSpace ) ;
-            // TODO emit a signal
+            _sRenderState.emit( e.status , e.colorSpace , this ) ;
         }
     }
 }
