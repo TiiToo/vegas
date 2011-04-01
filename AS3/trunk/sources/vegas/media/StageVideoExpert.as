@@ -38,13 +38,13 @@
 package vegas.media
 {
     import core.maths.clamp;
-
+    
     import graphics.Direction;
-
+    
     import system.process.Lockable;
     import system.signals.Signal;
     import system.signals.Signaler;
-
+    
     import flash.display.Stage;
     import flash.events.Event;
     import flash.events.StageVideoEvent;
@@ -52,8 +52,6 @@ package vegas.media
     import flash.geom.Rectangle;
     import flash.media.StageVideo;
     import flash.net.NetStream;
-    
-    // TODO use keepAspectRatio boolean
     
     /**
      * This expert control a StageVideo instance.
@@ -98,7 +96,7 @@ package vegas.media
             {
                 if ( _autoSize )
                 {
-                    _stage.addEventListener( Event.RESIZE , update ) ;
+                    _stage.addEventListener( Event.RESIZE , update , false, 0 , true ) ;
                     update() ;
                 } 
                 else
@@ -202,7 +200,7 @@ package vegas.media
         }
         
         /**
-         * Indicates if the background use full size (use Stage.stageWidth and Stage.stageHeight to update the background).
+         * Indicates if the StageVideo use full size (use Stage.stageWidth and Stage.stageHeight to update this viewPort property).
          */
         public function get isFull():Boolean
         {
@@ -215,6 +213,23 @@ package vegas.media
         public function set isFull( b:Boolean ):void
         {
             _isFull = b ;
+            update() ;
+        }
+        
+        /**
+         * Indicates if the pen keep the aspect ratio.
+         */
+        public function get keepAspectRatio():Boolean
+        {
+            return _keepAspectRatio ;
+        }
+        
+        /**
+         * @private
+         */
+        public function set keepAspectRatio( b:Boolean ):void
+        {
+            _keepAspectRatio = b ;
             update() ;
         }
         
@@ -358,17 +373,17 @@ package vegas.media
         /**
          * If the stageVideo reference is not null, an integer specifying the height of the video stream, in pixels.
          */
-        public function get videoHeight():Number
+        public function get videoHeight():int
         {
-            return _stageVideo ? _stageVideo.videoHeight : NaN ; 
+            return _stageVideo ? _stageVideo.videoHeight : 0 ; 
         }
         
         /**
          * If the stageVideo reference is not null, an integer specifying the width of the video stream, in pixels.
          */
-        public function get videoWidth():Number
+        public function get videoWidth():int
         {
-            return _stageVideo ? _stageVideo.videoWidth : NaN ; 
+            return _stageVideo ? _stageVideo.videoWidth : 0 ; 
         }
         
         /**
@@ -511,8 +526,8 @@ package vegas.media
          */
         public function setSize( width:Number, height:Number ):void
         {
-            _viewPort.width  = isNaN(width)  ? 0 : clamp( width  , _minWidth  , _maxWidth  ) ; 
             _viewPort.height = isNaN(height) ? 0 : clamp( height , _minHeight , _maxHeight ) ; 
+            _viewPort.width  = isNaN(width)  ? 0 : clamp( width  , _minWidth  , _maxWidth  ) ;
             update() ;
         }
         
@@ -606,10 +621,24 @@ package vegas.media
             }
             if( _stageVideo )
             {
-                _realPort.x          = _isFull ? 0 : _viewPort.x ;
-                _realPort.y          = _isFull ? 0 : _viewPort.y ;
-                _realPort.width      = w ;
-                _realPort.height     = h ;
+                var $w:Number    = w ;
+                var $h:Number    = h ;
+                _realPort.width  = $w ;
+                _realPort.height = $h ;
+                _realPort.x      = _isFull ? 0 : _viewPort.x ;
+                _realPort.y      = _isFull ? 0 : _viewPort.y ;
+                /*if( _keepAspectRatio )
+                {
+                    var gcd:int     = core.maths.gcd( int(_viewPort.width) , int(_viewPort.height) ) ;
+                    if ( $w > $h )
+                    {
+                        _realPort.height = $w / gcd ;
+                    }
+                    else
+                    {
+                        _realPort.width  = $h / gcd ;
+                    }
+                }*/
                 _stageVideo.viewPort = _realPort ;
             }
         }
@@ -637,9 +666,14 @@ package vegas.media
         /**
          * @private
          */
-        private var _realPort:Rectangle = new Rectangle() ;
+        protected var _keepAspectRatio:Boolean;
         
         /**
+         * @private
+         */
+        private var _realPort:Rectangle = new Rectangle() ;
+        
+        /** ;
          * @private
          */
         private var _sRenderState:Signaler = new Signal() ;
@@ -669,6 +703,7 @@ package vegas.media
          */
         private function _renderState( e:StageVideoEvent ):void
         {
+            update() ;
             _sRenderState.emit( e.status , e.colorSpace , this ) ;
         }
     }
