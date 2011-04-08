@@ -39,7 +39,7 @@ package vegas.media.subtitles
 {
     import core.chars.isDigit;
     import core.strings.lineTerminatorChars;
-    import core.strings.trimEnd;
+    import core.strings.trim;
     
     import system.text.parser.GenericParser;
     
@@ -99,10 +99,10 @@ package vegas.media.subtitles
             }
             var captions:Array = [] ;
             _count = 0 ;
-            _index = 1 ;
+            _index = 0 ;
             while( hasMoreChar() )
             {
-                if ( _count == _index )
+                if ( _index > 0 && _count == _index )
                 {
                     var caption:Caption = new Caption( {id:_index} ) ;
                     if( _scanTimeRange( caption ) )
@@ -144,18 +144,28 @@ package vegas.media.subtitles
         private function _scanIndex():void
         {
             next() ;
-            var value:uint ;
+            
+            var value:String = "" ;
+            
             while( isDigit( ch ) )
             {
-                value += uint(ch);
+                value += ch ;
                 next() ;
             }
-            if( !isFinite( value ) || isNaN( value ) || !_isLineTerminator(ch) )
+            
+            var result:Number = Number(value) ;
+            
+            if( isNaN( result ) || !_isLineTerminator(ch) )
             {
                 return ;
             }
             
-            if(  _index == value && _isLineTerminator(ch) )
+            if ( _index == 0 && result > 0 )
+            {
+                _index = result ;
+            }
+            
+            if(  _index == result && _isLineTerminator(ch) )
             {
                 _count = _index ;
             }
@@ -166,7 +176,7 @@ package vegas.media.subtitles
          */
         private function _scanText( caption:Caption ):void
         {
-            caption.text = "" ;
+            var text:String = "" ;
             while( hasMoreChar() )
             {
                 next() ;
@@ -176,10 +186,10 @@ package vegas.media.subtitles
                 }
                 else
                 {
-                    caption.text += ch ;
+                    text += ch ;
                 }
             }
-            caption.text = trimEnd(caption.text) ;
+            caption.text = trim(text) ;
         }
         
         /**
@@ -203,7 +213,6 @@ package vegas.media.subtitles
             {
                 caption.start = _toSeconds(range[0]);
                 caption.end   = _toSeconds(range[1]);
-                
                 return true ;
             }
             else
