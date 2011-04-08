@@ -35,6 +35,7 @@
 
 package examples 
 {
+    import vegas.media.subtitles.Caption;
     import vegas.media.subtitles.SRTParser;
     
     import flash.display.Sprite;
@@ -51,7 +52,7 @@ package examples
             
             source += "00:00:20,000 --> 00:00:24,400" ;
             source += "\r" ;
-            source += "You can use a SRTParser instance\r" ;
+            source += "You can use a SRTParser instance \r" ;
             source += "to eval your external subtitles files.\r" ;
             source += "\n" ; 
             source += "2\r" ; 
@@ -64,7 +65,7 @@ package examples
              
             var parser:SRTParser = new SRTParser( source ) ;
              
-            var captions:Array   = parser.eval() ;
+            var captions:Vector.<Caption> = parser.eval() ;
              
             trace( " captions:" + captions ) ;
         }
