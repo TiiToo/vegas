@@ -87,7 +87,7 @@ package srt
             
             /////
             
-            timer = new Timer(150) ;
+            timer = new Timer(300) ;
             
             timer.addEventListener( TimerEvent.TIMER , timerProgress ) ;
             
@@ -146,7 +146,7 @@ package srt
             
             loader.addEventListener( Event.COMPLETE , complete ) ;
             
-            loader.load( new URLRequest("video.srt") ) ;
+            loader.load( new URLRequest("total.srt") ) ;
         }
         
         public var captions:Captions ;
@@ -177,13 +177,13 @@ package srt
             
             /////
             
-            expert.play( "video.flv" ) ;
+            expert.play( "total.flv" ) ;
         }
         
         protected function timerProgress( e:Event ):void
         {
             var caption:Caption = captions.find( expert.time ) ;
-            field.text = caption ? caption.text : ""  ;
+            field.htmlText = caption ? caption.text : ""  ;
             DisplayObjects.align(field, video.getBounds(this) , Align.BOTTOM, new Point(0, -4)) ;
         }
     }
