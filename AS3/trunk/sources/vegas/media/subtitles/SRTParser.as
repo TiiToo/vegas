@@ -91,20 +91,21 @@ package vegas.media.subtitles
         /**
          * Evaluates the String source and return a list of SRT captions.
          */
-        public function eval():Array
+        public function eval():Vector.<Caption>
         {
             if ( _source == null && _source.length == 0 )
             {
                 return null ;
             }
-            var captions:Array = [] ;
+            var caption:Caption ;
+            var captions:Vector.<Caption> = new Vector.<Caption>() ;
             _count = 0 ;
             _index = 0 ;
             while( hasMoreChar() )
             {
                 if ( _index > 0 && _count == _index )
                 {
-                    var caption:Caption = new Caption( {id:_index} ) ;
+                    caption = new Caption( {id:_index} ) ;
                     if( _scanTimeRange( caption ) )
                     {
                         _scanText( caption ) ;
@@ -189,6 +190,7 @@ package vegas.media.subtitles
                     text += ch ;
                 }
             }
+            text = text.split("\n").join("") ; // filter and remove the \n characters in the text to fix CRLF problems.
             caption.text = trim(text) ;
         }
         
