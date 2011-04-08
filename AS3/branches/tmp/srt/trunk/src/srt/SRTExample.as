@@ -146,7 +146,7 @@ package srt
             
             loader.addEventListener( Event.COMPLETE , complete ) ;
             
-            loader.load( new URLRequest("total.srt") ) ;
+            loader.load( new URLRequest("video.srt") ) ;
         }
         
         public var captions:Captions ;
@@ -177,7 +177,7 @@ package srt
             
             /////
             
-            expert.play( "total.flv" ) ;
+            expert.play( "video.flv" ) ;
         }
         
         protected function timerProgress( e:Event ):void
