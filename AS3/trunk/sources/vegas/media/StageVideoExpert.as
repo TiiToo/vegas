@@ -53,6 +53,9 @@ package vegas.media
     import flash.media.StageVideo;
     import flash.net.NetStream;
     
+    // FIXME keepAspectRatio
+    // TODO align (alignment with stage)
+    
     /**
      * This expert control a StageVideo instance.
      */
