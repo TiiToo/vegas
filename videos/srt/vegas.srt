@@ -1,0 +1,25 @@
+1
+00:00:11,010 --> 00:00:14,140
+Vegas est un framework open source
+
+2
+00:00:15,000 --> 00:00:16,150
+basé sur
+
+3
+00:00:16,200 --> 00:00:18,800
+les langages ActionScript 3
+et Javascript
+
+4
+00:00:19,050 --> 00:00:22,350
+respectant les standards
+ECMAScript et W3C
+
+5
+00:00:22,750 --> 00:00:24,000
+Plus d'informations
+
+6
+00:00:24,200 --> 00:00:26,800
+sur http://code.google.com/p/vegas
