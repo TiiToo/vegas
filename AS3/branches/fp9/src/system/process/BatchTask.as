@@ -170,7 +170,7 @@ package system.process
          */
         public override function clone():*
         {
-            var clone:BatchTask = new BatchTask( 0 , false, _mode, _actions.length > 0 ? toVector() : null ) ;
+            var clone:BatchTask = new BatchTask( 0 , false, _mode, _actions.length > 0 ? toArray() : null ) ;
             clone.fixed = _actions.fixed ;
             return clone ;
         }

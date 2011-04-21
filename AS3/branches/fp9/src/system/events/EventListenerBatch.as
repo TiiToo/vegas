@@ -41,7 +41,7 @@ package system.events
     import system.data.Collection;
     import system.data.Iterator;
     import system.data.collections.formatter;
-    import system.data.iterators.VectorIterator;
+    import system.data.iterators.ArrayIterator;
 
     import flash.events.Event;
 
@@ -56,7 +56,7 @@ package system.events
          */
         public function EventListenerBatch( init:* = null )
         {
-            _v = new Vector.<EventListener>() ;
+            _v = [] ;
             if ( init )
             {
                 for each( var listener:* in init)
@@ -175,7 +175,7 @@ package system.events
          */  
         public function iterator():Iterator
         {
-            return new VectorIterator( _v ) ;
+            return new ArrayIterator( _v ) ;
         }
         
         /**
@@ -208,17 +208,7 @@ package system.events
          */
         public function toArray():Array
         {
-            var ar:Array = [] ;
-            var len:int = _v.length ;
-            if ( len == 0 )
-            {
-                return ar ;
-            }
-            for( var i:int ; i<len ; i++)
-            {
-                ar[i] = _v[i] ;
-            }
-            return ar ;
+            return [].concat( _v ) ;
         }
         
         /**
@@ -239,15 +229,6 @@ package system.events
         }
         
         /**
-         * Returns the vector containing all of the Runnable objects in this batch.
-         * @return the vector containing all of the Runnable objects in this batch.
-         */
-        public function toVector():Vector.<EventListener>
-        {
-            return _v ;
-        }
-        
-        /**
          * Returns the string representation of this instance.
          * @return the string representation of this instance.
          */
@@ -255,9 +236,10 @@ package system.events
         {
             return formatter.format( this ) ;
         }
+        
         /**
          * @private
          */
-        private var _v:Vector.<EventListener> ;
+        private var _v:Array ;
     }
 }

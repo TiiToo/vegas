@@ -40,7 +40,7 @@ package system.process
     import system.data.Collection;
     import system.data.Iterator;
     import system.data.collections.formatter;
-    import system.data.iterators.VectorIterator;
+    import system.data.iterators.ArrayIterator;
 
     /**
      * A batch is a collection of <code class="prettyprint">Action</code> objects. All <code class="prettyprint">Action</code> objects are processed as a single unit.
@@ -141,7 +141,7 @@ package system.process
          */
         public function Batch( init:Array = null )
         {
-            _v = new Vector.<Runnable>() ;
+            _v = [] ;
             if ( init && init.length > 0 )
             {
                 var l:int = init.length ;
@@ -241,7 +241,7 @@ package system.process
          */  
         public function iterator():Iterator
         {
-            return new VectorIterator( _v ) ;
+            return new ArrayIterator( _v ) ;
         }
         
         /**
@@ -309,26 +309,7 @@ package system.process
          */
         public function toArray():Array
         {
-            var ar:Array = [] ;
-            var len:int = _v.length ;
-            if ( len == 0 )
-            {
-                return ar ;
-            }
-            for( var i:int ; i<len ; i++)
-            {
-                ar[i] = _v[i] ;
-            }
-            return ar ;
-        }
-        
-        /**
-         * Returns the vector containing all of the Runnable objects in this batch.
-         * @return the vector containing all of the Runnable objects in this batch.
-         */
-        public function toVector():Vector.<Runnable>
-        {
-            return _v ;
+            return [].concat(_v) ;
         }
         
         /**
@@ -360,6 +341,6 @@ package system.process
         /**
          * @private
          */
-        private var _v:Vector.<Runnable> ;
+        private var _v:Array ;
     }
 }
