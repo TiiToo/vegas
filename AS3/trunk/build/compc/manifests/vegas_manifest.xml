@@ -131,6 +131,7 @@
     <component id="vegas.media:CoreSound"        class="vegas.media.CoreSound"  />
     <component id="vegas.media:CoreVideo"        class="vegas.media.CoreVideo"  />
     <component id="vegas.media:CuePoint"         class="vegas.media.CuePoint"  />
+    <component id="vegas.media:FLV"              class="vegas.media.FLV"  />
     <component id="vegas.media:FLVMetaData"      class="vegas.media.FLVMetaData"  />
     <component id="vegas.media:ISound"           class="vegas.media.ISound"  />
     <component id="vegas.media:MediaExpert"      class="vegas.media.MediaExpert"  />
@@ -138,11 +139,13 @@
     <component id="vegas.media:MicrophoneStatus" class="vegas.media.MicrophoneStatus"  />
     <component id="vegas.media:MicrophoneVO"     class="vegas.media.MicrophoneVO"  />
     <component id="vegas.media:SoundLoader"      class="vegas.media.SoundLoader"  />
+    <component id="vegas.media:StageVideoExpert" class="vegas.media.StageVideoExpert" />
     <component id="vegas.media:VideoCodec"       class="vegas.media.VideoCodec"  />
     
     <!-- vegas.media.subtitles -->
     
     <component id="vegas.media.subtitles:Caption"   class="vegas.media.subtitles.Caption"   />
+    <component id="vegas.media.subtitles:Captions"  class="vegas.media.subtitles.Captions"  />
     <component id="vegas.media.subtitles:SRTParser" class="vegas.media.subtitles.SRTParser" />
     
     <!-- vegas.models -->

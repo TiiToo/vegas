@@ -68,7 +68,7 @@ package vegas.vo
         }
         
         /**
-         * Indicates the id of this IValueObject.
+         * Indicates the id of this ValueObject.
          */
         public function get id():*
         {
@@ -84,7 +84,7 @@ package vegas.vo
         }
         
         /**
-         * Compares the specified object with this object for equality. This method compares the ids of the objects with the <code class="prettyprint">Identifiable.getID()</code> method.
+         * Compares the specified object with this object for equality. This method compares the ids of the objects.
          * @return <code class="prettyprint">true</code> if the the specified object is equal with this object.
          */
         public function equals( o:* ):Boolean
