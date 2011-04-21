@@ -76,7 +76,7 @@ package calista.utils
             
             var splitted:Array = source.split("");
             
-            var buffer:Vector.<Number> = new Vector.<Number>() ;
+            var buffer:Array = [] ;
             
             size = splitted.length ;
             
@@ -97,7 +97,7 @@ package calista.utils
                     
                     chars++;
                     
-                    buffer = new Vector.<Number>() ;
+                    buffer = [] ;
                     buffer.push(current.charCodeAt(0));
                 }
             }

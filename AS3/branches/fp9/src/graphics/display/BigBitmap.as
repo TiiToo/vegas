@@ -282,7 +282,7 @@ package graphics.display
         {
             dispose() ;
             
-            _bitmaps     = new Vector.<Bitmap>() ;
+            _bitmaps     = [] ;
             _color       = color;
             _height      = height ;
             _width       = width  ;
@@ -379,7 +379,7 @@ package graphics.display
         /**
          * @private
          */
-        private var _bitmaps:Vector.<Bitmap>;
+        private var _bitmaps:Array;
         
         /**
          * @private

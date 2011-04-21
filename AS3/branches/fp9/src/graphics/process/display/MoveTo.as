@@ -107,9 +107,9 @@ package graphics.process.display
                 {
                     target.y = y ;
                 }
-                if ( !isNaN( z ) )
+                if ( !isNaN( z ) && ( "z" in target ) )
                 {
-                    target.z = z ;
+                    target["z"] = z ;
                 }
             }
             catch( e:Error )

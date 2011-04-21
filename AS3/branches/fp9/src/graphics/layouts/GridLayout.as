@@ -129,7 +129,7 @@ package graphics.layouts
                 
                 var isHorizontal:Boolean = direction == Direction.HORIZONTAL ;
                 
-                var children:Vector.<DisplayObject> = new Vector.<DisplayObject>( l ) ;
+                var children:Array = new Array( l ) ;
                 
                 var length:int = _container.numChildren ;
                 
@@ -242,7 +242,7 @@ package graphics.layouts
                     
                     var isHorizontal:Boolean = direction == Direction.HORIZONTAL ;
                     
-                    var children:Vector.<DisplayObject> = new Vector.<DisplayObject>( l ) ;
+                    var children:Array = new Array( l ) ;
                     
                     for ( i = 0 ; i < len ; i++ ) 
                     {
