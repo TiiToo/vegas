@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<componentPackage>
+    
+    <!-- calista.hash -->
+    
+    <component id="calista.hash:Adler32"  class="calista.hash.Adler32"  />
+    <component id="calista.hash:Blowfish" class="calista.hash.Blowfish" />
+    <component id="calista.hash:CRC32"    class="calista.hash.CRC32"    />
+    <component id="calista.hash:MD5"      class="calista.hash.MD5"      />
+    <component id="calista.hash:RXOR"     class="calista.hash.RXOR"     />
+    <component id="calista.hash:SHA1"     class="calista.hash.SHA1"     />
+    <component id="calista.hash:SHA256"   class="calista.hash.SHA256"   />
+    <component id="calista.hash:TEA"      class="calista.hash.TEA"      />
+    <component id="calista.hash:Vigenere" class="calista.hash.Vigenere" />
+    
+    <!-- calista.utils -->
+    
+    <component id="calista.utils:Base64" class="calista.utils.Base64" />
+    <component id="calista.utils:Base8"  class="calista.utils.Base8"  />
+    <component id="calista.utils:LZW"    class="calista.utils.LZW"    />
+    
+</componentPackage>
