@@ -288,7 +288,7 @@ package vegas.utils.pool
             }
             else
             {
-                var a:Vector.<ObjectPoolNode> = new Vector.<ObjectPoolNode>;
+                var a:Array = [] ;
                 
                 node = _head ;
                 

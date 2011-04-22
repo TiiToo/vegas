@@ -87,8 +87,8 @@ package system.broadcasters
             var o:* ;
             var b:Boolean ;
             var e:BroadcasterEntry ;
-            var r:Vector.<BroadcasterEntry> = new Vector.<BroadcasterEntry>() ;
-            var v:Vector.<BroadcasterEntry> = listeners.slice() ;
+            var r:Array = [] ;
+            var v:Array = listeners.slice() ;
             var l:int = v.length ;
             for ( var i:int ; i<l ; i++ ) 
             {

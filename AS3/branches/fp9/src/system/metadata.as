@@ -48,8 +48,10 @@ package system
         
         public static var version:Version = new Version();
         
+        /*FDT_IGNORE*/
         include "version.properties"
-         
+        /*FDT_IGNORE*/
+          
         version.revision = parseInt( "$Rev: 603 $".split( " " )[1] );
         
     }

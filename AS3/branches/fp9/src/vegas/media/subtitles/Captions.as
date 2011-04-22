@@ -46,7 +46,7 @@ package vegas.media.subtitles
          * Creates a new Captions instance.
          * @param captions The Vector of all Caption objects to bufferize.
          */
-        public function Captions( captions:Vector.<Caption> = null )
+        public function Captions( captions:Array = null )
         {
             this.captions = captions ;
         }
@@ -54,7 +54,7 @@ package vegas.media.subtitles
         /**
          * The Vector of all Caption objects to bufferize.
          */
-        public var captions:Vector.<Caption>;
+        public var captions:Array;
         
         /**
          * Find a Caption with the specified time value.

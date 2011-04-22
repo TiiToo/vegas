@@ -91,14 +91,14 @@ package vegas.media.subtitles
         /**
          * Evaluates the String source and return a list of SRT captions.
          */
-        public function eval():Vector.<Caption>
+        public function eval():Array
         {
             if ( _source == null && _source.length == 0 )
             {
                 return null ;
             }
             var caption:Caption ;
-            var captions:Vector.<Caption> = new Vector.<Caption>() ;
+            var captions:Array = [] ;
             _count = 0 ;
             _index = 0 ;
             while( hasMoreChar() )

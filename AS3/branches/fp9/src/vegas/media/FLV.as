@@ -156,7 +156,7 @@ package vegas.media
         /**
          * Adds a collection of frames(BitmapData) in the video stream.
          */
-        public function addFrames( frames:Vector.<BitmapData> ):void 
+        public function addFrames( frames:Array ):void 
         {
             if( frames && frames.length > 0 )
             {
@@ -176,6 +176,10 @@ package vegas.media
             writeBytes( header() ) ;
             writeUnsignedInt( previousTagSize ) ;
             writeBytes( metaTag() ) ;
+        }
+
+        private function clear():void
+        {
         }
         
         /**

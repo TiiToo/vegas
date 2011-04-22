@@ -95,7 +95,7 @@ package system.signals
             var i:int ;
             var l:int = receivers.length ;
             var r:Array = [] ;
-            var v:Vector.<SignalEntry> = receivers.slice() ;
+            var v:Array = receivers.slice() ;
             var e:SignalEntry ;
             for ( i = 0 ; i < l ; i++ ) 
             {
