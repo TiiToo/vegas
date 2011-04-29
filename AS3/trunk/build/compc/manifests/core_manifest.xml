@@ -108,6 +108,11 @@
     <component id="core.maths:tanD"             class="core.maths.tanD"             />
     <component id="core.maths:tanH"             class="core.maths.tanH"             />
     
+    <!-- core.objects -->
+    
+    <component id="core.objects:getMembers" class="core.objects.getMembers" />
+    <component id="core.objects:merge"      class="core.objects.merge"      />
+    
     <!-- core.reflect -->
     
     <component id="core.reflect:getClassByName"      class="core.reflect.getClassByName"      />
@@ -121,11 +126,15 @@
     
     <!-- core.strings -->
     
+    <component id="core.strings:camelCase"            class="core.strings.camelCase"           />
+    <component id="core.strings:capitalize"           class="core.strings.capitalize"          />
     <component id="core.strings:center"               class="core.strings.center"              />
+    <component id="core.strings:clean"                class="core.strings.clean"               />
     <component id="core.strings:compare"              class="core.strings.compare"             />
     <component id="core.strings:endsWith"             class="core.strings.endsWith"            />
     <component id="core.strings:fastformat"           class="core.strings.fastformat"          />
     <component id="core.strings:format"               class="core.strings.format"              />
+    <component id="core.strings:hyphenate"            class="core.strings.hyphenate"           />
     <component id="core.strings:indexOfAny"           class="core.strings.indexOfAny"          />
     <component id="core.strings:insert"               class="core.strings.insert"              />
     <component id="core.strings:lastIndexOfAny"       class="core.strings.lastIndexOfAny"      />
@@ -138,6 +147,7 @@
     <component id="core.strings:trim"                 class="core.strings.trim"                />
     <component id="core.strings:trimEnd"              class="core.strings.trimEnd"             />
     <component id="core.strings:trimStart"            class="core.strings.trimStart"           />
+    <component id="core.strings:userAgent"            class="core.strings.userAgent"           />
     <component id="core.strings:whiteSpaceChars"      class="core.strings.whiteSpaceChars"     />
     <component id="core.strings:WildExp"              class="core.strings.WildExp"             />
     
