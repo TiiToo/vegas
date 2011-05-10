@@ -22,7 +22,8 @@
             <arg line='-window-title ${win.title}' />
             <arg line='-output ${output}' />
             <arg line='-templates-path ${template}'/>
-            <arg line='-target-player=10.0.0' />
+            <arg line='-target-player=10.2' />
+            <arg line='-warnings'/>
         </exec>
     </target>
 
