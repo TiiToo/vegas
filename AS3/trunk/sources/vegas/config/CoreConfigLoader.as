@@ -53,12 +53,10 @@ package vegas.config
         /**
          * Creates a new CoreConfigLoader instance.
          * @param loader The URLLoader object to load.
-         * @param global the flag to use a global event flow or a local event flow.
-         * @param channel the name of the global event flow if the <code class="prettyprint">global</code> argument is <code class="prettyprint">true</code>.
          */
-        public function CoreConfigLoader( loader:URLLoader, global:Boolean = false, channel:String = null )
+        public function CoreConfigLoader( loader:URLLoader )
         {
-            super( loader , global, channel ) ;
+            super( loader ) ;
             parsing = true ;
             _config = Config.getInstance() ;
         }
