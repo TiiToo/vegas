@@ -49,8 +49,10 @@ package vegas.models.arrays
     
     /**
      * Defines an <code class="prettyprint">Array</code> model with a 'page by page' iterator.
-     * <p><b>Example :</b>>/p>
-     * <pre class="prettyprint">
+     * 
+     * @example Example
+     * <listing version="3.0">
+     * <code class="prettyprint">
      * import vegas.events.ModelObjectEvent ;
      * import vegas.models.arrays.PageableArrayModelObject ;
      * import vegas.vo.SimpleValueObject ;
@@ -92,7 +94,7 @@ package vegas.models.arrays
      * 
      * var datas:Array  = [] ;
      * var count:uint = 20 ;
-     * for ( var i:uint = 0 ; i<count ; i++ )
+     * for ( var i:uint = 0 ; i&lt;count ; i++ )
      * {
      *     datas.push( new SimpleValueObject( { id:i } ) ) ;
      * }
@@ -141,6 +143,8 @@ package vegas.models.arrays
      * trace( "Press Keyboard.SPACE to use a page with 4 items inside (change count of items)." ) ;
      * 
      * model.currentPage = 2 ; // go to the page 2
+     * </code>
+     * </listing>
      */
     public class PageableArrayModelObject extends CoreModelObject
     {
