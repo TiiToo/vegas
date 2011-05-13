@@ -85,8 +85,8 @@ package vegas.media
         }
         
         /**
-         * Determinates the settings of the current Camera object with a CameraVO object.
-         * <p>By default the expert use the DEFAULT_SETTING
+         * Determinates the settings of the current Camera object with a CameraVO object. 
+         * By default the expert use the DEFAULT_SETTING.
          */
         public function get setting():*
         {
