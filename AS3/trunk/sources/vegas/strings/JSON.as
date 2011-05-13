@@ -42,8 +42,10 @@ package vegas.strings
      * <code class="prettyprint">JSON</code> (JavaScript object Notation) is a lightweight data-interchange format.
      * <p>More information in the official site : <a href="http://www.JSON.org/">http://www.JSON.org</a></p>
      * <p>Add Hexa Digits tool in deserialize method - <a href="http://code.google.com/p/edenrr/">eden inspiration</a></p>
-     * <p><b>Example :</b></p>
-     * <pre class="prettyprint">
+     * 
+     * @example Example
+     * <listing version="3.0">
+     * <code class="prettyprint">
      * import core.getClassName ;
      * 
      * import vegas.strings.JSON;
@@ -72,7 +74,7 @@ package vegas.strings
      * o = JSON.deserialize(source) ;
      * 
      * var l:uint = o.length ;
-     * for (var i:uint = 0 ; i < l ; i++)
+     * for (var i:uint = 0 ; i &lt; l ; i++)
      * {
      *     trace("> " + i + " : " + o[i] + " -> typeof :: " + typeof(o[i])) ;
      *     if (typeof(o[i]) == "object")
@@ -92,13 +94,14 @@ package vegas.strings
      * 
      * try
      * {
-     *    var errorObj:* = JSON.deserialize(source) ;
+     *    var errorObj:Object = JSON.deserialize(source) ;
      * }
      * catch( e:JSONError )
      * {
      *     trace( e.toString() ) ;
      * }
-     * </pre>
+     * </code>
+     * </listing>
      */
     public var JSON:JSONSerializer = new JSONSerializer() ;
 }
