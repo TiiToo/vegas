@@ -38,13 +38,14 @@
 package vegas.models.maps 
 {
     import core.maths.clamp;
-    
+
     import system.data.Map;
     import system.data.ValueObject;
     import system.data.maps.ArrayMap;
     
     /**
      * This map model is indexed and you can select all value objects register with the basic <code>index</code> (int) property.
+     * 
      * @example Example
      * <listing version="3.0">
      * <code class="prettyprint">
@@ -69,9 +70,9 @@ package vegas.models.maps
      *             
      *             var count:uint = 4 ;
      *             
-     *             for (var i:int ; i&lt;count ; i++ ) 
+     *             for (var i:int ; i &lt; count ; i++ ) 
      *             {
-     *                 model.addVO( new FilterVO( { id : i , filter : i << 1 } ) ) ;
+     *                 model.addVO( new FilterVO( { id : i , filter : i &lt;&lt; 1 } ) ) ;
      *             }
      *             
      *             model.index = 0 ;
@@ -83,7 +84,7 @@ package vegas.models.maps
      *         
      *         public function debug( e:ModelObjectEvent ):void
      *         {
-     *             trace( "# type:" + e.type + " vo:" + e.getVO() + " index:" + model.index ) ;
+     *             trace( "type:" + e.type + " vo:" + e.getVO() + " index:" + model.index ) ;
      *         }
      *         
      *         public function keyDown( e:KeyboardEvent ):void
@@ -189,9 +190,9 @@ package vegas.models.maps
          * 
          * var model:IndexedMapModelObject = new IndexedMapModelObject() ;
          *  
-         * for (var i:int ; i&lt;4 ; i++ ) 
+         * for (var i:int ; i &lt; 4 ; i++ ) 
          * {
-         *     model.addVO( new FilterVO( { id : i , filter : i << 1 } ) ) ;
+         *     model.addVO( new FilterVO( { id : i , filter : i &lt;&lt; 1 } ) ) ;
          * }
          * 
          * trace( "model.getAt(1) : " + model.getAt(1) ) ; // model.getAt(1) : [FilterVO:2]
