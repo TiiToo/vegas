@@ -45,8 +45,9 @@ package vegas.models.maps
     
     /**
      * This map model is indexed and you can select all value objects register with the basic <code>index</code> (int) property.
-     * <p><b>Example :</b></p>
-     * <pre class="prettyprint">
+     * @example Example
+     * <listing version="3.0">
+     * <code class="prettyprint">
      * package examples
      * {
      *     import vegas.events.ModelObjectEvent;
@@ -68,7 +69,7 @@ package vegas.models.maps
      *             
      *             var count:uint = 4 ;
      *             
-     *             for (var i:int ; i<count ; i++ ) 
+     *             for (var i:int ; i&lt;count ; i++ ) 
      *             {
      *                 model.addVO( new FilterVO( { id : i , filter : i << 1 } ) ) ;
      *             }
@@ -104,7 +105,8 @@ package vegas.models.maps
      *         }
      *     }
      * }
-     * </pre>
+     * </code>
+     * </listing> 
      */
     public class IndexedMapModelObject extends MapModelObject 
     {
@@ -187,7 +189,7 @@ package vegas.models.maps
          * 
          * var model:IndexedMapModelObject = new IndexedMapModelObject() ;
          *  
-         * for (var i:int ; i<4 ; i++ ) 
+         * for (var i:int ; i&lt;4 ; i++ ) 
          * {
          *     model.addVO( new FilterVO( { id : i , filter : i << 1 } ) ) ;
          * }
