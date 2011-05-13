@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<project name="ASDOC - Full Documentation VEGAS AS3" default="main">
+<project name="ASDOC - VEGAS Reference AS3" default="main">
 
     <!-- Initialize the build -->
     
@@ -15,10 +15,10 @@
     <if>
         <equals arg1="${asdoc.use.classes}" arg2="true" />
         <then>
-            <property name="asdoc.options" value="-doc-classes ${asdoc.doc.sources}" />
+            <property name="asdoc.sources" value="-doc-classes ${asdoc.doc.sources}" />
         </then>
         <else>
-            <property name="asdoc.options" value="-doc-sources ${asdoc.doc.sources}" />
+            <property name="asdoc.sources" value="-doc-sources ${asdoc.doc.sources}" />
         </else>
     </if>
     
@@ -36,7 +36,7 @@
             
             <arg line='-source-path ${asdoc.source.path}'/>
             
-            <arg line='${asdoc.options}' />
+            <arg line='${asdoc.sources}' />
             
             <arg line='-main-title ${asdoc.main.title}' />
             <arg line='-window-title ${asdoc.win.title}' />
@@ -45,9 +45,6 @@
             <arg line='-templates-path ${asdoc.template}'/>
             
             <arg line='-target-player=${asdoc.target.player}' />
-            <!--<arg line='-benchmark'/>-->
-            <!--<arg line='-warnings'/>-->
-            
         </exec>
     </target>
 
