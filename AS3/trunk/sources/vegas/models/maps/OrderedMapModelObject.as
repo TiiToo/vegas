@@ -44,6 +44,7 @@ package vegas.models.maps
     
     /**
      * This map model object is ordered with a previous and next methods inside.
+     * 
      * @example Example
      * <listing version="3.0">
      * <code class="prettyprint">
@@ -68,7 +69,7 @@ package vegas.models.maps
      *             
      *             var count:uint = 4 ;
      *             
-     *             for (var i:int ; i&lt;count ; i++ ) 
+     *             for (var i:int ; i &lt; count ; i++ ) 
      *             {
      *                 model.addVO( new FilterVO( { id : i , filter : i << 1 } ) ) ;
      *             }
@@ -82,7 +83,7 @@ package vegas.models.maps
      *         
      *         public function debug( e:ModelObjectEvent ):void
      *         {
-     *             trace( "# type:" + e.type + " vo:" + e.getVO() ) ;
+     *             trace( "type:" + e.type + " vo:" + e.getVO() ) ;
      *         }
      *         
      *         public function keyDown( e:KeyboardEvent ):void
@@ -93,19 +94,19 @@ package vegas.models.maps
      *                 case Keyboard.LEFT :
      *                 {
      *                     model.previous() ;
-     *                     trace( "> hasPrevious:" + model.hasPrevious() ) ;
+     *                     trace( "hasPrevious:" + model.hasPrevious() ) ;
      *                     break ;
      *                 }
      *                 case Keyboard.RIGHT :
      *                 {
      *                     model.next() ;
-     *                     trace( "> hasNext:" + model.hasNext() ) ;
+     *                     trace( "hasNext:" + model.hasNext() ) ;
      *                     break ;
      *                 }
      *                 case Keyboard.SPACE :
      *                 {
      *                     model.loop = !model.loop ;
-     *                     trace( "> loop:" + model.loop ) ;
+     *                     trace( "loop:" + model.loop ) ;
      *                     break ;
      *                 }
      *             }
