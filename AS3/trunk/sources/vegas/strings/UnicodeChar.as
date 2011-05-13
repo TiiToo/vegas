@@ -45,8 +45,9 @@ package vegas.strings
     /**
      * <b>ECMA 262</b> Unicode IFormat-Control Characters tools.
      * <p>See <a href='http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf'>ECMAScript 262 specifications</a></p>
-     * <p><b>Example :</b></p>
-     * <pre class="prettyprint">
+     * @example Example
+     * <listing version="3.0">
+     * <code class="prettyprint">
      * UnicodeChar = vegas.strings.UnicodeChar ;
      * 
      * trace("-----") ;
@@ -72,7 +73,8 @@ package vegas.strings
      * 
      * u = new UnicodeChar() ;
      * trace( u.u5c0f() + u.u98fc() + u.u5f3e() + u.u0040() ) ; // 小飼弾@
-     * </pre>
+     * </code>
+     * </listing> 
      */
     public dynamic class UnicodeChar extends Proxy
     {
@@ -81,7 +83,7 @@ package vegas.strings
          * <p><b>Example :</b></p>
          * <pre class="prettyprint">
          * var u:UnicodeChar = new UnicodeChar() ;
-         * trace( u.u0040() ) ; // @
+         * trace( u.u0040() ) ; // &#64;
          * </pre>
          */
         public function UnicodeChar()
@@ -97,7 +99,7 @@ package vegas.strings
         /**
          * Back Slash utf8 representation (special char).
          */
-        public static const BACK_SLASH:String = SPECIAL_CHARS[0] ;    
+        public static const BACK_SLASH:String = SPECIAL_CHARS[0] ;
         
         /**
          * Back Space utf8 representation (special char).
