@@ -70,38 +70,34 @@ package vegas.utils
         
         /**
          * Returns the hexadecimal string representation of the specified number value.
+         * @param n the number to format.
+         * @param prefix Optional string represention of the prefix of the return format string. If this argument is undefined the prefix is "0x".
+         * @return the hexadecimal string representation of the specified number value.
          * @example
-         * <pre class="prettyprint">
+         * <code class="prettyprint">
          * import vegas.utils.NumberUtil ;
          *
-         * for (var i:uint =0 ; i<256 ; i++)
+         * for (var i:uint =0 ; i&lt;256 ; i++)
          * {
          *     trace( NumberUtil.toHex( i ) ) ; // without optional prefix argument (default "0x")
          * }
          *
          * trace("---") ; 
          * 
-         * for (var i:Number =0 ; i<256 ; i++)
+         * for (var i:Number =0 ; i&lt;56 ; i++)
          * {
          *     trace( NumberUtil.toHex( i , "#" ) ) ; // with optional prefix argument
          * }
-         * </pre>
-         * @param n the number to format.
-         * @param prefix Optional string represention of the prefix of the return format string. If this argument is undefined the prefix is "0x".
-         * @return the hexadecimal string representation of the specified number value.
+         * </code>
          */
-        public static function toHex( n:Number, prefix:String ):String
+        public static function toHex( n:Number, prefix:String = "0x" ):String
         {
-            if ( prefix == null )
-            {
-                prefix = "0x" ;
-            }
             var temp:String = n.toString(16) ;
             if(n < 16) 
             {
                 temp = "0" + temp ;
             }
-            return (prefix || "") + temp ;
+            return prefix + temp ;
         }
     }
 }
