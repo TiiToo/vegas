@@ -135,7 +135,7 @@ package vegas.net
          * <p><b>Example :</b></p>
          * <pre class="prettyprint">
          * import vegas.net.HTMLEntities  ;
-         * trace( HTMLEntities.getCharToEntity("<") ) ; // &lt;
+         * trace( HTMLEntities.getCharToEntity("&#38;lt") ) ;
          * </pre>
          * @return the entity name of the specified character in argument.
          */
@@ -150,7 +150,7 @@ package vegas.net
          * <p><b>Example :</b></p>
          * <pre class="prettyprint">
          * import vegas.net.HTMLEntities  ;
-         * trace( HTMLEntities.getCharToEntityNumber("<") ) ; // &#60;
+         * trace( HTMLEntities.getCharToEntityNumber("&#38;lt") ) ;
          * </pre>
          * @return the entity number string representation of the specified character in argument.
          */
@@ -164,7 +164,7 @@ package vegas.net
          * <p><b>Example :</b></p>
          * <pre class="prettyprint">
          * import vegas.net.HTMLEntities  ;
-         * trace( HTMLEntities.getEntityNumberToChar("&#60;")) ; // <
+         * trace( HTMLEntities.getEntityNumberToChar("&#38;#60;")) ; // &lt;
          * </pre>
          * @return the char representation of the specified entity number string value in argument or an empty string value.
          */
