@@ -53,13 +53,13 @@ package vegas.strings.json
      * 
      * // --- Init
      * 
-     * var a:Array = [2, true, "hello"] ;
-     * var o:Object = { prop1 : 1 , prop2 : 2 } ;
-     * var s:String = "hello world" ;
-     * var n:Number = 4 ;
+     * var a:Array   = [2, true, "hello"] ;
+     * var o:Object  = { prop1 : 1 , prop2 : 2 } ;
+     * var s:String  = "hello world" ;
+     * var n:Number  = 4 ;
      * var b:Boolean = true ;
      * 
-     * trace("# Serialize \r") ;
+     * trace("Serialize") ;
      * 
      * trace("- a : " + JSON.serialize( a ) )  ;
      * trace("- o : " + JSON.serialize( o ) )  ;
@@ -67,26 +67,26 @@ package vegas.strings.json
      * trace("- n : " + JSON.serialize( n ) )  ;
      * trace("- b : " + JSON.serialize( b ) )  ;
      * 
-     * trace ("\r# Deserialize \r") ;
+     * trace ("Deserialize") ;
      * 
      * var source:String = '[ { "prop1" : 0xFF0000 , prop2:2, prop3:"hello", prop4:true} , 2, true, 3, [3, 2] ]' ;
      * 
      * o = JSON.deserialize(source) ;
      * 
      * var l:uint = o.length ;
-     * for (var i:uint = 0 ; i < l ; i++)
+     * for (var i:uint = 0 ; i &lt; l ; i++)
      * {
-     *     trace("> " + i + " : " + o[i] + " -> typeof :: " + typeof(o[i])) ;
+     *     trace("- " + i + " : " + o[i] + " , typeof :: " + typeof(o[i])) ;
      *     if (typeof(o[i]) == "object")
      *     {
      *         for (var each:String in o[i])
      *         {
-     *             trace("    > " + each + " : " + o[i][each] + " :: " + getClassName(o[i][each]) ) ;
+     *             trace("    + " + each + " : " + o[i][each] + " :: " + getClassName(o[i][each]) ) ;
      *         }
      *     }
      * }
      * 
-     * trace ("\r# JSONError \r") ;
+     * trace ("JSONError") ;
      * 
      * source = "[3, 2," ; // test1
      * 
@@ -94,7 +94,7 @@ package vegas.strings.json
      * 
      * try
      * {
-     *    var errorObj:* = JSON.deserialize(source) ;
+     *    var errorObj:Object = JSON.deserialize(source) ;
      * }
      * catch( e:JSONError )
      * {
