@@ -1,0 +1,81 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd"><!-- saved from url=(0014)about:internet --><html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><link rel="stylesheet" href="../../style.css" type="text/css" media="screen"><link rel="stylesheet" href="../../print.css" type="text/css" media="print"><link rel="stylesheet" href="../../prettify.css" type="text/css"><link rel="stylesheet" href="../../override.css" type="text/css"><meta name="keywords" content="BooleanComparator,system.comparators.BooleanComparator,comparator,comparator,comparator,falseFirst,fixed,fractionDigits,ignoreCase,ignoreCase,ignoreCaseComparator,nonNullComparator,nullsAreHigh,nullsAreHigh,sortBy,trueFirst,trueFirst,caseValue,compare,compare,compare,compare,compare,compare,compare,compare,compare,compare,compare"><title>system.comparators.BooleanComparator</title></head><body><script language="javascript" type="text/javascript" src="../../prettify.js"></script><script language="javascript" type="text/javascript" src="../../asdoc.js"></script><script language="javascript" type="text/javascript" src="../../help.js"></script><script language="javascript" type="text/javascript" src="../../cookies.js"></script><script language="javascript" type="text/javascript"><!--
+                asdocTitle = 'BooleanComparator - VEGAS AS3 Reference';
+                var baseRef = '../../';
+                window.onload = configPage;
+            --></script>
+<script type="text/javascript">
+            scrollToNameAnchor();
+        </script><table class="titleTable" cellpadding="0" cellspacing="0" id="titleTable" style="display:none"><tr><td class="titleTableTitle" align="left">VEGAS AS3 Reference</td><td class="titleTableTopNav" align="right"><a href="../../package-summary.html" onclick="loadClassListFrame('../../all-classes.html')">All Packages</a>&nbsp;|&nbsp;<a href="../../class-summary.html" onclick="loadClassListFrame('../../all-classes.html')">All Classes</a>&nbsp;|&nbsp;<a href="../../all-index-A.html" onclick="loadClassListFrame('../../index-list.html')">Index</a>&nbsp;|&nbsp;<a id="framesLink1" href="../../index.html?system/comparators/BooleanComparator.html&amp;system/comparators/class-list.html">Frames</a><a id="noFramesLink1" style="display:none" href="" onclick="parent.location=document.location"> No Frames </a></td><td class="titleTableLogo" align="right" rowspan="3"><img src="../../images/logo.jpg" class="logoImage" alt=" Adobe Logo " title=" Adobe Logo "></td></tr><tr class="titleTableRow2"><td class="titleTableSubTitle" id="subTitle" align="left">BooleanComparator</td><td class="titleTableSubNav" id="subNav" align="right"><a href="#propertySummary">Properties</a>&nbsp;| <a href="#methodSummary">Methods</a>&nbsp;| <a href="#constantSummary">Constants</a></td></tr><tr class="titleTableRow3"><td colspan="3">&nbsp;</td></tr></table><script language="javascript" type="text/javascript" xml:space="preserve">
+                <!--
+                
+                    if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("BooleanComparator"); titleBar_setSubNav(true,true,false,false,false,false,false,false,true,false,false    ,false,false,false,false,false);}    
+                -->
+            </script><div xmlns:fn="http://www.w3.org/2005/xpath-functions" class="MainContent"><table class="classHeaderTable" cellpadding="0" cellspacing="0"><tr><td class="classHeaderTableLabel">Package</td><td><a href="package-detail.html" onclick="javascript:loadClassListFrame('class-list.html')">system.comparators</a></td></tr><tr><td class="classHeaderTableLabel">Class</td><td class="classSignature">public  class  BooleanComparator</td></tr><tr><td class="classHeaderTableLabel">Inheritance</td><td class="inheritanceList">BooleanComparator  <img src="../../images/inherit-arrow.gif" title="Inheritance" alt="Inheritance" class="inheritArrow"> Object</td></tr><tr><td class="classHeaderTableLabel">Implements</td><td> <a href="../../system/Comparator.html">Comparator</a></td></tr></table><p></p><p></p><p></p>
+     An Comparator for <code>Boolean</code> objects that can sort either <code>true</code> or <code>false</code> first.
+     <p>
+                  <b>Example :</b>
+               </p>
+               <pre>
+     import system.Comparator ;
+     import system.comparators.BooleanComparator ;
+     
+     var c:Comparator = new BooleanComparator() ;
+     trace(c.compare(true, true)) ; // 0
+     trace(c.compare(true, false)) ; // 1
+     trace(c.compare(false, true)) ; // -1
+     trace(c.compare(false, false)) ; // 0
+     </pre>
+            <p></p><br/><hr></div><a name="propertySummary"></a><div class="summarySection"><div class="summaryTableTitle">Public Properties</div><table cellspacing="0" cellpadding="3" class="summaryTable " id="summaryTableProperty"><tr><th>&nbsp;</th><th colspan="2">Property</th><th class="summaryTableOwnerCol">Defined By</th></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a href="#trueFirst" class="signatureLink">trueFirst</a> : Boolean<div class="summaryTableDescription">
+         When true sort true boolean values before false.</div></td><td class="summaryTableOwnerCol">BooleanComparator</td></tr></table></div><a name="methodSummary"></a><div class="summarySection"><div class="summaryTableTitle">Public Methods </div><table cellspacing="0" cellpadding="3" class="summaryTable " id="summaryTableMethod"><tr><th>&nbsp;</th><th colspan="2">Method</th><th class="summaryTableOwnerCol">Defined By</th></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="#BooleanComparator()" class="signatureLink">BooleanComparator</a>(trueFirst:Boolean = true)</div><div class="summaryTableDescription">
+         Creates a BooleanComparator that sorts trueFirst values before !trueFirst values.</div></td><td class="summaryTableOwnerCol">BooleanComparator</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="#compare()" class="signatureLink">compare</a>(o1:*, o2:*, options:* = null):int</div><div class="summaryTableDescription">
+         Returns an integer value to compare two Boolean objects.</div></td><td class="summaryTableOwnerCol">BooleanComparator</td></tr></table></div><a name="constantSummary"></a><div class="summarySection"><div class="summaryTableTitle">Public Constants</div><table cellspacing="0" cellpadding="3" class="summaryTable " id="summaryTableConstant"><tr><th>&nbsp;</th><th colspan="2">Constant</th><th class="summaryTableOwnerCol">Defined By</th></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a href="#falseFirst" class="signatureLink">falseFirst</a> : <a href="../../system/comparators/BooleanComparator.html">BooleanComparator</a><div class="summaryTableDescription">[static] 
+         This BooleanComparator singleton that sorts false values before true values.</div></td><td class="summaryTableOwnerCol">BooleanComparator</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a href="#trueFirst" class="signatureLink">trueFirst</a> : <a href="../../system/comparators/BooleanComparator.html">BooleanComparator</a><div class="summaryTableDescription">[static] 
+         This BooleanComparator singleton that sorts true values before false values.</div></td><td class="summaryTableOwnerCol">BooleanComparator</td></tr></table></div><script language="javascript" type="text/javascript"><!--
+										showHideInherited();
+										--></script><div class="MainContent"><div class="detailSectionHeader">Property Detail</div><a name="propertyDetail"></a><a name="trueFirst"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">trueFirst</td><td class="detailHeaderType">property</td></tr></table><div class="detailBody"><code>public var trueFirst:Boolean</code><p></p><p></p><p>
+         When <code>true</code> sort <code>true</code> boolean values before <code>false</code>.
+         </p></div><a name="constructorDetail"></a><div class="detailSectionHeader">Constructor Detail</div><a name="BooleanComparator()"></a><a name="BooleanComparator(Boolean)"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">BooleanComparator</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">Constructor</td></tr></table><div class="detailBody"><code>public function BooleanComparator(trueFirst:Boolean = true)</code><p></p><p>
+         Creates a BooleanComparator that sorts trueFirst values before !trueFirst values.
+         Please use the static factories instead whenever possible.
+         </p><span class="label"> Parameters </span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20px"></td><td><code><span class="label">trueFirst</span>:Boolean</code> (default = <code>true</code>)<code></code> &mdash; when true, sort true boolean values before false
+         </td></tr></table></div><a name="methodDetail"></a><div class="detailSectionHeader">Method Detail</div><a name="compare()"></a><a name="compare(any,any,any)"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">compare</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td></tr></table><div class="detailBody"><code> public function compare(o1:*, o2:*, options:* = null):int</code><p></p><p></p><p>
+         Returns an integer value to compare two Boolean objects.
+         </p><p><span class="label"> Parameters </span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20px"></td><td><code><span class="label">o1</span>:*</code> &mdash; the first Number object to compare.
+         </td></tr><tr><td class="paramSpacer">&nbsp;</td></tr><tr><td width="20px"></td><td><code><span class="label">o2</span>:*</code> &mdash; the second Number object to compare.
+         </td></tr><tr><td class="paramSpacer">&nbsp;</td></tr><tr><td width="20px"></td><td><code><span class="label">options</span>:*</code> (default = <code>null</code>)<code></code></td></tr></table></p><p></p><span class="label">Returns</span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20"></td><td><code>int</code> &mdash; <p>
+         <li>-1 if o1 is "lower" than (less than, before, etc.) o2 ;</li>
+         <li> 1 if o1 is "higher" than (greater than, after, etc.) o2 ;</li>
+         <li> 0 if o1 and o2 are equal.</li>
+         </p>
+         </td></tr></table><br/><span class="label">Throws</span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20"></td><td><code>ArgumentError </code> &mdash; if the first argument is null and not a Boolean object.
+         </td></tr><tr><td class="paramSpacer">&nbsp;</td></tr><tr><td width="20"></td><td><code>ArgumentError </code> &mdash; when either argument is not Boolean
+         </td></tr></table></div><div class="detailSectionHeader">Constant Detail</div><a name="constantDetail"></a><a name="falseFirst"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">falseFirst</td><td class="detailHeaderType">Constant</td></tr></table><div class="detailBody"><code>public static const falseFirst:<a href="../../system/comparators/BooleanComparator.html">BooleanComparator</a></code><p></p><p></p><p>
+         This <code>BooleanComparator</code> singleton that sorts false values before true values.
+         Clients are encouraged to use the value returned from this constant instead of constructing a new instance to reduce allocation and garbage collection overhead when multiple BooleanComparators may be used in the same application.
+         <p><b>Example :</b></p>
+         <pre>
+         import system.comparators.BooleanComparator ;
+         import system.Comparator ;
+         
+         var c:Comparator = BooleanComparator.falseFirst ;
+         
+         trace( c.compare( true  , true  ) ) ; //  0
+         trace( c.compare( true  , false ) ) ; // -1
+         trace( c.compare( false , true  ) ) ; //  1
+         trace( c.compare( false , false ) ) ; //  0
+         </pre>
+         </p></div><a name="constantDetail"></a><a name="trueFirst"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">trueFirst</td><td class="detailHeaderType">Constant</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code>public static const trueFirst:<a href="../../system/comparators/BooleanComparator.html">BooleanComparator</a></code><p></p><p></p><p>
+         This <code>BooleanComparator</code> singleton that sorts true values before false values.
+         Clients are encouraged to use the value returned from this constant instead of constructing a new instance to reduce allocation and garbage collection overhead when multiple BooleanComparators may be used in the same application.
+         <pre>
+         import system.comparators.BooleanComparator ;
+         import system.Comparator ;
+         
+         var c:Comparator = BooleanComparator.trueFirst ;
+         
+         trace( c.compare( true  , true  ) ) ; //  0
+         trace( c.compare( true  , false ) ) ; //  1
+         trace( c.compare( false , true  ) ) ; // -1
+         trace( c.compare( false , false ) ) ; //  0
+         </pre> 
+         </p></div><br/><br/><hr><br/><p></p><center class="copyright"><footer></footer><br/>Vendredi Mai 13 2011, 11:30 AM +02:00  </center></div></body></html><!--<br/>Vendredi Mai 13 2011, 11:30 AM +02:00  -->

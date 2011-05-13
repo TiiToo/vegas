@@ -1,0 +1,163 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd"><!-- saved from url=(0014)about:internet --><html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><link rel="stylesheet" href="../style.css" type="text/css" media="screen"><link rel="stylesheet" href="../print.css" type="text/css" media="print"><link rel="stylesheet" href="../prettify.css" type="text/css"><link rel="stylesheet" href="../override.css" type="text/css"><meta name="keywords" content="Strings,system.Strings,ACK,BEL,BS,CAN,CR,DC1,DC2,DC3,DC4,DEL,DLE,EM,ENQ,EOT,ESC,ETB,ETX,Environment,FF,FS,GS,LF,NAK,NUL,RS,SI,SO,SOH,STX,SUB,SYN,TAB,US,VT,about,alphabetics,alphabeticsUpper,ampersand,apostrophe,asterisk,authority,backslash,build,circumflex,closingBrace,closingBracket,closingParenthesis,code,colon,comma,commercialAt,comparator,config,console,contains,controls,dollarSign,eden,equals,evaluators,exclamationPoint,fragment,fullname,graveAccent,greaterThen,greedy,host,host,indentor,info,initialize,lessThan,major,minor,minus,name,newLine,numberSign,openingBrace,openingBracket,openingParenthesis,os,path,percent,period,pipe,plus,port,prettyIndent,prettyPrinting,query,questionMark,quotationMarks,reduce,reduceRight,repeat,revision,scheme,semiColon,serializer,slash,source,space,spliceInto,strict,symbols,tilde,underline,userinfo,value,verbose,version,clone,clone,compare,compare,compareTo,contains,copy,copy,copy,deserialize,endsWith,equals,equals,equals,format,fromNumber,fromNumber,fromString,getClassByName,getClassInfo,getClassMethods,getClassName,getClassPackage,getClassPath,getDefinitionByName,getMembers,getMethodByName,getParameter,getQueryMap,getSuperClassName,getSuperClassPackage,getSuperClassPath,getTypeInfo,hasClassByName,hasFragment,hasParameter,hasQuery,invokeClass,isASCII,isASCII,isContained,isContained,isControl,isControl,isDigit,isDigit,isDomainAddress,isHexDigit,isHexDigit,isIPv4Address,isLetter,isLetter,isLetterOrDigit,isLetterOrDigit,isLower,isLower,isSymbol,isSymbol,isUNC,isUnicode,isUnicode,isUpper,isUpper,isValidHost,isValidPort,isValidScheme,isWhiteSpace,isWhiteSpace,load,merge,removeAllParameters,removeParameter,serialize,setParameterValue,splitToChars,startsWith,toArray,toHexadecimal,toLower,toNumber,toOctal,toSource,toSource,toSource,toString,toString,toString,toString,toString,toUpper,valueOf,valueOf,valueOf,valueOf"><title>system.Strings</title></head><body><script language="javascript" type="text/javascript" src="../prettify.js"></script><script language="javascript" type="text/javascript" src="../asdoc.js"></script><script language="javascript" type="text/javascript" src="../help.js"></script><script language="javascript" type="text/javascript" src="../cookies.js"></script><script language="javascript" type="text/javascript"><!--
+                asdocTitle = 'Strings - VEGAS AS3 Reference';
+                var baseRef = '../';
+                window.onload = configPage;
+            --></script>
+<script type="text/javascript">
+            scrollToNameAnchor();
+        </script><table class="titleTable" cellpadding="0" cellspacing="0" id="titleTable" style="display:none"><tr><td class="titleTableTitle" align="left">VEGAS AS3 Reference</td><td class="titleTableTopNav" align="right"><a href="../package-summary.html" onclick="loadClassListFrame('../all-classes.html')">All Packages</a>&nbsp;|&nbsp;<a href="../class-summary.html" onclick="loadClassListFrame('../all-classes.html')">All Classes</a>&nbsp;|&nbsp;<a href="../all-index-A.html" onclick="loadClassListFrame('../index-list.html')">Index</a>&nbsp;|&nbsp;<a id="framesLink1" href="../index.html?system/Strings.html&amp;system/class-list.html">Frames</a><a id="noFramesLink1" style="display:none" href="" onclick="parent.location=document.location"> No Frames </a></td><td class="titleTableLogo" align="right" rowspan="3"><img src="../images/logo.jpg" class="logoImage" alt=" Adobe Logo " title=" Adobe Logo "></td></tr><tr class="titleTableRow2"><td class="titleTableSubTitle" id="subTitle" align="left">Strings</td><td class="titleTableSubNav" id="subNav" align="right"><a href="#propertySummary">Properties</a>&nbsp;| <a href="#methodSummary">Methods</a></td></tr><tr class="titleTableRow3"><td colspan="3">&nbsp;</td></tr></table><script language="javascript" type="text/javascript" xml:space="preserve">
+                <!--
+                
+                    if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Strings"); titleBar_setSubNav(false,true,false,false,false,false,false,false,true,false,false    ,false,false,false,false,false);}    
+                -->
+            </script><div xmlns:fn="http://www.w3.org/2005/xpath-functions" class="MainContent"><table class="classHeaderTable" cellpadding="0" cellspacing="0"><tr><td class="classHeaderTableLabel">Package</td><td><a href="package-detail.html" onclick="javascript:loadClassListFrame('class-list.html')">system</a></td></tr><tr><td class="classHeaderTableLabel">Class</td><td class="classSignature">public  class  Strings</td></tr><tr><td class="classHeaderTableLabel">Inheritance</td><td class="inheritanceList">Strings  <img src="../images/inherit-arrow.gif" title="Inheritance" alt="Inheritance" class="inheritArrow"> Object</td></tr></table><p></p><p></p><p></p>
+     A static class for String utilities.
+     <p></p><br/><hr></div><a name="propertySummary"></a><div class="summarySection"><div class="summaryTableTitle">Public Properties</div><table cellspacing="0" cellpadding="3" class="summaryTable " id="summaryTableProperty"><tr><th>&nbsp;</th><th colspan="2">Property</th><th class="summaryTableOwnerCol">Defined By</th></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a href="#evaluators" class="signatureLink">evaluators</a> : Object<div class="summaryTableDescription">[static] 
+         Contain a list of evaluators to be used in Strings.format
+         
+         ex:
+         Strings.evaluators = { math: new MathEvaluator() };
+         Strings.format( "my result is ${2+3}math$" ); // "my result is 5"
+         
+         note:
+         property names in the evaluators object can only contains
+         lower case alphabetical chars and digit chars
+         </div></td><td class="summaryTableOwnerCol">Strings</td></tr></table></div><a name="methodSummary"></a><div class="summarySection"><div class="summaryTableTitle">Public Methods </div><table cellspacing="0" cellpadding="3" class="summaryTable " id="summaryTableMethod"><tr><th>&nbsp;</th><th colspan="2">Method</th><th class="summaryTableOwnerCol">Defined By</th></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="#compare()" class="signatureLink">compare</a>(o1:String, o2:String, strict:Boolean = false):int</div><div class="summaryTableDescription">[static] 
+         Compares the two specified String objects.</div></td><td class="summaryTableOwnerCol">Strings</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="#endsWith()" class="signatureLink">endsWith</a>(str:String, value:String):Boolean</div><div class="summaryTableDescription">[static] 
+         Determines whether the end of this instance matches the specified String.</div></td><td class="summaryTableOwnerCol">Strings</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="#format()" class="signatureLink">format</a>(format:String, ... args):String</div><div class="summaryTableDescription">[static]  
+         Format a string using indexed, named and/or evaluated parameters.</div></td><td class="summaryTableOwnerCol">Strings</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="#splitToChars()" class="signatureLink">splitToChars</a>(str:String, modifier:String = toString):Array</div><div class="summaryTableDescription">[static] 
+        Split every individual char in a string to an array of Char instances.</div></td><td class="summaryTableOwnerCol">Strings</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="#startsWith()" class="signatureLink">startsWith</a>(str:String, value:String):Boolean</div><div class="summaryTableDescription">[static] 
+         Determines whether a specified string is a prefix of the current instance.</div></td><td class="summaryTableOwnerCol">Strings</td></tr></table></div><script language="javascript" type="text/javascript"><!--
+										showHideInherited();
+										--></script><div class="MainContent"><div class="detailSectionHeader">Property Detail</div><a name="propertyDetail"></a><a name="evaluators"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">evaluators</td><td class="detailHeaderType">property</td></tr></table><div class="detailBody"><code>public static var evaluators:Object</code><p></p><p></p><p>
+         Contain a list of evaluators to be used in Strings.format
+         
+         ex:
+         Strings.evaluators = { math: new MathEvaluator() };
+         Strings.format( "my result is ${2+3}math$" ); // "my result is 5"
+         
+         note:
+         property names in the evaluators object can only contains
+         lower case alphabetical chars and digit chars
+         </p></div><a name="methodDetail"></a><div class="detailSectionHeader">Method Detail</div><a name="compare()"></a><a name="compare(String,String,Boolean)"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">compare</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td></tr></table><div class="detailBody"><code> public static function compare(o1:String, o2:String, strict:Boolean = false):int</code><p></p><p></p><p>
+         Compares the two specified String objects. Allows to take into account the string case for comparison. 
+         </p><p><span class="label"> Parameters </span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20px"></td><td><code><span class="label">o1</span>:String</code> &mdash; first string to compare with the second string.
+         </td></tr><tr><td class="paramSpacer">&nbsp;</td></tr><tr><td width="20px"></td><td><code><span class="label">o2</span>:String</code> &mdash; second string to compare with the first string.
+         </td></tr><tr><td class="paramSpacer">&nbsp;</td></tr><tr><td width="20px"></td><td><code><span class="label">strict</span>:Boolean</code> (default = <code>false</code>)<code></code> &mdash; (optionnal) useCase boolean, default to false.
+         </td></tr></table></p><p></p><span class="label">Returns</span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20"></td><td><code>int</code></td></tr></table></div><a name="endsWith()"></a><a name="endsWith(String,String)"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">endsWith</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code> public static function endsWith(str:String, value:String):Boolean</code><p></p><p></p><p>
+         Determines whether the end of this instance matches the specified String.
+         <p><b>Example :</b></p>
+         <pre>
+         import system.Strings ;
+         
+         var result:;
+         
+         result = Strings.endsWith( "hello world", "world" );
+         trace("> " + result) ; // true
+         
+         result = Strings.endsWith( "hello world", "hello" );
+         trace("> " + result) ; // false
+         </pre>
+         </p><p><span class="label"> Parameters </span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20px"></td><td><code><span class="label">str</span>:String</code></td></tr><tr><td class="paramSpacer">&nbsp;</td></tr><tr><td width="20px"></td><td><code><span class="label">value</span>:String</code></td></tr></table></p><p></p><span class="label">Returns</span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20"></td><td><code>Boolean</code></td></tr></table></div><a name="format()"></a><a name="format(String,restParam)"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">format</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code> public static function format(format:String, ... args):String</code><p></p><p></p><p> 
+         Format a string using indexed, named and/or evaluated parameters.
+         <p>Method call :</p>
+         <li>StringUtil.format(pattern:String, ...arguments:Array):String</li>
+         <li>StringUtil.format(pattern:String, [arg0:arg1:arg2: ...] ):String</li>
+         <li>StringUtil.format(pattern:String, [arg0:arg1:arg2: ...], ...args:Array ):String</li>
+         <li>StringUtil.format(pattern:String, {name0:value0,name1:value1,name2:value2, ...} ):String</li>
+         <li>StringUtil.format(pattern:String, {name0:value0,name1:value1,name2:value2, ...} , ...args:Array ) :String</li>
+         <p>Replaces the pattern item in a specified String with the text equivalent of the value of a specified Object instance.</p>
+         <p>Formats item : {token[,alignment][:paddingChar]}</p>
+         <p>If you want to escape the "{" and "}" chars use "{{" and "}}"</p>
+         <li>"some {{formatitem}} to be escaped" -> "some {formatitem} to be escaped"</li>
+         <li>"some {{format {0} item}} to be escaped", "my" -> "some {format my titem} to be escaped"</li>
+         <p><b>Example :</b></p>
+         <pre>
+         import system.Strings ;
+         
+         var result:String ;
+         
+         // indexed from the arguments
+         
+         result = Strings.format( "hello {1} {0} world", "big", "the" ); 
+         trace( result ) ; //"hello the big world"
+         
+         result = Strings.format("Brad's dog has {0,6:#} fleas.", 41) ;
+         trace( result ) ;
+         
+         result = Strings.format("Brad's dog has {0,-6} fleas.", 12) ;
+         trace( result) ;
+         
+         result = Strings.format("{3} {2} {1} {0}", "a", "b", "c", "d") ;
+         trace( result ) ;
+         
+         // named from an object
+         
+         result = Strings.format( "hello I'm {name}", {name:"HAL"} );
+         trace( result ) ; //"hello I'm HAL"
+         
+         // indexed from an array
+         
+         var names:Array = ["A","B","C","D"];
+         var scores:Array = [16,32,128,1024];
+         
+         for( var i:int=0; i&lt;names.length; i++ )
+         {
+             trace( Strings.format( "{0} scored {1,5}", [names[i], scores[i]] ) );
+         }
+         // "A scored    16"
+         // "B scored    32"
+         // "C scored   128"
+         // "D scored  1024"
+         
+         // resolve toString
+         var x:Object = {};
+         x.toString = function() { return "john doe"; } ;
+         trace( Strings.format( "Who is {0} ?", x ) ) ; //"Who is john doe ?"
+         
+         // you can off course reuse the index
+         var fruits:Array = ["apple", "banana", "pineapple"] ;
+         trace( Strings.format( "I like all fruits {0},{1},{2}, etc. but still I prefer above all {0}", fruits ) ); // "I like all fruits apple,banana,pineapple, etc. but still I prefer above all apple"
+         
+         // indexed from an array + the arguments
+         var fruits:Array = ["apple", "banana", "pineapple"];
+         trace( Strings.format( "fruits: {0}, {1}, {2}, {3}, {4}, {5}", fruits, "grape", "tomato" ) ); //"fruits: apple, banana, pineapple, grape, tomato, undefined"
+         
+         // passing reference and padding
+         var what = "answer" ;
+         result = Strings.format( "your {0} is within {answer,20:.}", {answer:"my answer"}, what ) ; 
+         trace( result ) // "your answer is within ...........my answer"
+         
+         // using evaluated parameters
+         Strings.evaluators = { math: new MathEvaluator() };
+         Strings.format( "my result is ${2+3}math$" ); // "my result is 5"
+         
+         //by default evaluated parameters use EdenEvaluator with serialized result
+         Strings.format( "here some object '${ {a:1,b:2} }$'" ); //"here some object '{a:1,b:2}'"
+         
+         //use EdenEvaluator with stringified result
+         Strings.evaluators = { math: new EdenEvaluator(false) };
+         Strings.format( "here some object '${ {a:1,b:2} }eden$'" ); //"here some object '[object Object]'"
+         Strings.format( "the host is ${system.Environment.host}eden$" ); //"the host is Flash 9.0.115.0"
+         
+         //use chained evaluators
+         Strings.evaluators = { eden: new EdenEvaluator(false), date: new DateEvaluator() ];
+         Strings.format( "my date is ${new Date(2007,4,22,13,13,13)}eden,date$" ); //"my date is 22.05.2007 13:13:13"
+         
+         </pre>
+         </p><p><span class="label"> Parameters </span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20px"></td><td><code><span class="label">format</span>:String</code></td></tr><tr><td class="paramSpacer">&nbsp;</td></tr><tr><td width="20px"></td><td><code>... <span class="label">args</span></code></td></tr></table></p><p></p><span class="label">Returns</span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20"></td><td><code>String</code></td></tr></table></div><a name="splitToChars()"></a><a name="splitToChars(String,String)"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">splitToChars</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code> public static function splitToChars(str:String, modifier:String = toString):Array</code><p></p><p></p><p>
+        Split every individual char in a string to an array of Char instances.
+        </p><p><span class="label"> Parameters </span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20px"></td><td><code><span class="label">str</span>:String</code> &mdash; The string to split
+        </td></tr><tr><td class="paramSpacer">&nbsp;</td></tr><tr><td width="20px"></td><td><code><span class="label">modifier</span>:String</code> (default = <code>toString</code>)<code></code> &mdash; The optional string modifier name (a function to apply)
+        </td></tr></table></p><p></p><span class="label">Returns</span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20"></td><td><code>Array</code></td></tr></table></div><a name="startsWith()"></a><a name="startsWith(String,String)"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">startsWith</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code> public static function startsWith(str:String, value:String):Boolean</code><p></p><p></p><p>
+         Determines whether a specified string is a prefix of the current instance. 
+         <p><b>Example : </b></p>
+         <pre>
+         import system.Strings ;
+         
+         trace( Strings.startsWith("hello world", "h") ) ; // true
+         trace( Strings.startsWith("hello world", "hello") ) ; // true
+         trace( Strings.startsWith("hello world", "a") ) ; // false
+         </pre>
+         </p><p><span class="label"> Parameters </span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20px"></td><td><code><span class="label">str</span>:String</code></td></tr><tr><td class="paramSpacer">&nbsp;</td></tr><tr><td width="20px"></td><td><code><span class="label">value</span>:String</code></td></tr></table></p><p></p><span class="label">Returns</span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20"></td><td><code>Boolean</code> &mdash; <code>true</code> if the specified string is a prefix of the current instance.
+         </td></tr></table></div><br/><br/><hr><br/><p></p><center class="copyright"><footer></footer><br/>Vendredi Mai 13 2011, 11:30 AM +02:00  </center></div></body></html><!--<br/>Vendredi Mai 13 2011, 11:30 AM +02:00  -->

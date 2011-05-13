@@ -1,0 +1,364 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd"><!-- saved from url=(0014)about:internet --><html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><link rel="stylesheet" href="../../../style.css" type="text/css" media="screen"><link rel="stylesheet" href="../../../print.css" type="text/css" media="print"><link rel="stylesheet" href="../../../prettify.css" type="text/css"><link rel="stylesheet" href="../../../override.css" type="text/css"><meta name="keywords" content="LinkedList,system.data.lists.LinkedList,comparator,element,modCount,modCount,next,options,previous,add,add,add,addAll,addAll,addAll,addAllAt,addAt,addAt,addAt,addFirst,addLast,clear,clear,clone,clone,clone,contains,containsAll,dequeue,element,enqueue,ensureCapacity,equals,get,getFirst,getHeader,getLast,indexOf,isEmpty,iterator,lastIndexOf,lastIndexOf,listIterator,listIterator,peek,poll,remove,remove,removeAll,removeAt,removeAt,removeEntry,removeFirst,removeLast,removeRange,removeRange,retainAll,set,set,size,sort,sortOn,subList,subList,toArray,toSource,toString"><title>system.data.lists.LinkedList</title></head><body><script language="javascript" type="text/javascript" src="../../../prettify.js"></script><script language="javascript" type="text/javascript" src="../../../asdoc.js"></script><script language="javascript" type="text/javascript" src="../../../help.js"></script><script language="javascript" type="text/javascript" src="../../../cookies.js"></script><script language="javascript" type="text/javascript"><!--
+                asdocTitle = 'LinkedList - VEGAS AS3 Reference';
+                var baseRef = '../../../';
+                window.onload = configPage;
+            --></script>
+<script type="text/javascript">
+            scrollToNameAnchor();
+        </script><table class="titleTable" cellpadding="0" cellspacing="0" id="titleTable" style="display:none"><tr><td class="titleTableTitle" align="left">VEGAS AS3 Reference</td><td class="titleTableTopNav" align="right"><a href="../../../package-summary.html" onclick="loadClassListFrame('../../../all-classes.html')">All Packages</a>&nbsp;|&nbsp;<a href="../../../class-summary.html" onclick="loadClassListFrame('../../../all-classes.html')">All Classes</a>&nbsp;|&nbsp;<a href="../../../all-index-A.html" onclick="loadClassListFrame('../../../index-list.html')">Index</a>&nbsp;|&nbsp;<a id="framesLink1" href="../../../index.html?system/data/lists/LinkedList.html&amp;system/data/lists/class-list.html">Frames</a><a id="noFramesLink1" style="display:none" href="" onclick="parent.location=document.location"> No Frames </a></td><td class="titleTableLogo" align="right" rowspan="3"><img src="../../../images/logo.jpg" class="logoImage" alt=" Adobe Logo " title=" Adobe Logo "></td></tr><tr class="titleTableRow2"><td class="titleTableSubTitle" id="subTitle" align="left">LinkedList</td><td class="titleTableSubNav" id="subNav" align="right"><a href="#propertySummary">Properties</a>&nbsp;| <a href="#methodSummary">Methods</a></td></tr><tr class="titleTableRow3"><td colspan="3">&nbsp;</td></tr></table><script language="javascript" type="text/javascript" xml:space="preserve">
+                <!--
+                
+                    if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("LinkedList"); titleBar_setSubNav(false,true,false,false,false,false,false,false,true,false,false    ,false,false,false,false,false);}    
+                -->
+            </script><div xmlns:fn="http://www.w3.org/2005/xpath-functions" class="MainContent"><table class="classHeaderTable" cellpadding="0" cellspacing="0"><tr><td class="classHeaderTableLabel">Package</td><td><a href="package-detail.html" onclick="javascript:loadClassListFrame('class-list.html')">system.data.lists</a></td></tr><tr><td class="classHeaderTableLabel">Class</td><td class="classSignature">public  class  LinkedList</td></tr><tr><td class="classHeaderTableLabel">Inheritance</td><td class="inheritanceList">LinkedList  <img src="../../../images/inherit-arrow.gif" title="Inheritance" alt="Inheritance" class="inheritArrow"> Object</td></tr><tr><td class="classHeaderTableLabel">Implements</td><td> <a href="../../../system/Equatable.html">Equatable</a>,  <a href="../../../system/data/List.html">List</a>,  <a href="../../../system/data/Queue.html">Queue</a></td></tr></table><p></p><p></p><p></p>
+     Linked list implementation of the List and Queue interface. 
+     <p>Implements all optional list operations, and permits all elements (including null).</p>
+               <p>In addition to implementing the List interface, the <code>LinkedList</code> class provides uniformly named methods to get, remove and insert an element at the beginning and end of the list.</p>
+               <p>These operations allow linked lists to be used as a stack, queue, etc.</p>
+            <p></p><br/><hr></div><a name="propertySummary"></a><div class="summarySection"><div class="summaryTableTitle">Public Properties</div><table cellspacing="0" cellpadding="3" class="summaryTable " id="summaryTableProperty"><tr><th>&nbsp;</th><th colspan="2">Property</th><th class="summaryTableOwnerCol">Defined By</th></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a href="#modCount" class="signatureLink">modCount</a> : int<div class="summaryTableDescription">
+         This property is a protector used in the ListIterator object of this List.</div></td><td class="summaryTableOwnerCol">LinkedList</td></tr></table></div><a name="methodSummary"></a><div class="summarySection"><div class="summaryTableTitle">Public Methods </div><table cellspacing="0" cellpadding="3" class="summaryTable " id="summaryTableMethod"><tr><th>&nbsp;</th><th colspan="2">Method</th><th class="summaryTableOwnerCol">Defined By</th></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="#LinkedList()" class="signatureLink">LinkedList</a>(init:* = null)</div><div class="summaryTableDescription">
+         Creates a new LinkedList instance.</div></td><td class="summaryTableOwnerCol">LinkedList</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="#add()" class="signatureLink">add</a>(o:*):Boolean</div><div class="summaryTableDescription">
+         Appends the specified element to the end of this list.</div></td><td class="summaryTableOwnerCol">LinkedList</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="#addAll()" class="signatureLink">addAll</a>(c:<a href="../../../system/data/Collection.html">Collection</a>):Boolean</div><div class="summaryTableDescription">
+         Appends all of the elements in the specified collection to the end of this list, in the order that they are returned by the specified collection's iterator.</div></td><td class="summaryTableOwnerCol">LinkedList</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="#addAllAt()" class="signatureLink">addAllAt</a>(index:uint, c:<a href="../../../system/data/Collection.html">Collection</a>):Boolean</div><div class="summaryTableDescription">
+         Inserts all of the elements in the specified collection into this list at the specified position (optional operation).</div></td><td class="summaryTableOwnerCol">LinkedList</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="#addAt()" class="signatureLink">addAt</a>(index:uint, o:*):void</div><div class="summaryTableDescription">
+         Inserts the specified element at the specified position in this list (optional operation).</div></td><td class="summaryTableOwnerCol">LinkedList</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="#addFirst()" class="signatureLink">addFirst</a>(o:*):void</div><div class="summaryTableDescription">
+         Inserts the given element at the beginning of this list.</div></td><td class="summaryTableOwnerCol">LinkedList</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="#addLast()" class="signatureLink">addLast</a>(o:*):void</div><div class="summaryTableDescription">
+         Appends the given element to the end of this list.</div></td><td class="summaryTableOwnerCol">LinkedList</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="#clear()" class="signatureLink">clear</a>():void</div><div class="summaryTableDescription">
+         Removes all of the elements from this queue (optional operation).</div></td><td class="summaryTableOwnerCol">LinkedList</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="#clone()" class="signatureLink">clone</a>():*</div><div class="summaryTableDescription">
+         Returns the shallow copy of this LinkedList.</div></td><td class="summaryTableOwnerCol">LinkedList</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="#contains()" class="signatureLink">contains</a>(o:*):Boolean</div><div class="summaryTableDescription">
+         Returns true if this list contains the specified element.</div></td><td class="summaryTableOwnerCol">LinkedList</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="#containsAll()" class="signatureLink">containsAll</a>(c:<a href="../../../system/data/Collection.html">Collection</a>):Boolean</div><div class="summaryTableDescription">
+         Returns true if this collection contains the specified element.</div></td><td class="summaryTableOwnerCol">LinkedList</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="#dequeue()" class="signatureLink">dequeue</a>():Boolean</div><div class="summaryTableDescription">
+         Retrieves and removes the head of this queue.</div></td><td class="summaryTableOwnerCol">LinkedList</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="#element()" class="signatureLink">element</a>():*</div><div class="summaryTableDescription">
+         Retrieves, but does not remove, the head (first element) of this list.</div></td><td class="summaryTableOwnerCol">LinkedList</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="#enqueue()" class="signatureLink">enqueue</a>(o:*):Boolean</div><div class="summaryTableDescription">
+         Adds the specified element as the tail (last element) of this list.</div></td><td class="summaryTableOwnerCol">LinkedList</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="#equals()" class="signatureLink">equals</a>(o:*):Boolean</div><div class="summaryTableDescription">
+         Indicates whether some other object is "equal to" this one.</div></td><td class="summaryTableOwnerCol">LinkedList</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="#get()" class="signatureLink">get</a>(key:*):*</div><div class="summaryTableDescription">
+         Returns the element at the specified position in this list.</div></td><td class="summaryTableOwnerCol">LinkedList</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="#getFirst()" class="signatureLink">getFirst</a>():*</div><div class="summaryTableDescription">
+         Returns the first element in this list.</div></td><td class="summaryTableOwnerCol">LinkedList</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="#getHeader()" class="signatureLink">getHeader</a>():<a href="../../../system/data/lists/LinkedListEntry.html">LinkedListEntry</a></div><div class="summaryTableDescription">
+         Returns the header entry of this list.</div></td><td class="summaryTableOwnerCol">LinkedList</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="#getLast()" class="signatureLink">getLast</a>():*</div><div class="summaryTableDescription">
+         Returns the last element in the list.</div></td><td class="summaryTableOwnerCol">LinkedList</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="#indexOf()" class="signatureLink">indexOf</a>(o:*, fromIndex:uint = 0):int</div><div class="summaryTableDescription">
+         Returns the position of the passed object in the collection.</div></td><td class="summaryTableOwnerCol">LinkedList</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="#isEmpty()" class="signatureLink">isEmpty</a>():Boolean</div><div class="summaryTableDescription">
+         Returns true if this queue contains no elements.</div></td><td class="summaryTableOwnerCol">LinkedList</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="#iterator()" class="signatureLink">iterator</a>():<a href="../../../system/data/Iterator.html">Iterator</a></div><div class="summaryTableDescription">
+        Returns the iterator of this object.</div></td><td class="summaryTableOwnerCol">LinkedList</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="#lastIndexOf()" class="signatureLink">lastIndexOf</a>(o:*, fromIndex:int = 0x7FFFFFFF):int</div><div class="summaryTableDescription">
+         Returns the index in this list of the last occurrence of the specified element, or -1 if the list does not contain this element.</div></td><td class="summaryTableOwnerCol">LinkedList</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="#listIterator()" class="signatureLink">listIterator</a>(position:uint = 0):<a href="../../../system/data/ListIterator.html">ListIterator</a></div><div class="summaryTableDescription">
+         Returns a list iterator of the elements in this list (in proper sequence).</div></td><td class="summaryTableOwnerCol">LinkedList</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="#peek()" class="signatureLink">peek</a>():*</div><div class="summaryTableDescription">
+         Retrieves, but does not remove, the head (first element) of this list.</div></td><td class="summaryTableOwnerCol">LinkedList</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="#poll()" class="signatureLink">poll</a>():*</div><div class="summaryTableDescription">
+         Retrieves and removes the head (first element) of this list.</div></td><td class="summaryTableOwnerCol">LinkedList</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="#remove()" class="signatureLink">remove</a>(o:*):*</div><div class="summaryTableDescription">
+         Removes the first occurrence of the specified element in this list.</div></td><td class="summaryTableOwnerCol">LinkedList</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="#removeAll()" class="signatureLink">removeAll</a>(c:<a href="../../../system/data/Collection.html">Collection</a>):Boolean</div><div class="summaryTableDescription">
+         Removes all elements defined in the specified Collection in the list.</div></td><td class="summaryTableOwnerCol">LinkedList</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="#removeAt()" class="signatureLink">removeAt</a>(index:uint, len:int = 1):*</div><div class="summaryTableDescription">
+         Removes an element at the specified position in this list.</div></td><td class="summaryTableOwnerCol">LinkedList</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="#removeEntry()" class="signatureLink">removeEntry</a>(e:<a href="../../../system/data/lists/LinkedListEntry.html">LinkedListEntry</a>):*</div><div class="summaryTableDescription">
+         Removes an Entry in the list.</div></td><td class="summaryTableOwnerCol">LinkedList</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="#removeFirst()" class="signatureLink">removeFirst</a>():*</div><div class="summaryTableDescription">
+         Removes and returns the first element from this list.</div></td><td class="summaryTableOwnerCol">LinkedList</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="#removeLast()" class="signatureLink">removeLast</a>():*</div><div class="summaryTableDescription">
+         Removes and returns the last element from this list.</div></td><td class="summaryTableOwnerCol">LinkedList</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="#removeRange()" class="signatureLink">removeRange</a>(fromIndex:uint, toIndex:uint):*</div><div class="summaryTableDescription">
+         Removes from this list all the elements that are contained between the specific from and the specific to position in this list (optional operation).</div></td><td class="summaryTableOwnerCol">LinkedList</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="#retainAll()" class="signatureLink">retainAll</a>(c:<a href="../../../system/data/Collection.html">Collection</a>):Boolean</div><div class="summaryTableDescription">
+         Retains only the elements in this list that are contained in the specified collection (optional operation).</div></td><td class="summaryTableOwnerCol">LinkedList</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="#set()" class="signatureLink">set</a>(index:uint, o:*):*</div><div class="summaryTableDescription">
+         Replaces the element at the specified position in this list with the specified element.</div></td><td class="summaryTableOwnerCol">LinkedList</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="#size()" class="signatureLink">size</a>():uint</div><div class="summaryTableDescription">
+         Returns the number of elements in this list.</div></td><td class="summaryTableOwnerCol">LinkedList</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="#subList()" class="signatureLink">subList</a>(fromIndex:uint, toIndex:uint):<a href="../../../system/data/List.html">List</a></div><div class="summaryTableDescription">
+         Returns a view of the portion of this list between the specified fromIndex, inclusive, and toIndex, exclusive.</div></td><td class="summaryTableOwnerCol">LinkedList</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="#toArray()" class="signatureLink">toArray</a>():Array</div><div class="summaryTableDescription">
+         Returns an array containing all of the elements in this list in the correct order.</div></td><td class="summaryTableOwnerCol">LinkedList</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="#toSource()" class="signatureLink">toSource</a>(indent:int = 0):String</div><div class="summaryTableDescription">
+         Returns the source code string representation of the object.</div></td><td class="summaryTableOwnerCol">LinkedList</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="#toString()" class="signatureLink">toString</a>():String</div><div class="summaryTableDescription">
+         Returns the string representation of this instance.</div></td><td class="summaryTableOwnerCol">LinkedList</td></tr></table></div><script language="javascript" type="text/javascript"><!--
+										showHideInherited();
+										--></script><div class="MainContent"><div class="detailSectionHeader">Property Detail</div><a name="propertyDetail"></a><a name="modCount"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">modCount</td><td class="detailHeaderType">property</td></tr></table><div class="detailBody"><code>modCount:int</code><p></p><p></p><p>
+         This property is a protector used in the ListIterator object of this List.
+         </p><br/><span class="label"> Implementation </span><br/><code>&nbsp;&nbsp;&nbsp;&nbsp;public function get modCount():int</code><br/><code>&nbsp;&nbsp;&nbsp;&nbsp;public function set modCount(value:int):void</code><br/></div><a name="constructorDetail"></a><div class="detailSectionHeader">Constructor Detail</div><a name="LinkedList()"></a><a name="LinkedList(any)"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">LinkedList</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">Constructor</td></tr></table><div class="detailBody"><code>public function LinkedList(init:* = null)</code><p></p><p>
+         Creates a new LinkedList instance.
+         <p><b>Usage :</b></p>
+         <pre>
+         var list:LinkedList = new LinkedList() ;
+         </pre>
+         </p><span class="label"> Parameters </span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20px"></td><td><code><span class="label">init</span>:*</code> (default = <code>null</code>)<code></code> &mdash; An optional Array or Collection or Iterable object to fill the collection.
+         </td></tr></table></div><a name="methodDetail"></a><div class="detailSectionHeader">Method Detail</div><a name="add()"></a><a name="add(any)"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">add</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td></tr></table><div class="detailBody"><code> public function add(o:*):Boolean</code><p></p><p></p><p>
+         Appends the specified element to the end of this list.
+         </p><p><span class="label"> Parameters </span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20px"></td><td><code><span class="label">o</span>:*</code> &mdash; element to be appended to this list.
+         </td></tr></table></p><p></p><span class="label">Returns</span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20"></td><td><code>Boolean</code> &mdash; <code>true</code> (as per the general contract of <code>Collection.add</code>).
+         </td></tr></table></div><a name="addAll()"></a><a name="addAll(system.data.Collection)"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">addAll</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code> public function addAll(c:<a href="../../../system/data/Collection.html">Collection</a>):Boolean</code><p></p><p></p><p>
+         Appends all of the elements in the specified collection to the end of this list, in the order that they are returned by the specified collection's iterator.
+         The behavior of this operation is undefined if the specified collection is modified while the operation is in progress.  
+         (This implies that the behavior of this call is undefined if the specified Collection is this list, and this list is nonempty.)
+         </p><p><span class="label"> Parameters </span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20px"></td><td><code><span class="label">c</span>:<a href="../../../system/data/Collection.html">Collection</a></code> &mdash; the elements to be inserted into this list.
+         </td></tr></table></p><p></p><span class="label">Returns</span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20"></td><td><code>Boolean</code> &mdash; <code>true</code> if this list changed as a result of the call.
+         </td></tr></table><br/><span class="label">Throws</span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20"></td><td><code>NullPointerException </code> &mdash; if the specified collection is null.
+         </td></tr></table></div><a name="addAllAt()"></a><a name="addAllAt(uint,system.data.Collection)"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">addAllAt</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code> public function addAllAt(index:uint, c:<a href="../../../system/data/Collection.html">Collection</a>):Boolean</code><p></p><p></p><p>
+         Inserts all of the elements in the specified collection into this list at the specified position (optional operation).
+         </p><p><span class="label"> Parameters </span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20px"></td><td><code><span class="label">index</span>:uint</code> &mdash; the index to insert the new elements from the specified Collection.
+         </td></tr><tr><td class="paramSpacer">&nbsp;</td></tr><tr><td width="20px"></td><td><code><span class="label">c</span>:<a href="../../../system/data/Collection.html">Collection</a></code> &mdash; the collection of elements to insert in the List.
+         </td></tr></table></p><p></p><span class="label">Returns</span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20"></td><td><code>Boolean</code></td></tr></table></div><a name="addAt()"></a><a name="addAt(uint,any)"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">addAt</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code> public function addAt(index:uint, o:*):void</code><p></p><p></p><p>
+         Inserts the specified element at the specified position in this list (optional operation).
+         </p><p><span class="label"> Parameters </span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20px"></td><td><code><span class="label">index</span>:uint</code> &mdash; index at which the specified element is to be inserted.
+         </td></tr><tr><td class="paramSpacer">&nbsp;</td></tr><tr><td width="20px"></td><td><code><span class="label">o</span>:*</code> &mdash; element to be inserted.
+         </td></tr></table></p></div><a name="addFirst()"></a><a name="addFirst(any)"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">addFirst</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code> public function addFirst(o:*):void</code><p></p><p></p><p>
+         Inserts the given element at the beginning of this list.
+         </p><p><span class="label"> Parameters </span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20px"></td><td><code><span class="label">o</span>:*</code> &mdash; the element to be inserted at the beginning of this list.
+         </td></tr></table></p></div><a name="addLast()"></a><a name="addLast(any)"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">addLast</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code> public function addLast(o:*):void</code><p></p><p></p><p>
+         Appends the given element to the end of this list.  
+         </p><p><span class="label"> Parameters </span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20px"></td><td><code><span class="label">o</span>:*</code> &mdash; the element to be inserted at the end of this list.
+         </td></tr></table></p></div><a name="clear()"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">clear</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code> public function clear():void</code><p></p><p></p><p>
+         Removes all of the elements from this queue (optional operation).
+         </p></div><a name="clone()"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">clone</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code> public function clone():*</code><p></p><p></p><p>
+         Returns the shallow copy of this LinkedList.
+         </p><p></p><span class="label">Returns</span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20"></td><td><code>*</code> &mdash; the shallow copy of this LinkedList.
+         </td></tr></table></div><a name="contains()"></a><a name="contains(any)"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">contains</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code> public function contains(o:*):Boolean</code><p></p><p></p><p>
+         Returns <code>true</code> if this list contains the specified element.
+         <p><b>Example :</b></p>
+         <pre>
+         import system.data.lists.LinkedList ;
+         
+         var list:LinkedList = new LinkedList() ;
+         list.add("item1") ;
+         trace(list.contains( "item1" ) ; // output : true
+         </pre>
+         </p><p><span class="label"> Parameters </span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20px"></td><td><code><span class="label">o</span>:*</code> &mdash; element whose presence in this list is to be tested.
+         </td></tr></table></p><p></p><span class="label">Returns</span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20"></td><td><code>Boolean</code> &mdash; <code>true</code> if this list contains the specified element.
+         </td></tr></table></div><a name="containsAll()"></a><a name="containsAll(system.data.Collection)"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">containsAll</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code> public function containsAll(c:<a href="../../../system/data/Collection.html">Collection</a>):Boolean</code><p></p><p></p><p>
+         Returns <code>true</code> if this collection contains the specified element.
+         </p><p><span class="label"> Parameters </span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20px"></td><td><code><span class="label">c</span>:<a href="../../../system/data/Collection.html">Collection</a></code></td></tr></table></p><p></p><span class="label">Returns</span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20"></td><td><code>Boolean</code> &mdash; <code>true</code> if this collection contains the specified element.
+         </td></tr></table></div><a name="dequeue()"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">dequeue</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code> public function dequeue():Boolean</code><p></p><p></p><p>
+         Retrieves and removes the head of this queue.
+         </p><p></p><span class="label">Returns</span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20"></td><td><code>Boolean</code> &mdash; <code>true</code> if the head of the queue is remove.
+         </td></tr></table></div><a name="element()"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">element</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code> public function element():*</code><p></p><p></p><p>
+         Retrieves, but does not remove, the head (first element) of this list.
+         </p><p></p><span class="label">Returns</span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20"></td><td><code>*</code> &mdash; the head of this queue.
+         </td></tr></table><br/><span class="label">Throws</span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20"></td><td><code>NoSuchElementException </code> &mdash; if this queue is empty.
+         </td></tr></table></div><a name="enqueue()"></a><a name="enqueue(any)"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">enqueue</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code> public function enqueue(o:*):Boolean</code><p></p><p></p><p>
+         Adds the specified element as the tail (last element) of this list.
+         </p><p><span class="label"> Parameters </span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20px"></td><td><code><span class="label">o</span>:*</code> &mdash; the element to add.
+         </td></tr></table></p><p></p><span class="label">Returns</span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20"></td><td><code>Boolean</code> &mdash; <code>true</code> if the element in inserted in the list.
+         </td></tr></table></div><a name="equals()"></a><a name="equals(any)"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">equals</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code> public function equals(o:*):Boolean</code><p></p><p></p><p>
+         Indicates whether some other object is "equal to" this one.
+         </p><p><span class="label"> Parameters </span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20px"></td><td><code><span class="label">o</span>:*</code></td></tr></table></p><p></p><span class="label">Returns</span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20"></td><td><code>Boolean</code></td></tr></table></div><a name="get()"></a><a name="get(any)"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">get</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code> public function get(key:*):*</code><p></p><p></p><p>
+         Returns the element at the specified position in this list.
+         </p><p><span class="label"> Parameters </span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20px"></td><td><code><span class="label">key</span>:*</code> &mdash; index of element to return.
+         </td></tr></table></p><p></p><span class="label">Returns</span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20"></td><td><code>*</code> &mdash; the element at the specified position in this list.  
+         </td></tr></table><br/><span class="label">Throws</span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20"></td><td><code>NoSuchElementError </code> &mdash; No value exist at the specified index.
+         </td></tr></table></div><a name="getFirst()"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">getFirst</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code> public function getFirst():*</code><p></p><p></p><p>
+         Returns the first element in this list.
+         </p><p></p><span class="label">Returns</span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20"></td><td><code>*</code> &mdash; the first element in this list.
+         </td></tr></table><br/><span class="label">Throws</span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20"></td><td><code>NoSuchElementException </code> &mdash; if this list is empty.
+         </td></tr></table></div><a name="getHeader()"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">getHeader</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code> public function getHeader():<a href="../../../system/data/lists/LinkedListEntry.html">LinkedListEntry</a></code><p></p><p></p><p>
+         Returns the header entry of this list.
+         </p><p></p><span class="label">Returns</span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20"></td><td><code><a href="../../../system/data/lists/LinkedListEntry.html">LinkedListEntry</a></code> &mdash; the header entry of this list.
+         </td></tr></table></div><a name="getLast()"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">getLast</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code> public function getLast():*</code><p></p><p></p><p>
+         Returns the last element in the list.
+         </p><p></p><span class="label">Returns</span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20"></td><td><code>*</code> &mdash; the last element in the list.
+         </td></tr></table><br/><span class="label">Throws</span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20"></td><td><code>NoSuchElementException </code> &mdash; if this list is empty.
+         </td></tr></table></div><a name="indexOf()"></a><a name="indexOf(any,uint)"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">indexOf</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code> public function indexOf(o:*, fromIndex:uint = 0):int</code><p></p><p></p><p>
+         Returns the position of the passed object in the collection.
+         </p><p><span class="label"> Parameters </span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20px"></td><td><code><span class="label">o</span>:*</code> &mdash; the object to search in the collection.
+         </td></tr><tr><td class="paramSpacer">&nbsp;</td></tr><tr><td width="20px"></td><td><code><span class="label">fromIndex</span>:uint</code> (default = <code>0</code>)<code></code> &mdash; the index to begin the search in the collection.
+         </td></tr></table></p><p></p><span class="label">Returns</span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20"></td><td><code>int</code> &mdash; the index of the object or -1 if the object isn't find in the collection.
+         </td></tr></table></div><a name="isEmpty()"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">isEmpty</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code> public function isEmpty():Boolean</code><p></p><p></p><p>
+         Returns <code>true</code> if this queue contains no elements.
+         </p><p></p><span class="label">Returns</span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20"></td><td><code>Boolean</code> &mdash; <code>true</code> if this queue is empty else <code>false</code>.
+         </td></tr></table></div><a name="iterator()"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">iterator</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code> public function iterator():<a href="../../../system/data/Iterator.html">Iterator</a></code><p></p><p></p><p>
+        Returns the iterator of this object.
+        </p><p></p><span class="label">Returns</span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20"></td><td><code><a href="../../../system/data/Iterator.html">Iterator</a></code> &mdash; the iterator of this object.
+        </td></tr></table></div><a name="lastIndexOf()"></a><a name="lastIndexOf(any,int)"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">lastIndexOf</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code> public function lastIndexOf(o:*, fromIndex:int = 0x7FFFFFFF):int</code><p></p><p></p><p>
+         Returns the index in this list of the last occurrence of the specified element, or -1 if the list does not contain this element.
+         </p><p><span class="label"> Parameters </span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20px"></td><td><code><span class="label">o</span>:*</code> &mdash; element to search for.
+         </td></tr><tr><td class="paramSpacer">&nbsp;</td></tr><tr><td width="20px"></td><td><code><span class="label">fromIndex</span>:int</code> (default = <code>0x7FFFFFFF</code>)<code></code></td></tr></table></p><p></p><span class="label">Returns</span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20"></td><td><code>int</code> &mdash; the index in this list of the last occurrence of the specified element, or -1 if the list does not contain this element.
+         </td></tr></table></div><a name="listIterator()"></a><a name="listIterator(uint)"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">listIterator</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code> public function listIterator(position:uint = 0):<a href="../../../system/data/ListIterator.html">ListIterator</a></code><p></p><p></p><p>
+         Returns a list iterator of the elements in this list (in proper sequence).
+         </p><p><span class="label"> Parameters </span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20px"></td><td><code><span class="label">position</span>:uint</code> (default = <code>0</code>)<code></code></td></tr></table></p><p></p><span class="label">Returns</span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20"></td><td><code><a href="../../../system/data/ListIterator.html">ListIterator</a></code> &mdash; a list iterator of the elements in this list (in proper sequence).
+         </td></tr></table></div><a name="peek()"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">peek</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code> public function peek():*</code><p></p><p></p><p>
+         Retrieves, but does not remove, the head (first element) of this list.
+         </p><p></p><span class="label">Returns</span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20"></td><td><code>*</code> &mdash; the head of this queue, or <code>null</code> if this queue is empty.
+         </td></tr></table></div><a name="poll()"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">poll</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code> public function poll():*</code><p></p><p></p><p>
+         Retrieves and removes the head (first element) of this list.
+         </p><p></p><span class="label">Returns</span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20"></td><td><code>*</code> &mdash; the head of this queue, or <code>null</code> if this queue is empty.
+         </td></tr></table></div><a name="remove()"></a><a name="remove(any)"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">remove</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code> public function remove(o:*):*</code><p></p><p></p><p>
+         Removes the first occurrence of the specified element in this list.  
+         If the list does not contain the element, it is unchanged.
+         </p><p><span class="label"> Parameters </span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20px"></td><td><code><span class="label">o</span>:*</code> &mdash; element to be removed from this list, if present.
+         </td></tr></table></p><p></p><span class="label">Returns</span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20"></td><td><code>*</code> &mdash;  if the list contained the specified element.
+         </td></tr></table></div><a name="removeAll()"></a><a name="removeAll(system.data.Collection)"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">removeAll</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code> public function removeAll(c:<a href="../../../system/data/Collection.html">Collection</a>):Boolean</code><p></p><p></p><p>
+         Removes all elements defined in the specified Collection in the list.
+         <p><b>Example :</b></p>
+         <code>
+         import system.data.collections.ArrayCollection ;
+         import system.data.lists.LinkedList ;
+         
+         var list:LinkedList = new LinkedList() ;
+         
+         list.add("item1") ;
+         list.add("item2") ;
+         
+         trace(list.removeAll(new ArrayCollection(["item1"])) ; // true
+         trace(list) ; // {item2}
+         </code>
+         </p><p><span class="label"> Parameters </span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20px"></td><td><code><span class="label">c</span>:<a href="../../../system/data/Collection.html">Collection</a></code></td></tr></table></p><p></p><span class="label">Returns</span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20"></td><td><code>Boolean</code> &mdash; <code>true</code> if all elements are find and remove in the list.
+         </td></tr></table></div><a name="removeAt()"></a><a name="removeAt(uint,int)"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">removeAt</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code> public function removeAt(index:uint, len:int = 1):*</code><p></p><p></p><p>
+         Removes an element at the specified position in this list. 
+         This implementation first gets a list iterator pointing to the indexed element (with <code>listIterator(index)</code>). 
+         Then, it removes the element with <b>ListIterator</b> remove method.
+         <p><b>Example :</b></p>
+         <pre>
+         import system.data.lists.LinkedList ;
+         
+         var list:LinkedList = new LinkedList() ;
+         
+         list.add("item1") ;
+         list.add("item2") ;
+         
+         trace(list.removeAt(1)) ; // item2
+         trace(list) ; // {item1}
+         </pre>
+         </p><p><span class="label"> Parameters </span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20px"></td><td><code><span class="label">index</span>:uint</code> &mdash; index of the element to be removed from the List.
+         </td></tr><tr><td class="paramSpacer">&nbsp;</td></tr><tr><td width="20px"></td><td><code><span class="label">len</span>:int</code> (default = <code>1</code>)<code></code></td></tr></table></p><p></p><span class="label">Returns</span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20"></td><td><code>*</code> &mdash; the Array representation of all removed elements in the list.
+         </td></tr></table></div><a name="removeEntry()"></a><a name="removeEntry(system.data.lists.LinkedListEntry)"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">removeEntry</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code> public function removeEntry(e:<a href="../../../system/data/lists/LinkedListEntry.html">LinkedListEntry</a>):*</code><p></p><p></p><p>
+         Removes an Entry in the list.
+         </p><p><span class="label"> Parameters </span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20px"></td><td><code><span class="label">e</span>:<a href="../../../system/data/lists/LinkedListEntry.html">LinkedListEntry</a></code></td></tr></table></p><p></p><span class="label">Returns</span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20"></td><td><code>*</code></td></tr></table></div><a name="removeFirst()"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">removeFirst</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code> public function removeFirst():*</code><p></p><p></p><p>
+         Removes and returns the first element from this list.
+         <p><b>Example :</b></p>
+         <pre>
+         import system.data.lists.LinkedList ;
+         
+         var list:LinkedList = new LinkedList() ;
+         
+         list.add("item1") ;
+         list.add("item2") ;
+         list.add("item3") ;
+         list.add("item4") ;
+         
+         var result = list.removeFirst() ;
+         trace(result + " : " + list) ; // item1 : {item2,item3,item4}
+         </pre>
+         </p><p></p><span class="label">Returns</span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20"></td><td><code>*</code> &mdash; the first element from this list.
+         </td></tr></table><br/><span class="label">Throws</span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20"></td><td><code>NoSuchElementException </code> &mdash; if this list is empty.
+         </td></tr></table></div><a name="removeLast()"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">removeLast</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code> public function removeLast():*</code><p></p><p></p><p>
+         Removes and returns the last element from this list.
+         <p><b>Example :</b></p>
+         <pre>
+         import systel.data.lists.LinkedList ;
+         var list:LinkedList = new LinkedList() ;
+         
+         list.add("item1") ;
+         list.add("item2") ;
+         list.add("item3") ;
+         list.add("item4") ;
+         
+         var result = list.removeLast() ;
+         
+         trace(result + " : " + list) ; // item4 : {item1,item2,item3}
+         </pre>
+         </p><p></p><span class="label">Returns</span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20"></td><td><code>*</code> &mdash; the last element from this list.
+         </td></tr></table><br/><span class="label">Throws</span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20"></td><td><code>NoSuchElementException </code> &mdash; if this list is empty.
+         </td></tr></table></div><a name="removeRange()"></a><a name="removeRange(uint,uint)"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">removeRange</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code> public function removeRange(fromIndex:uint, toIndex:uint):*</code><p></p><p></p><p>
+         Removes from this list all the elements that are contained between the specific <code>from</code> and the specific <code>to</code> position in this list (optional operation).
+         <p><b>Example :</b></p>
+         <pre>
+         import system.data.lists.LinkedList ;
+         
+         var list:LinkedList = new LinkedList() ;
+         
+         list.add("item1") ;
+         list.add("item2") ;
+         list.add("item3") ;
+         list.add("item4") ;
+         list.add("item5") ;
+         
+         list.removeRange(2, 4) ;
+         
+         trace(list) ; // {item1,item2,item5}
+         </pre>
+         </p><p><span class="label"> Parameters </span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20px"></td><td><code><span class="label">fromIndex</span>:uint</code></td></tr><tr><td class="paramSpacer">&nbsp;</td></tr><tr><td width="20px"></td><td><code><span class="label">toIndex</span>:uint</code></td></tr></table></p><p></p><span class="label">Returns</span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20"></td><td><code>*</code></td></tr></table><br/><span class="label">Throws</span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20"></td><td><code>RangeError </code> &mdash; if the 'toIndex' value > 'fromIndex' value.
+         </td></tr></table></div><a name="retainAll()"></a><a name="retainAll(system.data.Collection)"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">retainAll</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code> public function retainAll(c:<a href="../../../system/data/Collection.html">Collection</a>):Boolean</code><p></p><p></p><p>
+         Retains only the elements in this list that are contained in the specified collection (optional operation).
+         <p><b>Example :</b></p>
+         <pre>
+         import system.data.collections.ArrayCollection ;
+         import system.data.lists.LinkedList ;
+         
+         var list:LinkedList = new LinkedList() ;
+         
+         list.add("item1") ;
+         list.add("item2") ;
+         list.add("item3") ;
+         list.add("item4") ;
+         list.add("item5") ;
+         
+         var c:ArrayCollection = new ArrayCollection( ["item2", "item4"] ) ;
+         
+         var b:Boolean = list.retainAll( c ) ;
+         trace("list : " + list + ", is retain ? : " + b) ;
+         </pre>
+         </p><p><span class="label"> Parameters </span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20px"></td><td><code><span class="label">c</span>:<a href="../../../system/data/Collection.html">Collection</a></code></td></tr></table></p><p></p><span class="label">Returns</span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20"></td><td><code>Boolean</code> &mdash; <code>true</code> if the retainAll operation is success.
+         </td></tr></table></div><a name="set()"></a><a name="set(uint,any)"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">set</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code> public function set(index:uint, o:*):*</code><p></p><p></p><p>
+         Replaces the element at the specified position in this list with the specified element.
+         <p><b>Example :</b></p>
+         <pre>
+         import system.data.lists.LinkedList ;
+         
+         var list:LinkedList = new LinkedList() ;
+         
+         list.add( "item1" ) ;
+         list.add( "item2" ) ;
+         
+         var old:= list.set( 1 , "ITEM2" ) ;
+         
+         trace("list : " + list + ", old : " + old) ; // list : {item1,ITEM2}, old : item2
+         </pre>
+         </p><p><span class="label"> Parameters </span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20px"></td><td><code><span class="label">index</span>:uint</code> &mdash; index of element to replace.
+         </td></tr><tr><td class="paramSpacer">&nbsp;</td></tr><tr><td width="20px"></td><td><code><span class="label">o</span>:*</code> &mdash; element to be stored at the specified position.
+         </td></tr></table></p><p></p><span class="label">Returns</span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20"></td><td><code>*</code> &mdash; the element previously at the specified position.
+         </td></tr></table></div><a name="size()"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">size</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code> public function size():uint</code><p></p><p></p><p>
+         Returns the number of elements in this list.
+         <p><b>Example :</b></p>
+         <pre>
+         import system.data.lists.LinkedList ;
+         
+         var list:LinkedList = new LinkedList() ;
+         
+         list.add("item1") ;
+         list.add("item2") ;
+         
+         trace(list.size()) ; // 2
+         </pre>
+         </p><p></p><span class="label">Returns</span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20"></td><td><code>uint</code> &mdash; the number of elements in this list.
+         </td></tr></table></div><a name="subList()"></a><a name="subList(uint,uint)"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">subList</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code> public function subList(fromIndex:uint, toIndex:uint):<a href="../../../system/data/List.html">List</a></code><p></p><p></p><p>
+         Returns a view of the portion of this list between the specified fromIndex, inclusive, and toIndex, exclusive.
+         <p><b>Example :</b></p>
+         <pre>
+         import system.data.lists.LinkedList ;
+         
+         var list:LinkedList = new LinkedList() ;
+         
+         list.add("item1") ;
+         list.add("item2") ;
+         list.add("item3") ;
+         list.add("item4") ;
+         list.add("item5") ;
+         
+         trace( list.subList( 0 , 0 ) ) ; // {}
+         trace( list.subList( 0 , 1 ) ) ; // {item1}
+         trace( list.subList( 0 , 2 ) ) ; // {item1,item2}
+         trace( list.subList( 0 , 3 ) ) ; // {item1,item2,item3}
+         trace( list.subList( 0 , 4 ) ) ; // {item1,item2,item3,item4}
+         trace( list.subList( 0 , 5 ) ) ; // {item1,item2,item3,item4,item5}
+         trace( list.subList( 0 , 6 ) ) ; // {item1,item2,item3,item4,item5}
+         
+         trace( list.subList(2, 4) ) ; // {item3,item4}
+         trace( list.subList(3, 1) ) ; // {}
+         </pre>
+         </p><p><span class="label"> Parameters </span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20px"></td><td><code><span class="label">fromIndex</span>:uint</code></td></tr><tr><td class="paramSpacer">&nbsp;</td></tr><tr><td width="20px"></td><td><code><span class="label">toIndex</span>:uint</code></td></tr></table></p><p></p><span class="label">Returns</span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20"></td><td><code><a href="../../../system/data/List.html">List</a></code> &mdash; a view of the portion of this list between the specified fromIndex, inclusive, and toIndex, exclusive.
+         </td></tr></table></div><a name="toArray()"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">toArray</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code> public function toArray():Array</code><p></p><p></p><p>
+         Returns an array containing all of the elements in this list in the correct order.
+         <p><b>Example :</b></p>
+         <pre>
+         import system.data.lists.LinkedList ;
+         
+         var list:LinkedList = new LinkedList() ;
+         
+         list.add("item1") ;
+         list.add("item2") ;
+         list.add("item3") ;
+         list.add("item4") ;
+         trace( list.toArray() ) ; // item1,item2,item3,item4
+         </pre>
+         </p><p></p><span class="label">Returns</span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20"></td><td><code>Array</code> &mdash; an array containing all of the elements in this list in the correct order.
+         </td></tr></table></div><a name="toSource()"></a><a name="toSource(int)"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">toSource</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code> public function toSource(indent:int = 0):String</code><p></p><p></p><p>
+         Returns the source code string representation of the object.
+         </p><p><span class="label"> Parameters </span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20px"></td><td><code><span class="label">indent</span>:int</code> (default = <code>0</code>)<code></code></td></tr></table></p><p></p><span class="label">Returns</span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20"></td><td><code>String</code> &mdash; the source code string representation of the object.
+         </td></tr></table></div><a name="toString()"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">toString</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code> public function toString():String</code><p></p><p></p><p>
+         Returns the string representation of this instance.
+         </p><p></p><span class="label">Returns</span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20"></td><td><code>String</code> &mdash; the string representation of this instance.
+         </td></tr></table></div><br/><br/><hr><br/><p></p><center class="copyright"><footer></footer><br/>Vendredi Mai 13 2011, 11:30 AM +02:00  </center></div></body></html><!--<br/>Vendredi Mai 13 2011, 11:30 AM +02:00  -->

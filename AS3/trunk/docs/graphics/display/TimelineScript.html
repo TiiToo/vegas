@@ -1,0 +1,149 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd"><!-- saved from url=(0014)about:internet --><html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><link rel="stylesheet" href="../../style.css" type="text/css" media="screen"><link rel="stylesheet" href="../../print.css" type="text/css" media="print"><link rel="stylesheet" href="../../prettify.css" type="text/css"><link rel="stylesheet" href="../../override.css" type="text/css"><meta name="keywords" content="TimelineScript,graphics.display.TimelineScript,DEFAULT_STEP,INJECTOR,TIMELINE,autoStop,baseX,baseY,channels,currentFrame,currentLabel,currentLoop,defaultIndex,density,finishIndex,fractal,frameLabel,greyScale,mode,numLoop,octaves,seed,shader,startIndex,stepSize,stitch,stopped,target,target,target,target,totalFrames,verbose,verbose,align,clear,clear,clone,contains,dispose,dispose,dispose,draw,fillRect,finish,getPixel,getPixel32,hasNext,hasPrevious,initialize,initialize,isLocked,key,last,localToLocal,lock,move,move,next,noise,originalHeight,originalWidth,perlinNoise,playback,previous,put,remove,remove,render,render,reset,resize,resolve,resume,rotate,run,seek,setBitmap,setPixel,setPixel32,start,stop,swapChildren,unlock"><title>graphics.display.TimelineScript</title></head><body><script language="javascript" type="text/javascript" src="../../prettify.js"></script><script language="javascript" type="text/javascript" src="../../asdoc.js"></script><script language="javascript" type="text/javascript" src="../../help.js"></script><script language="javascript" type="text/javascript" src="../../cookies.js"></script><script language="javascript" type="text/javascript"><!--
+                asdocTitle = 'TimelineScript - VEGAS AS3 Reference';
+                var baseRef = '../../';
+                window.onload = configPage;
+            --></script>
+<script type="text/javascript">
+            scrollToNameAnchor();
+        </script><table class="titleTable" cellpadding="0" cellspacing="0" id="titleTable" style="display:none"><tr><td class="titleTableTitle" align="left">VEGAS AS3 Reference</td><td class="titleTableTopNav" align="right"><a href="../../package-summary.html" onclick="loadClassListFrame('../../all-classes.html')">All Packages</a>&nbsp;|&nbsp;<a href="../../class-summary.html" onclick="loadClassListFrame('../../all-classes.html')">All Classes</a>&nbsp;|&nbsp;<a href="../../all-index-A.html" onclick="loadClassListFrame('../../index-list.html')">Index</a>&nbsp;|&nbsp;<a id="framesLink1" href="../../index.html?graphics/display/TimelineScript.html&amp;graphics/display/class-list.html">Frames</a><a id="noFramesLink1" style="display:none" href="" onclick="parent.location=document.location"> No Frames </a></td><td class="titleTableLogo" align="right" rowspan="3"><img src="../../images/logo.jpg" class="logoImage" alt=" Adobe Logo " title=" Adobe Logo "></td></tr><tr class="titleTableRow2"><td class="titleTableSubTitle" id="subTitle" align="left">TimelineScript</td><td class="titleTableSubNav" id="subNav" align="right"><a href="#propertySummary">Properties</a>&nbsp;| <a href="#methodSummary">Methods</a></td></tr><tr class="titleTableRow3"><td colspan="3">&nbsp;</td></tr></table><script language="javascript" type="text/javascript" xml:space="preserve">
+                <!--
+                
+                    if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("TimelineScript"); titleBar_setSubNav(false,true,false,false,false,false,false,false,true,false,false    ,false,false,false,false,false);}    
+                -->
+            </script><div xmlns:fn="http://www.w3.org/2005/xpath-functions" class="MainContent"><table class="classHeaderTable" cellpadding="0" cellspacing="0"><tr><td class="classHeaderTableLabel">Package</td><td><a href="package-detail.html" onclick="javascript:loadClassListFrame('class-list.html')">graphics.display</a></td></tr><tr><td class="classHeaderTableLabel">Class</td><td class="classSignature">public  class  TimelineScript</td></tr><tr><td class="classHeaderTableLabel">Inheritance</td><td class="inheritanceList">TimelineScript  <img src="../../images/inherit-arrow.gif" title="Inheritance" alt="Inheritance" class="inheritArrow"> Object</td></tr></table><p></p><p></p><p></p>
+     The TimeLineScript class use composition to register script function over MovieClip timelines.
+     <p>
+                  <b>Example :</b>
+               </p>
+               <pre>
+     package examples 
+     {
+         import graphics.display.TimelineScript;
+         
+         import flash.display.MovieClip;
+         import flash.display.Sprite;
+         import flash.display.StageAlign;
+         import flash.display.StageScaleMode;
+         import flash.events.KeyboardEvent;
+         import flash.ui.Keyboard;
+         import flash.utils.clearTimeout;
+         import flash.utils.setTimeout;
+         
+         public dynamic class TimelineScriptExample extends Sprite 
+         {
+             public function TimelineScriptExample()
+             {
+                 // stage
+                 
+                 stage.align      = StageAlign.TOP_LEFT ;
+                 stage.scaleMode  = StageScaleMode.NO_SCALE ;
+                 
+                 stage.addEventListener( KeyboardEvent.KEY_DOWN , keyDown ) ;
+                 
+                 // MovieClip target
+                 
+                 movieclip = getChildByName("mc") as MovieClip ;
+                 
+                 // timeline script
+                 
+                 timeline = new TimelineScript( movieclip , true ) ;
+                 
+                 timeline.put( "start"   , start ) ;
+                 timeline.put( "middle"  , pause ) ;
+                 timeline.put( "finish"  , finish ) ;
+             }
+             
+             protected var id:uint ;
+             protected var movieclip:MovieClip ;
+             protected var timeline:TimelineScript ;
+             
+             protected function pause():void
+             {
+                 trace( "pause" ) ;
+                 movieclip.stop() ;
+                 if ( id )
+                 {
+                     clearTimeout( id ) ;
+                 }
+                 id = setTimeout( movieclip.play , 4000 ) ; // pause 4 s
+             }
+             
+             protected function finish():void
+             {
+                 trace( "finish" ) ;
+                 movieclip.stop() ;
+             }
+             
+             protected function keyDown( e:KeyboardEvent ):void
+             {
+                 var code:uint = e.keyCode ;
+                 switch( code )
+                 {
+                     case Keyboard.SPACE :
+                     {
+                         movieclip.gotoAndPlay(1) ; // start 
+                         break ;
+                     }
+                     case Keyboard.UP :
+                     {
+                         timeline.remove( "middle" ) ;
+                         break ;
+                     }
+                     case Keyboard.DOWN :
+                     {
+                         timeline.clear() ;
+                         break ;
+                     }
+                 }
+             }
+             
+             protected function start():void
+             {
+                 trace( "start" ) ;
+             }
+         }
+     }
+     </pre>
+            <p></p><br/><hr></div><a name="propertySummary"></a><div class="summarySection"><div class="summaryTableTitle">Public Properties</div><table cellspacing="0" cellpadding="3" class="summaryTable " id="summaryTableProperty"><tr><th>&nbsp;</th><th colspan="2">Property</th><th class="summaryTableOwnerCol">Defined By</th></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a href="#autoStop" class="signatureLink">autoStop</a> : Boolean<div class="summaryTableDescription">
+         This boolean flag indicates if the specified MovieClip target reference is stopped.</div></td><td class="summaryTableOwnerCol">TimelineScript</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a href="#target" class="signatureLink">target</a> : MovieClip<div class="summaryTableDescription">
+         Indicates the target reference of this iterator.</div></td><td class="summaryTableOwnerCol">TimelineScript</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a href="#verbose" class="signatureLink">verbose</a> : Boolean<div class="summaryTableDescription">
+         The verbose mode flag.</div></td><td class="summaryTableOwnerCol">TimelineScript</td></tr></table></div><a name="methodSummary"></a><div class="summarySection"><div class="summaryTableTitle">Public Methods </div><table cellspacing="0" cellpadding="3" class="summaryTable " id="summaryTableMethod"><tr><th>&nbsp;</th><th colspan="2">Method</th><th class="summaryTableOwnerCol">Defined By</th></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="#TimelineScript()" class="signatureLink">TimelineScript</a>(target:MovieClip = null, autoStop:Boolean = true)</div><div class="summaryTableDescription">
+         Creates a new TimelineScript instance.</div></td><td class="summaryTableOwnerCol">TimelineScript</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="#clear()" class="signatureLink">clear</a>():void</div><div class="summaryTableDescription">
+         Clear all scripts in the MovieClip target reference.</div></td><td class="summaryTableOwnerCol">TimelineScript</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="#contains()" class="signatureLink">contains</a>(index:*):Boolean</div><div class="summaryTableDescription">
+         Indicates if a script is registerd with the specific frame index (label name or frame value).</div></td><td class="summaryTableOwnerCol">TimelineScript</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="#initialize()" class="signatureLink">initialize</a>():void</div><div class="summaryTableDescription">
+         Initialize all registered scripts in the target.</div></td><td class="summaryTableOwnerCol">TimelineScript</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="#put()" class="signatureLink">put</a>(index:*, script:Function):Boolean</div><div class="summaryTableDescription">
+         Registers a script function in the frame specified by the label or index value passed-in the first argument of the method.</div></td><td class="summaryTableOwnerCol">TimelineScript</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="#remove()" class="signatureLink">remove</a>(index:*):void</div><div class="summaryTableDescription">
+         Unregisters a script function in the frame specified by the label or index value passed-in argument of the method.</div></td><td class="summaryTableOwnerCol">TimelineScript</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="#resolve()" class="signatureLink">resolve</a>(label:String = null):int</div><div class="summaryTableDescription">
+         Find the frame index of the specified passed-in label value in the MovieClip target.</div></td><td class="summaryTableOwnerCol">TimelineScript</td></tr></table></div><script language="javascript" type="text/javascript"><!--
+										showHideInherited();
+										--></script><div class="MainContent"><div class="detailSectionHeader">Property Detail</div><a name="propertyDetail"></a><a name="autoStop"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">autoStop</td><td class="detailHeaderType">property</td></tr></table><div class="detailBody"><code>public var autoStop:Boolean</code><p></p><p></p><p>
+         This boolean flag indicates if the specified MovieClip target reference is stopped.
+         </p></div><a name="propertyDetail"></a><a name="target"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">target</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code>target:MovieClip</code><p></p><p></p><p>
+         Indicates the target reference of this iterator.
+         </p><br/><span class="label"> Implementation </span><br/><code>&nbsp;&nbsp;&nbsp;&nbsp;public function get target():MovieClip</code><br/><code>&nbsp;&nbsp;&nbsp;&nbsp;public function set target(value:MovieClip):void</code><br/></div><a name="propertyDetail"></a><a name="verbose"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">verbose</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code>public var verbose:Boolean</code><p></p><p></p><p>
+         The verbose mode flag.
+         </p></div><a name="constructorDetail"></a><div class="detailSectionHeader">Constructor Detail</div><a name="TimelineScript()"></a><a name="TimelineScript(flash.display.MovieClip,Boolean)"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">TimelineScript</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">Constructor</td></tr></table><div class="detailBody"><code>public function TimelineScript(target:MovieClip = null, autoStop:Boolean = true)</code><p></p><p>
+         Creates a new TimelineScript instance.
+         </p><span class="label"> Parameters </span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20px"></td><td><code><span class="label">target</span>:MovieClip</code> (default = <code>null</code>)<code></code> &mdash; The MovieClip reference of this iterator.
+         </td></tr><tr><td class="paramSpacer">&nbsp;</td></tr><tr><td width="20px"></td><td><code><span class="label">autoStop</span>:Boolean</code> (default = <code>true</code>)<code></code> &mdash; This boolean flag indicates if the specified MovieClip target reference is stopped (default true).
+         </td></tr></table></div><a name="methodDetail"></a><div class="detailSectionHeader">Method Detail</div><a name="clear()"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">clear</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td></tr></table><div class="detailBody"><code> public function clear():void</code><p></p><p></p><p>
+         Clear all scripts in the MovieClip target reference.
+         </p></div><a name="contains()"></a><a name="contains(any)"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">contains</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code> public function contains(index:*):Boolean</code><p></p><p></p><p>
+         Indicates if a script is registerd with the specific frame index (label name or frame value).
+         </p><p><span class="label"> Parameters </span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20px"></td><td><code><span class="label">index</span>:*</code> &mdash; A String label name or an uint frame index value.
+         </td></tr></table></p><p></p><span class="label">Returns</span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20"></td><td><code>Boolean</code> &mdash; <code>true</code> if the specific index is registered.
+         </td></tr></table></div><a name="initialize()"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">initialize</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code> public function initialize():void</code><p></p><p></p><p>
+         Initialize all registered scripts in the target.
+         </p></div><a name="put()"></a><a name="put(any,Function)"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">put</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code> public function put(index:*, script:Function):Boolean</code><p></p><p></p><p>
+         Registers a script function in the frame specified by the label or index value passed-in the first argument of the method.
+         </p><p><span class="label"> Parameters </span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20px"></td><td><code><span class="label">index</span>:*</code> &mdash; A String label name or an uint frame index value.
+         </td></tr><tr><td class="paramSpacer">&nbsp;</td></tr><tr><td width="20px"></td><td><code><span class="label">script</span>:Function</code> &mdash; The Function instruction to register.
+         </td></tr></table></p><p></p><span class="label">Returns</span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20"></td><td><code>Boolean</code> &mdash; true if the register is success.
+         </td></tr></table></div><a name="remove()"></a><a name="remove(any)"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">remove</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code> public function remove(index:*):void</code><p></p><p></p><p>
+         Unregisters a script function in the frame specified by the label or index value passed-in argument of the method.
+         </p><p><span class="label"> Parameters </span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20px"></td><td><code><span class="label">index</span>:*</code> &mdash; A String label name or an uint frame index value.
+         </td></tr></table></p></div><a name="resolve()"></a><a name="resolve(String)"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">resolve</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code> public function resolve(label:String = null):int</code><p></p><p></p><p>
+         Find the frame index of the specified passed-in label value in the MovieClip target.
+         </p><p><span class="label"> Parameters </span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20px"></td><td><code><span class="label">label</span>:String</code> (default = <code>null</code>)<code></code></td></tr></table></p><p></p><span class="label">Returns</span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20"></td><td><code>int</code></td></tr></table><br/><span class="label">Throws</span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20"></td><td><code>ArgumentError </code> &mdash; if the passed-in label value is null or empty.
+         </td></tr><tr><td class="paramSpacer">&nbsp;</td></tr><tr><td width="20"></td><td><code>ArgumentError </code> &mdash; if the passed-in label value don't exist in the MovieClip.
+         </td></tr></table></div><br/><br/><hr><br/><p></p><center class="copyright"><footer></footer><br/>Vendredi Mai 13 2011, 11:30 AM +02:00  </center></div></body></html><!--<br/>Vendredi Mai 13 2011, 11:30 AM +02:00  -->

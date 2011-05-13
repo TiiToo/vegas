@@ -1,0 +1,142 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd"><!-- saved from url=(0014)about:internet --><html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><link rel="stylesheet" href="../../style.css" type="text/css" media="screen"><link rel="stylesheet" href="../../print.css" type="text/css" media="print"><link rel="stylesheet" href="../../prettify.css" type="text/css"><link rel="stylesheet" href="../../override.css" type="text/css"><meta name="keywords" content="StringFormatter,system.formatters.StringFormatter,AM_PM,CAPITAL_AM_PM,DAY_AS_NUMBER,DAY_AS_TEXT,DEFAULT_AM_EXPRESSION,DEFAULT_DATE_FORMAT,DEFAULT_PM_EXPRESSION,HOUR_IN_AM_PM,HOUR_IN_DAY,MAX_RECURSION,MILLISECOND,MINUTE,MONTH_AS_NUMBER,MONTH_AS_TEXT,QUOTE,RANGE_DAY_AS_TEXT,RANGE_HOUR,RANGE_MILLISECOND,RANGE_MINUTE,RANGE_MONTH,RANGE_SECOND,SECOND,YEAR,_pattern,beginSeparator,endSeparator,evaluators,output,parameters,pattern,source,clone,format,format,format,format,formatDayAsNumber,formatDayAsText,formatDesignator,formatHourInAmPm,formatHourInDay,formatMillisecond,formatMinute,formatMonthAsNumber,formatMonthAsText,formatSecond,formatYear,getMonthNames,getWeekdayNames,getZeros,setMonthNames,setWeekdayNames"><title>system.formatters.StringFormatter</title></head><body><script language="javascript" type="text/javascript" src="../../prettify.js"></script><script language="javascript" type="text/javascript" src="../../asdoc.js"></script><script language="javascript" type="text/javascript" src="../../help.js"></script><script language="javascript" type="text/javascript" src="../../cookies.js"></script><script language="javascript" type="text/javascript"><!--
+                asdocTitle = 'StringFormatter - VEGAS AS3 Reference';
+                var baseRef = '../../';
+                window.onload = configPage;
+            --></script>
+<script type="text/javascript">
+            scrollToNameAnchor();
+        </script><table class="titleTable" cellpadding="0" cellspacing="0" id="titleTable" style="display:none"><tr><td class="titleTableTitle" align="left">VEGAS AS3 Reference</td><td class="titleTableTopNav" align="right"><a href="../../package-summary.html" onclick="loadClassListFrame('../../all-classes.html')">All Packages</a>&nbsp;|&nbsp;<a href="../../class-summary.html" onclick="loadClassListFrame('../../all-classes.html')">All Classes</a>&nbsp;|&nbsp;<a href="../../all-index-A.html" onclick="loadClassListFrame('../../index-list.html')">Index</a>&nbsp;|&nbsp;<a id="framesLink1" href="../../index.html?system/formatters/StringFormatter.html&amp;system/formatters/class-list.html">Frames</a><a id="noFramesLink1" style="display:none" href="" onclick="parent.location=document.location"> No Frames </a></td><td class="titleTableLogo" align="right" rowspan="3"><img src="../../images/logo.jpg" class="logoImage" alt=" Adobe Logo " title=" Adobe Logo "></td></tr><tr class="titleTableRow2"><td class="titleTableSubTitle" id="subTitle" align="left">StringFormatter</td><td class="titleTableSubNav" id="subNav" align="right"><a href="#propertySummary">Properties</a>&nbsp;| <a href="#methodSummary">Methods</a></td></tr><tr class="titleTableRow3"><td colspan="3">&nbsp;</td></tr></table><script language="javascript" type="text/javascript" xml:space="preserve">
+                <!--
+                
+                    if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("StringFormatter"); titleBar_setSubNav(false,true,false,false,false,false,false,false,true,false,false    ,false,false,false,false,false);}    
+                -->
+            </script><div xmlns:fn="http://www.w3.org/2005/xpath-functions" class="MainContent"><table class="classHeaderTable" cellpadding="0" cellspacing="0"><tr><td class="classHeaderTableLabel">Package</td><td><a href="package-detail.html" onclick="javascript:loadClassListFrame('class-list.html')">system.formatters</a></td></tr><tr><td class="classHeaderTableLabel">Class</td><td class="classSignature">public  class  StringFormatter</td></tr><tr><td class="classHeaderTableLabel">Inheritance</td><td class="inheritanceList">StringFormatter  <img src="../../images/inherit-arrow.gif" title="Inheritance" alt="Inheritance" class="inheritArrow"> Object</td></tr><tr><td class="classHeaderTableLabel">Implements</td><td> <a href="../../system/formatters/Formattable.html">Formattable</a></td></tr></table><p></p><p></p><p></p> 
+     Format a string using indexed, named and/or evaluated parameters.
+     <p>Replaces the pattern item in a specified String with the text equivalent of the value of a specified Object instance.</p>
+               <p>Formats item : {token[,alignment][:paddingChar]}</p>
+               <p>If you want to escape the "{" and "}" chars use "{{" and "}}"
+     <li>"some {{formatitem}} to be escaped" -> "some {formatitem} to be escaped"</li>
+                  <li>"some {{format {0} item}} to be escaped", "my" -> "some {format my titem} to be escaped"</li>
+               </p>
+               <p>
+                  <b>Example :</b>
+               </p>
+               <pre>
+     import system.formatters.StringFormatter ;
+     import system.evaluators.DateEvaluator ;
+     import system.evaluators.EdenEvaluator ;
+     import system.evaluators.MathEvaluator ;
+     
+     var formatter:StringFormatter = new StringFormatter() ;
+     
+     var result:String ;
+     
+     // indexed from the arguments
+     
+     formatter.parameters = ["big", "the"] ;
+     trace( formatter.format( "hello {1} {0} world" ) ) ; //"hello the big world"
+          formatter.parameters = [41] ;
+     trace( formatter.format( "Brad's dog has {0,6:#} fleas." )  ) ;
+          formatter.parameters = [12] ;
+     trace( formatter.format( "Brad's dog has {0,-6} fleas." ) ) ;
+          formatter.parameters = ["a", "b", "c", "d"] ;
+     trace( formatter.format( "{3} {2} {1} {0}" ) ) ;
+     
+     // named from an object
+          formatter.parameters = [ { name : "HAL" } ] ; 
+     trace( formatter.format( "hello I'm {name}" ) ) ; //"hello I'm HAL"
+     
+     // indexed from an array
+     
+     var names:Array = ["A","B","C","D"];
+     var scores:Array = [16,32,128,1024];
+     for( var i:int=0; i$lt;names.length; i++ )
+     {
+         formatter.parameters = [ names[i], scores[i] ] ;
+         trace( formatter.format( "{0} scored {1,5}" ) );
+     }
+     // "A scored    16"
+     // "B scored    32"
+     // "C scored   128"
+     // "D scored  1024"
+     
+     // resolve toString
+     var x:Object = {};
+     x.toString = function() { return "john doe"; } ;
+     
+     formatter.parameters = [ x ] ;
+     trace( formatter.format( "Who is {0} ?" ) ) ; //"Who is john doe ?"
+     
+     // you can off course reuse the index
+     formatter.parameters = ["apple", "banana", "pineapple"] ;
+     trace( formatter.format( "I like all fruits {0},{1},{2}, etc. but still I prefer above all {0}" ) ); // "I like all fruits apple,banana,pineapple, etc. but still I prefer above all apple"
+     
+     // indexed from an array + the arguments
+     formatter.parameters = [ ["apple", "banana", "pineapple"] , "grape", "tomato" ];
+     trace( formatter.format( "fruits: {0}, {1}, {2}, {3}, {4}" ) ); //"fruits: apple, banana, pineapple, grape, tomato
+     
+     // passing reference and padding
+     
+     var what = "answer" ;
+     formatter.parameters = [ {answer:"my answer"} , what  ] ;
+     trace( formatter.format( "your {0} is within {answer,20:.}" ) ) // "your answer is within ...........my answer"
+     
+     // using evaluated parameters
+     formatter.parameters = null ;
+     formatter.evaluators = { math: new MathEvaluator() };
+     trace( formatter.format( "my result is ${2+3}math$" ) ) ; // "my result is 5"
+     
+     //by default evaluated parameters use EdenEvaluator with serialized result
+     formatter.parameters = null ;
+     formatter.evaluators = null ;
+     trace( formatter.format( "here some object '${ {a:1,b:2} }$'" ) ) ; //"here some object '{a:1,b:2}'"
+     
+     //use EdenEvaluator with stringified result
+     formatter.parameters = null ;
+     formatter.evaluators = { math: new EdenEvaluator(false) };
+     trace( formatter.format( "here some object '${ {a:1,b:2} }eden$'" ) ) ; //"here some object '[object Object]'"
+     trace( formatter.format( "the host is ${system.Environment.host}eden$" ) ); //"the host is Flash 9.0.115.0"
+     
+     //use chained evaluators
+     formatter.parameters = null ;
+     formatter.evaluators = { eden: new EdenEvaluator(false), date: new DateEvaluator() ];
+     trace( formatter.format( "my date is ${new Date(2007,4,22,13,13,13)}eden,date$" ) ) ; //"my date is 22.05.2007 13:13:13"
+     </pre>
+            <p></p><br/><hr></div><a name="propertySummary"></a><div class="summarySection"><div class="summaryTableTitle">Public Properties</div><table cellspacing="0" cellpadding="3" class="summaryTable " id="summaryTableProperty"><tr><th>&nbsp;</th><th colspan="2">Property</th><th class="summaryTableOwnerCol">Defined By</th></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a href="#evaluators" class="signatureLink">evaluators</a> : Object<div class="summaryTableDescription">
+         Contain a list of evaluators to be used in Strings.format
+         ex:
+         Strings.evaluators = { math: new MathEvaluator() };
+         Strings.format( "my result is ${2+3}math$" ); // "my result is 5"
+         
+         note:
+         property names in the evaluators object can only contains
+         lower case alphabetical chars and digit chars
+         </div></td><td class="summaryTableOwnerCol">StringFormatter</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a href="#parameters" class="signatureLink">parameters</a> : Array<div class="summaryTableDescription">
+         The parameters used in the formatter.</div></td><td class="summaryTableOwnerCol">StringFormatter</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a href="#source" class="signatureLink">source</a> : String<div class="summaryTableDescription">
+         The source to format.</div></td><td class="summaryTableOwnerCol">StringFormatter</td></tr></table></div><a name="protectedPropertySummary"></a><div class="summarySection"><div class="summaryTableTitle">Protected Properties</div><table cellspacing="0" cellpadding="3" class="summaryTable " id="summaryTableProtectedProperty"><tr><th>&nbsp;</th><th colspan="2">Property</th><th class="summaryTableOwnerCol">Defined By</th></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a href="#output" class="signatureLink">output</a> : String<div class="summaryTableDescription">
+         The source to format.</div></td><td class="summaryTableOwnerCol">StringFormatter</td></tr></table></div><a name="methodSummary"></a><div class="summarySection"><div class="summaryTableTitle">Public Methods </div><table cellspacing="0" cellpadding="3" class="summaryTable " id="summaryTableMethod"><tr><th>&nbsp;</th><th colspan="2">Method</th><th class="summaryTableOwnerCol">Defined By</th></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="#StringFormatter()" class="signatureLink">StringFormatter</a>(parameters:Array = null, source:String = null, evaluators:Object = null)</div><div class="summaryTableDescription">
+         Creates a new StringFormatter instance.</div></td><td class="summaryTableOwnerCol">StringFormatter</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="#format()" class="signatureLink">format</a>(value:* = null):String</div><div class="summaryTableDescription">
+         Formats the specified value.</div></td><td class="summaryTableOwnerCol">StringFormatter</td></tr></table></div><script language="javascript" type="text/javascript"><!--
+										showHideInherited();
+										--></script><div class="MainContent"><div class="detailSectionHeader">Property Detail</div><a name="propertyDetail"></a><a name="evaluators"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">evaluators</td><td class="detailHeaderType">property</td></tr></table><div class="detailBody"><code>public var evaluators:Object</code><p></p><p></p><p>
+         Contain a list of evaluators to be used in Strings.format
+         ex:
+         Strings.evaluators = { math: new MathEvaluator() };
+         Strings.format( "my result is ${2+3}math$" ); // "my result is 5"
+         
+         note:
+         property names in the evaluators object can only contains
+         lower case alphabetical chars and digit chars
+         </p></div><a name="propertyDetail"></a><a name="output"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">output</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code>protected var output:String</code><p></p><p></p><p>
+         The source to format.
+         </p></div><a name="propertyDetail"></a><a name="parameters"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">parameters</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code>public var parameters:Array</code><p></p><p></p><p>
+         The parameters used in the formatter.
+         </p></div><a name="propertyDetail"></a><a name="source"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">source</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code>public var source:String</code><p></p><p></p><p>
+         The source to format.
+         </p></div><a name="constructorDetail"></a><div class="detailSectionHeader">Constructor Detail</div><a name="StringFormatter()"></a><a name="StringFormatter(Array,String,Object)"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">StringFormatter</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">Constructor</td></tr></table><div class="detailBody"><code>public function StringFormatter(parameters:Array = null, source:String = null, evaluators:Object = null)</code><p></p><p>
+         Creates a new StringFormatter instance.
+         </p><span class="label"> Parameters </span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20px"></td><td><code><span class="label">parameters</span>:Array</code> (default = <code>null</code>)<code></code></td></tr><tr><td class="paramSpacer">&nbsp;</td></tr><tr><td width="20px"></td><td><code><span class="label">source</span>:String</code> (default = <code>null</code>)<code></code></td></tr><tr><td class="paramSpacer">&nbsp;</td></tr><tr><td width="20px"></td><td><code><span class="label">evaluators</span>:Object</code> (default = <code>null</code>)<code></code></td></tr></table></div><a name="methodDetail"></a><div class="detailSectionHeader">Method Detail</div><a name="format()"></a><a name="format(any)"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">format</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td></tr></table><div class="detailBody"><code> public function format(value:* = null):String</code><p></p><p></p><p>
+         Formats the specified value.
+         </p><p><span class="label"> Parameters </span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20px"></td><td><code><span class="label">value</span>:*</code> (default = <code>null</code>)<code></code> &mdash; The object to format.
+         </td></tr></table></p><p></p><span class="label">Returns</span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20"></td><td><code>String</code> &mdash; the string representation of the formatted value. 
+         </td></tr></table></div><br/><br/><hr><br/><p></p><center class="copyright"><footer></footer><br/>Vendredi Mai 13 2011, 11:30 AM +02:00  </center></div></body></html><!--<br/>Vendredi Mai 13 2011, 11:30 AM +02:00  -->

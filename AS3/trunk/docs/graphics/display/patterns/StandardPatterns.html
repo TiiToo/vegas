@@ -1,0 +1,143 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd"><!-- saved from url=(0014)about:internet --><html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><link rel="stylesheet" href="../../../style.css" type="text/css" media="screen"><link rel="stylesheet" href="../../../print.css" type="text/css" media="print"><link rel="stylesheet" href="../../../prettify.css" type="text/css"><link rel="stylesheet" href="../../../override.css" type="text/css"><meta name="keywords" content="StandardPatterns,graphics.display.patterns.StandardPatterns,arare,furoshiki,kazari,koishi,lattice,latticeWide,lozenge,sebiro,shinbun,slantedLineA,slantedLineB,solidBar,solidBold,solidHorizonal,spot,tenugui,x"><title>graphics.display.patterns.StandardPatterns</title></head><body><script language="javascript" type="text/javascript" src="../../../prettify.js"></script><script language="javascript" type="text/javascript" src="../../../asdoc.js"></script><script language="javascript" type="text/javascript" src="../../../help.js"></script><script language="javascript" type="text/javascript" src="../../../cookies.js"></script><script language="javascript" type="text/javascript"><!--
+                asdocTitle = 'StandardPatterns - VEGAS AS3 Reference';
+                var baseRef = '../../../';
+                window.onload = configPage;
+            --></script>
+<script type="text/javascript">
+            scrollToNameAnchor();
+        </script><table class="titleTable" cellpadding="0" cellspacing="0" id="titleTable" style="display:none"><tr><td class="titleTableTitle" align="left">VEGAS AS3 Reference</td><td class="titleTableTopNav" align="right"><a href="../../../package-summary.html" onclick="loadClassListFrame('../../../all-classes.html')">All Packages</a>&nbsp;|&nbsp;<a href="../../../class-summary.html" onclick="loadClassListFrame('../../../all-classes.html')">All Classes</a>&nbsp;|&nbsp;<a href="../../../all-index-A.html" onclick="loadClassListFrame('../../../index-list.html')">Index</a>&nbsp;|&nbsp;<a id="framesLink1" href="../../../index.html?graphics/display/patterns/StandardPatterns.html&amp;graphics/display/patterns/class-list.html">Frames</a><a id="noFramesLink1" style="display:none" href="" onclick="parent.location=document.location"> No Frames </a></td><td class="titleTableLogo" align="right" rowspan="3"><img src="../../../images/logo.jpg" class="logoImage" alt=" Adobe Logo " title=" Adobe Logo "></td></tr><tr class="titleTableRow2"><td class="titleTableSubTitle" id="subTitle" align="left">StandardPatterns</td><td class="titleTableSubNav" id="subNav" align="right"><a href="#methodSummary">Methods</a></td></tr><tr class="titleTableRow3"><td colspan="3">&nbsp;</td></tr></table><script language="javascript" type="text/javascript" xml:space="preserve">
+                <!--
+                
+                    if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("StandardPatterns"); titleBar_setSubNav(false,false,false,false,false,false,false,false,true,false,false    ,false,false,false,false,false);}    
+                -->
+            </script><div xmlns:fn="http://www.w3.org/2005/xpath-functions" class="MainContent"><table class="classHeaderTable" cellpadding="0" cellspacing="0"><tr><td class="classHeaderTableLabel">Package</td><td><a href="package-detail.html" onclick="javascript:loadClassListFrame('class-list.html')">graphics.display.patterns</a></td></tr><tr><td class="classHeaderTableLabel">Class</td><td class="classSignature">public  class  StandardPatterns</td></tr><tr><td class="classHeaderTableLabel">Inheritance</td><td class="inheritanceList">StandardPatterns  <img src="../../../images/inherit-arrow.gif" title="Inheritance" alt="Inheritance" class="inheritArrow"> Object</td></tr></table><p></p><p></p><p></p>
+     This static factory generates standard patterns.
+     <p>
+                  <b>Example :</b>
+               </p>
+               <pre>
+     package examples.patterns 
+     {
+         import graphics.colors.RGBA;
+         
+         import graphics.display.Pattern;
+         import graphics.display.patterns.StandardPatterns;
+         import graphics.drawing.RectanglePen;
+         import graphics.FillBitmapStyle;
+         
+         import system.data.Iterator;
+         import system.data.iterators.ArrayIterator;
+         
+         import flash.display.Shape;
+         import flash.display.Sprite;
+         import flash.display.StageScaleMode;
+         import flash.events.Event;
+         import flash.events.MouseEvent;
+         
+         [SWF(width="190", height="190", frameRate="24", backgroundColor="#EEEEEE")]
+         
+         public class ExampleStandardPatterns extends Sprite
+         {
+             public function ExampleStandardPatterns()
+             {
+                 ///////////
+                 
+                 stage.scaleMode = StageScaleMode.NO_SCALE ;
+                 
+                 stage.addEventListener( MouseEvent.MOUSE_DOWN , next ) ;
+                 
+                 ///////////
+                 
+                 var shape:Shape = new Shape() ;
+                 
+                 shape.x = 10 ;
+                 shape.y = 10 ;
+                 
+                 addChild(shape) ;
+                 
+                 ///////////
+                 
+                 var pattern:Pattern = StandardPatterns.slantedLineA(0xFFFF0000) ;
+                 
+                 pen = new RectanglePen(shape) ;
+                 pen.fill = new FillBitmapStyle(pattern, null, true) ;
+                 pen.draw(0, 0, 170, 170) ;
+                 
+                 ///////////
+                 
+                 iterator = new ArrayIterator( patterns ) ;
+             }
+             
+             public var iterator:Iterator ;
+             
+             public var patterns:Array =
+             [
+                 StandardPatterns.lattice        ( 0xFF000000 ) ,
+                 StandardPatterns.latticeWide    ( 0xFF000000 ) ,
+                 StandardPatterns.lozenge        ( 0xFF000000 ) ,
+                 StandardPatterns.slantedLineA   ( new RGBA( 255, 0, 0, 1) ) ,
+                 StandardPatterns.slantedLineB   ( new RGBA( 0, 255, 0, 1) ) ,
+                 StandardPatterns.solidBar       ( 0xFF000000 ) ,
+                 StandardPatterns.solidBold      ( 0xFF000000 ) ,
+                 StandardPatterns.solidHorizonal ( 0xFF000000 ) ,
+                 StandardPatterns.spot           ( 0xFF000000 ) ,
+                 StandardPatterns.x              ( 0xFF000000 )
+             ];
+             
+             public var pen:RectanglePen ;
+             
+             protected function next( e:Event ):void
+             {
+                 if ( ! iterator.hasNext() )
+                 {
+                     iterator.reset() ;
+                 }
+                 (pen.fill as FillBitmapStyle).bitmap = iterator.next() as Pattern;
+                 pen.draw() ;
+             }
+         }
+     }
+     </pre>
+            <p></p><br/><hr></div><a name="methodSummary"></a><div class="summarySection"><div class="summaryTableTitle">Public Methods </div><table cellspacing="0" cellpadding="3" class="summaryTable " id="summaryTableMethod"><tr><th>&nbsp;</th><th colspan="2">Method</th><th class="summaryTableOwnerCol">Defined By</th></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="#lattice()" class="signatureLink">lattice</a>(rgba:* = 0xFF000000):<a href="../../../graphics/display/Pattern.html">Pattern</a></div><div class="summaryTableDescription">[static] 
+         The lattice pattern.</div></td><td class="summaryTableOwnerCol">StandardPatterns</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="#latticeWide()" class="signatureLink">latticeWide</a>(rgba:* = 0xFF000000):<a href="../../../graphics/display/Pattern.html">Pattern</a></div><div class="summaryTableDescription">[static] 
+         The lattice wide pattern.</div></td><td class="summaryTableOwnerCol">StandardPatterns</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="#lozenge()" class="signatureLink">lozenge</a>(rgba:* = 0xFF000000):<a href="../../../graphics/display/Pattern.html">Pattern</a></div><div class="summaryTableDescription">[static] 
+         The lozenge pattern.</div></td><td class="summaryTableOwnerCol">StandardPatterns</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="#slantedLineA()" class="signatureLink">slantedLineA</a>(rgba:* = 0xFF000000):<a href="../../../graphics/display/Pattern.html">Pattern</a></div><div class="summaryTableDescription">[static] 
+         The slanted line(A) pattern.</div></td><td class="summaryTableOwnerCol">StandardPatterns</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="#slantedLineB()" class="signatureLink">slantedLineB</a>(rgba:* = 0xFF000000):<a href="../../../graphics/display/Pattern.html">Pattern</a></div><div class="summaryTableDescription">[static] 
+         The slanted line(B) pattern.</div></td><td class="summaryTableOwnerCol">StandardPatterns</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="#solidBar()" class="signatureLink">solidBar</a>(rgba:* = 0xFF000000):<a href="../../../graphics/display/Pattern.html">Pattern</a></div><div class="summaryTableDescription">[static] 
+         The solid bar pattern.</div></td><td class="summaryTableOwnerCol">StandardPatterns</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="#solidBold()" class="signatureLink">solidBold</a>(rgba:* = 0xFF000000):<a href="../../../graphics/display/Pattern.html">Pattern</a></div><div class="summaryTableDescription">[static] 
+         The solid bold pattern.</div></td><td class="summaryTableOwnerCol">StandardPatterns</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="#solidHorizonal()" class="signatureLink">solidHorizonal</a>(rgba:* = 0xFF000000):<a href="../../../graphics/display/Pattern.html">Pattern</a></div><div class="summaryTableDescription">[static] 
+         The solid horizontal pattern.</div></td><td class="summaryTableOwnerCol">StandardPatterns</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="#spot()" class="signatureLink">spot</a>(rgba:* = 0xFF000000):<a href="../../../graphics/display/Pattern.html">Pattern</a></div><div class="summaryTableDescription">[static] 
+         The spot pattern.</div></td><td class="summaryTableOwnerCol">StandardPatterns</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="#x()" class="signatureLink">x</a>(rgba:* = 0xFF000000):<a href="../../../graphics/display/Pattern.html">Pattern</a></div><div class="summaryTableDescription">[static] 
+         The X pattern.</div></td><td class="summaryTableOwnerCol">StandardPatterns</td></tr></table></div><script language="javascript" type="text/javascript"><!--
+										showHideInherited();
+										--></script><div class="MainContent"><a name="methodDetail"></a><div class="detailSectionHeader">Method Detail</div><a name="lattice()"></a><a name="lattice(any)"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">lattice</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td></tr></table><div class="detailBody"><code> public static function lattice(rgba:* = 0xFF000000):<a href="../../../graphics/display/Pattern.html">Pattern</a></code><p></p><p></p><p>
+         The lattice pattern.
+         </p><p><span class="label"> Parameters </span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20px"></td><td><code><span class="label">rgba</span>:*</code> (default = <code>0xFF000000</code>)<code></code> &mdash; The RGBA or rgba Number value (default 0xFF000000)
+         </td></tr></table></p><p></p><span class="label">Returns</span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20"></td><td><code><a href="../../../graphics/display/Pattern.html">Pattern</a></code></td></tr></table></div><a name="latticeWide()"></a><a name="latticeWide(any)"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">latticeWide</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code> public static function latticeWide(rgba:* = 0xFF000000):<a href="../../../graphics/display/Pattern.html">Pattern</a></code><p></p><p></p><p>
+         The lattice wide pattern.
+         </p><p><span class="label"> Parameters </span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20px"></td><td><code><span class="label">rgba</span>:*</code> (default = <code>0xFF000000</code>)<code></code> &mdash; The RGBA or rgba Number value (default 0xFF000000)
+         </td></tr></table></p><p></p><span class="label">Returns</span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20"></td><td><code><a href="../../../graphics/display/Pattern.html">Pattern</a></code></td></tr></table></div><a name="lozenge()"></a><a name="lozenge(any)"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">lozenge</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code> public static function lozenge(rgba:* = 0xFF000000):<a href="../../../graphics/display/Pattern.html">Pattern</a></code><p></p><p></p><p>
+         The lozenge pattern.
+         </p><p><span class="label"> Parameters </span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20px"></td><td><code><span class="label">rgba</span>:*</code> (default = <code>0xFF000000</code>)<code></code> &mdash; The RGBA or rgba Number value (default 0xFF000000)
+         </td></tr></table></p><p></p><span class="label">Returns</span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20"></td><td><code><a href="../../../graphics/display/Pattern.html">Pattern</a></code></td></tr></table></div><a name="slantedLineA()"></a><a name="slantedLineA(any)"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">slantedLineA</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code> public static function slantedLineA(rgba:* = 0xFF000000):<a href="../../../graphics/display/Pattern.html">Pattern</a></code><p></p><p></p><p>
+         The slanted line(A) pattern.
+         </p><p><span class="label"> Parameters </span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20px"></td><td><code><span class="label">rgba</span>:*</code> (default = <code>0xFF000000</code>)<code></code> &mdash; The RGBA or rgba Number value (default 0xFF000000)
+         </td></tr></table></p><p></p><span class="label">Returns</span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20"></td><td><code><a href="../../../graphics/display/Pattern.html">Pattern</a></code></td></tr></table></div><a name="slantedLineB()"></a><a name="slantedLineB(any)"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">slantedLineB</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code> public static function slantedLineB(rgba:* = 0xFF000000):<a href="../../../graphics/display/Pattern.html">Pattern</a></code><p></p><p></p><p>
+         The slanted line(B) pattern.
+         </p><p><span class="label"> Parameters </span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20px"></td><td><code><span class="label">rgba</span>:*</code> (default = <code>0xFF000000</code>)<code></code> &mdash; The RGBA or rgba Number value (default 0xFF000000)
+         </td></tr></table></p><p></p><span class="label">Returns</span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20"></td><td><code><a href="../../../graphics/display/Pattern.html">Pattern</a></code></td></tr></table></div><a name="solidBar()"></a><a name="solidBar(any)"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">solidBar</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code> public static function solidBar(rgba:* = 0xFF000000):<a href="../../../graphics/display/Pattern.html">Pattern</a></code><p></p><p></p><p>
+         The solid bar pattern.
+         </p><p><span class="label"> Parameters </span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20px"></td><td><code><span class="label">rgba</span>:*</code> (default = <code>0xFF000000</code>)<code></code> &mdash; The RGBA or rgba Number value (default 0xFF000000)
+         </td></tr></table></p><p></p><span class="label">Returns</span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20"></td><td><code><a href="../../../graphics/display/Pattern.html">Pattern</a></code></td></tr></table></div><a name="solidBold()"></a><a name="solidBold(any)"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">solidBold</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code> public static function solidBold(rgba:* = 0xFF000000):<a href="../../../graphics/display/Pattern.html">Pattern</a></code><p></p><p></p><p>
+         The solid bold pattern.
+         </p><p><span class="label"> Parameters </span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20px"></td><td><code><span class="label">rgba</span>:*</code> (default = <code>0xFF000000</code>)<code></code> &mdash; The RGBA or rgba Number value (default 0xFF000000)
+         </td></tr></table></p><p></p><span class="label">Returns</span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20"></td><td><code><a href="../../../graphics/display/Pattern.html">Pattern</a></code></td></tr></table></div><a name="solidHorizonal()"></a><a name="solidHorizonal(any)"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">solidHorizonal</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code> public static function solidHorizonal(rgba:* = 0xFF000000):<a href="../../../graphics/display/Pattern.html">Pattern</a></code><p></p><p></p><p>
+         The solid horizontal pattern.
+         </p><p><span class="label"> Parameters </span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20px"></td><td><code><span class="label">rgba</span>:*</code> (default = <code>0xFF000000</code>)<code></code> &mdash; The RGBA or rgba Number value (default 0xFF000000)
+         </td></tr></table></p><p></p><span class="label">Returns</span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20"></td><td><code><a href="../../../graphics/display/Pattern.html">Pattern</a></code></td></tr></table></div><a name="spot()"></a><a name="spot(any)"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">spot</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code> public static function spot(rgba:* = 0xFF000000):<a href="../../../graphics/display/Pattern.html">Pattern</a></code><p></p><p></p><p>
+         The spot pattern.
+         </p><p><span class="label"> Parameters </span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20px"></td><td><code><span class="label">rgba</span>:*</code> (default = <code>0xFF000000</code>)<code></code> &mdash; The RGBA or rgba Number value (default 0xFF000000)
+         </td></tr></table></p><p></p><span class="label">Returns</span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20"></td><td><code><a href="../../../graphics/display/Pattern.html">Pattern</a></code></td></tr></table></div><a name="x()"></a><a name="x(any)"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">x</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code> public static function x(rgba:* = 0xFF000000):<a href="../../../graphics/display/Pattern.html">Pattern</a></code><p></p><p></p><p>
+         The X pattern.
+         </p><p><span class="label"> Parameters </span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20px"></td><td><code><span class="label">rgba</span>:*</code> (default = <code>0xFF000000</code>)<code></code> &mdash; The RGBA or rgba Number value (default 0xFF000000)
+         </td></tr></table></p><p></p><span class="label">Returns</span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20"></td><td><code><a href="../../../graphics/display/Pattern.html">Pattern</a></code></td></tr></table></div><br/><br/><hr><br/><p></p><center class="copyright"><footer></footer><br/>Vendredi Mai 13 2011, 11:30 AM +02:00  </center></div></body></html><!--<br/>Vendredi Mai 13 2011, 11:30 AM +02:00  -->

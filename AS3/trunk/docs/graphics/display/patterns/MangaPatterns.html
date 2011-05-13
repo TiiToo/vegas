@@ -1,0 +1,129 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd"><!-- saved from url=(0014)about:internet --><html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><link rel="stylesheet" href="../../../style.css" type="text/css" media="screen"><link rel="stylesheet" href="../../../print.css" type="text/css" media="print"><link rel="stylesheet" href="../../../prettify.css" type="text/css"><link rel="stylesheet" href="../../../override.css" type="text/css"><meta name="keywords" content="MangaPatterns,graphics.display.patterns.MangaPatterns,arare,furoshiki,kazari,koishi,lattice,latticeWide,lozenge,sebiro,shinbun,slantedLineA,slantedLineB,solidBar,solidBold,solidHorizonal,spot,tenugui,x"><title>graphics.display.patterns.MangaPatterns</title></head><body><script language="javascript" type="text/javascript" src="../../../prettify.js"></script><script language="javascript" type="text/javascript" src="../../../asdoc.js"></script><script language="javascript" type="text/javascript" src="../../../help.js"></script><script language="javascript" type="text/javascript" src="../../../cookies.js"></script><script language="javascript" type="text/javascript"><!--
+                asdocTitle = 'MangaPatterns - VEGAS AS3 Reference';
+                var baseRef = '../../../';
+                window.onload = configPage;
+            --></script>
+<script type="text/javascript">
+            scrollToNameAnchor();
+        </script><table class="titleTable" cellpadding="0" cellspacing="0" id="titleTable" style="display:none"><tr><td class="titleTableTitle" align="left">VEGAS AS3 Reference</td><td class="titleTableTopNav" align="right"><a href="../../../package-summary.html" onclick="loadClassListFrame('../../../all-classes.html')">All Packages</a>&nbsp;|&nbsp;<a href="../../../class-summary.html" onclick="loadClassListFrame('../../../all-classes.html')">All Classes</a>&nbsp;|&nbsp;<a href="../../../all-index-A.html" onclick="loadClassListFrame('../../../index-list.html')">Index</a>&nbsp;|&nbsp;<a id="framesLink1" href="../../../index.html?graphics/display/patterns/MangaPatterns.html&amp;graphics/display/patterns/class-list.html">Frames</a><a id="noFramesLink1" style="display:none" href="" onclick="parent.location=document.location"> No Frames </a></td><td class="titleTableLogo" align="right" rowspan="3"><img src="../../../images/logo.jpg" class="logoImage" alt=" Adobe Logo " title=" Adobe Logo "></td></tr><tr class="titleTableRow2"><td class="titleTableSubTitle" id="subTitle" align="left">MangaPatterns</td><td class="titleTableSubNav" id="subNav" align="right"><a href="#methodSummary">Methods</a></td></tr><tr class="titleTableRow3"><td colspan="3">&nbsp;</td></tr></table><script language="javascript" type="text/javascript" xml:space="preserve">
+                <!--
+                
+                    if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("MangaPatterns"); titleBar_setSubNav(false,false,false,false,false,false,false,false,true,false,false    ,false,false,false,false,false);}    
+                -->
+            </script><div xmlns:fn="http://www.w3.org/2005/xpath-functions" class="MainContent"><table class="classHeaderTable" cellpadding="0" cellspacing="0"><tr><td class="classHeaderTableLabel">Package</td><td><a href="package-detail.html" onclick="javascript:loadClassListFrame('class-list.html')">graphics.display.patterns</a></td></tr><tr><td class="classHeaderTableLabel">Class</td><td class="classSignature">public  class  MangaPatterns</td></tr><tr><td class="classHeaderTableLabel">Inheritance</td><td class="inheritanceList">MangaPatterns  <img src="../../../images/inherit-arrow.gif" title="Inheritance" alt="Inheritance" class="inheritArrow"> Object</td></tr></table><p></p><p></p><p></p>
+     This static factory generates manga patterns.
+     <p>
+                  <b>Example :</b>
+               </p>
+               <pre>
+     package examples.patterns
+     {
+         import graphics.colors.RGBA;
+         import graphics.display.Pattern;
+         import graphics.display.patterns.MangaPatterns;
+         import graphics.drawing.RectanglePen;
+         import graphics.FillBitmapStyle;
+          
+         import system.data.Iterator;
+         import system.data.iterators.ArrayIterator;
+          
+         import flash.display.Shape;
+         import flash.display.Sprite;
+         import flash.display.StageScaleMode;
+         import flash.events.Event;
+         import flash.events.MouseEvent;
+         
+         [SWF(width="190", height="190", frameRate="24", backgroundColor="#EEEEEE")]
+         
+         public class ExampleMangaPatterns extends Sprite
+         {
+             public function ExampleMangaPatterns()
+             {
+                 ///////////
+                 
+                 stage.scaleMode = StageScaleMode.NO_SCALE ;
+                 
+                 stage.addEventListener( MouseEvent.MOUSE_DOWN , next ) ;
+                 
+                 ///////////
+                 
+                 var shape:Shape = new Shape() ;
+                 
+                 shape.x = 10 ;
+                 shape.y = 10 ;
+                 
+                 addChild( shape ) ;
+                 
+                 ///////////
+                 
+                 var pattern:Pattern = MangaPatterns.arare( 0xFF666666 ) ;
+                 
+                 pen      = new RectanglePen( shape ) ;
+                 pen.fill = new FillBitmapStyle( pattern, null, true ) ;
+                 
+                 pen.draw( 0, 0, 170, 170 ) ;
+                 
+                 ///////////
+                 
+                 iterator = new ArrayIterator( patterns ) ;
+             }
+             
+             public var iterator:Iterator ;
+             
+             public var patterns:Array =
+             [
+                 MangaPatterns.arare     ( new RGBA(255, 0, 0, 1) ) ,
+                 MangaPatterns.furoshiki ( new RGBA(255, 0, 0, 1) ) ,
+                 MangaPatterns.koishi    ( new RGBA(255, 0, 0, 1) ) ,
+                 MangaPatterns.kazari    ( new RGBA(255, 0, 0, 1) ) ,
+                 MangaPatterns.sebiro    ( new RGBA(255, 0, 0, 1) ) ,
+                 MangaPatterns.shinbun   ( new RGBA(255, 0, 0, 1) ) ,
+                 MangaPatterns.tenugui   ( new RGBA(255, 0, 0, 1) ) 
+             ];
+             
+             public var pen:RectanglePen ;
+             
+             protected function next( e:Event ):void
+             {
+                 if ( ! iterator.hasNext() )
+                 {
+                     iterator.reset() ;
+                 }
+                 (pen.fill as FillBitmapStyle).bitmap = iterator.next() as Pattern;
+                 pen.draw() ;
+             }
+         }
+     }
+     </pre>
+            <p></p><br/><hr></div><a name="methodSummary"></a><div class="summarySection"><div class="summaryTableTitle">Public Methods </div><table cellspacing="0" cellpadding="3" class="summaryTable " id="summaryTableMethod"><tr><th>&nbsp;</th><th colspan="2">Method</th><th class="summaryTableOwnerCol">Defined By</th></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="#arare()" class="signatureLink">arare</a>(rgba:* = 0xFF000000):<a href="../../../graphics/display/Pattern.html">Pattern</a></div><div class="summaryTableDescription">[static] 
+         The ARARE （あられ）pattern.</div></td><td class="summaryTableOwnerCol">MangaPatterns</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="#furoshiki()" class="signatureLink">furoshiki</a>(rgba:* = 0xFF000000):<a href="../../../graphics/display/Pattern.html">Pattern</a></div><div class="summaryTableDescription">[static] 
+         The FUROSHIKI（風呂敷）pattern.</div></td><td class="summaryTableOwnerCol">MangaPatterns</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="#kazari()" class="signatureLink">kazari</a>(rgba:* = 0xFF000000):<a href="../../../graphics/display/Pattern.html">Pattern</a></div><div class="summaryTableDescription">[static] 
+         The KAZARI（錺り）pattern.</div></td><td class="summaryTableOwnerCol">MangaPatterns</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="#koishi()" class="signatureLink">koishi</a>(rgba:* = 0xFF000000):<a href="../../../graphics/display/Pattern.html">Pattern</a></div><div class="summaryTableDescription">[static] 
+         The KOISHI（小石）pattern.</div></td><td class="summaryTableOwnerCol">MangaPatterns</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="#sebiro()" class="signatureLink">sebiro</a>(rgba:* = 0xFF000000):<a href="../../../graphics/display/Pattern.html">Pattern</a></div><div class="summaryTableDescription">[static] 
+         The SEBIRO（背広）pattern.</div></td><td class="summaryTableOwnerCol">MangaPatterns</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="#shinbun()" class="signatureLink">shinbun</a>(rgba:* = 0xFF000000):<a href="../../../graphics/display/Pattern.html">Pattern</a></div><div class="summaryTableDescription">[static] 
+         The SHINBUN（新聞) pattern.</div></td><td class="summaryTableOwnerCol">MangaPatterns</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="#tenugui()" class="signatureLink">tenugui</a>(rgba:* = 0xFF000000):<a href="../../../graphics/display/Pattern.html">Pattern</a></div><div class="summaryTableDescription">[static] 
+         The TENUGUI（手拭）pattern
+         </div></td><td class="summaryTableOwnerCol">MangaPatterns</td></tr></table></div><script language="javascript" type="text/javascript"><!--
+										showHideInherited();
+										--></script><div class="MainContent"><a name="methodDetail"></a><div class="detailSectionHeader">Method Detail</div><a name="arare()"></a><a name="arare(any)"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">arare</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td></tr></table><div class="detailBody"><code> public static function arare(rgba:* = 0xFF000000):<a href="../../../graphics/display/Pattern.html">Pattern</a></code><p></p><p></p><p>
+         The ARARE （あられ）pattern.
+         </p><p><span class="label"> Parameters </span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20px"></td><td><code><span class="label">rgba</span>:*</code> (default = <code>0xFF000000</code>)<code></code> &mdash; The RGBA or rgba Number value (default 0xFF000000)
+         </td></tr></table></p><p></p><span class="label">Returns</span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20"></td><td><code><a href="../../../graphics/display/Pattern.html">Pattern</a></code></td></tr></table></div><a name="furoshiki()"></a><a name="furoshiki(any)"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">furoshiki</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code> public static function furoshiki(rgba:* = 0xFF000000):<a href="../../../graphics/display/Pattern.html">Pattern</a></code><p></p><p></p><p>
+         The FUROSHIKI（風呂敷）pattern.
+         </p><p><span class="label"> Parameters </span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20px"></td><td><code><span class="label">rgba</span>:*</code> (default = <code>0xFF000000</code>)<code></code> &mdash; The RGBA or rgba Number value (default 0xFF000000)
+         </td></tr></table></p><p></p><span class="label">Returns</span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20"></td><td><code><a href="../../../graphics/display/Pattern.html">Pattern</a></code></td></tr></table></div><a name="kazari()"></a><a name="kazari(any)"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">kazari</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code> public static function kazari(rgba:* = 0xFF000000):<a href="../../../graphics/display/Pattern.html">Pattern</a></code><p></p><p></p><p>
+         The KAZARI（錺り）pattern.
+         </p><p><span class="label"> Parameters </span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20px"></td><td><code><span class="label">rgba</span>:*</code> (default = <code>0xFF000000</code>)<code></code> &mdash; The RGBA or rgba Number value (default 0xFF000000)
+         </td></tr></table></p><p></p><span class="label">Returns</span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20"></td><td><code><a href="../../../graphics/display/Pattern.html">Pattern</a></code></td></tr></table></div><a name="koishi()"></a><a name="koishi(any)"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">koishi</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code> public static function koishi(rgba:* = 0xFF000000):<a href="../../../graphics/display/Pattern.html">Pattern</a></code><p></p><p></p><p>
+         The KOISHI（小石）pattern.
+         </p><p><span class="label"> Parameters </span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20px"></td><td><code><span class="label">rgba</span>:*</code> (default = <code>0xFF000000</code>)<code></code> &mdash; The RGBA or rgba Number value (default 0xFF000000)
+         </td></tr></table></p><p></p><span class="label">Returns</span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20"></td><td><code><a href="../../../graphics/display/Pattern.html">Pattern</a></code></td></tr></table></div><a name="sebiro()"></a><a name="sebiro(any)"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">sebiro</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code> public static function sebiro(rgba:* = 0xFF000000):<a href="../../../graphics/display/Pattern.html">Pattern</a></code><p></p><p></p><p>
+         The SEBIRO（背広）pattern.
+         </p><p><span class="label"> Parameters </span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20px"></td><td><code><span class="label">rgba</span>:*</code> (default = <code>0xFF000000</code>)<code></code> &mdash; The RGBA or rgba Number value (default 0xFF000000)
+         </td></tr></table></p><p></p><span class="label">Returns</span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20"></td><td><code><a href="../../../graphics/display/Pattern.html">Pattern</a></code></td></tr></table></div><a name="shinbun()"></a><a name="shinbun(any)"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">shinbun</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code> public static function shinbun(rgba:* = 0xFF000000):<a href="../../../graphics/display/Pattern.html">Pattern</a></code><p></p><p></p><p>
+         The SHINBUN（新聞) pattern.
+         </p><p><span class="label"> Parameters </span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20px"></td><td><code><span class="label">rgba</span>:*</code> (default = <code>0xFF000000</code>)<code></code> &mdash; The RGBA or rgba Number value (default 0xFF000000)
+         </td></tr></table></p><p></p><span class="label">Returns</span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20"></td><td><code><a href="../../../graphics/display/Pattern.html">Pattern</a></code></td></tr></table></div><a name="tenugui()"></a><a name="tenugui(any)"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">tenugui</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code> public static function tenugui(rgba:* = 0xFF000000):<a href="../../../graphics/display/Pattern.html">Pattern</a></code><p></p><p></p><p>
+         The TENUGUI（手拭）pattern
+         </p><p><span class="label"> Parameters </span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20px"></td><td><code><span class="label">rgba</span>:*</code> (default = <code>0xFF000000</code>)<code></code> &mdash; The RGBA or rgba Number value (default 0xFF000000)
+         </td></tr></table></p><p></p><span class="label">Returns</span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20"></td><td><code><a href="../../../graphics/display/Pattern.html">Pattern</a></code></td></tr></table></div><br/><br/><hr><br/><p></p><center class="copyright"><footer></footer><br/>Vendredi Mai 13 2011, 11:30 AM +02:00  </center></div></body></html><!--<br/>Vendredi Mai 13 2011, 11:30 AM +02:00  -->

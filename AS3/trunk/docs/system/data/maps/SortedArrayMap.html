@@ -1,0 +1,265 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd"><!-- saved from url=(0014)about:internet --><html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><link rel="stylesheet" href="../../../style.css" type="text/css" media="screen"><link rel="stylesheet" href="../../../print.css" type="text/css" media="print"><link rel="stylesheet" href="../../../prettify.css" type="text/css"><link rel="stylesheet" href="../../../override.css" type="text/css"><meta name="keywords" content="SortedArrayMap,system.data.maps.SortedArrayMap,CASEINSENSITIVE,DESCENDING,KEY,NONE,NUMERIC,RETURNINDEXEDARRAY,UNIQUESORT,VALUE,comparator,formatter,instance,internalBuildClass,internalBuildClass,key,options,sortBy,type,value,clear,clear,clear,clear,clear,clone,clone,clone,clone,clone,clone,contains,containsByKey,containsKey,containsKey,containsKey,containsKey,containsValue,containsValue,containsValue,containsValue,containsValueByKey,createCollection,format,format,get,get,get,get,getCollection,getKeyAt,getKeys,getKeys,getKeys,getKeys,getNumber,getSet,getValueAt,getValues,getValues,getValues,getValues,indexOfKey,indexOfValue,isEmpty,isEmpty,isEmpty,isEmpty,iterator,iterator,iterator,iterator,iteratorByKey,keyIterator,keyIterator,keyIterator,keyIterator,put,put,put,put,put,putAll,putAll,putAll,putAll,putCollection,putCollection,remove,remove,remove,remove,remove,removeByKey,removeByKey,setKeyAt,setValueAt,size,size,size,size,sort,sortOn,supports,toArray,toSource,toSource,toSource,toSource,toString,toString,toString,toString,toString,totalSize,validate,valueIterator,values,valuesIterator"><title>system.data.maps.SortedArrayMap</title></head><body><script language="javascript" type="text/javascript" src="../../../prettify.js"></script><script language="javascript" type="text/javascript" src="../../../asdoc.js"></script><script language="javascript" type="text/javascript" src="../../../help.js"></script><script language="javascript" type="text/javascript" src="../../../cookies.js"></script><script language="javascript" type="text/javascript"><!--
+                asdocTitle = 'SortedArrayMap - VEGAS AS3 Reference';
+                var baseRef = '../../../';
+                window.onload = configPage;
+            --></script>
+<script type="text/javascript">
+            scrollToNameAnchor();
+        </script><table class="titleTable" cellpadding="0" cellspacing="0" id="titleTable" style="display:none"><tr><td class="titleTableTitle" align="left">VEGAS AS3 Reference</td><td class="titleTableTopNav" align="right"><a href="../../../package-summary.html" onclick="loadClassListFrame('../../../all-classes.html')">All Packages</a>&nbsp;|&nbsp;<a href="../../../class-summary.html" onclick="loadClassListFrame('../../../all-classes.html')">All Classes</a>&nbsp;|&nbsp;<a href="../../../all-index-A.html" onclick="loadClassListFrame('../../../index-list.html')">Index</a>&nbsp;|&nbsp;<a id="framesLink1" href="../../../index.html?system/data/maps/SortedArrayMap.html&amp;system/data/maps/class-list.html">Frames</a><a id="noFramesLink1" style="display:none" href="" onclick="parent.location=document.location"> No Frames </a></td><td class="titleTableLogo" align="right" rowspan="3"><img src="../../../images/logo.jpg" class="logoImage" alt=" Adobe Logo " title=" Adobe Logo "></td></tr><tr class="titleTableRow2"><td class="titleTableSubTitle" id="subTitle" align="left">SortedArrayMap</td><td class="titleTableSubNav" id="subNav" align="right"><a href="#propertySummary">Properties</a>&nbsp;| <a href="#methodSummary">Methods</a>&nbsp;| <a href="#constantSummary">Constants</a></td></tr><tr class="titleTableRow3"><td colspan="3">&nbsp;</td></tr></table><script language="javascript" type="text/javascript" xml:space="preserve">
+                <!--
+                
+                    if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("SortedArrayMap"); titleBar_setSubNav(true,true,false,false,false,false,false,false,true,false,false    ,false,false,false,false,false);}    
+                -->
+            </script><div xmlns:fn="http://www.w3.org/2005/xpath-functions" class="MainContent"><table class="classHeaderTable" cellpadding="0" cellspacing="0"><tr><td class="classHeaderTableLabel">Package</td><td><a href="package-detail.html" onclick="javascript:loadClassListFrame('class-list.html')">system.data.maps</a></td></tr><tr><td class="classHeaderTableLabel">Class</td><td class="classSignature">public  class  SortedArrayMap</td></tr><tr><td class="classHeaderTableLabel">Inheritance</td><td class="inheritanceList">SortedArrayMap  <img src="../../../images/inherit-arrow.gif" title="Inheritance" alt="Inheritance" class="inheritArrow"> <a href="../../../system/data/maps/ArrayMap.html">ArrayMap</a> <img src="../../../images/inherit-arrow.gif" title="Inheritance" alt="Inheritance" class="inheritArrow"> Object</td></tr><tr><td class="classHeaderTableLabel">Implements</td><td> <a href="../../../system/Sortable.html">Sortable</a></td></tr></table><p></p><p></p><p></p>
+     This <code>ArrayMap</code> can be sorted with a <code>Comparator</code> object.
+     <p>
+                  <b>Example :</b>
+               </p>
+               <pre>
+     import system.data.maps.SortedArrayMap ;
+     
+     import system.comparators.NumberComparator ;
+     import system.comparators.StringComparator ;
+     
+     var map:SortedArrayMap = new SortedArrayMap( [0] , ["item0"] ) ;
+     
+     map.put( 1 , "item8" ) ;
+     map.put( 3 , "item7" ) ;
+     map.put( 2 , "item6" ) ;
+     map.put( 5 , "item5" ) ;
+     map.put( 4 , "item4" ) ;
+     map.put( 7 , "item3" ) ;
+     map.put( 6 , "item2" ) ;
+     map.put( 8 , "item1" ) ;
+     
+     trace("----- original Map") ;
+     
+     trace( map ) ;
+     
+     trace("----- sort by key with sort() method") ;
+     
+     map.comparator = new NumberComparator() ;
+     
+     map.options = SortedArrayMap.NUMERIC | SortedArrayMap.DESCENDING ;
+     map.sort() ;
+     trace( map ) ;
+     
+     map.options = SortedArrayMap.NUMERIC ;
+     map.sort() ;
+     trace( map ) ;
+     
+     trace("----- sort by value with sort() method") ;
+     
+     map.comparator = new StringComparator() ;
+     map.sortBy = SortedArrayMap.VALUE ;
+     
+     map.options = SortedArrayMap.DESCENDING ;
+     map.sort() ;
+     trace( map ) ;
+     
+     map.options = SortedArrayMap.NONE ;
+     map.sort() ;
+     trace( map ) ;
+     </pre>
+            <p></p><br/><hr></div><a name="propertySummary"></a><div class="summarySection"><div class="summaryTableTitle">Public Properties</div><table cellspacing="0" cellpadding="3" class="summaryTable " id="summaryTableProperty"><tr><th>&nbsp;</th><th colspan="2">Property</th><th class="summaryTableOwnerCol">Defined By</th></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a href="#comparator" class="signatureLink">comparator</a> : <a href="../../../system/Comparator.html">Comparator</a><div class="summaryTableDescription">
+         Determinates the Comparator object used in the map to sort the entries.</div></td><td class="summaryTableOwnerCol">SortedArrayMap</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a href="#options" class="signatureLink">options</a> : uint<div class="summaryTableDescription">
+         Indicates the options to sort the elements in the Map.</div></td><td class="summaryTableOwnerCol">SortedArrayMap</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a href="#sortBy" class="signatureLink">sortBy</a> : String<div class="summaryTableDescription">
+         Indicates if the map entries are sorted by value or key.</div></td><td class="summaryTableOwnerCol">SortedArrayMap</td></tr></table></div><a name="methodSummary"></a><div class="summarySection"><div class="summaryTableTitle">Public Methods </div><div class="showHideLinks"><div id="hideInheritedMethod" class="hideInheritedMethod"><a class="showHideLink" href="#methodSummary" onclick="javascript:setInheritedVisible(false,'Method');"><img class="showHideLinkImage" src="../../../images/expanded.gif"> Hide Inherited Public Methods</a></div><div id="showInheritedMethod" class="showInheritedMethod"><a class="showHideLink" href="#methodSummary" onclick="javascript:setInheritedVisible(true,'Method');"><img class="showHideLinkImage" src="../../../images/collapsed.gif"> Show Inherited Public Methods</a></div></div><table cellspacing="0" cellpadding="3" class="summaryTable " id="summaryTableMethod"><tr><th>&nbsp;</th><th colspan="2">Method</th><th class="summaryTableOwnerCol">Defined By</th></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="#SortedArrayMap()" class="signatureLink">SortedArrayMap</a>(... arguments)</div><div class="summaryTableDescription">
+         Creates a new SortedArrayMap instance.</div></td><td class="summaryTableOwnerCol">SortedArrayMap</td></tr><tr class="hideInheritedMethod"><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img src="../../../images/inheritedSummary.gif" alt="Inherited" title="Inherited" class="inheritedSummaryImage"></td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="../../../system/data/maps/ArrayMap.html#clear()" class="signatureLink">clear</a>():void</div><div class="summaryTableDescription">
+         Removes all mappings from this map.</div></td><td class="summaryTableOwnerCol"><a href="../../../system/data/maps/ArrayMap.html">ArrayMap</a></td></tr><tr class="hideInheritedMethod"><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img src="../../../images/inheritedSummary.gif" alt="Inherited" title="Inherited" class="inheritedSummaryImage"></td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="../../../system/data/maps/ArrayMap.html#clone()" class="signatureLink">clone</a>():*</div><div class="summaryTableDescription">
+         Returns a shallow copy of this HashMap instance: the keys and values themselves are not cloned.</div></td><td class="summaryTableOwnerCol"><a href="../../../system/data/maps/ArrayMap.html">ArrayMap</a></td></tr><tr class="hideInheritedMethod"><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img src="../../../images/inheritedSummary.gif" alt="Inherited" title="Inherited" class="inheritedSummaryImage"></td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="../../../system/data/maps/ArrayMap.html#containsKey()" class="signatureLink">containsKey</a>(key:*):Boolean</div><div class="summaryTableDescription">
+         Returns true if this map contains a mapping for the specified key.</div></td><td class="summaryTableOwnerCol"><a href="../../../system/data/maps/ArrayMap.html">ArrayMap</a></td></tr><tr class="hideInheritedMethod"><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img src="../../../images/inheritedSummary.gif" alt="Inherited" title="Inherited" class="inheritedSummaryImage"></td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="../../../system/data/maps/ArrayMap.html#containsValue()" class="signatureLink">containsValue</a>(value:*):Boolean</div><div class="summaryTableDescription">
+         Returns true if this map maps one or more keys to the specified value.</div></td><td class="summaryTableOwnerCol"><a href="../../../system/data/maps/ArrayMap.html">ArrayMap</a></td></tr><tr class="hideInheritedMethod"><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img src="../../../images/inheritedSummary.gif" alt="Inherited" title="Inherited" class="inheritedSummaryImage"></td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="../../../system/data/maps/ArrayMap.html#get()" class="signatureLink">get</a>(key:*):*</div><div class="summaryTableDescription">
+         Returns the value to which this map maps the specified key.</div></td><td class="summaryTableOwnerCol"><a href="../../../system/data/maps/ArrayMap.html">ArrayMap</a></td></tr><tr class="hideInheritedMethod"><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img src="../../../images/inheritedSummary.gif" alt="Inherited" title="Inherited" class="inheritedSummaryImage"></td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="../../../system/data/maps/ArrayMap.html#getKeyAt()" class="signatureLink">getKeyAt</a>(index:uint):*</div><div class="summaryTableDescription">
+         Returns the key registered at the specified index in the array map.</div></td><td class="summaryTableOwnerCol"><a href="../../../system/data/maps/ArrayMap.html">ArrayMap</a></td></tr><tr class="hideInheritedMethod"><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img src="../../../images/inheritedSummary.gif" alt="Inherited" title="Inherited" class="inheritedSummaryImage"></td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="../../../system/data/maps/ArrayMap.html#getKeys()" class="signatureLink">getKeys</a>():Array</div><div class="summaryTableDescription">
+         Returns an array representation of all keys in the map.</div></td><td class="summaryTableOwnerCol"><a href="../../../system/data/maps/ArrayMap.html">ArrayMap</a></td></tr><tr class="hideInheritedMethod"><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img src="../../../images/inheritedSummary.gif" alt="Inherited" title="Inherited" class="inheritedSummaryImage"></td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="../../../system/data/maps/ArrayMap.html#getValueAt()" class="signatureLink">getValueAt</a>(index:uint):*</div><div class="summaryTableDescription">
+         Returns the value registered at the specified index in the array map.</div></td><td class="summaryTableOwnerCol"><a href="../../../system/data/maps/ArrayMap.html">ArrayMap</a></td></tr><tr class="hideInheritedMethod"><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img src="../../../images/inheritedSummary.gif" alt="Inherited" title="Inherited" class="inheritedSummaryImage"></td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="../../../system/data/maps/ArrayMap.html#getValues()" class="signatureLink">getValues</a>():Array</div><div class="summaryTableDescription">
+         Returns an array representation of all values in the map.</div></td><td class="summaryTableOwnerCol"><a href="../../../system/data/maps/ArrayMap.html">ArrayMap</a></td></tr><tr class="hideInheritedMethod"><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img src="../../../images/inheritedSummary.gif" alt="Inherited" title="Inherited" class="inheritedSummaryImage"></td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="../../../system/data/maps/ArrayMap.html#indexOfKey()" class="signatureLink">indexOfKey</a>(key:*):int</div><div class="summaryTableDescription">
+         Returns the index position in the ArrayMap of the specified key.</div></td><td class="summaryTableOwnerCol"><a href="../../../system/data/maps/ArrayMap.html">ArrayMap</a></td></tr><tr class="hideInheritedMethod"><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img src="../../../images/inheritedSummary.gif" alt="Inherited" title="Inherited" class="inheritedSummaryImage"></td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="../../../system/data/maps/ArrayMap.html#indexOfValue()" class="signatureLink">indexOfValue</a>(value:*):int</div><div class="summaryTableDescription">
+         Returns the index position in the ArrayMap of the specified value.</div></td><td class="summaryTableOwnerCol"><a href="../../../system/data/maps/ArrayMap.html">ArrayMap</a></td></tr><tr class="hideInheritedMethod"><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img src="../../../images/inheritedSummary.gif" alt="Inherited" title="Inherited" class="inheritedSummaryImage"></td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="../../../system/data/maps/ArrayMap.html#isEmpty()" class="signatureLink">isEmpty</a>():Boolean</div><div class="summaryTableDescription">
+         Returns true if this map contains no key-value mappings.</div></td><td class="summaryTableOwnerCol"><a href="../../../system/data/maps/ArrayMap.html">ArrayMap</a></td></tr><tr class="hideInheritedMethod"><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img src="../../../images/inheritedSummary.gif" alt="Inherited" title="Inherited" class="inheritedSummaryImage"></td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="../../../system/data/maps/ArrayMap.html#iterator()" class="signatureLink">iterator</a>():<a href="../../../system/data/Iterator.html">Iterator</a></div><div class="summaryTableDescription">
+         Returns the values iterator of this map.</div></td><td class="summaryTableOwnerCol"><a href="../../../system/data/maps/ArrayMap.html">ArrayMap</a></td></tr><tr class="hideInheritedMethod"><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img src="../../../images/inheritedSummary.gif" alt="Inherited" title="Inherited" class="inheritedSummaryImage"></td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="../../../system/data/maps/ArrayMap.html#keyIterator()" class="signatureLink">keyIterator</a>():<a href="../../../system/data/Iterator.html">Iterator</a></div><div class="summaryTableDescription">
+         Returns the keys iterator of this map.</div></td><td class="summaryTableOwnerCol"><a href="../../../system/data/maps/ArrayMap.html">ArrayMap</a></td></tr><tr class="hideInheritedMethod"><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img src="../../../images/inheritedSummary.gif" alt="Inherited" title="Inherited" class="inheritedSummaryImage"></td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="../../../system/data/maps/ArrayMap.html#put()" class="signatureLink">put</a>(key:*, value:*):*</div><div class="summaryTableDescription">
+         Associates the specified value with the specified key in this map.</div></td><td class="summaryTableOwnerCol"><a href="../../../system/data/maps/ArrayMap.html">ArrayMap</a></td></tr><tr class="hideInheritedMethod"><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img src="../../../images/inheritedSummary.gif" alt="Inherited" title="Inherited" class="inheritedSummaryImage"></td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="../../../system/data/maps/ArrayMap.html#putAll()" class="signatureLink">putAll</a>(m:<a href="../../../system/data/Map.html">Map</a>):void</div><div class="summaryTableDescription">
+         Copies all of the mappings from the specified map to this one.</div></td><td class="summaryTableOwnerCol"><a href="../../../system/data/maps/ArrayMap.html">ArrayMap</a></td></tr><tr class="hideInheritedMethod"><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img src="../../../images/inheritedSummary.gif" alt="Inherited" title="Inherited" class="inheritedSummaryImage"></td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="../../../system/data/maps/ArrayMap.html#remove()" class="signatureLink">remove</a>(o:*):*</div><div class="summaryTableDescription">
+         Removes the mapping for this key from this map if present.</div></td><td class="summaryTableOwnerCol"><a href="../../../system/data/maps/ArrayMap.html">ArrayMap</a></td></tr><tr class="hideInheritedMethod"><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img src="../../../images/inheritedSummary.gif" alt="Inherited" title="Inherited" class="inheritedSummaryImage"></td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="../../../system/data/maps/ArrayMap.html#setKeyAt()" class="signatureLink">setKeyAt</a>(index:uint, key:*):*</div><div class="summaryTableDescription">
+         Sets the value of the "key" in the ArrayMap with the specified index.</div></td><td class="summaryTableOwnerCol"><a href="../../../system/data/maps/ArrayMap.html">ArrayMap</a></td></tr><tr class="hideInheritedMethod"><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img src="../../../images/inheritedSummary.gif" alt="Inherited" title="Inherited" class="inheritedSummaryImage"></td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="../../../system/data/maps/ArrayMap.html#setValueAt()" class="signatureLink">setValueAt</a>(index:uint, value:*):*</div><div class="summaryTableDescription">
+         Sets the value of the "value" in the ArrayMap with the specified index.</div></td><td class="summaryTableOwnerCol"><a href="../../../system/data/maps/ArrayMap.html">ArrayMap</a></td></tr><tr class="hideInheritedMethod"><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img src="../../../images/inheritedSummary.gif" alt="Inherited" title="Inherited" class="inheritedSummaryImage"></td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="../../../system/data/maps/ArrayMap.html#size()" class="signatureLink">size</a>():uint</div><div class="summaryTableDescription">
+         Returns the number of key-value mappings in this map.</div></td><td class="summaryTableOwnerCol"><a href="../../../system/data/maps/ArrayMap.html">ArrayMap</a></td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="#sort()" class="signatureLink">sort</a>():void</div><div class="summaryTableDescription">
+         Sorts the elements in Map by key or value with the current Comparator reference.</div></td><td class="summaryTableOwnerCol">SortedArrayMap</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="#sortOn()" class="signatureLink">sortOn</a>(fieldName:*, opts:Number):void</div><div class="summaryTableDescription">
+         Sorts the elements in the list according to one or more fields in the array.</div></td><td class="summaryTableOwnerCol">SortedArrayMap</td></tr><tr class="hideInheritedMethod"><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img src="../../../images/inheritedSummary.gif" alt="Inherited" title="Inherited" class="inheritedSummaryImage"></td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="../../../system/data/maps/ArrayMap.html#toSource()" class="signatureLink">toSource</a>(indent:int = 0):String</div><div class="summaryTableDescription">
+         Returns the eden String representation of this map.</div></td><td class="summaryTableOwnerCol"><a href="../../../system/data/maps/ArrayMap.html">ArrayMap</a></td></tr><tr class="hideInheritedMethod"><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img src="../../../images/inheritedSummary.gif" alt="Inherited" title="Inherited" class="inheritedSummaryImage"></td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="../../../system/data/maps/ArrayMap.html#toString()" class="signatureLink">toString</a>():String</div><div class="summaryTableDescription">
+         Returns the String representation of this map.</div></td><td class="summaryTableOwnerCol"><a href="../../../system/data/maps/ArrayMap.html">ArrayMap</a></td></tr></table></div><a name="constantSummary"></a><div class="summarySection"><div class="summaryTableTitle">Public Constants</div><table cellspacing="0" cellpadding="3" class="summaryTable " id="summaryTableConstant"><tr><th>&nbsp;</th><th colspan="2">Constant</th><th class="summaryTableOwnerCol">Defined By</th></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a href="#CASEINSENSITIVE" class="signatureLink">CASEINSENSITIVE</a> : uint = 1<div class="summaryTableDescription">[static] 
+         Specifies case-insensitive sorting for the Array class sorting methods.</div></td><td class="summaryTableOwnerCol">SortedArrayMap</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a href="#DESCENDING" class="signatureLink">DESCENDING</a> : uint = 2<div class="summaryTableDescription">[static] 
+         Specifies descending sorting for the Array class sorting methods.</div></td><td class="summaryTableOwnerCol">SortedArrayMap</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a href="#KEY" class="signatureLink">KEY</a> : String = key<div class="summaryTableDescription">[static] 
+         Defines the constant value of the sortPolicy property if the ArrayMap is sorted by "key".</div></td><td class="summaryTableOwnerCol">SortedArrayMap</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a href="#NONE" class="signatureLink">NONE</a> : uint = 0<div class="summaryTableDescription">[static] 
+         Specifies the default numeric sorting value for the Array class sorting methods.</div></td><td class="summaryTableOwnerCol">SortedArrayMap</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a href="#NUMERIC" class="signatureLink">NUMERIC</a> : uint = 16<div class="summaryTableDescription">[static] 
+         Specifies numeric (instead of character-string) sorting for the Array class sorting methods.</div></td><td class="summaryTableOwnerCol">SortedArrayMap</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a href="#RETURNINDEXEDARRAY" class="signatureLink">RETURNINDEXEDARRAY</a> : uint = 8<div class="summaryTableDescription">[static] 
+         Specifies that a sort returns an array that consists of array indices as a result of calling
+         the sort() or sortOn() method.</div></td><td class="summaryTableOwnerCol">SortedArrayMap</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a href="#UNIQUESORT" class="signatureLink">UNIQUESORT</a> : uint = 4<div class="summaryTableDescription">[static] 
+         Specifies the unique sorting requirement for the Array class sorting methods.</div></td><td class="summaryTableOwnerCol">SortedArrayMap</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a href="#VALUE" class="signatureLink">VALUE</a> : String = value<div class="summaryTableDescription">[static] 
+         Defines the constant value of the sortPolicy property if the ArrayMap is sorted by "value".</div></td><td class="summaryTableOwnerCol">SortedArrayMap</td></tr></table></div><script language="javascript" type="text/javascript"><!--
+										showHideInherited();
+										--></script><div class="MainContent"><div class="detailSectionHeader">Property Detail</div><a name="propertyDetail"></a><a name="comparator"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">comparator</td><td class="detailHeaderType">property</td></tr></table><div class="detailBody"><code>comparator:<a href="../../../system/Comparator.html">Comparator</a></code><p></p><p></p><p>
+         Determinates the Comparator object used in the map to sort the entries.
+         </p><br/><span class="label"> Implementation </span><br/><code>&nbsp;&nbsp;&nbsp;&nbsp;public function get comparator():<a href="../../../system:Comparator.html">Comparator</a></code><br/><code>&nbsp;&nbsp;&nbsp;&nbsp;public function set comparator(value:<a href="../../../system:Comparator.html">Comparator</a>):void</code><br/></div><a name="propertyDetail"></a><a name="options"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">options</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code>options:uint</code><p></p><p></p><p>
+         Indicates the options to sort the elements in the Map.
+         </p><br/><span class="label"> Implementation </span><br/><code>&nbsp;&nbsp;&nbsp;&nbsp;public function get options():uint</code><br/><code>&nbsp;&nbsp;&nbsp;&nbsp;public function set options(value:uint):void</code><br/></div><a name="propertyDetail"></a><a name="sortBy"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">sortBy</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code>sortBy:String</code><p></p><p></p><p>
+         Indicates if the map entries are sorted by value or key.
+         </p><br/><span class="label"> Implementation </span><br/><code>&nbsp;&nbsp;&nbsp;&nbsp;public function get sortBy():String</code><br/><code>&nbsp;&nbsp;&nbsp;&nbsp;public function set sortBy(value:String):void</code><br/></div><a name="constructorDetail"></a><div class="detailSectionHeader">Constructor Detail</div><a name="SortedArrayMap()"></a><a name="SortedArrayMap(restParam)"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">SortedArrayMap</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">Constructor</td></tr></table><div class="detailBody"><code>public function SortedArrayMap(... arguments)</code><p></p><p>
+         Creates a new SortedArrayMap instance.
+         </p><span class="label"> Parameters </span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20px"></td><td><code>... <span class="label">arguments</span></code> &mdash; An optional Array of all keys to fill in this Map.
+         </td></tr></table></div><a name="methodDetail"></a><div class="detailSectionHeader">Method Detail</div><a name="sort()"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">sort</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td></tr></table><div class="detailBody"><code> public function sort():void</code><p></p><p></p><p>
+         Sorts the elements in Map by key or value with the current Comparator reference.
+         <p><b>Example :</b></p>
+         <code>
+         import system.data.maps.SortedArrayMap ;
+         
+         import system.comparators.NumberComparator ;
+         
+         var map:SortedArrayMap = new SortedArrayMap() ;
+         
+         map.comparator = new NumberComparator() ;
+         
+         map.put( 1 , 4 ) ;
+         map.put( 3 , 2 ) ;
+         map.put( 4 , 3 ) ;
+         map.put( 2 , 1 ) ;
+         
+         trace(map) ; // {1:4,3:2,4:3,2:1}
+         
+         map.options = SortedArrayMap.DESCENDING ;
+         map.sort() ;
+         
+         trace(map) ; // {4:3,3:2,2:1,1:4}
+         
+         map.options = SortedArrayMap.NONE ;
+         map.sort() ;
+         
+         trace(map) ; // {1:4,2:1,3:2,4:3}
+         
+         map.sortBy = SortedArrayMap.VALUE ;
+         
+         map.options = SortedArrayMap.DESCENDING ;
+         map.sort() ;
+         
+         trace(map) ; // {1:4,4:3,3:2,2:1}
+         
+         map.options = SortedArrayMap.NONE ;
+         map.sort() ;
+         
+         trace(map) ; // {2:1,3:2,4:3,1:4}
+         </code>
+         </p><p><span class="label">See also</span></p><div class="seeAlso"><a href="SortedArrayMap.html#sortBy" target="">SortedArrayMap.sortBy</a></div></div><a name="sortOn()"></a><a name="sortOn(any,Number)"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">sortOn</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code> public function sortOn(fieldName:*, opts:Number):void</code><p></p><p></p><p>
+         Sorts the elements in the list according to one or more fields in the array.
+         <p><b>Example :</b></p>
+         <code>
+         import system.data.Iterator ;
+         import system.data.Map ;
+         import system.data.maps.SortedArrayMap ;
+         
+         var map:SortedArrayMap = new SortedArrayMap() ;
+         
+         map.put( { id:5 } , { name:'name4' } ) ;
+         map.put( { id:1 } , { name:'name1' } ) ;
+         map.put( { id:3 } , { name:'name5' } ) ;
+         map.put( { id:2 } , { name:'name2' } ) ;
+         map.put( { id:4 } , { name:'name3' } ) ;
+         
+         var debug:Function = function( map:Map ):void
+         {
+         
+             var vit:Iterator = map.iterator() ;
+             var kit:Iterator = map.keyIterator() ;
+             var str:String = "{" ;
+             
+             var key:;
+             var value:;
+                          
+             while( vit.hasNext() )
+             {
+                 value = vit.next() ;
+                 key   = kit.next() ;
+                 str += key.id + ":" + value.name ;
+                 if (vit.hasNext())
+                 {
+                     str += "," ;
+                 }
+             }
+             str += "}" ;
+             trace(str) ;
+         }
+         
+         trace("----- original Map") ;
+         
+         debug( map ) ; // {5:name4,1:name1,3:name5,2:name2,4:name3}
+         
+         trace("----- sort by key with sort() method") ;
+         
+         map.sortBy = SortedArrayMap.KEY ; // default
+         map.options = SortedArrayMap.NUMERIC | SortedArrayMap.DESCENDING ;
+         map.sortOn("id") ;
+         debug( map ) ; // {5:name4,4:name3,3:name5,2:name2,1:name1}
+         
+         map.options = SortedArrayMap.NUMERIC | SortedArrayMap.DESCENDING ;
+         map.sortOn("id") ;
+         debug( map ) ; // {5:name4,4:name3,3:name5,2:name2,1:name1}
+         
+         trace("----- sort by value with sort() method") ;
+         
+         map.sortBy = SortedArrayMap.VALUE ;
+         map.options = SortedArrayMap.DESCENDING ;
+         map.sortOn("name") ;
+         debug( map ) ; // {3:name5,5:name4,4:name3,2:name2,1:name1}
+         
+         map.options = SortedArrayMap.NONE ;
+         map.sortOn("name") ;
+         debug( map ) ; // {1:name1,2:name2,4:name3,5:name4,3:name5}
+         </code>
+         </p><p><span class="label"> Parameters </span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20px"></td><td><code><span class="label">fieldName</span>:*</code> &mdash; A string that identifies a field to be used as the sort value.
+         </td></tr><tr><td class="paramSpacer">&nbsp;</td></tr><tr><td width="20px"></td><td><code><span class="label">opts</span>:Number</code> (default = <code>NaN</code>)<code></code> &mdash; (optional) The option number value to use to sort this map.
+         </td></tr></table></p><p><span class="label">See also</span></p><div class="seeAlso"><a href="SortedArrayMap.html#sortBy" target="">SortedArrayMap.sortBy</a></div></div><div class="detailSectionHeader">Constant Detail</div><a name="constantDetail"></a><a name="CASEINSENSITIVE"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">CASEINSENSITIVE</td><td class="detailHeaderType">Constant</td></tr></table><div class="detailBody"><code>public static const CASEINSENSITIVE:uint = 1</code><p></p><p></p><p>
+         Specifies case-insensitive sorting for the Array class sorting methods. You can use this constant
+         for the <code>options</code> parameter in the <code>sort()</code> or <code>sortOn()</code> method. 
+         <p>The value of this constant is 1.</p>
+         </p></div><a name="constantDetail"></a><a name="DESCENDING"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">DESCENDING</td><td class="detailHeaderType">Constant</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code>public static const DESCENDING:uint = 2</code><p></p><p></p><p>
+         Specifies descending sorting for the Array class sorting methods. 
+         You can use this constant for the <code>options</code> parameter in the <code>sort()</code>
+         or <code>sortOn()</code> method. 
+         <p>The value of this constant is 2.</p>
+         </p></div><a name="constantDetail"></a><a name="KEY"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">KEY</td><td class="detailHeaderType">Constant</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code>public static const KEY:String = key</code><p></p><p></p><p>
+         Defines the constant value of the sortPolicy property if the ArrayMap is sorted by "key".
+         </p></div><a name="constantDetail"></a><a name="NONE"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">NONE</td><td class="detailHeaderType">Constant</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code>public static const NONE:uint = 0</code><p></p><p></p><p>
+         Specifies the default numeric sorting value for the Array class sorting methods.
+         <p>The value of this constant is 0.</p>
+         </p></div><a name="constantDetail"></a><a name="NUMERIC"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">NUMERIC</td><td class="detailHeaderType">Constant</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code>public static const NUMERIC:uint = 16</code><p></p><p></p><p>
+         Specifies numeric (instead of character-string) sorting for the Array class sorting methods. 
+         Including this constant in the <code>options</code>
+         parameter causes the <code>sort()</code> and <code>sortOn()</code> methods 
+         to sort numbers as numeric values, not as strings of numeric characters.  
+         Without the <code>NUMERIC</code> constant, sorting treats each array element as a 
+         character string and produces the results in Unicode order. 
+         
+         <p>For example, given the array of values <code>[2005, 7, 35]</code>, if the <code>NUMERIC</code> 
+         constant is <b>not</b> included in the <code>options</code> parameter, the 
+         sorted array is <code>[2005, 35, 7]</code>, but if the <code>NUMERIC</code> constant <b>is</b> included, 
+         the sorted array is <code>[7, 35, 2005]</code>. </p>
+         
+         <p>This constant applies only to numbers in the array; it does 
+         not apply to strings that contain numeric data such as <code>["23", "5"]</code>.</p>
+         
+         <p>The value of this constant is 16.</p>
+         </p></div><a name="constantDetail"></a><a name="RETURNINDEXEDARRAY"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">RETURNINDEXEDARRAY</td><td class="detailHeaderType">Constant</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code>public static const RETURNINDEXEDARRAY:uint = 8</code><p></p><p></p><p>
+         Specifies that a sort returns an array that consists of array indices as a result of calling
+         the <code>sort()</code> or <code>sortOn()</code> method. You can use this constant
+         for the <code>options</code> parameter in the <code>sort()</code> or <code>sortOn()</code> 
+         method, so you have access to multiple views on the array elements while the original array is unmodified. 
+         <p>The value of this constant is 8.</p>
+        </p></div><a name="constantDetail"></a><a name="UNIQUESORT"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">UNIQUESORT</td><td class="detailHeaderType">Constant</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code>public static const UNIQUESORT:uint = 4</code><p></p><p></p><p>
+         Specifies the unique sorting requirement for the Array class sorting methods. 
+         You can use this constant for the <code>options</code> parameter in the <code>sort()</code> or <code>sortOn()</code> method. 
+         The unique sorting option terminates the sort if any two elements or fields being sorted have identical values. 
+         <p>The value of this constant is 4.</p>
+         </p></div><a name="constantDetail"></a><a name="VALUE"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">VALUE</td><td class="detailHeaderType">Constant</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code>public static const VALUE:String = value</code><p></p><p></p><p>
+         Defines the constant value of the sortPolicy property if the ArrayMap is sorted by "value".
+         </p></div><br/><br/><hr><br/><p></p><center class="copyright"><footer></footer><br/>Vendredi Mai 13 2011, 11:30 AM +02:00  </center></div></body></html><!--<br/>Vendredi Mai 13 2011, 11:30 AM +02:00  -->

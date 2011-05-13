@@ -1,0 +1,191 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd"><!-- saved from url=(0014)about:internet --><html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><link rel="stylesheet" href="../../style.css" type="text/css" media="screen"><link rel="stylesheet" href="../../print.css" type="text/css" media="print"><link rel="stylesheet" href="../../prettify.css" type="text/css"><link rel="stylesheet" href="../../override.css" type="text/css"><meta name="keywords" content="URIScheme,system.network.URIScheme,AIRAPPLICATION,AIRSTORAGE,DNS,FILE,FTP,GOPHER,HTTP,HTTPS,IPv4,MAILTO,NEWS,NNTP,basic,defaultPort,delimiter,scheme,unknown"><title>system.network.URIScheme</title></head><body><script language="javascript" type="text/javascript" src="../../prettify.js"></script><script language="javascript" type="text/javascript" src="../../asdoc.js"></script><script language="javascript" type="text/javascript" src="../../help.js"></script><script language="javascript" type="text/javascript" src="../../cookies.js"></script><script language="javascript" type="text/javascript"><!--
+                asdocTitle = 'URIScheme - VEGAS AS3 Reference';
+                var baseRef = '../../';
+                window.onload = configPage;
+            --></script>
+<script type="text/javascript">
+            scrollToNameAnchor();
+        </script><table class="titleTable" cellpadding="0" cellspacing="0" id="titleTable" style="display:none"><tr><td class="titleTableTitle" align="left">VEGAS AS3 Reference</td><td class="titleTableTopNav" align="right"><a href="../../package-summary.html" onclick="loadClassListFrame('../../all-classes.html')">All Packages</a>&nbsp;|&nbsp;<a href="../../class-summary.html" onclick="loadClassListFrame('../../all-classes.html')">All Classes</a>&nbsp;|&nbsp;<a href="../../all-index-A.html" onclick="loadClassListFrame('../../index-list.html')">Index</a>&nbsp;|&nbsp;<a id="framesLink1" href="../../index.html?system/network/URIScheme.html&amp;system/network/class-list.html">Frames</a><a id="noFramesLink1" style="display:none" href="" onclick="parent.location=document.location"> No Frames </a></td><td class="titleTableLogo" align="right" rowspan="3"><img src="../../images/logo.jpg" class="logoImage" alt=" Adobe Logo " title=" Adobe Logo "></td></tr><tr class="titleTableRow2"><td class="titleTableSubTitle" id="subTitle" align="left">URIScheme</td><td class="titleTableSubNav" id="subNav" align="right"><a href="#propertySummary">Properties</a>&nbsp;| <a href="#methodSummary">Methods</a>&nbsp;| <a href="#constantSummary">Constants</a></td></tr><tr class="titleTableRow3"><td colspan="3">&nbsp;</td></tr></table><script language="javascript" type="text/javascript" xml:space="preserve">
+                <!--
+                
+                    if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("URIScheme"); titleBar_setSubNav(true,true,false,false,false,false,false,false,true,false,false    ,false,false,false,false,false);}    
+                -->
+            </script><div xmlns:fn="http://www.w3.org/2005/xpath-functions" class="MainContent"><table class="classHeaderTable" cellpadding="0" cellspacing="0"><tr><td class="classHeaderTableLabel">Package</td><td><a href="package-detail.html" onclick="javascript:loadClassListFrame('class-list.html')">system.network</a></td></tr><tr><td class="classHeaderTableLabel">Class</td><td class="classSignature">public  class  URIScheme</td></tr><tr><td class="classHeaderTableLabel">Inheritance</td><td class="inheritanceList">URIScheme  <img src="../../images/inherit-arrow.gif" title="Inheritance" alt="Inheritance" class="inheritArrow"> Object</td></tr></table><p></p><p></p><p></p>
+     The URIScheme class.
+     <p>
+                  <b>See:</b>
+               </p>
+               <ul>
+                  <li>
+                     <a href="http://en.wikipedia.org/wiki/URI_scheme" target="">http://en.wikipedia.org/wiki/URI_scheme</a>
+                  </li>
+                  <li>
+                     <a href="http://esw.w3.org/topic/UriSchemes/" target="">http://esw.w3.org/topic/UriSchemes/</a>
+                  </li>
+               </ul>
+               <p>
+                  <b>generic syntax :</b>
+               </p>
+               <pre>
+     &lt;scheme>://[&lt;username>[:&lt;password>]@]&lt;host>[:&lt;port>]/&lt;path>[?&lt;query>][#&lt;fragment>]
+     </pre>
+            <p></p><br/><hr></div><a name="propertySummary"></a><div class="summarySection"><div class="summaryTableTitle">Public Properties</div><table cellspacing="0" cellpadding="3" class="summaryTable " id="summaryTableProperty"><tr><th>&nbsp;</th><th colspan="2">Property</th><th class="summaryTableOwnerCol">Defined By</th></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a href="#defaultPort" class="signatureLink">defaultPort</a> : int<div class="summaryTableDescription">
+         The default port of the scheme.</div></td><td class="summaryTableOwnerCol">URIScheme</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a href="#delimiter" class="signatureLink">delimiter</a> : String<div class="summaryTableDescription">
+         The delimiter value.</div></td><td class="summaryTableOwnerCol">URIScheme</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a href="#scheme" class="signatureLink">scheme</a> : String<div class="summaryTableDescription">
+         The scheme expression.</div></td><td class="summaryTableOwnerCol">URIScheme</td></tr></table></div><a name="methodSummary"></a><div class="summarySection"><div class="summaryTableTitle">Public Methods </div><table cellspacing="0" cellpadding="3" class="summaryTable " id="summaryTableMethod"><tr><th>&nbsp;</th><th colspan="2">Method</th><th class="summaryTableOwnerCol">Defined By</th></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="#URIScheme()" class="signatureLink">URIScheme</a>(scheme:String, delimiter:String, defaultPort:int = -1)</div><div class="summaryTableDescription">
+         Creates a new URIScheme instance.</div></td><td class="summaryTableOwnerCol">URIScheme</td></tr></table></div><a name="constantSummary"></a><div class="summarySection"><div class="summaryTableTitle">Public Constants</div><table cellspacing="0" cellpadding="3" class="summaryTable " id="summaryTableConstant"><tr><th>&nbsp;</th><th colspan="2">Constant</th><th class="summaryTableOwnerCol">Defined By</th></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a href="#AIRAPPLICATION" class="signatureLink">AIRAPPLICATION</a> : <a href="../../system/network/URIScheme.html">URIScheme</a><div class="summaryTableDescription">[static] 
+         AIR Application protocol.</div></td><td class="summaryTableOwnerCol">URIScheme</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a href="#AIRSTORAGE" class="signatureLink">AIRSTORAGE</a> : <a href="../../system/network/URIScheme.html">URIScheme</a><div class="summaryTableDescription">[static] 
+         AIR Storage protocol.</div></td><td class="summaryTableOwnerCol">URIScheme</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a href="#FILE" class="signatureLink">FILE</a> : <a href="../../system/network/URIScheme.html">URIScheme</a><div class="summaryTableDescription">[static] 
+         Addressing files on local or network file systems.</div></td><td class="summaryTableOwnerCol">URIScheme</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a href="#FTP" class="signatureLink">FTP</a> : <a href="../../system/network/URIScheme.html">URIScheme</a><div class="summaryTableDescription">[static] 
+         FTP resources
+         Syntax:
+         
+         ftp://[&lt;username$gt;[:&lt;password&gt;]&#64;]&lt;host&gt;[:&lt;port&gt;]/&lt;path&gt;
+         
+         Example:
+         
+         ftp://ftp.is.co.za/rfc/rfc1808.txt
+         
+         </div></td><td class="summaryTableOwnerCol">URIScheme</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a href="#GOPHER" class="signatureLink">GOPHER</a> : <a href="../../system/network/URIScheme.html">URIScheme</a><div class="summaryTableDescription">[static] 
+         Gopher protocol
+         Syntax:
+         
+         gopher://&lt;host&gt;:&lt;port&gt;/&lt;item type&gt;/&lt;path&gt;
+         
+         </div></td><td class="summaryTableOwnerCol">URIScheme</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a href="#HTTP" class="signatureLink">HTTP</a> : <a href="../../system/network/URIScheme.html">URIScheme</a><div class="summaryTableDescription">[static] 
+         HTTP resources
+         Syntax:
+         
+         http://[&lt;username&gt;[:&lt;password&gt;]&#64;]&lt;host&gt;[:&lt;port&gt;]/&lt;path&gt;[?&lt;query&gt;][#&lt;fragment&gt;]
+         
+         Example:
+         
+         http://www.ietf.org/rfc/rfc2396.txt
+         
+         </div></td><td class="summaryTableOwnerCol">URIScheme</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a href="#HTTPS" class="signatureLink">HTTPS</a> : <a href="../../system/network/URIScheme.html">URIScheme</a><div class="summaryTableDescription">[static] 
+         HTTP connections secured using SSL/TLS
+         Syntax:
+         
+         https://[&lt;username&gt;[:&lt;password&gt;]&#64;]&lt;host&gt;[:&lt;port&gt;]/&lt;path&gt;[?&lt;query&gt;][#&lt;fragment&gt;]
+         
+         </div></td><td class="summaryTableOwnerCol">URIScheme</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a href="#MAILTO" class="signatureLink">MAILTO</a> : <a href="../../system/network/URIScheme.html">URIScheme</a><div class="summaryTableDescription">[static] 
+         Mail to resources
+         Syntax:
+         
+         mailto:&lt;address&gt;[?&lt;header1&gt;=&lt;value1&gt;[&#38;&lt;header2$gt;=&lt;value2&gt;]]
+         
+         Example:
+         
+         mailto:John.Doe&#64;example.com
+         mailto:jsmith&#64;example.com?subject=A%20Test&#38;body=My%20idea%20is%3A%20%0A
+         
+         </div></td><td class="summaryTableOwnerCol">URIScheme</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a href="#NEWS" class="signatureLink">NEWS</a> : <a href="../../system/network/URIScheme.html">URIScheme</a><div class="summaryTableDescription">[static] 
+         Newsgroups and postings.</div></td><td class="summaryTableOwnerCol">URIScheme</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a href="#NNTP" class="signatureLink">NNTP</a> : <a href="../../system/network/URIScheme.html">URIScheme</a><div class="summaryTableDescription">[static] 
+         Usenet NNTP (Network News Transfer Protocol).</div></td><td class="summaryTableOwnerCol">URIScheme</td></tr></table></div><script language="javascript" type="text/javascript"><!--
+										showHideInherited();
+										--></script><div class="MainContent"><div class="detailSectionHeader">Property Detail</div><a name="propertyDetail"></a><a name="defaultPort"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">defaultPort</td><td class="detailHeaderType">property</td></tr></table><div class="detailBody"><code>public var defaultPort:int</code><p></p><p></p><p>
+         The default port of the scheme.
+         </p></div><a name="propertyDetail"></a><a name="delimiter"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">delimiter</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code>public var delimiter:String</code><p></p><p></p><p>
+         The delimiter value.
+         </p></div><a name="propertyDetail"></a><a name="scheme"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">scheme</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code>public var scheme:String</code><p></p><p></p><p>
+         The scheme expression.
+         </p></div><a name="constructorDetail"></a><div class="detailSectionHeader">Constructor Detail</div><a name="URIScheme()"></a><a name="URIScheme(String,String,int)"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">URIScheme</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">Constructor</td></tr></table><div class="detailBody"><code>public function URIScheme(scheme:String, delimiter:String, defaultPort:int = -1)</code><p></p><p>
+         Creates a new URIScheme instance.
+         </p><span class="label"> Parameters </span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20px"></td><td><code><span class="label">scheme</span>:String</code> &mdash; The String representation of the uri scheme.
+         </td></tr><tr><td class="paramSpacer">&nbsp;</td></tr><tr><td width="20px"></td><td><code><span class="label">delimiter</span>:String</code> &mdash; The delimiter value.
+         </td></tr><tr><td class="paramSpacer">&nbsp;</td></tr><tr><td width="20px"></td><td><code><span class="label">defaultPort</span>:int</code> (default = <code>-1</code>)<code></code> &mdash; The default port of the scheme.
+         </td></tr></table></div><div class="detailSectionHeader">Constant Detail</div><a name="constantDetail"></a><a name="AIRAPPLICATION"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">AIRAPPLICATION</td><td class="detailHeaderType">Constant</td></tr></table><div class="detailBody"><code>public static const AIRAPPLICATION:<a href="../../system/network/URIScheme.html">URIScheme</a></code><p></p><p></p><p>
+         AIR Application protocol.
+         <p><b>Syntax:</b></p>
+         <pre>
+         app:&lt;path>
+         </pre>
+         <p><b>Example:</b></p>
+         <pre>
+         app:/DesktopPathTest.xml
+         </pre>
+         </p></div><a name="constantDetail"></a><a name="AIRSTORAGE"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">AIRSTORAGE</td><td class="detailHeaderType">Constant</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code>public static const AIRSTORAGE:<a href="../../system/network/URIScheme.html">URIScheme</a></code><p></p><p></p><p>
+         AIR Storage protocol.
+         <p><b>Syntax:</b></p>
+         <pre>
+         app-storage:&lt;path>
+         </pre>
+         <p><b>Example:</b></p>
+         <pre>
+         app-storage:/preferences.xml
+         </pre>
+         </p></div><a name="constantDetail"></a><a name="FILE"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">FILE</td><td class="detailHeaderType">Constant</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code>public static const FILE:<a href="../../system/network/URIScheme.html">URIScheme</a></code><p></p><p></p><p>
+         Addressing files on local or network file systems.
+         <p><b>Syntax:</b></p>
+         <pre>
+         file://[&lt;host>]/&lt;path>
+         </pre>
+         <p><b>Example:</b></p>
+         <pre>
+         file:///C:/Documents%20and%20Settings/bob/Desktop
+         file:///Users/bob/Desktop
+         file://alpha.hut.fi/u/lai/tik/tik76002/public_html/lerman.files/chaps
+         file:///u/lai/tik/tik76002/public_html/lerman.files/chaps
+         file:///etc/motd
+         </pre>
+         </p></div><a name="constantDetail"></a><a name="FTP"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">FTP</td><td class="detailHeaderType">Constant</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code>public static const FTP:<a href="../../system/network/URIScheme.html">URIScheme</a></code><p></p><p></p><p>
+         FTP resources
+         <p><b>Syntax:</b></p>
+         <pre>
+         ftp://[&lt;username$gt;[:&lt;password>]@]&lt;host>[:&lt;port>]/&lt;path>
+         </pre>
+         <p><b>Example:</b></p>
+         <pre>
+         ftp://ftp.is.co.za/rfc/rfc1808.txt
+         </pre>
+         </p></div><a name="constantDetail"></a><a name="GOPHER"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">GOPHER</td><td class="detailHeaderType">Constant</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code>public static const GOPHER:<a href="../../system/network/URIScheme.html">URIScheme</a></code><p></p><p></p><p>
+         Gopher protocol
+         <p><b>Syntax:</b></p>
+         <pre>
+         gopher://&lt;host>:&lt;port>/&lt;item type>/&lt;path>
+         </pre>
+         </p></div><a name="constantDetail"></a><a name="HTTP"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">HTTP</td><td class="detailHeaderType">Constant</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code>public static const HTTP:<a href="../../system/network/URIScheme.html">URIScheme</a></code><p></p><p></p><p>
+         HTTP resources
+         <p><b>Syntax:</b></p>
+         <pre>
+         http://[&lt;username>[:&lt;password>]@]&lt;host>[:&lt;port>]/&lt;path>[?&lt;query>][#&lt;fragment>]
+         </pre>
+         <p><b>Example:</b></p>
+         <pre>
+         http://www.ietf.org/rfc/rfc2396.txt
+         </pre>
+         </p></div><a name="constantDetail"></a><a name="HTTPS"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">HTTPS</td><td class="detailHeaderType">Constant</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code>public static const HTTPS:<a href="../../system/network/URIScheme.html">URIScheme</a></code><p></p><p></p><p>
+         HTTP connections secured using SSL/TLS
+         <p><b>Syntax:</b></p>
+         <pre>
+         https://[&lt;username>[:&lt;password>]@]&lt;host>[:&lt;port>]/&lt;path>[?&lt;query>][#&lt;fragment>]
+         </pre>
+         </p></div><a name="constantDetail"></a><a name="MAILTO"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">MAILTO</td><td class="detailHeaderType">Constant</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code>public static const MAILTO:<a href="../../system/network/URIScheme.html">URIScheme</a></code><p></p><p></p><p>
+         Mail to resources
+         <p><b>Syntax:</b></p>
+         <pre>
+         mailto:&lt;address>[?&lt;header1>=&lt;value1>[&&lt;header2$gt;=&lt;value2>]]
+         </pre>
+         <p><b>Example:</b></p>
+         <pre>
+         mailto:John.Doe@example.com
+         mailto:jsmith@example.com?subject=A%20Test&body=My%20idea%20is%3A%20%0A
+         </pre>
+         </p></div><a name="constantDetail"></a><a name="NEWS"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">NEWS</td><td class="detailHeaderType">Constant</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code>public static const NEWS:<a href="../../system/network/URIScheme.html">URIScheme</a></code><p></p><p></p><p>
+         Newsgroups and postings.
+         <p><b>Syntax:</b></p>
+         <pre>
+         news:&lt;newsgroupname>
+         news:&lt;message-id>
+         </pre>
+         <p><b>Example:</b></p>
+         <pre>
+         news:comp.infosystems.www.servers.unix
+         </pre>
+         </p></div><a name="constantDetail"></a><a name="NNTP"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">NNTP</td><td class="detailHeaderType">Constant</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code>public static const NNTP:<a href="../../system/network/URIScheme.html">URIScheme</a></code><p></p><p></p><p>
+         Usenet NNTP (Network News Transfer Protocol).
+         <p><b>Syntax:</b></p>
+         <pre>
+         nntp://&lt;host>:&lt;port>/&lt;newsgroup-name>/&lt;article-number>
+         </pre>
+         </p></div><br/><br/><hr><br/><p></p><center class="copyright"><footer></footer><br/>Vendredi Mai 13 2011, 11:30 AM +02:00  </center></div></body></html><!--<br/>Vendredi Mai 13 2011, 11:30 AM +02:00  -->

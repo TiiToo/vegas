@@ -1,0 +1,288 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd"><!-- saved from url=(0014)about:internet --><html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><link rel="stylesheet" href="../../style.css" type="text/css" media="screen"><link rel="stylesheet" href="../../print.css" type="text/css" media="print"><link rel="stylesheet" href="../../prettify.css" type="text/css"><link rel="stylesheet" href="../../override.css" type="text/css"><title>core.arrays Details</title></head><body><script language="javascript" type="text/javascript" src="../../prettify.js"></script><script language="javascript" type="text/javascript" src="../../asdoc.js"></script><script language="javascript" type="text/javascript" src="../../help.js"></script><script language="javascript" type="text/javascript" src="../../cookies.js"></script><script language="javascript" type="text/javascript"><!--
+                asdocTitle = 'core.arrays package - VEGAS AS3 Reference';
+                var baseRef = '../../';
+                window.onload = configPage;
+            --></script>
+<script type="text/javascript">
+            scrollToNameAnchor();
+        </script><table class="titleTable" cellpadding="0" cellspacing="0" id="titleTable" style="display:none"><tr><td class="titleTableTitle" align="left">VEGAS AS3 Reference</td><td class="titleTableTopNav" align="right"><a href="../../package-summary.html" onclick="loadClassListFrame('../../all-classes.html')">All Packages</a>&nbsp;|&nbsp;<a href="../../class-summary.html" onclick="loadClassListFrame('../../all-classes.html')">All Classes</a>&nbsp;|&nbsp;<a href="../../all-index-A.html" onclick="loadClassListFrame('../../index-list.html')">Index</a>&nbsp;|&nbsp;<a id="framesLink1" href="../../index.html?core/arrays/package.html&amp;core/arrays/class-list.html">Frames</a><a id="noFramesLink1" style="display:none" href="" onclick="parent.location=document.location"> No Frames </a></td><td class="titleTableLogo" align="right" rowspan="3"><img src="../../images/logo.jpg" class="logoImage" alt=" Adobe Logo " title=" Adobe Logo "></td></tr><tr class="titleTableRow2"><td class="titleTableSubTitle" id="subTitle" align="left">Package</td><td class="titleTableSubNav" id="subNav" align="right"><a href="package.html#constantSummary">Constants</a></td></tr><tr class="titleTableRow3"><td colspan="3">&nbsp;</td></tr></table><script language="javascript" type="text/javascript" xml:space="preserve">
+                <!--
+                
+                    if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Package"); titleBar_setSubNav(false,false,false,false,false,false,false,false,false,false,true    ,false,false,false,false,false);}    
+                -->
+            </script><div class="MainContent"><br><a name="constantSummary"></a><div class="summarySection"><div class="summaryTableTitle">Public Constants</div><table cellspacing="0" cellpadding="3" class="summaryTable " id="summaryTableConstant"><tr><th>&nbsp;</th><th colspan="2">Constant</th><th class="summaryTableOwnerCol">Defined By</th></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a href="#contains" class="signatureLink">contains</a> : Function<div class="summaryTableDescription">
+     Determines whether the specified object exists as an element in an Array object.</div></td><td class="summaryTableOwnerCol">core.arrays</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a href="#initialize" class="signatureLink">initialize</a> : Function<div class="summaryTableDescription">
+     Initializes a new Array with an arbitrary number of elements (index), 
+     with every element containing the passed parameter value or by default the null value.</div></td><td class="summaryTableOwnerCol">core.arrays</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a href="#pierce" class="signatureLink">pierce</a> : Function<div class="summaryTableDescription">
+     Splices an array (removes an element) and returns either the entire array or the removed element.</div></td><td class="summaryTableOwnerCol">core.arrays</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a href="#reduce" class="signatureLink">reduce</a> : Function<div class="summaryTableDescription">
+     Apply a function simultaneously against two values of the array (from left-to-right) as to reduce it to a single value.</div></td><td class="summaryTableOwnerCol">core.arrays</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a href="#reduceRight" class="signatureLink">reduceRight</a> : Function<div class="summaryTableDescription">
+     Apply a function simultaneously against two values of the array (from right-to-left) as to reduce it to a single value.</div></td><td class="summaryTableOwnerCol">core.arrays</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a href="#repeat" class="signatureLink">repeat</a> : Function<div class="summaryTableDescription">
+     Returns a new Array who contains the specified Array elements repeated count times.</div></td><td class="summaryTableOwnerCol">core.arrays</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a href="#shuffle" class="signatureLink">shuffle</a> : Function<div class="summaryTableDescription">
+     Shuffles an array.</div></td><td class="summaryTableOwnerCol">core.arrays</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a href="#spliceInto" class="signatureLink">spliceInto</a> : Function<div class="summaryTableDescription"> 
+     Splice one array into another.</div></td><td class="summaryTableOwnerCol">core.arrays</td></tr></table></div><div class="detailSectionHeader"> Constant Detail </div><a name="constantDetail"></a><a name="contains"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">contains</td><td class="detailHeaderType">Constant</td></tr></table><div class="detailBody"><code>public const contains:Function</code><p></p><p></p><p>
+     Determines whether the specified object exists as an element in an Array object.
+     <p><b>Example :</b></p>
+     <pre>
+     import core.arrays.contains ;
+     
+     var ar:Array = [2, 3, 4] ;
+     
+     trace( contains( ar , 3 ) ) ; // true
+     trace( contains( ar , 5 ) ) ; // false
+     </pre>
+     </p></div><a name="constantDetail"></a><a name="initialize"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">initialize</td><td class="detailHeaderType">Constant</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code>public const initialize:Function</code><p></p><p></p><p>
+     Initializes a new Array with an arbitrary number of elements (index), 
+     with every element containing the passed parameter value or by default the null value.
+     <p><b>Example :</b></p>
+     <pre>
+     import core.arrays.initialize ;
+     
+     var testO:Array = initialize( 3 ) ; // [null,null,null]
+     var test1:Array = initialize( 3 , 0 ) ; // [0,0,0]
+     var test2:Array = initialize( 3 , true ) ; // [true,true,true]
+     var test3:Array = initialize( 4 , "" ) ; // ["","","",""]
+     </pre>
+     </p></div><a name="constantDetail"></a><a name="pierce"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">pierce</td><td class="detailHeaderType">Constant</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code>public const pierce:Function</code><p></p><p></p><p>
+     Splices an array (removes an element) and returns either the entire array or the removed element.
+     <p><b>Example :</b></p>
+     <pre>
+     import core.arrays.pierce ;
+     
+     var ar:Array = [0,1,2,3,4,5] ;
+      
+     trace( ar ) ; // 0,1,2,3,4,5
+     
+     trace( "pierce( ar, 1 ) : " + pierce( ar, 1 ) ) ; // pierce(ar,1) : 1
+     trace( "pierce( ar, 1 ) : " + pierce( ar, 1 ) ) ; // pierce(ar,1) : 2
+     
+     trace( ar ) ; // 0,3,4,5
+     
+     trace( pierce( ar, 1 , true ) ) ; // 0,4,5
+     </pre>
+     </p></div><a name="constantDetail"></a><a name="reduceRight"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">reduceRight</td><td class="detailHeaderType">Constant</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code>public const reduceRight:Function</code><p></p><p></p><p>
+     Apply a function simultaneously against two values of the array (from right-to-left) as to reduce it to a single value.
+     <p>The <code>reduceRight</code> method executes the callback function once for each element present 
+     in the array, excluding holes in the array, receiving four arguments: the initial value 
+     (or value from the previous callback call), the value of the current element, the current index, and 
+     the array over which iteration is occurring.</p>
+     <p>The call to the <code>reduceRight</code> callback would look something like this :</p>
+     <pre>
+     function callback( previousValue:, currentValue:, index:uint , array:Array ):     {
+         // ...
+     }
+     </pre>
+     <p>The first time the function is called, the <code>previousValue</code> and <code>currentValue</code> can be one of two values.  
+     If an <code>initialValue</code> was provided in the call to <code>reduceRight</code>, 
+     then <code>previousValue</code> will be equal to <code>initialValue</code> 
+     and <code>currentValue</code> will be equal to the last value in the array. 
+     If no <code>initialValue</code> was provided, then <code>previousValue</code> 
+     will be equal to the last value in the array and currentValue will be equal to the second-to-last value.</p> 
+     <p><b>Example : </b></p>
+     <pre>
+     import core.arrays.reduceRight ;
+     
+     var ar:Array ;
+     var result:;
+     var callback:Function ;
+     
+     ////// only to debug in the the Array trace message
+     Array.prototype.toString = function():String
+     {
+         return "[" + this.join(",") + "]" ;
+     }
+     //////
+     
+     ar = [0,1,2,3,4] ;
+     
+     callback = function( previousValue:, currentValue:, index:int, array:Array ):     {
+         trace( "previousValue = " + previousValue + ", currentValue = " + currentValue + ", index = " + index ) ;
+         return previousValue + currentValue ;
+     } ;
+     
+     result = Arrays.reduceRight( ar , callback ) ;
+     // previousValue = 4, currentValue = 3, index = 3 // First call
+     // previousValue = 7, currentValue = 2, index = 2 // Second call
+     // previousValue = 9, currentValue = 1, index = 1 // Third call
+     // previousValue = 10, currentValue = 0, index = 0 // Fourth call
+     trace( "value : " + result ) ;  // value : 10
+     
+     result = Arrays.reduceRight( ar , callback , 10 ) ;
+     // previousValue = 10, currentValue = 4, index = 4
+     // previousValue = 14, currentValue = 3, index = 3
+     // previousValue = 17, currentValue = 2, index = 2
+     // previousValue = 19, currentValue = 1, index = 1
+     // previousValue = 20, currentValue = 0, index = 0
+     trace( "value : " + result ) ;  // value : 20
+     
+     // array is always the object [0,1,2,3,4] upon which reduce was called
+     
+     trace( "ar : " + ar ) ; // ar : [0,1,2,3,4]
+     
+     trace("--- Example: Sum up all values within an array") ;
+     
+     ar = [0, 1, 2, 3] ;
+     
+     callback = function( a:uint , b:uint , ...args:Array ):     { 
+         return a + b ;
+     }
+     
+     result = Arrays.reduceRight( ar , callback );
+     trace("total : " + result ) ; // total == 6
+     
+     trace("--- Example: Flatten an array of arrays") ;
+     
+     ar = [[0,1], [2,3], [4,5]] ;
+     
+     callback = function( a:Array , b:Array , ...args:Array ):     {
+         return a.concat( b ) ;
+     }
+     
+     result = Arrays.reduceRight( ar , callback , [] ) ;
+     trace("flattened is " + result ) ; // flattened is [4, 5, 2, 3, 0, 1]
+     </pre>
+     </p></div><a name="constantDetail"></a><a name="reduce"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">reduce</td><td class="detailHeaderType">Constant</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code>public const reduce:Function</code><p></p><p></p><p>
+     Apply a function simultaneously against two values of the array (from left-to-right) as to reduce it to a single value.
+     <p>The <code>reduce</code> method executes the callback function once for each element present in the array, excluding holes in the array, receiving four arguments: the initial value (or value from the previous callback call), the value of the current element, the current index, and the array over which iteration is occurring.</p> 
+     <p>This method reduce is an extension to the ECMA-262 standard; (see Javascript 1.8 new implementation) as such it may not be present in other implementations of the standard.</p> 
+     <p>The call to the reduce callback would look something like this:</p>
+     <pre>
+     function callback( previousValue:, currentValue:, index:uint , array:Array ):     {
+         // ...
+     }
+     </pre>
+     <p>The first time the function is called, the <code>previousValue</code> and <code>currentValue</code> can be one of two values.</p> 
+     <p>If an <code>initialValue</code> was provided in the call to reduce, then <code>previousValue</code> will be equal to <code>initialValue</code> and <code>currentValue</code> will be equal to the first value in the array.</p> 
+     <p>If no initialValue was provided, then <code>previousValue</code> will be equal to the first value in the array and <code>currentValue</code> will be equal to the second.</p>
+     <p><b>Example : </b></p>
+     <pre>
+     import core.arrays.reduce ;
+     
+     var ar:Array ;
+     var result:;
+     var callback:Function ;
+     
+     ////// only to debug in the the Array trace message
+     Array.prototype.toString = function():String
+     {
+         return "[" + this.join(",") + "]" ;
+     }
+     //////
+      
+     ar = [0,1,2,3,4] ;
+     
+     callback = function( previousValue:, currentValue:, index:int, array:Array ):     {
+         trace( "previousValue = " + previousValue + ", currentValue = " + currentValue + ", index = " + index ) ;
+         return previousValue + currentValue ;
+     } ;
+     
+     ////
+     
+     result = reduce( ar , callback ) ;
+      
+     // previousValue = 0, currentValue = 1, index = 1 // First call
+     // previousValue = 1, currentValue = 2, index = 2 // Second call
+     // previousValue = 3, currentValue = 3, index = 3 // Third call
+     // previousValue = 6, currentValue = 4, index = 4 // Fourth call
+      
+     trace( "value : " + result ) ;  // value : 10
+     
+     ////
+     
+     result = reduce( ar , callback , 10 ) ;
+      
+     // previousValue = 10, currentValue = 0, index = 0
+     // previousValue = 10, currentValue = 1, index = 1
+     // previousValue = 11, currentValue = 2, index = 2
+     // previousValue = 13, currentValue = 3, index = 3
+     // previousValue = 16, currentValue = 4, index = 4
+     
+     trace( "value : " + result ) ;  // value : 20
+     
+     ////
+     
+     // array is always the object [0,1,2,3,4] upon which reduce was called
+     trace( "ar : " + ar ) ; // ar : 0,1,2,3,4
+     
+     trace("--- Example: Sum up all values within an array") ;
+     
+     ar = [0, 1, 2, 3] ;
+     
+     callback = function( a:uint , b:uint , ...args:Array ):     {
+         return a + b ; 
+     }
+     
+     result = reduce( ar , callback );
+     trace("total : " + result ) ; // total == 6
+     
+     trace("--- Example: Flatten an array of arrays") ;
+     
+     ar = [[0,1], [2,3], [4,5]] ;
+     callback = function( a:Array , b:Array , ...args:Array ):     {
+         return a.concat( b ) ;
+     }
+     
+     result = reduce( ar , callback , [] ) ;
+     trace("flattened is " + result ) ; // flattened is [0, 1, 2, 3, 4, 5]
+     </pre>
+     </p></div><a name="constantDetail"></a><a name="repeat"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">repeat</td><td class="detailHeaderType">Constant</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code>public const repeat:Function</code><p></p><p></p><p>
+     Returns a new Array who contains the specified Array elements repeated count times.
+     <p><b>Example :</b></p>
+     <pre>
+     import core.arrays.repeat ;
+     
+     var ar:Array = [2, 3, 4] ;
+     
+     trace( repeat( ar , 0 ) ) ; // 2,3,4
+     trace( repeat( ar , 3 ) ) ; // 2,3,4,2,3,4,2,3,4
+     </pre>
+     </p></div><a name="constantDetail"></a><a name="shuffle"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">shuffle</td><td class="detailHeaderType">Constant</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code>public const shuffle:Function</code><p></p><p></p><p>
+     Shuffles an array.
+     <p><b>Example :</b></p>
+     <pre>
+     import core.arrays.shuffle ;
+     
+     var ar:Array = [0,1,2,3,4,5,6,7,8,9] ;
+     
+     trace( ar ) ;
+     shuffle( ar ) ;
+     trace( ar ) ;
+     </pre>
+     </p></div><a name="constantDetail"></a><a name="spliceInto"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">spliceInto</td><td class="detailHeaderType">Constant</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code>public const spliceInto:Function</code><p></p><p></p><p> 
+     Splice one array into another.
+     <p><b>Example :</b></p>
+     <pre>
+     import core.arrays.spliceInto ;
+     
+     var inserted:Array  ;
+     var container:Array ;
+     
+     inserted  = [1, 2, 3, 4] ;
+     container = [5, 6, 7, 8] ;
+     
+     trace( "inserted  : " + inserted  ) ;
+     trace( "container : " + container ) ;
+     
+     trace("---") ;
+     
+     inserted  = [1, 2, 3, 4] ;
+     container = [5, 6, 7, 8] ;
+     
+     spliceInto( inserted, container ) ;
+     trace( "spliceInto( inserted, container, 0 , 0 ) : " + container ) ; // 1,2,3,4,5,6,7,8
+     
+     trace("---") ;
+     inserted  = [1, 2, 3, 4] ;
+     container = [5, 6, 7, 8] ;
+     
+     spliceInto( inserted, container, 0 , 4 ) ;
+     trace( "spliceInto( inserted, container, 0 , 4 ) : " + container ) ; // 1,2,3,4
+     
+     trace("---") ;
+     
+     inserted  = [1, 2, 3, 4] ;
+     container = [5, 6, 7, 8] ;
+     
+     spliceInto( inserted, container, 0 , 2 ) ;
+     trace( "spliceInto( inserted, container, 0 , 2 ) : " + container ) ; // 1,2,3,4,7,8
+     </pre>
+     </p></div><p></p><center class="copyright"><footer></footer><br/>Vendredi Mai 13 2011, 11:31 AM +02:00  </center></div></body></html>
