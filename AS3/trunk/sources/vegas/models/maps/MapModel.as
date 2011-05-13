@@ -49,8 +49,10 @@ package vegas.models.maps
     
     /**
      * This model use an internal <code class="prettyprint">Map</code> to register Entry objects with a specific key and this corresponding value.
-     * <p><b>Example :</b></p>
-     * <pre class="prettyprint">
+     * 
+     * @example Example
+     * <listing version="3.0">
+     * <code class="prettyprint">
      * package examples
      * {
      *     import vegas.events.EntryEvent;
@@ -77,7 +79,7 @@ package vegas.models.maps
      *             
      *             var count:uint = 4 ;
      *             
-     *             for (var i:int ; i<count ; i++ ) 
+     *             for (var i:int ; i&lt;count ; i++ ) 
      *             {
      *                 model.put( "key" + i , "value" + i ) ;
      *             }
@@ -106,7 +108,8 @@ package vegas.models.maps
      *         }
      *     }
      * }
-     * </pre>
+     * </code>
+     * </listing>
      */
     public class MapModel extends ChangeModel implements Iterable 
     {
