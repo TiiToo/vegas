@@ -39,8 +39,10 @@ package vegas.utils.pool
 {
     /**
      * This class implements the object pool design pattern implementation.
-     * <p><b>Example :</b></p>
-     * <pre class="prettyprint">
+     * 
+     * @example Example
+     * <listing version="3.0">
+     * <code class="prettyprint">
      * import vegas.util.pool.ObjectPool ;
      * 
      * import examples.pool.MyBuilder ;
@@ -64,7 +66,7 @@ package vegas.utils.pool
      * 
      * trace("pool.wasteCount : " + pool.wasteCount) ; // 9
      * 
-     * for ( i = 0 ; i < k ; i++ )
+     * for ( i = 0 ; i &lt; k ; i++ )
      * {
      *     activeObjects.push( pool.get() ) ; // read the remaining 9 objects
      * }
@@ -87,7 +89,7 @@ package vegas.utils.pool
      * 
      * // give all objects back to the pool
      * 
-     * for (i = 0; i < k; i++)
+     * for (i = 0; i &lt; k; i++)
      * {
      *     pool.dispose( activeObjects.shift() ) ;
      * }
@@ -123,7 +125,8 @@ package vegas.utils.pool
      * 
      * trace("pool.usageCount : " + pool.usageCount) ; // 1
      * trace("pool.wasteCount : " + pool.wasteCount) ; // 19
-     * </pre>
+     * </code>
+     * </listing>
      */
     public class ObjectPool 
     {
