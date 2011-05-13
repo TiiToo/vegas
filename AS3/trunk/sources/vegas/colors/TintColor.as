@@ -57,7 +57,7 @@ package vegas.colors
         
         /**
          * Returns the tint of a Color object.
-         * <p><b>Example</b></b>
+         * <p><b>Example</b></p>
          * <pre class="prettyprint">
          * var color:TintColor = new TintColor(my_mc);
          * color.setTint( 0, 0, 128, 50 ) ;
@@ -79,7 +79,7 @@ package vegas.colors
         
         /**
          * Returns the tint of a Color object.
-         * <p><b>Example</b></b>
+         * <p><b>Example</b></p>
          * <pre class="prettyprint">
          * var cTint:TintColor = new TintColor(my_mc);
          * cTint.setTint2( 0x0000FF, 100 ) ;
@@ -99,7 +99,7 @@ package vegas.colors
         
         /**
          * Returns the tint offset of a Color object.
-         * <p><b>Example</b></b>
+         * <p><b>Example</b></p>
          * <pre class="prettyprint">
          * var color:TintColor = new TintColor(my_mc);
          * color.setTintOffset(0, 0, 128);
@@ -118,7 +118,7 @@ package vegas.colors
         
         /**
          * Tints a color object with a Color according to a certain percentage.
-         * <p><b>Example</b></b>
+         * <p><b>Example</b></p>
          * <pre class="prettyprint">
          * var color:TintColor = new TintColor(my_mc);
          * color.setTint( 0, 0, 128, 50 ) ;
@@ -138,7 +138,7 @@ package vegas.colors
         
         /**
          * Tints a color object with a Color according to a certain percentage.
-         * <p><b>Example</b></b>
+         * <p><b>Example</b></p>
          * <pre class="prettyprint">
          * var color:TintColor = new TintColor(my_mc);
          * color.setTint2( 0x0000FF, 100 ) ;
@@ -162,7 +162,7 @@ package vegas.colors
         
         /**
          * Tints a Color object with a color according to red, green, and blue values.
-         * <p><b>Example</b></b>
+         * <p><b>Example</b></p>
          * <pre class="prettyprint">
          * var color:TintColor = new TintColor(my_mc);
          * color.setTintOffset( 0, 0, 128 ) ;
