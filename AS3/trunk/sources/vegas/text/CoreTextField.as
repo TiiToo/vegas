@@ -65,6 +65,7 @@ package vegas.text
      * field.text              = "hello world" ;
      * 
      * addChild(field) ;
+     * </pre>
      */
     public class CoreTextField extends TextField implements IDisplayObject
     {
