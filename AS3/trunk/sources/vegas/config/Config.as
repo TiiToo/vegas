@@ -41,7 +41,7 @@ package vegas.config
     
     /**
      * The dynamic Config singleton. This object is a global reference to register all external config properties.
-     * <p><b>Example :</b>
+     * <p><b>Example :</b></p>
      * <pre class="prettyprint">
      * import flash.text.TextField ;
      * import flash.text.TextFormat ;
