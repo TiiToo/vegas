@@ -71,7 +71,7 @@ package vegas.models.maps
      *             
      *             for (var i:int ; i &lt; count ; i++ ) 
      *             {
-     *                 model.addVO( new FilterVO( { id : i , filter : i << 1 } ) ) ;
+     *                 model.addVO( new FilterVO( { id : i , filter : i &lt;&lt; 1 } ) ) ;
      *             }
      *             
      *             model.run() ;
