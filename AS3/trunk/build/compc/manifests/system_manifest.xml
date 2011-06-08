@@ -306,22 +306,30 @@
     
     <!-- system.process.logic -->
     
-    <component id="system.logic:ElseIf"            class="system.logic.ElseIf"            />
-    <component id="system.logic:ElseIfEmptyString" class="system.logic.ElseIfEmptyString" />
-    <component id="system.logic:ElseIfEquals"      class="system.logic.ElseIfEquals"      />
-    <component id="system.logic:ElseIfFalse"       class="system.logic.ElseIfFalse"       />
-    <component id="system.logic:ElseIfNull"        class="system.logic.ElseIfNull"        />
-    <component id="system.logic:ElseIfTrue"        class="system.logic.ElseIfTrue"        />
-    <component id="system.logic:ElseIfZero"        class="system.logic.ElseIfZero"        />
+    <component id="system.logic:ElseIf"                    class="system.logic.ElseIf"                    />
+    <component id="system.logic:ElseIfEmptyString"         class="system.logic.ElseIfEmptyString"         />
+    <component id="system.logic:ElseIfEquals"              class="system.logic.ElseIfEquals"              />
+    <component id="system.logic:ElseIfFalse"               class="system.logic.ElseIfFalse"               />
+    <component id="system.logic:ElseIfGreaterOrEqualsThan" class="system.logic.ElseIfGreaterOrEqualsThan" />
+    <component id="system.logic:ElseIfGreaterThan"         class="system.logic.ElseIfGreaterThan"         />
+    <component id="system.logic:ElseIfLessOrEqualsThan"    class="system.logic.ElseIfLessOrEqualsThan"    />
+    <component id="system.logic:ElseIfLessThan"            class="system.logic.IfLessThan"                />
+    <component id="system.logic:ElseIfNull"                class="system.logic.ElseIfNull"                />
+    <component id="system.logic:ElseIfTrue"                class="system.logic.ElseIfTrue"                />
+    <component id="system.logic:ElseIfZero"                class="system.logic.ElseIfZero"                />
     
-    <component id="system.logic:IfEmptyString" class="system.logic.IfEmptyString" />
-    <component id="system.logic:IfEquals"      class="system.logic.IfEquals"      />
-    <component id="system.logic:IfFalse"       class="system.logic.IfFalse"       />
-    <component id="system.logic:IfNull"        class="system.logic.IfNull"        />
-    <component id="system.logic:IfTask"        class="system.logic.IfTask"        />
-    <component id="system.logic:IfTrue"        class="system.logic.IfTrue"        />
-    <component id="system.logic:IfUndefined"   class="system.logic.IfUndefined"   />
-    <component id="system.logic:IfZero"        class="system.logic.IfZero"        />
+    <component id="system.logic:IfEmptyString"         class="system.logic.IfEmptyString"         />
+    <component id="system.logic:IfEquals"              class="system.logic.IfEquals"              />
+    <component id="system.logic:IfFalse"               class="system.logic.IfFalse"               />
+    <component id="system.logic:IfGreaterOrEqualsThan" class="system.logic.IfGreaterOrEqualsThan" />
+    <component id="system.logic:IfGreaterThan"         class="system.logic.IfGreaterThan"         />
+    <component id="system.logic:IfLessOrEqualsThan"    class="system.logic.IfLessOrEqualsThan"    />
+    <component id="system.logic:IfLessThan"            class="system.logic.IfLessThan"            />
+    <component id="system.logic:IfNull"                class="system.logic.IfNull"                />
+    <component id="system.logic:IfTask"                class="system.logic.IfTask"                />
+    <component id="system.logic:IfTrue"                class="system.logic.IfTrue"                />
+    <component id="system.logic:IfUndefined"           class="system.logic.IfUndefined"           />
+    <component id="system.logic:IfZero"                class="system.logic.IfZero"                />
     
     <!-- system.network -->
     
@@ -330,7 +338,6 @@
     
     <!-- system.numeric -->
     
-    <component id="system.numeric:Mathematics" class="system.numeric.Mathematics" />
     <component id="system.numeric:PRNG"        class="system.numeric.PRNG"        />
     <component id="system.numeric:Range"       class="system.numeric.Range"       />
     <component id="system.numeric:RomanNumber" class="system.numeric.RomanNumber" />
