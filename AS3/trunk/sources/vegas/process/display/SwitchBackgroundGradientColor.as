@@ -62,7 +62,7 @@ package vegas.process.display
          * @param duration A number indicating the length of time or number of frames for the tween motion.
          * @param useSeconds Indicates if the duration is in seconds.
          */
-        public function SwitchBackgroundGradientColor( background:Background = null , colors:Array = null , alphas:Array = null , ratios:Array = null , easing:* = null , duration:Number = 1 , useSeconds:Boolean = true )
+        public function SwitchBackgroundGradientColor( background:Background = null , colors:Array = null , alphas:Array = null , ratios:Array = null , easing:Function = null , duration:Number = 1 , useSeconds:Boolean = true )
         {
             _tweenAlphas = new TweenArray( null , null, null, 1 , true ) ;
             _tweenAlphas.addEventListener(ActionEvent.CHANGE, _change) ;
