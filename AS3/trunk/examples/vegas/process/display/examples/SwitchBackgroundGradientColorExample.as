@@ -36,7 +36,7 @@
 package examples 
 {
     import graphics.FillGradientStyle;
-    import graphics.transitions.easings.Back;
+    import graphics.easings.backOut;
 
     import vegas.display.Background;
     import vegas.process.display.SwitchBackgroundGradientColor;
@@ -88,7 +88,7 @@ package examples
             
             switcher = new SwitchBackgroundGradientColor( background ) ;
             
-            switcher.easing     = Back.easeOut ;
+            switcher.easing     = backOut ;
             switcher.duration   = 1 ;
             switcher.useSeconds = true ;
         }
