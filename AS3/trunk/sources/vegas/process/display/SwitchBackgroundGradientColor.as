@@ -36,7 +36,8 @@
 */
 
 package vegas.process.display 
-{    import core.maths.clamp;
+{
+    import core.maths.clamp;
 
     import graphics.FillGradientStyle;
     import graphics.colors.RGB;
@@ -141,7 +142,7 @@ package vegas.process.display
         /**
          * Defines the easing method reference of this process.
          */
-        public function get easing():*
+        public function get easing():Function
         {
             return _tweenAlphas.easing ;
         }
@@ -149,7 +150,7 @@ package vegas.process.display
         /**
          * @private
          */
-        public function set easing( f:* ):void 
+        public function set easing( f:Function ):void 
         {
             _tweenAlphas.easing = f ;
             _tweenColors.easing = f ;
