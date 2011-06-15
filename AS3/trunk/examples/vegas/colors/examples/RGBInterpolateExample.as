@@ -37,13 +37,13 @@
 package examples 
 {
     import graphics.colors.RGB;
+    import graphics.easings.bounceOut;
     import graphics.transitions.TweenUnit;
-    import graphics.transitions.easings.Bounce;
-    
+
     import system.events.ActionEvent;
-    
+
     import vegas.colors.Color;
-    
+
     import flash.display.MovieClip;
     import flash.display.SimpleButton;
     import flash.display.Sprite;
@@ -69,10 +69,8 @@ package examples
             // init
             
             finish = RGB.fromNumber( 0x0066CC ) as RGB ;
-            
             color  = new Color( display ) ;
-            
-            tween  = new TweenUnit( Bounce.easeOut , 1.5 ,true ) ;
+            tween  = new TweenUnit( bounceOut , 1.5 ,true ) ;
             
             tween.addEventListener( ActionEvent.CHANGE , change ) ;
             

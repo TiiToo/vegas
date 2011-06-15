@@ -36,13 +36,13 @@
 
 package examples 
 {
+    import graphics.easings.elasticOut;
     import graphics.transitions.TweenTo;
-    import graphics.transitions.easings.Elastic;
-    
-    import system.events.ActionEvent;
-    
+
+    import system.process.Action;
+
     import vegas.colors.SolidColor;
-    
+
     import flash.display.Loader;
     import flash.display.Sprite;
     import flash.events.Event;
@@ -58,7 +58,7 @@ package examples
             
             loader = new Loader() ;
             color  = new SolidColor( loader ) ;
-            tween  = new TweenTo( color , { redOffset : 255 }, Elastic.easeOut, 2 , true , false , { redOffset : 0 } ) ;
+            tween  = new TweenTo( color , { redOffset : 255 }, elasticOut, 2 , true , false , { redOffset : 0 } ) ;
             
             // behaviours
             
@@ -69,7 +69,7 @@ package examples
             
             addChild( loader ) ;
             
-            tween.addEventListener( ActionEvent.CHANGE , change ) ;
+            tween.changeIt.connect( change ) ; 
             
             // run example
             
@@ -82,7 +82,7 @@ package examples
         
         public var tween:TweenTo ;
         
-        public function change( e:ActionEvent ):void
+        public function change( action:Action ):void
         {
             trace( "red:" + color.red + " / redPercent:" + color.redPercent + " / redOffset:" + color.redOffset ) ;
         }
