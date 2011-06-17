@@ -48,7 +48,7 @@ package examples
     import flash.events.KeyboardEvent;
     import flash.ui.Keyboard;
     
-    [SWF(width="70", height="100", frameRate="12", backgroundColor="#333333")]
+    [SWF(width="100", height="100", frameRate="12", backgroundColor="#333333")]
     
     /**
      * Example with the vegas.display.Background class.
@@ -66,6 +66,10 @@ package examples
             
             //////////
             
+            spritesheet = new SpriteSheet( new SpriteSheetBitmap().bitmapData , 32 , 62 ) ;
+            
+            //////////
+            
             canvas = new Bitmap() ;
             
             canvas.x = 20 ;
@@ -75,11 +79,7 @@ package examples
             
             //////////
             
-            spritesheet = new SpriteSheet( new SpriteSheetBitmap().bitmapData , 32 , 62 ) ;
-            
-            //////////
-            
-            addEventListener( Event.ENTER_FRAME , next ) ;
+            addEventListener( Event.ENTER_FRAME , render ) ;
         }
         
         protected var canvas:Bitmap ;
@@ -90,7 +90,7 @@ package examples
         
         protected var spritesheet:SpriteSheet ;
         
-        protected function next( e:Event = null ):void
+        protected function render( e:Event = null ):void
         {
             if ( sprite )
             {
@@ -114,11 +114,11 @@ package examples
                 {
                     if ( hasEventListener( Event.ENTER_FRAME ) )
                     {
-                        removeEventListener( Event.ENTER_FRAME , next ) ;
+                        removeEventListener( Event.ENTER_FRAME , render ) ;
                     }
                     else
                     {
-                        addEventListener( Event.ENTER_FRAME , next ) ;
+                        addEventListener( Event.ENTER_FRAME , render ) ;
                     }
                     break ;
                 }

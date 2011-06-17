@@ -3,7 +3,7 @@
     import flash.display.Bitmap;
     import flash.display.BitmapData;
     
-    [Embed(source="spritesheet.png")]
+    [Embed(source="SpriteSheetBitmap.png")]
     
     public class SpriteSheetBitmap extends Bitmap 
     {
