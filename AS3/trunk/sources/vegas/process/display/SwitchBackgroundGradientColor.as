@@ -45,7 +45,7 @@ package vegas.process.display
     import graphics.transitions.TweenArray;
     import graphics.transitions.TweenUnit;
 
-    import system.events.ActionEvent;
+    import system.process.Action;
     import system.process.BatchTask;
 
     import vegas.display.Background;
@@ -65,13 +65,13 @@ package vegas.process.display
         public function SwitchBackgroundGradientColor( background:Background = null , colors:Array = null , alphas:Array = null , ratios:Array = null , easing:Function = null , duration:Number = 1 , useSeconds:Boolean = true )
         {
             _tweenAlphas = new TweenArray( null , null, null, 1 , true ) ;
-            _tweenAlphas.addEventListener(ActionEvent.CHANGE, _change) ;
+            _tweenAlphas.changeIt.connect( _change ) ; 
             
             _tweenColors = new TweenUnit( null , 1, true) ;
-            _tweenColors.addEventListener(ActionEvent.CHANGE, _change) ;
+            _tweenColors.changeIt.connect( _change ) ;
             
             _tweenRatios = new TweenArray( null , null, null, 1 , true ) ;
-            _tweenRatios.addEventListener(ActionEvent.CHANGE, _change) ;
+            _tweenRatios.changeIt.connect( _change ) ;
             
             this.background = background ;
             this.alphas     = alphas     ;
@@ -82,7 +82,7 @@ package vegas.process.display
             this.useSeconds = useSeconds ;
             
             _batch = new BatchTask() ;
-            _batch.addEventListener(ActionEvent.FINISH, _finish) ;
+            _batch.finishIt.connect( _finish ); 
         }
         
         /**
@@ -312,7 +312,7 @@ package vegas.process.display
         /**
          * @private
          */
-        private function _change( e:ActionEvent ):void
+        private function _change( action:Action ):void
         {
             if ( background != null )
             {
@@ -371,7 +371,7 @@ package vegas.process.display
         /**
          * @private
          */
-        private function _finish( e:ActionEvent ):void
+        private function _finish( action:Action ):void
         {
             notifyFinished() ;
         }
