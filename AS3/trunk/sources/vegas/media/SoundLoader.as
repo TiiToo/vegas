@@ -39,6 +39,8 @@ package vegas.media
 {
     import system.process.CoreActionLoader;
     import system.process.Stoppable;
+    import system.signals.Signal;
+    import system.signals.Signaler;
 
     import flash.errors.IOError;
     import flash.events.Event;
@@ -50,27 +52,26 @@ package vegas.media
      * This action process is an helper who launch the load of a CoreSound object.
      * <p><b>Example :</b></p>
      * <pre class="prettyprint">
-     * import system.events.ActionEvent ;
+     * import system.process.Action ;
      * 
      * import vegas.media.CoreSound ;
      * import vegas.media.SoundLoader ;
      * 
      * import flash.net.URLRequest ;
      * 
-     * var start:Function = function( e:Event ):void
+     * var start:Function = function( action:Action ):void
      * {
-     *     trace(e) ;
+     *     trace( "start" ) ;
      * }
      * 
-     * var progress:Function = function( e:Event ):void
+     * var progress:Function = function( bytesLoaded:Number , bytesTotal:Number, action:Action ):void
      * {
-     *     var target:SoundLoader = e.target as SoundLoader ;
-     *     trace( target.bytesLoaded + " : " + target.bytesTotal) ;
+     *     trace( "progress loaded:" + bytesLoaded + " total:" + target.bytesTotal) ;
      * }
      * 
-     * var finish:Function = function( e:Event ):void
+     * var finish:Function = function( action:Action ):void
      * {
-     *     trace(e) ;
+     *     trace( "finish" ) ;
      *     sound.play() ;
      * }
      * 
@@ -140,6 +141,14 @@ package vegas.media
         } 
         
         /**
+         * This signal emit when the notifyId3 method is invoked. 
+         */
+        public function get id3It():Signaler
+        {
+            return _id3It ;
+        }
+        
+        /**
          * (read-only) Returns the buffering state of external MP3 files. If the value is true, any playback is currently suspended while the object waits for more data. 
          */
         public function get isBuffering():Boolean
@@ -202,6 +211,17 @@ package vegas.media
         } 
         
         /**
+         * Notify when the process is initialize.
+         */
+        public function notifyId3():void 
+        {
+            if ( !isLocked() )
+            {
+                _id3It.emit( this ) ;
+            }
+        }
+        
+        /**
          * Register the loader object.
          */
         public override function register( dispatcher:IEventDispatcher ):void
@@ -241,10 +261,7 @@ package vegas.media
          */
         protected function _id3( e:Event ):void
         {
-            if( hasEventListener( e.type ) )
-            {
-                dispatchEvent( e ) ;
-            }
+            notifyId3() ;
         }
         
         /**
@@ -259,5 +276,10 @@ package vegas.media
          * @private
          */
         private var _context:SoundLoaderContext ;
+        
+        /**
+         * @private
+         */
+        protected var _id3It:Signaler = new Signal() ;
     }
 }
