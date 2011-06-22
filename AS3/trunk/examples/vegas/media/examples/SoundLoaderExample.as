@@ -34,13 +34,12 @@
 */
 package examples 
 {
-    import system.events.ActionEvent;
+    import system.process.Action;
     
     import vegas.media.CoreSound;
     import vegas.media.SoundLoader;
     
     import flash.display.Sprite;
-    import flash.events.Event;
     import flash.net.URLRequest;
     
     public class SoundLoaderExample extends Sprite 
@@ -53,9 +52,10 @@ package examples
             
             var process:SoundLoader = new SoundLoader( sound ) ;
             
-            process.addEventListener(ActionEvent.START     , start ) ;
-            process.addEventListener(ActionEvent.PROGRESS  , progress ) ;
-            process.addEventListener(ActionEvent.FINISH    , finish ) ;
+            process.startIt.connect( start ) ;
+            process.finishIt.connect ( finish ) ; 
+            
+            process.progressIt.connect( progress ) ;
             
             process.request = new URLRequest( url ) ;
             
@@ -64,20 +64,19 @@ package examples
         
         public var sound:CoreSound ;
         
-        public function start( e:Event ):void
+        public function start( action:Action ):void
         {
-            trace(e) ;
+            trace( "start" ) ;
         }
         
-        public function progress( e:Event ):void
+        public function progress( bytesLoaded:Number , bytesTotal:Number , action:Action ):void
         {
-            var target:SoundLoader = e.target as SoundLoader ;
-            trace( target.bytesLoaded + " : " + target.bytesTotal) ;
+            trace( "progress : " + bytesLoaded + " : " + bytesTotal) ;
         }
         
-        public function finish( e:Event ):void
+        public function finish( action:Action ):void
         {
-            trace(e) ;
+            trace( "finish" ) ;
             sound.play() ;
         }
     }
