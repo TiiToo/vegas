@@ -1,4 +1,4 @@
-VEGAS AS3 - version 1.8.7.2244
+VEGAS AS3 - version 1.8.8.2256
     
 The "vegas.swc" library contains all the AS3 source code of the VEGAS project with all this extensions.
     
@@ -26,4 +26,4 @@ ABOUT AUTHOR
     
 NOTES
 
-The vegas.swc file target now the FlashPlayer 10.2 and build with the Flex SDK 4.5.0.19786. 
+The vegas.swc file target now the FlashPlayer 10.2 and build with the Flex SDK 4.5.1
