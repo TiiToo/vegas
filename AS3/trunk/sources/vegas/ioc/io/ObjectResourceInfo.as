@@ -159,12 +159,12 @@ package vegas.ioc.io
             if ( loader )
             {
                 _loader = loader ; 
-                _loader.addEventListener( Event.COMPLETE                    , fireEvent , false, 9999, true ) ;
-                _loader.addEventListener( HTTPStatusEvent.HTTP_STATUS       , fireEvent , false, 9999, true ) ;
-                _loader.addEventListener( IOErrorEvent.IO_ERROR             , fireEvent , false, 9999, true ) ;
-                _loader.addEventListener( Event.OPEN                        , fireEvent , false, 9999, true ) ;
-                _loader.addEventListener( ProgressEvent.PROGRESS            , notifyProgress , false, 9999, true ) ;
-                _loader.addEventListener( SecurityErrorEvent.SECURITY_ERROR , fireEvent , false, 9999, true ) ;
+                _loader.loader.addEventListener( Event.COMPLETE                    , fireEvent , false, 9999, true ) ;
+                _loader.loader.addEventListener( HTTPStatusEvent.HTTP_STATUS       , fireEvent , false, 9999, true ) ;
+                _loader.loader.addEventListener( IOErrorEvent.IO_ERROR             , fireEvent , false, 9999, true ) ;
+                _loader.loader.addEventListener( Event.OPEN                        , fireEvent , false, 9999, true ) ;
+                _loader.loader.addEventListener( ProgressEvent.PROGRESS            , notifyProgress , false, 9999, true ) ;
+                _loader.loader.addEventListener( SecurityErrorEvent.SECURITY_ERROR , fireEvent , false, 9999, true ) ;
             }
         }
         
@@ -175,13 +175,13 @@ package vegas.ioc.io
         hack function unregisterLoader():void
         {
             if ( _loader )
-            { 
-                _loader.removeEventListener( Event.COMPLETE                    , fireEvent , false ) ;
-                _loader.removeEventListener( HTTPStatusEvent.HTTP_STATUS       , fireEvent , false) ;
-                _loader.removeEventListener( IOErrorEvent.IO_ERROR             , fireEvent , false) ;
-                _loader.removeEventListener( Event.OPEN                        , fireEvent , false) ;
-                _loader.removeEventListener( ProgressEvent.PROGRESS            , fireEvent , false) ;
-                _loader.removeEventListener( SecurityErrorEvent.SECURITY_ERROR , fireEvent , false) ;
+            {
+                _loader.loader.removeEventListener( Event.COMPLETE                    , fireEvent , false ) ;
+                _loader.loader.removeEventListener( HTTPStatusEvent.HTTP_STATUS       , fireEvent , false) ;
+                _loader.loader.removeEventListener( IOErrorEvent.IO_ERROR             , fireEvent , false) ;
+                _loader.loader.removeEventListener( Event.OPEN                        , fireEvent , false) ;
+                _loader.loader.removeEventListener( ProgressEvent.PROGRESS            , fireEvent , false) ;
+                _loader.loader.removeEventListener( SecurityErrorEvent.SECURITY_ERROR , fireEvent , false) ;
                 _loader = null ;
             }
         }
