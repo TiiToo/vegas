@@ -38,7 +38,7 @@
 package vegas.net 
 {
     import system.ioc.ObjectFactory;
-
+    
     import vegas.config.Config;
     import vegas.events.LocalizationEvent;
     import vegas.i18n.Localization;
