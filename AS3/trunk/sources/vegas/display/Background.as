@@ -39,7 +39,7 @@ package vegas.display
 {
     import core.maths.clamp;
     import core.maths.degreesToRadians;
-    
+
     import graphics.Direction;
     import graphics.Directionable;
     import graphics.Drawable;
@@ -50,11 +50,10 @@ package vegas.display
     import graphics.drawing.RectanglePen;
     import graphics.drawing.RoundedComplexRectanglePen;
     import graphics.transitions.FrameTimer;
-    
+
     import system.hack;
-    
+
     import flash.events.Event;
-    import flash.events.TimerEvent;
     import flash.geom.Matrix;
     import flash.geom.Point;
     import flash.geom.Rectangle;
@@ -159,7 +158,7 @@ package vegas.display
             _pen  = initBackgroundPen() ;
             _real = new Rectangle() ;
             ___timer___ = new FrameTimer(24, 1) ;
-            ___timer___.addEventListener(TimerEvent.TIMER, _redraw ) ;
+            ___timer___.timer.connect( _redraw ) ;
             this.isFull = isFull ;
         }
         
@@ -788,7 +787,7 @@ package vegas.display
         /**
          * Redraws the component.
          */
-        private function _redraw( ev:TimerEvent ):void 
+        private function _redraw():void 
         {
             ___timer___.stop() ;
             update() ;
