@@ -36,13 +36,13 @@
 package examples 
 {
     import examples.vo.User;
-    
-    import system.events.ActionEvent;
+
     import system.ioc.ObjectFactory;
-    
+    import system.process.Action;
+
     import vegas.ioc.io.ObjectResourceInfo;
     import vegas.net.ApplicationLoader;
-    
+
     import flash.display.Bitmap;
     import flash.display.MovieClip;
     import flash.display.Sprite;
@@ -71,8 +71,8 @@ package examples
             
             loader = new ApplicationLoader( "application.eden" , "context/" , factory ) ;
             
-            loader.addEventListener( ActionEvent.START  , start ) ;
-            loader.addEventListener( ActionEvent.FINISH , finish ) ;
+            loader.finishIt.connect( finish ) ;
+            loader.startIt.connect( start ) ;
             
             loader.resourceInfo.addEventListener( Event.OPEN             , debug ) ;
             loader.resourceInfo.addEventListener( ProgressEvent.PROGRESS , debug ) ;
@@ -91,14 +91,14 @@ package examples
             trace( e.type + " : " + info.resource + " :: " + info.bytesLoaded + " / " + info.bytesTotal ) ;
         }
         
-        public function start( e:Event ):void
+        public function start( action:Action ):void
         {
-            trace( ">>>> " + e ) ;
+            trace( ">>>> start" ) ;
         }
         
-        public function finish( e:Event ):void
+        public function finish( action:Action ):void
         {
-            trace( ">>>> " + e ) ;
+            trace( ">>>> finish" ) ;
             
             var container:Sprite = factory.getObject("container") as Sprite ;
             

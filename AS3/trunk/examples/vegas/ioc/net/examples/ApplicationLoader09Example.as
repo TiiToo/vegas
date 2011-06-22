@@ -35,13 +35,12 @@
 
 package examples 
 {
-    import system.events.ActionEvent;
-    
+    import system.process.Action;
+
     import vegas.ioc.io.ShaderResource;
     import vegas.net.ApplicationLoader;
-    
+
     import flash.display.Sprite;
-    import flash.events.Event;
     
     [SWF(width="200", height="200", frameRate="24", backgroundColor="#666666")]
     
@@ -63,21 +62,20 @@ package examples
             
             var loader:ApplicationLoader = new ApplicationLoader( "context/application_shader_resource.eden" ) ;
             
-            loader.addEventListener( ActionEvent.FINISH , finish ) ;
-            loader.addEventListener( ActionEvent.START  , start ) ;
+            loader.finishIt.connect( finish ) ;
+            loader.startIt.connect( start ) ;
             
-            loader.root = this ;
             loader.run() ;
         }
         
-        public function finish( e:Event ):void
+        public function finish( action:Action ):void
         {
-            trace("finish") ;
+            trace( "finish" ) ;
         }
         
-        public function start( e:Event ):void
+        public function start( action:Action ):void
         {
-            trace("start") ;
+            trace( "start" ) ;
         }
     }
 }

@@ -35,13 +35,12 @@
 
 package examples 
 {
-    import system.events.ActionEvent;
     import system.ioc.ObjectFactory;
-
+    import system.process.Action;
+    
     import vegas.net.ApplicationLoader;
-
+    
     import flash.display.MovieClip;
-    import flash.events.Event;
     
     [SWF(width="740", height="400", frameRate="24", backgroundColor="#660000")]
     
@@ -56,22 +55,22 @@ package examples
             
             loader.root = this ;
             
-            loader.addEventListener( ActionEvent.FINISH , finish ) ;
-            loader.addEventListener( ActionEvent.START  , start  ) ;
+            loader.finishIt.connect( finish ) ;
+            loader.startIt.connect( start ) ;
             
             loader.run() ;
         }
         
         public var loader:ApplicationLoader ;
         
-        public function finish( e:Event ):void
+        public function finish( action:Action ):void
         {
             var factory:ObjectFactory = loader.factory ;
             
-            trace( e ) ;
+            trace( "finish" ) ;
             
             var data:XML = factory.getObject( "data" ) as XML ;
-                
+            
             trace( "data  : " + data ) ;
             
             // target a node value in the external XML reference.
@@ -83,9 +82,9 @@ package examples
             trace( "data_type : " + factory.getObject( "data_type" ) ) ;
         }
         
-        public function start( e:Event ):void
+        public function start( action:Action ):void
         {
-            trace( e ) ;
+            trace( "start" ) ;
         }
     }
 }

@@ -35,12 +35,11 @@
 
 package examples 
 {
-    import system.events.ActionEvent;
-
+    import system.process.Action;
+    
     import vegas.net.ApplicationLoader;
-
+    
     import flash.display.MovieClip;
-    import flash.events.Event;
     
     [SWF(width="740", height="400", frameRate="24", backgroundColor="#660000")]
     
@@ -55,15 +54,20 @@ package examples
             
             loader.root = this ;
             
-            loader.addEventListener( ActionEvent.FINISH , debug ) ;
-            loader.addEventListener( ActionEvent.START  , debug  ) ;
+            loader.finishIt.connect( finish ) ;
+            loader.startIt.connect( start ) ;
             
             loader.run() ;
         }
         
-        public function debug( e:Event ):void
+        public function finish( action:Action ):void
         {
-            trace( e ) ;
+            trace( "finish" ) ;
+        }
+        
+        public function start( action:Action ):void
+        {
+            trace( "start" ) ;
         }
     }
 }

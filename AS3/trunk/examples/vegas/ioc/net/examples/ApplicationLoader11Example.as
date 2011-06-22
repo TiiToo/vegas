@@ -36,13 +36,14 @@
 package examples 
 {
     import system.events.ActionEvent;
-
+    import system.process.Action;
+    
     import vegas.date.Time;
     import vegas.events.SoundEvent;
     import vegas.ioc.io.SoundResource;
     import vegas.media.CoreSound;
     import vegas.net.ApplicationLoader;
-
+    
     import flash.display.Sprite;
     import flash.events.Event;
     import flash.events.KeyboardEvent;
@@ -69,8 +70,8 @@ package examples
             
             var loader:ApplicationLoader = new ApplicationLoader( "context/application_sound_resource.eden" ) ;
             
-            loader.addEventListener( ActionEvent.FINISH , finish ) ;
-            loader.addEventListener( ActionEvent.START  , start ) ;
+            loader.finishIt.connect( finish ) ; 
+            loader.startIt.connect( start ) ; 
             
             loader.root = this ;
             loader.run() ;
@@ -158,12 +159,12 @@ package examples
             trace( e.type + " volume:" + e.soundTransform.volume ) ;
         }
         
-        protected function finish( e:Event ):void
+        protected function finish( action:Action ):void
         {
             trace("finish") ;
         }
         
-        protected function start( e:Event ):void
+        protected function start( action:Action ):void
         {
             trace("start") ;
         }
