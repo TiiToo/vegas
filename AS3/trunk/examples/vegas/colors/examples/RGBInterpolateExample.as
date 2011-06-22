@@ -39,11 +39,11 @@ package examples
     import graphics.colors.RGB;
     import graphics.easings.bounceOut;
     import graphics.transitions.TweenUnit;
-
-    import system.events.ActionEvent;
-
+    
+    import system.process.Action;
+    
     import vegas.colors.Color;
-
+    
     import flash.display.MovieClip;
     import flash.display.SimpleButton;
     import flash.display.Sprite;
@@ -72,7 +72,7 @@ package examples
             color  = new Color( display ) ;
             tween  = new TweenUnit( bounceOut , 1.5 ,true ) ;
             
-            tween.addEventListener( ActionEvent.CHANGE , change ) ;
+            tween.changeIt.connect( change ) ; 
             
             // behaviours
             
@@ -103,7 +103,7 @@ package examples
         
         public var tween:TweenUnit ;
         
-        public function change( e:Event ):void
+        public function change( action:Action ):void
         {
             color.setRGB( current.interpolateToNumber( finish , tween.position )) ;
         }
