@@ -1,4 +1,4 @@
-VEGAS AS3 - version 1.8.8.2262
+VEGAS AS3 - version 1.9.0.2264
     
     The VEGAS source code without extensions.
     
