@@ -1,4 +1,4 @@
-VEGAS AS3 - version 1.9.0.2269
+VEGAS AS3 - version 1.9.0.2273
 
 This directory use svn externals to centralize all sources.
 
@@ -9,20 +9,20 @@ This directory use svn externals to centralize all sources.
     - lunas http://lun-as.googlecode.com/svn/trunk/AS3/trunk/src/lunas
     - calista http://calista.googlecode.com/svn/trunk/AS3/src/calista
     
-Note :
+Notes :
+Use the vegas.swc library in trunk/libs to compile your application.
+If you want use the src/ folder to compile you must use the CC (Conditional Compilation) definitions in your compiler command lines :
+    -define+=CONFIG::release,false
+    -define+=CONFIG::debugging,false
+    -define+=API::FLASH,true
+    -define+=API::REDTAMARIN,false
+      
+More Informations about conditional compilation :
+http://code.google.com/p/maashaack/wiki/ConditionalCompilation  
 
-    Use the vegas.swc library in trunk/libs to compile your application.
-
-    If you want use the src/ folder to compile you must use the CC (Conditional Compilation) 
-    definitions in your compiler command lines :
-       
-       -define+=CONFIG::release,false
-       -define+=CONFIG::debugging,false
-       -define+=API::FLASH,true
-       -define+=API::REDTAMARIN,false
-       
-    More Informations about conditional compilation :
-    http://code.google.com/p/maashaack/wiki/ConditionalCompilation  
+The graphics package use a dependency with the AS3/trunk/pixelbender folder to import in the graphics.filters package the shaders.
+See the external in the AS3/trunk folder with the Maashaack svn repository :
+    - pixelbender http://maashaack.googlecode.com/svn/packages/graphics/trunk/pixelbender/
 
 LICENCE 
    
