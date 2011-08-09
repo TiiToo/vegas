@@ -4,7 +4,7 @@ This directory use svn externals to centralize all sources.
 
     - core http://maashaack.googlecode.com/svn/packages/core/trunk/src/core/
     - system http://maashaack.googlecode.com/svn/branches/maashaack_ekameleon/trunk/src/system/
-    - graphics http://maashaack.googlecode.com/svn/branches/maashaack_ekameleon/trunk/src/graphics/
+    - graphics http://maashaack.googlecode.com/svn/packages/graphics/trunk/src/graphics/
     - vegas http://vegas.googlecode.com/svn/AS3/trunk/sources/vegas/
     - lunas http://lun-as.googlecode.com/svn/trunk/AS3/trunk/src/lunas
     - calista http://calista.googlecode.com/svn/trunk/AS3/src/calista
