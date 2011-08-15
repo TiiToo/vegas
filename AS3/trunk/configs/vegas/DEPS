@@ -1,12 +1,14 @@
 vars = {
-         "vegas"     : "https://vegas.googlecode.com/svn",
+         "vegas"     : "https://vegas.googlecode.com/svn/AS3/trunk",
          "maashaack" : "https://maashaack.googlecode.com/svn",
          "root"      : "vegas",
        }
 
 deps = {        
          Var("root") + "/build-maashaack"         : Var("maashaack") + "/packages/maashaack/trunk/build",
-         Var("root") + "/libs"                    : Var("vegas")     + "/packages/maashaack/trunk/libs",
+         
+         Var("root") + "/libs"                    : Var("vegas") + "/libs",
+         
          Var("root") + "/dependencies/ASTUce"     : Var("maashaack") + "/branches/maashaack_ekameleon/trunk/dependencies/ASTUce",
          Var("root") + "/pixelbender"             : Var("maashaack") + "/packages/graphics/trunk/pixelbender",
          
@@ -41,8 +43,8 @@ deps = {
          
          Var("root") + "/src/graphics"            : Var("maashaack") + "/packages/graphics/trunk/src/graphics",
          
-         Var("root") + "/src/vegas"               : Var("vegas") + "/AS3/trunk/src",
+         Var("root") + "/src/vegas"               : Var("vegas") + "/src/vegas",
          
-         Var("root") + "/src/lunas"               : Var("vegas") + "/AS3/trunk/dependencies/lunas/src/lunas",
-         Var("root") + "/src/calista"             : Var("vegas") + "/AS3/trunk/dependencies/calista/src/calista",
+         Var("root") + "/src/lunas"               : Var("vegas") + "/dependencies/lunas/src/lunas",
+         Var("root") + "/src/calista"             : Var("vegas") + "/dependencies/calista/src/calista",
        }
