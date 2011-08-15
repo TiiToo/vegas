@@ -137,9 +137,9 @@ Read the VEGAS references :
 
 Don't forget to use the [http://code.google.com/p/vegas/issues/list Google Code Issues List] of the project if you find a bug and to use the [http://groups.google.com/group/vegasos|Google Groups of VEGAS] to ask all your question about it.
 
-= Get the code with gclient =
+= Get the code with gclient (contributors) =
 
-You will need the gclient tool.
+Contributors or experts ? You will need the gclient tool.
 
 If you want to work with all the projects fused in a src folder
 
