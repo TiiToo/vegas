@@ -1,5 +1,7 @@
 vars = {
          "vegas"     : "https://vegas.googlecode.com/svn/AS3/trunk",
+         "lunas"     : "https://lun-as.googlecode.com/svn/trunk/AS3/trunk" ,
+         "calista"   : "https://calista.googlecode.com/svn/trunk/AS3" ,
          "maashaack" : "https://maashaack.googlecode.com/svn",
          "root"      : "vegas",
        }
@@ -45,6 +47,6 @@ deps = {
          
          Var("root") + "/src/vegas"               : Var("vegas") + "/src/vegas",
          
-         Var("root") + "/src/lunas"               : Var("vegas") + "/dependencies/lunas/src/lunas",
-         Var("root") + "/src/calista"             : Var("vegas") + "/dependencies/calista/src/calista",
+         Var("root") + "/src/lunas"               : Var("lunas")   + "/src/lunas",
+         Var("root") + "/src/calista"             : Var("calista") + "/src/calista",
        }
