@@ -129,6 +129,12 @@ The core packages (core, system and graphics) of *VEGAS* is based on Maashaack, 
 
 = A problem ? =
 
+Read the VEGAS references :
+
+ * Full Reference : http://ekameleon.net/vegas/docs/
+ * VEGAS only reference : http://ekameleon.net/vegas-only/docs/
+ * Maashaack only : http://ekameleon.net/maashaack/docs/
+
 Don't forget to use the [http://code.google.com/p/vegas/issues/list Google Code Issues List] of the project if you find a bug and to use the [http://groups.google.com/group/vegasos|Google Groups of VEGAS] to ask all your question about it.
 
 = Get the code with gclient =
