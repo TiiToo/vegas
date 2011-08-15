@@ -108,11 +108,11 @@ addChild( background ) ;
 
 You can use different libraries to compile with VEGAS in your project.
 
-* *maashaack.swc* : "full" contains all the maashaack packages (core, system, graphics, etc.)
-* maashaack modules
-  * *core.swc* : the core package only
-  * *system.swc* : the system package only
-  * *graphics.swc* : the graphics package only
+ * *maashaack.swc* : "full" contains all the maashaack packages (core, system, graphics, etc.)
+ * maashaack modules
+   * *core.swc* : the core package only
+   * *system.swc* : the system package only
+   * *graphics.swc* : the graphics package only
 
 either you want to keep the modularity of the packagesd and you use : *core.swc*, *system.swc*, *graphics.swc*
 or you want all the packages in one swc and you use only *maashaack.swc*
