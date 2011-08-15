@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project name="VEGAS AS3 / All sources, dependencies and extensions" default="main">
+    
+    <property file="./build.properties"/>
+    
+    <target name="main">
+        
+        <exec executable="${compc}" >
+            
+            <arg line="-load-config+=${config}" />
+            
+            <arg line="-include-libraries+=${library.core}" />
+            <arg line="-include-libraries+=${library.system}" />
+            <arg line="-include-libraries+=${library.graphics}" />
+            
+            <arg line="-source-path+=${sources.vegas}" />
+            <arg line="-source-path+=${sources.lunas}" />
+            <arg line="-source-path+=${sources.calista}" />
+            
+            <arg line="-output=${output}" />
+            
+        </exec>
+        
+    </target>
+    
+</project>
