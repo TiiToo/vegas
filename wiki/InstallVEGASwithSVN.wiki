@@ -120,7 +120,7 @@ or you want all the packages in one swc and you use only *maashaack.swc*
 In the [http://vegas.googlecode.com/svn/AS3/trunk/libs/ AS3/trunk/libs] directory you can find the libraries :
  
  * *vegas-only.swc* : contains only the *vegas* package.
- * *vegas-sa.swc* : "standalone" contains the *vegas* package and all this dependencies (*core*, *system*, *graphics*)
+ * *vegas-sa.swc* : "standalone" contains the *vegas* package and all its dependencies (*core*, *system*, *graphics*)
  * *vegas.swc* : "full" contains the *vegas* package, its dependencies ant all the vegas extensions (*lunas*, *calista*, etc)
 
 *Note :* 
