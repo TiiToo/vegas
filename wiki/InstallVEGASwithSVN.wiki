@@ -87,6 +87,21 @@ import core.dump ;
 trace( dump( { prop1 : "hello" , prop2 : true } ) ;
 }}}
 
+= VEGAS modularity =
+
+You can use different libraries to compile with VEGAS in your project.
+
+In the [http://vegas.googlecode.com/svn/AS3/trunk/libs/ AS3/trunk/libs] directory you can find the libraries :
+ * *vegas-only.swc* : "only source" version with only the vegas package inside.
+ * *vegas-sa.swc* : "standalone" version with the sources and the dependencies (packages : core, system, graphics and vegas)
+ * *vegas.swc* : "all in one" version with all sources (packages : core, system, graphics, vegas, lunas and calista)
+
+If you want compile your application with the library *vegas-only.swc* library you need to extend it with the maashaack sources, you can find it in the [http://vegas.googlecode.com/svn/AS3/trunk/libs/maashaack/ AS3/trunk/libs/maashaack] folder.
+
+Combines the *vegas-only.swc* file with :
+ * *maashaack.swc* 
+ * *core.swc*, *system.swc* and *graphics.swc*
+
 = A problem ? =
 
 Don't forget to use the [http://code.google.com/p/vegas/issues/list Google Code Issues List] of the project if you find a bug and to use the [http://groups.google.com/group/vegasos|Google Groups of VEGAS] to ask all your question about it.
