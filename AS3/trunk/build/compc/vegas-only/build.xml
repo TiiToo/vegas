@@ -4,10 +4,10 @@
     
     <property file="./build.properties"/>
     
-    <target name="main">
-        
+    <target name="main" depends="compc,copy" />
+    
+    <target name="compc" depends="copy" >
         <exec executable="${compc}" >
-            
             <arg line="-load-config+=${config}" />
             
             <arg line="-external-library-path+=${library.core}" />
@@ -17,9 +17,22 @@
             <arg line="-source-path+=${sources.vegas}" />
             
             <arg line="-output=${output}" />
-            
         </exec>
-        
+    </target>
+    
+    <target name="copy">
+        <copy todir="${copy}" overwrite="true">
+            <fileset file="${library.core}" />
+        </copy>
+        <copy todir="${copy}" overwrite="true">
+            <fileset file="${library.system}" />
+        </copy>
+        <copy todir="${copy}" overwrite="true">
+            <fileset file="${library.graphics}" />
+        </copy>
+        <copy todir="${copy}" overwrite="true">
+            <fileset file="${library.maashaack}" />
+        </copy>
     </target>
     
 </project>
