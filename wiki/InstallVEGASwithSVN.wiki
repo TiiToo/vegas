@@ -81,10 +81,27 @@ http://vegas.googlecode.com/files/vegas_flash_classpath_01.jpg
 5 - click *OK*
 
 6 - In flash creates a new AS3 document and in an ActionScript layer write :
+
 {{{
 import core.dump ;
- 
 trace( dump( { prop1 : "hello" , prop2 : true } ) ;
+}}}
+
+or
+
+{{{
+import vegas.display.Background;
+import graphics.FillStyle;
+ 
+var background:Background = new Background() ;
+
+background.fill = new FillStyle(0xFF0000) ;
+background.w    = 100 ;
+background.h    = 100 ;
+background.x    = 5 ;
+background.y    = 5 ;
+
+addChild( background ) ;
 }}}
 
 = VEGAS modularity =
