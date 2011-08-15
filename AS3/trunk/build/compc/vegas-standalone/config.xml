@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<flex-config>
+    <compiler>
+        
+        <namespaces>
+            <namespace>
+                <uri>http://code.google.com/p/vegas/2011</uri>
+                <manifest>../manifests/vegas_manifest.xml</manifest>
+            </namespace>
+        </namespaces>
+        
+        <strict>true</strict>
+        <optimize>true</optimize>
+        
+       <define append="true"> 
+           <name>API::FLASH</name> 
+           <value>true</value> 
+       </define>
+       <define append="true"> 
+           <name>API::REDTAMARIN</name> 
+           <value>false</value> 
+       </define>
+       
+    </compiler>
+    
+    <include-namespaces>
+        <uri>http://code.google.com/p/vegas/2011</uri>
+    </include-namespaces>
+    
+    <target-player>10.3</target-player>
+    
+    <directory>false</directory>
+    
+    <metadata>
+        <title>VEGAS AS3 standalone</title>
+        <description>The sources of the vegas package and this dependencies (maashaack)</description>
+        <publisher>http://www.ekameleon.net</publisher>
+        <creator>Marc ALCARAZ (aka eKameleon) - ekameleon@gmail.com</creator>
+        <language>EN</language>
+    </metadata>
+
+</flex-config>
