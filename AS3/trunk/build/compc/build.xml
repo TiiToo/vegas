@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project name="VEGAS AS3 / Build all libraries" default="main">
+    
+    <target name="main" depends="vegas-only,vegas-standalone,vegas" description="Creates all swc libraries of VEGAS"/>
+    
+    <target name="vegas-only">
+         <subant target="">
+             <fileset dir="./vegas-only" includes="build.xml"/>
+         </subant>
+    </target>
+    
+    <target name="vegas-standalone">
+         <subant target="">
+             <fileset dir="./vegas-standalone" includes="build.xml"/>
+         </subant>
+    </target>
+    
+    <target name="vegas">
+         <subant target="">
+             <fileset dir="vegas" includes="build.xml"/>
+         </subant>
+    </target>
+
+</project>
