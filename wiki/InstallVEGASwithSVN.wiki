@@ -129,9 +129,25 @@ You will need the gclient tool.
 
 If you want to work with all the projects fused in a src folder
 
+1 - Creates a folder in your hard-disk to work : /opensource/gclient-vegas/
+
+2 - With the Terminal you target the new folder :
+
 {{{
-$gclient config https://vegas.googlecode.com/svn/configs/vegas
-$gclient update
+cd /opensource/gclient-vegas
+}}}
+
+3 - Initialize the gclient project :
+
+{{{
+gclient config https://vegas.googlecode.com/svn/configs/vegas
+gclient update
+}}}
+
+4 - Update the project when you want :
+
+{{{
+gclient update
 }}}
 
 To install gclient see the documentation page in the Maashaack wiki : 
