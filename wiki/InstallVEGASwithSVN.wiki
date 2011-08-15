@@ -123,6 +123,10 @@ In the [http://vegas.googlecode.com/svn/AS3/trunk/libs/ AS3/trunk/libs] director
  * *vegas-sa.swc* : "standalone" contains the *vegas* package and all this dependencies (*core*, *system*, *graphics*)
  * *vegas.swc* : "full" contains the *vegas* package, its dependencies ant all the vegas extensions (*lunas*, *calista*, etc)
 
+*Note :* 
+The core packages (core, system and graphics) of *VEGAS* is based on Maashaack, more informations about this opensource framework :
+ * http://code.google.com/p/maashaack/
+
 = A problem ? =
 
 Don't forget to use the [http://code.google.com/p/vegas/issues/list Google Code Issues List] of the project if you find a bug and to use the [http://groups.google.com/group/vegasos|Google Groups of VEGAS] to ask all your question about it.
