@@ -122,3 +122,17 @@ Combines the *vegas-only.swc* file with :
 = A problem ? =
 
 Don't forget to use the [http://code.google.com/p/vegas/issues/list Google Code Issues List] of the project if you find a bug and to use the [http://groups.google.com/group/vegasos|Google Groups of VEGAS] to ask all your question about it.
+
+= Get the code with gclient =
+
+You will need the gclient tool.
+
+If you want to work with all the projects fused in a src folder
+
+{{{
+$gclient config https://vegas.googlecode.com/svn/configs/vegas
+$gclient update
+}}}
+
+To install gclient see the documentation page in the Maashaack wiki : 
+ * http://code.google.com/p/maashaack/wiki/gclient
