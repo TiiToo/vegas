@@ -108,16 +108,20 @@ addChild( background ) ;
 
 You can use different libraries to compile with VEGAS in your project.
 
+* *maashaack.swc* : "full" contains all the maashaack packages (core, system, graphics, etc.)
+* maashaack modules
+  * *core.swc* : the core package only
+  * *system.swc* : the system package only
+  * *graphics.swc* : the graphics package only
+
+either you want to keep the modularity of the packagesd and you use : *core.swc*, *system.swc*, *graphics.swc*
+or you want all the packages in one swc and you use only *maashaack.swc*
+
 In the [http://vegas.googlecode.com/svn/AS3/trunk/libs/ AS3/trunk/libs] directory you can find the libraries :
+ 
  * *vegas-only.swc* : "only source" version with only the vegas package inside.
- * *vegas-sa.swc* : "standalone" version with the sources and the dependencies (packages : core, system, graphics and vegas)
- * *vegas.swc* : "all in one" version with all sources (packages : core, system, graphics, vegas, lunas and calista)
-
-If you want compile your application with the library *vegas-only.swc* library you need to extend it with the maashaack sources, you can find it in the [http://vegas.googlecode.com/svn/AS3/trunk/libs/maashaack/ AS3/trunk/libs/maashaack] folder.
-
-Combines the *vegas-only.swc* file with :
- * *maashaack.swc* 
- * *core.swc*, *system.swc* and *graphics.swc*
+ * *vegas-sa.swc* : "standalone" contains the *vegas* package and all this dependencies (core, system, graphics)
+ * *vegas.swc* : "full" contains the *vegas* package, its dependencies ant all the vegas extensions (lunas, calista, etc)
 
 = A problem ? =
 
