@@ -140,7 +140,7 @@ cd /opensource/gclient-vegas
 3 - Initialize the gclient project :
 
 {{{
-gclient config https://vegas.googlecode.com/svn/configs/vegas
+gclient config http://vegas.googlecode.com/svn/configs/vegas
 gclient update
 }}}
 
