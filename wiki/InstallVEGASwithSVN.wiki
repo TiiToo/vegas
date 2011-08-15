@@ -1,5 +1,5 @@
 #labels Install,Phase-Deploy,Documentation,Featured
-= Install the VEGAS project with Subversion and TortoiseSVN =
+= Install VEGAS with SVN =
 
 VEGAS is an opensource project with a top-level SVN repository :
 
@@ -15,13 +15,31 @@ or continue to read this tutorial.
 
 = Installation of the sources with the SVN (subversion) repository =
 
-== With TortoiseSVN (PC) ==
+== With SVN command line (Mac OSX) ==
+
+Use the readonly SVN repository of VEGAS to download the last sources
+
+1 - Creates a new folder in your hard disk, example : /opensource/vegas
+
+2 - Open a command line terminal and write inside
+
+{{{
+svn checkout http://vegas.googlecode.com/svn /opensource/vegas
+}}}
+
+3 - To update your local SVN repository you can write in your terminal :
+
+{{{
+svn update /opensource/vegas
+}}}
+
+== With TortoiseSVN (Windows) ==
 
 *Tortoise SVN* is a powerfull *SVN* client to manager all your opensource or your private Surversion projects.
 
 1 - Download the last version of *Tortoise SVN* : http://tortoisesvn.net/downloads
 
-2 - Creates a SVN directory in your hard disk, for example : c:\vegas
+2 - Creates a SVN directory in your hard disk, for example : c:\opensource\vegas
 
 3 - Right-click over the directory in Windows and select the *SVN checkout* item.
 
@@ -34,16 +52,9 @@ or continue to read this tutorial.
  * *AS3 version*  : http://vegas.googlecode.com/svn/AS3/trunk (The last stable nightly build)
  * *AS3 version*  : http://vegas.googlecode.com/svn/AS3/tags (The last stable versions)
 
+ * *Javascript version*  : http://vegas.googlecode.com/svn/JS
  * *AS2 version*  : http://vegas.googlecode.com/svn/AS2
  * *SSAS version* : http://vegas.googlecode.com/svn/SSAS
-
-== With SVN command line ==
-
-Non-members may check out a *read-only* working copy anonymously over HTTP.
-
-{{{
-svn checkout http://vegas.googlecode.com/svn
-}}}
 
 == Other systems ==
 
@@ -55,7 +66,7 @@ This project's Subversion repository may be accessed using many [http://subversi
 
 == AS3 project == 
 
-Install the VEGAS classpath in Flash CS3. 
+Install the VEGAS library in Flash. 
 
 1 - Open Flash :)
 
@@ -65,137 +76,15 @@ http://vegas.googlecode.com/files/vegas_flash_classpath_01.jpg
 
 3 - Click the *ActionScript* in the left column, and then click the *ActionScript 3.0 Settings* button.
 
-4 - Add an item in the list and click the *Browse to Path* button to browse to the directory : *AS3/trunk/src* in the *VEGAS* project repository.
-
-http://vegas.googlecode.com/files/vegas_flash_classpath_02.jpg
+4 - Add a new library path in your ActionScript 3.0 panel and target the VEGAS library : *AS3/trunk/libs/vegas.swc* in your VEGAS project repository.
 
 5 - click *OK*
 
 6 - In flash creates a new AS3 document and in an ActionScript layer write :
 {{{
-import system.data.maps.HashMap ;
+import core.dump ;
  
-var map:HashMap = new HashMap() ;
-
-map.put( "key1" , "value1" ) ;
-map.put( "key2" , "value2" ) ;
- 
-trace( map ) ;
-}}}
-
-== AS2 project == 
-
-=== Install the classpath of VEGAS AS2 in Flash7 or Flash8 or Flash CS3. ===
-
-1 - Open Flash (a second time ?) :)
-
-2 - Select *Edit > Preferences (Windows)* or *Flash > Preferences (Macintosh)* to open the Preferences dialog box.
-
-3 - Click the *ActionScript* in the left column, and then click the *ActionScript 2.0 Settings* button.
-
-4 - Add an item in the list and click the *Browse to Path* button to browse to the directory : *AS2/trunk/src* in the *VEGAS* project.
-
-5 - click *OK*
-
-6 - In flash creates a new AS2 document and in an ActionScript layer write :
-{{{
-import vegas.core.CoreObject ;
- 
-var oC:CoreObject = new CoreObject() ;
-trace("hasCode :: " + oC.hashCode()) ;
-trace("toString :: " + oC) ;
- 
-/* output
-hasCode :: 0
-toString :: [CoreObject]
-*/
-}}}
-
-=== Use VEGAS with MTASC ===
-
-You can use my AS2 framework too with [http://www.mtasc.org/ MTASC].
-
-You must target your VEGAS '''AS2/trunk/src/''' directory with the '''-cp''' command in your MTASC task (Ant task or other...)
-
-= Use VEGAS in Flex Builder 3 =
-
-=== Phase 1 ===
-
-Creates a new Flex Project or ActionScript project.
-
-http://vegas.googlecode.com/files/vegas_flex_project_01.jpg
-
-_Press next to continue_
-
-=== Phase 2 ===
-
-http://vegas.googlecode.com/files/vegas_flex_project_02.jpg
-
-Sets the name of the project and defines your project location and application type. 
-
-_Press next to continue_
-
-=== Phase 3 ===
-
-You can now change the default project folder name.
-
-http://vegas.googlecode.com/files/vegas_flex_project_03.jpg
-
-*NB :* In my personal projects i use the name *deploy*. 
-
-_Press next to continue_
-
-=== Phase 4 ===
-
-Add the *AS3/trunk/src* folder in the source path list of your project.
-
-http://vegas.googlecode.com/files/vegas_flex_project_04.jpg
-
-When your project is created you can right-click the project and change this list in the properties panel of the project.
-
-*NB :* By default in my projects i use the main source folder : *src*
-
-=== Phase 5 ===
-
-You can now try the next script in the main *Application.mxml* class of the project.
-
-{{{
-<?xml version="1.0" encoding="utf-8"?>
-<mx:Application 
-	
-	xmlns:mx="http://www.adobe.com/2006/mxml" 
-	layout="absolute"
-	initialize="complete(event);"
-	backgroundColor="#666666"
-	
->
-	
-	<mx:Script>
-		<![CDATA[
-
-		import system.data.maps.HashMap ;
-
-		
-		/**
-		 * Invoked when the Flex application is initialize.
-		 */		
-		public function complete( e:Event ):void
-		{
-			
-			var map:HashMap = new HashMap() ;
-
- 			map.put( "key1" , "value1" ) ;
- 			map.put( "key1" , "value2" ) ;
-
-			trace( map ) ;
-			
-		}			
-			
-		]]>
-	</mx:Script>
-	
-	
-</mx:Application>
+trace( dump( { prop1 : "hello" , prop2 : true } ) ;
 }}}
 
 = A problem ? =
