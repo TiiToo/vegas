@@ -21,7 +21,7 @@ Use the readonly SVN repository of VEGAS to download the last sources
 
 1 - Creates a new folder in your hard disk, example : /opensource/vegas
 
-2 - Open a command line terminal and write inside
+2 - Open a command line terminal and write inside :
 
 {{{
 svn checkout http://vegas.googlecode.com/svn /opensource/vegas
