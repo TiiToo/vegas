@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<project name="ASDOC - VEGAS Reference AS3" default="main">
+<project name="VEGAS AS3 / Reference with ASDoc" default="main">
 
     <!-- Initialize the build -->
     
@@ -34,9 +34,11 @@
     <target name="doc" depends="clean">
         <exec executable="${asdoc}" failonerror="true" >
             
-            <arg line='-source-path ${asdoc.source.path}'/>
+            <arg line="-external-library-path+=${library.core}" />
+            <arg line="-external-library-path+=${library.system}" />
+            <arg line="-external-library-path+=${library.graphics}" />
             
-            <arg line='${asdoc.sources}' />
+            <arg line='-doc-sources+=${sources.vegas}'/>
             
             <arg line='-main-title ${asdoc.main.title}' />
             <arg line='-window-title ${asdoc.win.title}' />
@@ -44,7 +46,7 @@
             <arg line='-output ${asdoc.output}' />
             <arg line='-templates-path ${asdoc.template}'/>
             
-            <arg line='-target-player=${asdoc.target.player}' />
+            <arg line='-target-player=${target.player}' />
         </exec>
     </target>
 
