@@ -60,6 +60,7 @@
     <component id="vegas.display:PolyLineBackground" class="vegas.display.PolyLineBackground" />
     <component id="vegas.display:Protector"          class="vegas.display.Protector"  />
     <component id="vegas.display:Root"               class="vegas.display.Root" />
+    <component id="vegas.display:SpriteSheet"        class="vegas.display.SpriteSheet" />
     <component id="vegas.display:SWFInfo"            class="vegas.display.SWFInfo" />
     
     <!-- vegas.display.coverflow -->
