@@ -8,6 +8,7 @@ vars = {
 
 deps = {        
          Var("root") + "/build-maashaack"         : Var("maashaack") + "/packages/maashaack/trunk/build",
+         Var("root") + "/build-vegas"             : Var("vegas") + "/build",
          
          Var("root") + "/libs"                    : Var("vegas") + "/libs",
          
