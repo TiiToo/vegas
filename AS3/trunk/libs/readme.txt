@@ -16,29 +16,52 @@ ABOUT AUTHOR
     
 LIBRARIES
 
+    The swc libraries in this folder target the FlashPlayer 10.3 / AIR 2.7 and build with the Flex SDK 4.5.1
+    
     You can use different libraries to compile with VEGAS in your project.
     
-    - maashaack.swc : "full" contains all the maashaack packages (core, system, graphics, etc.)
-    - maashaack modules
-       * core.swc : the core package only
-       * system.swc : the system package only
-       * graphics.swc : the graphics package only
+        |_ maashaack.swc : "full" contains all the maashaack packages (core, system, graphics, etc.)
+        |_ maashaack modules
+            |_ core.swc : the core package only
+            |_ system.swc : the system package only
+            |_ graphics.swc : the graphics package only
     
-    either you want to keep the modularity of the packagesd and you use : core.swc, system.swc, graphics.swc or you want all the packages in one swc and you use only maashaack.swc
+    Either you want to keep the modularity of the packages you can use : core.swc, system.swc, graphics.swc 
+    or if you want all the packages in one swc, use only maashaack.swc
     
     In the AS3/trunk/libs directory you can find the libraries :
     
-    - vegas-only.swc : contains only the vegas package.
-    - vegas-sa.swc : "standalone" contains the vegas package and all this dependencies (core, system, graphics)
-    - vegas.swc : "full" contains the vegas package, its dependencies ant all the vegas extensions (lunas, calista, etc)
+        |_ vegas-only.swc : contains only the vegas package.
+        |_ vegas-sa.swc : "standalone" contains the vegas package and all this dependencies (core, system, graphics)
+        |_ vegas.swc : "full" contains the vegas package, its dependencies ant all the vegas extensions (lunas, calista, etc)
     
-    Note : The core packages (core, system and graphics) of VEGAS is based on Maashaack, more informations about this opensource framework :
+    More informations about Maashaack (core/system/graphics packages) :
     
-     * http://code.google.com/p/maashaack/
+        http://code.google.com/p/maashaack/
+    
+    More information about NinjAS : 
+        |_ ninjas
+            |_ ninpo.swc : contains only the ninjas.ninpo package.
+        
+        http://code.google.com/p/ninjas/
+
+DOCUMENTATION & CO
+
+    http://www.ekameleon.net/vegas/docs
+    http://www.ekameleon.net/vegas-only/docs
+    http://www.ekameleon.net/maashaack/docs
+    
+    http://code.google.com/p/vegas/wiki/InstallVEGASwithSVN (install)
+    
+    http://code.google.com/p/maashaack/
+    http://code.google.com/p/ninjas/
+    http://code.google.com/p/astr/
 
 A PROBLEM ?
 
-    Don't forget to use the Google Code Issues List of the project if you find a bug and to use the Groups of VEGAS to ask all your question about it.
+    Don't forget to ask your questions in :
+      |_ the Google Code Issues List : http://code.google.com/p/vegas/issues/list
+      |_ the Google Groups VEGASOS : http://groups.google.com/group/vegasos
 
 GET THE CODE WITH GCLIENT
 
@@ -63,15 +86,3 @@ GET THE CODE WITH GCLIENT
     
     To install gclient see the documentation page in the Maashaack wiki :
        * http://code.google.com/p/maashaack/wiki/gclient
-
-DOCUMENTATION & CO
-
-    http://code.google.com/p/vegas/ (tutorials and install)
-    http://code.google.com/p/vegas/issues/list (issues)
-    http://www.ekameleon.net/vegas/docs
-    
-    http://www.ekameleon.net/blog/ (french blog)
-    
-NOTES
-
-    The swc target now the FlashPlayer 10.3 and build with the Flex SDK 4.5.1
