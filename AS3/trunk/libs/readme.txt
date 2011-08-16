@@ -1,8 +1,12 @@
-VEGAS AS3 - version 1.9.0.2297
+VEGAS AS3 - version 1.9.0.2331
 
 LICENCE
  
     Version: MPL 1.1/GPL 2.0/LGPL 2.1
+    
+        > Licence MPL 1.1  http://www.mozilla.org/MPL/MPL-1.1.html
+        > Licence GPL 2    http://www.gnu.org/licenses/gpl-2.0.html
+        > Licence LGPL 2.1 http://www.gnu.org/licenses/lgpl-2.1.html
    
 PROJECT PAGES
 
