@@ -37,8 +37,6 @@
 
 package vegas.net
 {
-    import system.Serializer;
-    
     import flash.events.Event;
     import flash.net.URLLoader;
     import flash.net.URLLoaderDataFormat;
@@ -121,6 +119,6 @@ package vegas.net
         /**
          * @private
          */
-        private var _serializer:Serializer ;
+        private var _serializer:* ;
     }
 }
