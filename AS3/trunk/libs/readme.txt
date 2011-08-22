@@ -27,6 +27,7 @@ LIBRARIES
         |_ maashaack.swc : "full" contains all the maashaack packages (core, system, graphics, etc.)
         |_ maashaack modules
             |_ core.swc : the core package only
+            |– eden.swc : the library.eden package only
             |_ system.swc : the system package only
             |_ graphics.swc : the graphics package only
     
