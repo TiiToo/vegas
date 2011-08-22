@@ -12,6 +12,8 @@ deps = {
          
          Var("root") + "/libs"                    : Var("vegas") + "/libs",
          
+         Var("root") + "/dependencies/libraries/eden" : "https://edenrr.googlecode.com/svn/as3/trunk",
+         
          Var("root") + "/dependencies/ASTUce"     : Var("maashaack") + "/branches/maashaack_ekameleon/trunk/dependencies/ASTUce",
          Var("root") + "/pixelbender"             : Var("maashaack") + "/packages/graphics/trunk/pixelbender",
          
