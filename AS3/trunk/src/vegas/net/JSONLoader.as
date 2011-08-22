@@ -84,8 +84,15 @@ package vegas.net
          */
         public function JSONLoader(request:URLRequest=null)
         {
-            serializer = JSON ;
             super(request);
+        }
+        
+        /**
+         * Parses the passed-in value.
+         */
+        public function parse( source:String ):*
+        {
+            return JSON.deserialize( source ) ;
         }
     }
 }
