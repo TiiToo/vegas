@@ -2,8 +2,6 @@
 
 <project name="VEGAS AS3 / Build all libraries" default="main">
     
-    <property file="./build.properties"/>
-    
     <target name="main" depends="vegas-only,vegas-standalone,vegas,copy" description="Creates all swc libraries of VEGAS"/>
     
     <target name="vegas-only">
@@ -25,24 +23,9 @@
     </target>
     
     <target name="copy">
-        <copy todir="${copy.todir.maashaack}" overwrite="true">
-            <fileset file="${copy.from.core}" />
-        </copy>
-        <copy todir="${copy.todir.maashaack}" overwrite="true">
-            <fileset file="${copy.from.eden}" />
-        </copy>
-        <copy todir="${copy.todir.maashaack}" overwrite="true">
-            <fileset file="${copy.from.system}" />
-        </copy>
-        <copy todir="${copy.todir.maashaack}" overwrite="true">
-            <fileset file="${copy.from.graphics}" />
-        </copy>
-        <copy todir="${copy.todir.maashaack}" overwrite="true">
-            <fileset file="${copy.from.maashaack}" />
-        </copy>
-        <copy todir="${copy.todir.ninjas}" overwrite="true">
-            <fileset file="${copy.from.ninpo}" />
-        </copy>
+        <subant target="">
+            <fileset dir="copy" includes="build.xml"/>
+        </subant>
     </target>
     
 </project>
