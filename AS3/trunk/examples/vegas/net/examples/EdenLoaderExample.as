@@ -36,11 +36,11 @@
 package examples 
 {
     import core.dump;
-
+    
     import system.logging.LoggerLevel;
-
+    
     import vegas.net.EdenLoader;
-
+    
     import flash.display.Sprite;
     import flash.events.Event;
     import flash.events.ProgressEvent;

@@ -36,11 +36,11 @@
 package examples 
 {
     import system.eden;
-    import system.process.Sequencer;
-    
+    import system.process.Chain;
+
     import vegas.net.NetStreamClient;
     import vegas.net.NetStreamTransition;
-    
+
     import flash.display.Sprite;
     import flash.display.StageAlign;
     import flash.events.KeyboardEvent;
@@ -85,7 +85,7 @@ package examples
             
             // sequencer
             
-            sequencer = new Sequencer() ;
+            sequencer = new Chain() ;
             
             sequencer.finishIt.connect( finish ) ;
             sequencer.progressIt.connect( progress ) ;
@@ -100,7 +100,7 @@ package examples
             sequencer.run() ;
         }
         
-        public var sequencer:Sequencer ;
+        public var sequencer:Chain ;
         
         public var stream:NetStream ;
         
