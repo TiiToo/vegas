@@ -12,6 +12,7 @@
             <arg line="-load-config+=${config}" />
             
             <arg line="-external-library-path+=${library.core}" />
+            <arg line="-external-library-path+=${library.eden}" />
             <arg line="-external-library-path+=${library.system}" />
             <arg line="-external-library-path+=${library.graphics}" />
             
