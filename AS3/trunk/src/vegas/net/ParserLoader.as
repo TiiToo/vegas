@@ -46,7 +46,7 @@ package vegas.net
     /**
      * This loader use a parse external data and deserialize it. 
      */
-    public class ParserLoader extends URLLoader
+    public dynamic class ParserLoader extends URLLoader
     {
         /**
          * Creates a new ParserLoader instance.
@@ -59,50 +59,42 @@ package vegas.net
         }
         
         /**
-         * Use a Sserializer object to deserialize the external data if this property is <code class='prettyprint'>true</code>.
+         * Indicates if the parsing mode is allowing in the loader when the data are completely loading.
          */
-        public var isDeserialize:Boolean = true ;
+        public var allowParsing:Boolean = true ;
         
         /**
-         * Indicates the Serializer object use to deserialize the external datas.
+         * Parses the specified source. 
+         * Override this method to change the parsing strategy of the class.
          */
-        public function get serializer():*
+        prototype.parse = function( source:String ):*
         {
-            return _serializer ;
-        }
-        
-        /**
-         * @private
-         */
-        public function set serializer( serializer:* ):void
-        {
-            _serializer = serializer ;
-        }
+            return source ;
+        };
         
         /**
          * Invoked when the loader process is complete to parse the datas.
          */
         protected function complete(e:Event):void
         {
-            switch (dataFormat) 
+            switch ( dataFormat ) 
             {
                 case URLLoaderDataFormat.TEXT :
                 {
-                    if ( serializer && isDeserialize )
+                    if ( allowParsing )
                     {
-                        data = serializer.deserialize(data) ;
+                        data = parse(data) ;
                     }
-                    
                     break ;
                 }
                 case URLLoaderDataFormat.VARIABLES :
                 {
                     data = new URLVariables(data) ;
-                    if ( serializer && isDeserialize )
+                    if ( allowParsing )
                     {
                         for (var prop:String in data)
                         {
-                            data[prop] = serializer.deserialize( data[prop] ) ;
+                            data[prop] = parse( data[prop] ) ;
                         }
                     }
                     break ;
@@ -115,10 +107,5 @@ package vegas.net
                 }
             }
         }
-        
-        /**
-         * @private
-         */
-        private var _serializer:* ;
     }
 }
