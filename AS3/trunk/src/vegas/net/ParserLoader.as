@@ -83,7 +83,7 @@ package vegas.net
                 {
                     if ( allowParsing )
                     {
-                        data = parse(data) ;
+                        data = this["parse"](data) ;
                     }
                     break ;
                 }
@@ -94,7 +94,7 @@ package vegas.net
                     {
                         for (var prop:String in data)
                         {
-                            data[prop] = parse( data[prop] ) ;
+                            data[prop] = this["parse"]( data[prop] ) ;
                         }
                     }
                     break ;
