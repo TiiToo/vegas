@@ -68,7 +68,7 @@ package vegas.net
         /**
          * Indicates the Serializer object use to deserialize the external datas.
          */
-        public function get serializer():Serializer
+        public function get serializer():*
         {
             return _serializer ;
         }
@@ -76,7 +76,7 @@ package vegas.net
         /**
          * @private
          */
-        public function set serializer( serializer:Serializer ):void
+        public function set serializer( serializer:* ):void
         {
             _serializer = serializer ;
         }
