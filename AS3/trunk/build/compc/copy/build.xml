@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project name="VEGAS AS3 / Copy all depenencies" default="copy">
+    
+    <property file="./build.properties"/>
+    
+    <target name="copy">
+        <copy todir="${copy.todir.maashaack}" overwrite="true">
+            <fileset file="${copy.from.core}" />
+        </copy>
+        <copy todir="${copy.todir.maashaack}" overwrite="true">
+            <fileset file="${copy.from.eden}" />
+        </copy>
+        <copy todir="${copy.todir.maashaack}" overwrite="true">
+            <fileset file="${copy.from.system}" />
+        </copy>
+        <copy todir="${copy.todir.maashaack}" overwrite="true">
+            <fileset file="${copy.from.graphics}" />
+        </copy>
+        <copy todir="${copy.todir.maashaack}" overwrite="true">
+            <fileset file="${copy.from.maashaack}" />
+        </copy>
+        <copy todir="${copy.todir.ninjas}" overwrite="true">
+            <fileset file="${copy.from.ninpo}" />
+        </copy>
+    </target>
+    
+</project>
