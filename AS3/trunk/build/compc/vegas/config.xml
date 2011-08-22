@@ -29,6 +29,10 @@
            <name>API::REDTAMARIN</name> 
            <value>false</value> 
        </define>
+       <define append="true"> 
+           <name>LOG::P</name> 
+           <value>false</value> 
+       </define>
        
     </compiler>
     
