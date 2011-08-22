@@ -38,7 +38,7 @@
 package vegas.net
 {
     import system.eden;
-    
+
     import flash.net.URLRequest;
     
     /**
@@ -84,8 +84,15 @@ package vegas.net
          */ 
         public function EdenLoader( request:URLRequest=null )
         {
-            serializer = eden ;
             super(request);
+        }
+        
+        /**
+         * Parses the passed-in value.
+         */
+        public function parse( source:String ):*
+        {
+            return eden.deserialize( source ) ;
         }
     }
 }
