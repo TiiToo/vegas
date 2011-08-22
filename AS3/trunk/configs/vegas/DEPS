@@ -3,19 +3,19 @@ vars = {
          "lunas"     : "https://lun-as.googlecode.com/svn/trunk/AS3/trunk" ,
          "calista"   : "https://calista.googlecode.com/svn/trunk/AS3" ,
          "maashaack" : "https://maashaack.googlecode.com/svn",
+         "eden"      : "https://edenrr.googlecode.com/svn",
          "root"      : "vegas",
        }
 
 deps = {        
-         Var("root") + "/build-maashaack"         : Var("maashaack") + "/packages/maashaack/trunk/build",
-         Var("root") + "/build-vegas"             : Var("vegas") + "/build",
+         Var("root") + "/build-maashaack"             : Var("maashaack") + "/packages/maashaack/trunk/build",
+         Var("root") + "/build-vegas"                 : Var("vegas") + "/build",
+         Var("root") + "/libs"                        : Var("vegas") + "/libs",
          
-         Var("root") + "/libs"                    : Var("vegas") + "/libs",
+         Var("root") + "/dependencies/ASTUce"         : Var("maashaack") + "/branches/maashaack_ekameleon/trunk/dependencies/ASTUce",
+         Var("root") + "/dependencies/libraries/eden" : Var("eden") + "/as3/trunk",
          
-         Var("root") + "/dependencies/libraries/eden" : "https://edenrr.googlecode.com/svn/as3/trunk",
-         
-         Var("root") + "/dependencies/ASTUce"     : Var("maashaack") + "/branches/maashaack_ekameleon/trunk/dependencies/ASTUce",
-         Var("root") + "/pixelbender"             : Var("maashaack") + "/packages/graphics/trunk/pixelbender",
+         Var("root") + "/pixelbender"                 : Var("maashaack") + "/packages/graphics/trunk/pixelbender",
          
          Var("root") + "/src/core"                : Var("maashaack") + "/packages/core/trunk/src/core",
          
@@ -41,7 +41,6 @@ deps = {
          Var("root") + "/src/system/reflection"   : Var("maashaack") + "/packages/system_reflection/trunk/src/system/reflection",
          Var("root") + "/src/system/remoting"     : Var("maashaack") + "/packages/system_remoting/trunk/src/system/remoting",
          Var("root") + "/src/system/rules"        : Var("maashaack") + "/packages/system_rules/trunk/src/system/rules",
-         Var("root") + "/src/system/serializers"  : Var("maashaack") + "/packages/system_serializers/trunk/src/system/serializers",
          Var("root") + "/src/system/signals"      : Var("maashaack") + "/packages/system_signals/trunk/src/system/signals",
          Var("root") + "/src/system/terminals"    : Var("maashaack") + "/packages/system_terminals/trunk/src/system/terminals",
          Var("root") + "/src/system/text"         : Var("maashaack") + "/packages/system_text/trunk/src/system/text",
