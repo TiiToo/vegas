@@ -40,7 +40,7 @@ package vegas.media
     import core.dump;
     import core.reflect.getClassName;
 
-    import vegas.vo.SimpleValueObject;
+    import system.data.SimpleValueObject;
 
     import flash.media.Camera;
     import flash.net.registerClassAlias;
