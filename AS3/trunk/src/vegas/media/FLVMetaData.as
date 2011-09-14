@@ -37,8 +37,8 @@
 package vegas.media 
 {
     import core.reflect.getClassName;
-
-    import vegas.vo.SimpleValueObject;
+    
+    import system.data.SimpleValueObject;
     
     /**
      * The FLVMetaData instances contains all datas values injected in the external FLV video.
