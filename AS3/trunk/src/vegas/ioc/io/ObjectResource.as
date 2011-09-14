@@ -38,10 +38,9 @@
 package vegas.ioc.io 
 {
     import core.reflect.getClassName;
-
+    
+    import system.data.SimpleValueObject;
     import system.process.CoreActionLoader;
-
-    import vegas.vo.SimpleValueObject;
     
     /**
      * Convenience base class for resource implementations in the IoC factory loader.
