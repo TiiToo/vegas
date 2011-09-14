@@ -39,12 +39,12 @@ package vegas.media
 {
     import core.dump;
     import core.reflect.getClassName;
-
-    import vegas.vo.SimpleValueObject;
-
+    
+    import system.data.SimpleValueObject;
+    
     import flash.media.Microphone;
     import flash.net.registerClassAlias;
-
+    
     /**
      * This value object contains all values to set a Microphone object.
      */
