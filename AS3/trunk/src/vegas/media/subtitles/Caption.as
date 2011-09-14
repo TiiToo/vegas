@@ -39,7 +39,7 @@ package vegas.media.subtitles
 {
     import core.reflect.getClassName;
     
-    import vegas.vo.SimpleValueObject;
+    import system.data.SimpleValueObject;
     
     /**
      * The basic caption entry.
