@@ -38,8 +38,8 @@
 package vegas.media 
 {
     import core.reflect.getClassName;
-
-    import vegas.vo.SimpleValueObject;
+    
+    import system.data.SimpleValueObject;
     
     /**
      * The CuePoint information object.
