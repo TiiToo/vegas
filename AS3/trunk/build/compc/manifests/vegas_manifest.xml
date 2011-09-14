@@ -279,6 +279,5 @@
     
     <component id="vegas.vo:FilterVO"          class="vegas.vo.FilterVO"            />
     <component id="vegas.vo:NetServerInfoVO"   class="vegas.vo.NetServerInfoVO"     />
-    <component id="vegas.vo:SimpleValueObject" class="vegas.vo.SimpleValueObject"   />
     
 </componentPackage>
