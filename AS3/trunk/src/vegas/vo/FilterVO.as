@@ -41,6 +41,8 @@ package vegas.vo
     import core.reflect.getClassName;
     import core.reflect.getClassPath;
     
+    import system.data.SimpleValueObject;
+    
     import flash.net.registerClassAlias;
     
     /**
