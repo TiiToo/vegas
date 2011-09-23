@@ -38,7 +38,7 @@
 
 package vegas.colors 
 {
-    import system.evaluators.Evaluable;
+    import system.Evaluable;
     import system.hack;
     
     /**
