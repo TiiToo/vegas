@@ -39,11 +39,11 @@ package vegas.i18n
 {
     import core.dump;
     import core.reflect.getClassPath;
-
+    
+    import system.Evaluable;
     import system.Serializable;
     import system.data.maps.HashMap;
-    import system.evaluators.Evaluable;
-
+    
     /**
      * This static enumeration class defines the language code of the system on which the player is running. 
      * The language is specified as a lowercase two-letter language code from ISO 639-1. 
