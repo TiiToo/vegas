@@ -10,10 +10,7 @@
             
             <arg line="-load-config+=${config}" />
             
-            <arg line="-include-libraries+=${library.core}" />
-            <arg line="-include-libraries+=${library.eden}" />
-            <arg line="-include-libraries+=${library.system}" />
-            <arg line="-include-libraries+=${library.graphics}" />
+            <arg line="-include-libraries+=${library.maashaack}" />
             
             <arg line="-source-path+=${sources.vegas}" />
             <arg line="-source-path+=${sources.lunas}" />
