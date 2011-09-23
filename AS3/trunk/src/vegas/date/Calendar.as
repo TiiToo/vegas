@@ -37,7 +37,7 @@
 
 package vegas.date 
 {
-    import system.formatters.DateFormatter;
+    import system.date.DateFormatter;
     
     /**
      * This class contains all tools to creates a calendar.
