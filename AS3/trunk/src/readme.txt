@@ -1,4 +1,4 @@
-VEGAS AS3 - version 1.9.0.2382
+VEGAS AS3 - version 1.9.1.2394
 
 LICENCE
  
@@ -24,26 +24,29 @@ DEPENDENCIES
 
 LIBRARIES
 
+    The swc libraries in this folder target the FlashPlayer 10.3 / AIR 2.7 and build with the Flex SDK 4.5.1
+    
     You can use different libraries to compile with VEGAS in your project.
     
-    - maashaack.swc : "full" contains all the maashaack packages (core, system, graphics, etc.)
-    - maashaack modules
-       * core.swc : the core package only
-       * eden.swc : the library.eden package only
-       * system.swc : the system package only
-       * graphics.swc : the graphics package only
+    VEGAS is based on Maashaack, you can find the sources of maashaack in the maashaack directory or in the site of the project : 
     
-    either you want to keep the modularity of the packagesd and you use : core.swc, system.swc, graphics.swc or you want all the packages in one swc and you use only maashaack.swc
+        http://code.google.com/p/maashaack/
+    
+        |_ maashaack
+            |_ maashaack.swc : contains all the maashaack packages and libraries (core, system, graphics, eden, etc.)
     
     In the AS3/trunk/libs directory you can find the libraries :
     
-    - vegas-only.swc : contains only the vegas package.
-    - vegas-sa.swc : "standalone" contains the vegas package and all this dependencies (core, system, graphics)
-    - vegas.swc : "full" contains the vegas package, its dependencies ant all the vegas extensions (lunas, calista, etc)
+        |_ vegas-only.swc : contains only the vegas package.
+        |_ vegas-sa.swc : "standalone" contains the vegas package and all this dependencies (core, system, graphics)
+        |_ vegas.swc : "full" contains the vegas package, its dependencies ant all the vegas extensions (lunas, calista, etc)
     
-    Note : The core packages (core, system and graphics) of VEGAS is based on Maashaack, more informations about this opensource framework :
-    
-     * http://code.google.com/p/maashaack/
+    More information about NinjAS :
+     
+        http://code.google.com/p/ninjas/
+        
+        |_ ninjas
+            |_ ninpo.swc : contains only the ninjas.ninpo package.
 
 A PROBLEM ?
 

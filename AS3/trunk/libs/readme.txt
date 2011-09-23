@@ -1,4 +1,4 @@
-VEGAS AS3 - version 1.9.0.2382
+VEGAS AS3 - version 1.9.1.2394
 
 LICENCE
  
@@ -24,15 +24,12 @@ LIBRARIES
     
     You can use different libraries to compile with VEGAS in your project.
     
-        |_ maashaack.swc : "full" contains all the maashaack packages (core, system, graphics, etc.)
-        |_ maashaack modules
-            |_ core.swc : the core package only
-            |– eden.swc : the library.eden package only
-            |_ system.swc : the system package only
-            |_ graphics.swc : the graphics package only
+    VEGAS is based on Maashaack, you can find the sources of maashaack in the maashaack directory or in the site of the project : 
     
-    Either you want to keep the modularity of the packages you can use : core.swc, system.swc, graphics.swc 
-    or if you want all the packages in one swc, use only maashaack.swc
+        http://code.google.com/p/maashaack/
+    
+        |_ maashaack
+            |_ maashaack.swc : contains all the maashaack packages and libraries (core, system, graphics, eden, etc.)
     
     In the AS3/trunk/libs directory you can find the libraries :
     
@@ -40,15 +37,12 @@ LIBRARIES
         |_ vegas-sa.swc : "standalone" contains the vegas package and all this dependencies (core, system, graphics)
         |_ vegas.swc : "full" contains the vegas package, its dependencies ant all the vegas extensions (lunas, calista, etc)
     
-    More informations about Maashaack (core/system/graphics packages) :
-    
-        http://code.google.com/p/maashaack/
-    
-    More information about NinjAS : 
+    More information about NinjAS :
+     
+        http://code.google.com/p/ninjas/
+        
         |_ ninjas
             |_ ninpo.swc : contains only the ninjas.ninpo package.
-        
-        http://code.google.com/p/ninjas/
 
 DOCUMENTATION & CO
 
