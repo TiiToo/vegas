@@ -40,6 +40,8 @@ package vegas.models.maps
     import system.data.ValueObject;
     import system.process.Task;
     
+    import vegas.logging.logger;
+    
     /**
      * Initialize the model with a Array of ValueObject objects.
      */
