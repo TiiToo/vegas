@@ -42,6 +42,7 @@ package vegas.display
     import graphics.FillGradientStyle;
     import graphics.IFillStyle;
     import graphics.ILineStyle;
+    import graphics.display.MOB;
     import graphics.drawing.PolyLinePen;
 
     import flash.events.Event;
@@ -82,7 +83,7 @@ package vegas.display
      * addChild( bg ) ;
      * </pre>
      */
-    public class PolyLineBackground extends CoreSprite 
+    public class PolyLineBackground extends MOB 
     {
         /**
          * Creates a new PolyLineBackground instance.
@@ -213,8 +214,8 @@ package vegas.display
          
         /**
          * Update the display.
-         */    
-        public function update():void 
+         */
+        public override function update():void 
         {
             if ( isLocked() ) 
             {
@@ -222,6 +223,7 @@ package vegas.display
             }
             draw() ;
             viewChanged() ;
+            super.update() ;
         }
         
         /**

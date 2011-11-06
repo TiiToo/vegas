@@ -37,6 +37,7 @@
 
 package vegas.display 
 {
+    import graphics.display.Background;
     import graphics.display.DisplayObjects;
     
     import system.events.ActionEvent;
@@ -314,17 +315,6 @@ package vegas.display
         }
         
         /**
-         * Invoked when the view is changed.
-         */
-        public override function viewChanged():void
-        {
-            if ( _cursor && !_magnetic )
-            {
-                DisplayObjects.align( _cursor , new Rectangle(0,0,width,height) , _cursorAlign , _cursorOffset ) ;
-            }
-        }
-        
-        /**
          * @private
          */
         protected var _cursor:Sprite ;
@@ -368,6 +358,17 @@ package vegas.display
             {
                 _cursor.x = mouseX ;
                 _cursor.y = mouseY ;
+            }
+        }
+        
+        /**
+         * Invoked when the view is changed.
+         */
+        protected override function viewChanged():void
+        {
+            if ( _cursor && !_magnetic )
+            {
+                DisplayObjects.align( _cursor , new Rectangle(0,0,width,height) , _cursorAlign , _cursorOffset ) ;
             }
         }
     }

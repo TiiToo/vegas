@@ -37,9 +37,8 @@
 
 package vegas.display.coverflow 
 {
+    import graphics.display.Background;
     import graphics.display.ReflectionBitmapData;
-    
-    import vegas.display.Background;
     
     import flash.display.Bitmap;
     import flash.display.BitmapData;

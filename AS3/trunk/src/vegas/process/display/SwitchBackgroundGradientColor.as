@@ -41,14 +41,13 @@ package vegas.process.display
 
     import graphics.FillGradientStyle;
     import graphics.colors.RGB;
+    import graphics.display.Background;
     import graphics.transitions.CoreTransition;
     import graphics.transitions.TweenArray;
     import graphics.transitions.TweenUnit;
-
+    
     import system.process.Action;
     import system.process.BatchTask;
-
-    import vegas.display.Background;
 
     /**
      * This process switch the fill gradient color of the specified background.     */    public class SwitchBackgroundGradientColor extends CoreTransition 
