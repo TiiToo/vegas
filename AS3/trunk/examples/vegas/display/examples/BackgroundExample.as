@@ -38,9 +38,8 @@ package examples
     import graphics.Direction;
     import graphics.FillGradientStyle;
     import graphics.FillStyle;
-
-    import vegas.display.Background;
-
+    import graphics.display.Background;
+    
     import flash.display.GradientType;
     import flash.display.Sprite;
     import flash.display.StageAlign;
@@ -82,17 +81,17 @@ package examples
             {
                 case Keyboard.SPACE :
                 {
-                    if( background.isFull )
+                    if( background.fullscreen )
                     {
-                        background.autoSize  = false ;
-                        background.direction = null ;
-                        background.isFull    = false ;
-                        background.fill      = new FillStyle(0xD97BD0) ;
+                        background.autoSize   = false ;
+                        background.direction  = null ;
+                        background.fullscreen = false ;
+                        background.fill       = new FillStyle(0xD97BD0) ;
                     }
                     else
                     {
                         background.autoSize         = true ;
-                        background.isFull           = true ;
+                        background.fullscreen       = true ;
                         background.direction        = null ;
                         background.gradientRotation = 90 ;
                         background.useGradientBox   = true ;
@@ -108,18 +107,18 @@ package examples
                 }
                 case Keyboard.UP :
                 {
-                    background.autoSize  = true ;
-                    background.fill      = new FillStyle(0x000000) ;
-                    background.isFull    = true ;
-                    background.direction = Direction.HORIZONTAL ;
+                    background.autoSize   = true ;
+                    background.fill       = new FillStyle(0x000000) ;
+                    background.fullscreen = true ;
+                    background.direction  = Direction.HORIZONTAL ;
                     break ;
                 }
                 case Keyboard.DOWN :
                 {
-                    background.autoSize  = true ;
-                    background.fill      = new FillStyle(0xFFFFFF) ;
-                    background.isFull    = true ;
-                    background.direction = Direction.VERTICAL ;
+                    background.autoSize   = true ;
+                    background.fill       = new FillStyle(0xFFFFFF) ;
+                    background.fullscreen = true ;
+                    background.direction  = Direction.VERTICAL ;
                     break ;
                 }
             }

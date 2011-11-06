@@ -36,11 +36,11 @@
 package examples 
 {
     import graphics.FillGradientStyle;
+    import graphics.display.Background;
     import graphics.easings.backOut;
-
-    import vegas.display.Background;
+    
     import vegas.process.display.SwitchBackgroundGradientColor;
-
+    
     import flash.display.GradientType;
     import flash.display.Sprite;
     import flash.display.StageAlign;
@@ -67,7 +67,7 @@ package examples
             background = new Background() ;
             
             background.autoSize         = true ;
-            background.isFull           = true ;
+            background.fullscreen       = true ;
             background.direction        = null ;
             background.gradientRotation = 90   ;
             background.useGradientBox   = false ;
