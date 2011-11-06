@@ -37,23 +37,14 @@
     <component id="vegas.controllers:AbstractController" class="vegas.controllers.AbstractController" />
     <component id="vegas.controllers:Controller"         class="vegas.controllers.Controller"         />
     
-    <!-- vegas.date -->
-    
-    <component id="vegas.date:Calendar" class="vegas.date.Calendar" />
-    <component id="vegas.date:Day"      class="vegas.date.Day"      />
-    <component id="vegas.date:Month"    class="vegas.date.Month"    />
-    <component id="vegas.date:Time"     class="vegas.date.Time"     />
-    
     <!-- vegas.display -->
-
+    
     <component id="vegas.display:AVM2Loader"         class="vegas.display.AVM2Loader" />
-    <component id="vegas.display:Background"         class="vegas.display.Background" />
     <component id="vegas.display:CoreBitmap"         class="vegas.display.CoreBitmap" />
     <component id="vegas.display:CoreLoader"         class="vegas.display.CoreLoader" />
     <component id="vegas.display:CoreMovieClip"      class="vegas.display.CoreMovieClip" />
     <component id="vegas.display:CoreShape"          class="vegas.display.CoreShape" />
     <component id="vegas.display:CoreSimpleButton"   class="vegas.display.CoreSimpleButton" />
-    <component id="vegas.display:CoreSprite"         class="vegas.display.CoreSprite" />
     <component id="vegas.display:IDisplayObject"     class="vegas.display.IDisplayObject" />
     <component id="vegas.display:Parallaxe"          class="vegas.display.Parallaxe" />
     <component id="vegas.display:ParallaxeLayer"     class="vegas.display.ParallaxeLayer" />
