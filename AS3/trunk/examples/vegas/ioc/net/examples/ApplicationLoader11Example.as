@@ -35,15 +35,15 @@
 
 package examples 
 {
+    import system.date.Time;
     import system.events.ActionEvent;
     import system.process.Action;
-    
-    import vegas.date.Time;
+
     import vegas.events.SoundEvent;
     import vegas.ioc.io.SoundResource;
     import vegas.media.CoreSound;
     import vegas.net.ApplicationLoader;
-    
+
     import flash.display.Sprite;
     import flash.events.Event;
     import flash.events.KeyboardEvent;

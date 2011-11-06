@@ -34,9 +34,9 @@
 */
 package examples 
 {
+    import system.date.Time;
     import system.events.ActionEvent;
     
-    import vegas.date.Time;
     import vegas.events.SoundEvent;
     import vegas.media.CoreSound;
     
