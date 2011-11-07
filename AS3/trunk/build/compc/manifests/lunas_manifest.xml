@@ -12,6 +12,7 @@
     <component id="lunas:CoreBuilder"         class="lunas.CoreBuilder" />
     <component id="lunas:CoreComponent"       class="lunas.CoreComponent" />
     <component id="lunas:CoreProgress"        class="lunas.CoreProgress" />
+    <component id="lunas:CoreScreen"          class="lunas.CoreScreen" />
     <component id="lunas:CoreStyle"           class="lunas.CoreStyle" />
     <component id="lunas:Focusable"           class="lunas.Focusable" />
     <component id="lunas:Groupable"           class="lunas.Groupable" />
@@ -21,6 +22,7 @@
     <component id="lunas:Labelable"           class="lunas.Labelable" />
     <component id="lunas:Progress"            class="lunas.Progress" />
     <component id="lunas:Progressbar"         class="lunas.Progressbar" />
+    <component id="lunas:Screen"              class="lunas.Screen" />
     <component id="lunas:Scrollbar"           class="lunas.Scrollbar" />
     <component id="lunas:ScrollPolicy"        class="lunas.ScrollPolicy" />
     <component id="lunas:Style"               class="lunas.Style" />
@@ -111,5 +113,27 @@
     <!-- lunas.logging -->
     
     <component id="lunas.logging:logger" class="lunas.logging.logger" />
+    
+    <!-- lunas.states -->
+    
+    <component id="lunas.states:State"      class="lunas.states.State" />
+    <component id="lunas.states:StateModel" class="lunas.states.StateModel" />
+    
+    <!-- lunas.states.controllers -->
+    
+    <component id="lunas.states.controllers:AddState"          class="lunas.states.controllers.AddState" />
+    <component id="lunas.states.controllers:BeforeChangeState" class="lunas.states.controllers.BeforeChangeState" />
+    <component id="lunas.states.controllers:ChangeState"       class="lunas.states.controllers.ChangeState" />
+    <component id="lunas.states.controllers:ClearState"        class="lunas.states.controllers.ClearState" />
+    <component id="lunas.states.controllers:RemoveState"       class="lunas.states.controllers.RemoveState" />
+    
+    <!-- lunas.states.process -->
+    
+    <component id="lunas.states.process:CloseActualState" class="lunas.states.process.CloseActualState" />
+    <component id="lunas.states.process:CloseState"       class="lunas.states.process.CloseState" />
+    <component id="lunas.states.process:InitState"        class="lunas.states.process.InitState" />
+    <component id="lunas.states.process:OpenActualState"  class="lunas.states.process.OpenActualState" />
+    <component id="lunas.states.process:OpenState"        class="lunas.states.process.OpenState" />
+    <component id="lunas.states.process:TaskState"        class="lunas.states.process.TaskState" />
     
 </componentPackage>
