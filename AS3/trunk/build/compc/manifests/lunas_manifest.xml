@@ -93,10 +93,10 @@
     <!-- lunas.containers -->
     
     <component id="lunas.containers:AutoScrollContainer" class="lunas.containers.AutoScrollContainer"  />
+    <component id="lunas.containers:BoxContainer"        class="lunas.containers.BoxContainer"  />
     <component id="lunas.containers:CircleContainer"     class="lunas.containers.CircleContainer"  />
     <component id="lunas.containers:Container"           class="lunas.containers.Container"  />
-    <component id="lunas.containers:ListContainer"       class="lunas.containers.ListContainer"  />
-    <component id="lunas.containers:MatrixContainer"     class="lunas.containers.MatrixContainer"  />
+    <component id="lunas.containers:GridContainer"       class="lunas.containers.GridContainer"  />
     <component id="lunas.containers:ScrollContainer"     class="lunas.containers.ScrollContainer"  />
     
     <!-- lunas.events -->
