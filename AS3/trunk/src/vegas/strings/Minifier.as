@@ -48,7 +48,7 @@ package vegas.strings
      * 
      * var input:String = "var a =       1 ; \r\n var b      = 2 ;  var c = 3    ;  " ;
      * 
-     * var minifier:JSMinifier = new JSMinifier( input , JSMinifier.NORMAL ) ;
+     * var minifier:Minifier = new Minifier( input , Minifier.NORMAL ) ;
      * 
      * minifier.run() ;
      * 
