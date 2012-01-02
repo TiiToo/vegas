@@ -90,8 +90,8 @@ trace( dump( { prop1 : "hello" , prop2 : true } ) ;
 or
 
 {{{
-import vegas.display.Background;
 import graphics.FillStyle;
+import graphics.display.Background;
  
 var background:Background = new Background() ;
 
@@ -108,15 +108,7 @@ addChild( background ) ;
 
 You can use different libraries to compile with VEGAS in your project.
 
- * *maashaack.swc* : "full" contains all the maashaack packages (core, system, graphics, etc.)
- * maashaack modules
-   * *core.swc* : the core package only
-   * *eden.swc* : the library.eden package only
-   * *system.swc* : the system package only
-   * *graphics.swc* : the graphics package only
-
-either you want to keep the modularity of the packagesd and you use : *core.swc*, *system.swc*, *graphics.swc*
-or you want all the packages in one swc and you use only *maashaack.swc*
+ * *maashaack.swc* : contains all the maashaack packages : core, system, graphics, etc.
 
 In the [http://vegas.googlecode.com/svn/AS3/trunk/libs/ AS3/trunk/libs] directory you can find the libraries :
  
