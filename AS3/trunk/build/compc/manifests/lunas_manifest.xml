@@ -142,10 +142,12 @@
     
     <component id="lunas.logging:logger" class="lunas.logging.logger" />
     
-    <!-- lunas.managers -->
+    <!-- lunas.managers 
     
     <component id="lunas.managers:MouseTapManager" class="lunas.managers.MouseTapManager" />
     <component id="lunas.managers:TapManager"      class="lunas.managers.TapManager" />
+    
+    -->
     
     <!-- lunas.states -->
     
