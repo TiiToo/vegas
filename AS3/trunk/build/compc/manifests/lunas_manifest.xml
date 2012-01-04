@@ -4,41 +4,44 @@
 
     <!-- lunas -->
     
-    <component id="lunas:Bar"                 class="lunas.Bar"  />
-    <component id="lunas:Border"              class="lunas.Border" />
-    <component id="lunas:Builder"             class="lunas.Builder" />
-    <component id="lunas:Button"              class="lunas.Button" />
-    <component id="lunas:Component"           class="lunas.Component" />
-    <component id="lunas:CoreBuilder"         class="lunas.CoreBuilder" />
-    <component id="lunas:CoreComponent"       class="lunas.CoreComponent" />
-    <component id="lunas:CoreProgress"        class="lunas.CoreProgress" />
-    <component id="lunas:CoreScreen"          class="lunas.CoreScreen" />
-    <component id="lunas:CoreStyle"           class="lunas.CoreStyle" />
-    <component id="lunas:Focusable"           class="lunas.Focusable" />
-    <component id="lunas:Groupable"           class="lunas.Groupable" />
-    <component id="lunas:Iconifiable"         class="lunas.Iconifiable" />
-    <component id="lunas:IContainer"          class="lunas.IContainer"  />
-    <component id="lunas:IMEModeSupport"      class="lunas.IMEModeSupport" />
-    <component id="lunas:Labelable"           class="lunas.Labelable" />
-    <component id="lunas:Progress"            class="lunas.Progress" />
-    <component id="lunas:Progressbar"         class="lunas.Progressbar" />
-    <component id="lunas:Screen"              class="lunas.Screen" />
-    <component id="lunas:Scrollbar"           class="lunas.Scrollbar" />
-    <component id="lunas:ScrollPolicy"        class="lunas.ScrollPolicy" />
-    <component id="lunas:Style"               class="lunas.Style" />
-    <component id="lunas:styles"              class="lunas.styles" />
-    <component id="lunas:TextInput"           class="lunas.TextInput" />
+    <component id="lunas:Bar"            class="lunas.Bar"  />
+    <component id="lunas:Border"         class="lunas.Border" />
+    <component id="lunas:Builder"        class="lunas.Builder" />
+    <component id="lunas:Button"         class="lunas.Button" />
+    <component id="lunas:Component"      class="lunas.Component" />
+    <component id="lunas:CoreBuilder"    class="lunas.CoreBuilder" />
+    <component id="lunas:CoreComponent"  class="lunas.CoreComponent" />
+    <component id="lunas:CoreProgress"   class="lunas.CoreProgress" />
+    <component id="lunas:CoreScreen"     class="lunas.CoreScreen" />
+    <component id="lunas:CoreStyle"      class="lunas.CoreStyle" />
+    <component id="lunas:Focusable"      class="lunas.Focusable" />
+    <component id="lunas:Groupable"      class="lunas.Groupable" />
+    <component id="lunas:Iconifiable"    class="lunas.Iconifiable" />
+    <component id="lunas:IContainer"     class="lunas.IContainer"  />
+    <component id="lunas:IMEModeSupport" class="lunas.IMEModeSupport" />
+    <component id="lunas:Labelable"      class="lunas.Labelable" />
+    <component id="lunas:Progress"       class="lunas.Progress" />
+    <component id="lunas:Progressbar"    class="lunas.Progressbar" />
+    <component id="lunas:Screen"         class="lunas.Screen" />
+    <component id="lunas:Scrollbar"      class="lunas.Scrollbar" />
+    <component id="lunas:ScrollPolicy"   class="lunas.ScrollPolicy" />
+    <component id="lunas:Style"          class="lunas.Style" />
+    <component id="lunas:styles"         class="lunas.styles" />
+    <component id="lunas:TextInput"      class="lunas.TextInput" />
     
     <!-- lunas.components.bars -->
     
-    <component id="lunas.components.bars:CoreProgressbar"      class="lunas.components.bars.CoreProgressbar" />
-    <component id="lunas.components.bars:CoreScrollbar"        class="lunas.components.bars.CoreScrollbar" />
-    <component id="lunas.components.bars:LevelBar"             class="lunas.components.bars.LevelBar" />
-    <component id="lunas.components.bars:LevelBarBuilder"      class="lunas.components.bars.LevelBarBuilder" />
-    <component id="lunas.components.bars:LevelBarStyle"        class="lunas.components.bars.LevelBarStyle" />
-    <component id="lunas.components.bars:SimpleProgressbar"    class="lunas.components.bars.SimpleProgressbar" />
-    <component id="lunas.components.bars:SimpleScrollbar"      class="lunas.components.bars.SimpleScrollbar" />
-    <component id="lunas.components.bars:SimpleScrollbarStyle" class="lunas.components.bars.SimpleScrollbarStyle" />  
+    <component id="lunas.components.bars:CoreProgressbar"         class="lunas.components.bars.CoreProgressbar" />
+    <component id="lunas.components.bars:CoreScrollbar"           class="lunas.components.bars.CoreScrollbar" />
+    <component id="lunas.components.bars:LevelBar"                class="lunas.components.bars.LevelBar" />
+    <component id="lunas.components.bars:LevelBarBuilder"         class="lunas.components.bars.LevelBarBuilder" />
+    <component id="lunas.components.bars:LevelBarStyle"           class="lunas.components.bars.LevelBarStyle" />
+    <component id="lunas.components.bars:MinimalScrollbar"        class="lunas.components.bars.MinimalScrollbar" />
+    <component id="lunas.components.bars:MinimalScrollbarBuilder" class="lunas.components.bars.MinimalScrollbarBuilder" />
+    <component id="lunas.components.bars:MinimalScrollbarStyle"   class="lunas.components.bars.MinimalScrollbarStyle" />
+    <component id="lunas.components.bars:SimpleProgressbar"       class="lunas.components.bars.SimpleProgressbar" />
+    <component id="lunas.components.bars:SimpleScrollbar"         class="lunas.components.bars.SimpleScrollbar" />
+    <component id="lunas.components.bars:SimpleScrollbarStyle"    class="lunas.components.bars.SimpleScrollbarStyle" />  
     
     <!-- lunas.components.buttons -->
     
@@ -100,6 +103,13 @@
     <component id="lunas.components.labels:PaginationLabelStyle"   class="lunas.components.labels.PaginationLabelStyle" />
     <component id="lunas.components.labels:PaginationModel"        class="lunas.components.labels.PaginationModel" />
     
+    <!-- panes -->
+    
+    <component id="lunas.components.panes:ScrollPane"        class="lunas.components.panes.ScrollPane" />
+    <component id="lunas.components.panes:ScrollPaneBuilder" class="lunas.components.panes.ScrollPaneBuilder" />
+    <component id="lunas.components.panes:ScrollPaneManager" class="lunas.components.panes.ScrollPaneManager" />
+    <component id="lunas.components.panes:ScrollPaneStyle"   class="lunas.components.panes.ScrollPaneStyle" />
+    
     <!-- lunas.components.textinputs -->
     
     <component id="lunas.components.textinputs:CoreTextInput"        class="lunas.components.textinputs.CoreTextInput"  />
@@ -131,6 +141,11 @@
     <!-- lunas.logging -->
     
     <component id="lunas.logging:logger" class="lunas.logging.logger" />
+    
+    <!-- lunas.managers -->
+    
+    <component id="lunas.managers:MouseTapManager" class="lunas.managers.MouseTapManager" />
+    <component id="lunas.managers:TapManager"      class="lunas.managers.TapManager" />
     
     <!-- lunas.states -->
     
