@@ -1,4 +1,4 @@
-VEGAS AS3 - version 1.9.3.2436
+VEGAS AS3 - version 1.9.3.2437
 
 LICENCE
  
