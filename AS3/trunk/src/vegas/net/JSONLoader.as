@@ -92,7 +92,7 @@ package vegas.net
          */
         public function parse( source:String ):*
         {
-            return JSON.deserialize( source ) ;
+            return vegas.strings.JSON.deserialize( source ) ;
         }
     }
 }
