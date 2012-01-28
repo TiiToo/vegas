@@ -1,4 +1,4 @@
-VEGAS AS3 - version 1.9.3.2453
+VEGAS AS3 - version 1.9.3.2454
 
 LICENCE
  
@@ -20,7 +20,7 @@ ABOUT AUTHOR
     
 LIBRARIES
 
-    The swc libraries in this folder target the FlashPlayer 10.3 / AIR 2.7 and build with the Flex SDK 4.5.1
+    The swc libraries in this folder target the FlashPlayer 11.1 / AIR 3.1 and build with the Flex SDK 4.6
     
     You can use different libraries to compile with VEGAS in your project.
     
