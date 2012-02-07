@@ -115,12 +115,15 @@
     
     <!-- lunas.components.textinputs -->
     
-    <component id="lunas.components.textinputs:CoreTextInput"        class="lunas.components.textinputs.CoreTextInput"  />
-    <component id="lunas.components.textinputs:SimpleTextInput"      class="lunas.components.textinputs.SimpleTextInput" />
-    <component id="lunas.components.textinputs:SimpleTextInputStyle" class="lunas.components.textinputs.SimpleTextInputStyle" />
-    <component id="lunas.components.textinputs:VisualComboTextInput" class="lunas.components.textinputs.VisualComboTextInput" />
-    <component id="lunas.components.textinputs:VisualTextInput"      class="lunas.components.textinputs.VisualTextInput" />
-    <component id="lunas.components.textinputs:VisualTextInputStyle" class="lunas.components.textinputs.VisualTextInputStyle" />
+    <component id="lunas.components.textinputs:CoreTextInput"          class="lunas.components.textinputs.CoreTextInput"  />
+    <component id="lunas.components.textinputs:NativeTextInput"        class="lunas.components.textinputs.NativeTextInput" />
+    <component id="lunas.components.textinputs:NativeTextInputBuilder" class="lunas.components.textinputs.NativeTextInputBuilder" />
+    <component id="lunas.components.textinputs:NativeTextInputStyle"   class="lunas.components.textinputs.NativeTextInputStyle"  />
+    <component id="lunas.components.textinputs:SimpleTextInput"        class="lunas.components.textinputs.SimpleTextInput" />
+    <component id="lunas.components.textinputs:SimpleTextInputStyle"   class="lunas.components.textinputs.SimpleTextInputStyle" />
+    <component id="lunas.components.textinputs:VisualComboTextInput"   class="lunas.components.textinputs.VisualComboTextInput" />
+    <component id="lunas.components.textinputs:VisualTextInput"        class="lunas.components.textinputs.VisualTextInput" />
+    <component id="lunas.components.textinputs:VisualTextInputStyle"   class="lunas.components.textinputs.VisualTextInputStyle" />
     
     <!-- lunas.containers -->
     
