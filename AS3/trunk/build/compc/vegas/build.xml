@@ -10,6 +10,8 @@
             
             <arg line="-load-config+=${config}" />
             
+            <arg line='-external-library-path+="${project}/dependencies/air"'/>
+            
             <arg line="-include-libraries+=${library.maashaack}" />
             
             <arg line="-source-path+=${sources.vegas}" />
