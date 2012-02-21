@@ -207,7 +207,7 @@ package vegas.colors
         /**
          * The 'DarkCyan' SVG color object.
          */
-        public static const DARK_CYAN:SVGColor = new SVGColor(0x0008B8B , "DarkCyan") ;
+        public static const DARK_CYAN:SVGColor = new SVGColor(0x008B8B , "DarkCyan") ;
         
         /**
          * The 'DarkGoldenRod' SVG color object.
