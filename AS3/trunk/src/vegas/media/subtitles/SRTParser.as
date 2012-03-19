@@ -38,7 +38,7 @@
 package vegas.media.subtitles
 {
     import core.chars.isDigit;
-    import core.strings.lineTerminatorChars;
+    import core.strings.lineTerminators;
     import core.strings.trim;
     
     import system.text.parser.GenericParser;
@@ -136,7 +136,7 @@ package vegas.media.subtitles
          */
         private function _isLineTerminator( c:String ):Boolean
         {
-            return lineTerminatorChars.indexOf( c ) > -1 ;
+            return lineTerminators.indexOf( c ) > -1 ;
         }
         
         /**
