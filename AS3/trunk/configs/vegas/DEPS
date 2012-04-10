@@ -10,7 +10,7 @@ deps = {
          Var("root") + "/build-maashaack"             : Var("maashaack") + "/packages/maashaack/trunk/build",
          Var("root") + "/build-vegas"                 : Var("vegas") + "/build",
          Var("root") + "/libs"                        : Var("vegas") + "/libs",
-         Var("root") + "/libs/libraries"              : Var("maashaack") + "/libs/trunk/swc/libraries"
+         Var("root") + "/libs/libraries"              : Var("maashaack") + "/libs/trunk/swc/libraries",
          
          Var("root") + "/libraries/astuce"        : "https://astuce.googlecode.com/svn/as3/trunk",
          Var("root") + "/libraries/eden"          : "https://edenrr.googlecode.com/svn/as3/trunk",
