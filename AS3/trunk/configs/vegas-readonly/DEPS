@@ -24,7 +24,7 @@ deps = {
          Var("root") + "/src/system/cli"          : Var("maashaack") + "/packages/system_cli/trunk/src/system/cli",
          Var("root") + "/src/system/comparators"  : Var("maashaack") + "/packages/system_comparators/trunk/src/system/comparators",
          Var("root") + "/src/system/data"         : Var("maashaack") + "/packages/system_data/trunk/src/system/data",
-         Var("root") + "/src/system/date"         : Var("maashaack") + "/packages/system_data/trunk/src/system/date",
+         Var("root") + "/src/system/date"         : Var("maashaack") + "/packages/system_date/trunk/src/system/date",
          Var("root") + "/src/system/diagnostics"  : Var("maashaack") + "/packages/system_diagnostics/trunk/src/system/diagnostics",
          Var("root") + "/src/system/errors"       : Var("maashaack") + "/packages/system_errors/trunk/src/system/errors",
          Var("root") + "/src/system/evaluators"   : Var("maashaack") + "/packages/system_evaluators/trunk/src/system/evaluators",
