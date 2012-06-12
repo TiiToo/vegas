@@ -151,11 +151,11 @@ package vegas.strings.json
         
         /**
          * Indicates the pretty printing flag value.
-         */        
+         */
         public function get prettyPrinting():Boolean
         {
             return _prettyPrinting ;
-        }        
+        }
         
         /**
          * @private
@@ -304,7 +304,7 @@ package vegas.strings.json
          * The current position of the iterator in the source.
          */
         protected var at:Number = 0 ;
-
+        
         /**
          * The current character of the iterator in the source.
          */
@@ -344,7 +344,7 @@ package vegas.strings.json
             }
             error( JSONStrings.badArray );
             return null ;
-        }        
+        }
         
         /**
          * Throws a JSONError with the passed-in message.
@@ -426,17 +426,18 @@ package vegas.strings.json
          */    
         protected function number():* 
         {
+            var value:Number ;
             
-            var n:* = '' ;
-            var v:* ;
-            var hex:String = '' ;
             var sign:String = '' ;
-            if (ch == '-') 
+            var num:String  = '' ;
+            var hex:String  = '' ;
+            
+            if ( ch == '-' ) 
             {
-                n = '-';
-                sign = n ;
+                sign = '-' ;
                 next();
             }
+            
             if( ch == "0" ) 
             {
                 next() ;
@@ -450,7 +451,7 @@ package vegas.strings.json
                     }
                     if( hex == "" ) 
                     {
-                        error(JSONStrings.malFormedHexadecimal) ;
+                        error( JSONStrings.malFormedHexadecimal ) ;
                     }
                     else 
                     {
@@ -459,46 +460,74 @@ package vegas.strings.json
                 } 
                 else 
                 {
-                    n += "0" ;
+                    num += "0" ;
                 }
             }
+            
             while ( isDigit(ch) ) 
             {
-                n += ch ;
+                num += ch ;
                 next() ;
             }
-            if (ch == '.') 
+            
+            if ( ch == '.' ) 
             {
-                n += '.';
-                while (next() && ch >= '0' && ch <= '9') 
+                num += '.' ;
+                
+                next() ;
+                
+                while ( ch >= '0' && ch <= '9' ) 
                 {
-                    n += ch ;
+                    num += ch ;
+                    next() ;
                 }
             }
-            v = 1 * n ;
-            if (!isFinite(v)) 
+            
+            if( ch == 'e' || ch == 'E' )
+            {
+                num += ch ;
+                
+                next();
+                
+                if( ch === '-' || ch === '+' )
+                {
+                    num += ch ;
+                    next();
+                }
+                
+                while( ch >= '0' && ch <= '9' )
+                {
+                    num += ch;
+                    next();
+                }
+            }
+            
+            value = Number( sign + num );
+            
+            if ( !isFinite( value ) ) 
             {
                 error( JSONStrings.badNumber );
             }
             else 
             {
-                return v ;
+                return value ;
             }
+            
             return NaN ;
-        }        
+        }
         
         /**
          * Check the Object values in the source expression.
-         */       
+         */
         protected function object():* 
         {
             var k:* = {} ;
             var o:* = {} ;
-            if (ch == '{') 
+            if ( ch == '{' ) 
             {
                 next();
                 white();
-                if (ch == '}') 
+                if ( ch == '}' ) 
                 {
                     next() ;
                     return o ;
@@ -507,14 +536,14 @@ package vegas.strings.json
                 {
                     k = key() ;
                     white();
-                    if (ch != ':') 
+                    if ( ch != ':' ) 
                     {
                         break;
                     }
                     next();
                     o[k] = value() ;
                     white();
-                    if (ch == '}') 
+                    if ( ch == '}' ) 
                     {
                         next();
                         return o;
@@ -622,6 +651,7 @@ package vegas.strings.json
         protected function value():* 
         {
             white() ;
+            
             if (ch == '{' ) 
             {
                 return object();
@@ -634,7 +664,7 @@ package vegas.strings.json
             {
                 return string();
             }
-            else if ( ch == '-' ) 
+            else if ( ch == '-' || ch == '.' ) 
             {
                 return number();
             }
@@ -642,7 +672,7 @@ package vegas.strings.json
             {
                 return ( ch >= '0' && ch <= '9' ) ? number() : word() ;
             }
-        }        
+        }
         
         /**
          * Check all white spaces.
@@ -713,7 +743,7 @@ package vegas.strings.json
         {
             if (ch == 't') 
             {
-                if (next() == 'r' && next() == 'u' && next() == 'e') 
+                if ( next() == 'r' && next() == 'u' && next() == 'e' ) 
                 {
                     next() ;
                     return true ;
