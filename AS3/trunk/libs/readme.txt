@@ -1,4 +1,4 @@
-VEGAS AS3 - version 1.9.5.2477
+VEGAS Opensource Framework - version 1.9.5.2478
 
 LICENCE
  
