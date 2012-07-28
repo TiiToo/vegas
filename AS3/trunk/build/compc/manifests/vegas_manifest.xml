@@ -14,10 +14,8 @@
     
     <component id="vegas.colors:Color"          class="vegas.colors.Color" />
     <component id="vegas.colors:ColorEvaluator" class="vegas.colors.ColorEvaluator" />
-    <component id="vegas.colors:HTMLColor"      class="vegas.colors.HTMLColor" />
     <component id="vegas.colors:LightColor"     class="vegas.colors.LightColor" />
     <component id="vegas.colors:SolidColor"     class="vegas.colors.SolidColor" />
-    <component id="vegas.colors:SVGColor"       class="vegas.colors.SVGColor" />
     <component id="vegas.colors:TintColor"      class="vegas.colors.TintColor" />
     <component id="vegas.colors:TransformColor" class="vegas.colors.TransformColor" />
     
@@ -31,11 +29,6 @@
     <component id="vegas.config:IConfigLoader"      class="vegas.config.IConfigLoader"      />
     <component id="vegas.config:IConfigurable"      class="vegas.config.IConfigurable"      />
     <component id="vegas.config:JSONConfigLoader"   class="vegas.config.JSONConfigLoader"   />
-    
-    <!-- vegas.controllers -->
-    
-    <component id="vegas.controllers:AbstractController" class="vegas.controllers.AbstractController" />
-    <component id="vegas.controllers:Controller"         class="vegas.controllers.Controller"         />
     
     <!-- vegas.display -->
     
@@ -132,12 +125,6 @@
     <component id="vegas.media:SoundLoader"      class="vegas.media.SoundLoader"  />
     <component id="vegas.media:StageVideoExpert" class="vegas.media.StageVideoExpert" />
     <component id="vegas.media:VideoCodec"       class="vegas.media.VideoCodec"  />
-    
-    <!-- vegas.media.subtitles -->
-    
-    <component id="vegas.media.subtitles:Caption"   class="vegas.media.subtitles.Caption"   />
-    <component id="vegas.media.subtitles:Captions"  class="vegas.media.subtitles.Captions"  />
-    <component id="vegas.media.subtitles:SRTParser" class="vegas.media.subtitles.SRTParser" />
     
     <!-- vegas.models -->
     

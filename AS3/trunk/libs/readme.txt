@@ -1,4 +1,4 @@
-VEGAS Opensource Framework - version 1.9.5.2478
+VEGAS Opensource Framework - version 1.9.6.2487
 
 LICENCE
  
