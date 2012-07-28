@@ -44,7 +44,7 @@ package vegas.vo
         {
             var suite:TestSuite = new TestSuite( "vegas.vo unit tests" );
             
-            suite.addTestSuite( SimpleValueObjectTest ) ;
+            //
             
             return suite;
         }
